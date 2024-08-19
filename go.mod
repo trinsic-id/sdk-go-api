@@ -1,4 +1,4 @@
-module github.com/trinsic-id/connect-sdks/dist/go
+module github.com/trinsic-id/connect-go
 
 go 1.18
 
