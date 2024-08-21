@@ -1,4 +1,4 @@
-module github.com/trinsic-id/connect-go
+module github.com/trinsic-id/sdk-go-api
 
 go 1.18
 

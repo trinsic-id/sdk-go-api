@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **IssueDate** | Pointer to **string** |  | [optional] 
 **ExpirationDate** | Pointer to **string** |  | [optional] 
 **IssuingCountry** | Pointer to **string** |  | [optional] 
+**IssuingAuthority** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -153,6 +154,31 @@ SetIssuingCountry sets IssuingCountry field to given value.
 `func (o *DocumentData) HasIssuingCountry() bool`
 
 HasIssuingCountry returns a boolean if a field has been set.
+
+### GetIssuingAuthority
+
+`func (o *DocumentData) GetIssuingAuthority() string`
+
+GetIssuingAuthority returns the IssuingAuthority field if non-nil, zero value otherwise.
+
+### GetIssuingAuthorityOk
+
+`func (o *DocumentData) GetIssuingAuthorityOk() (*string, bool)`
+
+GetIssuingAuthorityOk returns a tuple with the IssuingAuthority field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIssuingAuthority
+
+`func (o *DocumentData) SetIssuingAuthority(v string)`
+
+SetIssuingAuthority sets IssuingAuthority field to given value.
+
+### HasIssuingAuthority
+
+`func (o *DocumentData) HasIssuingAuthority() bool`
+
+HasIssuingAuthority returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

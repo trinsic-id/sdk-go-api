@@ -1,6 +1,6 @@
 # \NetworkAPI
 
-All URIs are relative to *https://connect.trinsic.id*
+All URIs are relative to *https://api.trinsic.id*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------

@@ -5,7 +5,7 @@ info:
   x-swaggerexclude: External
 servers:
 - description: Production server
-  url: https://connect.trinsic.id
+  url: https://api.trinsic.id
 security:
 - Bearer: []
 paths:
@@ -520,7 +520,6 @@ components:
       type: object
     CreateSessionRequest:
       example:
-        redirectUrl: redirectUrl
         launchMethodDirectly: true
         providers:
         - providers
@@ -537,11 +536,6 @@ components:
             \ a `RedirectUrl` specified, and cannot be invoked using the frontend\
             \ SDK at this time."
           type: boolean
-        redirectUrl:
-          description: "The URL to redirect to after the user has completed the identity\
-            \ verification process.\r\n            \r\nIf `LaunchMethodDirectly` is\
-            \ set to `true`, this field is required."
-          type: string
         providers:
           description: "The list of allowed identity providers. If not specified,\
             \ all available providers will be allowed.\r\n            \r\nIf `LaunchMethodDirectly`\
@@ -561,7 +555,7 @@ components:
       additionalProperties: false
       example:
         session: ""
-        launchUrl: https://connect.trinsic.id/api/session/launch?clientToken=...
+        launchUrl: https://api.trinsic.id/api/session/launch?clientToken=...
       properties:
         session:
           allOf:
@@ -577,7 +571,7 @@ components:
             \ the Session.\r\n            \r\nThis URL is sensitive and as such can\
             \ only be obtained once. If you need to obtain it again, you will need\
             \ to create a new Acceptance Session."
-          example: https://connect.trinsic.id/api/session/launch?clientToken=...
+          example: https://api.trinsic.id/api/session/launch?clientToken=...
           type: string
       required:
       - session
@@ -663,6 +657,8 @@ components:
         expirationDate:
           type: string
         issuingCountry:
+          type: string
+        issuingAuthority:
           type: string
       type: object
     ExchangeAttachmentAccessKeyRequest:
