@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -25,6 +24,7 @@ type CreateSessionResponse struct {
 	Session Session `json:"session"`
 	// The URL that should be used to invoke the Acceptance Session on your user's device.                If the Session was created with `LaunchMethodDirectly` set to `true`, you should redirect your user's browser to this URL. The frontend SDK cannot presently be used to  invoke these Sessions.                Otherwise, you should pass this URL to your user's frontend and use the frontend SDK to invoke the Session.                This URL is sensitive and as such can only be obtained once. If you need to obtain it again, you will need to create a new Acceptance Session.
 	LaunchUrl *string `json:"launchUrl,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateSessionResponse CreateSessionResponse
@@ -117,6 +117,11 @@ func (o CreateSessionResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.LaunchUrl) {
 		toSerialize["launchUrl"] = o.LaunchUrl
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -144,15 +149,21 @@ func (o *CreateSessionResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateSessionResponse := _CreateSessionResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateSessionResponse)
+	err = json.Unmarshal(data, &varCreateSessionResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateSessionResponse(varCreateSessionResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "session")
+		delete(additionalProperties, "launchUrl")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
