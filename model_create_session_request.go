@@ -25,7 +25,10 @@ type CreateSessionRequest struct {
 	Providers []string `json:"providers,omitempty"`
 	// Specific identity attributes to request. If not provided, all available attributes will be requested.
 	DisclosedFields *DisclosedFieldsRequest `json:"disclosedFields,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _CreateSessionRequest CreateSessionRequest
 
 // NewCreateSessionRequest instantiates a new CreateSessionRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -159,7 +162,35 @@ func (o CreateSessionRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.DisclosedFields) {
 		toSerialize["disclosedFields"] = o.DisclosedFields
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *CreateSessionRequest) UnmarshalJSON(data []byte) (err error) {
+	varCreateSessionRequest := _CreateSessionRequest{}
+
+	err = json.Unmarshal(data, &varCreateSessionRequest)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CreateSessionRequest(varCreateSessionRequest)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "launchMethodDirectly")
+		delete(additionalProperties, "providers")
+		delete(additionalProperties, "disclosedFields")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableCreateSessionRequest struct {
