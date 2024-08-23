@@ -4,8 +4,8 @@ All URIs are relative to *https://api.trinsic.id*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**IdentityLookup**](NetworkAPI.md#IdentityLookup) | **Get** /api/v1/network/identities/{phoneNumber} | Query the availability of an identity in the Trinsic Network by phone number
-[**ListProviders**](NetworkAPI.md#ListProviders) | **Get** /api/v1/network/providers | List all identity providers available for use
+[**IdentityLookup**](NetworkAPI.md#IdentityLookup) | **Get** /api/v1/network/identities/{phoneNumber} | Lookup Identity
+[**ListProviders**](NetworkAPI.md#ListProviders) | **Get** /api/v1/network/providers | List Identity Providers
 
 
 
@@ -13,7 +13,9 @@ Method | HTTP request | Description
 
 > IdentityLookupResponse IdentityLookup(ctx, phoneNumber).Execute()
 
-Query the availability of an identity in the Trinsic Network by phone number
+Lookup Identity
+
+
 
 ### Example
 
@@ -81,7 +83,9 @@ Name | Type | Description  | Notes
 
 > ListProvidersResponse ListProviders(ctx).Execute()
 
-List all identity providers available for use
+List Identity Providers
+
+
 
 ### Example
 

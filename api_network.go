@@ -34,7 +34,9 @@ func (r ApiIdentityLookupRequest) Execute() (*IdentityLookupResponse, *http.Resp
 }
 
 /*
-IdentityLookup Query the availability of an identity in the Trinsic Network by phone number
+IdentityLookup Lookup Identity
+
+Query the availability of an identity in the Trinsic Network by phone number
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param phoneNumber
@@ -156,7 +158,9 @@ func (r ApiListProvidersRequest) Execute() (*ListProvidersResponse, *http.Respon
 }
 
 /*
-ListProviders List all identity providers available for use
+ListProviders List Identity Providers
+
+List all identity providers available for use
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiListProvidersRequest

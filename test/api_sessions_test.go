@@ -48,20 +48,6 @@ func Test_trinsic_api_SessionsAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test SessionsAPIService ExchangeResultsKey", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var sessionId string
-
-		resp, httpRes, err := apiClient.SessionsAPI.ExchangeResultsKey(context.Background(), sessionId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
 	t.Run("Test SessionsAPIService GetSession", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -69,6 +55,20 @@ func Test_trinsic_api_SessionsAPIService(t *testing.T) {
 		var sessionId string
 
 		resp, httpRes, err := apiClient.SessionsAPI.GetSession(context.Background(), sessionId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test SessionsAPIService GetSessionResult", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var sessionId string
+
+		resp, httpRes, err := apiClient.SessionsAPI.GetSessionResult(context.Background(), sessionId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

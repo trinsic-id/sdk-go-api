@@ -22,48 +22,54 @@ import (
 // AttachmentsAPIService AttachmentsAPI service
 type AttachmentsAPIService service
 
-type ApiExchangeAttachmentAccessKeyRequest struct {
+type ApiGetAttachmentRequest struct {
 	ctx context.Context
 	ApiService *AttachmentsAPIService
-	exchangeAttachmentAccessKeyRequest *ExchangeAttachmentAccessKeyRequest
+	getAttachmentRequest *GetAttachmentRequest
 }
 
-func (r ApiExchangeAttachmentAccessKeyRequest) ExchangeAttachmentAccessKeyRequest(exchangeAttachmentAccessKeyRequest ExchangeAttachmentAccessKeyRequest) ApiExchangeAttachmentAccessKeyRequest {
-	r.exchangeAttachmentAccessKeyRequest = &exchangeAttachmentAccessKeyRequest
+func (r ApiGetAttachmentRequest) GetAttachmentRequest(getAttachmentRequest GetAttachmentRequest) ApiGetAttachmentRequest {
+	r.getAttachmentRequest = &getAttachmentRequest
 	return r
 }
 
-func (r ApiExchangeAttachmentAccessKeyRequest) Execute() (*http.Response, error) {
-	return r.ApiService.ExchangeAttachmentAccessKeyExecute(r)
+func (r ApiGetAttachmentRequest) Execute() (*http.Response, error) {
+	return r.ApiService.GetAttachmentExecute(r)
 }
 
 /*
-ExchangeAttachmentAccessKey Exchange an Attachment Access Key (from `IdentityData.Attachments`) for the raw contents of the attachment.                Use this API to fetch document (front, back, portrait) or other (selfie) images from a verification, if relevant.                In some cases, attachments may not be immediately available after a verification is completed. If so, this endpoint will return an HTTP 202 code, and you should try again later.
+GetAttachment Get Attachment
+
+Exchange an Attachment Access Key (from `IdentityData.Attachments`) for the raw contents of the attachment.
+            
+Use this API to fetch document (front, back, portrait) or other (selfie) images from a verification, if relevant.
+            
+In some cases, attachments may not be immediately available after a verification is completed. If so, this endpoint will return an HTTP 202 code, and you should try again later.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiExchangeAttachmentAccessKeyRequest
+ @return ApiGetAttachmentRequest
 */
-func (a *AttachmentsAPIService) ExchangeAttachmentAccessKey(ctx context.Context) ApiExchangeAttachmentAccessKeyRequest {
-	return ApiExchangeAttachmentAccessKeyRequest{
+func (a *AttachmentsAPIService) GetAttachment(ctx context.Context) ApiGetAttachmentRequest {
+	return ApiGetAttachmentRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-func (a *AttachmentsAPIService) ExchangeAttachmentAccessKeyExecute(r ApiExchangeAttachmentAccessKeyRequest) (*http.Response, error) {
+func (a *AttachmentsAPIService) GetAttachmentExecute(r ApiGetAttachmentRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AttachmentsAPIService.ExchangeAttachmentAccessKey")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AttachmentsAPIService.GetAttachment")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/attachments/exchange"
+	localVarPath := localBasePath + "/api/v1/attachments/attachment"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -87,7 +93,7 @@ func (a *AttachmentsAPIService) ExchangeAttachmentAccessKeyExecute(r ApiExchange
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.exchangeAttachmentAccessKeyRequest
+	localVarPostBody = r.getAttachmentRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err

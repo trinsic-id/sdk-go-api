@@ -9,23 +9,29 @@ servers:
 security:
 - Bearer: []
 paths:
-  /api/v1/attachments/exchange:
+  /api/v1/attachments/attachment:
     post:
-      operationId: ExchangeAttachmentAccessKey
+      description: "Exchange an Attachment Access Key (from `IdentityData.Attachments`)\
+        \ for the raw contents of the attachment.\r\n            \r\nUse this API\
+        \ to fetch document (front, back, portrait) or other (selfie) images from\
+        \ a verification, if relevant.\r\n            \r\nIn some cases, attachments\
+        \ may not be immediately available after a verification is completed. If so,\
+        \ this endpoint will return an HTTP 202 code, and you should try again later."
+      operationId: GetAttachment
       requestBody:
         content:
           application/json:
             schema:
               allOf:
-              - $ref: '#/components/schemas/ExchangeAttachmentAccessKeyRequest'
+              - $ref: '#/components/schemas/GetAttachmentRequest'
           text/json:
             schema:
               allOf:
-              - $ref: '#/components/schemas/ExchangeAttachmentAccessKeyRequest'
+              - $ref: '#/components/schemas/GetAttachmentRequest'
           application/*+json:
             schema:
               allOf:
-              - $ref: '#/components/schemas/ExchangeAttachmentAccessKeyRequest'
+              - $ref: '#/components/schemas/GetAttachmentRequest'
       responses:
         "200":
           description: OK
@@ -47,16 +53,12 @@ paths:
           description: Forbidden
         "500":
           description: Internal Server Error
-      summary: "Exchange an Attachment Access Key (from `IdentityData.Attachments`)\
-        \ for the raw contents of the attachment.\r\n            \r\nUse this API\
-        \ to fetch document (front, back, portrait) or other (selfie) images from\
-        \ a verification, if relevant.\r\n            \r\nIn some cases, attachments\
-        \ may not be immediately available after a verification is completed. If so,\
-        \ this endpoint will return an HTTP 202 code, and you should try again later."
+      summary: Get Attachment
       tags:
       - Attachments
   /api/v1/network/providers:
     get:
+      description: List all identity providers available for use
       operationId: ListProviders
       responses:
         "200":
@@ -89,11 +91,13 @@ paths:
           description: Forbidden
         "500":
           description: Internal Server Error
-      summary: List all identity providers available for use
+      summary: List Identity Providers
       tags:
       - Network
   /api/v1/network/identities/{phoneNumber}:
     get:
+      description: Query the availability of an identity in the Trinsic Network by
+        phone number
       operationId: IdentityLookup
       parameters:
       - explode: false
@@ -134,12 +138,12 @@ paths:
           description: Forbidden
         "500":
           description: Internal Server Error
-      summary: Query the availability of an identity in the Trinsic Network by phone
-        number
+      summary: Lookup Identity
       tags:
       - Network
   /api/v1/sessions:
     get:
+      description: List Sessions created by your account
       operationId: ListSessions
       parameters:
       - description: The field by which sessions should be ordered
@@ -221,10 +225,11 @@ paths:
           description: Forbidden
         "500":
           description: Internal Server Error
-      summary: List Sessions created by your account
+      summary: List Sessions
       tags:
       - Sessions
     post:
+      description: Create a Session to verify a user's identity
       operationId: CreateSession
       requestBody:
         content:
@@ -271,15 +276,15 @@ paths:
           description: Forbidden
         "500":
           description: Internal Server Error
-      summary: Create a Session to verify a user's identity
+      summary: Create Session
       tags:
       - Sessions
   /api/v1/sessions/{sessionId}:
     get:
+      description: Get a Session by its ID
       operationId: GetSession
       parameters:
-      - description: ""
-        explode: false
+      - explode: false
         in: path
         name: sessionId
         required: true
@@ -317,12 +322,12 @@ paths:
           description: Forbidden
         "500":
           description: Internal Server Error
-      summary: Get a Session by its ID
+      summary: Get Session
       tags:
       - Sessions
-  /api/v1/sessions/{sessionId}/results/exchange:
+  /api/v1/sessions/{sessionId}/results:
     post:
-      operationId: ExchangeResultsKey
+      operationId: GetSessionResult
       parameters:
       - explode: false
         in: path
@@ -336,27 +341,27 @@ paths:
           application/json:
             schema:
               allOf:
-              - $ref: '#/components/schemas/ExchangeResultsKeyRequest'
+              - $ref: '#/components/schemas/GetSessionResultRequest'
           text/json:
             schema:
               allOf:
-              - $ref: '#/components/schemas/ExchangeResultsKeyRequest'
+              - $ref: '#/components/schemas/GetSessionResultRequest'
           application/*+json:
             schema:
               allOf:
-              - $ref: '#/components/schemas/ExchangeResultsKeyRequest'
+              - $ref: '#/components/schemas/GetSessionResultRequest'
       responses:
         "200":
           content:
             text/plain:
               schema:
-                $ref: '#/components/schemas/ExchangeResultsKeyResponse'
+                $ref: '#/components/schemas/GetSessionResultResponse'
             application/json:
               schema:
-                $ref: '#/components/schemas/ExchangeResultsKeyResponse'
+                $ref: '#/components/schemas/GetSessionResultResponse'
             text/json:
               schema:
-                $ref: '#/components/schemas/ExchangeResultsKeyResponse'
+                $ref: '#/components/schemas/GetSessionResultResponse'
           description: OK
         "400":
           content:
@@ -376,11 +381,12 @@ paths:
           description: Forbidden
         "500":
           description: Internal Server Error
-      summary: Exchange a Results Access Key for Identity Data
+      summary: Get Session Results
       tags:
       - Sessions
   /api/v1/sessions/{sessionId}/cancel:
     post:
+      description: Cancel a Session by its ID
       operationId: CancelSession
       parameters:
       - explode: false
@@ -421,11 +427,14 @@ paths:
           description: Forbidden
         "500":
           description: Internal Server Error
-      summary: Cancel a Session by its ID
+      summary: Cancel Session
       tags:
       - Sessions
   /api/v1/sessions/{sessionId}/redact:
     post:
+      description: "Redact a Session, removing all identity data from Trinsic's servers.\r\
+        \n            \r\nIdentity data that a user has chosen to save in their passkey-protected\
+        \ wallet will not be deleted."
       operationId: RedactSession
       parameters:
       - explode: false
@@ -456,9 +465,7 @@ paths:
           description: Forbidden
         "500":
           description: Internal Server Error
-      summary: "Redact a Session, removing all identity data from Trinsic's servers.\r\
-        \n            \r\nIdentity data that a user has chosen to save in their passkey-protected\
-        \ wallet will not be deleted."
+      summary: Redact Session
       tags:
       - Sessions
 components:
@@ -552,7 +559,6 @@ components:
             \ all available attributes will be requested."
       type: object
     CreateSessionResponse:
-      additionalProperties: false
       example:
         session: ""
         launchUrl: https://api.trinsic.id/api/session/launch?clientToken=...
@@ -661,7 +667,17 @@ components:
         issuingAuthority:
           type: string
       type: object
-    ExchangeAttachmentAccessKeyRequest:
+    FailureMessage:
+      additionalProperties: false
+      example:
+        message: message
+      properties:
+        message:
+          type: string
+      required:
+      - message
+      type: object
+    GetAttachmentRequest:
       additionalProperties: false
       example:
         attachmentAccessKey: attachmentAccessKey
@@ -674,7 +690,19 @@ components:
       required:
       - attachmentAccessKey
       type: object
-    ExchangeResultsKeyRequest:
+    GetSessionResponse:
+      additionalProperties: false
+      example:
+        session: ""
+      properties:
+        session:
+          allOf:
+          - $ref: '#/components/schemas/Session'
+      required:
+      - session
+      type: object
+    GetSessionResultRequest:
+      additionalProperties: false
       example:
         resultsAccessKey: resultsAccessKey
       properties:
@@ -684,7 +712,7 @@ components:
       required:
       - resultsAccessKey
       type: object
-    ExchangeResultsKeyResponse:
+    GetSessionResultResponse:
       additionalProperties: false
       example:
         session: ""
@@ -696,27 +724,6 @@ components:
         identityData:
           allOf:
           - $ref: '#/components/schemas/IdentityData'
-      required:
-      - session
-      type: object
-    FailureMessage:
-      additionalProperties: false
-      example:
-        message: message
-      properties:
-        message:
-          type: string
-      required:
-      - message
-      type: object
-    GetSessionResponse:
-      additionalProperties: false
-      example:
-        session: ""
-      properties:
-        session:
-          allOf:
-          - $ref: '#/components/schemas/Session'
       required:
       - session
       type: object

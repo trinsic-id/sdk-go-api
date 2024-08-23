@@ -34,7 +34,9 @@ func (r ApiCancelSessionRequest) Execute() (*CancelSessionResponse, *http.Respon
 }
 
 /*
-CancelSession Cancel a Session by its ID
+CancelSession Cancel Session
+
+Cancel a Session by its ID
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param sessionId
@@ -162,7 +164,9 @@ func (r ApiCreateSessionRequest) Execute() (*CreateSessionResponse, *http.Respon
 }
 
 /*
-CreateSession Create a Session to verify a user's identity
+CreateSession Create Session
+
+Create a Session to verify a user's identity
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiCreateSessionRequest
@@ -273,137 +277,6 @@ func (a *SessionsAPIService) CreateSessionExecute(r ApiCreateSessionRequest) (*C
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiExchangeResultsKeyRequest struct {
-	ctx context.Context
-	ApiService *SessionsAPIService
-	sessionId string
-	exchangeResultsKeyRequest *ExchangeResultsKeyRequest
-}
-
-func (r ApiExchangeResultsKeyRequest) ExchangeResultsKeyRequest(exchangeResultsKeyRequest ExchangeResultsKeyRequest) ApiExchangeResultsKeyRequest {
-	r.exchangeResultsKeyRequest = &exchangeResultsKeyRequest
-	return r
-}
-
-func (r ApiExchangeResultsKeyRequest) Execute() (*ExchangeResultsKeyResponse, *http.Response, error) {
-	return r.ApiService.ExchangeResultsKeyExecute(r)
-}
-
-/*
-ExchangeResultsKey Exchange a Results Access Key for Identity Data
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param sessionId
- @return ApiExchangeResultsKeyRequest
-*/
-func (a *SessionsAPIService) ExchangeResultsKey(ctx context.Context, sessionId string) ApiExchangeResultsKeyRequest {
-	return ApiExchangeResultsKeyRequest{
-		ApiService: a,
-		ctx: ctx,
-		sessionId: sessionId,
-	}
-}
-
-// Execute executes the request
-//  @return ExchangeResultsKeyResponse
-func (a *SessionsAPIService) ExchangeResultsKeyExecute(r ApiExchangeResultsKeyRequest) (*ExchangeResultsKeyResponse, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ExchangeResultsKeyResponse
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SessionsAPIService.ExchangeResultsKey")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v1/sessions/{sessionId}/results/exchange"
-	localVarPath = strings.Replace(localVarPath, "{"+"sessionId"+"}", url.PathEscape(parameterValueToString(r.sessionId, "sessionId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json", "text/json", "application/*+json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.exchangeResultsKeyRequest
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v []ValidationResult
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v FailureMessage
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
 type ApiGetSessionRequest struct {
 	ctx context.Context
 	ApiService *SessionsAPIService
@@ -415,10 +288,12 @@ func (r ApiGetSessionRequest) Execute() (*GetSessionResponse, *http.Response, er
 }
 
 /*
-GetSession Get a Session by its ID
+GetSession Get Session
+
+Get a Session by its ID
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param sessionId 
+ @param sessionId
  @return ApiGetSessionRequest
 */
 func (a *SessionsAPIService) GetSession(ctx context.Context, sessionId string) ApiGetSessionRequest {
@@ -527,6 +402,137 @@ func (a *SessionsAPIService) GetSessionExecute(r ApiGetSessionRequest) (*GetSess
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiGetSessionResultRequest struct {
+	ctx context.Context
+	ApiService *SessionsAPIService
+	sessionId string
+	getSessionResultRequest *GetSessionResultRequest
+}
+
+func (r ApiGetSessionResultRequest) GetSessionResultRequest(getSessionResultRequest GetSessionResultRequest) ApiGetSessionResultRequest {
+	r.getSessionResultRequest = &getSessionResultRequest
+	return r
+}
+
+func (r ApiGetSessionResultRequest) Execute() (*GetSessionResultResponse, *http.Response, error) {
+	return r.ApiService.GetSessionResultExecute(r)
+}
+
+/*
+GetSessionResult Get Session Results
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param sessionId
+ @return ApiGetSessionResultRequest
+*/
+func (a *SessionsAPIService) GetSessionResult(ctx context.Context, sessionId string) ApiGetSessionResultRequest {
+	return ApiGetSessionResultRequest{
+		ApiService: a,
+		ctx: ctx,
+		sessionId: sessionId,
+	}
+}
+
+// Execute executes the request
+//  @return GetSessionResultResponse
+func (a *SessionsAPIService) GetSessionResultExecute(r ApiGetSessionResultRequest) (*GetSessionResultResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *GetSessionResultResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SessionsAPIService.GetSessionResult")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/sessions/{sessionId}/results"
+	localVarPath = strings.Replace(localVarPath, "{"+"sessionId"+"}", url.PathEscape(parameterValueToString(r.sessionId, "sessionId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json", "text/json", "application/*+json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.getSessionResultRequest
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v []ValidationResult
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v FailureMessage
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiListSessionsRequest struct {
 	ctx context.Context
 	ApiService *SessionsAPIService
@@ -564,7 +570,9 @@ func (r ApiListSessionsRequest) Execute() (*ListSessionsResponse, *http.Response
 }
 
 /*
-ListSessions List Sessions created by your account
+ListSessions List Sessions
+
+List Sessions created by your account
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiListSessionsRequest
@@ -598,16 +606,16 @@ func (a *SessionsAPIService) ListSessionsExecute(r ApiListSessionsRequest) (*Lis
 	localVarFormParams := url.Values{}
 
 	if r.orderBy != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "OrderBy", r.orderBy, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "OrderBy", r.orderBy, "form", "")
 	}
 	if r.orderDirection != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "OrderDirection", r.orderDirection, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "OrderDirection", r.orderDirection, "form", "")
 	}
 	if r.pageSize != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "PageSize", r.pageSize, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "PageSize", r.pageSize, "form", "")
 	}
 	if r.page != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Page", r.page, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "Page", r.page, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -696,7 +704,11 @@ func (r ApiRedactSessionRequest) Execute() (*http.Response, error) {
 }
 
 /*
-RedactSession Redact a Session, removing all identity data from Trinsic's servers.                Identity data that a user has chosen to save in their passkey-protected wallet will not be deleted.
+RedactSession Redact Session
+
+Redact a Session, removing all identity data from Trinsic's servers.
+            
+Identity data that a user has chosen to save in their passkey-protected wallet will not be deleted.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param sessionId
