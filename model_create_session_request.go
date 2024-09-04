@@ -19,8 +19,8 @@ var _ MappedNullable = &CreateSessionRequest{}
 
 // CreateSessionRequest struct for CreateSessionRequest
 type CreateSessionRequest struct {
-	// Whether to immediately launch the identity provider, without invoking the Trinsic Connect Widget UI.                Users will not be shown the Connect Widget; therefore, reuse of Connect credentials, selection of an identity provider, and saving a verification for future reuse  are not available to the end user in this mode.                Sessions created with this option enabled must be created with a `RedirectUrl` specified, and cannot be invoked using the frontend SDK at this time.
-	LaunchMethodDirectly *bool `json:"launchMethodDirectly,omitempty"`
+	// Whether to immediately launch the identity provider, without invoking the Trinsic Widget UI.                Users will not be shown the Widget; therefore, reuse of credentials, selection of an identity provider, and saving a verification for future reuse  are not available to the end user in this mode.                Sessions created with this option enabled must be created with a `RedirectUrl` specified, and cannot be invoked using the frontend SDK at this time.
+	LaunchProviderDirectly *bool `json:"launchProviderDirectly,omitempty"`
 	// The list of allowed identity providers. If not specified, all available providers will be allowed.                If `LaunchMethodDirectly` is `true`, this field must be set, and must have only a single entry.  If `LaunchMethodDirectly` is not specified or is `false`, this field may have any number of entries.
 	Providers []string `json:"providers,omitempty"`
 	// Specific identity attributes to request. If not provided, all available attributes will be requested.
@@ -47,36 +47,36 @@ func NewCreateSessionRequestWithDefaults() *CreateSessionRequest {
 	return &this
 }
 
-// GetLaunchMethodDirectly returns the LaunchMethodDirectly field value if set, zero value otherwise.
-func (o *CreateSessionRequest) GetLaunchMethodDirectly() bool {
-	if o == nil || IsNil(o.LaunchMethodDirectly) {
+// GetLaunchProviderDirectly returns the LaunchProviderDirectly field value if set, zero value otherwise.
+func (o *CreateSessionRequest) GetLaunchProviderDirectly() bool {
+	if o == nil || IsNil(o.LaunchProviderDirectly) {
 		var ret bool
 		return ret
 	}
-	return *o.LaunchMethodDirectly
+	return *o.LaunchProviderDirectly
 }
 
-// GetLaunchMethodDirectlyOk returns a tuple with the LaunchMethodDirectly field value if set, nil otherwise
+// GetLaunchProviderDirectlyOk returns a tuple with the LaunchProviderDirectly field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateSessionRequest) GetLaunchMethodDirectlyOk() (*bool, bool) {
-	if o == nil || IsNil(o.LaunchMethodDirectly) {
+func (o *CreateSessionRequest) GetLaunchProviderDirectlyOk() (*bool, bool) {
+	if o == nil || IsNil(o.LaunchProviderDirectly) {
 		return nil, false
 	}
-	return o.LaunchMethodDirectly, true
+	return o.LaunchProviderDirectly, true
 }
 
-// HasLaunchMethodDirectly returns a boolean if a field has been set.
-func (o *CreateSessionRequest) HasLaunchMethodDirectly() bool {
-	if o != nil && !IsNil(o.LaunchMethodDirectly) {
+// HasLaunchProviderDirectly returns a boolean if a field has been set.
+func (o *CreateSessionRequest) HasLaunchProviderDirectly() bool {
+	if o != nil && !IsNil(o.LaunchProviderDirectly) {
 		return true
 	}
 
 	return false
 }
 
-// SetLaunchMethodDirectly gets a reference to the given bool and assigns it to the LaunchMethodDirectly field.
-func (o *CreateSessionRequest) SetLaunchMethodDirectly(v bool) {
-	o.LaunchMethodDirectly = &v
+// SetLaunchProviderDirectly gets a reference to the given bool and assigns it to the LaunchProviderDirectly field.
+func (o *CreateSessionRequest) SetLaunchProviderDirectly(v bool) {
+	o.LaunchProviderDirectly = &v
 }
 
 // GetProviders returns the Providers field value if set, zero value otherwise.
@@ -153,8 +153,8 @@ func (o CreateSessionRequest) MarshalJSON() ([]byte, error) {
 
 func (o CreateSessionRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.LaunchMethodDirectly) {
-		toSerialize["launchMethodDirectly"] = o.LaunchMethodDirectly
+	if !IsNil(o.LaunchProviderDirectly) {
+		toSerialize["launchProviderDirectly"] = o.LaunchProviderDirectly
 	}
 	if !IsNil(o.Providers) {
 		toSerialize["providers"] = o.Providers
@@ -184,7 +184,7 @@ func (o *CreateSessionRequest) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "launchMethodDirectly")
+		delete(additionalProperties, "launchProviderDirectly")
 		delete(additionalProperties, "providers")
 		delete(additionalProperties, "disclosedFields")
 		o.AdditionalProperties = additionalProperties

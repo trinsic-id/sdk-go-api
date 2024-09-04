@@ -433,7 +433,11 @@ paths:
   /api/v1/sessions/{sessionId}/redact:
     post:
       description: "Redact a Session, removing all identity data from Trinsic's servers.\r\
-        \n            \r\nIdentity data that a user has chosen to save in their passkey-protected\
+        \nEvery application has a redaction period that dictates how long we will\
+        \ hold on to your users' PII data. Once a session falls outside the redaction\
+        \ cutoff date, all PII will automatically be removed from that session.\r\n\
+        You can utilize this endpoint to redact a session immediately.\r\n       \
+        \     \r\nIdentity data that a user has chosen to save in their passkey-protected\
         \ wallet will not be deleted."
       operationId: RedactSession
       parameters:
@@ -527,21 +531,20 @@ components:
       type: object
     CreateSessionRequest:
       example:
-        launchMethodDirectly: true
+        launchProviderDirectly: true
         providers:
         - providers
         - providers
         disclosedFields: ""
       properties:
-        launchMethodDirectly:
+        launchProviderDirectly:
           description: "Whether to immediately launch the identity provider, without\
-            \ invoking the Trinsic Connect Widget UI.\r\n            \r\nUsers will\
-            \ not be shown the Connect Widget; therefore, reuse of Connect credentials,\
-            \ selection of an identity provider, and saving a verification for future\
-            \ reuse\r\nare not available to the end user in this mode.\r\n       \
-            \     \r\nSessions created with this option enabled must be created with\
-            \ a `RedirectUrl` specified, and cannot be invoked using the frontend\
-            \ SDK at this time."
+            \ invoking the Trinsic Widget UI.\r\n            \r\nUsers will not be\
+            \ shown the Widget; therefore, reuse of credentials, selection of an identity\
+            \ provider, and saving a verification for future reuse\r\nare not available\
+            \ to the end user in this mode.\r\n            \r\nSessions created with\
+            \ this option enabled must be created with a `RedirectUrl` specified,\
+            \ and cannot be invoked using the frontend SDK at this time."
           type: boolean
         providers:
           description: "The list of allowed identity providers. If not specified,\
@@ -569,14 +572,12 @@ components:
           description: The created Acceptance Session
         launchUrl:
           description: "The URL that should be used to invoke the Acceptance Session\
-            \ on your user's device.\r\n            \r\nIf the Session was created\
-            \ with `LaunchMethodDirectly` set to `true`, you should redirect your\
-            \ user's browser to this URL. The frontend SDK cannot presently be used\
-            \ to\r\ninvoke these Sessions.\r\n            \r\nOtherwise, you should\
-            \ pass this URL to your user's frontend and use the frontend SDK to invoke\
-            \ the Session.\r\n            \r\nThis URL is sensitive and as such can\
-            \ only be obtained once. If you need to obtain it again, you will need\
-            \ to create a new Acceptance Session."
+            \ on your user's device.\r\n            \r\nYou can use our frontend SDKs\
+            \ to launch the user into the Acceptance Session, or you can redirect\
+            \ the user's browser to this URL.\r\nIf the Session was created with `LaunchProviderDirectly`\
+            \ set to `true`, you can't use the iFrame mode.\r\n            \r\nThis\
+            \ URL is sensitive and as such can only be obtained once. If you need\
+            \ to obtain it again, you will need to create a new Acceptance Session."
           example: https://api.trinsic.id/api/session/launch?clientToken=...
           type: string
       required:

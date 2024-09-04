@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**LaunchMethodDirectly** | Pointer to **bool** | Whether to immediately launch the identity provider, without invoking the Trinsic Connect Widget UI.                Users will not be shown the Connect Widget; therefore, reuse of Connect credentials, selection of an identity provider, and saving a verification for future reuse  are not available to the end user in this mode.                Sessions created with this option enabled must be created with a &#x60;RedirectUrl&#x60; specified, and cannot be invoked using the frontend SDK at this time. | [optional] 
+**LaunchProviderDirectly** | Pointer to **bool** | Whether to immediately launch the identity provider, without invoking the Trinsic Widget UI.                Users will not be shown the Widget; therefore, reuse of credentials, selection of an identity provider, and saving a verification for future reuse  are not available to the end user in this mode.                Sessions created with this option enabled must be created with a &#x60;RedirectUrl&#x60; specified, and cannot be invoked using the frontend SDK at this time. | [optional] 
 **Providers** | Pointer to **[]string** | The list of allowed identity providers. If not specified, all available providers will be allowed.                If &#x60;LaunchMethodDirectly&#x60; is &#x60;true&#x60;, this field must be set, and must have only a single entry.  If &#x60;LaunchMethodDirectly&#x60; is not specified or is &#x60;false&#x60;, this field may have any number of entries. | [optional] 
 **DisclosedFields** | Pointer to [**DisclosedFieldsRequest**](DisclosedFieldsRequest.md) | Specific identity attributes to request. If not provided, all available attributes will be requested. | [optional] 
 
@@ -27,30 +27,30 @@ NewCreateSessionRequestWithDefaults instantiates a new CreateSessionRequest obje
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetLaunchMethodDirectly
+### GetLaunchProviderDirectly
 
-`func (o *CreateSessionRequest) GetLaunchMethodDirectly() bool`
+`func (o *CreateSessionRequest) GetLaunchProviderDirectly() bool`
 
-GetLaunchMethodDirectly returns the LaunchMethodDirectly field if non-nil, zero value otherwise.
+GetLaunchProviderDirectly returns the LaunchProviderDirectly field if non-nil, zero value otherwise.
 
-### GetLaunchMethodDirectlyOk
+### GetLaunchProviderDirectlyOk
 
-`func (o *CreateSessionRequest) GetLaunchMethodDirectlyOk() (*bool, bool)`
+`func (o *CreateSessionRequest) GetLaunchProviderDirectlyOk() (*bool, bool)`
 
-GetLaunchMethodDirectlyOk returns a tuple with the LaunchMethodDirectly field if it's non-nil, zero value otherwise
+GetLaunchProviderDirectlyOk returns a tuple with the LaunchProviderDirectly field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetLaunchMethodDirectly
+### SetLaunchProviderDirectly
 
-`func (o *CreateSessionRequest) SetLaunchMethodDirectly(v bool)`
+`func (o *CreateSessionRequest) SetLaunchProviderDirectly(v bool)`
 
-SetLaunchMethodDirectly sets LaunchMethodDirectly field to given value.
+SetLaunchProviderDirectly sets LaunchProviderDirectly field to given value.
 
-### HasLaunchMethodDirectly
+### HasLaunchProviderDirectly
 
-`func (o *CreateSessionRequest) HasLaunchMethodDirectly() bool`
+`func (o *CreateSessionRequest) HasLaunchProviderDirectly() bool`
 
-HasLaunchMethodDirectly returns a boolean if a field has been set.
+HasLaunchProviderDirectly returns a boolean if a field has been set.
 
 ### GetProviders
 

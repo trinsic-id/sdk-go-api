@@ -707,6 +707,8 @@ func (r ApiRedactSessionRequest) Execute() (*http.Response, error) {
 RedactSession Redact Session
 
 Redact a Session, removing all identity data from Trinsic's servers.
+Every application has a redaction period that dictates how long we will hold on to your users' PII data. Once a session falls outside the redaction cutoff date, all PII will automatically be removed from that session.
+You can utilize this endpoint to redact a session immediately.
             
 Identity data that a user has chosen to save in their passkey-protected wallet will not be deleted.
 

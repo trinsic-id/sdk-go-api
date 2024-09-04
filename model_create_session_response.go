@@ -22,7 +22,7 @@ var _ MappedNullable = &CreateSessionResponse{}
 type CreateSessionResponse struct {
 	// The created Acceptance Session
 	Session Session `json:"session"`
-	// The URL that should be used to invoke the Acceptance Session on your user's device.                If the Session was created with `LaunchMethodDirectly` set to `true`, you should redirect your user's browser to this URL. The frontend SDK cannot presently be used to  invoke these Sessions.                Otherwise, you should pass this URL to your user's frontend and use the frontend SDK to invoke the Session.                This URL is sensitive and as such can only be obtained once. If you need to obtain it again, you will need to create a new Acceptance Session.
+	// The URL that should be used to invoke the Acceptance Session on your user's device.                You can use our frontend SDKs to launch the user into the Acceptance Session, or you can redirect the user's browser to this URL.  If the Session was created with `LaunchProviderDirectly` set to `true`, you can't use the iFrame mode.                This URL is sensitive and as such can only be obtained once. If you need to obtain it again, you will need to create a new Acceptance Session.
 	LaunchUrl *string `json:"launchUrl,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
