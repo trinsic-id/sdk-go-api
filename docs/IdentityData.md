@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **OriginatingProviderId** | Pointer to **string** | The ID of the integration from which this data originated (eg \&quot;yoti\&quot;, \&quot;clear\&quot;) | [optional] 
 **Person** | Pointer to [**PersonData**](PersonData.md) | Identity data of the individual who was verified | [optional] 
 **Document** | Pointer to [**DocumentData**](DocumentData.md) | Identity data of the document involved in verification, if relevant | [optional] 
-**Attachments** | Pointer to [**Attachments**](Attachments.md) | Access keys for attachments (eg document/selfie images) | [optional] 
+**AttachmentAccessKeys** | Pointer to [**AttachmentAccessKeys**](AttachmentAccessKeys.md) | Attachment Access Keys for attachments (eg document / selfie images) | [optional] 
 
 ## Methods
 
@@ -103,30 +103,30 @@ SetDocument sets Document field to given value.
 
 HasDocument returns a boolean if a field has been set.
 
-### GetAttachments
+### GetAttachmentAccessKeys
 
-`func (o *IdentityData) GetAttachments() Attachments`
+`func (o *IdentityData) GetAttachmentAccessKeys() AttachmentAccessKeys`
 
-GetAttachments returns the Attachments field if non-nil, zero value otherwise.
+GetAttachmentAccessKeys returns the AttachmentAccessKeys field if non-nil, zero value otherwise.
 
-### GetAttachmentsOk
+### GetAttachmentAccessKeysOk
 
-`func (o *IdentityData) GetAttachmentsOk() (*Attachments, bool)`
+`func (o *IdentityData) GetAttachmentAccessKeysOk() (*AttachmentAccessKeys, bool)`
 
-GetAttachmentsOk returns a tuple with the Attachments field if it's non-nil, zero value otherwise
+GetAttachmentAccessKeysOk returns a tuple with the AttachmentAccessKeys field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAttachments
+### SetAttachmentAccessKeys
 
-`func (o *IdentityData) SetAttachments(v Attachments)`
+`func (o *IdentityData) SetAttachmentAccessKeys(v AttachmentAccessKeys)`
 
-SetAttachments sets Attachments field to given value.
+SetAttachmentAccessKeys sets AttachmentAccessKeys field to given value.
 
-### HasAttachments
+### HasAttachmentAccessKeys
 
-`func (o *IdentityData) HasAttachments() bool`
+`func (o *IdentityData) HasAttachmentAccessKeys() bool`
 
-HasAttachments returns a boolean if a field has been set.
+HasAttachmentAccessKeys returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -25,8 +25,8 @@ type IdentityData struct {
 	Person *PersonData `json:"person,omitempty"`
 	// Identity data of the document involved in verification, if relevant
 	Document *DocumentData `json:"document,omitempty"`
-	// Access keys for attachments (eg document/selfie images)
-	Attachments *Attachments `json:"attachments,omitempty"`
+	// Attachment Access Keys for attachments (eg document / selfie images)
+	AttachmentAccessKeys *AttachmentAccessKeys `json:"attachmentAccessKeys,omitempty"`
 }
 
 // NewIdentityData instantiates a new IdentityData object
@@ -142,36 +142,36 @@ func (o *IdentityData) SetDocument(v DocumentData) {
 	o.Document = &v
 }
 
-// GetAttachments returns the Attachments field value if set, zero value otherwise.
-func (o *IdentityData) GetAttachments() Attachments {
-	if o == nil || IsNil(o.Attachments) {
-		var ret Attachments
+// GetAttachmentAccessKeys returns the AttachmentAccessKeys field value if set, zero value otherwise.
+func (o *IdentityData) GetAttachmentAccessKeys() AttachmentAccessKeys {
+	if o == nil || IsNil(o.AttachmentAccessKeys) {
+		var ret AttachmentAccessKeys
 		return ret
 	}
-	return *o.Attachments
+	return *o.AttachmentAccessKeys
 }
 
-// GetAttachmentsOk returns a tuple with the Attachments field value if set, nil otherwise
+// GetAttachmentAccessKeysOk returns a tuple with the AttachmentAccessKeys field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IdentityData) GetAttachmentsOk() (*Attachments, bool) {
-	if o == nil || IsNil(o.Attachments) {
+func (o *IdentityData) GetAttachmentAccessKeysOk() (*AttachmentAccessKeys, bool) {
+	if o == nil || IsNil(o.AttachmentAccessKeys) {
 		return nil, false
 	}
-	return o.Attachments, true
+	return o.AttachmentAccessKeys, true
 }
 
-// HasAttachments returns a boolean if a field has been set.
-func (o *IdentityData) HasAttachments() bool {
-	if o != nil && !IsNil(o.Attachments) {
+// HasAttachmentAccessKeys returns a boolean if a field has been set.
+func (o *IdentityData) HasAttachmentAccessKeys() bool {
+	if o != nil && !IsNil(o.AttachmentAccessKeys) {
 		return true
 	}
 
 	return false
 }
 
-// SetAttachments gets a reference to the given Attachments and assigns it to the Attachments field.
-func (o *IdentityData) SetAttachments(v Attachments) {
-	o.Attachments = &v
+// SetAttachmentAccessKeys gets a reference to the given AttachmentAccessKeys and assigns it to the AttachmentAccessKeys field.
+func (o *IdentityData) SetAttachmentAccessKeys(v AttachmentAccessKeys) {
+	o.AttachmentAccessKeys = &v
 }
 
 func (o IdentityData) MarshalJSON() ([]byte, error) {
@@ -193,8 +193,8 @@ func (o IdentityData) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Document) {
 		toSerialize["document"] = o.Document
 	}
-	if !IsNil(o.Attachments) {
-		toSerialize["attachments"] = o.Attachments
+	if !IsNil(o.AttachmentAccessKeys) {
+		toSerialize["attachmentAccessKeys"] = o.AttachmentAccessKeys
 	}
 	return toSerialize, nil
 }

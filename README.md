@@ -3,7 +3,8 @@
 [![Go Reference](https://pkg.go.dev/badge/github.com/trinsic-id/sdk-go-api)](https://pkg.go.dev/github.com/trinsic-id/sdk-go-api)
 [![Build Status](https://github.com/trinsic-id/sdk/actions/workflows/api-go-release.yml/badge.svg)](https://github.com/trinsic-id/sdk/actions?query=branch%main)
 
-The Trinsic API Go library provides convenient access to the Trinsic API from applications written in Go.
+The Trinsic API Go library provides convenient access to the Trinsic API from
+applications written in Go.
 
 ## Documentation
 

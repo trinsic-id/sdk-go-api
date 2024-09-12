@@ -1,4 +1,4 @@
-# Attachments
+# AttachmentAccessKeys
 
 ## Properties
 
@@ -11,120 +11,120 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewAttachments
+### NewAttachmentAccessKeys
 
-`func NewAttachments() *Attachments`
+`func NewAttachmentAccessKeys() *AttachmentAccessKeys`
 
-NewAttachments instantiates a new Attachments object
+NewAttachmentAccessKeys instantiates a new AttachmentAccessKeys object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewAttachmentsWithDefaults
+### NewAttachmentAccessKeysWithDefaults
 
-`func NewAttachmentsWithDefaults() *Attachments`
+`func NewAttachmentAccessKeysWithDefaults() *AttachmentAccessKeys`
 
-NewAttachmentsWithDefaults instantiates a new Attachments object
+NewAttachmentAccessKeysWithDefaults instantiates a new AttachmentAccessKeys object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetSelfie
 
-`func (o *Attachments) GetSelfie() string`
+`func (o *AttachmentAccessKeys) GetSelfie() string`
 
 GetSelfie returns the Selfie field if non-nil, zero value otherwise.
 
 ### GetSelfieOk
 
-`func (o *Attachments) GetSelfieOk() (*string, bool)`
+`func (o *AttachmentAccessKeys) GetSelfieOk() (*string, bool)`
 
 GetSelfieOk returns a tuple with the Selfie field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSelfie
 
-`func (o *Attachments) SetSelfie(v string)`
+`func (o *AttachmentAccessKeys) SetSelfie(v string)`
 
 SetSelfie sets Selfie field to given value.
 
 ### HasSelfie
 
-`func (o *Attachments) HasSelfie() bool`
+`func (o *AttachmentAccessKeys) HasSelfie() bool`
 
 HasSelfie returns a boolean if a field has been set.
 
 ### GetDocumentFront
 
-`func (o *Attachments) GetDocumentFront() string`
+`func (o *AttachmentAccessKeys) GetDocumentFront() string`
 
 GetDocumentFront returns the DocumentFront field if non-nil, zero value otherwise.
 
 ### GetDocumentFrontOk
 
-`func (o *Attachments) GetDocumentFrontOk() (*string, bool)`
+`func (o *AttachmentAccessKeys) GetDocumentFrontOk() (*string, bool)`
 
 GetDocumentFrontOk returns a tuple with the DocumentFront field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDocumentFront
 
-`func (o *Attachments) SetDocumentFront(v string)`
+`func (o *AttachmentAccessKeys) SetDocumentFront(v string)`
 
 SetDocumentFront sets DocumentFront field to given value.
 
 ### HasDocumentFront
 
-`func (o *Attachments) HasDocumentFront() bool`
+`func (o *AttachmentAccessKeys) HasDocumentFront() bool`
 
 HasDocumentFront returns a boolean if a field has been set.
 
 ### GetDocumentBack
 
-`func (o *Attachments) GetDocumentBack() string`
+`func (o *AttachmentAccessKeys) GetDocumentBack() string`
 
 GetDocumentBack returns the DocumentBack field if non-nil, zero value otherwise.
 
 ### GetDocumentBackOk
 
-`func (o *Attachments) GetDocumentBackOk() (*string, bool)`
+`func (o *AttachmentAccessKeys) GetDocumentBackOk() (*string, bool)`
 
 GetDocumentBackOk returns a tuple with the DocumentBack field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDocumentBack
 
-`func (o *Attachments) SetDocumentBack(v string)`
+`func (o *AttachmentAccessKeys) SetDocumentBack(v string)`
 
 SetDocumentBack sets DocumentBack field to given value.
 
 ### HasDocumentBack
 
-`func (o *Attachments) HasDocumentBack() bool`
+`func (o *AttachmentAccessKeys) HasDocumentBack() bool`
 
 HasDocumentBack returns a boolean if a field has been set.
 
 ### GetDocumentPortrait
 
-`func (o *Attachments) GetDocumentPortrait() string`
+`func (o *AttachmentAccessKeys) GetDocumentPortrait() string`
 
 GetDocumentPortrait returns the DocumentPortrait field if non-nil, zero value otherwise.
 
 ### GetDocumentPortraitOk
 
-`func (o *Attachments) GetDocumentPortraitOk() (*string, bool)`
+`func (o *AttachmentAccessKeys) GetDocumentPortraitOk() (*string, bool)`
 
 GetDocumentPortraitOk returns a tuple with the DocumentPortrait field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDocumentPortrait
 
-`func (o *Attachments) SetDocumentPortrait(v string)`
+`func (o *AttachmentAccessKeys) SetDocumentPortrait(v string)`
 
 SetDocumentPortrait sets DocumentPortrait field to given value.
 
 ### HasDocumentPortrait
 
-`func (o *Attachments) HasDocumentPortrait() bool`
+`func (o *AttachmentAccessKeys) HasDocumentPortrait() bool`
 
 HasDocumentPortrait returns a boolean if a field has been set.
 

@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## GetAttachment
 
-> GetAttachment(ctx).GetAttachmentRequest(getAttachmentRequest).Execute()
+> GetAttachmentResponse GetAttachment(ctx).GetAttachmentRequest(getAttachmentRequest).Execute()
 
 Get Attachment
 
@@ -33,11 +33,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.AttachmentsAPI.GetAttachment(context.Background()).GetAttachmentRequest(getAttachmentRequest).Execute()
+	resp, r, err := apiClient.AttachmentsAPI.GetAttachment(context.Background()).GetAttachmentRequest(getAttachmentRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AttachmentsAPI.GetAttachment``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
+	// response from `GetAttachment`: GetAttachmentResponse
+	fmt.Fprintf(os.Stdout, "Response from `AttachmentsAPI.GetAttachment`: %v\n", resp)
 }
 ```
 
@@ -56,7 +58,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
- (empty response body)
+[**GetAttachmentResponse**](GetAttachmentResponse.md)
 
 ### Authorization
 
@@ -65,7 +67,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json, text/json, application/*+json
-- **Accept**: application/json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

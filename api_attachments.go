@@ -33,7 +33,7 @@ func (r ApiGetAttachmentRequest) GetAttachmentRequest(getAttachmentRequest GetAt
 	return r
 }
 
-func (r ApiGetAttachmentRequest) Execute() (*http.Response, error) {
+func (r ApiGetAttachmentRequest) Execute() (*GetAttachmentResponse, *http.Response, error) {
 	return r.ApiService.GetAttachmentExecute(r)
 }
 
@@ -44,7 +44,8 @@ Exchange an Attachment Access Key (from `IdentityData.Attachments`) for the raw 
             
 Use this API to fetch document (front, back, portrait) or other (selfie) images from a verification, if relevant.
             
-In some cases, attachments may not be immediately available after a verification is completed. If so, this endpoint will return an HTTP 202 code, and you should try again later.
+In some cases, attachments may not be immediately available after a verification is completed.
+If so, this endpoint will return an HTTP 503 code, and you should try again later.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetAttachmentRequest
@@ -57,16 +58,18 @@ func (a *AttachmentsAPIService) GetAttachment(ctx context.Context) ApiGetAttachm
 }
 
 // Execute executes the request
-func (a *AttachmentsAPIService) GetAttachmentExecute(r ApiGetAttachmentRequest) (*http.Response, error) {
+//  @return GetAttachmentResponse
+func (a *AttachmentsAPIService) GetAttachmentExecute(r ApiGetAttachmentRequest) (*GetAttachmentResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
+		localVarReturnValue  *GetAttachmentResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AttachmentsAPIService.GetAttachment")
 	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/attachments/attachment"
@@ -85,7 +88,7 @@ func (a *AttachmentsAPIService) GetAttachmentExecute(r ApiGetAttachmentRequest) 
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -96,19 +99,19 @@ func (a *AttachmentsAPIService) GetAttachmentExecute(r ApiGetAttachmentRequest) 
 	localVarPostBody = r.getAttachmentRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -116,30 +119,50 @@ func (a *AttachmentsAPIService) GetAttachmentExecute(r ApiGetAttachmentRequest) 
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
+		if localVarHTTPResponse.StatusCode == 503 {
+			var v string
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v []ValidationResult
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-			return localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v FailureMessage
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-			return localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		return localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }

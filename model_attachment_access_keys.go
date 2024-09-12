@@ -14,11 +14,11 @@ import (
 	"encoding/json"
 )
 
-// checks if the Attachments type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &Attachments{}
+// checks if the AttachmentAccessKeys type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &AttachmentAccessKeys{}
 
-// Attachments Attachment Access Keys for attachments (eg document / selfie images)
-type Attachments struct {
+// AttachmentAccessKeys Attachment Access Keys for attachments (eg document / selfie images)
+type AttachmentAccessKeys struct {
 	// Key to access the selfie image (if relevant) for this verification
 	Selfie *string `json:"selfie,omitempty"`
 	// Key to access the document front image (if relevant) for this verification
@@ -29,25 +29,25 @@ type Attachments struct {
 	DocumentPortrait *string `json:"documentPortrait,omitempty"`
 }
 
-// NewAttachments instantiates a new Attachments object
+// NewAttachmentAccessKeys instantiates a new AttachmentAccessKeys object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAttachments() *Attachments {
-	this := Attachments{}
+func NewAttachmentAccessKeys() *AttachmentAccessKeys {
+	this := AttachmentAccessKeys{}
 	return &this
 }
 
-// NewAttachmentsWithDefaults instantiates a new Attachments object
+// NewAttachmentAccessKeysWithDefaults instantiates a new AttachmentAccessKeys object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewAttachmentsWithDefaults() *Attachments {
-	this := Attachments{}
+func NewAttachmentAccessKeysWithDefaults() *AttachmentAccessKeys {
+	this := AttachmentAccessKeys{}
 	return &this
 }
 
 // GetSelfie returns the Selfie field value if set, zero value otherwise.
-func (o *Attachments) GetSelfie() string {
+func (o *AttachmentAccessKeys) GetSelfie() string {
 	if o == nil || IsNil(o.Selfie) {
 		var ret string
 		return ret
@@ -57,7 +57,7 @@ func (o *Attachments) GetSelfie() string {
 
 // GetSelfieOk returns a tuple with the Selfie field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Attachments) GetSelfieOk() (*string, bool) {
+func (o *AttachmentAccessKeys) GetSelfieOk() (*string, bool) {
 	if o == nil || IsNil(o.Selfie) {
 		return nil, false
 	}
@@ -65,7 +65,7 @@ func (o *Attachments) GetSelfieOk() (*string, bool) {
 }
 
 // HasSelfie returns a boolean if a field has been set.
-func (o *Attachments) HasSelfie() bool {
+func (o *AttachmentAccessKeys) HasSelfie() bool {
 	if o != nil && !IsNil(o.Selfie) {
 		return true
 	}
@@ -74,12 +74,12 @@ func (o *Attachments) HasSelfie() bool {
 }
 
 // SetSelfie gets a reference to the given string and assigns it to the Selfie field.
-func (o *Attachments) SetSelfie(v string) {
+func (o *AttachmentAccessKeys) SetSelfie(v string) {
 	o.Selfie = &v
 }
 
 // GetDocumentFront returns the DocumentFront field value if set, zero value otherwise.
-func (o *Attachments) GetDocumentFront() string {
+func (o *AttachmentAccessKeys) GetDocumentFront() string {
 	if o == nil || IsNil(o.DocumentFront) {
 		var ret string
 		return ret
@@ -89,7 +89,7 @@ func (o *Attachments) GetDocumentFront() string {
 
 // GetDocumentFrontOk returns a tuple with the DocumentFront field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Attachments) GetDocumentFrontOk() (*string, bool) {
+func (o *AttachmentAccessKeys) GetDocumentFrontOk() (*string, bool) {
 	if o == nil || IsNil(o.DocumentFront) {
 		return nil, false
 	}
@@ -97,7 +97,7 @@ func (o *Attachments) GetDocumentFrontOk() (*string, bool) {
 }
 
 // HasDocumentFront returns a boolean if a field has been set.
-func (o *Attachments) HasDocumentFront() bool {
+func (o *AttachmentAccessKeys) HasDocumentFront() bool {
 	if o != nil && !IsNil(o.DocumentFront) {
 		return true
 	}
@@ -106,12 +106,12 @@ func (o *Attachments) HasDocumentFront() bool {
 }
 
 // SetDocumentFront gets a reference to the given string and assigns it to the DocumentFront field.
-func (o *Attachments) SetDocumentFront(v string) {
+func (o *AttachmentAccessKeys) SetDocumentFront(v string) {
 	o.DocumentFront = &v
 }
 
 // GetDocumentBack returns the DocumentBack field value if set, zero value otherwise.
-func (o *Attachments) GetDocumentBack() string {
+func (o *AttachmentAccessKeys) GetDocumentBack() string {
 	if o == nil || IsNil(o.DocumentBack) {
 		var ret string
 		return ret
@@ -121,7 +121,7 @@ func (o *Attachments) GetDocumentBack() string {
 
 // GetDocumentBackOk returns a tuple with the DocumentBack field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Attachments) GetDocumentBackOk() (*string, bool) {
+func (o *AttachmentAccessKeys) GetDocumentBackOk() (*string, bool) {
 	if o == nil || IsNil(o.DocumentBack) {
 		return nil, false
 	}
@@ -129,7 +129,7 @@ func (o *Attachments) GetDocumentBackOk() (*string, bool) {
 }
 
 // HasDocumentBack returns a boolean if a field has been set.
-func (o *Attachments) HasDocumentBack() bool {
+func (o *AttachmentAccessKeys) HasDocumentBack() bool {
 	if o != nil && !IsNil(o.DocumentBack) {
 		return true
 	}
@@ -138,12 +138,12 @@ func (o *Attachments) HasDocumentBack() bool {
 }
 
 // SetDocumentBack gets a reference to the given string and assigns it to the DocumentBack field.
-func (o *Attachments) SetDocumentBack(v string) {
+func (o *AttachmentAccessKeys) SetDocumentBack(v string) {
 	o.DocumentBack = &v
 }
 
 // GetDocumentPortrait returns the DocumentPortrait field value if set, zero value otherwise.
-func (o *Attachments) GetDocumentPortrait() string {
+func (o *AttachmentAccessKeys) GetDocumentPortrait() string {
 	if o == nil || IsNil(o.DocumentPortrait) {
 		var ret string
 		return ret
@@ -153,7 +153,7 @@ func (o *Attachments) GetDocumentPortrait() string {
 
 // GetDocumentPortraitOk returns a tuple with the DocumentPortrait field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Attachments) GetDocumentPortraitOk() (*string, bool) {
+func (o *AttachmentAccessKeys) GetDocumentPortraitOk() (*string, bool) {
 	if o == nil || IsNil(o.DocumentPortrait) {
 		return nil, false
 	}
@@ -161,7 +161,7 @@ func (o *Attachments) GetDocumentPortraitOk() (*string, bool) {
 }
 
 // HasDocumentPortrait returns a boolean if a field has been set.
-func (o *Attachments) HasDocumentPortrait() bool {
+func (o *AttachmentAccessKeys) HasDocumentPortrait() bool {
 	if o != nil && !IsNil(o.DocumentPortrait) {
 		return true
 	}
@@ -170,11 +170,11 @@ func (o *Attachments) HasDocumentPortrait() bool {
 }
 
 // SetDocumentPortrait gets a reference to the given string and assigns it to the DocumentPortrait field.
-func (o *Attachments) SetDocumentPortrait(v string) {
+func (o *AttachmentAccessKeys) SetDocumentPortrait(v string) {
 	o.DocumentPortrait = &v
 }
 
-func (o Attachments) MarshalJSON() ([]byte, error) {
+func (o AttachmentAccessKeys) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -182,7 +182,7 @@ func (o Attachments) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o Attachments) ToMap() (map[string]interface{}, error) {
+func (o AttachmentAccessKeys) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Selfie) {
 		toSerialize["selfie"] = o.Selfie
@@ -199,38 +199,38 @@ func (o Attachments) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-type NullableAttachments struct {
-	value *Attachments
+type NullableAttachmentAccessKeys struct {
+	value *AttachmentAccessKeys
 	isSet bool
 }
 
-func (v NullableAttachments) Get() *Attachments {
+func (v NullableAttachmentAccessKeys) Get() *AttachmentAccessKeys {
 	return v.value
 }
 
-func (v *NullableAttachments) Set(val *Attachments) {
+func (v *NullableAttachmentAccessKeys) Set(val *AttachmentAccessKeys) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableAttachments) IsSet() bool {
+func (v NullableAttachmentAccessKeys) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableAttachments) Unset() {
+func (v *NullableAttachmentAccessKeys) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableAttachments(val *Attachments) *NullableAttachments {
-	return &NullableAttachments{value: val, isSet: true}
+func NewNullableAttachmentAccessKeys(val *AttachmentAccessKeys) *NullableAttachmentAccessKeys {
+	return &NullableAttachmentAccessKeys{value: val, isSet: true}
 }
 
-func (v NullableAttachments) MarshalJSON() ([]byte, error) {
+func (v NullableAttachmentAccessKeys) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableAttachments) UnmarshalJSON(src []byte) error {
+func (v *NullableAttachmentAccessKeys) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

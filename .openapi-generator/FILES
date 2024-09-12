@@ -9,7 +9,7 @@ api_sessions.go
 client.go
 configuration.go
 docs/Address.md
-docs/Attachments.md
+docs/AttachmentAccessKeys.md
 docs/AttachmentsAPI.md
 docs/CancelSessionResponse.md
 docs/CreateSessionRequest.md
@@ -19,6 +19,7 @@ docs/DisclosedFieldsRequest.md
 docs/DocumentData.md
 docs/FailureMessage.md
 docs/GetAttachmentRequest.md
+docs/GetAttachmentResponse.md
 docs/GetSessionResponse.md
 docs/GetSessionResultRequest.md
 docs/GetSessionResultResponse.md
@@ -42,7 +43,7 @@ git_push.sh
 go.mod
 go.sum
 model_address.go
-model_attachments.go
+model_attachment_access_keys.go
 model_cancel_session_response.go
 model_create_session_request.go
 model_create_session_response.go
@@ -51,6 +52,7 @@ model_disclosed_fields_request.go
 model_document_data.go
 model_failure_message.go
 model_get_attachment_request.go
+model_get_attachment_response.go
 model_get_session_response.go
 model_get_session_result_request.go
 model_get_session_result_response.go

@@ -15,8 +15,9 @@ paths:
         \ for the raw contents of the attachment.\r\n            \r\nUse this API\
         \ to fetch document (front, back, portrait) or other (selfie) images from\
         \ a verification, if relevant.\r\n            \r\nIn some cases, attachments\
-        \ may not be immediately available after a verification is completed. If so,\
-        \ this endpoint will return an HTTP 202 code, and you should try again later."
+        \ may not be immediately available after a verification is completed.\r\n\
+        If so, this endpoint will return an HTTP 503 code, and you should try again\
+        \ later."
       operationId: GetAttachment
       requestBody:
         content:
@@ -34,7 +35,29 @@ paths:
               - $ref: '#/components/schemas/GetAttachmentRequest'
       responses:
         "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/GetAttachmentResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetAttachmentResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GetAttachmentResponse'
           description: OK
+        "503":
+          content:
+            text/plain:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+          description: Service Unavailable
         "400":
           content:
             application/json:
@@ -496,7 +519,7 @@ components:
           description: The full address as a single string
           type: string
       type: object
-    Attachments:
+    AttachmentAccessKeys:
       additionalProperties: false
       description: Attachment Access Keys for attachments (eg document / selfie images)
       properties:
@@ -691,6 +714,23 @@ components:
       required:
       - attachmentAccessKey
       type: object
+    GetAttachmentResponse:
+      additionalProperties: false
+      example:
+        contentType: contentType
+        content: content
+      properties:
+        content:
+          description: The raw file contents of the Attachment
+          format: byte
+          type: string
+        contentType:
+          description: The MIME type of the Attachment data
+          type: string
+      required:
+      - content
+      - contentType
+      type: object
     GetSessionResponse:
       additionalProperties: false
       example:
@@ -744,10 +784,11 @@ components:
           - $ref: '#/components/schemas/DocumentData'
           description: "Identity data of the document involved in verification, if\
             \ relevant"
-        attachments:
+        attachmentAccessKeys:
           allOf:
-          - $ref: '#/components/schemas/Attachments'
-          description: Access keys for attachments (eg document/selfie images)
+          - $ref: '#/components/schemas/AttachmentAccessKeys'
+          description: Attachment Access Keys for attachments (eg document / selfie
+            images)
       type: object
     IdentityLookupResponse:
       additionalProperties: false
