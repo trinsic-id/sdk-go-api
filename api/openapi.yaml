@@ -555,6 +555,7 @@ components:
     CreateSessionRequest:
       example:
         launchProviderDirectly: true
+        enableRememberMe: false
         providers:
         - providers
         - providers
@@ -568,6 +569,28 @@ components:
             \ to the end user in this mode.\r\n            \r\nSessions created with\
             \ this option enabled must be created with a `RedirectUrl` specified,\
             \ and cannot be invoked using the frontend SDK at this time."
+          type: boolean
+        enableRememberMe:
+          description: "Whether to enable Trinsic's \"Remember Me\" feature, which\
+            \ allows users to save their credentials for future use.\r\n         \
+            \   \r\nThis option is only relevant when `LaunchProviderDirectly` is\
+            \ unspecified or set to `false`.\r\nIf `LaunchProviderDirectly` is `true`,\
+            \ this field must be unspecified or set to `false`.\r\n            \r\n\
+            If this field is set to `true`, then:\r\n  - The user will be prompted\
+            \ to authenticate with their phone number at the start of the flow\r\n\
+            \  - If the user has previously saved a verification for reuse with Trinsic,\
+            \ they will be offered the ability to reuse it\r\n  - After the user has\
+            \ verified their identity (and if the identity provider in question supports\
+            \ it), they will be prompted to save their credentials for future use\r\
+            \n            \r\nIf this field is set to `false`, then:\r\n  - The user\
+            \ will not be prompted to authenticate with their phone number at the\
+            \ start of the flow.\r\n    - Instead, the user will be immediately shown\
+            \ the list of available providers\r\n  - The user will not be offered\
+            \ the ability to reuse a previously-saved Trinsic credential\r\n  - After\
+            \ the user has verified their identity, they will not be prompted to save\
+            \ their credentials for future use\r\n    - Instead, they will immediately\
+            \ return to your product"
+          example: false
           type: boolean
         providers:
           description: "The list of allowed identity providers. If not specified,\

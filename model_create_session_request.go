@@ -21,6 +21,8 @@ var _ MappedNullable = &CreateSessionRequest{}
 type CreateSessionRequest struct {
 	// Whether to immediately launch the identity provider, without invoking the Trinsic Widget UI.                Users will not be shown the Widget; therefore, reuse of credentials, selection of an identity provider, and saving a verification for future reuse  are not available to the end user in this mode.                Sessions created with this option enabled must be created with a `RedirectUrl` specified, and cannot be invoked using the frontend SDK at this time.
 	LaunchProviderDirectly *bool `json:"launchProviderDirectly,omitempty"`
+	// Whether to enable Trinsic's \"Remember Me\" feature, which allows users to save their credentials for future use.                This option is only relevant when `LaunchProviderDirectly` is unspecified or set to `false`.  If `LaunchProviderDirectly` is `true`, this field must be unspecified or set to `false`.                If this field is set to `true`, then:    - The user will be prompted to authenticate with their phone number at the start of the flow    - If the user has previously saved a verification for reuse with Trinsic, they will be offered the ability to reuse it    - After the user has verified their identity (and if the identity provider in question supports it), they will be prompted to save their credentials for future use                If this field is set to `false`, then:    - The user will not be prompted to authenticate with their phone number at the start of the flow.      - Instead, the user will be immediately shown the list of available providers    - The user will not be offered the ability to reuse a previously-saved Trinsic credential    - After the user has verified their identity, they will not be prompted to save their credentials for future use      - Instead, they will immediately return to your product
+	EnableRememberMe *bool `json:"enableRememberMe,omitempty"`
 	// The list of allowed identity providers. If not specified, all available providers will be allowed.                If `LaunchMethodDirectly` is `true`, this field must be set, and must have only a single entry.  If `LaunchMethodDirectly` is not specified or is `false`, this field may have any number of entries.
 	Providers []string `json:"providers,omitempty"`
 	// Specific identity attributes to request. If not provided, all available attributes will be requested.
@@ -77,6 +79,38 @@ func (o *CreateSessionRequest) HasLaunchProviderDirectly() bool {
 // SetLaunchProviderDirectly gets a reference to the given bool and assigns it to the LaunchProviderDirectly field.
 func (o *CreateSessionRequest) SetLaunchProviderDirectly(v bool) {
 	o.LaunchProviderDirectly = &v
+}
+
+// GetEnableRememberMe returns the EnableRememberMe field value if set, zero value otherwise.
+func (o *CreateSessionRequest) GetEnableRememberMe() bool {
+	if o == nil || IsNil(o.EnableRememberMe) {
+		var ret bool
+		return ret
+	}
+	return *o.EnableRememberMe
+}
+
+// GetEnableRememberMeOk returns a tuple with the EnableRememberMe field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateSessionRequest) GetEnableRememberMeOk() (*bool, bool) {
+	if o == nil || IsNil(o.EnableRememberMe) {
+		return nil, false
+	}
+	return o.EnableRememberMe, true
+}
+
+// HasEnableRememberMe returns a boolean if a field has been set.
+func (o *CreateSessionRequest) HasEnableRememberMe() bool {
+	if o != nil && !IsNil(o.EnableRememberMe) {
+		return true
+	}
+
+	return false
+}
+
+// SetEnableRememberMe gets a reference to the given bool and assigns it to the EnableRememberMe field.
+func (o *CreateSessionRequest) SetEnableRememberMe(v bool) {
+	o.EnableRememberMe = &v
 }
 
 // GetProviders returns the Providers field value if set, zero value otherwise.
@@ -156,6 +190,9 @@ func (o CreateSessionRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.LaunchProviderDirectly) {
 		toSerialize["launchProviderDirectly"] = o.LaunchProviderDirectly
 	}
+	if !IsNil(o.EnableRememberMe) {
+		toSerialize["enableRememberMe"] = o.EnableRememberMe
+	}
 	if !IsNil(o.Providers) {
 		toSerialize["providers"] = o.Providers
 	}
@@ -185,6 +222,7 @@ func (o *CreateSessionRequest) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "launchProviderDirectly")
+		delete(additionalProperties, "enableRememberMe")
 		delete(additionalProperties, "providers")
 		delete(additionalProperties, "disclosedFields")
 		o.AdditionalProperties = additionalProperties
