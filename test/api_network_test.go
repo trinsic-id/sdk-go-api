@@ -48,4 +48,16 @@ func Test_trinsic_api_NetworkAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test NetworkAPIService RecommendProviders", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		resp, httpRes, err := apiClient.NetworkAPI.RecommendProviders(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 }

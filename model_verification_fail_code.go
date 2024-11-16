@@ -25,6 +25,7 @@ const (
 	VERIFICATION_FAIL_INVALID_IMAGE VerificationFailCode = "VerificationFailInvalidImage"
 	VERIFICATION_FAIL_INAUTHENTIC VerificationFailCode = "VerificationFailInauthentic"
 	VERIFICATION_FAIL_UNSUPPORTED_DOCUMENT VerificationFailCode = "VerificationFailUnsupportedDocument"
+	VERIFICATION_FAIL_USER_ABANDONED VerificationFailCode = "VerificationFailUserAbandoned"
 )
 
 // All allowed values of VerificationFailCode enum
@@ -34,6 +35,7 @@ var AllowedVerificationFailCodeEnumValues = []VerificationFailCode{
 	"VerificationFailInvalidImage",
 	"VerificationFailInauthentic",
 	"VerificationFailUnsupportedDocument",
+	"VerificationFailUserAbandoned",
 }
 
 func (v *VerificationFailCode) UnmarshalJSON(src []byte) error {

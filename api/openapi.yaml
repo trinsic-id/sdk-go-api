@@ -164,6 +164,59 @@ paths:
       summary: Lookup Identity
       tags:
       - Network
+  /api/v1/network/recommend:
+    post:
+      description: "Generate provider recommendations based on the given signals (phone\
+        \ number, countries, states)"
+      operationId: RecommendProviders
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/RecommendRequest'
+          text/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/RecommendRequest'
+          application/*+json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/RecommendRequest'
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/RecommendResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecommendResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/RecommendResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ValidationResult'
+                type: array
+          description: Validation Failed
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FailureMessage'
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "500":
+          description: Internal Server Error
+      summary: Recommend Providers
+      tags:
+      - Network
   /api/v1/sessions:
     get:
       description: List Sessions created by your account
@@ -556,6 +609,7 @@ components:
       example:
         launchProviderDirectly: true
         enableRememberMe: false
+        knownIdentityData: ""
         providers:
         - providers
         - providers
@@ -601,6 +655,12 @@ components:
           items:
             type: string
           type: array
+        knownIdentityData:
+          allOf:
+          - $ref: '#/components/schemas/KnownIdentityData'
+          description: "Known identity data of an individual being verified.\r\n \
+            \           \r\nProvide this to Trinsic during Session creation to enable\
+            \ improved identity provider selection recommendations."
         disclosedFields:
           allOf:
           - $ref: '#/components/schemas/DisclosedFieldsRequest'
@@ -825,6 +885,63 @@ components:
       required:
       - identityInNetwork
       type: object
+    KnownAddress:
+      additionalProperties: false
+      description: Address information for an individual
+      properties:
+        line1:
+          type: string
+        line2:
+          type: string
+        line3:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        postalCode:
+          type: string
+        country:
+          type: string
+      type: object
+    KnownIdentityData:
+      additionalProperties: false
+      description: "Known identity data of an individual being verified.\r\n     \
+        \       \r\nProvide this to Trinsic during Session creation to enable improved\
+        \ identity provider selection recommendations."
+      properties:
+        person:
+          allOf:
+          - $ref: '#/components/schemas/KnownPersonData'
+          description: Known identity data specific to the person being verified
+      type: object
+    KnownPersonData:
+      additionalProperties: false
+      properties:
+        givenName:
+          description: Given (first) name of the individual
+          example: John
+          type: string
+        familyName:
+          description: Family (last) name of the individual
+          example: Doe
+          type: string
+        middleName:
+          description: Middle name of the individual
+          example: Jacob
+          type: string
+        phoneNumber:
+          description: The phone number (with preceding + character and country code)
+            of the individual being verified
+          type: string
+        address:
+          allOf:
+          - $ref: '#/components/schemas/KnownAddress'
+          description: The address of the individual being verified
+        dateOfBirth:
+          description: "Date of birth of the individual, in the format \"YYYY-MM-DD\""
+          type: string
+      type: object
     ListProvidersResponse:
       additionalProperties: false
       example:
@@ -947,6 +1064,103 @@ components:
       - logoUrl
       - name
       type: object
+    ProviderInformation:
+      additionalProperties: false
+      example:
+        providerDisplayName: providerDisplayName
+        providerId: providerId
+        providerLogo: providerLogo
+      properties:
+        providerId:
+          type: string
+        providerDisplayName:
+          type: string
+        providerLogo:
+          type: string
+      required:
+      - providerDisplayName
+      - providerId
+      - providerLogo
+      type: object
+    RecommendRequest:
+      additionalProperties: false
+      example:
+        phoneNumber: phoneNumber
+        countries:
+        - countries
+        - countries
+        states:
+        - states
+        - states
+      properties:
+        phoneNumber:
+          description: The phone number of the user you whish to generate a recommendation
+            for. Will be used to lookup the user's identity in the network
+          type: string
+        countries:
+          description: "A list of countries, in alpha-2 ISO 3166 format, you wish\
+            \ to specify for the recommendation, this can include the user's country\
+            \ of residence, nationality, etc."
+          items:
+            type: string
+          type: array
+        states:
+          description: "If one of the countries is US, you can specify a list of US\
+            \ states to further refine the recommendation (e.g., CA, UT, NY)"
+          items:
+            type: string
+          type: array
+      required:
+      - phoneNumber
+      type: object
+    RecommendResponse:
+      additionalProperties: false
+      example:
+        relevant:
+        - providerDisplayName: providerDisplayName
+          providerId: providerId
+          providerLogo: providerLogo
+        - providerDisplayName: providerDisplayName
+          providerId: providerId
+          providerLogo: providerLogo
+        recognized:
+        - providerDisplayName: providerDisplayName
+          providerId: providerId
+          providerLogo: providerLogo
+        - providerDisplayName: providerDisplayName
+          providerId: providerId
+          providerLogo: providerLogo
+        remainder:
+        - providerDisplayName: providerDisplayName
+          providerId: providerId
+          providerLogo: providerLogo
+        - providerDisplayName: providerDisplayName
+          providerId: providerId
+          providerLogo: providerLogo
+      properties:
+        recognized:
+          description: The list of providers that were recognized in Trinsic's network.
+            These are providers that already verified this user
+          items:
+            $ref: '#/components/schemas/ProviderInformation'
+          type: array
+        relevant:
+          description: "The list of providers that although not recognized, are relevant\
+            \ to the user's identity. The user may have been verified by these providers"
+          items:
+            $ref: '#/components/schemas/ProviderInformation'
+          type: array
+        remainder:
+          description: The list of providers that are not recognized and are not relevant
+            to the user's identity
+          items:
+            $ref: '#/components/schemas/ProviderInformation'
+          type: array
+      required:
+      - recognized
+      - relevant
+      - remainder
+      type: object
     Session:
       additionalProperties: false
       example:
@@ -1062,6 +1276,7 @@ components:
       - VerificationFailInvalidImage
       - VerificationFailInauthentic
       - VerificationFailUnsupportedDocument
+      - VerificationFailUserAbandoned
       type: string
   securitySchemes:
     Bearer:

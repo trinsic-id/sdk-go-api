@@ -25,6 +25,8 @@ type CreateSessionRequest struct {
 	EnableRememberMe *bool `json:"enableRememberMe,omitempty"`
 	// The list of allowed identity providers. If not specified, all available providers will be allowed.                If `LaunchMethodDirectly` is `true`, this field must be set, and must have only a single entry.  If `LaunchMethodDirectly` is not specified or is `false`, this field may have any number of entries.
 	Providers []string `json:"providers,omitempty"`
+	// Known identity data of an individual being verified.                Provide this to Trinsic during Session creation to enable improved identity provider selection recommendations.
+	KnownIdentityData *KnownIdentityData `json:"knownIdentityData,omitempty"`
 	// Specific identity attributes to request. If not provided, all available attributes will be requested.
 	DisclosedFields *DisclosedFieldsRequest `json:"disclosedFields,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -145,6 +147,38 @@ func (o *CreateSessionRequest) SetProviders(v []string) {
 	o.Providers = v
 }
 
+// GetKnownIdentityData returns the KnownIdentityData field value if set, zero value otherwise.
+func (o *CreateSessionRequest) GetKnownIdentityData() KnownIdentityData {
+	if o == nil || IsNil(o.KnownIdentityData) {
+		var ret KnownIdentityData
+		return ret
+	}
+	return *o.KnownIdentityData
+}
+
+// GetKnownIdentityDataOk returns a tuple with the KnownIdentityData field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateSessionRequest) GetKnownIdentityDataOk() (*KnownIdentityData, bool) {
+	if o == nil || IsNil(o.KnownIdentityData) {
+		return nil, false
+	}
+	return o.KnownIdentityData, true
+}
+
+// HasKnownIdentityData returns a boolean if a field has been set.
+func (o *CreateSessionRequest) HasKnownIdentityData() bool {
+	if o != nil && !IsNil(o.KnownIdentityData) {
+		return true
+	}
+
+	return false
+}
+
+// SetKnownIdentityData gets a reference to the given KnownIdentityData and assigns it to the KnownIdentityData field.
+func (o *CreateSessionRequest) SetKnownIdentityData(v KnownIdentityData) {
+	o.KnownIdentityData = &v
+}
+
 // GetDisclosedFields returns the DisclosedFields field value if set, zero value otherwise.
 func (o *CreateSessionRequest) GetDisclosedFields() DisclosedFieldsRequest {
 	if o == nil || IsNil(o.DisclosedFields) {
@@ -196,6 +230,9 @@ func (o CreateSessionRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Providers) {
 		toSerialize["providers"] = o.Providers
 	}
+	if !IsNil(o.KnownIdentityData) {
+		toSerialize["knownIdentityData"] = o.KnownIdentityData
+	}
 	if !IsNil(o.DisclosedFields) {
 		toSerialize["disclosedFields"] = o.DisclosedFields
 	}
@@ -224,6 +261,7 @@ func (o *CreateSessionRequest) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "launchProviderDirectly")
 		delete(additionalProperties, "enableRememberMe")
 		delete(additionalProperties, "providers")
+		delete(additionalProperties, "knownIdentityData")
 		delete(additionalProperties, "disclosedFields")
 		o.AdditionalProperties = additionalProperties
 	}
