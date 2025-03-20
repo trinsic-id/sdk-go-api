@@ -4,15 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**GivenName** | Pointer to **string** | Given (first) name of the individual | [optional] 
-**FamilyName** | Pointer to **string** | Family (last) name of the individual | [optional] 
-**MiddleName** | Pointer to **string** | Middle name of the individual | [optional] 
-**FullName** | Pointer to **string** | The individual&#39;s full name as a single string.                Useful for names which do not fit into a \&quot;first middle last\&quot; structure. | [optional] 
-**Nationality** | Pointer to **string** |  | [optional] 
-**Gender** | Pointer to **string** |  | [optional] 
-**PhoneNumber** | Pointer to **string** |  | [optional] 
-**Address** | Pointer to [**Address**](Address.md) | Address information for an individual | [optional] 
-**DateOfBirth** | Pointer to **string** |  | [optional] 
+**GivenName** | Pointer to **NullableString** |  | [optional] 
+**FamilyName** | Pointer to **NullableString** |  | [optional] 
+**MiddleName** | Pointer to **NullableString** |  | [optional] 
+**FullName** | Pointer to **NullableString** |  | [optional] 
+**Suffix** | Pointer to **NullableString** |  | [optional] 
+**Nationality** | Pointer to **NullableString** |  | [optional] 
+**Sex** | Pointer to [**NullableSex**](Sex.md) |  | [optional] 
+**PhoneNumber** | Pointer to **NullableString** |  | [optional] 
+**Address** | Pointer to [**NullableAddress**](Address.md) |  | [optional] 
+**DateOfBirth** | Pointer to **NullableString** |  | [optional] 
 
 ## Methods
 
@@ -58,6 +59,16 @@ SetGivenName sets GivenName field to given value.
 
 HasGivenName returns a boolean if a field has been set.
 
+### SetGivenNameNil
+
+`func (o *PersonData) SetGivenNameNil(b bool)`
+
+ SetGivenNameNil sets the value for GivenName to be an explicit nil
+
+### UnsetGivenName
+`func (o *PersonData) UnsetGivenName()`
+
+UnsetGivenName ensures that no value is present for GivenName, not even an explicit nil
 ### GetFamilyName
 
 `func (o *PersonData) GetFamilyName() string`
@@ -83,6 +94,16 @@ SetFamilyName sets FamilyName field to given value.
 
 HasFamilyName returns a boolean if a field has been set.
 
+### SetFamilyNameNil
+
+`func (o *PersonData) SetFamilyNameNil(b bool)`
+
+ SetFamilyNameNil sets the value for FamilyName to be an explicit nil
+
+### UnsetFamilyName
+`func (o *PersonData) UnsetFamilyName()`
+
+UnsetFamilyName ensures that no value is present for FamilyName, not even an explicit nil
 ### GetMiddleName
 
 `func (o *PersonData) GetMiddleName() string`
@@ -108,6 +129,16 @@ SetMiddleName sets MiddleName field to given value.
 
 HasMiddleName returns a boolean if a field has been set.
 
+### SetMiddleNameNil
+
+`func (o *PersonData) SetMiddleNameNil(b bool)`
+
+ SetMiddleNameNil sets the value for MiddleName to be an explicit nil
+
+### UnsetMiddleName
+`func (o *PersonData) UnsetMiddleName()`
+
+UnsetMiddleName ensures that no value is present for MiddleName, not even an explicit nil
 ### GetFullName
 
 `func (o *PersonData) GetFullName() string`
@@ -133,6 +164,51 @@ SetFullName sets FullName field to given value.
 
 HasFullName returns a boolean if a field has been set.
 
+### SetFullNameNil
+
+`func (o *PersonData) SetFullNameNil(b bool)`
+
+ SetFullNameNil sets the value for FullName to be an explicit nil
+
+### UnsetFullName
+`func (o *PersonData) UnsetFullName()`
+
+UnsetFullName ensures that no value is present for FullName, not even an explicit nil
+### GetSuffix
+
+`func (o *PersonData) GetSuffix() string`
+
+GetSuffix returns the Suffix field if non-nil, zero value otherwise.
+
+### GetSuffixOk
+
+`func (o *PersonData) GetSuffixOk() (*string, bool)`
+
+GetSuffixOk returns a tuple with the Suffix field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSuffix
+
+`func (o *PersonData) SetSuffix(v string)`
+
+SetSuffix sets Suffix field to given value.
+
+### HasSuffix
+
+`func (o *PersonData) HasSuffix() bool`
+
+HasSuffix returns a boolean if a field has been set.
+
+### SetSuffixNil
+
+`func (o *PersonData) SetSuffixNil(b bool)`
+
+ SetSuffixNil sets the value for Suffix to be an explicit nil
+
+### UnsetSuffix
+`func (o *PersonData) UnsetSuffix()`
+
+UnsetSuffix ensures that no value is present for Suffix, not even an explicit nil
 ### GetNationality
 
 `func (o *PersonData) GetNationality() string`
@@ -158,31 +234,51 @@ SetNationality sets Nationality field to given value.
 
 HasNationality returns a boolean if a field has been set.
 
-### GetGender
+### SetNationalityNil
 
-`func (o *PersonData) GetGender() string`
+`func (o *PersonData) SetNationalityNil(b bool)`
 
-GetGender returns the Gender field if non-nil, zero value otherwise.
+ SetNationalityNil sets the value for Nationality to be an explicit nil
 
-### GetGenderOk
+### UnsetNationality
+`func (o *PersonData) UnsetNationality()`
 
-`func (o *PersonData) GetGenderOk() (*string, bool)`
+UnsetNationality ensures that no value is present for Nationality, not even an explicit nil
+### GetSex
 
-GetGenderOk returns a tuple with the Gender field if it's non-nil, zero value otherwise
+`func (o *PersonData) GetSex() Sex`
+
+GetSex returns the Sex field if non-nil, zero value otherwise.
+
+### GetSexOk
+
+`func (o *PersonData) GetSexOk() (*Sex, bool)`
+
+GetSexOk returns a tuple with the Sex field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetGender
+### SetSex
 
-`func (o *PersonData) SetGender(v string)`
+`func (o *PersonData) SetSex(v Sex)`
 
-SetGender sets Gender field to given value.
+SetSex sets Sex field to given value.
 
-### HasGender
+### HasSex
 
-`func (o *PersonData) HasGender() bool`
+`func (o *PersonData) HasSex() bool`
 
-HasGender returns a boolean if a field has been set.
+HasSex returns a boolean if a field has been set.
 
+### SetSexNil
+
+`func (o *PersonData) SetSexNil(b bool)`
+
+ SetSexNil sets the value for Sex to be an explicit nil
+
+### UnsetSex
+`func (o *PersonData) UnsetSex()`
+
+UnsetSex ensures that no value is present for Sex, not even an explicit nil
 ### GetPhoneNumber
 
 `func (o *PersonData) GetPhoneNumber() string`
@@ -208,6 +304,16 @@ SetPhoneNumber sets PhoneNumber field to given value.
 
 HasPhoneNumber returns a boolean if a field has been set.
 
+### SetPhoneNumberNil
+
+`func (o *PersonData) SetPhoneNumberNil(b bool)`
+
+ SetPhoneNumberNil sets the value for PhoneNumber to be an explicit nil
+
+### UnsetPhoneNumber
+`func (o *PersonData) UnsetPhoneNumber()`
+
+UnsetPhoneNumber ensures that no value is present for PhoneNumber, not even an explicit nil
 ### GetAddress
 
 `func (o *PersonData) GetAddress() Address`
@@ -233,6 +339,16 @@ SetAddress sets Address field to given value.
 
 HasAddress returns a boolean if a field has been set.
 
+### SetAddressNil
+
+`func (o *PersonData) SetAddressNil(b bool)`
+
+ SetAddressNil sets the value for Address to be an explicit nil
+
+### UnsetAddress
+`func (o *PersonData) UnsetAddress()`
+
+UnsetAddress ensures that no value is present for Address, not even an explicit nil
 ### GetDateOfBirth
 
 `func (o *PersonData) GetDateOfBirth() string`
@@ -258,6 +374,16 @@ SetDateOfBirth sets DateOfBirth field to given value.
 
 HasDateOfBirth returns a boolean if a field has been set.
 
+### SetDateOfBirthNil
+
+`func (o *PersonData) SetDateOfBirthNil(b bool)`
+
+ SetDateOfBirthNil sets the value for DateOfBirth to be an explicit nil
+
+### UnsetDateOfBirth
+`func (o *PersonData) UnsetDateOfBirth()`
+
+UnsetDateOfBirth ensures that no value is present for DateOfBirth, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Line1** | Pointer to **string** |  | [optional] 
-**Line2** | Pointer to **string** |  | [optional] 
-**Line3** | Pointer to **string** |  | [optional] 
-**City** | Pointer to **string** |  | [optional] 
-**State** | Pointer to **string** |  | [optional] 
-**PostalCode** | Pointer to **string** |  | [optional] 
-**Country** | Pointer to **string** |  | [optional] 
-**FullAddress** | Pointer to **string** | The full address as a single string | [optional] 
+**Line1** | Pointer to **NullableString** |  | [optional] 
+**Line2** | Pointer to **NullableString** |  | [optional] 
+**Line3** | Pointer to **NullableString** |  | [optional] 
+**City** | Pointer to **NullableString** |  | [optional] 
+**Subdivision** | Pointer to **NullableString** |  | [optional] 
+**PostalCode** | Pointer to **NullableString** |  | [optional] 
+**Country** | Pointer to **NullableString** |  | [optional] 
+**FullAddress** | Pointer to **NullableString** |  | [optional] 
 
 ## Methods
 
@@ -57,6 +57,16 @@ SetLine1 sets Line1 field to given value.
 
 HasLine1 returns a boolean if a field has been set.
 
+### SetLine1Nil
+
+`func (o *Address) SetLine1Nil(b bool)`
+
+ SetLine1Nil sets the value for Line1 to be an explicit nil
+
+### UnsetLine1
+`func (o *Address) UnsetLine1()`
+
+UnsetLine1 ensures that no value is present for Line1, not even an explicit nil
 ### GetLine2
 
 `func (o *Address) GetLine2() string`
@@ -82,6 +92,16 @@ SetLine2 sets Line2 field to given value.
 
 HasLine2 returns a boolean if a field has been set.
 
+### SetLine2Nil
+
+`func (o *Address) SetLine2Nil(b bool)`
+
+ SetLine2Nil sets the value for Line2 to be an explicit nil
+
+### UnsetLine2
+`func (o *Address) UnsetLine2()`
+
+UnsetLine2 ensures that no value is present for Line2, not even an explicit nil
 ### GetLine3
 
 `func (o *Address) GetLine3() string`
@@ -107,6 +127,16 @@ SetLine3 sets Line3 field to given value.
 
 HasLine3 returns a boolean if a field has been set.
 
+### SetLine3Nil
+
+`func (o *Address) SetLine3Nil(b bool)`
+
+ SetLine3Nil sets the value for Line3 to be an explicit nil
+
+### UnsetLine3
+`func (o *Address) UnsetLine3()`
+
+UnsetLine3 ensures that no value is present for Line3, not even an explicit nil
 ### GetCity
 
 `func (o *Address) GetCity() string`
@@ -132,31 +162,51 @@ SetCity sets City field to given value.
 
 HasCity returns a boolean if a field has been set.
 
-### GetState
+### SetCityNil
 
-`func (o *Address) GetState() string`
+`func (o *Address) SetCityNil(b bool)`
 
-GetState returns the State field if non-nil, zero value otherwise.
+ SetCityNil sets the value for City to be an explicit nil
 
-### GetStateOk
+### UnsetCity
+`func (o *Address) UnsetCity()`
 
-`func (o *Address) GetStateOk() (*string, bool)`
+UnsetCity ensures that no value is present for City, not even an explicit nil
+### GetSubdivision
 
-GetStateOk returns a tuple with the State field if it's non-nil, zero value otherwise
+`func (o *Address) GetSubdivision() string`
+
+GetSubdivision returns the Subdivision field if non-nil, zero value otherwise.
+
+### GetSubdivisionOk
+
+`func (o *Address) GetSubdivisionOk() (*string, bool)`
+
+GetSubdivisionOk returns a tuple with the Subdivision field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetState
+### SetSubdivision
 
-`func (o *Address) SetState(v string)`
+`func (o *Address) SetSubdivision(v string)`
 
-SetState sets State field to given value.
+SetSubdivision sets Subdivision field to given value.
 
-### HasState
+### HasSubdivision
 
-`func (o *Address) HasState() bool`
+`func (o *Address) HasSubdivision() bool`
 
-HasState returns a boolean if a field has been set.
+HasSubdivision returns a boolean if a field has been set.
 
+### SetSubdivisionNil
+
+`func (o *Address) SetSubdivisionNil(b bool)`
+
+ SetSubdivisionNil sets the value for Subdivision to be an explicit nil
+
+### UnsetSubdivision
+`func (o *Address) UnsetSubdivision()`
+
+UnsetSubdivision ensures that no value is present for Subdivision, not even an explicit nil
 ### GetPostalCode
 
 `func (o *Address) GetPostalCode() string`
@@ -182,6 +232,16 @@ SetPostalCode sets PostalCode field to given value.
 
 HasPostalCode returns a boolean if a field has been set.
 
+### SetPostalCodeNil
+
+`func (o *Address) SetPostalCodeNil(b bool)`
+
+ SetPostalCodeNil sets the value for PostalCode to be an explicit nil
+
+### UnsetPostalCode
+`func (o *Address) UnsetPostalCode()`
+
+UnsetPostalCode ensures that no value is present for PostalCode, not even an explicit nil
 ### GetCountry
 
 `func (o *Address) GetCountry() string`
@@ -207,6 +267,16 @@ SetCountry sets Country field to given value.
 
 HasCountry returns a boolean if a field has been set.
 
+### SetCountryNil
+
+`func (o *Address) SetCountryNil(b bool)`
+
+ SetCountryNil sets the value for Country to be an explicit nil
+
+### UnsetCountry
+`func (o *Address) UnsetCountry()`
+
+UnsetCountry ensures that no value is present for Country, not even an explicit nil
 ### GetFullAddress
 
 `func (o *Address) GetFullAddress() string`
@@ -232,6 +302,16 @@ SetFullAddress sets FullAddress field to given value.
 
 HasFullAddress returns a boolean if a field has been set.
 
+### SetFullAddressNil
+
+`func (o *Address) SetFullAddressNil(b bool)`
+
+ SetFullAddressNil sets the value for FullAddress to be an explicit nil
+
+### UnsetFullAddress
+`func (o *Address) UnsetFullAddress()`
+
+UnsetFullAddress ensures that no value is present for FullAddress, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

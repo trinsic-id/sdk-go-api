@@ -1,5 +1,5 @@
 /*
-Connect API
+Trinsic API
 
 Testing AttachmentsAPIService
 

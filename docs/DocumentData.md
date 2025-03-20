@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | Pointer to **string** |  | [optional] 
-**Number** | Pointer to **string** |  | [optional] 
-**IssueDate** | Pointer to **string** |  | [optional] 
-**ExpirationDate** | Pointer to **string** |  | [optional] 
-**IssuingCountry** | Pointer to **string** |  | [optional] 
-**IssuingAuthority** | Pointer to **string** |  | [optional] 
+**Type** | Pointer to [**NullableDocumentType**](DocumentType.md) |  | [optional] 
+**Number** | Pointer to **NullableString** |  | [optional] 
+**IssueDate** | Pointer to **NullableString** |  | [optional] 
+**ExpirationDate** | Pointer to **NullableString** |  | [optional] 
+**IssuingCountry** | Pointer to **NullableString** |  | [optional] 
+**IssuingAuthority** | Pointer to **NullableString** |  | [optional] 
 
 ## Methods
 
@@ -32,20 +32,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetType
 
-`func (o *DocumentData) GetType() string`
+`func (o *DocumentData) GetType() DocumentType`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *DocumentData) GetTypeOk() (*string, bool)`
+`func (o *DocumentData) GetTypeOk() (*DocumentType, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *DocumentData) SetType(v string)`
+`func (o *DocumentData) SetType(v DocumentType)`
 
 SetType sets Type field to given value.
 
@@ -55,6 +55,16 @@ SetType sets Type field to given value.
 
 HasType returns a boolean if a field has been set.
 
+### SetTypeNil
+
+`func (o *DocumentData) SetTypeNil(b bool)`
+
+ SetTypeNil sets the value for Type to be an explicit nil
+
+### UnsetType
+`func (o *DocumentData) UnsetType()`
+
+UnsetType ensures that no value is present for Type, not even an explicit nil
 ### GetNumber
 
 `func (o *DocumentData) GetNumber() string`
@@ -80,6 +90,16 @@ SetNumber sets Number field to given value.
 
 HasNumber returns a boolean if a field has been set.
 
+### SetNumberNil
+
+`func (o *DocumentData) SetNumberNil(b bool)`
+
+ SetNumberNil sets the value for Number to be an explicit nil
+
+### UnsetNumber
+`func (o *DocumentData) UnsetNumber()`
+
+UnsetNumber ensures that no value is present for Number, not even an explicit nil
 ### GetIssueDate
 
 `func (o *DocumentData) GetIssueDate() string`
@@ -105,6 +125,16 @@ SetIssueDate sets IssueDate field to given value.
 
 HasIssueDate returns a boolean if a field has been set.
 
+### SetIssueDateNil
+
+`func (o *DocumentData) SetIssueDateNil(b bool)`
+
+ SetIssueDateNil sets the value for IssueDate to be an explicit nil
+
+### UnsetIssueDate
+`func (o *DocumentData) UnsetIssueDate()`
+
+UnsetIssueDate ensures that no value is present for IssueDate, not even an explicit nil
 ### GetExpirationDate
 
 `func (o *DocumentData) GetExpirationDate() string`
@@ -130,6 +160,16 @@ SetExpirationDate sets ExpirationDate field to given value.
 
 HasExpirationDate returns a boolean if a field has been set.
 
+### SetExpirationDateNil
+
+`func (o *DocumentData) SetExpirationDateNil(b bool)`
+
+ SetExpirationDateNil sets the value for ExpirationDate to be an explicit nil
+
+### UnsetExpirationDate
+`func (o *DocumentData) UnsetExpirationDate()`
+
+UnsetExpirationDate ensures that no value is present for ExpirationDate, not even an explicit nil
 ### GetIssuingCountry
 
 `func (o *DocumentData) GetIssuingCountry() string`
@@ -155,6 +195,16 @@ SetIssuingCountry sets IssuingCountry field to given value.
 
 HasIssuingCountry returns a boolean if a field has been set.
 
+### SetIssuingCountryNil
+
+`func (o *DocumentData) SetIssuingCountryNil(b bool)`
+
+ SetIssuingCountryNil sets the value for IssuingCountry to be an explicit nil
+
+### UnsetIssuingCountry
+`func (o *DocumentData) UnsetIssuingCountry()`
+
+UnsetIssuingCountry ensures that no value is present for IssuingCountry, not even an explicit nil
 ### GetIssuingAuthority
 
 `func (o *DocumentData) GetIssuingAuthority() string`
@@ -180,6 +230,16 @@ SetIssuingAuthority sets IssuingAuthority field to given value.
 
 HasIssuingAuthority returns a boolean if a field has been set.
 
+### SetIssuingAuthorityNil
+
+`func (o *DocumentData) SetIssuingAuthorityNil(b bool)`
+
+ SetIssuingAuthorityNil sets the value for IssuingAuthority to be an explicit nil
+
+### UnsetIssuingAuthority
+`func (o *DocumentData) UnsetIssuingAuthority()`
+
+UnsetIssuingAuthority ensures that no value is present for IssuingAuthority, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

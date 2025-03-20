@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**OriginatingProviderId** | Pointer to **string** | The ID of the integration from which this data originated (eg \&quot;yoti\&quot;, \&quot;clear\&quot;) | [optional] 
-**Person** | Pointer to [**PersonData**](PersonData.md) | Identity data of the individual who was verified | [optional] 
-**Document** | Pointer to [**DocumentData**](DocumentData.md) | Identity data of the document involved in verification, if relevant | [optional] 
-**AttachmentAccessKeys** | Pointer to [**AttachmentAccessKeys**](AttachmentAccessKeys.md) | Attachment Access Keys for attachments (eg document / selfie images) | [optional] 
+**OriginatingProviderId** | Pointer to **NullableString** |  | [optional] 
+**Person** | Pointer to [**NullablePersonData**](PersonData.md) |  | [optional] 
+**Document** | Pointer to [**NullableDocumentData**](DocumentData.md) |  | [optional] 
+**AttachmentAccessKeys** | Pointer to [**NullableAttachmentAccessKeys**](AttachmentAccessKeys.md) |  | [optional] 
 
 ## Methods
 
@@ -53,6 +53,16 @@ SetOriginatingProviderId sets OriginatingProviderId field to given value.
 
 HasOriginatingProviderId returns a boolean if a field has been set.
 
+### SetOriginatingProviderIdNil
+
+`func (o *IdentityData) SetOriginatingProviderIdNil(b bool)`
+
+ SetOriginatingProviderIdNil sets the value for OriginatingProviderId to be an explicit nil
+
+### UnsetOriginatingProviderId
+`func (o *IdentityData) UnsetOriginatingProviderId()`
+
+UnsetOriginatingProviderId ensures that no value is present for OriginatingProviderId, not even an explicit nil
 ### GetPerson
 
 `func (o *IdentityData) GetPerson() PersonData`
@@ -78,6 +88,16 @@ SetPerson sets Person field to given value.
 
 HasPerson returns a boolean if a field has been set.
 
+### SetPersonNil
+
+`func (o *IdentityData) SetPersonNil(b bool)`
+
+ SetPersonNil sets the value for Person to be an explicit nil
+
+### UnsetPerson
+`func (o *IdentityData) UnsetPerson()`
+
+UnsetPerson ensures that no value is present for Person, not even an explicit nil
 ### GetDocument
 
 `func (o *IdentityData) GetDocument() DocumentData`
@@ -103,6 +123,16 @@ SetDocument sets Document field to given value.
 
 HasDocument returns a boolean if a field has been set.
 
+### SetDocumentNil
+
+`func (o *IdentityData) SetDocumentNil(b bool)`
+
+ SetDocumentNil sets the value for Document to be an explicit nil
+
+### UnsetDocument
+`func (o *IdentityData) UnsetDocument()`
+
+UnsetDocument ensures that no value is present for Document, not even an explicit nil
 ### GetAttachmentAccessKeys
 
 `func (o *IdentityData) GetAttachmentAccessKeys() AttachmentAccessKeys`
@@ -128,6 +158,16 @@ SetAttachmentAccessKeys sets AttachmentAccessKeys field to given value.
 
 HasAttachmentAccessKeys returns a boolean if a field has been set.
 
+### SetAttachmentAccessKeysNil
+
+`func (o *IdentityData) SetAttachmentAccessKeysNil(b bool)`
+
+ SetAttachmentAccessKeysNil sets the value for AttachmentAccessKeys to be an explicit nil
+
+### UnsetAttachmentAccessKeys
+`func (o *IdentityData) UnsetAttachmentAccessKeys()`
+
+UnsetAttachmentAccessKeys ensures that no value is present for AttachmentAccessKeys, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

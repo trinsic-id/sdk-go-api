@@ -5,10 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** |  | 
-**State** | [**SessionState**](SessionState.md) | The state of the session | 
-**FailCode** | Pointer to [**SessionFailCode**](SessionFailCode.md) | If the session is in state &#x60;IdvFailed&#x60;, this field contains the reason for failure. | [optional] 
-**Verification** | [**Verification**](Verification.md) | The underlying verification for this Session | 
-**DisclosedFields** | [**DisclosedFields**](DisclosedFields.md) | The fields that were requested to be disclosed when the Session was created | 
+**Done** | **bool** | Whether the Session is in a terminal / final state.                If this is &#x60;true&#x60;, inspect the value of &#x60;Success&#x60; to determine whether the Session was successful. | 
+**Success** | **bool** | Whether the Session has completed successfully.                If this is &#x60;false&#x60;, the Session is either not yet done, or has failed. Inspect &#x60;Done&#x60; and &#x60;ErrorCode&#x60; for more information.  If this is &#x60;true&#x60;, the Session has completed successfully. | 
+**ErrorCode** | Pointer to [**NullableSessionErrorCode**](SessionErrorCode.md) | The reason for the Session&#39;s failure.                Only present if &#x60;Success&#x60; is &#x60;false&#x60;. | [optional] 
 **Created** | **int64** | The unix timestamp, in seconds, when this session was created | 
 **Updated** | **int64** | The unix timestamp, in seconds, when this session&#39;s state last changed | 
 
@@ -16,7 +15,7 @@ Name | Type | Description | Notes
 
 ### NewSession
 
-`func NewSession(id string, state SessionState, verification Verification, disclosedFields DisclosedFields, created int64, updated int64, ) *Session`
+`func NewSession(id string, done bool, success bool, created int64, updated int64, ) *Session`
 
 NewSession instantiates a new Session object
 This constructor will assign default values to properties that have it defined,
@@ -51,91 +50,81 @@ and a boolean to check if the value has been set.
 SetId sets Id field to given value.
 
 
-### GetState
+### GetDone
 
-`func (o *Session) GetState() SessionState`
+`func (o *Session) GetDone() bool`
 
-GetState returns the State field if non-nil, zero value otherwise.
+GetDone returns the Done field if non-nil, zero value otherwise.
 
-### GetStateOk
+### GetDoneOk
 
-`func (o *Session) GetStateOk() (*SessionState, bool)`
+`func (o *Session) GetDoneOk() (*bool, bool)`
 
-GetStateOk returns a tuple with the State field if it's non-nil, zero value otherwise
+GetDoneOk returns a tuple with the Done field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetState
+### SetDone
 
-`func (o *Session) SetState(v SessionState)`
+`func (o *Session) SetDone(v bool)`
 
-SetState sets State field to given value.
+SetDone sets Done field to given value.
 
 
-### GetFailCode
+### GetSuccess
 
-`func (o *Session) GetFailCode() SessionFailCode`
+`func (o *Session) GetSuccess() bool`
 
-GetFailCode returns the FailCode field if non-nil, zero value otherwise.
+GetSuccess returns the Success field if non-nil, zero value otherwise.
 
-### GetFailCodeOk
+### GetSuccessOk
 
-`func (o *Session) GetFailCodeOk() (*SessionFailCode, bool)`
+`func (o *Session) GetSuccessOk() (*bool, bool)`
 
-GetFailCodeOk returns a tuple with the FailCode field if it's non-nil, zero value otherwise
+GetSuccessOk returns a tuple with the Success field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetFailCode
+### SetSuccess
 
-`func (o *Session) SetFailCode(v SessionFailCode)`
+`func (o *Session) SetSuccess(v bool)`
 
-SetFailCode sets FailCode field to given value.
+SetSuccess sets Success field to given value.
 
-### HasFailCode
 
-`func (o *Session) HasFailCode() bool`
+### GetErrorCode
 
-HasFailCode returns a boolean if a field has been set.
+`func (o *Session) GetErrorCode() SessionErrorCode`
 
-### GetVerification
+GetErrorCode returns the ErrorCode field if non-nil, zero value otherwise.
 
-`func (o *Session) GetVerification() Verification`
+### GetErrorCodeOk
 
-GetVerification returns the Verification field if non-nil, zero value otherwise.
+`func (o *Session) GetErrorCodeOk() (*SessionErrorCode, bool)`
 
-### GetVerificationOk
-
-`func (o *Session) GetVerificationOk() (*Verification, bool)`
-
-GetVerificationOk returns a tuple with the Verification field if it's non-nil, zero value otherwise
+GetErrorCodeOk returns a tuple with the ErrorCode field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetVerification
+### SetErrorCode
 
-`func (o *Session) SetVerification(v Verification)`
+`func (o *Session) SetErrorCode(v SessionErrorCode)`
 
-SetVerification sets Verification field to given value.
+SetErrorCode sets ErrorCode field to given value.
 
+### HasErrorCode
 
-### GetDisclosedFields
+`func (o *Session) HasErrorCode() bool`
 
-`func (o *Session) GetDisclosedFields() DisclosedFields`
+HasErrorCode returns a boolean if a field has been set.
 
-GetDisclosedFields returns the DisclosedFields field if non-nil, zero value otherwise.
+### SetErrorCodeNil
 
-### GetDisclosedFieldsOk
+`func (o *Session) SetErrorCodeNil(b bool)`
 
-`func (o *Session) GetDisclosedFieldsOk() (*DisclosedFields, bool)`
+ SetErrorCodeNil sets the value for ErrorCode to be an explicit nil
 
-GetDisclosedFieldsOk returns a tuple with the DisclosedFields field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
+### UnsetErrorCode
+`func (o *Session) UnsetErrorCode()`
 
-### SetDisclosedFields
-
-`func (o *Session) SetDisclosedFields(v DisclosedFields)`
-
-SetDisclosedFields sets DisclosedFields field to given value.
-
-
+UnsetErrorCode ensures that no value is present for ErrorCode, not even an explicit nil
 ### GetCreated
 
 `func (o *Session) GetCreated() int64`

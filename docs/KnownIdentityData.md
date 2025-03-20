@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Person** | Pointer to [**KnownPersonData**](KnownPersonData.md) | Known identity data specific to the person being verified | [optional] 
+**Person** | Pointer to [**NullableKnownPersonData**](KnownPersonData.md) | Known identity data specific to the person being verified | [optional] 
 
 ## Methods
 
@@ -50,6 +50,16 @@ SetPerson sets Person field to given value.
 
 HasPerson returns a boolean if a field has been set.
 
+### SetPersonNil
+
+`func (o *KnownIdentityData) SetPersonNil(b bool)`
+
+ SetPersonNil sets the value for Person to be an explicit nil
+
+### UnsetPerson
+`func (o *KnownIdentityData) UnsetPerson()`
+
+UnsetPerson ensures that no value is present for Person, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

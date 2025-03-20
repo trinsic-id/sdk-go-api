@@ -1,5 +1,5 @@
 /*
-Connect API
+Trinsic API
 
 Testing SessionsAPIService
 
@@ -36,11 +36,35 @@ func Test_trinsic_api_SessionsAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test SessionsAPIService CreateSession", func(t *testing.T) {
+	t.Run("Test SessionsAPIService CreateAdvancedProviderSession", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.SessionsAPI.CreateSession(context.Background()).Execute()
+		resp, httpRes, err := apiClient.SessionsAPI.CreateAdvancedProviderSession(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test SessionsAPIService CreateHostedProviderSession", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		resp, httpRes, err := apiClient.SessionsAPI.CreateHostedProviderSession(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test SessionsAPIService CreateWidgetSession", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		resp, httpRes, err := apiClient.SessionsAPI.CreateWidgetSession(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -97,6 +121,20 @@ func Test_trinsic_api_SessionsAPIService(t *testing.T) {
 		httpRes, err := apiClient.SessionsAPI.RedactSession(context.Background(), sessionId).Execute()
 
 		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test SessionsAPIService RefreshStepContent", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var acceptanceSessionId string
+
+		resp, httpRes, err := apiClient.SessionsAPI.RefreshStepContent(context.Background(), acceptanceSessionId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})

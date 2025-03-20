@@ -1,6 +1,6 @@
 openapi: 3.0.1
 info:
-  title: Connect API
+  title: Trinsic API
   version: v1
   x-swaggerexclude: External
 servers:
@@ -61,21 +61,34 @@ paths:
         "400":
           content:
             application/json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.5.1
+                title: Bad Request
+                detail: This feature is not supported for your configruation
+                status: 400
+                traceId: 00-3fcbc632c5caaca825849d495c62d7b0-09a3500f89acbbcc-00
+                instance: /api/v1/sample-request-path
+                errors:
+                  PropertyName:
+                  - Specific error description for property
               schema:
-                items:
-                  $ref: '#/components/schemas/ValidationResult'
-                type: array
-          description: Validation Failed
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad request
         "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/FailureMessage'
           description: Unauthorized
         "403":
           description: Forbidden
         "500":
-          description: Internal Server Error
+          content:
+            application/json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Internal Server Error
+                status: 500
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Internal server error
       summary: Get Attachment
       tags:
       - Attachments
@@ -99,75 +112,41 @@ paths:
         "400":
           content:
             application/json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.5.1
+                title: Bad Request
+                detail: This feature is not supported for your configruation
+                status: 400
+                traceId: 00-3fcbc632c5caaca825849d495c62d7b0-09a3500f89acbbcc-00
+                instance: /api/v1/sample-request-path
+                errors:
+                  PropertyName:
+                  - Specific error description for property
               schema:
-                items:
-                  $ref: '#/components/schemas/ValidationResult'
-                type: array
-          description: Validation Failed
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad request
         "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/FailureMessage'
           description: Unauthorized
         "403":
           description: Forbidden
         "500":
-          description: Internal Server Error
+          content:
+            application/json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Internal Server Error
+                status: 500
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Internal server error
       summary: List Identity Providers
-      tags:
-      - Network
-  /api/v1/network/identities/{phoneNumber}:
-    get:
-      description: Query the availability of an identity in the Trinsic Network by
-        phone number
-      operationId: IdentityLookup
-      parameters:
-      - explode: false
-        in: path
-        name: phoneNumber
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/IdentityLookupResponse'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/IdentityLookupResponse'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/IdentityLookupResponse'
-          description: OK
-        "400":
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/ValidationResult'
-                type: array
-          description: Validation Failed
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/FailureMessage'
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "500":
-          description: Internal Server Error
-      summary: Lookup Identity
       tags:
       - Network
   /api/v1/network/recommend:
     post:
       description: "Generate provider recommendations based on the given signals (phone\
-        \ number, countries, states)"
+        \ number, countries, states)."
       operationId: RecommendProviders
       requestBody:
         content:
@@ -199,25 +178,312 @@ paths:
         "400":
           content:
             application/json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.5.1
+                title: Bad Request
+                detail: This feature is not supported for your configruation
+                status: 400
+                traceId: 00-3fcbc632c5caaca825849d495c62d7b0-09a3500f89acbbcc-00
+                instance: /api/v1/sample-request-path
+                errors:
+                  PropertyName:
+                  - Specific error description for property
               schema:
-                items:
-                  $ref: '#/components/schemas/ValidationResult'
-                type: array
-          description: Validation Failed
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad request
         "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/FailureMessage'
           description: Unauthorized
         "403":
           description: Forbidden
         "500":
-          description: Internal Server Error
+          content:
+            application/json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Internal Server Error
+                status: 500
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Internal server error
       summary: Recommend Providers
       tags:
       - Network
-  /api/v1/sessions:
+  /api/v1/sessions/provider/advanced:
+    post:
+      description: "Verify a user's identity with a specific provider, handling additional\
+        \ user interaction in your own UI. \n\r\nSignal which kinds of user interactions\
+        \ your UI can handle using the `Capabilities` field. \n\r\nIf `FallbackToHostedUi`\
+        \ is `true`, Trinsic's hosted UI will automatically be invoked to handle any\
+        \ capabilities you do not support."
+      operationId: CreateAdvancedProviderSession
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/CreateAdvancedProviderSessionRequest'
+          text/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/CreateAdvancedProviderSessionRequest'
+          application/*+json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/CreateAdvancedProviderSessionRequest'
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CreateAdvancedProviderSessionResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateAdvancedProviderSessionResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CreateAdvancedProviderSessionResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.5.1
+                title: Bad Request
+                detail: This feature is not supported for your configruation
+                status: 400
+                traceId: 00-3fcbc632c5caaca825849d495c62d7b0-09a3500f89acbbcc-00
+                instance: /api/v1/sample-request-path
+                errors:
+                  PropertyName:
+                  - Specific error description for property
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "500":
+          content:
+            application/json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Internal Server Error
+                status: 500
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Internal server error
+      summary: Create Advanced Provider Session
+      tags:
+      - Sessions
+  /api/v1/sessions/{acceptanceSessionId}/step/refresh:
+    post:
+      description: Refreshes the content of a Step for an Advanced Provider Session.
+      operationId: RefreshStepContent
+      parameters:
+      - explode: false
+        in: path
+        name: acceptanceSessionId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/RefreshStepContentRequest'
+          text/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/RefreshStepContentRequest'
+          application/*+json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/RefreshStepContentRequest'
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/RefreshStepContentResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RefreshStepContentResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/RefreshStepContentResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.5.1
+                title: Bad Request
+                detail: This feature is not supported for your configruation
+                status: 400
+                traceId: 00-3fcbc632c5caaca825849d495c62d7b0-09a3500f89acbbcc-00
+                instance: /api/v1/sample-request-path
+                errors:
+                  PropertyName:
+                  - Specific error description for property
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "500":
+          content:
+            application/json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Internal Server Error
+                status: 500
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Internal server error
+      summary: Refresh Step Content
+      tags:
+      - Sessions
+  /api/v1/sessions/widget:
+    post:
+      description: Verify a user's identity using Trinsic's hosted Widget flow.
+      operationId: CreateWidgetSession
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/CreateWidgetSessionRequest'
+          text/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/CreateWidgetSessionRequest'
+          application/*+json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/CreateWidgetSessionRequest'
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CreateWidgetSessionResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateWidgetSessionResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CreateWidgetSessionResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.5.1
+                title: Bad Request
+                detail: This feature is not supported for your configruation
+                status: 400
+                traceId: 00-3fcbc632c5caaca825849d495c62d7b0-09a3500f89acbbcc-00
+                instance: /api/v1/sample-request-path
+                errors:
+                  PropertyName:
+                  - Specific error description for property
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "500":
+          content:
+            application/json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Internal Server Error
+                status: 500
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Internal server error
+      summary: Create Widget Session
+      tags:
+      - Sessions
+  /api/v1/sessions/provider/hosted:
+    post:
+      description: "Verify a user's identity with a specific provider, using Trinsic-hosted\
+        \ UI for providers which require additional user interaction."
+      operationId: CreateHostedProviderSession
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/CreateHostedProviderSessionRequest'
+          text/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/CreateHostedProviderSessionRequest'
+          application/*+json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/CreateHostedProviderSessionRequest'
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CreateHostedProviderSessionResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateHostedProviderSessionResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CreateHostedProviderSessionResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.5.1
+                title: Bad Request
+                detail: This feature is not supported for your configruation
+                status: 400
+                traceId: 00-3fcbc632c5caaca825849d495c62d7b0-09a3500f89acbbcc-00
+                instance: /api/v1/sample-request-path
+                errors:
+                  PropertyName:
+                  - Specific error description for property
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "500":
+          content:
+            application/json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Internal Server Error
+                status: 500
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Internal server error
+      summary: Create Hosted Provider Session
+      tags:
+      - Sessions
+  /api/v1/sessions/list:
     get:
       description: List Sessions created by your account
       operationId: ListSessions
@@ -286,73 +552,35 @@ paths:
         "400":
           content:
             application/json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.5.1
+                title: Bad Request
+                detail: This feature is not supported for your configruation
+                status: 400
+                traceId: 00-3fcbc632c5caaca825849d495c62d7b0-09a3500f89acbbcc-00
+                instance: /api/v1/sample-request-path
+                errors:
+                  PropertyName:
+                  - Specific error description for property
               schema:
-                items:
-                  $ref: '#/components/schemas/ValidationResult'
-                type: array
-          description: Validation Failed
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad request
         "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/FailureMessage'
           description: Unauthorized
         "403":
           description: Forbidden
         "500":
-          description: Internal Server Error
+          content:
+            application/json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Internal Server Error
+                status: 500
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Internal server error
       summary: List Sessions
-      tags:
-      - Sessions
-    post:
-      description: Create a Session to verify a user's identity
-      operationId: CreateSession
-      requestBody:
-        content:
-          application/json:
-            schema:
-              allOf:
-              - $ref: '#/components/schemas/CreateSessionRequest'
-          text/json:
-            schema:
-              allOf:
-              - $ref: '#/components/schemas/CreateSessionRequest'
-          application/*+json:
-            schema:
-              allOf:
-              - $ref: '#/components/schemas/CreateSessionRequest'
-      responses:
-        "200":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/CreateSessionResponse'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CreateSessionResponse'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/CreateSessionResponse'
-          description: OK
-        "400":
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/ValidationResult'
-                type: array
-          description: Validation Failed
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/FailureMessage'
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "500":
-          description: Internal Server Error
-      summary: Create Session
       tags:
       - Sessions
   /api/v1/sessions/{sessionId}:
@@ -383,21 +611,34 @@ paths:
         "400":
           content:
             application/json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.5.1
+                title: Bad Request
+                detail: This feature is not supported for your configruation
+                status: 400
+                traceId: 00-3fcbc632c5caaca825849d495c62d7b0-09a3500f89acbbcc-00
+                instance: /api/v1/sample-request-path
+                errors:
+                  PropertyName:
+                  - Specific error description for property
               schema:
-                items:
-                  $ref: '#/components/schemas/ValidationResult'
-                type: array
-          description: Validation Failed
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad request
         "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/FailureMessage'
           description: Unauthorized
         "403":
           description: Forbidden
         "500":
-          description: Internal Server Error
+          content:
+            application/json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Internal Server Error
+                status: 500
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Internal server error
       summary: Get Session
       tags:
       - Sessions
@@ -442,21 +683,34 @@ paths:
         "400":
           content:
             application/json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.5.1
+                title: Bad Request
+                detail: This feature is not supported for your configruation
+                status: 400
+                traceId: 00-3fcbc632c5caaca825849d495c62d7b0-09a3500f89acbbcc-00
+                instance: /api/v1/sample-request-path
+                errors:
+                  PropertyName:
+                  - Specific error description for property
               schema:
-                items:
-                  $ref: '#/components/schemas/ValidationResult'
-                type: array
-          description: Validation Failed
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad request
         "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/FailureMessage'
           description: Unauthorized
         "403":
           description: Forbidden
         "500":
-          description: Internal Server Error
+          content:
+            application/json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Internal Server Error
+                status: 500
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Internal server error
       summary: Get Session Results
       tags:
       - Sessions
@@ -488,21 +742,34 @@ paths:
         "400":
           content:
             application/json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.5.1
+                title: Bad Request
+                detail: This feature is not supported for your configruation
+                status: 400
+                traceId: 00-3fcbc632c5caaca825849d495c62d7b0-09a3500f89acbbcc-00
+                instance: /api/v1/sample-request-path
+                errors:
+                  PropertyName:
+                  - Specific error description for property
               schema:
-                items:
-                  $ref: '#/components/schemas/ValidationResult'
-                type: array
-          description: Validation Failed
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad request
         "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/FailureMessage'
           description: Unauthorized
         "403":
           description: Forbidden
         "500":
-          description: Internal Server Error
+          content:
+            application/json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Internal Server Error
+                status: 500
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Internal server error
       summary: Cancel Session
       tags:
       - Sessions
@@ -530,69 +797,164 @@ paths:
         "400":
           content:
             application/json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.5.1
+                title: Bad Request
+                detail: This feature is not supported for your configruation
+                status: 400
+                traceId: 00-3fcbc632c5caaca825849d495c62d7b0-09a3500f89acbbcc-00
+                instance: /api/v1/sample-request-path
+                errors:
+                  PropertyName:
+                  - Specific error description for property
               schema:
-                items:
-                  $ref: '#/components/schemas/ValidationResult'
-                type: array
-          description: Validation Failed
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad request
         "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/FailureMessage'
           description: Unauthorized
         "403":
           description: Forbidden
         "500":
-          description: Internal Server Error
+          content:
+            application/json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Internal Server Error
+                status: 500
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Internal server error
       summary: Redact Session
       tags:
       - Sessions
 components:
   schemas:
+    AadhaarInput:
+      additionalProperties: false
+      properties:
+        fullName:
+          description: The user's full name
+          nullable: true
+          type: string
+        dateOfBirth:
+          description: "The user's date of birth, in `YYYY-MM-DD` format"
+          format: date
+          nullable: true
+          type: string
+      type: object
     Address:
       additionalProperties: false
-      description: Address information for an individual
       properties:
         line1:
+          nullable: true
           type: string
         line2:
+          nullable: true
           type: string
         line3:
+          nullable: true
           type: string
         city:
+          nullable: true
           type: string
-        state:
+        subdivision:
+          nullable: true
           type: string
         postalCode:
+          nullable: true
           type: string
         country:
+          nullable: true
           type: string
         fullAddress:
-          description: The full address as a single string
+          nullable: true
           type: string
       type: object
     AttachmentAccessKeys:
       additionalProperties: false
-      description: Attachment Access Keys for attachments (eg document / selfie images)
       properties:
         selfie:
-          description: Key to access the selfie image (if relevant) for this verification
+          nullable: true
           type: string
         documentFront:
-          description: Key to access the document front image (if relevant) for this
-            verification
+          nullable: true
           type: string
         documentBack:
-          description: Key to access the document back image (if relevant) for this
-            verification
+          nullable: true
           type: string
         documentPortrait:
-          description: "Key to access the document portrait image (if relevant and\
-            \ available) for this verification.\r\n            \r\nSpecifically, this\
-            \ is a cropped version of the document front image which includes only\
-            \ the portrait on the document."
+          nullable: true
           type: string
+        provider:
+          allOf:
+          - $ref: '#/components/schemas/ProviderAttachments'
+      required:
+      - provider
+      type: object
+    BangladeshNationalIdInput:
+      additionalProperties: false
+      properties:
+        nationalIdNumber:
+          description: The user's Bangladesh National ID number.
+          nullable: true
+          type: string
+        dateOfBirth:
+          description: "The user's date of birth, in `YYYY-MM-DD` format"
+          format: date
+          nullable: true
+          type: string
+        name:
+          description: The user's full name
+          nullable: true
+          type: string
+        photoBase64:
+          description: The base64-encoded bytes of the photo collected from the user
+          nullable: true
+          type: string
+      type: object
+    BrazilCpfCheckInput:
+      additionalProperties: false
+      properties:
+        cpfNumber:
+          description: "The user's 11-digit, numeric CPF Number"
+          maxLength: 11
+          minLength: 11
+          pattern: ^\d*$
+          type: string
+      required:
+      - cpfNumber
+      type: object
+    BrazilDigitalCnhInput:
+      additionalProperties: false
+      properties:
+        cpfNumber:
+          description: "The user's 11-digit, numeric CPF Number"
+          maxLength: 11
+          minLength: 11
+          pattern: ^\d*$
+          type: string
+        digitalCnhFile:
+          description: "The raw bytes of the digital CNH file collected from the user.\r\
+            \n            \r\nTODO: Lucas or JP help me describe these below vvvvvvvv\r\
+            \nThis can be:\r\n- An image containing a physical or digital QR code\r\
+            \n- A PDF file exported from the CNH app\r\n- Some scary third thing?"
+          format: byte
+          nullable: true
+          type: string
+        digitalCnhFileContentType:
+          description: "The MIME Type of the file contained in `DigitalCnhFile`.\r\
+            \n            \r\nMust be one of `application/pdf`, `image/jpeg`, or `image/png`."
+          nullable: true
+          type: string
+        facialBiometryPhoto:
+          description: "The raw bytes of the image of the user's face, collected for\
+            \ biometric comparison."
+          format: byte
+          nullable: true
+          type: string
+      required:
+      - cpfNumber
       type: object
     CancelSessionResponse:
       additionalProperties: false
@@ -605,55 +967,169 @@ components:
       required:
       - session
       type: object
-    CreateSessionRequest:
+    CreateAdvancedProviderSessionRequest:
+      additionalProperties: false
       example:
-        launchProviderDirectly: true
-        enableRememberMe: false
+        fallbackToHostedUI: true
+        redirectUrl: redirectUrl
+        capabilities:
+        - LaunchBrowser
+        - LaunchBrowser
+        provider: provider
+        providerInput: ""
+      properties:
+        provider:
+          description: The ID of the provider to launch
+          minLength: 1
+          type: string
+        providerInput:
+          allOf:
+          - $ref: '#/components/schemas/ProviderInput'
+          description: Provider-specific input for those providers which require it.
+          nullable: true
+        redirectUrl:
+          description: "The Redirect URL to which the user should be sent after the\
+            \ session is complete.\r\n            \r\nThis field is required for providers\
+            \ which employ a redirect-based flow."
+          nullable: true
+          type: string
+        capabilities:
+          description: "The list of capabilities your integration supports. Capabilities\
+            \ are the core of Trinsic's whitelabel-with-optional-fallback offering.\r\
+            \n            \r\nMost capabilities align with either an `IntegrationLaunchMethod`\
+            \ or an `IntegrationCollectionMethod`.\r\nThe exception being refresh\
+            \ content to support updating the content of the launch method.\r\n  \
+            \          \r\nFor example, to support a basic redirect-based flow, you\
+            \ must include the `LaunchRedirect` and `CaptureRedirect` capabilities.\r\
+            \nTo support a mobile deeplink / polling flow, you must include the `DeeplinkToMobile`\
+            \ and `PollForResults` capabilities.\r\n            \r\nIf `FallbackToHostedUi`\
+            \ is `true`, Trinsic will automatically fall back to a Trinsic-hosted\
+            \ UI to cover any gaps in your integration's capabilities.\r\nIf `FallbackToHostedUi`\
+            \ is `false`, gaps in your integration's capabilities will result in an\
+            \ error during Session creation.\r\n            \r\nRead more on how to\
+            \ integrate at <a href=\"https://docs.trinsic.id/docs/advanced-provider-sessions\"\
+            >the guide on Advanced Provider Sessions</a>"
+          items:
+            $ref: '#/components/schemas/IntegrationCapability'
+          minItems: 1
+          type: array
+        fallbackToHostedUI:
+          description: "Whether the session should fall back to a Trinsic-hosted UI\
+            \ in certain instances.\r\n            \r\nSpecifically, fallback will\
+            \ occur if any of the following are true:\r\n- You attempted to launch\
+            \ a provider which requires a capability you did not express support for\r\
+            \n    - In this case, Trinsic's hosted UI will perform the necessary capability\r\
+            \n- You attempted to launch a provider which requires input, and the input\
+            \ was either not provided or incomplete\r\n    - In this case, Trinsic's\
+            \ hosted UI will collect the necessary input from the user\r\n       \
+            \     \r\nIf fallback occurs, the session's NextStep will always be LaunchBrowser,\r\
+            \nand the CollectionMethod will always be CaptureRedirect.\r\n       \
+            \     \r\nIf this field is set to `true`, you must also:\r\n1. Set the\
+            \ `RedirectUrl` field to a non-empty value\r\n2. Include the `LaunchBrowser`\
+            \ and `CaptureRedirect` capabilities in the `Capabilities` field"
+          nullable: true
+          type: boolean
+      required:
+      - capabilities
+      - provider
+      type: object
+    CreateAdvancedProviderSessionResponse:
+      additionalProperties: false
+      example:
+        resultCollection: ""
+        nextStep: ""
+        sessionId: 00000000-0000-0000-0000-000000000000
+      properties:
+        sessionId:
+          description: The ID of the newly-created Acceptance Session
+          example: 00000000-0000-0000-0000-000000000000
+          format: uuid
+          type: string
+        resultCollection:
+          allOf:
+          - $ref: '#/components/schemas/ResultCollection'
+          description: The method by which you must collect the results of the Acceptance
+            Session.
+        nextStep:
+          allOf:
+          - $ref: '#/components/schemas/IntegrationStep'
+          description: The next step you must take to launch the user into the integration
+      required:
+      - nextStep
+      - resultCollection
+      - sessionId
+      type: object
+    CreateHostedProviderSessionRequest:
+      additionalProperties: false
+      example:
+        redirectUrl: redirectUrl
+        provider: provider
+        providerInput: ""
+      properties:
+        provider:
+          description: The ID of the provider to launch
+          minLength: 1
+          type: string
+        redirectUrl:
+          description: The Redirect URL to which the user should be sent after the
+            session is complete.
+          minLength: 1
+          type: string
+        providerInput:
+          allOf:
+          - $ref: '#/components/schemas/ProviderInput'
+          description: Provider-specific input for those providers which require it.
+          nullable: true
+      required:
+      - provider
+      - redirectUrl
+      type: object
+    CreateHostedProviderSessionResponse:
+      example:
+        sessionId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        launchUrl: https://api.trinsic.id/api/session/launch?clientToken=...
+      properties:
+        sessionId:
+          description: The ID of the newly-created Acceptance Session
+          format: uuid
+          type: string
+        launchUrl:
+          description: "The URL that should be used to launch the Hosted Provider\
+            \ Session on your user's device.\r\n            \r\nThere are two recommended\
+            \ ways to do so:\r\n- Redirect their browser to the `LaunchUrl` as a top-level\
+            \ navigation\r\n- Open a popup window and navigate it to the `LaunchUrl`\r\
+            \n            \r\nThis URL is sensitive and as such can only be obtained\
+            \ once. If you need to obtain it again, you will need to create a new\
+            \ Acceptance Session."
+          example: https://api.trinsic.id/api/session/launch?clientToken=...
+          nullable: true
+          type: string
+      required:
+      - sessionId
+      type: object
+    CreateWidgetSessionRequest:
+      additionalProperties: false
+      example:
+        redirectUrl: redirectUrl
         knownIdentityData: ""
         providers:
         - providers
         - providers
-        disclosedFields: ""
       properties:
-        launchProviderDirectly:
-          description: "Whether to immediately launch the identity provider, without\
-            \ invoking the Trinsic Widget UI.\r\n            \r\nUsers will not be\
-            \ shown the Widget; therefore, reuse of credentials, selection of an identity\
-            \ provider, and saving a verification for future reuse\r\nare not available\
-            \ to the end user in this mode.\r\n            \r\nSessions created with\
-            \ this option enabled must be created with a `RedirectUrl` specified,\
-            \ and cannot be invoked using the frontend SDK at this time."
-          type: boolean
-        enableRememberMe:
-          description: "Whether to enable Trinsic's \"Remember Me\" feature, which\
-            \ allows users to save their credentials for future use.\r\n         \
-            \   \r\nThis option is only relevant when `LaunchProviderDirectly` is\
-            \ unspecified or set to `false`.\r\nIf `LaunchProviderDirectly` is `true`,\
-            \ this field must be unspecified or set to `false`.\r\n            \r\n\
-            If this field is set to `true`, then:\r\n  - The user will be prompted\
-            \ to authenticate with their phone number at the start of the flow\r\n\
-            \  - If the user has previously saved a verification for reuse with Trinsic,\
-            \ they will be offered the ability to reuse it\r\n  - After the user has\
-            \ verified their identity (and if the identity provider in question supports\
-            \ it), they will be prompted to save their credentials for future use\r\
-            \n            \r\nIf this field is set to `false`, then:\r\n  - The user\
-            \ will not be prompted to authenticate with their phone number at the\
-            \ start of the flow.\r\n    - Instead, the user will be immediately shown\
-            \ the list of available providers\r\n  - The user will not be offered\
-            \ the ability to reuse a previously-saved Trinsic credential\r\n  - After\
-            \ the user has verified their identity, they will not be prompted to save\
-            \ their credentials for future use\r\n    - Instead, they will immediately\
-            \ return to your product"
-          example: false
-          type: boolean
+        redirectUrl:
+          description: "The URL to redirect the user to after the widget session is\
+            \ complete.\r\n            \r\n*Note*: this should NOT be set if you intend\
+            \ to use Trinsic's Web UI SDK to launch the Widget\r\nas an embedded iFrame\
+            \ or popup; in that case, session resolution is handled by our SDK, not\
+            \ via redirect."
+          nullable: true
+          type: string
         providers:
           description: "The list of allowed identity providers. If not specified,\
-            \ all available providers will be allowed.\r\n            \r\nIf `LaunchMethodDirectly`\
-            \ is `true`, this field must be set, and must have only a single entry.\r\
-            \nIf `LaunchMethodDirectly` is not specified or is `false`, this field\
-            \ may have any number of entries."
+            \ all available providers will be allowed."
           items:
             type: string
+          nullable: true
           type: array
         knownIdentityData:
           allOf:
@@ -661,129 +1137,74 @@ components:
           description: "Known identity data of an individual being verified.\r\n \
             \           \r\nProvide this to Trinsic during Session creation to enable\
             \ improved identity provider selection recommendations."
-        disclosedFields:
-          allOf:
-          - $ref: '#/components/schemas/DisclosedFieldsRequest'
-          description: "Specific identity attributes to request. If not provided,\
-            \ all available attributes will be requested."
+          nullable: true
       type: object
-    CreateSessionResponse:
+    CreateWidgetSessionResponse:
       example:
-        session: ""
+        sessionId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         launchUrl: https://api.trinsic.id/api/session/launch?clientToken=...
       properties:
-        session:
-          allOf:
-          - $ref: '#/components/schemas/Session'
-          description: The created Acceptance Session
+        sessionId:
+          description: The ID of the newly-created Acceptance Session
+          format: uuid
+          type: string
         launchUrl:
           description: "The URL that should be used to invoke the Acceptance Session\
             \ on your user's device.\r\n            \r\nYou can use our frontend SDKs\
             \ to launch the user into the Acceptance Session, or you can redirect\
-            \ the user's browser to this URL.\r\nIf the Session was created with `LaunchProviderDirectly`\
-            \ set to `true`, you can't use the iFrame mode.\r\n            \r\nThis\
-            \ URL is sensitive and as such can only be obtained once. If you need\
-            \ to obtain it again, you will need to create a new Acceptance Session."
+            \ the user's browser to this URL.\r\n            \r\nThis URL is sensitive\
+            \ and as such can only be obtained once. If you need to obtain it again,\
+            \ you will need to create a new Acceptance Session."
           example: https://api.trinsic.id/api/session/launch?clientToken=...
+          nullable: true
           type: string
       required:
-      - session
-      type: object
-    DisclosedFields:
-      additionalProperties: false
-      properties:
-        idNumber:
-          type: boolean
-        givenName:
-          type: boolean
-        familyName:
-          type: boolean
-        address:
-          type: boolean
-        dateOfBirth:
-          type: boolean
-        country:
-          type: boolean
-        issueDate:
-          type: boolean
-        expirationDate:
-          type: boolean
-        documentFront:
-          type: boolean
-        documentBack:
-          type: boolean
-        documentPortrait:
-          type: boolean
-        selfie:
-          type: boolean
-      required:
-      - address
-      - country
-      - dateOfBirth
-      - documentBack
-      - documentFront
-      - documentPortrait
-      - expirationDate
-      - familyName
-      - givenName
-      - idNumber
-      - issueDate
-      - selfie
-      type: object
-    DisclosedFieldsRequest:
-      additionalProperties: false
-      properties:
-        idNumber:
-          type: boolean
-        givenName:
-          type: boolean
-        familyName:
-          type: boolean
-        address:
-          type: boolean
-        dateOfBirth:
-          type: boolean
-        country:
-          type: boolean
-        issueDate:
-          type: boolean
-        expirationDate:
-          type: boolean
-        documentFront:
-          type: boolean
-        documentBack:
-          type: boolean
-        documentPortrait:
-          type: boolean
-        selfie:
-          type: boolean
+      - sessionId
       type: object
     DocumentData:
       additionalProperties: false
       properties:
         type:
-          type: string
+          allOf:
+          - $ref: '#/components/schemas/DocumentType'
+          nullable: true
         number:
+          nullable: true
           type: string
         issueDate:
+          format: date
+          nullable: true
           type: string
         expirationDate:
+          format: date
+          nullable: true
           type: string
         issuingCountry:
+          nullable: true
           type: string
         issuingAuthority:
+          nullable: true
           type: string
       type: object
-    FailureMessage:
+    DocumentScanAttachments:
       additionalProperties: false
-      example:
-        message: message
       properties:
-        message:
+        report:
+          nullable: true
           type: string
-      required:
-      - message
       type: object
+    DocumentType:
+      enum:
+      - Passport
+      - DriversLicense
+      - NationalId
+      - IdCard
+      type: string
+      x-enumDescriptions:
+        Passport: ""
+        DriversLicense: ""
+        NationalId: ""
+        IdCard: ""
     GetAttachmentRequest:
       additionalProperties: false
       example:
@@ -848,60 +1269,206 @@ components:
         identityData:
           allOf:
           - $ref: '#/components/schemas/IdentityData'
+          nullable: true
       required:
       - session
       type: object
+    HttpValidationProblemDetails:
+      allOf:
+      - $ref: '#/components/schemas/ProblemDetails'
+      - additionalProperties: {}
+        properties:
+          errors:
+            additionalProperties:
+              items:
+                type: string
+              type: array
+            type: object
+        type: object
     IdentityData:
       additionalProperties: false
       properties:
         originatingProviderId:
-          description: "The ID of the integration from which this data originated\
-            \ (eg \"yoti\", \"clear\")"
+          nullable: true
           type: string
         person:
           allOf:
           - $ref: '#/components/schemas/PersonData'
-          description: Identity data of the individual who was verified
+          nullable: true
         document:
           allOf:
           - $ref: '#/components/schemas/DocumentData'
-          description: "Identity data of the document involved in verification, if\
-            \ relevant"
+          nullable: true
         attachmentAccessKeys:
           allOf:
           - $ref: '#/components/schemas/AttachmentAccessKeys'
-          description: Attachment Access Keys for attachments (eg document / selfie
-            images)
+          nullable: true
       type: object
-    IdentityLookupResponse:
+    IndonesiaNikInput:
       additionalProperties: false
-      example:
-        identityInNetwork: true
       properties:
-        identityInNetwork:
-          description: Whether the given phone number is known to have an identity
-            in the network.
-          type: boolean
+        fullName:
+          description: The user's full name
+          minLength: 1
+          type: string
+        dateOfBirth:
+          description: "The user's date of birth, in `YYYY-MM-DD` format"
+          format: date
+          type: string
+        nikIdNumber:
+          description: The user's Indonesia NIK ID number
+          maxLength: 16
+          minLength: 16
+          pattern: ^\d*$
+          type: string
       required:
-      - identityInNetwork
+      - dateOfBirth
+      - fullName
+      - nikIdNumber
+      type: object
+    IntegrationCapability:
+      enum:
+      - LaunchBrowser
+      - DeeplinkToMobile
+      - ShowContent
+      - RefreshStepContent
+      - CaptureRedirect
+      - PollResult
+      type: string
+      x-enumDescriptions:
+        LaunchBrowser: Signals that your integration supports the `LaunchBrowser`
+          step type.
+        DeeplinkToMobile: Signals that your integration supports the `DeeplinkToMobile`
+          step type.
+        ShowContent: Signals that your integration supports the `ShowContent` step
+          type.
+        RefreshStepContent: "Signals that your integration supports refreshable step\
+          \ content, e.g., time-limited mobile deeplinks."
+        CaptureRedirect: Signals that your integration supports the `CaptureRedirect`
+          results collection method.
+        PollResult: Signals that your integration supports the `PollResult` results
+          collection method.
+    IntegrationLaunchMethod:
+      enum:
+      - LaunchBrowser
+      - PollResult
+      - DeeplinkToMobile
+      - ShowContent
+      type: string
+      x-enumDescriptions:
+        LaunchBrowser: "The user's browser should be sent to the provided URL, either\
+          \ in a new tab, pop-up, or top-level navigation."
+        PollResult: "No action needs to be taken by the user; simply poll with the\
+          \ provided `resultsAccessKey`\r\nfor the results of the session."
+        DeeplinkToMobile: "The user must be sent to the provided URL, which is a mobile\
+          \ deeplink.\r\n            \r\nThe URL should be shown as a button on mobile,\
+          \ or as a QR code on desktop."
+        ShowContent: Content must be displayed to the user to guide them through the
+          process of verifying their identity.
+    IntegrationStep:
+      additionalProperties: false
+      description: A step to perform in the process of executing an Advanced Provider
+        Session
+      properties:
+        method:
+          allOf:
+          - $ref: '#/components/schemas/IntegrationLaunchMethod'
+          description: The launch method to perform
+          example: LaunchBrowser
+          x-enumDescriptions:
+            LaunchBrowser: "The user's browser should be sent to the provided URL,\
+              \ either in a new tab, pop-up, or top-level navigation."
+            PollResult: "No action needs to be taken by the user; simply poll with\
+              \ the provided `resultsAccessKey`\r\nfor the results of the session."
+            DeeplinkToMobile: "The user must be sent to the provided URL, which is\
+              \ a mobile deeplink.\r\n            \r\nThe URL should be shown as a\
+              \ button on mobile, or as a QR code on desktop."
+            ShowContent: Content must be displayed to the user to guide them through
+              the process of verifying their identity.
+        content:
+          description: "Step type-specific content related to the step: a URL for\
+            \ `LaunchBrowser`, a deeplink for `DeeplinkToMobile` or a string to show\
+            \ to the user for `ShowContent`."
+          example: https://api.trinsic.id/api/session/launch?clientToken=...
+          type: string
+        refresh:
+          allOf:
+          - $ref: '#/components/schemas/StepRefreshInfo'
+          description: "If non-null, contains metadata about how to refresh the value\
+            \ of `content`."
+          nullable: true
+      required:
+      - content
+      - method
+      - refresh
+      type: object
+    KenyaNidInput:
+      additionalProperties: false
+      properties:
+        firstName:
+          description: The user's first name as it appears in their National ID
+          minLength: 1
+          type: string
+        middleName:
+          description: The user's middle name as it appears in their National ID (optional)
+          nullable: true
+          type: string
+        lastName:
+          description: The user's middle name as it appears in their National ID (optional)
+          minLength: 1
+          type: string
+        dateOfBirth:
+          description: "The user's date of birth, in `YYYY-MM-DD` format"
+          format: date
+          type: string
+        gender:
+          description: "The user's gender as it appears in their National ID (e.g.,\
+            \ male, female)"
+          minLength: 1
+          type: string
+        nationalIdNumber:
+          description: The user's South Kenya National ID number
+          maxLength: 8
+          minLength: 8
+          pattern: ^\d*$
+          type: string
+      required:
+      - dateOfBirth
+      - firstName
+      - gender
+      - lastName
+      - nationalIdNumber
       type: object
     KnownAddress:
       additionalProperties: false
       description: Address information for an individual
       properties:
         line1:
+          nullable: true
           type: string
         line2:
+          nullable: true
           type: string
         line3:
+          nullable: true
           type: string
         city:
+          nullable: true
+          type: string
+        subdivision:
+          nullable: true
           type: string
         state:
+          deprecated: true
+          description: Deprecated. Use `Subdivision` instead.
+          nullable: true
           type: string
+          writeOnly: true
         postalCode:
+          nullable: true
           type: string
         country:
+          nullable: true
           type: string
       type: object
     KnownIdentityData:
@@ -914,6 +1481,7 @@ components:
           allOf:
           - $ref: '#/components/schemas/KnownPersonData'
           description: Known identity data specific to the person being verified
+          nullable: true
       type: object
     KnownPersonData:
       additionalProperties: false
@@ -921,35 +1489,56 @@ components:
         givenName:
           description: Given (first) name of the individual
           example: John
+          nullable: true
           type: string
         familyName:
           description: Family (last) name of the individual
           example: Doe
+          nullable: true
           type: string
         middleName:
           description: Middle name of the individual
           example: Jacob
+          nullable: true
+          type: string
+        fullName:
+          description: Full name of the individual.
+          example: John Jacob Doe
+          nullable: true
+          type: string
+        suffix:
+          description: Suffix of the individual
+          nullable: true
           type: string
         phoneNumber:
           description: The phone number (with preceding + character and country code)
             of the individual being verified
+          nullable: true
           type: string
         address:
           allOf:
           - $ref: '#/components/schemas/KnownAddress'
           description: The address of the individual being verified
+          nullable: true
         dateOfBirth:
           description: "Date of birth of the individual, in the format \"YYYY-MM-DD\""
+          nullable: true
           type: string
       type: object
     ListProvidersResponse:
       additionalProperties: false
       example:
         providers:
-        - name: Yoti | CLEAR | ...
+        - childProviderIds:
+          - childProviderIds
+          - childProviderIds
+          name: Yoti | CLEAR | ...
           id: yoti | clear | ...
           logoUrl: logoUrl
-        - name: Yoti | CLEAR | ...
+        - childProviderIds:
+          - childProviderIds
+          - childProviderIds
+          name: Yoti | CLEAR | ...
           id: yoti | clear | ...
           logoUrl: logoUrl
       properties:
@@ -965,20 +1554,18 @@ components:
       additionalProperties: false
       example:
         sessions:
-        - created: 1722526411
-          failCode: ""
+        - success: true
+          created: 1722526411
+          errorCode: ""
           id: 678c1ff6-2178-49e7-81d2-548afb6f85ec
-          state: ""
+          done: true
           updated: 1722526722
-          verification: ""
-          disclosedFields: ""
-        - created: 1722526411
-          failCode: ""
+        - success: true
+          created: 1722526411
+          errorCode: ""
           id: 678c1ff6-2178-49e7-81d2-548afb6f85ec
-          state: ""
+          done: true
           updated: 1722526722
-          verification: ""
-          disclosedFields: ""
         total: 101
         more: true
       properties:
@@ -1000,50 +1587,181 @@ components:
       - sessions
       - total
       type: object
+    MexicoCurpInput:
+      additionalProperties: false
+      properties:
+        curp:
+          description: The user's CURP number
+          maxLength: 18
+          minLength: 18
+          type: string
+      required:
+      - curp
+      type: object
+    NigeriaNinInput:
+      additionalProperties: false
+      properties:
+        firstName:
+          description: The user's first name as it appears in their National ID
+          minLength: 1
+          type: string
+        middleName:
+          description: The user's middle name as it appears in their National ID (optional)
+          nullable: true
+          type: string
+        lastName:
+          description: The user's last name as it appears in their National ID (optional)
+          minLength: 1
+          type: string
+        phoneNumber:
+          description: The user's phone number (optional)
+          nullable: true
+          type: string
+        dateOfBirth:
+          description: "The user's date of birth, in `YYYY-MM-DD` format"
+          format: date
+          type: string
+        gender:
+          description: "The user's gender as it appears in their National ID (e.g.,\
+            \ male, female)"
+          nullable: true
+          type: string
+        nationalIdNumber:
+          description: The user's South African National ID number
+          maxLength: 11
+          minLength: 11
+          pattern: ^\d*$
+          type: string
+      required:
+      - dateOfBirth
+      - firstName
+      - lastName
+      - nationalIdNumber
+      type: object
     OrderDirection:
       enum:
       - Ascending
       - Descending
       type: string
+      x-enumDescriptions:
+        Ascending: ""
+        Descending: ""
     PersonData:
       additionalProperties: false
-      description: Identity information for the individual being verified
       properties:
         givenName:
-          description: Given (first) name of the individual
-          example: John
+          nullable: true
           type: string
         familyName:
-          description: Family (last) name of the individual
-          example: Doe
+          nullable: true
           type: string
         middleName:
-          description: Middle name of the individual
-          example: Jacob
+          nullable: true
           type: string
         fullName:
-          description: "The individual's full name as a single string.\r\n       \
-            \     \r\nUseful for names which do not fit into a \"first middle last\"\
-            \ structure."
-          example: John Jacob de Doe
+          nullable: true
+          type: string
+        suffix:
+          nullable: true
           type: string
         nationality:
+          nullable: true
           type: string
-        gender:
-          type: string
+        sex:
+          allOf:
+          - $ref: '#/components/schemas/Sex'
+          nullable: true
         phoneNumber:
+          nullable: true
           type: string
         address:
           allOf:
           - $ref: '#/components/schemas/Address'
-          description: Address information for an individual
+          nullable: true
         dateOfBirth:
+          format: date
+          nullable: true
           type: string
+      type: object
+    PhilippineMatchInput:
+      additionalProperties: false
+      properties:
+        givenName:
+          description: The user's given / first name
+          nullable: true
+          type: string
+        middleName:
+          description: The user's middle name
+          nullable: true
+          type: string
+        familyName:
+          description: The user's family / last name
+          nullable: true
+          type: string
+        suffix:
+          description: The user's name suffix
+          nullable: true
+          type: string
+        dateOfBirth:
+          description: "The user's date of birth, in `YYYY-MM-DD` format"
+          format: date
+          nullable: true
+          type: string
+      type: object
+    PhilippineQRInput:
+      additionalProperties: false
+      properties:
+        qrCodeText:
+          description: The raw text of the user's QR code after decoding it.
+          nullable: true
+          type: string
+        qrCodeImage:
+          description: The raw bytes of the image containing the user's QR code.
+          format: byte
+          nullable: true
+          type: string
+      type: object
+    ProblemDetails:
+      additionalProperties: {}
+      example:
+        instance: instance
+        detail: detail
+        type: type
+        title: title
+        status: 0
+      properties:
+        type:
+          nullable: true
+          type: string
+        title:
+          nullable: true
+          type: string
+        status:
+          format: int32
+          nullable: true
+          type: integer
+        detail:
+          nullable: true
+          type: string
+        instance:
+          nullable: true
+          type: string
+      type: object
+    ProviderAttachments:
+      additionalProperties: false
+      properties:
+        document-scan:
+          allOf:
+          - $ref: '#/components/schemas/DocumentScanAttachments'
+          nullable: true
       type: object
     ProviderInfo:
       additionalProperties: false
       description: A provider that can be specified when creating a `Session`
       example:
+        childProviderIds:
+        - childProviderIds
+        - childProviderIds
         name: Yoti | CLEAR | ...
         id: yoti | clear | ...
         logoUrl: logoUrl
@@ -1059,6 +1777,13 @@ components:
         logoUrl:
           description: A URL pointing to the provider's logo
           type: string
+        childProviderIds:
+          description: List of child provider id's where the provider allows deep-launching
+            of a specific provider.
+          items:
+            type: string
+          nullable: true
+          type: array
       required:
       - id
       - logoUrl
@@ -1082,20 +1807,85 @@ components:
       - providerId
       - providerLogo
       type: object
+    ProviderInput:
+      additionalProperties: false
+      properties:
+        indonesiaNik:
+          allOf:
+          - $ref: '#/components/schemas/IndonesiaNikInput'
+          description: Input for the `f-indonesia-nik` integration
+          nullable: true
+        mexicoCurp:
+          allOf:
+          - $ref: '#/components/schemas/MexicoCurpInput'
+          description: Input for the `f-mexico-curp` integration
+          nullable: true
+        southAfricaNid:
+          allOf:
+          - $ref: '#/components/schemas/SouthAfricaNidInput'
+          description: Input for the `f-south-africa-nid` integration
+          nullable: true
+        kenyaNid:
+          allOf:
+          - $ref: '#/components/schemas/KenyaNidInput'
+          description: Input for the `f-kenya-nid` integration
+          nullable: true
+        nigeriaNin:
+          allOf:
+          - $ref: '#/components/schemas/NigeriaNinInput'
+          description: Input for the `f-nigeria-nin` integration
+          nullable: true
+        aadhaar:
+          allOf:
+          - $ref: '#/components/schemas/AadhaarInput'
+          description: Input for the `f-india-aadhaar-match` integration
+          nullable: true
+        bangladeshNationalId:
+          allOf:
+          - $ref: '#/components/schemas/BangladeshNationalIdInput'
+          description: Input for the `bangladesh-nid` integration
+          nullable: true
+        brazilCpfCheck:
+          allOf:
+          - $ref: '#/components/schemas/BrazilCpfCheckInput'
+          description: Input for the `g-brazil-cpf` integration
+          nullable: true
+        brazilDigitalCnh:
+          allOf:
+          - $ref: '#/components/schemas/BrazilDigitalCnhInput'
+          description: Input for the `g-brazil-digital-cnh` integration
+          nullable: true
+        philippineMatch:
+          allOf:
+          - $ref: '#/components/schemas/PhilippineMatchInput'
+          description: Input for the `b-philsys-biometric` integration
+          nullable: true
+        philippineQR:
+          allOf:
+          - $ref: '#/components/schemas/PhilippineQRInput'
+          description: Input for the `b-philippine-qr-digital-national-id` and `b-philippine-qr-ephill-id`
+            integrations
+          nullable: true
+      type: object
     RecommendRequest:
       additionalProperties: false
       example:
         phoneNumber: phoneNumber
+        includeDisabledProviders: true
+        ipAddresses:
+        - ipAddresses
+        - ipAddresses
         countries:
         - countries
         - countries
-        states:
-        - states
-        - states
+        subdivisions:
+        - subdivisions
+        - subdivisions
       properties:
         phoneNumber:
-          description: The phone number of the user you whish to generate a recommendation
-            for. Will be used to lookup the user's identity in the network
+          description: The phone number of the user you wish to generate a recommendation
+            for. Will be used to look up the user's identity in the network
+          nullable: true
           type: string
         countries:
           description: "A list of countries, in alpha-2 ISO 3166 format, you wish\
@@ -1103,15 +1893,28 @@ components:
             \ of residence, nationality, etc."
           items:
             type: string
+          nullable: true
           type: array
-        states:
-          description: "If one of the countries is US, you can specify a list of US\
-            \ states to further refine the recommendation (e.g., CA, UT, NY)"
+        subdivisions:
+          description: "If one of the countries has subdivisions, for example the\
+            \ US states, you can specify a list of these to further refine the recommendation\
+            \ (e.g., CA, UT, NY)"
           items:
             type: string
+          nullable: true
           type: array
-      required:
-      - phoneNumber
+        ipAddresses:
+          description: Provide the IP addresses of the user you wish to generate a
+            recommendation for. Will be used to look up the user's geographic location.
+          items:
+            type: string
+          nullable: true
+          type: array
+        includeDisabledProviders:
+          description: "If true, the recommendation will include providers that are\
+            \ disabled for the app"
+          nullable: true
+          type: boolean
       type: object
     RecommendResponse:
       additionalProperties: false
@@ -1161,38 +1964,96 @@ components:
       - relevant
       - remainder
       type: object
+    RefreshStepContentRequest:
+      additionalProperties: false
+      example:
+        resultsAccessKey: resultsAccessKey
+      properties:
+        resultsAccessKey:
+          description: The `ResultsAccessKey` returned when the Session was created
+          nullable: true
+          type: string
+      type: object
+    RefreshStepContentResponse:
+      additionalProperties: false
+      example:
+        nextStep: ""
+      properties:
+        nextStep:
+          allOf:
+          - $ref: '#/components/schemas/IntegrationStep'
+          description: The integration's next step with refreshed content
+      required:
+      - nextStep
+      type: object
+    ResultCollection:
+      additionalProperties: false
+      properties:
+        method:
+          allOf:
+          - $ref: '#/components/schemas/ResultCollectionMethod'
+          description: The method by which the results of the Acceptance Session should
+            be collected.
+          example: CaptureRedirect
+          x-enumDescriptions:
+            PollResult: "The results will be made available asynchronously, via a\
+              \ polling mechanism.\r\n            \r\nUse the provided `ResultsAccessKey`\
+              \ to poll for the results via the `GetResults` API."
+            CaptureRedirect: "The user will be sent back to your application with\
+              \ a `resultsAccessKey` in the query string.\r\n            \r\nUse the\
+              \ provided `ResultsAccessKey` to retrieve the results via the `GetResults`\
+              \ API."
+        resultsAccessKey:
+          description: "If the method is `PollResult`, this is the key that should\
+            \ be used to poll for the results."
+          nullable: true
+          type: string
+          example: null
+      required:
+      - method
+      type: object
+    ResultCollectionMethod:
+      enum:
+      - PollResult
+      - CaptureRedirect
+      type: string
+      x-enumDescriptions:
+        PollResult: "The results will be made available asynchronously, via a polling\
+          \ mechanism.\r\n            \r\nUse the provided `ResultsAccessKey` to poll\
+          \ for the results via the `GetResults` API."
+        CaptureRedirect: "The user will be sent back to your application with a `resultsAccessKey`\
+          \ in the query string.\r\n            \r\nUse the provided `ResultsAccessKey`\
+          \ to retrieve the results via the `GetResults` API."
     Session:
       additionalProperties: false
       example:
+        success: true
         created: 1722526411
-        failCode: ""
+        errorCode: ""
         id: 678c1ff6-2178-49e7-81d2-548afb6f85ec
-        state: ""
+        done: true
         updated: 1722526722
-        verification: ""
-        disclosedFields: ""
       properties:
         id:
           example: 678c1ff6-2178-49e7-81d2-548afb6f85ec
           type: string
-        state:
+        done:
+          description: "Whether the Session is in a terminal / final state.\r\n  \
+            \          \r\nIf this is `true`, inspect the value of `Success` to determine\
+            \ whether the Session was successful."
+          type: boolean
+        success:
+          description: "Whether the Session has completed successfully.\r\n      \
+            \      \r\nIf this is `false`, the Session is either not yet done, or\
+            \ has failed. Inspect `Done` and `ErrorCode` for more information.\r\n\
+            If this is `true`, the Session has completed successfully."
+          type: boolean
+        errorCode:
           allOf:
-          - $ref: '#/components/schemas/SessionState'
-          description: The state of the session
-        failCode:
-          allOf:
-          - $ref: '#/components/schemas/SessionFailCode'
-          description: "If the session is in state `IdvFailed`, this field contains\
-            \ the reason for failure."
-        verification:
-          allOf:
-          - $ref: '#/components/schemas/Verification'
-          description: The underlying verification for this Session
-        disclosedFields:
-          allOf:
-          - $ref: '#/components/schemas/DisclosedFields'
-          description: The fields that were requested to be disclosed when the Session
-            was created
+          - $ref: '#/components/schemas/SessionErrorCode'
+          description: "The reason for the Session's failure.\r\n            \r\n\
+            Only present if `Success` is `false`."
+          nullable: true
         created:
           description: "The unix timestamp, in seconds, when this session was created"
           example: 1722526411
@@ -1206,78 +2067,113 @@ components:
           type: integer
       required:
       - created
-      - disclosedFields
+      - done
       - id
-      - state
+      - success
       - updated
-      - verification
       type: object
-    SessionFailCode:
+    SessionErrorCode:
       enum:
-      - SessionFailNone
-      - SessionFailInternal
-      - SessionFailVerificationFailed
-      - SessionFailAuthentication
-      - SessionFailExpired
-      - SessionFailUserCanceled
-      - SessionFailRpCanceled
+      - Internal
+      - Other
+      - Canceled
+      - UserAbandoned
+      - UserTimedOut
+      - Expired
+      - InvalidImage
+      - Inauthentic
+      - UnsupportedDocument
+      - AssuranceLevelNotMet
       type: string
+      x-enumDescriptions:
+        Internal: An internal error has caused this session to fail
+        Other: The session failed for a reason which does not fit any other failure
+          code.
+        Canceled: The session has been canceled
+        UserAbandoned: The user abandoned the session
+        UserTimedOut: The user took too long to complete the verification
+        Expired: The session has expired
+        InvalidImage: "The image(s) provided for this verification were either too\
+          \ low-quality, not of the correct type, or otherwise\r\nunable to be processed."
+        Inauthentic: "The identity data/images provided are suspected to be inauthentic,\
+          \ fraudulent, or forged."
+        UnsupportedDocument: "The document provided is either of an unsupported type,\
+          \ or from an unsupported country."
+        AssuranceLevelNotMet: The user's identity does not meet the required assurance
+          level for this verification.
     SessionOrdering:
       enum:
       - Created
       - Updated
       - State
       type: string
-    SessionState:
+      x-enumDescriptions:
+        Created: Order sessions by their creation date
+        Updated: Order sessions by the date their state last changed
+        State: Order sessions by their state
+    Sex:
       enum:
-      - IdvCreated
-      - IdvInitiated
-      - IdvAuthenticating
-      - IdvInProgress
-      - IdvSuccess
-      - IdvFailed
+      - Unknown
+      - NotApplicable
+      - Male
+      - Female
       type: string
-    ValidationResult:
+      x-enumDescriptions:
+        Unknown: ""
+        NotApplicable: ""
+        Male: ""
+        Female: ""
+    SouthAfricaNidInput:
       additionalProperties: false
-      example:
-        memberNames:
-        - memberNames
-        - memberNames
-        errorMessage: errorMessage
       properties:
-        memberNames:
-          items:
-            type: string
-          readOnly: true
-          type: array
-        errorMessage:
+        fullName:
+          description: The user's full name as it appears in their National ID
+          minLength: 1
+          type: string
+        dateOfBirth:
+          description: "The user's date of birth, in `YYYY-MM-DD` format"
+          format: date
+          type: string
+        gender:
+          description: "The user's gender as it appears in their National ID (e.g.,\
+            \ male, female)"
+          minLength: 1
+          type: string
+        nationalIdNumber:
+          description: The user's South African National ID number
+          maxLength: 13
+          minLength: 13
+          pattern: ^\d*$
           type: string
       required:
-      - memberNames
+      - dateOfBirth
+      - fullName
+      - gender
+      - nationalIdNumber
       type: object
-    Verification:
+    StepRefreshInfo:
       additionalProperties: false
-      description: A Verification contained within a Session
       properties:
-        provider:
-          description: "The identity provider that was used to perform the Verification,\
-            \ if any"
+        expiresAt:
+          description: "The UTC date/time at which the step `content` will expire\
+            \ and should no longer be used.\r\n            \r\nUse the `Refresh Step\
+            \ Content` API to obtain a new value for `content`."
+          format: date-time
           type: string
-        failCode:
-          allOf:
-          - $ref: '#/components/schemas/VerificationFailCode'
-          description: "If the Verification is in state `VerificationFailed`, this\
-            \ field contains the reason for failure"
+        refreshAfter:
+          description: The UTC date/time after which Trinsic recommends you refresh
+            the step `content`.
+          format: date-time
+          type: string
+        timeToLiveSeconds:
+          description: The total lifetime of the step `content`.
+          format: int32
+          type: integer
+      required:
+      - expiresAt
+      - refreshAfter
+      - timeToLiveSeconds
       type: object
-    VerificationFailCode:
-      enum:
-      - VerificationFailNone
-      - VerificationFailInternal
-      - VerificationFailInvalidImage
-      - VerificationFailInauthentic
-      - VerificationFailUnsupportedDocument
-      - VerificationFailUserAbandoned
-      type: string
   securitySchemes:
     Bearer:
       description: Trinsic Connect API Key

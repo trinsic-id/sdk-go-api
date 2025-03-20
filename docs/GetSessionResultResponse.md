@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Session** | [**Session**](Session.md) |  | 
-**IdentityData** | Pointer to [**IdentityData**](IdentityData.md) |  | [optional] 
+**IdentityData** | Pointer to [**NullableIdentityData**](IdentityData.md) |  | [optional] 
 
 ## Methods
 
@@ -71,6 +71,16 @@ SetIdentityData sets IdentityData field to given value.
 
 HasIdentityData returns a boolean if a field has been set.
 
+### SetIdentityDataNil
+
+`func (o *GetSessionResultResponse) SetIdentityDataNil(b bool)`
+
+ SetIdentityDataNil sets the value for IdentityData to be an explicit nil
+
+### UnsetIdentityData
+`func (o *GetSessionResultResponse) UnsetIdentityData()`
+
+UnsetIdentityData ensures that no value is present for IdentityData, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

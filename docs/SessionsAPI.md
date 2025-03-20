@@ -5,11 +5,14 @@ All URIs are relative to *https://api.trinsic.id*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CancelSession**](SessionsAPI.md#CancelSession) | **Post** /api/v1/sessions/{sessionId}/cancel | Cancel Session
-[**CreateSession**](SessionsAPI.md#CreateSession) | **Post** /api/v1/sessions | Create Session
+[**CreateAdvancedProviderSession**](SessionsAPI.md#CreateAdvancedProviderSession) | **Post** /api/v1/sessions/provider/advanced | Create Advanced Provider Session
+[**CreateHostedProviderSession**](SessionsAPI.md#CreateHostedProviderSession) | **Post** /api/v1/sessions/provider/hosted | Create Hosted Provider Session
+[**CreateWidgetSession**](SessionsAPI.md#CreateWidgetSession) | **Post** /api/v1/sessions/widget | Create Widget Session
 [**GetSession**](SessionsAPI.md#GetSession) | **Get** /api/v1/sessions/{sessionId} | Get Session
 [**GetSessionResult**](SessionsAPI.md#GetSessionResult) | **Post** /api/v1/sessions/{sessionId}/results | Get Session Results
-[**ListSessions**](SessionsAPI.md#ListSessions) | **Get** /api/v1/sessions | List Sessions
+[**ListSessions**](SessionsAPI.md#ListSessions) | **Get** /api/v1/sessions/list | List Sessions
 [**RedactSession**](SessionsAPI.md#RedactSession) | **Post** /api/v1/sessions/{sessionId}/redact | Redact Session
+[**RefreshStepContent**](SessionsAPI.md#RefreshStepContent) | **Post** /api/v1/sessions/{acceptanceSessionId}/step/refresh | Refresh Step Content
 
 
 
@@ -83,11 +86,11 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## CreateSession
+## CreateAdvancedProviderSession
 
-> CreateSessionResponse CreateSession(ctx).CreateSessionRequest(createSessionRequest).Execute()
+> CreateAdvancedProviderSessionResponse CreateAdvancedProviderSession(ctx).CreateAdvancedProviderSessionRequest(createAdvancedProviderSessionRequest).Execute()
 
-Create Session
+Create Advanced Provider Session
 
 
 
@@ -104,17 +107,17 @@ import (
 )
 
 func main() {
-	createSessionRequest := *openapiclient.NewCreateSessionRequest() // CreateSessionRequest |  (optional)
+	createAdvancedProviderSessionRequest := *openapiclient.NewCreateAdvancedProviderSessionRequest("Provider_example", []openapiclient.IntegrationCapability{openapiclient.IntegrationCapability("LaunchBrowser")}) // CreateAdvancedProviderSessionRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.SessionsAPI.CreateSession(context.Background()).CreateSessionRequest(createSessionRequest).Execute()
+	resp, r, err := apiClient.SessionsAPI.CreateAdvancedProviderSession(context.Background()).CreateAdvancedProviderSessionRequest(createAdvancedProviderSessionRequest).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `SessionsAPI.CreateSession``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `SessionsAPI.CreateAdvancedProviderSession``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateSession`: CreateSessionResponse
-	fmt.Fprintf(os.Stdout, "Response from `SessionsAPI.CreateSession`: %v\n", resp)
+	// response from `CreateAdvancedProviderSession`: CreateAdvancedProviderSessionResponse
+	fmt.Fprintf(os.Stdout, "Response from `SessionsAPI.CreateAdvancedProviderSession`: %v\n", resp)
 }
 ```
 
@@ -124,16 +127,148 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCreateSessionRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiCreateAdvancedProviderSessionRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createSessionRequest** | [**CreateSessionRequest**](CreateSessionRequest.md) |  | 
+ **createAdvancedProviderSessionRequest** | [**CreateAdvancedProviderSessionRequest**](CreateAdvancedProviderSessionRequest.md) |  | 
 
 ### Return type
 
-[**CreateSessionResponse**](CreateSessionResponse.md)
+[**CreateAdvancedProviderSessionResponse**](CreateAdvancedProviderSessionResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CreateHostedProviderSession
+
+> CreateHostedProviderSessionResponse CreateHostedProviderSession(ctx).CreateHostedProviderSessionRequest(createHostedProviderSessionRequest).Execute()
+
+Create Hosted Provider Session
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	createHostedProviderSessionRequest := *openapiclient.NewCreateHostedProviderSessionRequest("Provider_example", "RedirectUrl_example") // CreateHostedProviderSessionRequest |  (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.SessionsAPI.CreateHostedProviderSession(context.Background()).CreateHostedProviderSessionRequest(createHostedProviderSessionRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `SessionsAPI.CreateHostedProviderSession``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreateHostedProviderSession`: CreateHostedProviderSessionResponse
+	fmt.Fprintf(os.Stdout, "Response from `SessionsAPI.CreateHostedProviderSession`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateHostedProviderSessionRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **createHostedProviderSessionRequest** | [**CreateHostedProviderSessionRequest**](CreateHostedProviderSessionRequest.md) |  | 
+
+### Return type
+
+[**CreateHostedProviderSessionResponse**](CreateHostedProviderSessionResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CreateWidgetSession
+
+> CreateWidgetSessionResponse CreateWidgetSession(ctx).CreateWidgetSessionRequest(createWidgetSessionRequest).Execute()
+
+Create Widget Session
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	createWidgetSessionRequest := *openapiclient.NewCreateWidgetSessionRequest() // CreateWidgetSessionRequest |  (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.SessionsAPI.CreateWidgetSession(context.Background()).CreateWidgetSessionRequest(createWidgetSessionRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `SessionsAPI.CreateWidgetSession``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreateWidgetSession`: CreateWidgetSessionResponse
+	fmt.Fprintf(os.Stdout, "Response from `SessionsAPI.CreateWidgetSession`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateWidgetSessionRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **createWidgetSessionRequest** | [**CreateWidgetSessionRequest**](CreateWidgetSessionRequest.md) |  | 
+
+### Return type
+
+[**CreateWidgetSessionResponse**](CreateWidgetSessionResponse.md)
 
 ### Authorization
 
@@ -423,6 +558,78 @@ Name | Type | Description  | Notes
 
 - **Content-Type**: Not defined
 - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## RefreshStepContent
+
+> RefreshStepContentResponse RefreshStepContent(ctx, acceptanceSessionId).RefreshStepContentRequest(refreshStepContentRequest).Execute()
+
+Refresh Step Content
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	acceptanceSessionId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	refreshStepContentRequest := *openapiclient.NewRefreshStepContentRequest() // RefreshStepContentRequest |  (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.SessionsAPI.RefreshStepContent(context.Background(), acceptanceSessionId).RefreshStepContentRequest(refreshStepContentRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `SessionsAPI.RefreshStepContent``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RefreshStepContent`: RefreshStepContentResponse
+	fmt.Fprintf(os.Stdout, "Response from `SessionsAPI.RefreshStepContent`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**acceptanceSessionId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiRefreshStepContentRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **refreshStepContentRequest** | [**RefreshStepContentRequest**](RefreshStepContentRequest.md) |  | 
+
+### Return type
+
+[**RefreshStepContentResponse**](RefreshStepContentResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

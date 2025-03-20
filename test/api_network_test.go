@@ -1,5 +1,5 @@
 /*
-Connect API
+Trinsic API
 
 Testing NetworkAPIService
 
@@ -21,20 +21,6 @@ func Test_trinsic_api_NetworkAPIService(t *testing.T) {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-
-	t.Run("Test NetworkAPIService IdentityLookup", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var phoneNumber string
-
-		resp, httpRes, err := apiClient.NetworkAPI.IdentityLookup(context.Background(), phoneNumber).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
 
 	t.Run("Test NetworkAPIService ListProviders", func(t *testing.T) {
 

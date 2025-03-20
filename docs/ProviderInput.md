@@ -1,0 +1,426 @@
+# ProviderInput
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**IndonesiaNik** | Pointer to [**NullableIndonesiaNikInput**](IndonesiaNikInput.md) | Input for the &#x60;f-indonesia-nik&#x60; integration | [optional] 
+**MexicoCurp** | Pointer to [**NullableMexicoCurpInput**](MexicoCurpInput.md) | Input for the &#x60;f-mexico-curp&#x60; integration | [optional] 
+**SouthAfricaNid** | Pointer to [**NullableSouthAfricaNidInput**](SouthAfricaNidInput.md) | Input for the &#x60;f-south-africa-nid&#x60; integration | [optional] 
+**KenyaNid** | Pointer to [**NullableKenyaNidInput**](KenyaNidInput.md) | Input for the &#x60;f-kenya-nid&#x60; integration | [optional] 
+**NigeriaNin** | Pointer to [**NullableNigeriaNinInput**](NigeriaNinInput.md) | Input for the &#x60;f-nigeria-nin&#x60; integration | [optional] 
+**Aadhaar** | Pointer to [**NullableAadhaarInput**](AadhaarInput.md) | Input for the &#x60;f-india-aadhaar-match&#x60; integration | [optional] 
+**BangladeshNationalId** | Pointer to [**NullableBangladeshNationalIdInput**](BangladeshNationalIdInput.md) | Input for the &#x60;bangladesh-nid&#x60; integration | [optional] 
+**BrazilCpfCheck** | Pointer to [**NullableBrazilCpfCheckInput**](BrazilCpfCheckInput.md) | Input for the &#x60;g-brazil-cpf&#x60; integration | [optional] 
+**BrazilDigitalCnh** | Pointer to [**NullableBrazilDigitalCnhInput**](BrazilDigitalCnhInput.md) | Input for the &#x60;g-brazil-digital-cnh&#x60; integration | [optional] 
+**PhilippineMatch** | Pointer to [**NullablePhilippineMatchInput**](PhilippineMatchInput.md) | Input for the &#x60;b-philsys-biometric&#x60; integration | [optional] 
+**PhilippineQR** | Pointer to [**NullablePhilippineQRInput**](PhilippineQRInput.md) | Input for the &#x60;b-philippine-qr-digital-national-id&#x60; and &#x60;b-philippine-qr-ephill-id&#x60; integrations | [optional] 
+
+## Methods
+
+### NewProviderInput
+
+`func NewProviderInput() *ProviderInput`
+
+NewProviderInput instantiates a new ProviderInput object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewProviderInputWithDefaults
+
+`func NewProviderInputWithDefaults() *ProviderInput`
+
+NewProviderInputWithDefaults instantiates a new ProviderInput object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
+### GetIndonesiaNik
+
+`func (o *ProviderInput) GetIndonesiaNik() IndonesiaNikInput`
+
+GetIndonesiaNik returns the IndonesiaNik field if non-nil, zero value otherwise.
+
+### GetIndonesiaNikOk
+
+`func (o *ProviderInput) GetIndonesiaNikOk() (*IndonesiaNikInput, bool)`
+
+GetIndonesiaNikOk returns a tuple with the IndonesiaNik field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIndonesiaNik
+
+`func (o *ProviderInput) SetIndonesiaNik(v IndonesiaNikInput)`
+
+SetIndonesiaNik sets IndonesiaNik field to given value.
+
+### HasIndonesiaNik
+
+`func (o *ProviderInput) HasIndonesiaNik() bool`
+
+HasIndonesiaNik returns a boolean if a field has been set.
+
+### SetIndonesiaNikNil
+
+`func (o *ProviderInput) SetIndonesiaNikNil(b bool)`
+
+ SetIndonesiaNikNil sets the value for IndonesiaNik to be an explicit nil
+
+### UnsetIndonesiaNik
+`func (o *ProviderInput) UnsetIndonesiaNik()`
+
+UnsetIndonesiaNik ensures that no value is present for IndonesiaNik, not even an explicit nil
+### GetMexicoCurp
+
+`func (o *ProviderInput) GetMexicoCurp() MexicoCurpInput`
+
+GetMexicoCurp returns the MexicoCurp field if non-nil, zero value otherwise.
+
+### GetMexicoCurpOk
+
+`func (o *ProviderInput) GetMexicoCurpOk() (*MexicoCurpInput, bool)`
+
+GetMexicoCurpOk returns a tuple with the MexicoCurp field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMexicoCurp
+
+`func (o *ProviderInput) SetMexicoCurp(v MexicoCurpInput)`
+
+SetMexicoCurp sets MexicoCurp field to given value.
+
+### HasMexicoCurp
+
+`func (o *ProviderInput) HasMexicoCurp() bool`
+
+HasMexicoCurp returns a boolean if a field has been set.
+
+### SetMexicoCurpNil
+
+`func (o *ProviderInput) SetMexicoCurpNil(b bool)`
+
+ SetMexicoCurpNil sets the value for MexicoCurp to be an explicit nil
+
+### UnsetMexicoCurp
+`func (o *ProviderInput) UnsetMexicoCurp()`
+
+UnsetMexicoCurp ensures that no value is present for MexicoCurp, not even an explicit nil
+### GetSouthAfricaNid
+
+`func (o *ProviderInput) GetSouthAfricaNid() SouthAfricaNidInput`
+
+GetSouthAfricaNid returns the SouthAfricaNid field if non-nil, zero value otherwise.
+
+### GetSouthAfricaNidOk
+
+`func (o *ProviderInput) GetSouthAfricaNidOk() (*SouthAfricaNidInput, bool)`
+
+GetSouthAfricaNidOk returns a tuple with the SouthAfricaNid field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSouthAfricaNid
+
+`func (o *ProviderInput) SetSouthAfricaNid(v SouthAfricaNidInput)`
+
+SetSouthAfricaNid sets SouthAfricaNid field to given value.
+
+### HasSouthAfricaNid
+
+`func (o *ProviderInput) HasSouthAfricaNid() bool`
+
+HasSouthAfricaNid returns a boolean if a field has been set.
+
+### SetSouthAfricaNidNil
+
+`func (o *ProviderInput) SetSouthAfricaNidNil(b bool)`
+
+ SetSouthAfricaNidNil sets the value for SouthAfricaNid to be an explicit nil
+
+### UnsetSouthAfricaNid
+`func (o *ProviderInput) UnsetSouthAfricaNid()`
+
+UnsetSouthAfricaNid ensures that no value is present for SouthAfricaNid, not even an explicit nil
+### GetKenyaNid
+
+`func (o *ProviderInput) GetKenyaNid() KenyaNidInput`
+
+GetKenyaNid returns the KenyaNid field if non-nil, zero value otherwise.
+
+### GetKenyaNidOk
+
+`func (o *ProviderInput) GetKenyaNidOk() (*KenyaNidInput, bool)`
+
+GetKenyaNidOk returns a tuple with the KenyaNid field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKenyaNid
+
+`func (o *ProviderInput) SetKenyaNid(v KenyaNidInput)`
+
+SetKenyaNid sets KenyaNid field to given value.
+
+### HasKenyaNid
+
+`func (o *ProviderInput) HasKenyaNid() bool`
+
+HasKenyaNid returns a boolean if a field has been set.
+
+### SetKenyaNidNil
+
+`func (o *ProviderInput) SetKenyaNidNil(b bool)`
+
+ SetKenyaNidNil sets the value for KenyaNid to be an explicit nil
+
+### UnsetKenyaNid
+`func (o *ProviderInput) UnsetKenyaNid()`
+
+UnsetKenyaNid ensures that no value is present for KenyaNid, not even an explicit nil
+### GetNigeriaNin
+
+`func (o *ProviderInput) GetNigeriaNin() NigeriaNinInput`
+
+GetNigeriaNin returns the NigeriaNin field if non-nil, zero value otherwise.
+
+### GetNigeriaNinOk
+
+`func (o *ProviderInput) GetNigeriaNinOk() (*NigeriaNinInput, bool)`
+
+GetNigeriaNinOk returns a tuple with the NigeriaNin field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNigeriaNin
+
+`func (o *ProviderInput) SetNigeriaNin(v NigeriaNinInput)`
+
+SetNigeriaNin sets NigeriaNin field to given value.
+
+### HasNigeriaNin
+
+`func (o *ProviderInput) HasNigeriaNin() bool`
+
+HasNigeriaNin returns a boolean if a field has been set.
+
+### SetNigeriaNinNil
+
+`func (o *ProviderInput) SetNigeriaNinNil(b bool)`
+
+ SetNigeriaNinNil sets the value for NigeriaNin to be an explicit nil
+
+### UnsetNigeriaNin
+`func (o *ProviderInput) UnsetNigeriaNin()`
+
+UnsetNigeriaNin ensures that no value is present for NigeriaNin, not even an explicit nil
+### GetAadhaar
+
+`func (o *ProviderInput) GetAadhaar() AadhaarInput`
+
+GetAadhaar returns the Aadhaar field if non-nil, zero value otherwise.
+
+### GetAadhaarOk
+
+`func (o *ProviderInput) GetAadhaarOk() (*AadhaarInput, bool)`
+
+GetAadhaarOk returns a tuple with the Aadhaar field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAadhaar
+
+`func (o *ProviderInput) SetAadhaar(v AadhaarInput)`
+
+SetAadhaar sets Aadhaar field to given value.
+
+### HasAadhaar
+
+`func (o *ProviderInput) HasAadhaar() bool`
+
+HasAadhaar returns a boolean if a field has been set.
+
+### SetAadhaarNil
+
+`func (o *ProviderInput) SetAadhaarNil(b bool)`
+
+ SetAadhaarNil sets the value for Aadhaar to be an explicit nil
+
+### UnsetAadhaar
+`func (o *ProviderInput) UnsetAadhaar()`
+
+UnsetAadhaar ensures that no value is present for Aadhaar, not even an explicit nil
+### GetBangladeshNationalId
+
+`func (o *ProviderInput) GetBangladeshNationalId() BangladeshNationalIdInput`
+
+GetBangladeshNationalId returns the BangladeshNationalId field if non-nil, zero value otherwise.
+
+### GetBangladeshNationalIdOk
+
+`func (o *ProviderInput) GetBangladeshNationalIdOk() (*BangladeshNationalIdInput, bool)`
+
+GetBangladeshNationalIdOk returns a tuple with the BangladeshNationalId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBangladeshNationalId
+
+`func (o *ProviderInput) SetBangladeshNationalId(v BangladeshNationalIdInput)`
+
+SetBangladeshNationalId sets BangladeshNationalId field to given value.
+
+### HasBangladeshNationalId
+
+`func (o *ProviderInput) HasBangladeshNationalId() bool`
+
+HasBangladeshNationalId returns a boolean if a field has been set.
+
+### SetBangladeshNationalIdNil
+
+`func (o *ProviderInput) SetBangladeshNationalIdNil(b bool)`
+
+ SetBangladeshNationalIdNil sets the value for BangladeshNationalId to be an explicit nil
+
+### UnsetBangladeshNationalId
+`func (o *ProviderInput) UnsetBangladeshNationalId()`
+
+UnsetBangladeshNationalId ensures that no value is present for BangladeshNationalId, not even an explicit nil
+### GetBrazilCpfCheck
+
+`func (o *ProviderInput) GetBrazilCpfCheck() BrazilCpfCheckInput`
+
+GetBrazilCpfCheck returns the BrazilCpfCheck field if non-nil, zero value otherwise.
+
+### GetBrazilCpfCheckOk
+
+`func (o *ProviderInput) GetBrazilCpfCheckOk() (*BrazilCpfCheckInput, bool)`
+
+GetBrazilCpfCheckOk returns a tuple with the BrazilCpfCheck field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBrazilCpfCheck
+
+`func (o *ProviderInput) SetBrazilCpfCheck(v BrazilCpfCheckInput)`
+
+SetBrazilCpfCheck sets BrazilCpfCheck field to given value.
+
+### HasBrazilCpfCheck
+
+`func (o *ProviderInput) HasBrazilCpfCheck() bool`
+
+HasBrazilCpfCheck returns a boolean if a field has been set.
+
+### SetBrazilCpfCheckNil
+
+`func (o *ProviderInput) SetBrazilCpfCheckNil(b bool)`
+
+ SetBrazilCpfCheckNil sets the value for BrazilCpfCheck to be an explicit nil
+
+### UnsetBrazilCpfCheck
+`func (o *ProviderInput) UnsetBrazilCpfCheck()`
+
+UnsetBrazilCpfCheck ensures that no value is present for BrazilCpfCheck, not even an explicit nil
+### GetBrazilDigitalCnh
+
+`func (o *ProviderInput) GetBrazilDigitalCnh() BrazilDigitalCnhInput`
+
+GetBrazilDigitalCnh returns the BrazilDigitalCnh field if non-nil, zero value otherwise.
+
+### GetBrazilDigitalCnhOk
+
+`func (o *ProviderInput) GetBrazilDigitalCnhOk() (*BrazilDigitalCnhInput, bool)`
+
+GetBrazilDigitalCnhOk returns a tuple with the BrazilDigitalCnh field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBrazilDigitalCnh
+
+`func (o *ProviderInput) SetBrazilDigitalCnh(v BrazilDigitalCnhInput)`
+
+SetBrazilDigitalCnh sets BrazilDigitalCnh field to given value.
+
+### HasBrazilDigitalCnh
+
+`func (o *ProviderInput) HasBrazilDigitalCnh() bool`
+
+HasBrazilDigitalCnh returns a boolean if a field has been set.
+
+### SetBrazilDigitalCnhNil
+
+`func (o *ProviderInput) SetBrazilDigitalCnhNil(b bool)`
+
+ SetBrazilDigitalCnhNil sets the value for BrazilDigitalCnh to be an explicit nil
+
+### UnsetBrazilDigitalCnh
+`func (o *ProviderInput) UnsetBrazilDigitalCnh()`
+
+UnsetBrazilDigitalCnh ensures that no value is present for BrazilDigitalCnh, not even an explicit nil
+### GetPhilippineMatch
+
+`func (o *ProviderInput) GetPhilippineMatch() PhilippineMatchInput`
+
+GetPhilippineMatch returns the PhilippineMatch field if non-nil, zero value otherwise.
+
+### GetPhilippineMatchOk
+
+`func (o *ProviderInput) GetPhilippineMatchOk() (*PhilippineMatchInput, bool)`
+
+GetPhilippineMatchOk returns a tuple with the PhilippineMatch field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPhilippineMatch
+
+`func (o *ProviderInput) SetPhilippineMatch(v PhilippineMatchInput)`
+
+SetPhilippineMatch sets PhilippineMatch field to given value.
+
+### HasPhilippineMatch
+
+`func (o *ProviderInput) HasPhilippineMatch() bool`
+
+HasPhilippineMatch returns a boolean if a field has been set.
+
+### SetPhilippineMatchNil
+
+`func (o *ProviderInput) SetPhilippineMatchNil(b bool)`
+
+ SetPhilippineMatchNil sets the value for PhilippineMatch to be an explicit nil
+
+### UnsetPhilippineMatch
+`func (o *ProviderInput) UnsetPhilippineMatch()`
+
+UnsetPhilippineMatch ensures that no value is present for PhilippineMatch, not even an explicit nil
+### GetPhilippineQR
+
+`func (o *ProviderInput) GetPhilippineQR() PhilippineQRInput`
+
+GetPhilippineQR returns the PhilippineQR field if non-nil, zero value otherwise.
+
+### GetPhilippineQROk
+
+`func (o *ProviderInput) GetPhilippineQROk() (*PhilippineQRInput, bool)`
+
+GetPhilippineQROk returns a tuple with the PhilippineQR field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPhilippineQR
+
+`func (o *ProviderInput) SetPhilippineQR(v PhilippineQRInput)`
+
+SetPhilippineQR sets PhilippineQR field to given value.
+
+### HasPhilippineQR
+
+`func (o *ProviderInput) HasPhilippineQR() bool`
+
+HasPhilippineQR returns a boolean if a field has been set.
+
+### SetPhilippineQRNil
+
+`func (o *ProviderInput) SetPhilippineQRNil(b bool)`
+
+ SetPhilippineQRNil sets the value for PhilippineQR to be an explicit nil
+
+### UnsetPhilippineQR
+`func (o *ProviderInput) UnsetPhilippineQR()`
+
+UnsetPhilippineQR ensures that no value is present for PhilippineQR, not even an explicit nil
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+
