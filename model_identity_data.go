@@ -20,6 +20,7 @@ var _ MappedNullable = &IdentityData{}
 // IdentityData struct for IdentityData
 type IdentityData struct {
 	OriginatingProviderId NullableString `json:"originatingProviderId,omitempty"`
+	OriginatingSubProviderId NullableString `json:"originatingSubProviderId,omitempty"`
 	Person NullablePersonData `json:"person,omitempty"`
 	Document NullableDocumentData `json:"document,omitempty"`
 	AttachmentAccessKeys NullableAttachmentAccessKeys `json:"attachmentAccessKeys,omitempty"`
@@ -82,6 +83,48 @@ func (o *IdentityData) SetOriginatingProviderIdNil() {
 // UnsetOriginatingProviderId ensures that no value is present for OriginatingProviderId, not even an explicit nil
 func (o *IdentityData) UnsetOriginatingProviderId() {
 	o.OriginatingProviderId.Unset()
+}
+
+// GetOriginatingSubProviderId returns the OriginatingSubProviderId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *IdentityData) GetOriginatingSubProviderId() string {
+	if o == nil || IsNil(o.OriginatingSubProviderId.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.OriginatingSubProviderId.Get()
+}
+
+// GetOriginatingSubProviderIdOk returns a tuple with the OriginatingSubProviderId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *IdentityData) GetOriginatingSubProviderIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.OriginatingSubProviderId.Get(), o.OriginatingSubProviderId.IsSet()
+}
+
+// HasOriginatingSubProviderId returns a boolean if a field has been set.
+func (o *IdentityData) HasOriginatingSubProviderId() bool {
+	if o != nil && o.OriginatingSubProviderId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetOriginatingSubProviderId gets a reference to the given NullableString and assigns it to the OriginatingSubProviderId field.
+func (o *IdentityData) SetOriginatingSubProviderId(v string) {
+	o.OriginatingSubProviderId.Set(&v)
+}
+// SetOriginatingSubProviderIdNil sets the value for OriginatingSubProviderId to be an explicit nil
+func (o *IdentityData) SetOriginatingSubProviderIdNil() {
+	o.OriginatingSubProviderId.Set(nil)
+}
+
+// UnsetOriginatingSubProviderId ensures that no value is present for OriginatingSubProviderId, not even an explicit nil
+func (o *IdentityData) UnsetOriginatingSubProviderId() {
+	o.OriginatingSubProviderId.Unset()
 }
 
 // GetPerson returns the Person field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -222,6 +265,9 @@ func (o IdentityData) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if o.OriginatingProviderId.IsSet() {
 		toSerialize["originatingProviderId"] = o.OriginatingProviderId.Get()
+	}
+	if o.OriginatingSubProviderId.IsSet() {
+		toSerialize["originatingSubProviderId"] = o.OriginatingSubProviderId.Get()
 	}
 	if o.Person.IsSet() {
 		toSerialize["person"] = o.Person.Get()

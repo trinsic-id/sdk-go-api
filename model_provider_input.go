@@ -19,28 +19,40 @@ var _ MappedNullable = &ProviderInput{}
 
 // ProviderInput struct for ProviderInput
 type ProviderInput struct {
-	// Input for the `f-indonesia-nik` integration
+	// Input for the `f-indonesia-nik` provider
 	IndonesiaNik NullableIndonesiaNikInput `json:"indonesiaNik,omitempty"`
-	// Input for the `f-mexico-curp` integration
+	// Input for the `f-mexico-curp` provider
 	MexicoCurp NullableMexicoCurpInput `json:"mexicoCurp,omitempty"`
-	// Input for the `f-south-africa-nid` integration
+	// Input for the `f-south-africa-nid` provider
 	SouthAfricaNid NullableSouthAfricaNidInput `json:"southAfricaNid,omitempty"`
-	// Input for the `f-kenya-nid` integration
+	// Input for the `f-kenya-nid` provider
 	KenyaNid NullableKenyaNidInput `json:"kenyaNid,omitempty"`
-	// Input for the `f-nigeria-nin` integration
+	// Input for the `f-nigeria-nin` provider
 	NigeriaNin NullableNigeriaNinInput `json:"nigeriaNin,omitempty"`
-	// Input for the `f-india-aadhaar-match` integration
+	// Input for the `f-india-aadhaar-match` provider
 	Aadhaar NullableAadhaarInput `json:"aadhaar,omitempty"`
-	// Input for the `bangladesh-nid` integration
+	// Input for the `bangladesh-nid` provider
 	BangladeshNationalId NullableBangladeshNationalIdInput `json:"bangladeshNationalId,omitempty"`
-	// Input for the `g-brazil-cpf` integration
+	// Input for the `g-brazil-cpf` provider
 	BrazilCpfCheck NullableBrazilCpfCheckInput `json:"brazilCpfCheck,omitempty"`
-	// Input for the `g-brazil-digital-cnh` integration
+	// Input for the `g-brazil-digital-cnh` provider
 	BrazilDigitalCnh NullableBrazilDigitalCnhInput `json:"brazilDigitalCnh,omitempty"`
-	// Input for the `b-philsys-biometric` integration
+	// Input for the `b-philsys-biometric` provider
 	PhilippineMatch NullablePhilippineMatchInput `json:"philippineMatch,omitempty"`
-	// Input for the `b-philippine-qr-digital-national-id` and `b-philippine-qr-ephill-id` integrations
+	// Input for the `b-philippine-qr-digital-national-id` and `b-philippine-qr-ephill-id` providers
 	PhilippineQR NullablePhilippineQRInput `json:"philippineQR,omitempty"`
+	// Input for the `smart-id` provider
+	SmartId NullableSmartIdInput `json:"smartId,omitempty"`
+	// Input for the `mobile-id` provider
+	MobileId NullableMobileIdInput `json:"mobileId,omitempty"`
+	// Input for the `idin` provider
+	Idin NullableIdinInput `json:"idin,omitempty"`
+	// Input for the `spid` provider
+	Spid NullableSpidInput `json:"spid,omitempty"`
+	// *TEST MODE ONLY.*              Input for the `trinsic-test-database-lookup` provider
+	TrinsicTestDatabaseLookup NullableTrinsicTestDatabaseLookupInput `json:"trinsicTestDatabaseLookup,omitempty"`
+	// *TEST MODE ONLY.*              Input for the `trinsic-test-sub-providers` provider
+	TrinsicTestSubProviders NullableTrinsicTestSubProvidersInput `json:"trinsicTestSubProviders,omitempty"`
 }
 
 // NewProviderInput instantiates a new ProviderInput object
@@ -522,6 +534,258 @@ func (o *ProviderInput) UnsetPhilippineQR() {
 	o.PhilippineQR.Unset()
 }
 
+// GetSmartId returns the SmartId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderInput) GetSmartId() SmartIdInput {
+	if o == nil || IsNil(o.SmartId.Get()) {
+		var ret SmartIdInput
+		return ret
+	}
+	return *o.SmartId.Get()
+}
+
+// GetSmartIdOk returns a tuple with the SmartId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderInput) GetSmartIdOk() (*SmartIdInput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.SmartId.Get(), o.SmartId.IsSet()
+}
+
+// HasSmartId returns a boolean if a field has been set.
+func (o *ProviderInput) HasSmartId() bool {
+	if o != nil && o.SmartId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSmartId gets a reference to the given NullableSmartIdInput and assigns it to the SmartId field.
+func (o *ProviderInput) SetSmartId(v SmartIdInput) {
+	o.SmartId.Set(&v)
+}
+// SetSmartIdNil sets the value for SmartId to be an explicit nil
+func (o *ProviderInput) SetSmartIdNil() {
+	o.SmartId.Set(nil)
+}
+
+// UnsetSmartId ensures that no value is present for SmartId, not even an explicit nil
+func (o *ProviderInput) UnsetSmartId() {
+	o.SmartId.Unset()
+}
+
+// GetMobileId returns the MobileId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderInput) GetMobileId() MobileIdInput {
+	if o == nil || IsNil(o.MobileId.Get()) {
+		var ret MobileIdInput
+		return ret
+	}
+	return *o.MobileId.Get()
+}
+
+// GetMobileIdOk returns a tuple with the MobileId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderInput) GetMobileIdOk() (*MobileIdInput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.MobileId.Get(), o.MobileId.IsSet()
+}
+
+// HasMobileId returns a boolean if a field has been set.
+func (o *ProviderInput) HasMobileId() bool {
+	if o != nil && o.MobileId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetMobileId gets a reference to the given NullableMobileIdInput and assigns it to the MobileId field.
+func (o *ProviderInput) SetMobileId(v MobileIdInput) {
+	o.MobileId.Set(&v)
+}
+// SetMobileIdNil sets the value for MobileId to be an explicit nil
+func (o *ProviderInput) SetMobileIdNil() {
+	o.MobileId.Set(nil)
+}
+
+// UnsetMobileId ensures that no value is present for MobileId, not even an explicit nil
+func (o *ProviderInput) UnsetMobileId() {
+	o.MobileId.Unset()
+}
+
+// GetIdin returns the Idin field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderInput) GetIdin() IdinInput {
+	if o == nil || IsNil(o.Idin.Get()) {
+		var ret IdinInput
+		return ret
+	}
+	return *o.Idin.Get()
+}
+
+// GetIdinOk returns a tuple with the Idin field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderInput) GetIdinOk() (*IdinInput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Idin.Get(), o.Idin.IsSet()
+}
+
+// HasIdin returns a boolean if a field has been set.
+func (o *ProviderInput) HasIdin() bool {
+	if o != nil && o.Idin.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetIdin gets a reference to the given NullableIdinInput and assigns it to the Idin field.
+func (o *ProviderInput) SetIdin(v IdinInput) {
+	o.Idin.Set(&v)
+}
+// SetIdinNil sets the value for Idin to be an explicit nil
+func (o *ProviderInput) SetIdinNil() {
+	o.Idin.Set(nil)
+}
+
+// UnsetIdin ensures that no value is present for Idin, not even an explicit nil
+func (o *ProviderInput) UnsetIdin() {
+	o.Idin.Unset()
+}
+
+// GetSpid returns the Spid field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderInput) GetSpid() SpidInput {
+	if o == nil || IsNil(o.Spid.Get()) {
+		var ret SpidInput
+		return ret
+	}
+	return *o.Spid.Get()
+}
+
+// GetSpidOk returns a tuple with the Spid field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderInput) GetSpidOk() (*SpidInput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Spid.Get(), o.Spid.IsSet()
+}
+
+// HasSpid returns a boolean if a field has been set.
+func (o *ProviderInput) HasSpid() bool {
+	if o != nil && o.Spid.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSpid gets a reference to the given NullableSpidInput and assigns it to the Spid field.
+func (o *ProviderInput) SetSpid(v SpidInput) {
+	o.Spid.Set(&v)
+}
+// SetSpidNil sets the value for Spid to be an explicit nil
+func (o *ProviderInput) SetSpidNil() {
+	o.Spid.Set(nil)
+}
+
+// UnsetSpid ensures that no value is present for Spid, not even an explicit nil
+func (o *ProviderInput) UnsetSpid() {
+	o.Spid.Unset()
+}
+
+// GetTrinsicTestDatabaseLookup returns the TrinsicTestDatabaseLookup field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderInput) GetTrinsicTestDatabaseLookup() TrinsicTestDatabaseLookupInput {
+	if o == nil || IsNil(o.TrinsicTestDatabaseLookup.Get()) {
+		var ret TrinsicTestDatabaseLookupInput
+		return ret
+	}
+	return *o.TrinsicTestDatabaseLookup.Get()
+}
+
+// GetTrinsicTestDatabaseLookupOk returns a tuple with the TrinsicTestDatabaseLookup field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderInput) GetTrinsicTestDatabaseLookupOk() (*TrinsicTestDatabaseLookupInput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.TrinsicTestDatabaseLookup.Get(), o.TrinsicTestDatabaseLookup.IsSet()
+}
+
+// HasTrinsicTestDatabaseLookup returns a boolean if a field has been set.
+func (o *ProviderInput) HasTrinsicTestDatabaseLookup() bool {
+	if o != nil && o.TrinsicTestDatabaseLookup.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTrinsicTestDatabaseLookup gets a reference to the given NullableTrinsicTestDatabaseLookupInput and assigns it to the TrinsicTestDatabaseLookup field.
+func (o *ProviderInput) SetTrinsicTestDatabaseLookup(v TrinsicTestDatabaseLookupInput) {
+	o.TrinsicTestDatabaseLookup.Set(&v)
+}
+// SetTrinsicTestDatabaseLookupNil sets the value for TrinsicTestDatabaseLookup to be an explicit nil
+func (o *ProviderInput) SetTrinsicTestDatabaseLookupNil() {
+	o.TrinsicTestDatabaseLookup.Set(nil)
+}
+
+// UnsetTrinsicTestDatabaseLookup ensures that no value is present for TrinsicTestDatabaseLookup, not even an explicit nil
+func (o *ProviderInput) UnsetTrinsicTestDatabaseLookup() {
+	o.TrinsicTestDatabaseLookup.Unset()
+}
+
+// GetTrinsicTestSubProviders returns the TrinsicTestSubProviders field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderInput) GetTrinsicTestSubProviders() TrinsicTestSubProvidersInput {
+	if o == nil || IsNil(o.TrinsicTestSubProviders.Get()) {
+		var ret TrinsicTestSubProvidersInput
+		return ret
+	}
+	return *o.TrinsicTestSubProviders.Get()
+}
+
+// GetTrinsicTestSubProvidersOk returns a tuple with the TrinsicTestSubProviders field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderInput) GetTrinsicTestSubProvidersOk() (*TrinsicTestSubProvidersInput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.TrinsicTestSubProviders.Get(), o.TrinsicTestSubProviders.IsSet()
+}
+
+// HasTrinsicTestSubProviders returns a boolean if a field has been set.
+func (o *ProviderInput) HasTrinsicTestSubProviders() bool {
+	if o != nil && o.TrinsicTestSubProviders.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTrinsicTestSubProviders gets a reference to the given NullableTrinsicTestSubProvidersInput and assigns it to the TrinsicTestSubProviders field.
+func (o *ProviderInput) SetTrinsicTestSubProviders(v TrinsicTestSubProvidersInput) {
+	o.TrinsicTestSubProviders.Set(&v)
+}
+// SetTrinsicTestSubProvidersNil sets the value for TrinsicTestSubProviders to be an explicit nil
+func (o *ProviderInput) SetTrinsicTestSubProvidersNil() {
+	o.TrinsicTestSubProviders.Set(nil)
+}
+
+// UnsetTrinsicTestSubProviders ensures that no value is present for TrinsicTestSubProviders, not even an explicit nil
+func (o *ProviderInput) UnsetTrinsicTestSubProviders() {
+	o.TrinsicTestSubProviders.Unset()
+}
+
 func (o ProviderInput) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -564,6 +828,24 @@ func (o ProviderInput) ToMap() (map[string]interface{}, error) {
 	}
 	if o.PhilippineQR.IsSet() {
 		toSerialize["philippineQR"] = o.PhilippineQR.Get()
+	}
+	if o.SmartId.IsSet() {
+		toSerialize["smartId"] = o.SmartId.Get()
+	}
+	if o.MobileId.IsSet() {
+		toSerialize["mobileId"] = o.MobileId.Get()
+	}
+	if o.Idin.IsSet() {
+		toSerialize["idin"] = o.Idin.Get()
+	}
+	if o.Spid.IsSet() {
+		toSerialize["spid"] = o.Spid.Get()
+	}
+	if o.TrinsicTestDatabaseLookup.IsSet() {
+		toSerialize["trinsicTestDatabaseLookup"] = o.TrinsicTestDatabaseLookup.Get()
+	}
+	if o.TrinsicTestSubProviders.IsSet() {
+		toSerialize["trinsicTestSubProviders"] = o.TrinsicTestSubProviders.Get()
 	}
 	return toSerialize, nil
 }

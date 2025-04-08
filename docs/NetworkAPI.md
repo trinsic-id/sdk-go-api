@@ -4,16 +4,78 @@ All URIs are relative to *https://api.trinsic.id*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ListProviders**](NetworkAPI.md#ListProviders) | **Get** /api/v1/network/providers | List Identity Providers
+[**ListProviderContracts**](NetworkAPI.md#ListProviderContracts) | **Get** /api/v1/network/providers/contracts | List Provider Contracts
+[**ListProviders**](NetworkAPI.md#ListProviders) | **Get** /api/v1/network/providers | List Providers
 [**RecommendProviders**](NetworkAPI.md#RecommendProviders) | **Post** /api/v1/network/recommend | Recommend Providers
 
+
+
+## ListProviderContracts
+
+> ListProviderContractsResponse ListProviderContracts(ctx).Execute()
+
+List Provider Contracts
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.NetworkAPI.ListProviderContracts(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `NetworkAPI.ListProviderContracts``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ListProviderContracts`: ListProviderContractsResponse
+	fmt.Fprintf(os.Stdout, "Response from `NetworkAPI.ListProviderContracts`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListProviderContractsRequest struct via the builder pattern
+
+
+### Return type
+
+[**ListProviderContractsResponse**](ListProviderContractsResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: text/plain, application/json, text/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## ListProviders
 
 > ListProvidersResponse ListProviders(ctx).Execute()
 
-List Identity Providers
+List Providers
 
 
 

@@ -19,12 +19,12 @@ var _ MappedNullable = &CreateWidgetSessionRequest{}
 
 // CreateWidgetSessionRequest struct for CreateWidgetSessionRequest
 type CreateWidgetSessionRequest struct {
-	// The URL to redirect the user to after the widget session is complete.                *Note*: this should NOT be set if you intend to use Trinsic's Web UI SDK to launch the Widget  as an embedded iFrame or popup; in that case, session resolution is handled by our SDK, not via redirect.
+	// The URL to redirect the user to after the widget session is complete.              *Note*: this should NOT be set if you intend to use Trinsic's Web UI SDK to launch the Widget as an embedded iFrame or popup; in that case, session resolution is handled by our SDK, not via redirect.
 	RedirectUrl NullableString `json:"redirectUrl,omitempty"`
 	// The list of allowed identity providers. If not specified, all available providers will be allowed.
 	Providers []string `json:"providers,omitempty"`
-	// Known identity data of an individual being verified.                Provide this to Trinsic during Session creation to enable improved identity provider selection recommendations.
-	KnownIdentityData NullableKnownIdentityData `json:"knownIdentityData,omitempty"`
+	// Data that you already know about the user being verified.   This data is used to improve the user experience during provider selection, by surfacing the most relevant providers first.
+	RecommendationInfo NullableRecommendationInfo `json:"recommendationInfo,omitempty"`
 }
 
 // NewCreateWidgetSessionRequest instantiates a new CreateWidgetSessionRequest object
@@ -119,46 +119,46 @@ func (o *CreateWidgetSessionRequest) SetProviders(v []string) {
 	o.Providers = v
 }
 
-// GetKnownIdentityData returns the KnownIdentityData field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CreateWidgetSessionRequest) GetKnownIdentityData() KnownIdentityData {
-	if o == nil || IsNil(o.KnownIdentityData.Get()) {
-		var ret KnownIdentityData
+// GetRecommendationInfo returns the RecommendationInfo field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateWidgetSessionRequest) GetRecommendationInfo() RecommendationInfo {
+	if o == nil || IsNil(o.RecommendationInfo.Get()) {
+		var ret RecommendationInfo
 		return ret
 	}
-	return *o.KnownIdentityData.Get()
+	return *o.RecommendationInfo.Get()
 }
 
-// GetKnownIdentityDataOk returns a tuple with the KnownIdentityData field value if set, nil otherwise
+// GetRecommendationInfoOk returns a tuple with the RecommendationInfo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CreateWidgetSessionRequest) GetKnownIdentityDataOk() (*KnownIdentityData, bool) {
+func (o *CreateWidgetSessionRequest) GetRecommendationInfoOk() (*RecommendationInfo, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.KnownIdentityData.Get(), o.KnownIdentityData.IsSet()
+	return o.RecommendationInfo.Get(), o.RecommendationInfo.IsSet()
 }
 
-// HasKnownIdentityData returns a boolean if a field has been set.
-func (o *CreateWidgetSessionRequest) HasKnownIdentityData() bool {
-	if o != nil && o.KnownIdentityData.IsSet() {
+// HasRecommendationInfo returns a boolean if a field has been set.
+func (o *CreateWidgetSessionRequest) HasRecommendationInfo() bool {
+	if o != nil && o.RecommendationInfo.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetKnownIdentityData gets a reference to the given NullableKnownIdentityData and assigns it to the KnownIdentityData field.
-func (o *CreateWidgetSessionRequest) SetKnownIdentityData(v KnownIdentityData) {
-	o.KnownIdentityData.Set(&v)
+// SetRecommendationInfo gets a reference to the given NullableRecommendationInfo and assigns it to the RecommendationInfo field.
+func (o *CreateWidgetSessionRequest) SetRecommendationInfo(v RecommendationInfo) {
+	o.RecommendationInfo.Set(&v)
 }
-// SetKnownIdentityDataNil sets the value for KnownIdentityData to be an explicit nil
-func (o *CreateWidgetSessionRequest) SetKnownIdentityDataNil() {
-	o.KnownIdentityData.Set(nil)
+// SetRecommendationInfoNil sets the value for RecommendationInfo to be an explicit nil
+func (o *CreateWidgetSessionRequest) SetRecommendationInfoNil() {
+	o.RecommendationInfo.Set(nil)
 }
 
-// UnsetKnownIdentityData ensures that no value is present for KnownIdentityData, not even an explicit nil
-func (o *CreateWidgetSessionRequest) UnsetKnownIdentityData() {
-	o.KnownIdentityData.Unset()
+// UnsetRecommendationInfo ensures that no value is present for RecommendationInfo, not even an explicit nil
+func (o *CreateWidgetSessionRequest) UnsetRecommendationInfo() {
+	o.RecommendationInfo.Unset()
 }
 
 func (o CreateWidgetSessionRequest) MarshalJSON() ([]byte, error) {
@@ -177,8 +177,8 @@ func (o CreateWidgetSessionRequest) ToMap() (map[string]interface{}, error) {
 	if o.Providers != nil {
 		toSerialize["providers"] = o.Providers
 	}
-	if o.KnownIdentityData.IsSet() {
-		toSerialize["knownIdentityData"] = o.KnownIdentityData.Get()
+	if o.RecommendationInfo.IsSet() {
+		toSerialize["recommendationInfo"] = o.RecommendationInfo.Get()
 	}
 	return toSerialize, nil
 }

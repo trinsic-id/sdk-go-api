@@ -23,8 +23,8 @@ var _ MappedNullable = &ResultCollection{}
 type ResultCollection struct {
 	// The method by which the results of the Acceptance Session should be collected.
 	Method ResultCollectionMethod `json:"method"`
-	// If the method is `PollResult`, this is the key that should be used to poll for the results.
-	ResultsAccessKey NullableString `json:"resultsAccessKey,omitempty"`
+	// The `resultsAccessKey` for the Acceptance Session.              This is an encrypted payload which contains the decryption key necessary to access the Session's Data Vault.              Save this securely in your systems; it must be passed back with any API call which requires access to the Session's Data Vault.              Trinsic cannot access a Session's Data Vault without this key.
+	ResultsAccessKey string `json:"resultsAccessKey"`
 }
 
 type _ResultCollection ResultCollection
@@ -33,9 +33,10 @@ type _ResultCollection ResultCollection
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewResultCollection(method ResultCollectionMethod) *ResultCollection {
+func NewResultCollection(method ResultCollectionMethod, resultsAccessKey string) *ResultCollection {
 	this := ResultCollection{}
 	this.Method = method
+	this.ResultsAccessKey = resultsAccessKey
 	return &this
 }
 
@@ -71,46 +72,28 @@ func (o *ResultCollection) SetMethod(v ResultCollectionMethod) {
 	o.Method = v
 }
 
-// GetResultsAccessKey returns the ResultsAccessKey field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetResultsAccessKey returns the ResultsAccessKey field value
 func (o *ResultCollection) GetResultsAccessKey() string {
-	if o == nil || IsNil(o.ResultsAccessKey.Get()) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.ResultsAccessKey.Get()
+
+	return o.ResultsAccessKey
 }
 
-// GetResultsAccessKeyOk returns a tuple with the ResultsAccessKey field value if set, nil otherwise
+// GetResultsAccessKeyOk returns a tuple with the ResultsAccessKey field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ResultCollection) GetResultsAccessKeyOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.ResultsAccessKey.Get(), o.ResultsAccessKey.IsSet()
+	return &o.ResultsAccessKey, true
 }
 
-// HasResultsAccessKey returns a boolean if a field has been set.
-func (o *ResultCollection) HasResultsAccessKey() bool {
-	if o != nil && o.ResultsAccessKey.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetResultsAccessKey gets a reference to the given NullableString and assigns it to the ResultsAccessKey field.
+// SetResultsAccessKey sets field value
 func (o *ResultCollection) SetResultsAccessKey(v string) {
-	o.ResultsAccessKey.Set(&v)
-}
-// SetResultsAccessKeyNil sets the value for ResultsAccessKey to be an explicit nil
-func (o *ResultCollection) SetResultsAccessKeyNil() {
-	o.ResultsAccessKey.Set(nil)
-}
-
-// UnsetResultsAccessKey ensures that no value is present for ResultsAccessKey, not even an explicit nil
-func (o *ResultCollection) UnsetResultsAccessKey() {
-	o.ResultsAccessKey.Unset()
+	o.ResultsAccessKey = v
 }
 
 func (o ResultCollection) MarshalJSON() ([]byte, error) {
@@ -124,9 +107,7 @@ func (o ResultCollection) MarshalJSON() ([]byte, error) {
 func (o ResultCollection) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["method"] = o.Method
-	if o.ResultsAccessKey.IsSet() {
-		toSerialize["resultsAccessKey"] = o.ResultsAccessKey.Get()
-	}
+	toSerialize["resultsAccessKey"] = o.ResultsAccessKey
 	return toSerialize, nil
 }
 
@@ -136,6 +117,7 @@ func (o *ResultCollection) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"method",
+		"resultsAccessKey",
 	}
 
 	allProperties := make(map[string]interface{})

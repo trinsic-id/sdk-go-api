@@ -22,7 +22,7 @@ var _ MappedNullable = &StepRefreshInfo{}
 
 // StepRefreshInfo struct for StepRefreshInfo
 type StepRefreshInfo struct {
-	// The UTC date/time at which the step `content` will expire and should no longer be used.                Use the `Refresh Step Content` API to obtain a new value for `content`.
+	// The UTC date/time at which the step `content` will expire and should no longer be used.              Use the `Refresh Step Content` API to obtain a new value for `content`.
 	ExpiresAt time.Time `json:"expiresAt"`
 	// The UTC date/time after which Trinsic recommends you refresh the step `content`.
 	RefreshAfter time.Time `json:"refreshAfter"`

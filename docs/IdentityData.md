@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **OriginatingProviderId** | Pointer to **NullableString** |  | [optional] 
+**OriginatingSubProviderId** | Pointer to **NullableString** |  | [optional] 
 **Person** | Pointer to [**NullablePersonData**](PersonData.md) |  | [optional] 
 **Document** | Pointer to [**NullableDocumentData**](DocumentData.md) |  | [optional] 
 **AttachmentAccessKeys** | Pointer to [**NullableAttachmentAccessKeys**](AttachmentAccessKeys.md) |  | [optional] 
@@ -63,6 +64,41 @@ HasOriginatingProviderId returns a boolean if a field has been set.
 `func (o *IdentityData) UnsetOriginatingProviderId()`
 
 UnsetOriginatingProviderId ensures that no value is present for OriginatingProviderId, not even an explicit nil
+### GetOriginatingSubProviderId
+
+`func (o *IdentityData) GetOriginatingSubProviderId() string`
+
+GetOriginatingSubProviderId returns the OriginatingSubProviderId field if non-nil, zero value otherwise.
+
+### GetOriginatingSubProviderIdOk
+
+`func (o *IdentityData) GetOriginatingSubProviderIdOk() (*string, bool)`
+
+GetOriginatingSubProviderIdOk returns a tuple with the OriginatingSubProviderId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOriginatingSubProviderId
+
+`func (o *IdentityData) SetOriginatingSubProviderId(v string)`
+
+SetOriginatingSubProviderId sets OriginatingSubProviderId field to given value.
+
+### HasOriginatingSubProviderId
+
+`func (o *IdentityData) HasOriginatingSubProviderId() bool`
+
+HasOriginatingSubProviderId returns a boolean if a field has been set.
+
+### SetOriginatingSubProviderIdNil
+
+`func (o *IdentityData) SetOriginatingSubProviderIdNil(b bool)`
+
+ SetOriginatingSubProviderIdNil sets the value for OriginatingSubProviderId to be an explicit nil
+
+### UnsetOriginatingSubProviderId
+`func (o *IdentityData) UnsetOriginatingSubProviderId()`
+
+UnsetOriginatingSubProviderId ensures that no value is present for OriginatingSubProviderId, not even an explicit nil
 ### GetPerson
 
 `func (o *IdentityData) GetPerson() PersonData`

@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ProviderId** | **string** |  | 
-**ProviderDisplayName** | **string** |  | 
-**ProviderLogo** | **string** |  | 
+**ProviderId** | **string** |  | [readonly] 
+**ProviderDisplayName** | **string** |  | [readonly] 
+**ProviderLogo** | **string** |  | [readonly] 
 
 ## Methods
 

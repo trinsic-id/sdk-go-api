@@ -21,7 +21,7 @@ type IntegrationLaunchMethod string
 // List of IntegrationLaunchMethod
 const (
 	INTEGRATIONLAUNCHMETHOD_LAUNCH_BROWSER IntegrationLaunchMethod = "LaunchBrowser"
-	INTEGRATIONLAUNCHMETHOD_POLL_RESULT IntegrationLaunchMethod = "PollResult"
+	INTEGRATIONLAUNCHMETHOD_NONE IntegrationLaunchMethod = "None"
 	INTEGRATIONLAUNCHMETHOD_DEEPLINK_TO_MOBILE IntegrationLaunchMethod = "DeeplinkToMobile"
 	INTEGRATIONLAUNCHMETHOD_SHOW_CONTENT IntegrationLaunchMethod = "ShowContent"
 )
@@ -29,7 +29,7 @@ const (
 // All allowed values of IntegrationLaunchMethod enum
 var AllowedIntegrationLaunchMethodEnumValues = []IntegrationLaunchMethod{
 	"LaunchBrowser",
-	"PollResult",
+	"None",
 	"DeeplinkToMobile",
 	"ShowContent",
 }

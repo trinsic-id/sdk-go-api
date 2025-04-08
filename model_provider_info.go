@@ -27,8 +27,6 @@ type ProviderInfo struct {
 	Name string `json:"name"`
 	// A URL pointing to the provider's logo
 	LogoUrl string `json:"logoUrl"`
-	// List of child provider id's where the provider allows deep-launching of a specific provider.
-	ChildProviderIds []string `json:"childProviderIds,omitempty"`
 }
 
 type _ProviderInfo ProviderInfo
@@ -125,39 +123,6 @@ func (o *ProviderInfo) SetLogoUrl(v string) {
 	o.LogoUrl = v
 }
 
-// GetChildProviderIds returns the ChildProviderIds field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ProviderInfo) GetChildProviderIds() []string {
-	if o == nil {
-		var ret []string
-		return ret
-	}
-	return o.ChildProviderIds
-}
-
-// GetChildProviderIdsOk returns a tuple with the ChildProviderIds field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ProviderInfo) GetChildProviderIdsOk() ([]string, bool) {
-	if o == nil || IsNil(o.ChildProviderIds) {
-		return nil, false
-	}
-	return o.ChildProviderIds, true
-}
-
-// HasChildProviderIds returns a boolean if a field has been set.
-func (o *ProviderInfo) HasChildProviderIds() bool {
-	if o != nil && !IsNil(o.ChildProviderIds) {
-		return true
-	}
-
-	return false
-}
-
-// SetChildProviderIds gets a reference to the given []string and assigns it to the ChildProviderIds field.
-func (o *ProviderInfo) SetChildProviderIds(v []string) {
-	o.ChildProviderIds = v
-}
-
 func (o ProviderInfo) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -171,9 +136,6 @@ func (o ProviderInfo) ToMap() (map[string]interface{}, error) {
 	toSerialize["id"] = o.Id
 	toSerialize["name"] = o.Name
 	toSerialize["logoUrl"] = o.LogoUrl
-	if o.ChildProviderIds != nil {
-		toSerialize["childProviderIds"] = o.ChildProviderIds
-	}
 	return toSerialize, nil
 }
 

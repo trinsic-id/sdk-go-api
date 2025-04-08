@@ -5,13 +5,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **SessionId** | **string** | The ID of the newly-created Acceptance Session | 
-**LaunchUrl** | Pointer to **NullableString** | The URL that should be used to launch the Hosted Provider Session on your user&#39;s device.                There are two recommended ways to do so:  - Redirect their browser to the &#x60;LaunchUrl&#x60; as a top-level navigation  - Open a popup window and navigate it to the &#x60;LaunchUrl&#x60;                This URL is sensitive and as such can only be obtained once. If you need to obtain it again, you will need to create a new Acceptance Session. | [optional] 
+**LaunchUrl** | **string** | The URL that should be used to launch the Hosted Provider Session on your user&#39;s device.              There are two recommended ways to do so: - Redirect their browser to the &#x60;LaunchUrl&#x60; as a top-level navigation - Open a popup window and navigate it to the &#x60;LaunchUrl&#x60;              This URL is sensitive and as such can only be obtained once. If you need to obtain it again, you will need to create a new Acceptance Session. | 
+**ResultsAccessKey** | **string** | The &#x60;resultsAccessKey&#x60; for the Acceptance Session.              This is an encrypted payload which contains the decryption key necessary to access the Session&#39;s Data Vault.              Save this securely in your systems; it must be passed back with any API call which requires access to the Session&#39;s Data Vault.              Trinsic cannot access a Session&#39;s Data Vault without this key. | 
 
 ## Methods
 
 ### NewCreateHostedProviderSessionResponse
 
-`func NewCreateHostedProviderSessionResponse(sessionId string, ) *CreateHostedProviderSessionResponse`
+`func NewCreateHostedProviderSessionResponse(sessionId string, launchUrl string, resultsAccessKey string, ) *CreateHostedProviderSessionResponse`
 
 NewCreateHostedProviderSessionResponse instantiates a new CreateHostedProviderSessionResponse object
 This constructor will assign default values to properties that have it defined,
@@ -65,22 +66,27 @@ and a boolean to check if the value has been set.
 
 SetLaunchUrl sets LaunchUrl field to given value.
 
-### HasLaunchUrl
 
-`func (o *CreateHostedProviderSessionResponse) HasLaunchUrl() bool`
+### GetResultsAccessKey
 
-HasLaunchUrl returns a boolean if a field has been set.
+`func (o *CreateHostedProviderSessionResponse) GetResultsAccessKey() string`
 
-### SetLaunchUrlNil
+GetResultsAccessKey returns the ResultsAccessKey field if non-nil, zero value otherwise.
 
-`func (o *CreateHostedProviderSessionResponse) SetLaunchUrlNil(b bool)`
+### GetResultsAccessKeyOk
 
- SetLaunchUrlNil sets the value for LaunchUrl to be an explicit nil
+`func (o *CreateHostedProviderSessionResponse) GetResultsAccessKeyOk() (*string, bool)`
 
-### UnsetLaunchUrl
-`func (o *CreateHostedProviderSessionResponse) UnsetLaunchUrl()`
+GetResultsAccessKeyOk returns a tuple with the ResultsAccessKey field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-UnsetLaunchUrl ensures that no value is present for LaunchUrl, not even an explicit nil
+### SetResultsAccessKey
+
+`func (o *CreateHostedProviderSessionResponse) SetResultsAccessKey(v string)`
+
+SetResultsAccessKey sets ResultsAccessKey field to given value.
+
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

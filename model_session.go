@@ -22,11 +22,11 @@ var _ MappedNullable = &Session{}
 // Session struct for Session
 type Session struct {
 	Id string `json:"id"`
-	// Whether the Session is in a terminal / final state.                If this is `true`, inspect the value of `Success` to determine whether the Session was successful.
+	// Whether the Session is in a terminal / final state.              If this is `true`, inspect the value of `Success` to determine whether the Session was successful.
 	Done bool `json:"done"`
-	// Whether the Session has completed successfully.                If this is `false`, the Session is either not yet done, or has failed. Inspect `Done` and `ErrorCode` for more information.  If this is `true`, the Session has completed successfully.
+	// Whether the Session has completed successfully.              If this is `false`, the Session is either not yet done, or has failed. Inspect `Done` and `ErrorCode` for more information. If this is `true`, the Session has completed successfully.
 	Success bool `json:"success"`
-	// The reason for the Session's failure.                Only present if `Success` is `false`.
+	// The reason for the Session's failure.              Only present if `Success` is `false`.
 	ErrorCode NullableSessionErrorCode `json:"errorCode,omitempty"`
 	// The unix timestamp, in seconds, when this session was created
 	Created int64 `json:"created"`

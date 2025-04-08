@@ -22,8 +22,10 @@ var _ MappedNullable = &CreateHostedProviderSessionResponse{}
 type CreateHostedProviderSessionResponse struct {
 	// The ID of the newly-created Acceptance Session
 	SessionId string `json:"sessionId"`
-	// The URL that should be used to launch the Hosted Provider Session on your user's device.                There are two recommended ways to do so:  - Redirect their browser to the `LaunchUrl` as a top-level navigation  - Open a popup window and navigate it to the `LaunchUrl`                This URL is sensitive and as such can only be obtained once. If you need to obtain it again, you will need to create a new Acceptance Session.
-	LaunchUrl NullableString `json:"launchUrl,omitempty"`
+	// The URL that should be used to launch the Hosted Provider Session on your user's device.              There are two recommended ways to do so: - Redirect their browser to the `LaunchUrl` as a top-level navigation - Open a popup window and navigate it to the `LaunchUrl`              This URL is sensitive and as such can only be obtained once. If you need to obtain it again, you will need to create a new Acceptance Session.
+	LaunchUrl string `json:"launchUrl"`
+	// The `resultsAccessKey` for the Acceptance Session.              This is an encrypted payload which contains the decryption key necessary to access the Session's Data Vault.              Save this securely in your systems; it must be passed back with any API call which requires access to the Session's Data Vault.              Trinsic cannot access a Session's Data Vault without this key.
+	ResultsAccessKey string `json:"resultsAccessKey"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -33,9 +35,11 @@ type _CreateHostedProviderSessionResponse CreateHostedProviderSessionResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateHostedProviderSessionResponse(sessionId string) *CreateHostedProviderSessionResponse {
+func NewCreateHostedProviderSessionResponse(sessionId string, launchUrl string, resultsAccessKey string) *CreateHostedProviderSessionResponse {
 	this := CreateHostedProviderSessionResponse{}
 	this.SessionId = sessionId
+	this.LaunchUrl = launchUrl
+	this.ResultsAccessKey = resultsAccessKey
 	return &this
 }
 
@@ -71,46 +75,52 @@ func (o *CreateHostedProviderSessionResponse) SetSessionId(v string) {
 	o.SessionId = v
 }
 
-// GetLaunchUrl returns the LaunchUrl field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetLaunchUrl returns the LaunchUrl field value
 func (o *CreateHostedProviderSessionResponse) GetLaunchUrl() string {
-	if o == nil || IsNil(o.LaunchUrl.Get()) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.LaunchUrl.Get()
+
+	return o.LaunchUrl
 }
 
-// GetLaunchUrlOk returns a tuple with the LaunchUrl field value if set, nil otherwise
+// GetLaunchUrlOk returns a tuple with the LaunchUrl field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreateHostedProviderSessionResponse) GetLaunchUrlOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.LaunchUrl.Get(), o.LaunchUrl.IsSet()
+	return &o.LaunchUrl, true
 }
 
-// HasLaunchUrl returns a boolean if a field has been set.
-func (o *CreateHostedProviderSessionResponse) HasLaunchUrl() bool {
-	if o != nil && o.LaunchUrl.IsSet() {
-		return true
+// SetLaunchUrl sets field value
+func (o *CreateHostedProviderSessionResponse) SetLaunchUrl(v string) {
+	o.LaunchUrl = v
+}
+
+// GetResultsAccessKey returns the ResultsAccessKey field value
+func (o *CreateHostedProviderSessionResponse) GetResultsAccessKey() string {
+	if o == nil {
+		var ret string
+		return ret
 	}
 
-	return false
+	return o.ResultsAccessKey
 }
 
-// SetLaunchUrl gets a reference to the given NullableString and assigns it to the LaunchUrl field.
-func (o *CreateHostedProviderSessionResponse) SetLaunchUrl(v string) {
-	o.LaunchUrl.Set(&v)
-}
-// SetLaunchUrlNil sets the value for LaunchUrl to be an explicit nil
-func (o *CreateHostedProviderSessionResponse) SetLaunchUrlNil() {
-	o.LaunchUrl.Set(nil)
+// GetResultsAccessKeyOk returns a tuple with the ResultsAccessKey field value
+// and a boolean to check if the value has been set.
+func (o *CreateHostedProviderSessionResponse) GetResultsAccessKeyOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ResultsAccessKey, true
 }
 
-// UnsetLaunchUrl ensures that no value is present for LaunchUrl, not even an explicit nil
-func (o *CreateHostedProviderSessionResponse) UnsetLaunchUrl() {
-	o.LaunchUrl.Unset()
+// SetResultsAccessKey sets field value
+func (o *CreateHostedProviderSessionResponse) SetResultsAccessKey(v string) {
+	o.ResultsAccessKey = v
 }
 
 func (o CreateHostedProviderSessionResponse) MarshalJSON() ([]byte, error) {
@@ -124,9 +134,8 @@ func (o CreateHostedProviderSessionResponse) MarshalJSON() ([]byte, error) {
 func (o CreateHostedProviderSessionResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["sessionId"] = o.SessionId
-	if o.LaunchUrl.IsSet() {
-		toSerialize["launchUrl"] = o.LaunchUrl.Get()
-	}
+	toSerialize["launchUrl"] = o.LaunchUrl
+	toSerialize["resultsAccessKey"] = o.ResultsAccessKey
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -141,6 +150,8 @@ func (o *CreateHostedProviderSessionResponse) UnmarshalJSON(data []byte) (err er
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"sessionId",
+		"launchUrl",
+		"resultsAccessKey",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -172,6 +183,7 @@ func (o *CreateHostedProviderSessionResponse) UnmarshalJSON(data []byte) (err er
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "sessionId")
 		delete(additionalProperties, "launchUrl")
+		delete(additionalProperties, "resultsAccessKey")
 		o.AdditionalProperties = additionalProperties
 	}
 

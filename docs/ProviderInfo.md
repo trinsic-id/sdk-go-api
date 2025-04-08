@@ -7,7 +7,6 @@ Name | Type | Description | Notes
 **Id** | **string** | The ID of the provider | 
 **Name** | **string** | The friendly, human-readable name of the provider | 
 **LogoUrl** | **string** | A URL pointing to the provider&#39;s logo | 
-**ChildProviderIds** | Pointer to **[]string** | List of child provider id&#39;s where the provider allows deep-launching of a specific provider. | [optional] 
 
 ## Methods
 
@@ -88,41 +87,6 @@ and a boolean to check if the value has been set.
 SetLogoUrl sets LogoUrl field to given value.
 
 
-### GetChildProviderIds
-
-`func (o *ProviderInfo) GetChildProviderIds() []string`
-
-GetChildProviderIds returns the ChildProviderIds field if non-nil, zero value otherwise.
-
-### GetChildProviderIdsOk
-
-`func (o *ProviderInfo) GetChildProviderIdsOk() (*[]string, bool)`
-
-GetChildProviderIdsOk returns a tuple with the ChildProviderIds field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetChildProviderIds
-
-`func (o *ProviderInfo) SetChildProviderIds(v []string)`
-
-SetChildProviderIds sets ChildProviderIds field to given value.
-
-### HasChildProviderIds
-
-`func (o *ProviderInfo) HasChildProviderIds() bool`
-
-HasChildProviderIds returns a boolean if a field has been set.
-
-### SetChildProviderIdsNil
-
-`func (o *ProviderInfo) SetChildProviderIdsNil(b bool)`
-
- SetChildProviderIdsNil sets the value for ChildProviderIds to be an explicit nil
-
-### UnsetChildProviderIds
-`func (o *ProviderInfo) UnsetChildProviderIds()`
-
-UnsetChildProviderIds ensures that no value is present for ChildProviderIds, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

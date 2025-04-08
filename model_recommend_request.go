@@ -19,16 +19,8 @@ var _ MappedNullable = &RecommendRequest{}
 
 // RecommendRequest struct for RecommendRequest
 type RecommendRequest struct {
-	// The phone number of the user you wish to generate a recommendation for. Will be used to look up the user's identity in the network
-	PhoneNumber NullableString `json:"phoneNumber,omitempty"`
-	// A list of countries, in alpha-2 ISO 3166 format, you wish to specify for the recommendation, this can include the user's country of residence, nationality, etc.
-	Countries []string `json:"countries,omitempty"`
-	// If one of the countries has subdivisions, for example the US states, you can specify a list of these to further refine the recommendation (e.g., CA, UT, NY)
-	Subdivisions []string `json:"subdivisions,omitempty"`
-	// Provide the IP addresses of the user you wish to generate a recommendation for. Will be used to look up the user's geographic location.
-	IpAddresses []string `json:"ipAddresses,omitempty"`
-	// If true, the recommendation will include providers that are disabled for the app
-	IncludeDisabledProviders NullableBool `json:"includeDisabledProviders,omitempty"`
+	// Information about the user you wish to generate a recommendation for.
+	RecommendationInfo NullableRecommendationInfo `json:"recommendationInfo,omitempty"`
 }
 
 // NewRecommendRequest instantiates a new RecommendRequest object
@@ -48,187 +40,46 @@ func NewRecommendRequestWithDefaults() *RecommendRequest {
 	return &this
 }
 
-// GetPhoneNumber returns the PhoneNumber field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *RecommendRequest) GetPhoneNumber() string {
-	if o == nil || IsNil(o.PhoneNumber.Get()) {
-		var ret string
+// GetRecommendationInfo returns the RecommendationInfo field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *RecommendRequest) GetRecommendationInfo() RecommendationInfo {
+	if o == nil || IsNil(o.RecommendationInfo.Get()) {
+		var ret RecommendationInfo
 		return ret
 	}
-	return *o.PhoneNumber.Get()
+	return *o.RecommendationInfo.Get()
 }
 
-// GetPhoneNumberOk returns a tuple with the PhoneNumber field value if set, nil otherwise
+// GetRecommendationInfoOk returns a tuple with the RecommendationInfo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RecommendRequest) GetPhoneNumberOk() (*string, bool) {
+func (o *RecommendRequest) GetRecommendationInfoOk() (*RecommendationInfo, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.PhoneNumber.Get(), o.PhoneNumber.IsSet()
+	return o.RecommendationInfo.Get(), o.RecommendationInfo.IsSet()
 }
 
-// HasPhoneNumber returns a boolean if a field has been set.
-func (o *RecommendRequest) HasPhoneNumber() bool {
-	if o != nil && o.PhoneNumber.IsSet() {
+// HasRecommendationInfo returns a boolean if a field has been set.
+func (o *RecommendRequest) HasRecommendationInfo() bool {
+	if o != nil && o.RecommendationInfo.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetPhoneNumber gets a reference to the given NullableString and assigns it to the PhoneNumber field.
-func (o *RecommendRequest) SetPhoneNumber(v string) {
-	o.PhoneNumber.Set(&v)
+// SetRecommendationInfo gets a reference to the given NullableRecommendationInfo and assigns it to the RecommendationInfo field.
+func (o *RecommendRequest) SetRecommendationInfo(v RecommendationInfo) {
+	o.RecommendationInfo.Set(&v)
 }
-// SetPhoneNumberNil sets the value for PhoneNumber to be an explicit nil
-func (o *RecommendRequest) SetPhoneNumberNil() {
-	o.PhoneNumber.Set(nil)
-}
-
-// UnsetPhoneNumber ensures that no value is present for PhoneNumber, not even an explicit nil
-func (o *RecommendRequest) UnsetPhoneNumber() {
-	o.PhoneNumber.Unset()
+// SetRecommendationInfoNil sets the value for RecommendationInfo to be an explicit nil
+func (o *RecommendRequest) SetRecommendationInfoNil() {
+	o.RecommendationInfo.Set(nil)
 }
 
-// GetCountries returns the Countries field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *RecommendRequest) GetCountries() []string {
-	if o == nil {
-		var ret []string
-		return ret
-	}
-	return o.Countries
-}
-
-// GetCountriesOk returns a tuple with the Countries field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RecommendRequest) GetCountriesOk() ([]string, bool) {
-	if o == nil || IsNil(o.Countries) {
-		return nil, false
-	}
-	return o.Countries, true
-}
-
-// HasCountries returns a boolean if a field has been set.
-func (o *RecommendRequest) HasCountries() bool {
-	if o != nil && !IsNil(o.Countries) {
-		return true
-	}
-
-	return false
-}
-
-// SetCountries gets a reference to the given []string and assigns it to the Countries field.
-func (o *RecommendRequest) SetCountries(v []string) {
-	o.Countries = v
-}
-
-// GetSubdivisions returns the Subdivisions field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *RecommendRequest) GetSubdivisions() []string {
-	if o == nil {
-		var ret []string
-		return ret
-	}
-	return o.Subdivisions
-}
-
-// GetSubdivisionsOk returns a tuple with the Subdivisions field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RecommendRequest) GetSubdivisionsOk() ([]string, bool) {
-	if o == nil || IsNil(o.Subdivisions) {
-		return nil, false
-	}
-	return o.Subdivisions, true
-}
-
-// HasSubdivisions returns a boolean if a field has been set.
-func (o *RecommendRequest) HasSubdivisions() bool {
-	if o != nil && !IsNil(o.Subdivisions) {
-		return true
-	}
-
-	return false
-}
-
-// SetSubdivisions gets a reference to the given []string and assigns it to the Subdivisions field.
-func (o *RecommendRequest) SetSubdivisions(v []string) {
-	o.Subdivisions = v
-}
-
-// GetIpAddresses returns the IpAddresses field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *RecommendRequest) GetIpAddresses() []string {
-	if o == nil {
-		var ret []string
-		return ret
-	}
-	return o.IpAddresses
-}
-
-// GetIpAddressesOk returns a tuple with the IpAddresses field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RecommendRequest) GetIpAddressesOk() ([]string, bool) {
-	if o == nil || IsNil(o.IpAddresses) {
-		return nil, false
-	}
-	return o.IpAddresses, true
-}
-
-// HasIpAddresses returns a boolean if a field has been set.
-func (o *RecommendRequest) HasIpAddresses() bool {
-	if o != nil && !IsNil(o.IpAddresses) {
-		return true
-	}
-
-	return false
-}
-
-// SetIpAddresses gets a reference to the given []string and assigns it to the IpAddresses field.
-func (o *RecommendRequest) SetIpAddresses(v []string) {
-	o.IpAddresses = v
-}
-
-// GetIncludeDisabledProviders returns the IncludeDisabledProviders field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *RecommendRequest) GetIncludeDisabledProviders() bool {
-	if o == nil || IsNil(o.IncludeDisabledProviders.Get()) {
-		var ret bool
-		return ret
-	}
-	return *o.IncludeDisabledProviders.Get()
-}
-
-// GetIncludeDisabledProvidersOk returns a tuple with the IncludeDisabledProviders field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RecommendRequest) GetIncludeDisabledProvidersOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.IncludeDisabledProviders.Get(), o.IncludeDisabledProviders.IsSet()
-}
-
-// HasIncludeDisabledProviders returns a boolean if a field has been set.
-func (o *RecommendRequest) HasIncludeDisabledProviders() bool {
-	if o != nil && o.IncludeDisabledProviders.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetIncludeDisabledProviders gets a reference to the given NullableBool and assigns it to the IncludeDisabledProviders field.
-func (o *RecommendRequest) SetIncludeDisabledProviders(v bool) {
-	o.IncludeDisabledProviders.Set(&v)
-}
-// SetIncludeDisabledProvidersNil sets the value for IncludeDisabledProviders to be an explicit nil
-func (o *RecommendRequest) SetIncludeDisabledProvidersNil() {
-	o.IncludeDisabledProviders.Set(nil)
-}
-
-// UnsetIncludeDisabledProviders ensures that no value is present for IncludeDisabledProviders, not even an explicit nil
-func (o *RecommendRequest) UnsetIncludeDisabledProviders() {
-	o.IncludeDisabledProviders.Unset()
+// UnsetRecommendationInfo ensures that no value is present for RecommendationInfo, not even an explicit nil
+func (o *RecommendRequest) UnsetRecommendationInfo() {
+	o.RecommendationInfo.Unset()
 }
 
 func (o RecommendRequest) MarshalJSON() ([]byte, error) {
@@ -241,20 +92,8 @@ func (o RecommendRequest) MarshalJSON() ([]byte, error) {
 
 func (o RecommendRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.PhoneNumber.IsSet() {
-		toSerialize["phoneNumber"] = o.PhoneNumber.Get()
-	}
-	if o.Countries != nil {
-		toSerialize["countries"] = o.Countries
-	}
-	if o.Subdivisions != nil {
-		toSerialize["subdivisions"] = o.Subdivisions
-	}
-	if o.IpAddresses != nil {
-		toSerialize["ipAddresses"] = o.IpAddresses
-	}
-	if o.IncludeDisabledProviders.IsSet() {
-		toSerialize["includeDisabledProviders"] = o.IncludeDisabledProviders.Get()
+	if o.RecommendationInfo.IsSet() {
+		toSerialize["recommendationInfo"] = o.RecommendationInfo.Get()
 	}
 	return toSerialize, nil
 }

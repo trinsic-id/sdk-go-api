@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**RedirectUrl** | Pointer to **NullableString** | The URL to redirect the user to after the widget session is complete.                *Note*: this should NOT be set if you intend to use Trinsic&#39;s Web UI SDK to launch the Widget  as an embedded iFrame or popup; in that case, session resolution is handled by our SDK, not via redirect. | [optional] 
+**RedirectUrl** | Pointer to **NullableString** | The URL to redirect the user to after the widget session is complete.              *Note*: this should NOT be set if you intend to use Trinsic&#39;s Web UI SDK to launch the Widget as an embedded iFrame or popup; in that case, session resolution is handled by our SDK, not via redirect. | [optional] 
 **Providers** | Pointer to **[]string** | The list of allowed identity providers. If not specified, all available providers will be allowed. | [optional] 
-**KnownIdentityData** | Pointer to [**NullableKnownIdentityData**](KnownIdentityData.md) | Known identity data of an individual being verified.                Provide this to Trinsic during Session creation to enable improved identity provider selection recommendations. | [optional] 
+**RecommendationInfo** | Pointer to [**NullableRecommendationInfo**](RecommendationInfo.md) | Data that you already know about the user being verified.   This data is used to improve the user experience during provider selection, by surfacing the most relevant providers first. | [optional] 
 
 ## Methods
 
@@ -97,41 +97,41 @@ HasProviders returns a boolean if a field has been set.
 `func (o *CreateWidgetSessionRequest) UnsetProviders()`
 
 UnsetProviders ensures that no value is present for Providers, not even an explicit nil
-### GetKnownIdentityData
+### GetRecommendationInfo
 
-`func (o *CreateWidgetSessionRequest) GetKnownIdentityData() KnownIdentityData`
+`func (o *CreateWidgetSessionRequest) GetRecommendationInfo() RecommendationInfo`
 
-GetKnownIdentityData returns the KnownIdentityData field if non-nil, zero value otherwise.
+GetRecommendationInfo returns the RecommendationInfo field if non-nil, zero value otherwise.
 
-### GetKnownIdentityDataOk
+### GetRecommendationInfoOk
 
-`func (o *CreateWidgetSessionRequest) GetKnownIdentityDataOk() (*KnownIdentityData, bool)`
+`func (o *CreateWidgetSessionRequest) GetRecommendationInfoOk() (*RecommendationInfo, bool)`
 
-GetKnownIdentityDataOk returns a tuple with the KnownIdentityData field if it's non-nil, zero value otherwise
+GetRecommendationInfoOk returns a tuple with the RecommendationInfo field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetKnownIdentityData
+### SetRecommendationInfo
 
-`func (o *CreateWidgetSessionRequest) SetKnownIdentityData(v KnownIdentityData)`
+`func (o *CreateWidgetSessionRequest) SetRecommendationInfo(v RecommendationInfo)`
 
-SetKnownIdentityData sets KnownIdentityData field to given value.
+SetRecommendationInfo sets RecommendationInfo field to given value.
 
-### HasKnownIdentityData
+### HasRecommendationInfo
 
-`func (o *CreateWidgetSessionRequest) HasKnownIdentityData() bool`
+`func (o *CreateWidgetSessionRequest) HasRecommendationInfo() bool`
 
-HasKnownIdentityData returns a boolean if a field has been set.
+HasRecommendationInfo returns a boolean if a field has been set.
 
-### SetKnownIdentityDataNil
+### SetRecommendationInfoNil
 
-`func (o *CreateWidgetSessionRequest) SetKnownIdentityDataNil(b bool)`
+`func (o *CreateWidgetSessionRequest) SetRecommendationInfoNil(b bool)`
 
- SetKnownIdentityDataNil sets the value for KnownIdentityData to be an explicit nil
+ SetRecommendationInfoNil sets the value for RecommendationInfo to be an explicit nil
 
-### UnsetKnownIdentityData
-`func (o *CreateWidgetSessionRequest) UnsetKnownIdentityData()`
+### UnsetRecommendationInfo
+`func (o *CreateWidgetSessionRequest) UnsetRecommendationInfo()`
 
-UnsetKnownIdentityData ensures that no value is present for KnownIdentityData, not even an explicit nil
+UnsetRecommendationInfo ensures that no value is present for RecommendationInfo, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

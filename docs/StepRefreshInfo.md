@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ExpiresAt** | **time.Time** | The UTC date/time at which the step &#x60;content&#x60; will expire and should no longer be used.                Use the &#x60;Refresh Step Content&#x60; API to obtain a new value for &#x60;content&#x60;. | 
+**ExpiresAt** | **time.Time** | The UTC date/time at which the step &#x60;content&#x60; will expire and should no longer be used.              Use the &#x60;Refresh Step Content&#x60; API to obtain a new value for &#x60;content&#x60;. | 
 **RefreshAfter** | **time.Time** | The UTC date/time after which Trinsic recommends you refresh the step &#x60;content&#x60;. | 
 **TimeToLiveSeconds** | **int32** | The total lifetime of the step &#x60;content&#x60;. | 
 

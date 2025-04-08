@@ -5,7 +5,7 @@
 
 * `LAUNCH_BROWSER` (value: `"LaunchBrowser"`)
 
-* `POLL_RESULT` (value: `"PollResult"`)
+* `NONE` (value: `"None"`)
 
 * `DEEPLINK_TO_MOBILE` (value: `"DeeplinkToMobile"`)
 

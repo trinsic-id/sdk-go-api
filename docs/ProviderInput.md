@@ -4,17 +4,23 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**IndonesiaNik** | Pointer to [**NullableIndonesiaNikInput**](IndonesiaNikInput.md) | Input for the &#x60;f-indonesia-nik&#x60; integration | [optional] 
-**MexicoCurp** | Pointer to [**NullableMexicoCurpInput**](MexicoCurpInput.md) | Input for the &#x60;f-mexico-curp&#x60; integration | [optional] 
-**SouthAfricaNid** | Pointer to [**NullableSouthAfricaNidInput**](SouthAfricaNidInput.md) | Input for the &#x60;f-south-africa-nid&#x60; integration | [optional] 
-**KenyaNid** | Pointer to [**NullableKenyaNidInput**](KenyaNidInput.md) | Input for the &#x60;f-kenya-nid&#x60; integration | [optional] 
-**NigeriaNin** | Pointer to [**NullableNigeriaNinInput**](NigeriaNinInput.md) | Input for the &#x60;f-nigeria-nin&#x60; integration | [optional] 
-**Aadhaar** | Pointer to [**NullableAadhaarInput**](AadhaarInput.md) | Input for the &#x60;f-india-aadhaar-match&#x60; integration | [optional] 
-**BangladeshNationalId** | Pointer to [**NullableBangladeshNationalIdInput**](BangladeshNationalIdInput.md) | Input for the &#x60;bangladesh-nid&#x60; integration | [optional] 
-**BrazilCpfCheck** | Pointer to [**NullableBrazilCpfCheckInput**](BrazilCpfCheckInput.md) | Input for the &#x60;g-brazil-cpf&#x60; integration | [optional] 
-**BrazilDigitalCnh** | Pointer to [**NullableBrazilDigitalCnhInput**](BrazilDigitalCnhInput.md) | Input for the &#x60;g-brazil-digital-cnh&#x60; integration | [optional] 
-**PhilippineMatch** | Pointer to [**NullablePhilippineMatchInput**](PhilippineMatchInput.md) | Input for the &#x60;b-philsys-biometric&#x60; integration | [optional] 
-**PhilippineQR** | Pointer to [**NullablePhilippineQRInput**](PhilippineQRInput.md) | Input for the &#x60;b-philippine-qr-digital-national-id&#x60; and &#x60;b-philippine-qr-ephill-id&#x60; integrations | [optional] 
+**IndonesiaNik** | Pointer to [**NullableIndonesiaNikInput**](IndonesiaNikInput.md) | Input for the &#x60;f-indonesia-nik&#x60; provider | [optional] 
+**MexicoCurp** | Pointer to [**NullableMexicoCurpInput**](MexicoCurpInput.md) | Input for the &#x60;f-mexico-curp&#x60; provider | [optional] 
+**SouthAfricaNid** | Pointer to [**NullableSouthAfricaNidInput**](SouthAfricaNidInput.md) | Input for the &#x60;f-south-africa-nid&#x60; provider | [optional] 
+**KenyaNid** | Pointer to [**NullableKenyaNidInput**](KenyaNidInput.md) | Input for the &#x60;f-kenya-nid&#x60; provider | [optional] 
+**NigeriaNin** | Pointer to [**NullableNigeriaNinInput**](NigeriaNinInput.md) | Input for the &#x60;f-nigeria-nin&#x60; provider | [optional] 
+**Aadhaar** | Pointer to [**NullableAadhaarInput**](AadhaarInput.md) | Input for the &#x60;f-india-aadhaar-match&#x60; provider | [optional] 
+**BangladeshNationalId** | Pointer to [**NullableBangladeshNationalIdInput**](BangladeshNationalIdInput.md) | Input for the &#x60;bangladesh-nid&#x60; provider | [optional] 
+**BrazilCpfCheck** | Pointer to [**NullableBrazilCpfCheckInput**](BrazilCpfCheckInput.md) | Input for the &#x60;g-brazil-cpf&#x60; provider | [optional] 
+**BrazilDigitalCnh** | Pointer to [**NullableBrazilDigitalCnhInput**](BrazilDigitalCnhInput.md) | Input for the &#x60;g-brazil-digital-cnh&#x60; provider | [optional] 
+**PhilippineMatch** | Pointer to [**NullablePhilippineMatchInput**](PhilippineMatchInput.md) | Input for the &#x60;b-philsys-biometric&#x60; provider | [optional] 
+**PhilippineQR** | Pointer to [**NullablePhilippineQRInput**](PhilippineQRInput.md) | Input for the &#x60;b-philippine-qr-digital-national-id&#x60; and &#x60;b-philippine-qr-ephill-id&#x60; providers | [optional] 
+**SmartId** | Pointer to [**NullableSmartIdInput**](SmartIdInput.md) | Input for the &#x60;smart-id&#x60; provider | [optional] 
+**MobileId** | Pointer to [**NullableMobileIdInput**](MobileIdInput.md) | Input for the &#x60;mobile-id&#x60; provider | [optional] 
+**Idin** | Pointer to [**NullableIdinInput**](IdinInput.md) | Input for the &#x60;idin&#x60; provider | [optional] 
+**Spid** | Pointer to [**NullableSpidInput**](SpidInput.md) | Input for the &#x60;spid&#x60; provider | [optional] 
+**TrinsicTestDatabaseLookup** | Pointer to [**NullableTrinsicTestDatabaseLookupInput**](TrinsicTestDatabaseLookupInput.md) | *TEST MODE ONLY.*              Input for the &#x60;trinsic-test-database-lookup&#x60; provider | [optional] 
+**TrinsicTestSubProviders** | Pointer to [**NullableTrinsicTestSubProvidersInput**](TrinsicTestSubProvidersInput.md) | *TEST MODE ONLY.*              Input for the &#x60;trinsic-test-sub-providers&#x60; provider | [optional] 
 
 ## Methods
 
@@ -420,6 +426,216 @@ HasPhilippineQR returns a boolean if a field has been set.
 `func (o *ProviderInput) UnsetPhilippineQR()`
 
 UnsetPhilippineQR ensures that no value is present for PhilippineQR, not even an explicit nil
+### GetSmartId
+
+`func (o *ProviderInput) GetSmartId() SmartIdInput`
+
+GetSmartId returns the SmartId field if non-nil, zero value otherwise.
+
+### GetSmartIdOk
+
+`func (o *ProviderInput) GetSmartIdOk() (*SmartIdInput, bool)`
+
+GetSmartIdOk returns a tuple with the SmartId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSmartId
+
+`func (o *ProviderInput) SetSmartId(v SmartIdInput)`
+
+SetSmartId sets SmartId field to given value.
+
+### HasSmartId
+
+`func (o *ProviderInput) HasSmartId() bool`
+
+HasSmartId returns a boolean if a field has been set.
+
+### SetSmartIdNil
+
+`func (o *ProviderInput) SetSmartIdNil(b bool)`
+
+ SetSmartIdNil sets the value for SmartId to be an explicit nil
+
+### UnsetSmartId
+`func (o *ProviderInput) UnsetSmartId()`
+
+UnsetSmartId ensures that no value is present for SmartId, not even an explicit nil
+### GetMobileId
+
+`func (o *ProviderInput) GetMobileId() MobileIdInput`
+
+GetMobileId returns the MobileId field if non-nil, zero value otherwise.
+
+### GetMobileIdOk
+
+`func (o *ProviderInput) GetMobileIdOk() (*MobileIdInput, bool)`
+
+GetMobileIdOk returns a tuple with the MobileId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMobileId
+
+`func (o *ProviderInput) SetMobileId(v MobileIdInput)`
+
+SetMobileId sets MobileId field to given value.
+
+### HasMobileId
+
+`func (o *ProviderInput) HasMobileId() bool`
+
+HasMobileId returns a boolean if a field has been set.
+
+### SetMobileIdNil
+
+`func (o *ProviderInput) SetMobileIdNil(b bool)`
+
+ SetMobileIdNil sets the value for MobileId to be an explicit nil
+
+### UnsetMobileId
+`func (o *ProviderInput) UnsetMobileId()`
+
+UnsetMobileId ensures that no value is present for MobileId, not even an explicit nil
+### GetIdin
+
+`func (o *ProviderInput) GetIdin() IdinInput`
+
+GetIdin returns the Idin field if non-nil, zero value otherwise.
+
+### GetIdinOk
+
+`func (o *ProviderInput) GetIdinOk() (*IdinInput, bool)`
+
+GetIdinOk returns a tuple with the Idin field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIdin
+
+`func (o *ProviderInput) SetIdin(v IdinInput)`
+
+SetIdin sets Idin field to given value.
+
+### HasIdin
+
+`func (o *ProviderInput) HasIdin() bool`
+
+HasIdin returns a boolean if a field has been set.
+
+### SetIdinNil
+
+`func (o *ProviderInput) SetIdinNil(b bool)`
+
+ SetIdinNil sets the value for Idin to be an explicit nil
+
+### UnsetIdin
+`func (o *ProviderInput) UnsetIdin()`
+
+UnsetIdin ensures that no value is present for Idin, not even an explicit nil
+### GetSpid
+
+`func (o *ProviderInput) GetSpid() SpidInput`
+
+GetSpid returns the Spid field if non-nil, zero value otherwise.
+
+### GetSpidOk
+
+`func (o *ProviderInput) GetSpidOk() (*SpidInput, bool)`
+
+GetSpidOk returns a tuple with the Spid field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSpid
+
+`func (o *ProviderInput) SetSpid(v SpidInput)`
+
+SetSpid sets Spid field to given value.
+
+### HasSpid
+
+`func (o *ProviderInput) HasSpid() bool`
+
+HasSpid returns a boolean if a field has been set.
+
+### SetSpidNil
+
+`func (o *ProviderInput) SetSpidNil(b bool)`
+
+ SetSpidNil sets the value for Spid to be an explicit nil
+
+### UnsetSpid
+`func (o *ProviderInput) UnsetSpid()`
+
+UnsetSpid ensures that no value is present for Spid, not even an explicit nil
+### GetTrinsicTestDatabaseLookup
+
+`func (o *ProviderInput) GetTrinsicTestDatabaseLookup() TrinsicTestDatabaseLookupInput`
+
+GetTrinsicTestDatabaseLookup returns the TrinsicTestDatabaseLookup field if non-nil, zero value otherwise.
+
+### GetTrinsicTestDatabaseLookupOk
+
+`func (o *ProviderInput) GetTrinsicTestDatabaseLookupOk() (*TrinsicTestDatabaseLookupInput, bool)`
+
+GetTrinsicTestDatabaseLookupOk returns a tuple with the TrinsicTestDatabaseLookup field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTrinsicTestDatabaseLookup
+
+`func (o *ProviderInput) SetTrinsicTestDatabaseLookup(v TrinsicTestDatabaseLookupInput)`
+
+SetTrinsicTestDatabaseLookup sets TrinsicTestDatabaseLookup field to given value.
+
+### HasTrinsicTestDatabaseLookup
+
+`func (o *ProviderInput) HasTrinsicTestDatabaseLookup() bool`
+
+HasTrinsicTestDatabaseLookup returns a boolean if a field has been set.
+
+### SetTrinsicTestDatabaseLookupNil
+
+`func (o *ProviderInput) SetTrinsicTestDatabaseLookupNil(b bool)`
+
+ SetTrinsicTestDatabaseLookupNil sets the value for TrinsicTestDatabaseLookup to be an explicit nil
+
+### UnsetTrinsicTestDatabaseLookup
+`func (o *ProviderInput) UnsetTrinsicTestDatabaseLookup()`
+
+UnsetTrinsicTestDatabaseLookup ensures that no value is present for TrinsicTestDatabaseLookup, not even an explicit nil
+### GetTrinsicTestSubProviders
+
+`func (o *ProviderInput) GetTrinsicTestSubProviders() TrinsicTestSubProvidersInput`
+
+GetTrinsicTestSubProviders returns the TrinsicTestSubProviders field if non-nil, zero value otherwise.
+
+### GetTrinsicTestSubProvidersOk
+
+`func (o *ProviderInput) GetTrinsicTestSubProvidersOk() (*TrinsicTestSubProvidersInput, bool)`
+
+GetTrinsicTestSubProvidersOk returns a tuple with the TrinsicTestSubProviders field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTrinsicTestSubProviders
+
+`func (o *ProviderInput) SetTrinsicTestSubProviders(v TrinsicTestSubProvidersInput)`
+
+SetTrinsicTestSubProviders sets TrinsicTestSubProviders field to given value.
+
+### HasTrinsicTestSubProviders
+
+`func (o *ProviderInput) HasTrinsicTestSubProviders() bool`
+
+HasTrinsicTestSubProviders returns a boolean if a field has been set.
+
+### SetTrinsicTestSubProvidersNil
+
+`func (o *ProviderInput) SetTrinsicTestSubProvidersNil(b bool)`
+
+ SetTrinsicTestSubProvidersNil sets the value for TrinsicTestSubProviders to be an explicit nil
+
+### UnsetTrinsicTestSubProviders
+`func (o *ProviderInput) UnsetTrinsicTestSubProviders()`
+
+UnsetTrinsicTestSubProviders ensures that no value is present for TrinsicTestSubProviders, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

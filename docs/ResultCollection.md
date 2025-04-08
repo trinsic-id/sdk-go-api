@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Method** | [**ResultCollectionMethod**](ResultCollectionMethod.md) | The method by which the results of the Acceptance Session should be collected. | 
-**ResultsAccessKey** | Pointer to **NullableString** | If the method is &#x60;PollResult&#x60;, this is the key that should be used to poll for the results. | [optional] 
+**ResultsAccessKey** | **string** | The &#x60;resultsAccessKey&#x60; for the Acceptance Session.              This is an encrypted payload which contains the decryption key necessary to access the Session&#39;s Data Vault.              Save this securely in your systems; it must be passed back with any API call which requires access to the Session&#39;s Data Vault.              Trinsic cannot access a Session&#39;s Data Vault without this key. | 
 
 ## Methods
 
 ### NewResultCollection
 
-`func NewResultCollection(method ResultCollectionMethod, ) *ResultCollection`
+`func NewResultCollection(method ResultCollectionMethod, resultsAccessKey string, ) *ResultCollection`
 
 NewResultCollection instantiates a new ResultCollection object
 This constructor will assign default values to properties that have it defined,
@@ -65,22 +65,7 @@ and a boolean to check if the value has been set.
 
 SetResultsAccessKey sets ResultsAccessKey field to given value.
 
-### HasResultsAccessKey
 
-`func (o *ResultCollection) HasResultsAccessKey() bool`
-
-HasResultsAccessKey returns a boolean if a field has been set.
-
-### SetResultsAccessKeyNil
-
-`func (o *ResultCollection) SetResultsAccessKeyNil(b bool)`
-
- SetResultsAccessKeyNil sets the value for ResultsAccessKey to be an explicit nil
-
-### UnsetResultsAccessKey
-`func (o *ResultCollection) UnsetResultsAccessKey()`
-
-UnsetResultsAccessKey ensures that no value is present for ResultsAccessKey, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

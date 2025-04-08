@@ -1,4 +1,4 @@
-openapi: 3.0.1
+openapi: 3.0.4
 info:
   title: Trinsic API
   version: v1
@@ -12,12 +12,11 @@ paths:
   /api/v1/attachments/attachment:
     post:
       description: "Exchange an Attachment Access Key (from `IdentityData.Attachments`)\
-        \ for the raw contents of the attachment.\r\n            \r\nUse this API\
-        \ to fetch document (front, back, portrait) or other (selfie) images from\
-        \ a verification, if relevant.\r\n            \r\nIn some cases, attachments\
-        \ may not be immediately available after a verification is completed.\r\n\
-        If so, this endpoint will return an HTTP 503 code, and you should try again\
-        \ later."
+        \ for the raw contents of the attachment.\n            \nUse this API to fetch\
+        \ document (front, back, portrait) or other (selfie) images from a verification,\
+        \ if relevant.\n            \nIn some cases, attachments may not be immediately\
+        \ available after a verification is completed.\nIf so, this endpoint will\
+        \ return an HTTP 503 code, and you should try again later."
       operationId: GetAttachment
       requestBody:
         content:
@@ -140,7 +139,61 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Internal server error
-      summary: List Identity Providers
+      summary: List Providers
+      tags:
+      - Network
+  /api/v1/network/providers/contracts:
+    get:
+      description: "List the contracts for all Providers available to your App.\n\
+        \            \nIf your App is in test mode, this call will only return Providers\
+        \ available in test mode.\nIf your App is not in test mode, this call will\
+        \ only return Providers available in production."
+      operationId: ListProviderContracts
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ListProviderContractsResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListProviderContractsResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ListProviderContractsResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.5.1
+                title: Bad Request
+                detail: This feature is not supported for your configruation
+                status: 400
+                traceId: 00-3fcbc632c5caaca825849d495c62d7b0-09a3500f89acbbcc-00
+                instance: /api/v1/sample-request-path
+                errors:
+                  PropertyName:
+                  - Specific error description for property
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "500":
+          content:
+            application/json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Internal Server Error
+                status: 500
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Internal server error
+      summary: List Provider Contracts
       tags:
       - Network
   /api/v1/network/recommend:
@@ -212,8 +265,8 @@ paths:
   /api/v1/sessions/provider/advanced:
     post:
       description: "Verify a user's identity with a specific provider, handling additional\
-        \ user interaction in your own UI. \n\r\nSignal which kinds of user interactions\
-        \ your UI can handle using the `Capabilities` field. \n\r\nIf `FallbackToHostedUi`\
+        \ user interaction in your own UI. \n\nSignal which kinds of user interactions\
+        \ your UI can handle using the `Capabilities` field. \n\nIf `FallbackToHostedUi`\
         \ is `true`, Trinsic's hosted UI will automatically be invoked to handle any\
         \ capabilities you do not support."
       operationId: CreateAdvancedProviderSession
@@ -775,13 +828,13 @@ paths:
       - Sessions
   /api/v1/sessions/{sessionId}/redact:
     post:
-      description: "Redact a Session, removing all identity data from Trinsic's servers.\r\
-        \nEvery application has a redaction period that dictates how long we will\
-        \ hold on to your users' PII data. Once a session falls outside the redaction\
-        \ cutoff date, all PII will automatically be removed from that session.\r\n\
-        You can utilize this endpoint to redact a session immediately.\r\n       \
-        \     \r\nIdentity data that a user has chosen to save in their passkey-protected\
-        \ wallet will not be deleted."
+      description: "Redact a Session, removing all identity data from Trinsic's servers.\n\
+        Every application has a redaction period that dictates how long we will hold\
+        \ on to your users' PII data. Once a session falls outside the redaction cutoff\
+        \ date, all PII will automatically be removed from that session.\nYou can\
+        \ utilize this endpoint to redact a session immediately.\n            \nIdentity\
+        \ data that a user has chosen to save in their passkey-protected wallet will\
+        \ not be deleted."
       operationId: RedactSession
       parameters:
       - explode: false
@@ -935,16 +988,16 @@ components:
           pattern: ^\d*$
           type: string
         digitalCnhFile:
-          description: "The raw bytes of the digital CNH file collected from the user.\r\
-            \n            \r\nTODO: Lucas or JP help me describe these below vvvvvvvv\r\
-            \nThis can be:\r\n- An image containing a physical or digital QR code\r\
-            \n- A PDF file exported from the CNH app\r\n- Some scary third thing?"
+          description: "The raw bytes of the digital CNH file collected from the user.\n\
+            \            \nTODO: Lucas or JP help me describe these below vvvvvvvv\n\
+            This can be:\n- An image containing a physical or digital QR code\n- A\
+            \ PDF file exported from the CNH app\n- Some scary third thing?"
           format: byte
           nullable: true
           type: string
         digitalCnhFileContentType:
-          description: "The MIME Type of the file contained in `DigitalCnhFile`.\r\
-            \n            \r\nMust be one of `application/pdf`, `image/jpeg`, or `image/png`."
+          description: "The MIME Type of the file contained in `DigitalCnhFile`.\n\
+            \            \nMust be one of `application/pdf`, `image/jpeg`, or `image/png`."
           nullable: true
           type: string
         facialBiometryPhoto:
@@ -989,25 +1042,25 @@ components:
           nullable: true
         redirectUrl:
           description: "The Redirect URL to which the user should be sent after the\
-            \ session is complete.\r\n            \r\nThis field is required for providers\
+            \ session is complete.\n            \nThis field is required for providers\
             \ which employ a redirect-based flow."
           nullable: true
           type: string
         capabilities:
           description: "The list of capabilities your integration supports. Capabilities\
-            \ are the core of Trinsic's whitelabel-with-optional-fallback offering.\r\
-            \n            \r\nMost capabilities align with either an `IntegrationLaunchMethod`\
-            \ or an `IntegrationCollectionMethod`.\r\nThe exception being refresh\
-            \ content to support updating the content of the launch method.\r\n  \
-            \          \r\nFor example, to support a basic redirect-based flow, you\
-            \ must include the `LaunchRedirect` and `CaptureRedirect` capabilities.\r\
-            \nTo support a mobile deeplink / polling flow, you must include the `DeeplinkToMobile`\
-            \ and `PollForResults` capabilities.\r\n            \r\nIf `FallbackToHostedUi`\
+            \ are the core of Trinsic's whitelabel-with-optional-fallback offering.\n\
+            \            \nMost capabilities align with either an `IntegrationLaunchMethod`\
+            \ or an `IntegrationCollectionMethod`.\nThe exception being refresh content\
+            \ to support updating the content of the launch method.\n            \n\
+            For example, to support a basic redirect-based flow, you must include\
+            \ the `LaunchRedirect` and `CaptureRedirect` capabilities.\nTo support\
+            \ a mobile deeplink / polling flow, you must include the `DeeplinkToMobile`\
+            \ and `PollForResults` capabilities.\n            \nIf `FallbackToHostedUi`\
             \ is `true`, Trinsic will automatically fall back to a Trinsic-hosted\
-            \ UI to cover any gaps in your integration's capabilities.\r\nIf `FallbackToHostedUi`\
+            \ UI to cover any gaps in your integration's capabilities.\nIf `FallbackToHostedUi`\
             \ is `false`, gaps in your integration's capabilities will result in an\
-            \ error during Session creation.\r\n            \r\nRead more on how to\
-            \ integrate at <a href=\"https://docs.trinsic.id/docs/advanced-provider-sessions\"\
+            \ error during Session creation.\n            \nRead more on how to integrate\
+            \ at <a href=\"https://docs.trinsic.id/docs/advanced-provider-sessions\"\
             >the guide on Advanced Provider Sessions</a>"
           items:
             $ref: '#/components/schemas/IntegrationCapability'
@@ -1015,18 +1068,18 @@ components:
           type: array
         fallbackToHostedUI:
           description: "Whether the session should fall back to a Trinsic-hosted UI\
-            \ in certain instances.\r\n            \r\nSpecifically, fallback will\
-            \ occur if any of the following are true:\r\n- You attempted to launch\
-            \ a provider which requires a capability you did not express support for\r\
-            \n    - In this case, Trinsic's hosted UI will perform the necessary capability\r\
-            \n- You attempted to launch a provider which requires input, and the input\
-            \ was either not provided or incomplete\r\n    - In this case, Trinsic's\
-            \ hosted UI will collect the necessary input from the user\r\n       \
-            \     \r\nIf fallback occurs, the session's NextStep will always be LaunchBrowser,\r\
-            \nand the CollectionMethod will always be CaptureRedirect.\r\n       \
-            \     \r\nIf this field is set to `true`, you must also:\r\n1. Set the\
-            \ `RedirectUrl` field to a non-empty value\r\n2. Include the `LaunchBrowser`\
-            \ and `CaptureRedirect` capabilities in the `Capabilities` field"
+            \ in certain instances.\n            \nSpecifically, fallback will occur\
+            \ if any of the following are true:\n- You attempted to launch a provider\
+            \ which requires a capability you did not express support for\n    - In\
+            \ this case, Trinsic's hosted UI will perform the necessary capability\n\
+            - You attempted to launch a provider which requires input, and the input\
+            \ was either not provided or incomplete\n    - In this case, Trinsic's\
+            \ hosted UI will collect the necessary input from the user\n         \
+            \   \nIf fallback occurs, the session's NextStep will always be LaunchBrowser,\n\
+            and the CollectionMethod will always be CaptureRedirect.\n           \
+            \ \nIf this field is set to `true`, you must also:\n1. Set the `RedirectUrl`\
+            \ field to a non-empty value\n2. Include the `LaunchBrowser` and `CaptureRedirect`\
+            \ capabilities in the `Capabilities` field"
           nullable: true
           type: boolean
       required:
@@ -1088,6 +1141,7 @@ components:
       example:
         sessionId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         launchUrl: https://api.trinsic.id/api/session/launch?clientToken=...
+        resultsAccessKey: 417zNGHMJp6Ht2jCoktTLNGDRZEt4BqTwwQ8Q9ZaQz8aS4Jd7nD1xff2WLhPS69j5q9QT4gvgV79Gv7QtaXwu5YC9Utr35...
       properties:
         sessionId:
           description: The ID of the newly-created Acceptance Session
@@ -1095,31 +1149,41 @@ components:
           type: string
         launchUrl:
           description: "The URL that should be used to launch the Hosted Provider\
-            \ Session on your user's device.\r\n            \r\nThere are two recommended\
-            \ ways to do so:\r\n- Redirect their browser to the `LaunchUrl` as a top-level\
-            \ navigation\r\n- Open a popup window and navigate it to the `LaunchUrl`\r\
-            \n            \r\nThis URL is sensitive and as such can only be obtained\
+            \ Session on your user's device.\n            \nThere are two recommended\
+            \ ways to do so:\n- Redirect their browser to the `LaunchUrl` as a top-level\
+            \ navigation\n- Open a popup window and navigate it to the `LaunchUrl`\n\
+            \            \nThis URL is sensitive and as such can only be obtained\
             \ once. If you need to obtain it again, you will need to create a new\
             \ Acceptance Session."
           example: https://api.trinsic.id/api/session/launch?clientToken=...
-          nullable: true
+          type: string
+        resultsAccessKey:
+          description: "The `resultsAccessKey` for the Acceptance Session.\n     \
+            \       \nThis is an encrypted payload which contains the decryption key\
+            \ necessary to access the Session's Data Vault.\n            \nSave this\
+            \ securely in your systems; it must be passed back with any API call which\
+            \ requires access to the Session's Data Vault.\n            \nTrinsic\
+            \ cannot access a Session's Data Vault without this key."
+          example: 417zNGHMJp6Ht2jCoktTLNGDRZEt4BqTwwQ8Q9ZaQz8aS4Jd7nD1xff2WLhPS69j5q9QT4gvgV79Gv7QtaXwu5YC9Utr35...
           type: string
       required:
+      - launchUrl
+      - resultsAccessKey
       - sessionId
       type: object
     CreateWidgetSessionRequest:
       additionalProperties: false
       example:
         redirectUrl: redirectUrl
-        knownIdentityData: ""
+        recommendationInfo: ""
         providers:
         - providers
         - providers
       properties:
         redirectUrl:
           description: "The URL to redirect the user to after the widget session is\
-            \ complete.\r\n            \r\n*Note*: this should NOT be set if you intend\
-            \ to use Trinsic's Web UI SDK to launch the Widget\r\nas an embedded iFrame\
+            \ complete.\n            \n*Note*: this should NOT be set if you intend\
+            \ to use Trinsic's Web UI SDK to launch the Widget\nas an embedded iFrame\
             \ or popup; in that case, session resolution is handled by our SDK, not\
             \ via redirect."
           nullable: true
@@ -1131,18 +1195,21 @@ components:
             type: string
           nullable: true
           type: array
-        knownIdentityData:
+        recommendationInfo:
           allOf:
-          - $ref: '#/components/schemas/KnownIdentityData'
-          description: "Known identity data of an individual being verified.\r\n \
-            \           \r\nProvide this to Trinsic during Session creation to enable\
-            \ improved identity provider selection recommendations."
+          - $ref: '#/components/schemas/RecommendationInfo'
+          description: |-
+            Data that you already know about the user being verified.
+
+
+            This data is used to improve the user experience during provider selection, by surfacing the most relevant providers first.
           nullable: true
       type: object
     CreateWidgetSessionResponse:
       example:
         sessionId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         launchUrl: https://api.trinsic.id/api/session/launch?clientToken=...
+        resultsAccessKey: 417zNGHMJp6Ht2jCoktTLNGDRZEt4BqTwwQ8Q9ZaQz8aS4Jd7nD1xff2WLhPS69j5q9QT4gvgV79Gv7QtaXwu5YC9Utr35...
       properties:
         sessionId:
           description: The ID of the newly-created Acceptance Session
@@ -1150,15 +1217,25 @@ components:
           type: string
         launchUrl:
           description: "The URL that should be used to invoke the Acceptance Session\
-            \ on your user's device.\r\n            \r\nYou can use our frontend SDKs\
+            \ on your user's device.\n            \nYou can use our frontend SDKs\
             \ to launch the user into the Acceptance Session, or you can redirect\
-            \ the user's browser to this URL.\r\n            \r\nThis URL is sensitive\
+            \ the user's browser to this URL.\n            \nThis URL is sensitive\
             \ and as such can only be obtained once. If you need to obtain it again,\
             \ you will need to create a new Acceptance Session."
           example: https://api.trinsic.id/api/session/launch?clientToken=...
-          nullable: true
+          type: string
+        resultsAccessKey:
+          description: "The `resultsAccessKey` for the Acceptance Session.\n     \
+            \       \nThis is an encrypted payload which contains the decryption key\
+            \ necessary to access the Session's Data Vault.\n            \nSave this\
+            \ securely in your systems; it must be passed back with any API call which\
+            \ requires access to the Session's Data Vault.\n            \nTrinsic\
+            \ cannot access a Session's Data Vault without this key."
+          example: 417zNGHMJp6Ht2jCoktTLNGDRZEt4BqTwwQ8Q9ZaQz8aS4Jd7nD1xff2WLhPS69j5q9QT4gvgV79Gv7QtaXwu5YC9Utr35...
           type: string
       required:
+      - launchUrl
+      - resultsAccessKey
       - sessionId
       type: object
     DocumentData:
@@ -1291,6 +1368,9 @@ components:
         originatingProviderId:
           nullable: true
           type: string
+        originatingSubProviderId:
+          nullable: true
+          type: string
         person:
           allOf:
           - $ref: '#/components/schemas/PersonData'
@@ -1303,6 +1383,15 @@ components:
           allOf:
           - $ref: '#/components/schemas/AttachmentAccessKeys'
           nullable: true
+      type: object
+    IdinInput:
+      additionalProperties: false
+      properties:
+        subProviderId:
+          description: "The ID of the specific bank to invoke with IDIN.\n       \
+            \     \nIf not specified, the user will be prompted to select a bank."
+          nullable: true
+          type: string
       type: object
     IndonesiaNikInput:
       additionalProperties: false
@@ -1351,17 +1440,18 @@ components:
     IntegrationLaunchMethod:
       enum:
       - LaunchBrowser
-      - PollResult
+      - None
       - DeeplinkToMobile
       - ShowContent
       type: string
       x-enumDescriptions:
         LaunchBrowser: "The user's browser should be sent to the provided URL, either\
           \ in a new tab, pop-up, or top-level navigation."
-        PollResult: "No action needs to be taken by the user; simply poll with the\
-          \ provided `resultsAccessKey`\r\nfor the results of the session."
+        None: |-
+          No action needs to be taken by the user; simply poll with the provided `resultsAccessKey`
+          for the results of the session.
         DeeplinkToMobile: "The user must be sent to the provided URL, which is a mobile\
-          \ deeplink.\r\n            \r\nThe URL should be shown as a button on mobile,\
+          \ deeplink.\n            \nThe URL should be shown as a button on mobile,\
           \ or as a QR code on desktop."
         ShowContent: Content must be displayed to the user to guide them through the
           process of verifying their identity.
@@ -1378,11 +1468,12 @@ components:
           x-enumDescriptions:
             LaunchBrowser: "The user's browser should be sent to the provided URL,\
               \ either in a new tab, pop-up, or top-level navigation."
-            PollResult: "No action needs to be taken by the user; simply poll with\
-              \ the provided `resultsAccessKey`\r\nfor the results of the session."
+            None: |-
+              No action needs to be taken by the user; simply poll with the provided `resultsAccessKey`
+              for the results of the session.
             DeeplinkToMobile: "The user must be sent to the provided URL, which is\
-              \ a mobile deeplink.\r\n            \r\nThe URL should be shown as a\
-              \ button on mobile, or as a QR code on desktop."
+              \ a mobile deeplink.\n            \nThe URL should be shown as a button\
+              \ on mobile, or as a QR code on desktop."
             ShowContent: Content must be displayed to the user to guide them through
               the process of verifying their identity.
         content:
@@ -1439,106 +1530,90 @@ components:
       - lastName
       - nationalIdNumber
       type: object
-    KnownAddress:
+    Language:
+      enum:
+      - LIT
+      - EST
+      - ENG
+      - RUS
+      type: string
+      x-enumDescriptions:
+        LIT: ""
+        EST: ""
+        ENG: ""
+        RUS: ""
+    ListProviderContractsResponse:
       additionalProperties: false
-      description: Address information for an individual
+      example:
+        providerContracts:
+        - collectionMethod: PollResult
+          regions:
+          - United States
+          hasTrinsicInterface: true
+          available: true
+          description: dmv.ca.gov
+          requiresInput: false
+          launchMethod: DeeplinkToMobile
+          logoUrl: https://content.trinsic.id/connect/integrations/ca-dmv.png
+          supportsAdvancedProviderSessions: true
+          geography:
+          - CA
+          name: CA DMV
+          resultsMayBeDelayedAfterRedirect: false
+          hasRefreshableContent: false
+          id: ca-mdl
+          subProviders:
+          - name: name
+            description: description
+            id: id
+            logoUrl: logoUrl
+          - name: name
+            description: description
+            id: id
+            logoUrl: logoUrl
+        - collectionMethod: PollResult
+          regions:
+          - United States
+          hasTrinsicInterface: true
+          available: true
+          description: dmv.ca.gov
+          requiresInput: false
+          launchMethod: DeeplinkToMobile
+          logoUrl: https://content.trinsic.id/connect/integrations/ca-dmv.png
+          supportsAdvancedProviderSessions: true
+          geography:
+          - CA
+          name: CA DMV
+          resultsMayBeDelayedAfterRedirect: false
+          hasRefreshableContent: false
+          id: ca-mdl
+          subProviders:
+          - name: name
+            description: description
+            id: id
+            logoUrl: logoUrl
+          - name: name
+            description: description
+            id: id
+            logoUrl: logoUrl
       properties:
-        line1:
-          nullable: true
-          type: string
-        line2:
-          nullable: true
-          type: string
-        line3:
-          nullable: true
-          type: string
-        city:
-          nullable: true
-          type: string
-        subdivision:
-          nullable: true
-          type: string
-        state:
-          deprecated: true
-          description: Deprecated. Use `Subdivision` instead.
-          nullable: true
-          type: string
-          writeOnly: true
-        postalCode:
-          nullable: true
-          type: string
-        country:
-          nullable: true
-          type: string
-      type: object
-    KnownIdentityData:
-      additionalProperties: false
-      description: "Known identity data of an individual being verified.\r\n     \
-        \       \r\nProvide this to Trinsic during Session creation to enable improved\
-        \ identity provider selection recommendations."
-      properties:
-        person:
-          allOf:
-          - $ref: '#/components/schemas/KnownPersonData'
-          description: Known identity data specific to the person being verified
-          nullable: true
-      type: object
-    KnownPersonData:
-      additionalProperties: false
-      properties:
-        givenName:
-          description: Given (first) name of the individual
-          example: John
-          nullable: true
-          type: string
-        familyName:
-          description: Family (last) name of the individual
-          example: Doe
-          nullable: true
-          type: string
-        middleName:
-          description: Middle name of the individual
-          example: Jacob
-          nullable: true
-          type: string
-        fullName:
-          description: Full name of the individual.
-          example: John Jacob Doe
-          nullable: true
-          type: string
-        suffix:
-          description: Suffix of the individual
-          nullable: true
-          type: string
-        phoneNumber:
-          description: The phone number (with preceding + character and country code)
-            of the individual being verified
-          nullable: true
-          type: string
-        address:
-          allOf:
-          - $ref: '#/components/schemas/KnownAddress'
-          description: The address of the individual being verified
-          nullable: true
-        dateOfBirth:
-          description: "Date of birth of the individual, in the format \"YYYY-MM-DD\""
-          nullable: true
-          type: string
+        providerContracts:
+          description: "Contracts for all Providers available to your App, filtered\
+            \ by your App's current test mode setting."
+          items:
+            $ref: '#/components/schemas/ProviderContract'
+          type: array
+      required:
+      - providerContracts
       type: object
     ListProvidersResponse:
       additionalProperties: false
       example:
         providers:
-        - childProviderIds:
-          - childProviderIds
-          - childProviderIds
-          name: Yoti | CLEAR | ...
+        - name: Yoti | CLEAR | ...
           id: yoti | clear | ...
           logoUrl: logoUrl
-        - childProviderIds:
-          - childProviderIds
-          - childProviderIds
-          name: Yoti | CLEAR | ...
+        - name: Yoti | CLEAR | ...
           id: yoti | clear | ...
           logoUrl: logoUrl
       properties:
@@ -1597,6 +1672,23 @@ components:
           type: string
       required:
       - curp
+      type: object
+    MobileIdInput:
+      additionalProperties: false
+      properties:
+        mobileIdPhoneNumber:
+          description: The user's phone number in E.164 format
+          nullable: true
+          type: string
+        mobileIdNationalIdentityNumber:
+          description: The user's National ID number
+          nullable: true
+          type: string
+        mobileIdLanguage:
+          allOf:
+          - $ref: '#/components/schemas/Language'
+          description: "The user's language -- LIT, EST, ENG, or RUS"
+          nullable: true
       type: object
     NigeriaNinInput:
       additionalProperties: false
@@ -1755,13 +1847,172 @@ components:
           - $ref: '#/components/schemas/DocumentScanAttachments'
           nullable: true
       type: object
+    ProviderContract:
+      additionalProperties: false
+      example:
+        collectionMethod: PollResult
+        regions:
+        - United States
+        hasTrinsicInterface: true
+        available: true
+        description: dmv.ca.gov
+        requiresInput: false
+        launchMethod: DeeplinkToMobile
+        logoUrl: https://content.trinsic.id/connect/integrations/ca-dmv.png
+        supportsAdvancedProviderSessions: true
+        geography:
+        - CA
+        name: CA DMV
+        resultsMayBeDelayedAfterRedirect: false
+        hasRefreshableContent: false
+        id: ca-mdl
+        subProviders:
+        - name: name
+          description: description
+          id: id
+          logoUrl: logoUrl
+        - name: name
+          description: description
+          id: id
+          logoUrl: logoUrl
+      properties:
+        id:
+          description: The ID of the Provider for this contract.
+          example: ca-mdl
+          type: string
+        name:
+          description: The Provider's Name as it appears in Trinsic's Dashboard and
+            Widget
+          example: CA DMV
+          type: string
+        description:
+          description: "The Provider's description as it appears in Trinsic's Widget.\n\
+            \            \nThis is flavor text, not a full, human-readable description\
+            \ of the provider."
+          example: dmv.ca.gov
+          type: string
+        logoUrl:
+          description: "A URL pointing to the Provider's logo on Trinsic's CDN.\n\
+            \            \nMay be a PNG, JPG, or SVG image."
+          example: https://content.trinsic.id/connect/integrations/ca-dmv.png
+          type: string
+        available:
+          description: "Whether the Provider is available for use in your App.\n \
+            \           \nIf `false`, you will need to contact Trinsic to enable this\
+            \ Provider for your App."
+          example: true
+          type: boolean
+        geography:
+          description: The geographies within the Regions the Provider is available.
+          example:
+          - CA
+          items:
+            type: string
+          type: array
+        regions:
+          description: The regions within which the Provider is available.
+          example:
+          - United States
+          items:
+            type: string
+          type: array
+        launchMethod:
+          allOf:
+          - $ref: '#/components/schemas/IntegrationLaunchMethod'
+          description: "Relevant only to Advanced Provider Sessions.\n           \
+            \ \nThe `LaunchMethod` which must be supported to launch the Provider\
+            \ Session in Advanced Provider Sessions."
+          example: DeeplinkToMobile
+          x-enumDescriptions:
+            LaunchBrowser: "The user's browser should be sent to the provided URL,\
+              \ either in a new tab, pop-up, or top-level navigation."
+            None: |-
+              No action needs to be taken by the user; simply poll with the provided `resultsAccessKey`
+              for the results of the session.
+            DeeplinkToMobile: "The user must be sent to the provided URL, which is\
+              \ a mobile deeplink.\n            \nThe URL should be shown as a button\
+              \ on mobile, or as a QR code on desktop."
+            ShowContent: Content must be displayed to the user to guide them through
+              the process of verifying their identity.
+        collectionMethod:
+          allOf:
+          - $ref: '#/components/schemas/ResultCollectionMethod'
+          description: "Relevant only to Advanced Provider Sessions.\n           \
+            \ \nThe `CollectionMethod` which must be supported to launch the Provider\
+            \ Session in Advanced Provider Sessions."
+          example: PollResult
+          x-enumDescriptions:
+            PollResult: "The results will be made available asynchronously, via a\
+              \ polling mechanism.\n            \nUse the provided `ResultsAccessKey`\
+              \ to poll for the results via the `GetResults` API."
+            CaptureRedirect: "The user will be sent back to your application with\
+              \ a `resultsAccessKey` in the query string.\n            \nUpon redirect,\
+              \ use the provided `ResultsAccessKey` to retrieve the results via the\
+              \ `GetResults` API."
+        resultsMayBeDelayedAfterRedirect:
+          description: "If `true`, then the results for this Provider may not be available\
+            \ immediately after the user is redirected back\nto your application.\
+            \ In this case, the `GetSessionResults` API must be called until results\
+            \ are available.\n            \nThis is an uncommon scenario, and typically\
+            \ only applies to Providers which use a biometric check or traditional\
+            \ document scan."
+          example: false
+          type: boolean
+        hasRefreshableContent:
+          description: "Relevant only to Advanced Provider Sessions.\n           \
+            \ \nWhether the Provider requires the `RefreshStepContent` capability.\n\
+            \            \nFor example, Samsung Wallet's deep links expire every 30\
+            \ seconds, and must be refreshed periodically for a\nresilient user flow."
+          example: false
+          type: boolean
+        requiresInput:
+          description: "Relevant to Hosted Provider Sessions and Advanced Provider\
+            \ Sessions.\n            \nIf `true`, this Provider requires provider-specific\
+            \ input on Session creation.\nIf this input is not provided, Trinsic's\
+            \ Hosted UI will be invoked to collect the input from the user."
+          example: false
+          type: boolean
+        hasTrinsicInterface:
+          description: "Whether there exists a Trinsic-hosted UI for this Provider.\n\
+            \            \nThis is `true` for any Provider which is not a simple,\
+            \ OIDC-like redirect flow."
+          example: true
+          type: boolean
+        supportsAdvancedProviderSessions:
+          description: "Whether this Provider can be fully whitelabeled/OEMed through\
+            \ the Advanced Provider Sessions API.\n            \nIf `false`, the Provider\
+            \ may still be launched through Advanced Provider Sessions;\nhowever,\
+            \ it will necessarily require a Trinsic-hosted UI to function."
+          example: true
+          type: boolean
+        subProviders:
+          description: "Metadata about the sub-providers which are available for this\
+            \ Provider.\n            \nFor example, Italy's SPID is a Provider which\
+            \ aggregates access to multiple sub-providers."
+          items:
+            $ref: '#/components/schemas/SubProviderMetadata'
+          nullable: true
+          type: array
+      required:
+      - available
+      - collectionMethod
+      - description
+      - geography
+      - hasRefreshableContent
+      - hasTrinsicInterface
+      - id
+      - launchMethod
+      - logoUrl
+      - name
+      - regions
+      - requiresInput
+      - resultsMayBeDelayedAfterRedirect
+      - supportsAdvancedProviderSessions
+      type: object
     ProviderInfo:
       additionalProperties: false
       description: A provider that can be specified when creating a `Session`
       example:
-        childProviderIds:
-        - childProviderIds
-        - childProviderIds
         name: Yoti | CLEAR | ...
         id: yoti | clear | ...
         logoUrl: logoUrl
@@ -1777,13 +2028,6 @@ components:
         logoUrl:
           description: A URL pointing to the provider's logo
           type: string
-        childProviderIds:
-          description: List of child provider id's where the provider allows deep-launching
-            of a specific provider.
-          items:
-            type: string
-          nullable: true
-          type: array
       required:
       - id
       - logoUrl
@@ -1797,10 +2041,13 @@ components:
         providerLogo: providerLogo
       properties:
         providerId:
+          readOnly: true
           type: string
         providerDisplayName:
+          readOnly: true
           type: string
         providerLogo:
+          readOnly: true
           type: string
       required:
       - providerDisplayName
@@ -1813,108 +2060,103 @@ components:
         indonesiaNik:
           allOf:
           - $ref: '#/components/schemas/IndonesiaNikInput'
-          description: Input for the `f-indonesia-nik` integration
+          description: Input for the `f-indonesia-nik` provider
           nullable: true
         mexicoCurp:
           allOf:
           - $ref: '#/components/schemas/MexicoCurpInput'
-          description: Input for the `f-mexico-curp` integration
+          description: Input for the `f-mexico-curp` provider
           nullable: true
         southAfricaNid:
           allOf:
           - $ref: '#/components/schemas/SouthAfricaNidInput'
-          description: Input for the `f-south-africa-nid` integration
+          description: Input for the `f-south-africa-nid` provider
           nullable: true
         kenyaNid:
           allOf:
           - $ref: '#/components/schemas/KenyaNidInput'
-          description: Input for the `f-kenya-nid` integration
+          description: Input for the `f-kenya-nid` provider
           nullable: true
         nigeriaNin:
           allOf:
           - $ref: '#/components/schemas/NigeriaNinInput'
-          description: Input for the `f-nigeria-nin` integration
+          description: Input for the `f-nigeria-nin` provider
           nullable: true
         aadhaar:
           allOf:
           - $ref: '#/components/schemas/AadhaarInput'
-          description: Input for the `f-india-aadhaar-match` integration
+          description: Input for the `f-india-aadhaar-match` provider
           nullable: true
         bangladeshNationalId:
           allOf:
           - $ref: '#/components/schemas/BangladeshNationalIdInput'
-          description: Input for the `bangladesh-nid` integration
+          description: Input for the `bangladesh-nid` provider
           nullable: true
         brazilCpfCheck:
           allOf:
           - $ref: '#/components/schemas/BrazilCpfCheckInput'
-          description: Input for the `g-brazil-cpf` integration
+          description: Input for the `g-brazil-cpf` provider
           nullable: true
         brazilDigitalCnh:
           allOf:
           - $ref: '#/components/schemas/BrazilDigitalCnhInput'
-          description: Input for the `g-brazil-digital-cnh` integration
+          description: Input for the `g-brazil-digital-cnh` provider
           nullable: true
         philippineMatch:
           allOf:
           - $ref: '#/components/schemas/PhilippineMatchInput'
-          description: Input for the `b-philsys-biometric` integration
+          description: Input for the `b-philsys-biometric` provider
           nullable: true
         philippineQR:
           allOf:
           - $ref: '#/components/schemas/PhilippineQRInput'
           description: Input for the `b-philippine-qr-digital-national-id` and `b-philippine-qr-ephill-id`
-            integrations
+            providers
+          nullable: true
+        smartId:
+          allOf:
+          - $ref: '#/components/schemas/SmartIdInput'
+          description: Input for the `smart-id` provider
+          nullable: true
+        mobileId:
+          allOf:
+          - $ref: '#/components/schemas/MobileIdInput'
+          description: Input for the `mobile-id` provider
+          nullable: true
+        idin:
+          allOf:
+          - $ref: '#/components/schemas/IdinInput'
+          description: Input for the `idin` provider
+          nullable: true
+        spid:
+          allOf:
+          - $ref: '#/components/schemas/SpidInput'
+          description: Input for the `spid` provider
+          nullable: true
+        trinsicTestDatabaseLookup:
+          allOf:
+          - $ref: '#/components/schemas/TrinsicTestDatabaseLookupInput'
+          description: "*TEST MODE ONLY.*\n            \nInput for the `trinsic-test-database-lookup`\
+            \ provider"
+          nullable: true
+        trinsicTestSubProviders:
+          allOf:
+          - $ref: '#/components/schemas/TrinsicTestSubProvidersInput'
+          description: "*TEST MODE ONLY.*\n            \nInput for the `trinsic-test-sub-providers`\
+            \ provider"
           nullable: true
       type: object
     RecommendRequest:
       additionalProperties: false
       example:
-        phoneNumber: phoneNumber
-        includeDisabledProviders: true
-        ipAddresses:
-        - ipAddresses
-        - ipAddresses
-        countries:
-        - countries
-        - countries
-        subdivisions:
-        - subdivisions
-        - subdivisions
+        recommendationInfo: ""
       properties:
-        phoneNumber:
-          description: The phone number of the user you wish to generate a recommendation
-            for. Will be used to look up the user's identity in the network
+        recommendationInfo:
+          allOf:
+          - $ref: '#/components/schemas/RecommendationInfo'
+          description: Information about the user you wish to generate a recommendation
+            for.
           nullable: true
-          type: string
-        countries:
-          description: "A list of countries, in alpha-2 ISO 3166 format, you wish\
-            \ to specify for the recommendation, this can include the user's country\
-            \ of residence, nationality, etc."
-          items:
-            type: string
-          nullable: true
-          type: array
-        subdivisions:
-          description: "If one of the countries has subdivisions, for example the\
-            \ US states, you can specify a list of these to further refine the recommendation\
-            \ (e.g., CA, UT, NY)"
-          items:
-            type: string
-          nullable: true
-          type: array
-        ipAddresses:
-          description: Provide the IP addresses of the user you wish to generate a
-            recommendation for. Will be used to look up the user's geographic location.
-          items:
-            type: string
-          nullable: true
-          type: array
-        includeDisabledProviders:
-          description: "If true, the recommendation will include providers that are\
-            \ disabled for the app"
-          nullable: true
-          type: boolean
       type: object
     RecommendResponse:
       additionalProperties: false
@@ -1964,6 +2206,40 @@ components:
       - relevant
       - remainder
       type: object
+    RecommendationInfo:
+      additionalProperties: false
+      description: Information relating to a user; used to generated Identity Provider
+        recommendations.
+      properties:
+        phoneNumber:
+          description: "The phone number of the user you wish to generate a recommendation\
+            \ for.\n            \nWill be used to look up the user's identity in the\
+            \ network, as well as to determine the user's geographic location."
+          nullable: true
+          type: string
+        countries:
+          description: "A list of countries, in alpha-2 ISO 3166 format, which the\
+            \ user is related to.\n            \nThis can include the user's country\
+            \ of residence, nationality, etc."
+          items:
+            type: string
+          nullable: true
+          type: array
+        subdivisions:
+          description: "If one of the countries has subdivisions (for example: US\
+            \ states), specify those related to the user here (e.g., CA, UT, NY)"
+          items:
+            type: string
+          nullable: true
+          type: array
+        ipAddresses:
+          description: "Any IP addresses related to the user.\n            \nWill\
+            \ be used to determine the user's geographic location."
+          items:
+            type: string
+          nullable: true
+          type: array
+      type: object
     RefreshStepContentRequest:
       additionalProperties: false
       example:
@@ -1997,20 +2273,24 @@ components:
           example: CaptureRedirect
           x-enumDescriptions:
             PollResult: "The results will be made available asynchronously, via a\
-              \ polling mechanism.\r\n            \r\nUse the provided `ResultsAccessKey`\
+              \ polling mechanism.\n            \nUse the provided `ResultsAccessKey`\
               \ to poll for the results via the `GetResults` API."
             CaptureRedirect: "The user will be sent back to your application with\
-              \ a `resultsAccessKey` in the query string.\r\n            \r\nUse the\
-              \ provided `ResultsAccessKey` to retrieve the results via the `GetResults`\
-              \ API."
+              \ a `resultsAccessKey` in the query string.\n            \nUpon redirect,\
+              \ use the provided `ResultsAccessKey` to retrieve the results via the\
+              \ `GetResults` API."
         resultsAccessKey:
-          description: "If the method is `PollResult`, this is the key that should\
-            \ be used to poll for the results."
-          nullable: true
+          description: "The `resultsAccessKey` for the Acceptance Session.\n     \
+            \       \nThis is an encrypted payload which contains the decryption key\
+            \ necessary to access the Session's Data Vault.\n            \nSave this\
+            \ securely in your systems; it must be passed back with any API call which\
+            \ requires access to the Session's Data Vault.\n            \nTrinsic\
+            \ cannot access a Session's Data Vault without this key."
+          example: 417zNGHMJp6Ht2jCoktTLNGDRZEt4BqTwwQ8Q9ZaQz8aS4Jd7nD1xff2WLhPS69j5q9QT4gvgV79Gv7QtaXwu5YC9Utr35...
           type: string
-          example: null
       required:
       - method
+      - resultsAccessKey
       type: object
     ResultCollectionMethod:
       enum:
@@ -2019,10 +2299,10 @@ components:
       type: string
       x-enumDescriptions:
         PollResult: "The results will be made available asynchronously, via a polling\
-          \ mechanism.\r\n            \r\nUse the provided `ResultsAccessKey` to poll\
+          \ mechanism.\n            \nUse the provided `ResultsAccessKey` to poll\
           \ for the results via the `GetResults` API."
         CaptureRedirect: "The user will be sent back to your application with a `resultsAccessKey`\
-          \ in the query string.\r\n            \r\nUse the provided `ResultsAccessKey`\
+          \ in the query string.\n            \nUpon redirect, use the provided `ResultsAccessKey`\
           \ to retrieve the results via the `GetResults` API."
     Session:
       additionalProperties: false
@@ -2038,21 +2318,21 @@ components:
           example: 678c1ff6-2178-49e7-81d2-548afb6f85ec
           type: string
         done:
-          description: "Whether the Session is in a terminal / final state.\r\n  \
-            \          \r\nIf this is `true`, inspect the value of `Success` to determine\
+          description: "Whether the Session is in a terminal / final state.\n    \
+            \        \nIf this is `true`, inspect the value of `Success` to determine\
             \ whether the Session was successful."
           type: boolean
         success:
-          description: "Whether the Session has completed successfully.\r\n      \
-            \      \r\nIf this is `false`, the Session is either not yet done, or\
-            \ has failed. Inspect `Done` and `ErrorCode` for more information.\r\n\
-            If this is `true`, the Session has completed successfully."
+          description: "Whether the Session has completed successfully.\n        \
+            \    \nIf this is `false`, the Session is either not yet done, or has\
+            \ failed. Inspect `Done` and `ErrorCode` for more information.\nIf this\
+            \ is `true`, the Session has completed successfully."
           type: boolean
         errorCode:
           allOf:
           - $ref: '#/components/schemas/SessionErrorCode'
-          description: "The reason for the Session's failure.\r\n            \r\n\
-            Only present if `Success` is `false`."
+          description: "The reason for the Session's failure.\n            \nOnly\
+            \ present if `Success` is `false`."
           nullable: true
         created:
           description: "The unix timestamp, in seconds, when this session was created"
@@ -2093,8 +2373,9 @@ components:
         UserAbandoned: The user abandoned the session
         UserTimedOut: The user took too long to complete the verification
         Expired: The session has expired
-        InvalidImage: "The image(s) provided for this verification were either too\
-          \ low-quality, not of the correct type, or otherwise\r\nunable to be processed."
+        InvalidImage: |-
+          The image(s) provided for this verification were either too low-quality, not of the correct type, or otherwise
+          unable to be processed.
         Inauthentic: "The identity data/images provided are suspected to be inauthentic,\
           \ fraudulent, or forged."
         UnsupportedDocument: "The document provided is either of an unsupported type,\
@@ -2123,6 +2404,14 @@ components:
         NotApplicable: ""
         Male: ""
         Female: ""
+    SmartIdInput:
+      additionalProperties: false
+      properties:
+        smartIdDocumentNumber:
+          description: The user's Smart ID Document Number
+          nullable: true
+          type: string
+      type: object
     SouthAfricaNidInput:
       additionalProperties: false
       properties:
@@ -2151,13 +2440,22 @@ components:
       - gender
       - nationalIdNumber
       type: object
+    SpidInput:
+      additionalProperties: false
+      properties:
+        subProviderId:
+          description: "The ID of the specific IDP to invoke within SPID.\n      \
+            \      \nIf not specified, the user will be prompted to select an IDP."
+          nullable: true
+          type: string
+      type: object
     StepRefreshInfo:
       additionalProperties: false
       properties:
         expiresAt:
           description: "The UTC date/time at which the step `content` will expire\
-            \ and should no longer be used.\r\n            \r\nUse the `Refresh Step\
-            \ Content` API to obtain a new value for `content`."
+            \ and should no longer be used.\n            \nUse the `Refresh Step Content`\
+            \ API to obtain a new value for `content`."
           format: date-time
           type: string
         refreshAfter:
@@ -2173,6 +2471,76 @@ components:
       - expiresAt
       - refreshAfter
       - timeToLiveSeconds
+      type: object
+    SubProviderMetadata:
+      additionalProperties: false
+      description: Information about a sub-provider.
+      example:
+        name: name
+        description: description
+        id: id
+        logoUrl: logoUrl
+      properties:
+        id:
+          description: "The ID of the sub-provider.\n            \nThis cannot be\
+            \ used as a standalone Provider ID when creating a Session. It must\n\
+            be passed in via the Provider-specific input."
+          type: string
+        name:
+          description: The name of the sub-provider
+          type: string
+        description:
+          description: Flavor text for the sub-provider
+          type: string
+        logoUrl:
+          description: "A URL pointing to the logo on Trinsic's CDN.\n           \
+            \ \nMay be a PNG, JPG, or SVG image."
+          type: string
+      required:
+      - description
+      - id
+      - logoUrl
+      - name
+      type: object
+    TrinsicTestDatabaseLookupInput:
+      additionalProperties: false
+      properties:
+        givenName:
+          description: "The given name to use for the output of the test Session.\n\
+            \            \nThis is required; if not provided, Trinsic's Fallback UI\
+            \ will be invoked to collect it\nfrom the user.\n            \nCan be\
+            \ any non-empty value."
+          nullable: true
+          type: string
+        familyName:
+          description: "The family name to use for the output of the test Session.\n\
+            \            \nThis is required; if not provided, Trinsic's Fallback UI\
+            \ will be invoked to collect it\nfrom the user.\n            \nCan be\
+            \ any non-empty value."
+          nullable: true
+          type: string
+        identityCode:
+          description: "A 6-digit code; must be \"123456\" for the Session to succeed.\n\
+            \            \nThis is required; if not provided, Trinsic's Fallback UI\
+            \ will be invoked to collect it\nfrom the user.\n            \nAny other\
+            \ value will cause the Session to fail."
+          nullable: true
+          type: string
+        selfieBase64:
+          description: "An optional selfie image, base64-encoded.\n            \n\
+            Will replace the existing test selfie attachment output if provided."
+          nullable: true
+          type: string
+      type: object
+    TrinsicTestSubProvidersInput:
+      additionalProperties: false
+      properties:
+        subProviderId:
+          description: "The ID of the specific IDP to invoke within the test federated\
+            \ provider.\n            \nValid options are `sub-provider-a` and `sub-provider-b`.\n\
+            \            \nIf not specified, the user will be prompted to select one."
+          nullable: true
+          type: string
       type: object
   securitySchemes:
     Bearer:
