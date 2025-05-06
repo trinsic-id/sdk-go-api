@@ -51,8 +51,8 @@ type ProviderContract struct {
 	SupportsAdvancedProviderSessions bool `json:"supportsAdvancedProviderSessions"`
 	// Metadata about the sub-providers which are available for this Provider.              For example, Italy's SPID is a Provider which aggregates access to multiple sub-providers.
 	SubProviders []SubProviderMetadata `json:"subProviders,omitempty"`
-	// The current status of the provider and if it is available to launch. If the status is disabled, there is an issue that prevents a provider being able to launch a session.
-	Status ProviderHealth `json:"status"`
+	// The health for an integration to be able to successfully perform a verification session.
+	Health ProviderHealth `json:"health"`
 }
 
 type _ProviderContract ProviderContract
@@ -61,7 +61,7 @@ type _ProviderContract ProviderContract
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewProviderContract(id string, name string, description string, logoUrl string, available bool, geography []string, regions []string, launchMethod IntegrationLaunchMethod, collectionMethod ResultCollectionMethod, resultsMayBeDelayedAfterRedirect bool, hasRefreshableContent bool, requiresInput bool, hasTrinsicInterface bool, supportsAdvancedProviderSessions bool, status ProviderHealth) *ProviderContract {
+func NewProviderContract(id string, name string, description string, logoUrl string, available bool, geography []string, regions []string, launchMethod IntegrationLaunchMethod, collectionMethod ResultCollectionMethod, resultsMayBeDelayedAfterRedirect bool, hasRefreshableContent bool, requiresInput bool, hasTrinsicInterface bool, supportsAdvancedProviderSessions bool, health ProviderHealth) *ProviderContract {
 	this := ProviderContract{}
 	this.Id = id
 	this.Name = name
@@ -77,7 +77,7 @@ func NewProviderContract(id string, name string, description string, logoUrl str
 	this.RequiresInput = requiresInput
 	this.HasTrinsicInterface = hasTrinsicInterface
 	this.SupportsAdvancedProviderSessions = supportsAdvancedProviderSessions
-	this.Status = status
+	this.Health = health
 	return &this
 }
 
@@ -458,28 +458,28 @@ func (o *ProviderContract) SetSubProviders(v []SubProviderMetadata) {
 	o.SubProviders = v
 }
 
-// GetStatus returns the Status field value
-func (o *ProviderContract) GetStatus() ProviderHealth {
+// GetHealth returns the Health field value
+func (o *ProviderContract) GetHealth() ProviderHealth {
 	if o == nil {
 		var ret ProviderHealth
 		return ret
 	}
 
-	return o.Status
+	return o.Health
 }
 
-// GetStatusOk returns a tuple with the Status field value
+// GetHealthOk returns a tuple with the Health field value
 // and a boolean to check if the value has been set.
-func (o *ProviderContract) GetStatusOk() (*ProviderHealth, bool) {
+func (o *ProviderContract) GetHealthOk() (*ProviderHealth, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Status, true
+	return &o.Health, true
 }
 
-// SetStatus sets field value
-func (o *ProviderContract) SetStatus(v ProviderHealth) {
-	o.Status = v
+// SetHealth sets field value
+func (o *ProviderContract) SetHealth(v ProviderHealth) {
+	o.Health = v
 }
 
 func (o ProviderContract) MarshalJSON() ([]byte, error) {
@@ -509,7 +509,7 @@ func (o ProviderContract) ToMap() (map[string]interface{}, error) {
 	if o.SubProviders != nil {
 		toSerialize["subProviders"] = o.SubProviders
 	}
-	toSerialize["status"] = o.Status
+	toSerialize["health"] = o.Health
 	return toSerialize, nil
 }
 
@@ -532,7 +532,7 @@ func (o *ProviderContract) UnmarshalJSON(data []byte) (err error) {
 		"requiresInput",
 		"hasTrinsicInterface",
 		"supportsAdvancedProviderSessions",
-		"status",
+		"health",
 	}
 
 	allProperties := make(map[string]interface{})

@@ -19,13 +19,13 @@ Name | Type | Description | Notes
 **HasTrinsicInterface** | **bool** | Whether there exists a Trinsic-hosted UI for this Provider.              This is &#x60;true&#x60; for any Provider which is not a simple, OIDC-like redirect flow. | 
 **SupportsAdvancedProviderSessions** | **bool** | Whether this Provider can be fully whitelabeled/OEMed through the Advanced Provider Sessions API.              If &#x60;false&#x60;, the Provider may still be launched through Advanced Provider Sessions; however, it will necessarily require a Trinsic-hosted UI to function. | 
 **SubProviders** | Pointer to [**[]SubProviderMetadata**](SubProviderMetadata.md) | Metadata about the sub-providers which are available for this Provider.              For example, Italy&#39;s SPID is a Provider which aggregates access to multiple sub-providers. | [optional] 
-**Status** | [**ProviderHealth**](ProviderHealth.md) | The current status of the provider and if it is available to launch. If the status is disabled, there is an issue that prevents a provider being able to launch a session. | 
+**Health** | [**ProviderHealth**](ProviderHealth.md) | The health for an integration to be able to successfully perform a verification session. | 
 
 ## Methods
 
 ### NewProviderContract
 
-`func NewProviderContract(id string, name string, description string, logoUrl string, available bool, geography []string, regions []string, launchMethod IntegrationLaunchMethod, collectionMethod ResultCollectionMethod, resultsMayBeDelayedAfterRedirect bool, hasRefreshableContent bool, requiresInput bool, hasTrinsicInterface bool, supportsAdvancedProviderSessions bool, status ProviderHealth, ) *ProviderContract`
+`func NewProviderContract(id string, name string, description string, logoUrl string, available bool, geography []string, regions []string, launchMethod IntegrationLaunchMethod, collectionMethod ResultCollectionMethod, resultsMayBeDelayedAfterRedirect bool, hasRefreshableContent bool, requiresInput bool, hasTrinsicInterface bool, supportsAdvancedProviderSessions bool, health ProviderHealth, ) *ProviderContract`
 
 NewProviderContract instantiates a new ProviderContract object
 This constructor will assign default values to properties that have it defined,
@@ -355,24 +355,24 @@ HasSubProviders returns a boolean if a field has been set.
 `func (o *ProviderContract) UnsetSubProviders()`
 
 UnsetSubProviders ensures that no value is present for SubProviders, not even an explicit nil
-### GetStatus
+### GetHealth
 
-`func (o *ProviderContract) GetStatus() ProviderHealth`
+`func (o *ProviderContract) GetHealth() ProviderHealth`
 
-GetStatus returns the Status field if non-nil, zero value otherwise.
+GetHealth returns the Health field if non-nil, zero value otherwise.
 
-### GetStatusOk
+### GetHealthOk
 
-`func (o *ProviderContract) GetStatusOk() (*ProviderHealth, bool)`
+`func (o *ProviderContract) GetHealthOk() (*ProviderHealth, bool)`
 
-GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
+GetHealthOk returns a tuple with the Health field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetStatus
+### SetHealth
 
-`func (o *ProviderContract) SetStatus(v ProviderHealth)`
+`func (o *ProviderContract) SetHealth(v ProviderHealth)`
 
-SetStatus sets Status field to given value.
+SetHealth sets Health field to given value.
 
 
 
