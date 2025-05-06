@@ -54,6 +54,8 @@ type APIClient struct {
 	NetworkAPI *NetworkAPIService
 
 	SessionsAPI *SessionsAPIService
+
+	WellKnownAPI *WellKnownAPIService
 }
 
 type service struct {
@@ -75,6 +77,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.AttachmentsAPI = (*AttachmentsAPIService)(&c.common)
 	c.NetworkAPI = (*NetworkAPIService)(&c.common)
 	c.SessionsAPI = (*SessionsAPIService)(&c.common)
+	c.WellKnownAPI = (*WellKnownAPIService)(&c.common)
 
 	return c
 }
@@ -133,6 +136,10 @@ func typeCheckParameter(obj interface{}, expected string, name string) error {
 
 func parameterValueToString( obj interface{}, key string ) string {
 	if reflect.TypeOf(obj).Kind() != reflect.Ptr {
+		if actualObj, ok := obj.(interface{ GetActualInstanceValue() interface{} }); ok {
+			return fmt.Sprintf("%v", actualObj.GetActualInstanceValue())
+		}
+
 		return fmt.Sprintf("%v", obj)
 	}
 	var param,ok = obj.(MappedNullable)

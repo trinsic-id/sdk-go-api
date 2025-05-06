@@ -881,6 +881,45 @@ paths:
       summary: Redact Session
       tags:
       - Sessions
+  /api/integrations/v1/interac/.well-known/jwks.json:
+    get:
+      operationId: InteracJwk
+      responses:
+        "200":
+          description: OK
+        "400":
+          content:
+            application/json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.5.1
+                title: Bad Request
+                detail: This feature is not supported for your configruation
+                status: 400
+                traceId: 00-3fcbc632c5caaca825849d495c62d7b0-09a3500f89acbbcc-00
+                instance: /api/v1/sample-request-path
+                errors:
+                  PropertyName:
+                  - Specific error description for property
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "500":
+          content:
+            application/json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Internal Server Error
+                status: 500
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Internal server error
+      tags:
+      - WellKnown
 components:
   schemas:
     AadhaarInput:
@@ -1491,7 +1530,6 @@ components:
       required:
       - content
       - method
-      - refresh
       type: object
     KenyaNidInput:
       additionalProperties: false
@@ -1571,6 +1609,7 @@ components:
             description: description
             id: id
             logoUrl: logoUrl
+          status: Disabled
         - collectionMethod: PollResult
           regions:
           - United States
@@ -1596,6 +1635,7 @@ components:
             description: description
             id: id
             logoUrl: logoUrl
+          status: Disabled
       properties:
         providerContracts:
           description: "Contracts for all Providers available to your App, filtered\
@@ -1875,6 +1915,7 @@ components:
           description: description
           id: id
           logoUrl: logoUrl
+        status: Disabled
       properties:
         id:
           description: The ID of the Provider for this contract.
@@ -1993,6 +2034,17 @@ components:
             $ref: '#/components/schemas/SubProviderMetadata'
           nullable: true
           type: array
+        status:
+          allOf:
+          - $ref: '#/components/schemas/ProviderHealth'
+          description: |-
+            The current status of the provider and if it is available to launch.
+            If the status is disabled, there is an issue that prevents a provider being able to launch a session.
+          example: Disabled
+          x-enumDescriptions:
+            Online: The integration is up and available to support verification sessions.
+            Offline: The integration has been disabled and unavailable at this time
+              to perform verification sessions.
       required:
       - available
       - collectionMethod
@@ -2007,8 +2059,20 @@ components:
       - regions
       - requiresInput
       - resultsMayBeDelayedAfterRedirect
+      - status
       - supportsAdvancedProviderSessions
       type: object
+    ProviderHealth:
+      description: The health for an integration to be able to successfully perform
+        a verification session.
+      enum:
+      - Online
+      - Offline
+      type: string
+      x-enumDescriptions:
+        Online: The integration is up and available to support verification sessions.
+        Offline: The integration has been disabled and unavailable at this time to
+          perform verification sessions.
     ProviderInfo:
       additionalProperties: false
       description: A provider that can be specified when creating a `Session`

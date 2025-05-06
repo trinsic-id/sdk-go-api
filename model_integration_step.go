@@ -26,7 +26,7 @@ type IntegrationStep struct {
 	// Step type-specific content related to the step: a URL for `LaunchBrowser`, a deeplink for `DeeplinkToMobile` or a string to show to the user for `ShowContent`.
 	Content string `json:"content"`
 	// If non-null, contains metadata about how to refresh the value of `content`.
-	Refresh NullableStepRefreshInfo `json:"refresh"`
+	Refresh NullableStepRefreshInfo `json:"refresh,omitempty"`
 }
 
 type _IntegrationStep IntegrationStep
@@ -35,11 +35,10 @@ type _IntegrationStep IntegrationStep
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewIntegrationStep(method IntegrationLaunchMethod, content string, refresh NullableStepRefreshInfo) *IntegrationStep {
+func NewIntegrationStep(method IntegrationLaunchMethod, content string) *IntegrationStep {
 	this := IntegrationStep{}
 	this.Method = method
 	this.Content = content
-	this.Refresh = refresh
 	return &this
 }
 
@@ -99,18 +98,16 @@ func (o *IntegrationStep) SetContent(v string) {
 	o.Content = v
 }
 
-// GetRefresh returns the Refresh field value
-// If the value is explicit nil, the zero value for StepRefreshInfo will be returned
+// GetRefresh returns the Refresh field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IntegrationStep) GetRefresh() StepRefreshInfo {
-	if o == nil || o.Refresh.Get() == nil {
+	if o == nil || IsNil(o.Refresh.Get()) {
 		var ret StepRefreshInfo
 		return ret
 	}
-
 	return *o.Refresh.Get()
 }
 
-// GetRefreshOk returns a tuple with the Refresh field value
+// GetRefreshOk returns a tuple with the Refresh field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *IntegrationStep) GetRefreshOk() (*StepRefreshInfo, bool) {
@@ -120,9 +117,27 @@ func (o *IntegrationStep) GetRefreshOk() (*StepRefreshInfo, bool) {
 	return o.Refresh.Get(), o.Refresh.IsSet()
 }
 
-// SetRefresh sets field value
+// HasRefresh returns a boolean if a field has been set.
+func (o *IntegrationStep) HasRefresh() bool {
+	if o != nil && o.Refresh.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRefresh gets a reference to the given NullableStepRefreshInfo and assigns it to the Refresh field.
 func (o *IntegrationStep) SetRefresh(v StepRefreshInfo) {
 	o.Refresh.Set(&v)
+}
+// SetRefreshNil sets the value for Refresh to be an explicit nil
+func (o *IntegrationStep) SetRefreshNil() {
+	o.Refresh.Set(nil)
+}
+
+// UnsetRefresh ensures that no value is present for Refresh, not even an explicit nil
+func (o *IntegrationStep) UnsetRefresh() {
+	o.Refresh.Unset()
 }
 
 func (o IntegrationStep) MarshalJSON() ([]byte, error) {
@@ -137,7 +152,9 @@ func (o IntegrationStep) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["method"] = o.Method
 	toSerialize["content"] = o.Content
-	toSerialize["refresh"] = o.Refresh.Get()
+	if o.Refresh.IsSet() {
+		toSerialize["refresh"] = o.Refresh.Get()
+	}
 	return toSerialize, nil
 }
 
@@ -148,7 +165,6 @@ func (o *IntegrationStep) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"method",
 		"content",
-		"refresh",
 	}
 
 	allProperties := make(map[string]interface{})

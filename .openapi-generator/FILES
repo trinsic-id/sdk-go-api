@@ -6,6 +6,7 @@ api/openapi.yaml
 api_attachments.go
 api_network.go
 api_sessions.go
+api_well_known.go
 client.go
 configuration.go
 docs/AadhaarInput.md
@@ -53,6 +54,7 @@ docs/PhilippineQRInput.md
 docs/ProblemDetails.md
 docs/ProviderAttachments.md
 docs/ProviderContract.md
+docs/ProviderHealth.md
 docs/ProviderInfo.md
 docs/ProviderInformation.md
 docs/ProviderInput.md
@@ -75,6 +77,7 @@ docs/StepRefreshInfo.md
 docs/SubProviderMetadata.md
 docs/TrinsicTestDatabaseLookupInput.md
 docs/TrinsicTestSubProvidersInput.md
+docs/WellKnownAPI.md
 git_push.sh
 go.mod
 go.sum
@@ -121,6 +124,7 @@ model_philippine_qr_input.go
 model_problem_details.go
 model_provider_attachments.go
 model_provider_contract.go
+model_provider_health.go
 model_provider_info.go
 model_provider_information.go
 model_provider_input.go
@@ -146,4 +150,5 @@ response.go
 test/api_attachments_test.go
 test/api_network_test.go
 test/api_sessions_test.go
+test/api_well_known_test.go
 utils.go

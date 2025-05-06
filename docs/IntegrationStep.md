@@ -6,13 +6,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Method** | [**IntegrationLaunchMethod**](IntegrationLaunchMethod.md) | The launch method to perform | 
 **Content** | **string** | Step type-specific content related to the step: a URL for &#x60;LaunchBrowser&#x60;, a deeplink for &#x60;DeeplinkToMobile&#x60; or a string to show to the user for &#x60;ShowContent&#x60;. | 
-**Refresh** | [**NullableStepRefreshInfo**](StepRefreshInfo.md) | If non-null, contains metadata about how to refresh the value of &#x60;content&#x60;. | 
+**Refresh** | Pointer to [**NullableStepRefreshInfo**](StepRefreshInfo.md) | If non-null, contains metadata about how to refresh the value of &#x60;content&#x60;. | [optional] 
 
 ## Methods
 
 ### NewIntegrationStep
 
-`func NewIntegrationStep(method IntegrationLaunchMethod, content string, refresh NullableStepRefreshInfo, ) *IntegrationStep`
+`func NewIntegrationStep(method IntegrationLaunchMethod, content string, ) *IntegrationStep`
 
 NewIntegrationStep instantiates a new IntegrationStep object
 This constructor will assign default values to properties that have it defined,
@@ -86,6 +86,11 @@ and a boolean to check if the value has been set.
 
 SetRefresh sets Refresh field to given value.
 
+### HasRefresh
+
+`func (o *IntegrationStep) HasRefresh() bool`
+
+HasRefresh returns a boolean if a field has been set.
 
 ### SetRefreshNil
 
