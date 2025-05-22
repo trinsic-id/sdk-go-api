@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **KenyaNid** | Pointer to [**NullableKenyaNidInput**](KenyaNidInput.md) | Input for the &#x60;f-kenya-nid&#x60; provider | [optional] 
 **NigeriaNin** | Pointer to [**NullableNigeriaNinInput**](NigeriaNinInput.md) | Input for the &#x60;f-nigeria-nin&#x60; provider | [optional] 
 **Aadhaar** | Pointer to [**NullableAadhaarInput**](AadhaarInput.md) | Input for the &#x60;f-india-aadhaar-match&#x60; provider | [optional] 
-**BangladeshNationalId** | Pointer to [**NullableBangladeshNationalIdInput**](BangladeshNationalIdInput.md) | Input for the &#x60;bangladesh-nid&#x60; provider | [optional] 
+**BangladeshNationalId** | Pointer to [**NullableBangladeshNidInput**](BangladeshNidInput.md) | Input for the &#x60;bangladesh-nid&#x60; provider | [optional] 
 **BrazilCpfCheck** | Pointer to [**NullableBrazilCpfCheckInput**](BrazilCpfCheckInput.md) | Input for the &#x60;g-brazil-cpf&#x60; provider | [optional] 
 **BrazilDigitalCnh** | Pointer to [**NullableBrazilDigitalCnhInput**](BrazilDigitalCnhInput.md) | Input for the &#x60;g-brazil-digital-cnh&#x60; provider | [optional] 
 **PhilippineMatch** | Pointer to [**NullablePhilippineMatchInput**](PhilippineMatchInput.md) | Input for the &#x60;b-philsys-biometric&#x60; provider | [optional] 
@@ -253,20 +253,20 @@ HasAadhaar returns a boolean if a field has been set.
 UnsetAadhaar ensures that no value is present for Aadhaar, not even an explicit nil
 ### GetBangladeshNationalId
 
-`func (o *ProviderInput) GetBangladeshNationalId() BangladeshNationalIdInput`
+`func (o *ProviderInput) GetBangladeshNationalId() BangladeshNidInput`
 
 GetBangladeshNationalId returns the BangladeshNationalId field if non-nil, zero value otherwise.
 
 ### GetBangladeshNationalIdOk
 
-`func (o *ProviderInput) GetBangladeshNationalIdOk() (*BangladeshNationalIdInput, bool)`
+`func (o *ProviderInput) GetBangladeshNationalIdOk() (*BangladeshNidInput, bool)`
 
 GetBangladeshNationalIdOk returns a tuple with the BangladeshNationalId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetBangladeshNationalId
 
-`func (o *ProviderInput) SetBangladeshNationalId(v BangladeshNationalIdInput)`
+`func (o *ProviderInput) SetBangladeshNationalId(v BangladeshNidInput)`
 
 SetBangladeshNationalId sets BangladeshNationalId field to given value.
 

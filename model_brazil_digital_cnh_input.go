@@ -23,7 +23,7 @@ var _ MappedNullable = &BrazilDigitalCnhInput{}
 type BrazilDigitalCnhInput struct {
 	// The user's 11-digit, numeric CPF Number
 	CpfNumber string `json:"cpfNumber" validate:"regexp=^\\\\d*$"`
-	// The raw bytes of the digital CNH file collected from the user.              TODO: Lucas or JP help me describe these below vvvvvvvv This can be: - An image containing a physical or digital QR code - A PDF file exported from the CNH app - Some scary third thing?
+	// The raw bytes of the digital CNH file collected from the user.
 	DigitalCnhFile NullableString `json:"digitalCnhFile,omitempty"`
 	// The MIME Type of the file contained in `DigitalCnhFile`.              Must be one of `application/pdf`, `image/jpeg`, or `image/png`.
 	DigitalCnhFileContentType NullableString `json:"digitalCnhFileContentType,omitempty"`

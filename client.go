@@ -54,8 +54,6 @@ type APIClient struct {
 	NetworkAPI *NetworkAPIService
 
 	SessionsAPI *SessionsAPIService
-
-	WellKnownAPI *WellKnownAPIService
 }
 
 type service struct {
@@ -77,7 +75,6 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.AttachmentsAPI = (*AttachmentsAPIService)(&c.common)
 	c.NetworkAPI = (*NetworkAPIService)(&c.common)
 	c.SessionsAPI = (*SessionsAPIService)(&c.common)
-	c.WellKnownAPI = (*WellKnownAPIService)(&c.common)
 
 	return c
 }

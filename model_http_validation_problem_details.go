@@ -19,10 +19,15 @@ var _ MappedNullable = &HttpValidationProblemDetails{}
 
 // HttpValidationProblemDetails struct for HttpValidationProblemDetails
 type HttpValidationProblemDetails struct {
+	// A URI reference that identifies the problem type.
 	Type NullableString `json:"type,omitempty"`
+	// A short, human-readable summary of the error.
 	Title NullableString `json:"title,omitempty"`
+	// The HTTP status code returned for the request.
 	Status NullableInt32 `json:"status,omitempty"`
+	// A human-readable explanation specific of the problem.
 	Detail NullableString `json:"detail,omitempty"`
+	// A URI reference that identifies the specific occurrence of the problem.
 	Instance NullableString `json:"instance,omitempty"`
 	Errors *map[string][]string `json:"errors,omitempty"`
 	AdditionalProperties map[string]interface{}

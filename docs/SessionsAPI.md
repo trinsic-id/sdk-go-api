@@ -37,7 +37,7 @@ import (
 )
 
 func main() {
-	sessionId := "sessionId_example" // string | 
+	sessionId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -79,7 +79,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: text/plain, application/json, text/json
+- **Accept**: text/plain, application/json, text/json, application/problem+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -145,7 +145,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json, text/json, application/*+json
-- **Accept**: text/plain, application/json, text/json
+- **Accept**: text/plain, application/json, text/json, application/problem+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -211,7 +211,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json, text/json, application/*+json
-- **Accept**: text/plain, application/json, text/json
+- **Accept**: text/plain, application/json, text/json, application/problem+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -277,7 +277,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json, text/json, application/*+json
-- **Accept**: text/plain, application/json, text/json
+- **Accept**: text/plain, application/json, text/json, application/problem+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -347,7 +347,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: text/plain, application/json, text/json
+- **Accept**: text/plain, application/json, text/json, application/problem+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -417,7 +417,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json, text/json, application/*+json
-- **Accept**: text/plain, application/json, text/json
+- **Accept**: text/plain, application/json, text/json, application/problem+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -489,7 +489,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: text/plain, application/json, text/json
+- **Accept**: text/plain, application/json, text/json, application/problem+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -517,7 +517,7 @@ import (
 )
 
 func main() {
-	sessionId := "sessionId_example" // string | 
+	sessionId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -557,7 +557,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/problem+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -586,7 +586,7 @@ import (
 
 func main() {
 	acceptanceSessionId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
-	refreshStepContentRequest := *openapiclient.NewRefreshStepContentRequest() // RefreshStepContentRequest |  (optional)
+	refreshStepContentRequest := *openapiclient.NewRefreshStepContentRequest("ResultsAccessKey_example") // RefreshStepContentRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -629,7 +629,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json, text/json, application/*+json
-- **Accept**: text/plain, application/json, text/json
+- **Accept**: text/plain, application/json, text/json, application/problem+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

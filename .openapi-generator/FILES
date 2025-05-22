@@ -6,14 +6,13 @@ api/openapi.yaml
 api_attachments.go
 api_network.go
 api_sessions.go
-api_well_known.go
 client.go
 configuration.go
 docs/AadhaarInput.md
 docs/Address.md
 docs/AttachmentAccessKeys.md
 docs/AttachmentsAPI.md
-docs/BangladeshNationalIdInput.md
+docs/BangladeshNidInput.md
 docs/BrazilCpfCheckInput.md
 docs/BrazilDigitalCnhInput.md
 docs/CancelSessionResponse.md
@@ -77,14 +76,13 @@ docs/StepRefreshInfo.md
 docs/SubProviderMetadata.md
 docs/TrinsicTestDatabaseLookupInput.md
 docs/TrinsicTestSubProvidersInput.md
-docs/WellKnownAPI.md
 git_push.sh
 go.mod
 go.sum
 model_aadhaar_input.go
 model_address.go
 model_attachment_access_keys.go
-model_bangladesh_national_id_input.go
+model_bangladesh_nid_input.go
 model_brazil_cpf_check_input.go
 model_brazil_digital_cnh_input.go
 model_cancel_session_response.go
@@ -150,5 +148,4 @@ response.go
 test/api_attachments_test.go
 test/api_network_test.go
 test/api_sessions_test.go
-test/api_well_known_test.go
 utils.go

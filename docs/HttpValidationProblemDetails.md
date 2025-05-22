@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | Pointer to **NullableString** |  | [optional] 
-**Title** | Pointer to **NullableString** |  | [optional] 
-**Status** | Pointer to **NullableInt32** |  | [optional] 
-**Detail** | Pointer to **NullableString** |  | [optional] 
-**Instance** | Pointer to **NullableString** |  | [optional] 
+**Type** | Pointer to **NullableString** | A URI reference that identifies the problem type. | [optional] 
+**Title** | Pointer to **NullableString** | A short, human-readable summary of the error. | [optional] 
+**Status** | Pointer to **NullableInt32** | The HTTP status code returned for the request. | [optional] 
+**Detail** | Pointer to **NullableString** | A human-readable explanation specific of the problem. | [optional] 
+**Instance** | Pointer to **NullableString** | A URI reference that identifies the specific occurrence of the problem. | [optional] 
 **Errors** | Pointer to **map[string][]string** |  | [optional] 
 
 ## Methods

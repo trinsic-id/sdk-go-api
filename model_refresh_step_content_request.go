@@ -12,6 +12,8 @@ package trinsic_api
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the RefreshStepContentRequest type satisfies the MappedNullable interface at compile time
@@ -20,15 +22,18 @@ var _ MappedNullable = &RefreshStepContentRequest{}
 // RefreshStepContentRequest struct for RefreshStepContentRequest
 type RefreshStepContentRequest struct {
 	// The `ResultsAccessKey` returned when the Session was created
-	ResultsAccessKey NullableString `json:"resultsAccessKey,omitempty"`
+	ResultsAccessKey string `json:"resultsAccessKey"`
 }
+
+type _RefreshStepContentRequest RefreshStepContentRequest
 
 // NewRefreshStepContentRequest instantiates a new RefreshStepContentRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRefreshStepContentRequest() *RefreshStepContentRequest {
+func NewRefreshStepContentRequest(resultsAccessKey string) *RefreshStepContentRequest {
 	this := RefreshStepContentRequest{}
+	this.ResultsAccessKey = resultsAccessKey
 	return &this
 }
 
@@ -40,46 +45,28 @@ func NewRefreshStepContentRequestWithDefaults() *RefreshStepContentRequest {
 	return &this
 }
 
-// GetResultsAccessKey returns the ResultsAccessKey field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetResultsAccessKey returns the ResultsAccessKey field value
 func (o *RefreshStepContentRequest) GetResultsAccessKey() string {
-	if o == nil || IsNil(o.ResultsAccessKey.Get()) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.ResultsAccessKey.Get()
+
+	return o.ResultsAccessKey
 }
 
-// GetResultsAccessKeyOk returns a tuple with the ResultsAccessKey field value if set, nil otherwise
+// GetResultsAccessKeyOk returns a tuple with the ResultsAccessKey field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *RefreshStepContentRequest) GetResultsAccessKeyOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.ResultsAccessKey.Get(), o.ResultsAccessKey.IsSet()
+	return &o.ResultsAccessKey, true
 }
 
-// HasResultsAccessKey returns a boolean if a field has been set.
-func (o *RefreshStepContentRequest) HasResultsAccessKey() bool {
-	if o != nil && o.ResultsAccessKey.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetResultsAccessKey gets a reference to the given NullableString and assigns it to the ResultsAccessKey field.
+// SetResultsAccessKey sets field value
 func (o *RefreshStepContentRequest) SetResultsAccessKey(v string) {
-	o.ResultsAccessKey.Set(&v)
-}
-// SetResultsAccessKeyNil sets the value for ResultsAccessKey to be an explicit nil
-func (o *RefreshStepContentRequest) SetResultsAccessKeyNil() {
-	o.ResultsAccessKey.Set(nil)
-}
-
-// UnsetResultsAccessKey ensures that no value is present for ResultsAccessKey, not even an explicit nil
-func (o *RefreshStepContentRequest) UnsetResultsAccessKey() {
-	o.ResultsAccessKey.Unset()
+	o.ResultsAccessKey = v
 }
 
 func (o RefreshStepContentRequest) MarshalJSON() ([]byte, error) {
@@ -92,10 +79,45 @@ func (o RefreshStepContentRequest) MarshalJSON() ([]byte, error) {
 
 func (o RefreshStepContentRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.ResultsAccessKey.IsSet() {
-		toSerialize["resultsAccessKey"] = o.ResultsAccessKey.Get()
-	}
+	toSerialize["resultsAccessKey"] = o.ResultsAccessKey
 	return toSerialize, nil
+}
+
+func (o *RefreshStepContentRequest) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"resultsAccessKey",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varRefreshStepContentRequest := _RefreshStepContentRequest{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varRefreshStepContentRequest)
+
+	if err != nil {
+		return err
+	}
+
+	*o = RefreshStepContentRequest(varRefreshStepContentRequest)
+
+	return err
 }
 
 type NullableRefreshStepContentRequest struct {

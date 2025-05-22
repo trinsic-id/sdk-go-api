@@ -45,21 +45,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/GetAttachmentResponse'
           description: OK
-        "503":
-          content:
-            text/plain:
-              schema:
-                type: string
-            application/json:
-              schema:
-                type: string
-            text/json:
-              schema:
-                type: string
-          description: Service Unavailable
         "400":
           content:
-            application/json:
+            application/problem+json:
               example:
                 type: https://tools.ietf.org/html/rfc7231#section-6.5.1
                 title: Bad Request
@@ -74,12 +62,30 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Bad request
         "401":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Unauthorized
+                status: 401
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
           description: Unauthorized
         "403":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Forbidden
+                status: 403
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
           description: Forbidden
         "500":
           content:
-            application/json:
+            application/problem+json:
               example:
                 type: https://tools.ietf.org/html/rfc7231#section-6.6.1
                 title: Internal Server Error
@@ -110,7 +116,7 @@ paths:
           description: OK
         "400":
           content:
-            application/json:
+            application/problem+json:
               example:
                 type: https://tools.ietf.org/html/rfc7231#section-6.5.1
                 title: Bad Request
@@ -125,12 +131,30 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Bad request
         "401":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Unauthorized
+                status: 401
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
           description: Unauthorized
         "403":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Forbidden
+                status: 403
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
           description: Forbidden
         "500":
           content:
-            application/json:
+            application/problem+json:
               example:
                 type: https://tools.ietf.org/html/rfc7231#section-6.6.1
                 title: Internal Server Error
@@ -164,7 +188,7 @@ paths:
           description: OK
         "400":
           content:
-            application/json:
+            application/problem+json:
               example:
                 type: https://tools.ietf.org/html/rfc7231#section-6.5.1
                 title: Bad Request
@@ -179,12 +203,30 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Bad request
         "401":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Unauthorized
+                status: 401
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
           description: Unauthorized
         "403":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Forbidden
+                status: 403
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
           description: Forbidden
         "500":
           content:
-            application/json:
+            application/problem+json:
               example:
                 type: https://tools.ietf.org/html/rfc7231#section-6.6.1
                 title: Internal Server Error
@@ -230,7 +272,7 @@ paths:
           description: OK
         "400":
           content:
-            application/json:
+            application/problem+json:
               example:
                 type: https://tools.ietf.org/html/rfc7231#section-6.5.1
                 title: Bad Request
@@ -245,12 +287,30 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Bad request
         "401":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Unauthorized
+                status: 401
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
           description: Unauthorized
         "403":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Forbidden
+                status: 403
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
           description: Forbidden
         "500":
           content:
-            application/json:
+            application/problem+json:
               example:
                 type: https://tools.ietf.org/html/rfc7231#section-6.6.1
                 title: Internal Server Error
@@ -299,7 +359,7 @@ paths:
           description: OK
         "400":
           content:
-            application/json:
+            application/problem+json:
               example:
                 type: https://tools.ietf.org/html/rfc7231#section-6.5.1
                 title: Bad Request
@@ -314,12 +374,30 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Bad request
         "401":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Unauthorized
+                status: 401
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
           description: Unauthorized
         "403":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Forbidden
+                status: 403
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
           description: Forbidden
         "500":
           content:
-            application/json:
+            application/problem+json:
               example:
                 type: https://tools.ietf.org/html/rfc7231#section-6.6.1
                 title: Internal Server Error
@@ -373,7 +451,7 @@ paths:
           description: OK
         "400":
           content:
-            application/json:
+            application/problem+json:
               example:
                 type: https://tools.ietf.org/html/rfc7231#section-6.5.1
                 title: Bad Request
@@ -388,12 +466,30 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Bad request
         "401":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Unauthorized
+                status: 401
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
           description: Unauthorized
         "403":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Forbidden
+                status: 403
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
           description: Forbidden
         "500":
           content:
-            application/json:
+            application/problem+json:
               example:
                 type: https://tools.ietf.org/html/rfc7231#section-6.6.1
                 title: Internal Server Error
@@ -438,7 +534,7 @@ paths:
           description: OK
         "400":
           content:
-            application/json:
+            application/problem+json:
               example:
                 type: https://tools.ietf.org/html/rfc7231#section-6.5.1
                 title: Bad Request
@@ -453,12 +549,30 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Bad request
         "401":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Unauthorized
+                status: 401
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
           description: Unauthorized
         "403":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Forbidden
+                status: 403
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
           description: Forbidden
         "500":
           content:
-            application/json:
+            application/problem+json:
               example:
                 type: https://tools.ietf.org/html/rfc7231#section-6.6.1
                 title: Internal Server Error
@@ -504,7 +618,7 @@ paths:
           description: OK
         "400":
           content:
-            application/json:
+            application/problem+json:
               example:
                 type: https://tools.ietf.org/html/rfc7231#section-6.5.1
                 title: Bad Request
@@ -519,12 +633,30 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Bad request
         "401":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Unauthorized
+                status: 401
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
           description: Unauthorized
         "403":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Forbidden
+                status: 403
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
           description: Forbidden
         "500":
           content:
-            application/json:
+            application/problem+json:
               example:
                 type: https://tools.ietf.org/html/rfc7231#section-6.6.1
                 title: Internal Server Error
@@ -604,7 +736,7 @@ paths:
           description: OK
         "400":
           content:
-            application/json:
+            application/problem+json:
               example:
                 type: https://tools.ietf.org/html/rfc7231#section-6.5.1
                 title: Bad Request
@@ -619,12 +751,30 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Bad request
         "401":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Unauthorized
+                status: 401
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
           description: Unauthorized
         "403":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Forbidden
+                status: 403
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
           description: Forbidden
         "500":
           content:
-            application/json:
+            application/problem+json:
               example:
                 type: https://tools.ietf.org/html/rfc7231#section-6.6.1
                 title: Internal Server Error
@@ -663,7 +813,7 @@ paths:
           description: OK
         "400":
           content:
-            application/json:
+            application/problem+json:
               example:
                 type: https://tools.ietf.org/html/rfc7231#section-6.5.1
                 title: Bad Request
@@ -678,12 +828,30 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Bad request
         "401":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Unauthorized
+                status: 401
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
           description: Unauthorized
         "403":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Forbidden
+                status: 403
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
           description: Forbidden
         "500":
           content:
-            application/json:
+            application/problem+json:
               example:
                 type: https://tools.ietf.org/html/rfc7231#section-6.6.1
                 title: Internal Server Error
@@ -735,7 +903,7 @@ paths:
           description: OK
         "400":
           content:
-            application/json:
+            application/problem+json:
               example:
                 type: https://tools.ietf.org/html/rfc7231#section-6.5.1
                 title: Bad Request
@@ -750,12 +918,30 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Bad request
         "401":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Unauthorized
+                status: 401
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
           description: Unauthorized
         "403":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Forbidden
+                status: 403
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
           description: Forbidden
         "500":
           content:
-            application/json:
+            application/problem+json:
               example:
                 type: https://tools.ietf.org/html/rfc7231#section-6.6.1
                 title: Internal Server Error
@@ -777,6 +963,7 @@ paths:
         name: sessionId
         required: true
         schema:
+          format: uuid
           type: string
         style: simple
       responses:
@@ -794,7 +981,7 @@ paths:
           description: OK
         "400":
           content:
-            application/json:
+            application/problem+json:
               example:
                 type: https://tools.ietf.org/html/rfc7231#section-6.5.1
                 title: Bad Request
@@ -809,12 +996,30 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Bad request
         "401":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Unauthorized
+                status: 401
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
           description: Unauthorized
         "403":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Forbidden
+                status: 403
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
           description: Forbidden
         "500":
           content:
-            application/json:
+            application/problem+json:
               example:
                 type: https://tools.ietf.org/html/rfc7231#section-6.6.1
                 title: Internal Server Error
@@ -842,6 +1047,7 @@ paths:
         name: sessionId
         required: true
         schema:
+          format: uuid
           type: string
         style: simple
       responses:
@@ -849,7 +1055,7 @@ paths:
           description: OK
         "400":
           content:
-            application/json:
+            application/problem+json:
               example:
                 type: https://tools.ietf.org/html/rfc7231#section-6.5.1
                 title: Bad Request
@@ -864,12 +1070,30 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Bad request
         "401":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Unauthorized
+                status: 401
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
           description: Unauthorized
         "403":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Forbidden
+                status: 403
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
           description: Forbidden
         "500":
           content:
-            application/json:
+            application/problem+json:
               example:
                 type: https://tools.ietf.org/html/rfc7231#section-6.6.1
                 title: Internal Server Error
@@ -881,45 +1105,6 @@ paths:
       summary: Redact Session
       tags:
       - Sessions
-  /api/integrations/v1/interac/.well-known/jwks.json:
-    get:
-      operationId: InteracJwk
-      responses:
-        "200":
-          description: OK
-        "400":
-          content:
-            application/json:
-              example:
-                type: https://tools.ietf.org/html/rfc7231#section-6.5.1
-                title: Bad Request
-                detail: This feature is not supported for your configruation
-                status: 400
-                traceId: 00-3fcbc632c5caaca825849d495c62d7b0-09a3500f89acbbcc-00
-                instance: /api/v1/sample-request-path
-                errors:
-                  PropertyName:
-                  - Specific error description for property
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Bad request
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "500":
-          content:
-            application/json:
-              example:
-                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
-                title: Internal Server Error
-                status: 500
-                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Internal server error
-      tags:
-      - WellKnown
 components:
   schemas:
     AadhaarInput:
@@ -984,7 +1169,7 @@ components:
       required:
       - provider
       type: object
-    BangladeshNationalIdInput:
+    BangladeshNidInput:
       additionalProperties: false
       properties:
         nationalIdNumber:
@@ -1000,8 +1185,14 @@ components:
           description: The user's full name
           nullable: true
           type: string
-        photoBase64:
-          description: The base64-encoded bytes of the photo collected from the user
+        photoByes:
+          description: The raw bytes of the photo file collected from the user.
+          format: byte
+          nullable: true
+          type: string
+        photoImageMimeType:
+          description: "The MIME Type of the file contained in `PhotoByes`.\n    \
+            \        \nMust be one of `image/jpeg`, or `image/png`."
           nullable: true
           type: string
       type: object
@@ -1027,10 +1218,7 @@ components:
           pattern: ^\d*$
           type: string
         digitalCnhFile:
-          description: "The raw bytes of the digital CNH file collected from the user.\n\
-            \            \nTODO: Lucas or JP help me describe these below vvvvvvvv\n\
-            This can be:\n- An image containing a physical or digital QR code\n- A\
-            \ PDF file exported from the CNH app\n- Some scary third thing?"
+          description: The raw bytes of the digital CNH file collected from the user.
           format: byte
           nullable: true
           type: string
@@ -1855,27 +2043,27 @@ components:
       type: object
     ProblemDetails:
       additionalProperties: {}
-      example:
-        instance: instance
-        detail: detail
-        type: type
-        title: title
-        status: 0
       properties:
         type:
+          description: A URI reference that identifies the problem type.
           nullable: true
           type: string
         title:
+          description: "A short, human-readable summary of the error."
           nullable: true
           type: string
         status:
+          description: The HTTP status code returned for the request.
           format: int32
           nullable: true
           type: integer
         detail:
+          description: A human-readable explanation specific of the problem.
           nullable: true
           type: string
         instance:
+          description: A URI reference that identifies the specific occurrence of
+            the problem.
           nullable: true
           type: string
       type: object
@@ -2152,7 +2340,7 @@ components:
           nullable: true
         bangladeshNationalId:
           allOf:
-          - $ref: '#/components/schemas/BangladeshNationalIdInput'
+          - $ref: '#/components/schemas/BangladeshNidInput'
           description: Input for the `bangladesh-nid` provider
           nullable: true
         brazilCpfCheck:
@@ -2310,8 +2498,10 @@ components:
       properties:
         resultsAccessKey:
           description: The `ResultsAccessKey` returned when the Session was created
-          nullable: true
+          minLength: 1
           type: string
+      required:
+      - resultsAccessKey
       type: object
     RefreshStepContentResponse:
       additionalProperties: false

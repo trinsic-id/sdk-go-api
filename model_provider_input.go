@@ -32,7 +32,7 @@ type ProviderInput struct {
 	// Input for the `f-india-aadhaar-match` provider
 	Aadhaar NullableAadhaarInput `json:"aadhaar,omitempty"`
 	// Input for the `bangladesh-nid` provider
-	BangladeshNationalId NullableBangladeshNationalIdInput `json:"bangladeshNationalId,omitempty"`
+	BangladeshNationalId NullableBangladeshNidInput `json:"bangladeshNationalId,omitempty"`
 	// Input for the `g-brazil-cpf` provider
 	BrazilCpfCheck NullableBrazilCpfCheckInput `json:"brazilCpfCheck,omitempty"`
 	// Input for the `g-brazil-digital-cnh` provider
@@ -325,9 +325,9 @@ func (o *ProviderInput) UnsetAadhaar() {
 }
 
 // GetBangladeshNationalId returns the BangladeshNationalId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ProviderInput) GetBangladeshNationalId() BangladeshNationalIdInput {
+func (o *ProviderInput) GetBangladeshNationalId() BangladeshNidInput {
 	if o == nil || IsNil(o.BangladeshNationalId.Get()) {
-		var ret BangladeshNationalIdInput
+		var ret BangladeshNidInput
 		return ret
 	}
 	return *o.BangladeshNationalId.Get()
@@ -336,7 +336,7 @@ func (o *ProviderInput) GetBangladeshNationalId() BangladeshNationalIdInput {
 // GetBangladeshNationalIdOk returns a tuple with the BangladeshNationalId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ProviderInput) GetBangladeshNationalIdOk() (*BangladeshNationalIdInput, bool) {
+func (o *ProviderInput) GetBangladeshNationalIdOk() (*BangladeshNidInput, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -352,8 +352,8 @@ func (o *ProviderInput) HasBangladeshNationalId() bool {
 	return false
 }
 
-// SetBangladeshNationalId gets a reference to the given NullableBangladeshNationalIdInput and assigns it to the BangladeshNationalId field.
-func (o *ProviderInput) SetBangladeshNationalId(v BangladeshNationalIdInput) {
+// SetBangladeshNationalId gets a reference to the given NullableBangladeshNidInput and assigns it to the BangladeshNationalId field.
+func (o *ProviderInput) SetBangladeshNationalId(v BangladeshNidInput) {
 	o.BangladeshNationalId.Set(&v)
 }
 // SetBangladeshNationalIdNil sets the value for BangladeshNationalId to be an explicit nil

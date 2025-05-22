@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CpfNumber** | **string** | The user&#39;s 11-digit, numeric CPF Number | 
-**DigitalCnhFile** | Pointer to **NullableString** | The raw bytes of the digital CNH file collected from the user.              TODO: Lucas or JP help me describe these below vvvvvvvv This can be: - An image containing a physical or digital QR code - A PDF file exported from the CNH app - Some scary third thing? | [optional] 
+**DigitalCnhFile** | Pointer to **NullableString** | The raw bytes of the digital CNH file collected from the user. | [optional] 
 **DigitalCnhFileContentType** | Pointer to **NullableString** | The MIME Type of the file contained in &#x60;DigitalCnhFile&#x60;.              Must be one of &#x60;application/pdf&#x60;, &#x60;image/jpeg&#x60;, or &#x60;image/png&#x60;. | [optional] 
 **FacialBiometryPhoto** | Pointer to **NullableString** | The raw bytes of the image of the user&#39;s face, collected for biometric comparison. | [optional] 
 
