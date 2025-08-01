@@ -73,7 +73,7 @@ Other parameters are passed through a pointer to a apiListProviderContractsReque
 
 ## ListProviders
 
-> ListProvidersResponse ListProviders(ctx).Execute()
+> ListProvidersResponse ListProviders(ctx).Health(health).Execute()
 
 List Providers
 
@@ -92,10 +92,11 @@ import (
 )
 
 func main() {
+	health := "health_example" // string | Filter providers by health status. Valid values: \"online\", \"offline\", \"all\". Defaults to \"all\". (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.NetworkAPI.ListProviders(context.Background()).Execute()
+	resp, r, err := apiClient.NetworkAPI.ListProviders(context.Background()).Health(health).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NetworkAPI.ListProviders``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -107,12 +108,16 @@ func main() {
 
 ### Path Parameters
 
-This endpoint does not need any parameter.
+
 
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiListProvidersRequest struct via the builder pattern
 
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **health** | **string** | Filter providers by health status. Valid values: \&quot;online\&quot;, \&quot;offline\&quot;, \&quot;all\&quot;. Defaults to \&quot;all\&quot;. | 
 
 ### Return type
 

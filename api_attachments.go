@@ -40,7 +40,7 @@ func (r ApiGetAttachmentRequest) Execute() (*GetAttachmentResponse, *http.Respon
 /*
 GetAttachment Get Attachment
 
-Exchange an Attachment Access Key (from `IdentityData.Attachments`) for the raw contents of the attachment.
+Exchange an Attachment Access Key (from `IdentityData.AttachmentAccessKeys`) for the raw contents of the attachment.
             
 Use this API to fetch document (front, back, portrait) or other (selfie) images from a verification, if relevant.
             

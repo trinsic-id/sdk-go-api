@@ -25,7 +25,8 @@ type CreateHostedProviderSessionRequest struct {
 	Provider string `json:"provider"`
 	// The Redirect URL to which the user should be sent after the session is complete.
 	RedirectUrl string `json:"redirectUrl"`
-	// Provider-specific input for those providers which require it.
+	// Provider-specific input for those providers which require it.   <b>Deprecated:</b> In the future, Hosted Provider Sessions will not accept input on creation, and will instead always redirect the user to a hosted interface to collect input. If you need to collect input from the user yourself, please use the Create Advanced Session endpoint instead.
+	// Deprecated
 	ProviderInput NullableProviderInput `json:"providerInput,omitempty"`
 }
 
@@ -99,6 +100,7 @@ func (o *CreateHostedProviderSessionRequest) SetRedirectUrl(v string) {
 }
 
 // GetProviderInput returns the ProviderInput field value if set, zero value otherwise (both if not set or set to explicit null).
+// Deprecated
 func (o *CreateHostedProviderSessionRequest) GetProviderInput() ProviderInput {
 	if o == nil || IsNil(o.ProviderInput.Get()) {
 		var ret ProviderInput
@@ -110,6 +112,7 @@ func (o *CreateHostedProviderSessionRequest) GetProviderInput() ProviderInput {
 // GetProviderInputOk returns a tuple with the ProviderInput field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
+// Deprecated
 func (o *CreateHostedProviderSessionRequest) GetProviderInputOk() (*ProviderInput, bool) {
 	if o == nil {
 		return nil, false
@@ -127,6 +130,7 @@ func (o *CreateHostedProviderSessionRequest) HasProviderInput() bool {
 }
 
 // SetProviderInput gets a reference to the given NullableProviderInput and assigns it to the ProviderInput field.
+// Deprecated
 func (o *CreateHostedProviderSessionRequest) SetProviderInput(v ProviderInput) {
 	o.ProviderInput.Set(&v)
 }

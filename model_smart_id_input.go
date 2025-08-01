@@ -20,7 +20,10 @@ var _ MappedNullable = &SmartIdInput{}
 // SmartIdInput struct for SmartIdInput
 type SmartIdInput struct {
 	// The user's Smart ID Document Number
+	// Deprecated
 	SmartIdDocumentNumber NullableString `json:"smartIdDocumentNumber,omitempty"`
+	// The user's Smart ID ETSI number or document number.
+	SmartIdNumber NullableString `json:"smartIdNumber,omitempty"`
 }
 
 // NewSmartIdInput instantiates a new SmartIdInput object
@@ -41,6 +44,7 @@ func NewSmartIdInputWithDefaults() *SmartIdInput {
 }
 
 // GetSmartIdDocumentNumber returns the SmartIdDocumentNumber field value if set, zero value otherwise (both if not set or set to explicit null).
+// Deprecated
 func (o *SmartIdInput) GetSmartIdDocumentNumber() string {
 	if o == nil || IsNil(o.SmartIdDocumentNumber.Get()) {
 		var ret string
@@ -52,6 +56,7 @@ func (o *SmartIdInput) GetSmartIdDocumentNumber() string {
 // GetSmartIdDocumentNumberOk returns a tuple with the SmartIdDocumentNumber field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
+// Deprecated
 func (o *SmartIdInput) GetSmartIdDocumentNumberOk() (*string, bool) {
 	if o == nil {
 		return nil, false
@@ -69,6 +74,7 @@ func (o *SmartIdInput) HasSmartIdDocumentNumber() bool {
 }
 
 // SetSmartIdDocumentNumber gets a reference to the given NullableString and assigns it to the SmartIdDocumentNumber field.
+// Deprecated
 func (o *SmartIdInput) SetSmartIdDocumentNumber(v string) {
 	o.SmartIdDocumentNumber.Set(&v)
 }
@@ -80,6 +86,48 @@ func (o *SmartIdInput) SetSmartIdDocumentNumberNil() {
 // UnsetSmartIdDocumentNumber ensures that no value is present for SmartIdDocumentNumber, not even an explicit nil
 func (o *SmartIdInput) UnsetSmartIdDocumentNumber() {
 	o.SmartIdDocumentNumber.Unset()
+}
+
+// GetSmartIdNumber returns the SmartIdNumber field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *SmartIdInput) GetSmartIdNumber() string {
+	if o == nil || IsNil(o.SmartIdNumber.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.SmartIdNumber.Get()
+}
+
+// GetSmartIdNumberOk returns a tuple with the SmartIdNumber field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *SmartIdInput) GetSmartIdNumberOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.SmartIdNumber.Get(), o.SmartIdNumber.IsSet()
+}
+
+// HasSmartIdNumber returns a boolean if a field has been set.
+func (o *SmartIdInput) HasSmartIdNumber() bool {
+	if o != nil && o.SmartIdNumber.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSmartIdNumber gets a reference to the given NullableString and assigns it to the SmartIdNumber field.
+func (o *SmartIdInput) SetSmartIdNumber(v string) {
+	o.SmartIdNumber.Set(&v)
+}
+// SetSmartIdNumberNil sets the value for SmartIdNumber to be an explicit nil
+func (o *SmartIdInput) SetSmartIdNumberNil() {
+	o.SmartIdNumber.Set(nil)
+}
+
+// UnsetSmartIdNumber ensures that no value is present for SmartIdNumber, not even an explicit nil
+func (o *SmartIdInput) UnsetSmartIdNumber() {
+	o.SmartIdNumber.Unset()
 }
 
 func (o SmartIdInput) MarshalJSON() ([]byte, error) {
@@ -94,6 +142,9 @@ func (o SmartIdInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if o.SmartIdDocumentNumber.IsSet() {
 		toSerialize["smartIdDocumentNumber"] = o.SmartIdDocumentNumber.Get()
+	}
+	if o.SmartIdNumber.IsSet() {
+		toSerialize["smartIdNumber"] = o.SmartIdNumber.Get()
 	}
 	return toSerialize, nil
 }

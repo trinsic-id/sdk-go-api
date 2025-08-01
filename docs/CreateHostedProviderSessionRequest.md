@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Provider** | **string** | The ID of the provider to launch | 
 **RedirectUrl** | **string** | The Redirect URL to which the user should be sent after the session is complete. | 
-**ProviderInput** | Pointer to [**NullableProviderInput**](ProviderInput.md) | Provider-specific input for those providers which require it. | [optional] 
+**ProviderInput** | Pointer to [**NullableProviderInput**](ProviderInput.md) | Provider-specific input for those providers which require it.   &lt;b&gt;Deprecated:&lt;/b&gt; In the future, Hosted Provider Sessions will not accept input on creation, and will instead always redirect the user to a hosted interface to collect input. If you need to collect input from the user yourself, please use the Create Advanced Session endpoint instead. | [optional] 
 
 ## Methods
 

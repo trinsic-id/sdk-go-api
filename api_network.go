@@ -170,6 +170,13 @@ func (a *NetworkAPIService) ListProviderContractsExecute(r ApiListProviderContra
 type ApiListProvidersRequest struct {
 	ctx context.Context
 	ApiService *NetworkAPIService
+	health *string
+}
+
+// Filter providers by health status. Valid values: \&quot;online\&quot;, \&quot;offline\&quot;, \&quot;all\&quot;. Defaults to \&quot;all\&quot;.
+func (r ApiListProvidersRequest) Health(health string) ApiListProvidersRequest {
+	r.health = &health
+	return r
 }
 
 func (r ApiListProvidersRequest) Execute() (*ListProvidersResponse, *http.Response, error) {
@@ -212,6 +219,9 @@ func (a *NetworkAPIService) ListProvidersExecute(r ApiListProvidersRequest) (*Li
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.health != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "health", r.health, "form", "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -327,7 +337,7 @@ func (r ApiRecommendProvidersRequest) Execute() (*RecommendResponse, *http.Respo
 /*
 RecommendProviders Recommend Providers
 
-Generate provider recommendations based on the given signals (phone number, countries, states).
+Generate provider recommendations based on signals about the user's location (phone number, countries, states).
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiRecommendProvidersRequest

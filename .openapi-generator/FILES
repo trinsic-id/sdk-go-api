@@ -16,6 +16,7 @@ docs/BangladeshNidInput.md
 docs/BrazilCpfCheckInput.md
 docs/BrazilDigitalCnhInput.md
 docs/CancelSessionResponse.md
+docs/ContractField.md
 docs/CreateAdvancedProviderSessionRequest.md
 docs/CreateAdvancedProviderSessionResponse.md
 docs/CreateHostedProviderSessionRequest.md
@@ -25,6 +26,7 @@ docs/CreateWidgetSessionResponse.md
 docs/DocumentData.md
 docs/DocumentScanAttachments.md
 docs/DocumentType.md
+docs/FieldAvailability.md
 docs/GetAttachmentRequest.md
 docs/GetAttachmentResponse.md
 docs/GetSessionResponse.md
@@ -86,6 +88,7 @@ model_bangladesh_nid_input.go
 model_brazil_cpf_check_input.go
 model_brazil_digital_cnh_input.go
 model_cancel_session_response.go
+model_contract_field.go
 model_create_advanced_provider_session_request.go
 model_create_advanced_provider_session_response.go
 model_create_hosted_provider_session_request.go
@@ -95,6 +98,7 @@ model_create_widget_session_response.go
 model_document_data.go
 model_document_scan_attachments.go
 model_document_type.go
+model_field_availability.go
 model_get_attachment_request.go
 model_get_attachment_response.go
 model_get_session_response.go

@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Recognized** | [**[]ProviderInformation**](ProviderInformation.md) | The list of providers that were recognized in Trinsic&#39;s network. These are providers that already verified this user | 
-**Relevant** | [**[]ProviderInformation**](ProviderInformation.md) | The list of providers that although not recognized, are relevant to the user&#39;s identity. The user may have been verified by these providers | 
-**Remainder** | [**[]ProviderInformation**](ProviderInformation.md) | The list of providers that are not recognized and are not relevant to the user&#39;s identity | 
+**Recognized** | [**[]ProviderInformation**](ProviderInformation.md) | The providers which the user is known to have a credential with. | 
+**Relevant** | [**[]ProviderInformation**](ProviderInformation.md) | The providers which the user is deemed sufficiently likely to have a credential with. | 
+**Remainder** | [**[]ProviderInformation**](ProviderInformation.md) | The providers which the user is unlikely to have a credential with.              This includes all providers available to your app which were not included in the Recognized or Relevant lists. | 
 
 ## Methods
 

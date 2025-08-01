@@ -23,14 +23,14 @@ var _ MappedNullable = &CreateAdvancedProviderSessionRequest{}
 type CreateAdvancedProviderSessionRequest struct {
 	// The ID of the provider to launch
 	Provider string `json:"provider"`
-	// Provider-specific input for those providers which require it.
-	ProviderInput NullableProviderInput `json:"providerInput,omitempty"`
 	// The Redirect URL to which the user should be sent after the session is complete.              This field is required for providers which employ a redirect-based flow.
 	RedirectUrl NullableString `json:"redirectUrl,omitempty"`
 	// The list of capabilities your integration supports. Capabilities are the core of Trinsic's whitelabel-with-optional-fallback offering.              Most capabilities align with either an `IntegrationLaunchMethod` or an `IntegrationCollectionMethod`. The exception being refresh content to support updating the content of the launch method.              For example, to support a basic redirect-based flow, you must include the `LaunchRedirect` and `CaptureRedirect` capabilities. To support a mobile deeplink / polling flow, you must include the `DeeplinkToMobile` and `PollForResults` capabilities.              If `FallbackToHostedUi` is `true`, Trinsic will automatically fall back to a Trinsic-hosted UI to cover any gaps in your integration's capabilities. If `FallbackToHostedUi` is `false`, gaps in your integration's capabilities will result in an error during Session creation.              Read more on how to integrate at <a href=\"https://docs.trinsic.id/docs/advanced-provider-sessions\">the guide on Advanced Provider Sessions</a>
 	Capabilities []IntegrationCapability `json:"capabilities"`
 	// Whether the session should fall back to a Trinsic-hosted UI in certain instances.              Specifically, fallback will occur if any of the following are true: - You attempted to launch a provider which requires a capability you did not express support for     - In this case, Trinsic's hosted UI will perform the necessary capability - You attempted to launch a provider which requires input, and the input was either not provided or incomplete     - In this case, Trinsic's hosted UI will collect the necessary input from the user              If fallback occurs, the session's NextStep will always be LaunchBrowser, and the CollectionMethod will always be CaptureRedirect.              If this field is set to `true`, you must also: 1. Set the `RedirectUrl` field to a non-empty value 2. Include the `LaunchBrowser` and `CaptureRedirect` capabilities in the `Capabilities` field
 	FallbackToHostedUI NullableBool `json:"fallbackToHostedUI,omitempty"`
+	// Provider-specific input for those providers which require it.
+	ProviderInput NullableProviderInput `json:"providerInput,omitempty"`
 }
 
 type _CreateAdvancedProviderSessionRequest CreateAdvancedProviderSessionRequest
@@ -76,48 +76,6 @@ func (o *CreateAdvancedProviderSessionRequest) GetProviderOk() (*string, bool) {
 // SetProvider sets field value
 func (o *CreateAdvancedProviderSessionRequest) SetProvider(v string) {
 	o.Provider = v
-}
-
-// GetProviderInput returns the ProviderInput field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CreateAdvancedProviderSessionRequest) GetProviderInput() ProviderInput {
-	if o == nil || IsNil(o.ProviderInput.Get()) {
-		var ret ProviderInput
-		return ret
-	}
-	return *o.ProviderInput.Get()
-}
-
-// GetProviderInputOk returns a tuple with the ProviderInput field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CreateAdvancedProviderSessionRequest) GetProviderInputOk() (*ProviderInput, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ProviderInput.Get(), o.ProviderInput.IsSet()
-}
-
-// HasProviderInput returns a boolean if a field has been set.
-func (o *CreateAdvancedProviderSessionRequest) HasProviderInput() bool {
-	if o != nil && o.ProviderInput.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetProviderInput gets a reference to the given NullableProviderInput and assigns it to the ProviderInput field.
-func (o *CreateAdvancedProviderSessionRequest) SetProviderInput(v ProviderInput) {
-	o.ProviderInput.Set(&v)
-}
-// SetProviderInputNil sets the value for ProviderInput to be an explicit nil
-func (o *CreateAdvancedProviderSessionRequest) SetProviderInputNil() {
-	o.ProviderInput.Set(nil)
-}
-
-// UnsetProviderInput ensures that no value is present for ProviderInput, not even an explicit nil
-func (o *CreateAdvancedProviderSessionRequest) UnsetProviderInput() {
-	o.ProviderInput.Unset()
 }
 
 // GetRedirectUrl returns the RedirectUrl field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -228,6 +186,48 @@ func (o *CreateAdvancedProviderSessionRequest) UnsetFallbackToHostedUI() {
 	o.FallbackToHostedUI.Unset()
 }
 
+// GetProviderInput returns the ProviderInput field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateAdvancedProviderSessionRequest) GetProviderInput() ProviderInput {
+	if o == nil || IsNil(o.ProviderInput.Get()) {
+		var ret ProviderInput
+		return ret
+	}
+	return *o.ProviderInput.Get()
+}
+
+// GetProviderInputOk returns a tuple with the ProviderInput field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateAdvancedProviderSessionRequest) GetProviderInputOk() (*ProviderInput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ProviderInput.Get(), o.ProviderInput.IsSet()
+}
+
+// HasProviderInput returns a boolean if a field has been set.
+func (o *CreateAdvancedProviderSessionRequest) HasProviderInput() bool {
+	if o != nil && o.ProviderInput.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetProviderInput gets a reference to the given NullableProviderInput and assigns it to the ProviderInput field.
+func (o *CreateAdvancedProviderSessionRequest) SetProviderInput(v ProviderInput) {
+	o.ProviderInput.Set(&v)
+}
+// SetProviderInputNil sets the value for ProviderInput to be an explicit nil
+func (o *CreateAdvancedProviderSessionRequest) SetProviderInputNil() {
+	o.ProviderInput.Set(nil)
+}
+
+// UnsetProviderInput ensures that no value is present for ProviderInput, not even an explicit nil
+func (o *CreateAdvancedProviderSessionRequest) UnsetProviderInput() {
+	o.ProviderInput.Unset()
+}
+
 func (o CreateAdvancedProviderSessionRequest) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -239,15 +239,15 @@ func (o CreateAdvancedProviderSessionRequest) MarshalJSON() ([]byte, error) {
 func (o CreateAdvancedProviderSessionRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["provider"] = o.Provider
-	if o.ProviderInput.IsSet() {
-		toSerialize["providerInput"] = o.ProviderInput.Get()
-	}
 	if o.RedirectUrl.IsSet() {
 		toSerialize["redirectUrl"] = o.RedirectUrl.Get()
 	}
 	toSerialize["capabilities"] = o.Capabilities
 	if o.FallbackToHostedUI.IsSet() {
 		toSerialize["fallbackToHostedUI"] = o.FallbackToHostedUI.Get()
+	}
+	if o.ProviderInput.IsSet() {
+		toSerialize["providerInput"] = o.ProviderInput.Get()
 	}
 	return toSerialize, nil
 }

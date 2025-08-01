@@ -24,6 +24,7 @@ const (
 	DOCUMENTTYPE_DRIVERS_LICENSE DocumentType = "DriversLicense"
 	DOCUMENTTYPE_NATIONAL_ID DocumentType = "NationalId"
 	DOCUMENTTYPE_ID_CARD DocumentType = "IdCard"
+	DOCUMENTTYPE_OTHER DocumentType = "Other"
 )
 
 // All allowed values of DocumentType enum
@@ -32,6 +33,7 @@ var AllowedDocumentTypeEnumValues = []DocumentType{
 	"DriversLicense",
 	"NationalId",
 	"IdCard",
+	"Other",
 }
 
 func (v *DocumentType) UnmarshalJSON(src []byte) error {

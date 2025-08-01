@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **SmartIdDocumentNumber** | Pointer to **NullableString** | The user&#39;s Smart ID Document Number | [optional] 
+**SmartIdNumber** | Pointer to **NullableString** | The user&#39;s Smart ID ETSI number or document number. | [optional] 
 
 ## Methods
 
@@ -60,6 +61,41 @@ HasSmartIdDocumentNumber returns a boolean if a field has been set.
 `func (o *SmartIdInput) UnsetSmartIdDocumentNumber()`
 
 UnsetSmartIdDocumentNumber ensures that no value is present for SmartIdDocumentNumber, not even an explicit nil
+### GetSmartIdNumber
+
+`func (o *SmartIdInput) GetSmartIdNumber() string`
+
+GetSmartIdNumber returns the SmartIdNumber field if non-nil, zero value otherwise.
+
+### GetSmartIdNumberOk
+
+`func (o *SmartIdInput) GetSmartIdNumberOk() (*string, bool)`
+
+GetSmartIdNumberOk returns a tuple with the SmartIdNumber field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSmartIdNumber
+
+`func (o *SmartIdInput) SetSmartIdNumber(v string)`
+
+SetSmartIdNumber sets SmartIdNumber field to given value.
+
+### HasSmartIdNumber
+
+`func (o *SmartIdInput) HasSmartIdNumber() bool`
+
+HasSmartIdNumber returns a boolean if a field has been set.
+
+### SetSmartIdNumberNil
+
+`func (o *SmartIdInput) SetSmartIdNumberNil(b bool)`
+
+ SetSmartIdNumberNil sets the value for SmartIdNumber to be an explicit nil
+
+### UnsetSmartIdNumber
+`func (o *SmartIdInput) UnsetSmartIdNumber()`
+
+UnsetSmartIdNumber ensures that no value is present for SmartIdNumber, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

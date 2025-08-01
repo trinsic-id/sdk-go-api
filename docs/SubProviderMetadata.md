@@ -6,14 +6,15 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | The ID of the sub-provider.              This cannot be used as a standalone Provider ID when creating a Session. It must be passed in via the Provider-specific input. | 
 **Name** | **string** | The name of the sub-provider | 
-**Description** | **string** | Flavor text for the sub-provider | 
+**Subtext** | **string** | The Provider&#39;s subtext recommended to be shown next to the name.              This is flavor text, not a full, human-readable description of the provider. | 
+**Description** | **string** | The Provider&#39;s subtext recommended to be shown next to the name.              This is flavor text, not a full, human-readable description of the provider. | 
 **LogoUrl** | **string** | A URL pointing to the logo on Trinsic&#39;s CDN.              May be a PNG, JPG, or SVG image. | 
 
 ## Methods
 
 ### NewSubProviderMetadata
 
-`func NewSubProviderMetadata(id string, name string, description string, logoUrl string, ) *SubProviderMetadata`
+`func NewSubProviderMetadata(id string, name string, subtext string, description string, logoUrl string, ) *SubProviderMetadata`
 
 NewSubProviderMetadata instantiates a new SubProviderMetadata object
 This constructor will assign default values to properties that have it defined,
@@ -66,6 +67,26 @@ and a boolean to check if the value has been set.
 `func (o *SubProviderMetadata) SetName(v string)`
 
 SetName sets Name field to given value.
+
+
+### GetSubtext
+
+`func (o *SubProviderMetadata) GetSubtext() string`
+
+GetSubtext returns the Subtext field if non-nil, zero value otherwise.
+
+### GetSubtextOk
+
+`func (o *SubProviderMetadata) GetSubtextOk() (*string, bool)`
+
+GetSubtextOk returns a tuple with the Subtext field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSubtext
+
+`func (o *SubProviderMetadata) SetSubtext(v string)`
+
+SetSubtext sets Subtext field to given value.
 
 
 ### GetDescription

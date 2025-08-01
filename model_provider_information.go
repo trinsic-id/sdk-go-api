@@ -21,9 +21,27 @@ var _ MappedNullable = &ProviderInformation{}
 
 // ProviderInformation struct for ProviderInformation
 type ProviderInformation struct {
+	// The ID of the provider
+	Id string `json:"id"`
+	// The friendly, human-readable name of the provider
+	Name string `json:"name"`
+	// A URL pointing to the provider's logo
+	LogoUrl string `json:"logoUrl"`
+	// The Provider's subtext recommended to be shown next to the name.              This is flavor text, not a full, human-readable description of the provider.
+	Subtext string `json:"subtext"`
+	// The ID of the provider
+	// Deprecated
 	ProviderId string `json:"providerId"`
+	// The friendly, human-readable name of the provider
+	// Deprecated
 	ProviderDisplayName string `json:"providerDisplayName"`
+	// A URL pointing to the provider's logo
+	// Deprecated
 	ProviderLogo string `json:"providerLogo"`
+	// The current health status of the provider
+	Health string `json:"health"`
+	// Metadata about the sub-providers which are available for this Provider.              For example, Italy's SPID is a Provider which aggregates access to multiple sub-providers.
+	SubProviders []SubProviderMetadata `json:"subProviders,omitempty"`
 }
 
 type _ProviderInformation ProviderInformation
@@ -32,11 +50,16 @@ type _ProviderInformation ProviderInformation
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewProviderInformation(providerId string, providerDisplayName string, providerLogo string) *ProviderInformation {
+func NewProviderInformation(id string, name string, logoUrl string, subtext string, providerId string, providerDisplayName string, providerLogo string, health string) *ProviderInformation {
 	this := ProviderInformation{}
+	this.Id = id
+	this.Name = name
+	this.LogoUrl = logoUrl
+	this.Subtext = subtext
 	this.ProviderId = providerId
 	this.ProviderDisplayName = providerDisplayName
 	this.ProviderLogo = providerLogo
+	this.Health = health
 	return &this
 }
 
@@ -48,7 +71,104 @@ func NewProviderInformationWithDefaults() *ProviderInformation {
 	return &this
 }
 
+// GetId returns the Id field value
+func (o *ProviderInformation) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *ProviderInformation) GetIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *ProviderInformation) SetId(v string) {
+	o.Id = v
+}
+
+// GetName returns the Name field value
+func (o *ProviderInformation) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *ProviderInformation) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *ProviderInformation) SetName(v string) {
+	o.Name = v
+}
+
+// GetLogoUrl returns the LogoUrl field value
+func (o *ProviderInformation) GetLogoUrl() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.LogoUrl
+}
+
+// GetLogoUrlOk returns a tuple with the LogoUrl field value
+// and a boolean to check if the value has been set.
+func (o *ProviderInformation) GetLogoUrlOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.LogoUrl, true
+}
+
+// SetLogoUrl sets field value
+func (o *ProviderInformation) SetLogoUrl(v string) {
+	o.LogoUrl = v
+}
+
+// GetSubtext returns the Subtext field value
+func (o *ProviderInformation) GetSubtext() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Subtext
+}
+
+// GetSubtextOk returns a tuple with the Subtext field value
+// and a boolean to check if the value has been set.
+func (o *ProviderInformation) GetSubtextOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Subtext, true
+}
+
+// SetSubtext sets field value
+func (o *ProviderInformation) SetSubtext(v string) {
+	o.Subtext = v
+}
+
 // GetProviderId returns the ProviderId field value
+// Deprecated
 func (o *ProviderInformation) GetProviderId() string {
 	if o == nil {
 		var ret string
@@ -60,6 +180,7 @@ func (o *ProviderInformation) GetProviderId() string {
 
 // GetProviderIdOk returns a tuple with the ProviderId field value
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *ProviderInformation) GetProviderIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
@@ -68,11 +189,13 @@ func (o *ProviderInformation) GetProviderIdOk() (*string, bool) {
 }
 
 // SetProviderId sets field value
+// Deprecated
 func (o *ProviderInformation) SetProviderId(v string) {
 	o.ProviderId = v
 }
 
 // GetProviderDisplayName returns the ProviderDisplayName field value
+// Deprecated
 func (o *ProviderInformation) GetProviderDisplayName() string {
 	if o == nil {
 		var ret string
@@ -84,6 +207,7 @@ func (o *ProviderInformation) GetProviderDisplayName() string {
 
 // GetProviderDisplayNameOk returns a tuple with the ProviderDisplayName field value
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *ProviderInformation) GetProviderDisplayNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
@@ -92,11 +216,13 @@ func (o *ProviderInformation) GetProviderDisplayNameOk() (*string, bool) {
 }
 
 // SetProviderDisplayName sets field value
+// Deprecated
 func (o *ProviderInformation) SetProviderDisplayName(v string) {
 	o.ProviderDisplayName = v
 }
 
 // GetProviderLogo returns the ProviderLogo field value
+// Deprecated
 func (o *ProviderInformation) GetProviderLogo() string {
 	if o == nil {
 		var ret string
@@ -108,6 +234,7 @@ func (o *ProviderInformation) GetProviderLogo() string {
 
 // GetProviderLogoOk returns a tuple with the ProviderLogo field value
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *ProviderInformation) GetProviderLogoOk() (*string, bool) {
 	if o == nil {
 		return nil, false
@@ -116,8 +243,66 @@ func (o *ProviderInformation) GetProviderLogoOk() (*string, bool) {
 }
 
 // SetProviderLogo sets field value
+// Deprecated
 func (o *ProviderInformation) SetProviderLogo(v string) {
 	o.ProviderLogo = v
+}
+
+// GetHealth returns the Health field value
+func (o *ProviderInformation) GetHealth() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Health
+}
+
+// GetHealthOk returns a tuple with the Health field value
+// and a boolean to check if the value has been set.
+func (o *ProviderInformation) GetHealthOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Health, true
+}
+
+// SetHealth sets field value
+func (o *ProviderInformation) SetHealth(v string) {
+	o.Health = v
+}
+
+// GetSubProviders returns the SubProviders field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderInformation) GetSubProviders() []SubProviderMetadata {
+	if o == nil {
+		var ret []SubProviderMetadata
+		return ret
+	}
+	return o.SubProviders
+}
+
+// GetSubProvidersOk returns a tuple with the SubProviders field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderInformation) GetSubProvidersOk() ([]SubProviderMetadata, bool) {
+	if o == nil || IsNil(o.SubProviders) {
+		return nil, false
+	}
+	return o.SubProviders, true
+}
+
+// HasSubProviders returns a boolean if a field has been set.
+func (o *ProviderInformation) HasSubProviders() bool {
+	if o != nil && !IsNil(o.SubProviders) {
+		return true
+	}
+
+	return false
+}
+
+// SetSubProviders gets a reference to the given []SubProviderMetadata and assigns it to the SubProviders field.
+func (o *ProviderInformation) SetSubProviders(v []SubProviderMetadata) {
+	o.SubProviders = v
 }
 
 func (o ProviderInformation) MarshalJSON() ([]byte, error) {
@@ -130,9 +315,17 @@ func (o ProviderInformation) MarshalJSON() ([]byte, error) {
 
 func (o ProviderInformation) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["id"] = o.Id
+	toSerialize["name"] = o.Name
+	toSerialize["logoUrl"] = o.LogoUrl
+	toSerialize["subtext"] = o.Subtext
 	toSerialize["providerId"] = o.ProviderId
 	toSerialize["providerDisplayName"] = o.ProviderDisplayName
 	toSerialize["providerLogo"] = o.ProviderLogo
+	toSerialize["health"] = o.Health
+	if o.SubProviders != nil {
+		toSerialize["subProviders"] = o.SubProviders
+	}
 	return toSerialize, nil
 }
 
@@ -141,9 +334,14 @@ func (o *ProviderInformation) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
+		"id",
+		"name",
+		"logoUrl",
+		"subtext",
 		"providerId",
 		"providerDisplayName",
 		"providerLogo",
+		"health",
 	}
 
 	allProperties := make(map[string]interface{})

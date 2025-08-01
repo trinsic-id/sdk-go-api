@@ -19,35 +19,35 @@ var _ MappedNullable = &ProviderInput{}
 
 // ProviderInput struct for ProviderInput
 type ProviderInput struct {
-	// Input for the `f-indonesia-nik` provider
+	// Input for the `indonesia-nik-lookup` provider
 	IndonesiaNik NullableIndonesiaNikInput `json:"indonesiaNik,omitempty"`
-	// Input for the `f-mexico-curp` provider
+	// Input for the `mexico-curp-lookup` provider
 	MexicoCurp NullableMexicoCurpInput `json:"mexicoCurp,omitempty"`
-	// Input for the `f-south-africa-nid` provider
+	// Input for the `south-africa-nid-lookup` provider
 	SouthAfricaNid NullableSouthAfricaNidInput `json:"southAfricaNid,omitempty"`
-	// Input for the `f-kenya-nid` provider
+	// Input for the `kenya-nid-lookup` provider
 	KenyaNid NullableKenyaNidInput `json:"kenyaNid,omitempty"`
-	// Input for the `f-nigeria-nin` provider
+	// Input for the `nigeria-nin-lookup` provider
 	NigeriaNin NullableNigeriaNinInput `json:"nigeriaNin,omitempty"`
-	// Input for the `f-india-aadhaar-match` provider
+	// Input for the `india-digilocker-aadhaar-match` provider
 	Aadhaar NullableAadhaarInput `json:"aadhaar,omitempty"`
 	// Input for the `bangladesh-nid` provider
 	BangladeshNationalId NullableBangladeshNidInput `json:"bangladeshNationalId,omitempty"`
-	// Input for the `g-brazil-cpf` provider
+	// Input for the `brazil-cpf-lookup` provider
 	BrazilCpfCheck NullableBrazilCpfCheckInput `json:"brazilCpfCheck,omitempty"`
-	// Input for the `g-brazil-digital-cnh` provider
+	// Input for the `brazil-digital-cnh` provider
 	BrazilDigitalCnh NullableBrazilDigitalCnhInput `json:"brazilDigitalCnh,omitempty"`
-	// Input for the `b-philsys-biometric` provider
+	// Input for the `philippines-philsys-match` provider
 	PhilippineMatch NullablePhilippineMatchInput `json:"philippineMatch,omitempty"`
-	// Input for the `b-philippine-qr-digital-national-id` and `b-philippine-qr-ephill-id` providers
+	// Input for the `philippines-digital-national-id-qr` and `philippines-physical-national-id-qr` providers
 	PhilippineQR NullablePhilippineQRInput `json:"philippineQR,omitempty"`
 	// Input for the `smart-id` provider
 	SmartId NullableSmartIdInput `json:"smartId,omitempty"`
 	// Input for the `mobile-id` provider
 	MobileId NullableMobileIdInput `json:"mobileId,omitempty"`
-	// Input for the `idin` provider
+	// Input for the `netherlands-idin` provider
 	Idin NullableIdinInput `json:"idin,omitempty"`
-	// Input for the `spid` provider
+	// Input for the `italy-spid` provider
 	Spid NullableSpidInput `json:"spid,omitempty"`
 	// *TEST MODE ONLY.*              Input for the `trinsic-test-database-lookup` provider
 	TrinsicTestDatabaseLookup NullableTrinsicTestDatabaseLookupInput `json:"trinsicTestDatabaseLookup,omitempty"`

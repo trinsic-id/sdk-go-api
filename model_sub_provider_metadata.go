@@ -25,7 +25,10 @@ type SubProviderMetadata struct {
 	Id string `json:"id"`
 	// The name of the sub-provider
 	Name string `json:"name"`
-	// Flavor text for the sub-provider
+	// The Provider's subtext recommended to be shown next to the name.              This is flavor text, not a full, human-readable description of the provider.
+	Subtext string `json:"subtext"`
+	// The Provider's subtext recommended to be shown next to the name.              This is flavor text, not a full, human-readable description of the provider.
+	// Deprecated
 	Description string `json:"description"`
 	// A URL pointing to the logo on Trinsic's CDN.              May be a PNG, JPG, or SVG image.
 	LogoUrl string `json:"logoUrl"`
@@ -37,10 +40,11 @@ type _SubProviderMetadata SubProviderMetadata
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSubProviderMetadata(id string, name string, description string, logoUrl string) *SubProviderMetadata {
+func NewSubProviderMetadata(id string, name string, subtext string, description string, logoUrl string) *SubProviderMetadata {
 	this := SubProviderMetadata{}
 	this.Id = id
 	this.Name = name
+	this.Subtext = subtext
 	this.Description = description
 	this.LogoUrl = logoUrl
 	return &this
@@ -102,7 +106,32 @@ func (o *SubProviderMetadata) SetName(v string) {
 	o.Name = v
 }
 
+// GetSubtext returns the Subtext field value
+func (o *SubProviderMetadata) GetSubtext() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Subtext
+}
+
+// GetSubtextOk returns a tuple with the Subtext field value
+// and a boolean to check if the value has been set.
+func (o *SubProviderMetadata) GetSubtextOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Subtext, true
+}
+
+// SetSubtext sets field value
+func (o *SubProviderMetadata) SetSubtext(v string) {
+	o.Subtext = v
+}
+
 // GetDescription returns the Description field value
+// Deprecated
 func (o *SubProviderMetadata) GetDescription() string {
 	if o == nil {
 		var ret string
@@ -114,6 +143,7 @@ func (o *SubProviderMetadata) GetDescription() string {
 
 // GetDescriptionOk returns a tuple with the Description field value
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *SubProviderMetadata) GetDescriptionOk() (*string, bool) {
 	if o == nil {
 		return nil, false
@@ -122,6 +152,7 @@ func (o *SubProviderMetadata) GetDescriptionOk() (*string, bool) {
 }
 
 // SetDescription sets field value
+// Deprecated
 func (o *SubProviderMetadata) SetDescription(v string) {
 	o.Description = v
 }
@@ -162,6 +193,7 @@ func (o SubProviderMetadata) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["id"] = o.Id
 	toSerialize["name"] = o.Name
+	toSerialize["subtext"] = o.Subtext
 	toSerialize["description"] = o.Description
 	toSerialize["logoUrl"] = o.LogoUrl
 	return toSerialize, nil
@@ -174,6 +206,7 @@ func (o *SubProviderMetadata) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"id",
 		"name",
+		"subtext",
 		"description",
 		"logoUrl",
 	}

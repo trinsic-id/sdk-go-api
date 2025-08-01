@@ -26,6 +26,7 @@ const (
 	INTEGRATIONCAPABILITY_REFRESH_STEP_CONTENT IntegrationCapability = "RefreshStepContent"
 	INTEGRATIONCAPABILITY_CAPTURE_REDIRECT IntegrationCapability = "CaptureRedirect"
 	INTEGRATIONCAPABILITY_POLL_RESULT IntegrationCapability = "PollResult"
+	INTEGRATIONCAPABILITY_POLL_AFTER_REDIRECT IntegrationCapability = "PollAfterRedirect"
 )
 
 // All allowed values of IntegrationCapability enum
@@ -36,6 +37,7 @@ var AllowedIntegrationCapabilityEnumValues = []IntegrationCapability{
 	"RefreshStepContent",
 	"CaptureRedirect",
 	"PollResult",
+	"PollAfterRedirect",
 }
 
 func (v *IntegrationCapability) UnmarshalJSON(src []byte) error {

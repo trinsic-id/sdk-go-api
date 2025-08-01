@@ -30,7 +30,7 @@ type Session struct {
 	ErrorCode NullableSessionErrorCode `json:"errorCode,omitempty"`
 	// The unix timestamp, in seconds, when this session was created
 	Created int64 `json:"created"`
-	// The unix timestamp, in seconds, when this session's state last changed
+	// The unix timestamp, in seconds, when this session's data was last updated
 	Updated int64 `json:"updated"`
 }
 

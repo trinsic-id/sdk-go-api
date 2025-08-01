@@ -21,11 +21,11 @@ var _ MappedNullable = &RecommendResponse{}
 
 // RecommendResponse struct for RecommendResponse
 type RecommendResponse struct {
-	// The list of providers that were recognized in Trinsic's network. These are providers that already verified this user
+	// The providers which the user is known to have a credential with.
 	Recognized []ProviderInformation `json:"recognized"`
-	// The list of providers that although not recognized, are relevant to the user's identity. The user may have been verified by these providers
+	// The providers which the user is deemed sufficiently likely to have a credential with.
 	Relevant []ProviderInformation `json:"relevant"`
-	// The list of providers that are not recognized and are not relevant to the user's identity
+	// The providers which the user is unlikely to have a credential with.              This includes all providers available to your app which were not included in the Recognized or Relevant lists.
 	Remainder []ProviderInformation `json:"remainder"`
 }
 

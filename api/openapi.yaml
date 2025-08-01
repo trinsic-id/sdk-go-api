@@ -11,7 +11,7 @@ security:
 paths:
   /api/v1/attachments/attachment:
     post:
-      description: "Exchange an Attachment Access Key (from `IdentityData.Attachments`)\
+      description: "Exchange an Attachment Access Key (from `IdentityData.AttachmentAccessKeys`)\
         \ for the raw contents of the attachment.\n            \nUse this API to fetch\
         \ document (front, back, portrait) or other (selfie) images from a verification,\
         \ if relevant.\n            \nIn some cases, attachments may not be immediately\
@@ -101,6 +101,16 @@ paths:
     get:
       description: List all identity providers available for use
       operationId: ListProviders
+      parameters:
+      - description: "Filter providers by health status. Valid values: \"online\"\
+          , \"offline\", \"all\". Defaults to \"all\"."
+        explode: true
+        in: query
+        name: health
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -240,8 +250,8 @@ paths:
       - Network
   /api/v1/network/recommend:
     post:
-      description: "Generate provider recommendations based on the given signals (phone\
-        \ number, countries, states)."
+      description: "Generate provider recommendations based on signals about the user's\
+        \ location (phone number, countries, states)."
       operationId: RecommendProviders
       requestBody:
         content:
@@ -1033,13 +1043,10 @@ paths:
       - Sessions
   /api/v1/sessions/{sessionId}/redact:
     post:
-      description: "Redact a Session, removing all identity data from Trinsic's servers.\n\
-        Every application has a redaction period that dictates how long we will hold\
-        \ on to your users' PII data. Once a session falls outside the redaction cutoff\
-        \ date, all PII will automatically be removed from that session.\nYou can\
-        \ utilize this endpoint to redact a session immediately.\n            \nIdentity\
-        \ data that a user has chosen to save in their passkey-protected wallet will\
-        \ not be deleted."
+      description: |-
+        Redact a Session, removing all identity data from Trinsic's servers.
+        Every application has a redaction period that dictates how long we will hold on to your users' PII data. Once a session falls outside the redaction cutoff date, all PII will automatically be removed from that session.
+        You can utilize this endpoint to redact a session immediately.
       operationId: RedactSession
       parameters:
       - explode: false
@@ -1174,16 +1181,17 @@ components:
       properties:
         nationalIdNumber:
           description: The user's Bangladesh National ID number.
-          nullable: true
+          maxLength: 17
+          minLength: 10
           type: string
         dateOfBirth:
           description: "The user's date of birth, in `YYYY-MM-DD` format"
           format: date
-          nullable: true
           type: string
         name:
           description: The user's full name
-          nullable: true
+          maxLength: 80
+          minLength: 1
           type: string
         photoByes:
           description: The raw bytes of the photo file collected from the user.
@@ -1195,6 +1203,10 @@ components:
             \        \nMust be one of `image/jpeg`, or `image/png`."
           nullable: true
           type: string
+      required:
+      - dateOfBirth
+      - name
+      - nationalIdNumber
       type: object
     BrazilCpfCheckInput:
       additionalProperties: false
@@ -1247,6 +1259,32 @@ components:
       required:
       - session
       type: object
+    ContractField:
+      additionalProperties: false
+      description: Information about a field that a Provider will return in verification
+        results.
+      example:
+        name: person.givenName
+        outputted: Always
+      properties:
+        name:
+          description: The name of the field as it appears in verification results.
+          example: person.givenName
+          type: string
+        outputted:
+          allOf:
+          - $ref: '#/components/schemas/FieldAvailability'
+          description: Indicates when this field will be present in verification results.
+          example: Always
+          x-enumDescriptions:
+            Never: This field will never be present in verification results.
+            Sometimes: This field may or may not be present depending on the verification
+              context.
+            Always: This field will always be present in verification results.
+      required:
+      - name
+      - outputted
+      type: object
     CreateAdvancedProviderSessionRequest:
       additionalProperties: false
       example:
@@ -1262,11 +1300,6 @@ components:
           description: The ID of the provider to launch
           minLength: 1
           type: string
-        providerInput:
-          allOf:
-          - $ref: '#/components/schemas/ProviderInput'
-          description: Provider-specific input for those providers which require it.
-          nullable: true
         redirectUrl:
           description: "The Redirect URL to which the user should be sent after the\
             \ session is complete.\n            \nThis field is required for providers\
@@ -1309,6 +1342,11 @@ components:
             \ capabilities in the `Capabilities` field"
           nullable: true
           type: boolean
+        providerInput:
+          allOf:
+          - $ref: '#/components/schemas/ProviderInput'
+          description: Provider-specific input for those providers which require it.
+          nullable: true
       required:
       - capabilities
       - provider
@@ -1358,7 +1396,14 @@ components:
         providerInput:
           allOf:
           - $ref: '#/components/schemas/ProviderInput'
-          description: Provider-specific input for those providers which require it.
+          deprecated: true
+          description: |-
+            Provider-specific input for those providers which require it.
+
+
+            <b>Deprecated:</b> In the future, Hosted Provider Sessions will not accept input on creation,
+            and will instead always redirect the user to a hosted interface to collect input. If you need
+            to collect input from the user yourself, please use the Create Advanced Session endpoint instead.
           nullable: true
       required:
       - provider
@@ -1503,12 +1548,26 @@ components:
       - DriversLicense
       - NationalId
       - IdCard
+      - Other
       type: string
       x-enumDescriptions:
         Passport: ""
         DriversLicense: ""
         NationalId: ""
         IdCard: ""
+        Other: ""
+    FieldAvailability:
+      description: Indicates when a field will be available in verification results.
+      enum:
+      - Never
+      - Sometimes
+      - Always
+      type: string
+      x-enumDescriptions:
+        Never: This field will never be present in verification results.
+        Sometimes: This field may or may not be present depending on the verification
+          context.
+        Always: This field will always be present in verification results.
     GetAttachmentRequest:
       additionalProperties: false
       example:
@@ -1650,6 +1709,7 @@ components:
       - RefreshStepContent
       - CaptureRedirect
       - PollResult
+      - PollAfterRedirect
       type: string
       x-enumDescriptions:
         LaunchBrowser: Signals that your integration supports the `LaunchBrowser`
@@ -1664,6 +1724,11 @@ components:
           results collection method.
         PollResult: Signals that your integration supports the `PollResult` results
           collection method.
+        PollAfterRedirect: "Signals that your integration supports polling after the\
+          \ user has been redirected back to your application.\n            \nThis\
+          \ is necessary for Providers which make results available asynchronously,\
+          \ where the user is redirected back to your application before the results\
+          \ are available."
     IntegrationLaunchMethod:
       enum:
       - LaunchBrowser
@@ -1773,6 +1838,12 @@ components:
       example:
         providerContracts:
         - collectionMethod: PollResult
+          availableFields:
+          - name: person.givenName
+            outputted: Always
+          - name: person.givenName
+            outputted: Always
+          subtext: dmv.ca.gov
           regions:
           - United States
           hasTrinsicInterface: true
@@ -1788,17 +1859,25 @@ components:
           name: CA DMV
           resultsMayBeDelayedAfterRedirect: false
           hasRefreshableContent: false
-          id: ca-mdl
+          id: usa-california-dmv
           subProviders:
-          - name: name
-            description: description
+          - subtext: dmv.ca.gov
+            name: name
+            description: dmv.ca.gov
             id: id
             logoUrl: logoUrl
-          - name: name
-            description: description
+          - subtext: dmv.ca.gov
+            name: name
+            description: dmv.ca.gov
             id: id
             logoUrl: logoUrl
         - collectionMethod: PollResult
+          availableFields:
+          - name: person.givenName
+            outputted: Always
+          - name: person.givenName
+            outputted: Always
+          subtext: dmv.ca.gov
           regions:
           - United States
           hasTrinsicInterface: true
@@ -1814,14 +1893,16 @@ components:
           name: CA DMV
           resultsMayBeDelayedAfterRedirect: false
           hasRefreshableContent: false
-          id: ca-mdl
+          id: usa-california-dmv
           subProviders:
-          - name: name
-            description: description
+          - subtext: dmv.ca.gov
+            name: name
+            description: dmv.ca.gov
             id: id
             logoUrl: logoUrl
-          - name: name
-            description: description
+          - subtext: dmv.ca.gov
+            name: name
+            description: dmv.ca.gov
             id: id
             logoUrl: logoUrl
       properties:
@@ -1838,11 +1919,39 @@ components:
       additionalProperties: false
       example:
         providers:
-        - name: Yoti | CLEAR | ...
+        - subtext: dmv.ca.gov
+          name: Yoti | CLEAR | ...
+          description: dmv.ca.gov
+          health: online | offline
           id: yoti | clear | ...
+          subProviders:
+          - subtext: dmv.ca.gov
+            name: name
+            description: dmv.ca.gov
+            id: id
+            logoUrl: logoUrl
+          - subtext: dmv.ca.gov
+            name: name
+            description: dmv.ca.gov
+            id: id
+            logoUrl: logoUrl
           logoUrl: logoUrl
-        - name: Yoti | CLEAR | ...
+        - subtext: dmv.ca.gov
+          name: Yoti | CLEAR | ...
+          description: dmv.ca.gov
+          health: online | offline
           id: yoti | clear | ...
+          subProviders:
+          - subtext: dmv.ca.gov
+            name: name
+            description: dmv.ca.gov
+            id: id
+            logoUrl: logoUrl
+          - subtext: dmv.ca.gov
+            name: name
+            description: dmv.ca.gov
+            id: id
+            logoUrl: logoUrl
           logoUrl: logoUrl
       properties:
         providers:
@@ -2079,6 +2188,12 @@ components:
       additionalProperties: false
       example:
         collectionMethod: PollResult
+        availableFields:
+        - name: person.givenName
+          outputted: Always
+        - name: person.givenName
+          outputted: Always
+        subtext: dmv.ca.gov
         regions:
         - United States
         hasTrinsicInterface: true
@@ -2094,27 +2209,36 @@ components:
         name: CA DMV
         resultsMayBeDelayedAfterRedirect: false
         hasRefreshableContent: false
-        id: ca-mdl
+        id: usa-california-dmv
         subProviders:
-        - name: name
-          description: description
+        - subtext: dmv.ca.gov
+          name: name
+          description: dmv.ca.gov
           id: id
           logoUrl: logoUrl
-        - name: name
-          description: description
+        - subtext: dmv.ca.gov
+          name: name
+          description: dmv.ca.gov
           id: id
           logoUrl: logoUrl
       properties:
         id:
           description: The ID of the Provider for this contract.
-          example: ca-mdl
+          example: usa-california-dmv
           type: string
         name:
           description: The Provider's Name as it appears in Trinsic's Dashboard and
             Widget
           example: CA DMV
           type: string
+        subtext:
+          description: "The Provider's subtext recommended to be shown next to the\
+            \ name.\n            \nThis is flavor text, not a full, human-readable\
+            \ description of the provider."
+          example: dmv.ca.gov
+          type: string
         description:
+          deprecated: true
           description: "The Provider's description as it appears in Trinsic's Widget.\n\
             \            \nThis is flavor text, not a full, human-readable description\
             \ of the provider."
@@ -2182,9 +2306,9 @@ components:
           description: "If `true`, then the results for this Provider may not be available\
             \ immediately after the user is redirected back\nto your application.\
             \ In this case, the `GetSessionResults` API must be called until results\
-            \ are available.\n            \nThis is an uncommon scenario, and typically\
-            \ only applies to Providers which use a biometric check or traditional\
-            \ document scan."
+            \ are available.\n            \nThis is an uncommon scenario, and only\
+            \ applies to Providers which cannot guarantee\nthe availability of results\
+            \ immediately after the user is redirected back to your application."
           example: false
           type: boolean
         hasRefreshableContent:
@@ -2214,6 +2338,13 @@ components:
             \ it will necessarily require a Trinsic-hosted UI to function."
           example: true
           type: boolean
+        availableFields:
+          description: Information about the fields that this Provider will return
+            in verification results.
+          items:
+            $ref: '#/components/schemas/ContractField'
+          nullable: true
+          type: array
         subProviders:
           description: "Metadata about the sub-providers which are available for this\
             \ Provider.\n            \nFor example, Italy's SPID is a Provider which\
@@ -2247,6 +2378,7 @@ components:
       - regions
       - requiresInput
       - resultsMayBeDelayedAfterRedirect
+      - subtext
       - supportsAdvancedProviderSessions
       type: object
     ProviderHealth:
@@ -2264,8 +2396,22 @@ components:
       additionalProperties: false
       description: A provider that can be specified when creating a `Session`
       example:
+        subtext: dmv.ca.gov
         name: Yoti | CLEAR | ...
+        description: dmv.ca.gov
+        health: online | offline
         id: yoti | clear | ...
+        subProviders:
+        - subtext: dmv.ca.gov
+          name: name
+          description: dmv.ca.gov
+          id: id
+          logoUrl: logoUrl
+        - subtext: dmv.ca.gov
+          name: name
+          description: dmv.ca.gov
+          id: id
+          logoUrl: logoUrl
         logoUrl: logoUrl
       properties:
         id:
@@ -2279,31 +2425,110 @@ components:
         logoUrl:
           description: A URL pointing to the provider's logo
           type: string
+        subtext:
+          description: "The Provider's subtext recommended to be shown next to the\
+            \ name.\n            \nThis is flavor text, not a full, human-readable\
+            \ description of the provider."
+          example: dmv.ca.gov
+          type: string
+        description:
+          deprecated: true
+          description: "The Provider's description recommended to be shown next to\
+            \ the name.\n            \nThis is flavor text, not a full, human-readable\
+            \ description of the provider."
+          example: dmv.ca.gov
+          type: string
+        health:
+          description: The current health status of the provider
+          example: online | offline
+          type: string
+        subProviders:
+          description: "Metadata about the sub-providers which are available for this\
+            \ Provider.\n            \nFor example, Italy's SPID is a Provider which\
+            \ aggregates access to multiple sub-providers."
+          items:
+            $ref: '#/components/schemas/SubProviderMetadata'
+          nullable: true
+          type: array
       required:
+      - description
+      - health
       - id
       - logoUrl
       - name
+      - subtext
       type: object
     ProviderInformation:
       additionalProperties: false
       example:
+        subtext: dmv.ca.gov
         providerDisplayName: providerDisplayName
         providerId: providerId
+        name: name
+        health: online | offline
+        id: id
         providerLogo: providerLogo
+        subProviders:
+        - subtext: dmv.ca.gov
+          name: name
+          description: dmv.ca.gov
+          id: id
+          logoUrl: logoUrl
+        - subtext: dmv.ca.gov
+          name: name
+          description: dmv.ca.gov
+          id: id
+          logoUrl: logoUrl
+        logoUrl: logoUrl
       properties:
+        id:
+          description: The ID of the provider
+          type: string
+        name:
+          description: "The friendly, human-readable name of the provider"
+          type: string
+        logoUrl:
+          description: A URL pointing to the provider's logo
+          type: string
+        subtext:
+          description: "The Provider's subtext recommended to be shown next to the\
+            \ name.\n            \nThis is flavor text, not a full, human-readable\
+            \ description of the provider."
+          example: dmv.ca.gov
+          type: string
         providerId:
-          readOnly: true
+          deprecated: true
+          description: The ID of the provider
           type: string
         providerDisplayName:
-          readOnly: true
+          deprecated: true
+          description: "The friendly, human-readable name of the provider"
           type: string
         providerLogo:
-          readOnly: true
+          deprecated: true
+          description: A URL pointing to the provider's logo
           type: string
+        health:
+          description: The current health status of the provider
+          example: online | offline
+          type: string
+        subProviders:
+          description: "Metadata about the sub-providers which are available for this\
+            \ Provider.\n            \nFor example, Italy's SPID is a Provider which\
+            \ aggregates access to multiple sub-providers."
+          items:
+            $ref: '#/components/schemas/SubProviderMetadata'
+          nullable: true
+          type: array
       required:
+      - health
+      - id
+      - logoUrl
+      - name
       - providerDisplayName
       - providerId
       - providerLogo
+      - subtext
       type: object
     ProviderInput:
       additionalProperties: false
@@ -2311,32 +2536,32 @@ components:
         indonesiaNik:
           allOf:
           - $ref: '#/components/schemas/IndonesiaNikInput'
-          description: Input for the `f-indonesia-nik` provider
+          description: Input for the `indonesia-nik-lookup` provider
           nullable: true
         mexicoCurp:
           allOf:
           - $ref: '#/components/schemas/MexicoCurpInput'
-          description: Input for the `f-mexico-curp` provider
+          description: Input for the `mexico-curp-lookup` provider
           nullable: true
         southAfricaNid:
           allOf:
           - $ref: '#/components/schemas/SouthAfricaNidInput'
-          description: Input for the `f-south-africa-nid` provider
+          description: Input for the `south-africa-nid-lookup` provider
           nullable: true
         kenyaNid:
           allOf:
           - $ref: '#/components/schemas/KenyaNidInput'
-          description: Input for the `f-kenya-nid` provider
+          description: Input for the `kenya-nid-lookup` provider
           nullable: true
         nigeriaNin:
           allOf:
           - $ref: '#/components/schemas/NigeriaNinInput'
-          description: Input for the `f-nigeria-nin` provider
+          description: Input for the `nigeria-nin-lookup` provider
           nullable: true
         aadhaar:
           allOf:
           - $ref: '#/components/schemas/AadhaarInput'
-          description: Input for the `f-india-aadhaar-match` provider
+          description: Input for the `india-digilocker-aadhaar-match` provider
           nullable: true
         bangladeshNationalId:
           allOf:
@@ -2346,22 +2571,22 @@ components:
         brazilCpfCheck:
           allOf:
           - $ref: '#/components/schemas/BrazilCpfCheckInput'
-          description: Input for the `g-brazil-cpf` provider
+          description: Input for the `brazil-cpf-lookup` provider
           nullable: true
         brazilDigitalCnh:
           allOf:
           - $ref: '#/components/schemas/BrazilDigitalCnhInput'
-          description: Input for the `g-brazil-digital-cnh` provider
+          description: Input for the `brazil-digital-cnh` provider
           nullable: true
         philippineMatch:
           allOf:
           - $ref: '#/components/schemas/PhilippineMatchInput'
-          description: Input for the `b-philsys-biometric` provider
+          description: Input for the `philippines-philsys-match` provider
           nullable: true
         philippineQR:
           allOf:
           - $ref: '#/components/schemas/PhilippineQRInput'
-          description: Input for the `b-philippine-qr-digital-national-id` and `b-philippine-qr-ephill-id`
+          description: Input for the `philippines-digital-national-id-qr` and `philippines-physical-national-id-qr`
             providers
           nullable: true
         smartId:
@@ -2377,12 +2602,12 @@ components:
         idin:
           allOf:
           - $ref: '#/components/schemas/IdinInput'
-          description: Input for the `idin` provider
+          description: Input for the `netherlands-idin` provider
           nullable: true
         spid:
           allOf:
           - $ref: '#/components/schemas/SpidInput'
-          description: Input for the `spid` provider
+          description: Input for the `italy-spid` provider
           nullable: true
         trinsicTestDatabaseLookup:
           allOf:
@@ -2400,6 +2625,7 @@ components:
     RecommendRequest:
       additionalProperties: false
       example:
+        health: health
         recommendationInfo: ""
       properties:
         recommendationInfo:
@@ -2408,47 +2634,149 @@ components:
           description: Information about the user you wish to generate a recommendation
             for.
           nullable: true
+        health:
+          description: "Filter providers by health status. Valid values: \"online\"\
+            , \"offline\", \"all\". Defaults to \"online\"."
+          nullable: true
+          type: string
       type: object
     RecommendResponse:
       additionalProperties: false
       example:
         relevant:
-        - providerDisplayName: providerDisplayName
+        - subtext: dmv.ca.gov
+          providerDisplayName: providerDisplayName
           providerId: providerId
+          name: name
+          health: online | offline
+          id: id
           providerLogo: providerLogo
-        - providerDisplayName: providerDisplayName
+          subProviders:
+          - subtext: dmv.ca.gov
+            name: name
+            description: dmv.ca.gov
+            id: id
+            logoUrl: logoUrl
+          - subtext: dmv.ca.gov
+            name: name
+            description: dmv.ca.gov
+            id: id
+            logoUrl: logoUrl
+          logoUrl: logoUrl
+        - subtext: dmv.ca.gov
+          providerDisplayName: providerDisplayName
           providerId: providerId
+          name: name
+          health: online | offline
+          id: id
           providerLogo: providerLogo
+          subProviders:
+          - subtext: dmv.ca.gov
+            name: name
+            description: dmv.ca.gov
+            id: id
+            logoUrl: logoUrl
+          - subtext: dmv.ca.gov
+            name: name
+            description: dmv.ca.gov
+            id: id
+            logoUrl: logoUrl
+          logoUrl: logoUrl
         recognized:
-        - providerDisplayName: providerDisplayName
+        - subtext: dmv.ca.gov
+          providerDisplayName: providerDisplayName
           providerId: providerId
+          name: name
+          health: online | offline
+          id: id
           providerLogo: providerLogo
-        - providerDisplayName: providerDisplayName
+          subProviders:
+          - subtext: dmv.ca.gov
+            name: name
+            description: dmv.ca.gov
+            id: id
+            logoUrl: logoUrl
+          - subtext: dmv.ca.gov
+            name: name
+            description: dmv.ca.gov
+            id: id
+            logoUrl: logoUrl
+          logoUrl: logoUrl
+        - subtext: dmv.ca.gov
+          providerDisplayName: providerDisplayName
           providerId: providerId
+          name: name
+          health: online | offline
+          id: id
           providerLogo: providerLogo
+          subProviders:
+          - subtext: dmv.ca.gov
+            name: name
+            description: dmv.ca.gov
+            id: id
+            logoUrl: logoUrl
+          - subtext: dmv.ca.gov
+            name: name
+            description: dmv.ca.gov
+            id: id
+            logoUrl: logoUrl
+          logoUrl: logoUrl
         remainder:
-        - providerDisplayName: providerDisplayName
+        - subtext: dmv.ca.gov
+          providerDisplayName: providerDisplayName
           providerId: providerId
+          name: name
+          health: online | offline
+          id: id
           providerLogo: providerLogo
-        - providerDisplayName: providerDisplayName
+          subProviders:
+          - subtext: dmv.ca.gov
+            name: name
+            description: dmv.ca.gov
+            id: id
+            logoUrl: logoUrl
+          - subtext: dmv.ca.gov
+            name: name
+            description: dmv.ca.gov
+            id: id
+            logoUrl: logoUrl
+          logoUrl: logoUrl
+        - subtext: dmv.ca.gov
+          providerDisplayName: providerDisplayName
           providerId: providerId
+          name: name
+          health: online | offline
+          id: id
           providerLogo: providerLogo
+          subProviders:
+          - subtext: dmv.ca.gov
+            name: name
+            description: dmv.ca.gov
+            id: id
+            logoUrl: logoUrl
+          - subtext: dmv.ca.gov
+            name: name
+            description: dmv.ca.gov
+            id: id
+            logoUrl: logoUrl
+          logoUrl: logoUrl
       properties:
         recognized:
-          description: The list of providers that were recognized in Trinsic's network.
-            These are providers that already verified this user
+          description: The providers which the user is known to have a credential
+            with.
           items:
             $ref: '#/components/schemas/ProviderInformation'
           type: array
         relevant:
-          description: "The list of providers that although not recognized, are relevant\
-            \ to the user's identity. The user may have been verified by these providers"
+          description: The providers which the user is deemed sufficiently likely
+            to have a credential with.
           items:
             $ref: '#/components/schemas/ProviderInformation'
           type: array
         remainder:
-          description: The list of providers that are not recognized and are not relevant
-            to the user's identity
+          description: "The providers which the user is unlikely to have a credential\
+            \ with.\n            \nThis includes all providers available to your app\
+            \ which were not included in the Recognized or Relevant lists."
           items:
             $ref: '#/components/schemas/ProviderInformation'
           type: array
@@ -2593,8 +2921,8 @@ components:
           format: int64
           type: integer
         updated:
-          description: "The unix timestamp, in seconds, when this session's state\
-            \ last changed"
+          description: "The unix timestamp, in seconds, when this session's data was\
+            \ last updated"
           example: 1722526722
           format: int64
           type: integer
@@ -2661,7 +2989,12 @@ components:
       additionalProperties: false
       properties:
         smartIdDocumentNumber:
+          deprecated: true
           description: The user's Smart ID Document Number
+          nullable: true
+          type: string
+        smartIdNumber:
+          description: The user's Smart ID ETSI number or document number.
           nullable: true
           type: string
       type: object
@@ -2729,8 +3062,9 @@ components:
       additionalProperties: false
       description: Information about a sub-provider.
       example:
+        subtext: dmv.ca.gov
         name: name
-        description: description
+        description: dmv.ca.gov
         id: id
         logoUrl: logoUrl
       properties:
@@ -2742,8 +3076,18 @@ components:
         name:
           description: The name of the sub-provider
           type: string
+        subtext:
+          description: "The Provider's subtext recommended to be shown next to the\
+            \ name.\n            \nThis is flavor text, not a full, human-readable\
+            \ description of the provider."
+          example: dmv.ca.gov
+          type: string
         description:
-          description: Flavor text for the sub-provider
+          deprecated: true
+          description: "The Provider's subtext recommended to be shown next to the\
+            \ name.\n            \nThis is flavor text, not a full, human-readable\
+            \ description of the provider."
+          example: dmv.ca.gov
           type: string
         logoUrl:
           description: "A URL pointing to the logo on Trinsic's CDN.\n           \
@@ -2754,6 +3098,7 @@ components:
       - id
       - logoUrl
       - name
+      - subtext
       type: object
     TrinsicTestDatabaseLookupInput:
       additionalProperties: false

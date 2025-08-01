@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | The ID of the Provider for this contract. | 
 **Name** | **string** | The Provider&#39;s Name as it appears in Trinsic&#39;s Dashboard and Widget | 
+**Subtext** | **string** | The Provider&#39;s subtext recommended to be shown next to the name.              This is flavor text, not a full, human-readable description of the provider. | 
 **Description** | **string** | The Provider&#39;s description as it appears in Trinsic&#39;s Widget.              This is flavor text, not a full, human-readable description of the provider. | 
 **LogoUrl** | **string** | A URL pointing to the Provider&#39;s logo on Trinsic&#39;s CDN.              May be a PNG, JPG, or SVG image. | 
 **Available** | **bool** | Whether the Provider is available for use in your App.              If &#x60;false&#x60;, you will need to contact Trinsic to enable this Provider for your App. | 
@@ -13,11 +14,12 @@ Name | Type | Description | Notes
 **Regions** | **[]string** | The regions within which the Provider is available. | 
 **LaunchMethod** | [**IntegrationLaunchMethod**](IntegrationLaunchMethod.md) | Relevant only to Advanced Provider Sessions.              The &#x60;LaunchMethod&#x60; which must be supported to launch the Provider Session in Advanced Provider Sessions. | 
 **CollectionMethod** | [**ResultCollectionMethod**](ResultCollectionMethod.md) | Relevant only to Advanced Provider Sessions.              The &#x60;CollectionMethod&#x60; which must be supported to launch the Provider Session in Advanced Provider Sessions. | 
-**ResultsMayBeDelayedAfterRedirect** | **bool** | If &#x60;true&#x60;, then the results for this Provider may not be available immediately after the user is redirected back to your application. In this case, the &#x60;GetSessionResults&#x60; API must be called until results are available.              This is an uncommon scenario, and typically only applies to Providers which use a biometric check or traditional document scan. | 
+**ResultsMayBeDelayedAfterRedirect** | **bool** | If &#x60;true&#x60;, then the results for this Provider may not be available immediately after the user is redirected back to your application. In this case, the &#x60;GetSessionResults&#x60; API must be called until results are available.              This is an uncommon scenario, and only applies to Providers which cannot guarantee the availability of results immediately after the user is redirected back to your application. | 
 **HasRefreshableContent** | **bool** | Relevant only to Advanced Provider Sessions.              Whether the Provider requires the &#x60;RefreshStepContent&#x60; capability.              For example, Samsung Wallet&#39;s deep links expire every 30 seconds, and must be refreshed periodically for a resilient user flow. | 
 **RequiresInput** | **bool** | Relevant to Hosted Provider Sessions and Advanced Provider Sessions.              If &#x60;true&#x60;, this Provider requires provider-specific input on Session creation. If this input is not provided, Trinsic&#39;s Hosted UI will be invoked to collect the input from the user. | 
 **HasTrinsicInterface** | **bool** | Whether there exists a Trinsic-hosted UI for this Provider.              This is &#x60;true&#x60; for any Provider which is not a simple, OIDC-like redirect flow. | 
 **SupportsAdvancedProviderSessions** | **bool** | Whether this Provider can be fully whitelabeled/OEMed through the Advanced Provider Sessions API.              If &#x60;false&#x60;, the Provider may still be launched through Advanced Provider Sessions; however, it will necessarily require a Trinsic-hosted UI to function. | 
+**AvailableFields** | Pointer to [**[]ContractField**](ContractField.md) | Information about the fields that this Provider will return in verification results. | [optional] 
 **SubProviders** | Pointer to [**[]SubProviderMetadata**](SubProviderMetadata.md) | Metadata about the sub-providers which are available for this Provider.              For example, Italy&#39;s SPID is a Provider which aggregates access to multiple sub-providers. | [optional] 
 **Health** | [**ProviderHealth**](ProviderHealth.md) | The health for an integration to be able to successfully perform a verification session. | 
 
@@ -25,7 +27,7 @@ Name | Type | Description | Notes
 
 ### NewProviderContract
 
-`func NewProviderContract(id string, name string, description string, logoUrl string, available bool, geography []string, regions []string, launchMethod IntegrationLaunchMethod, collectionMethod ResultCollectionMethod, resultsMayBeDelayedAfterRedirect bool, hasRefreshableContent bool, requiresInput bool, hasTrinsicInterface bool, supportsAdvancedProviderSessions bool, health ProviderHealth, ) *ProviderContract`
+`func NewProviderContract(id string, name string, subtext string, description string, logoUrl string, available bool, geography []string, regions []string, launchMethod IntegrationLaunchMethod, collectionMethod ResultCollectionMethod, resultsMayBeDelayedAfterRedirect bool, hasRefreshableContent bool, requiresInput bool, hasTrinsicInterface bool, supportsAdvancedProviderSessions bool, health ProviderHealth, ) *ProviderContract`
 
 NewProviderContract instantiates a new ProviderContract object
 This constructor will assign default values to properties that have it defined,
@@ -78,6 +80,26 @@ and a boolean to check if the value has been set.
 `func (o *ProviderContract) SetName(v string)`
 
 SetName sets Name field to given value.
+
+
+### GetSubtext
+
+`func (o *ProviderContract) GetSubtext() string`
+
+GetSubtext returns the Subtext field if non-nil, zero value otherwise.
+
+### GetSubtextOk
+
+`func (o *ProviderContract) GetSubtextOk() (*string, bool)`
+
+GetSubtextOk returns a tuple with the Subtext field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSubtext
+
+`func (o *ProviderContract) SetSubtext(v string)`
+
+SetSubtext sets Subtext field to given value.
 
 
 ### GetDescription
@@ -320,6 +342,41 @@ and a boolean to check if the value has been set.
 SetSupportsAdvancedProviderSessions sets SupportsAdvancedProviderSessions field to given value.
 
 
+### GetAvailableFields
+
+`func (o *ProviderContract) GetAvailableFields() []ContractField`
+
+GetAvailableFields returns the AvailableFields field if non-nil, zero value otherwise.
+
+### GetAvailableFieldsOk
+
+`func (o *ProviderContract) GetAvailableFieldsOk() (*[]ContractField, bool)`
+
+GetAvailableFieldsOk returns a tuple with the AvailableFields field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAvailableFields
+
+`func (o *ProviderContract) SetAvailableFields(v []ContractField)`
+
+SetAvailableFields sets AvailableFields field to given value.
+
+### HasAvailableFields
+
+`func (o *ProviderContract) HasAvailableFields() bool`
+
+HasAvailableFields returns a boolean if a field has been set.
+
+### SetAvailableFieldsNil
+
+`func (o *ProviderContract) SetAvailableFieldsNil(b bool)`
+
+ SetAvailableFieldsNil sets the value for AvailableFields to be an explicit nil
+
+### UnsetAvailableFields
+`func (o *ProviderContract) UnsetAvailableFields()`
+
+UnsetAvailableFields ensures that no value is present for AvailableFields, not even an explicit nil
 ### GetSubProviders
 
 `func (o *ProviderContract) GetSubProviders() []SubProviderMetadata`

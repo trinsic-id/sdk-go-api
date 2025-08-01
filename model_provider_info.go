@@ -27,6 +27,15 @@ type ProviderInfo struct {
 	Name string `json:"name"`
 	// A URL pointing to the provider's logo
 	LogoUrl string `json:"logoUrl"`
+	// The Provider's subtext recommended to be shown next to the name.              This is flavor text, not a full, human-readable description of the provider.
+	Subtext string `json:"subtext"`
+	// The Provider's description recommended to be shown next to the name.              This is flavor text, not a full, human-readable description of the provider.
+	// Deprecated
+	Description string `json:"description"`
+	// The current health status of the provider
+	Health string `json:"health"`
+	// Metadata about the sub-providers which are available for this Provider.              For example, Italy's SPID is a Provider which aggregates access to multiple sub-providers.
+	SubProviders []SubProviderMetadata `json:"subProviders,omitempty"`
 }
 
 type _ProviderInfo ProviderInfo
@@ -35,11 +44,14 @@ type _ProviderInfo ProviderInfo
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewProviderInfo(id string, name string, logoUrl string) *ProviderInfo {
+func NewProviderInfo(id string, name string, logoUrl string, subtext string, description string, health string) *ProviderInfo {
 	this := ProviderInfo{}
 	this.Id = id
 	this.Name = name
 	this.LogoUrl = logoUrl
+	this.Subtext = subtext
+	this.Description = description
+	this.Health = health
 	return &this
 }
 
@@ -123,6 +135,114 @@ func (o *ProviderInfo) SetLogoUrl(v string) {
 	o.LogoUrl = v
 }
 
+// GetSubtext returns the Subtext field value
+func (o *ProviderInfo) GetSubtext() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Subtext
+}
+
+// GetSubtextOk returns a tuple with the Subtext field value
+// and a boolean to check if the value has been set.
+func (o *ProviderInfo) GetSubtextOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Subtext, true
+}
+
+// SetSubtext sets field value
+func (o *ProviderInfo) SetSubtext(v string) {
+	o.Subtext = v
+}
+
+// GetDescription returns the Description field value
+// Deprecated
+func (o *ProviderInfo) GetDescription() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Description
+}
+
+// GetDescriptionOk returns a tuple with the Description field value
+// and a boolean to check if the value has been set.
+// Deprecated
+func (o *ProviderInfo) GetDescriptionOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Description, true
+}
+
+// SetDescription sets field value
+// Deprecated
+func (o *ProviderInfo) SetDescription(v string) {
+	o.Description = v
+}
+
+// GetHealth returns the Health field value
+func (o *ProviderInfo) GetHealth() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Health
+}
+
+// GetHealthOk returns a tuple with the Health field value
+// and a boolean to check if the value has been set.
+func (o *ProviderInfo) GetHealthOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Health, true
+}
+
+// SetHealth sets field value
+func (o *ProviderInfo) SetHealth(v string) {
+	o.Health = v
+}
+
+// GetSubProviders returns the SubProviders field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderInfo) GetSubProviders() []SubProviderMetadata {
+	if o == nil {
+		var ret []SubProviderMetadata
+		return ret
+	}
+	return o.SubProviders
+}
+
+// GetSubProvidersOk returns a tuple with the SubProviders field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderInfo) GetSubProvidersOk() ([]SubProviderMetadata, bool) {
+	if o == nil || IsNil(o.SubProviders) {
+		return nil, false
+	}
+	return o.SubProviders, true
+}
+
+// HasSubProviders returns a boolean if a field has been set.
+func (o *ProviderInfo) HasSubProviders() bool {
+	if o != nil && !IsNil(o.SubProviders) {
+		return true
+	}
+
+	return false
+}
+
+// SetSubProviders gets a reference to the given []SubProviderMetadata and assigns it to the SubProviders field.
+func (o *ProviderInfo) SetSubProviders(v []SubProviderMetadata) {
+	o.SubProviders = v
+}
+
 func (o ProviderInfo) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -136,6 +256,12 @@ func (o ProviderInfo) ToMap() (map[string]interface{}, error) {
 	toSerialize["id"] = o.Id
 	toSerialize["name"] = o.Name
 	toSerialize["logoUrl"] = o.LogoUrl
+	toSerialize["subtext"] = o.Subtext
+	toSerialize["description"] = o.Description
+	toSerialize["health"] = o.Health
+	if o.SubProviders != nil {
+		toSerialize["subProviders"] = o.SubProviders
+	}
 	return toSerialize, nil
 }
 
@@ -147,6 +273,9 @@ func (o *ProviderInfo) UnmarshalJSON(data []byte) (err error) {
 		"id",
 		"name",
 		"logoUrl",
+		"subtext",
+		"description",
+		"health",
 	}
 
 	allProperties := make(map[string]interface{})

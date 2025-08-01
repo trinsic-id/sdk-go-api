@@ -25,7 +25,10 @@ type ProviderContract struct {
 	Id string `json:"id"`
 	// The Provider's Name as it appears in Trinsic's Dashboard and Widget
 	Name string `json:"name"`
+	// The Provider's subtext recommended to be shown next to the name.              This is flavor text, not a full, human-readable description of the provider.
+	Subtext string `json:"subtext"`
 	// The Provider's description as it appears in Trinsic's Widget.              This is flavor text, not a full, human-readable description of the provider.
+	// Deprecated
 	Description string `json:"description"`
 	// A URL pointing to the Provider's logo on Trinsic's CDN.              May be a PNG, JPG, or SVG image.
 	LogoUrl string `json:"logoUrl"`
@@ -39,7 +42,7 @@ type ProviderContract struct {
 	LaunchMethod IntegrationLaunchMethod `json:"launchMethod"`
 	// Relevant only to Advanced Provider Sessions.              The `CollectionMethod` which must be supported to launch the Provider Session in Advanced Provider Sessions.
 	CollectionMethod ResultCollectionMethod `json:"collectionMethod"`
-	// If `true`, then the results for this Provider may not be available immediately after the user is redirected back to your application. In this case, the `GetSessionResults` API must be called until results are available.              This is an uncommon scenario, and typically only applies to Providers which use a biometric check or traditional document scan.
+	// If `true`, then the results for this Provider may not be available immediately after the user is redirected back to your application. In this case, the `GetSessionResults` API must be called until results are available.              This is an uncommon scenario, and only applies to Providers which cannot guarantee the availability of results immediately after the user is redirected back to your application.
 	ResultsMayBeDelayedAfterRedirect bool `json:"resultsMayBeDelayedAfterRedirect"`
 	// Relevant only to Advanced Provider Sessions.              Whether the Provider requires the `RefreshStepContent` capability.              For example, Samsung Wallet's deep links expire every 30 seconds, and must be refreshed periodically for a resilient user flow.
 	HasRefreshableContent bool `json:"hasRefreshableContent"`
@@ -49,6 +52,8 @@ type ProviderContract struct {
 	HasTrinsicInterface bool `json:"hasTrinsicInterface"`
 	// Whether this Provider can be fully whitelabeled/OEMed through the Advanced Provider Sessions API.              If `false`, the Provider may still be launched through Advanced Provider Sessions; however, it will necessarily require a Trinsic-hosted UI to function.
 	SupportsAdvancedProviderSessions bool `json:"supportsAdvancedProviderSessions"`
+	// Information about the fields that this Provider will return in verification results.
+	AvailableFields []ContractField `json:"availableFields,omitempty"`
 	// Metadata about the sub-providers which are available for this Provider.              For example, Italy's SPID is a Provider which aggregates access to multiple sub-providers.
 	SubProviders []SubProviderMetadata `json:"subProviders,omitempty"`
 	// The health for an integration to be able to successfully perform a verification session.
@@ -61,10 +66,11 @@ type _ProviderContract ProviderContract
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewProviderContract(id string, name string, description string, logoUrl string, available bool, geography []string, regions []string, launchMethod IntegrationLaunchMethod, collectionMethod ResultCollectionMethod, resultsMayBeDelayedAfterRedirect bool, hasRefreshableContent bool, requiresInput bool, hasTrinsicInterface bool, supportsAdvancedProviderSessions bool, health ProviderHealth) *ProviderContract {
+func NewProviderContract(id string, name string, subtext string, description string, logoUrl string, available bool, geography []string, regions []string, launchMethod IntegrationLaunchMethod, collectionMethod ResultCollectionMethod, resultsMayBeDelayedAfterRedirect bool, hasRefreshableContent bool, requiresInput bool, hasTrinsicInterface bool, supportsAdvancedProviderSessions bool, health ProviderHealth) *ProviderContract {
 	this := ProviderContract{}
 	this.Id = id
 	this.Name = name
+	this.Subtext = subtext
 	this.Description = description
 	this.LogoUrl = logoUrl
 	this.Available = available
@@ -137,7 +143,32 @@ func (o *ProviderContract) SetName(v string) {
 	o.Name = v
 }
 
+// GetSubtext returns the Subtext field value
+func (o *ProviderContract) GetSubtext() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Subtext
+}
+
+// GetSubtextOk returns a tuple with the Subtext field value
+// and a boolean to check if the value has been set.
+func (o *ProviderContract) GetSubtextOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Subtext, true
+}
+
+// SetSubtext sets field value
+func (o *ProviderContract) SetSubtext(v string) {
+	o.Subtext = v
+}
+
 // GetDescription returns the Description field value
+// Deprecated
 func (o *ProviderContract) GetDescription() string {
 	if o == nil {
 		var ret string
@@ -149,6 +180,7 @@ func (o *ProviderContract) GetDescription() string {
 
 // GetDescriptionOk returns a tuple with the Description field value
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *ProviderContract) GetDescriptionOk() (*string, bool) {
 	if o == nil {
 		return nil, false
@@ -157,6 +189,7 @@ func (o *ProviderContract) GetDescriptionOk() (*string, bool) {
 }
 
 // SetDescription sets field value
+// Deprecated
 func (o *ProviderContract) SetDescription(v string) {
 	o.Description = v
 }
@@ -425,6 +458,39 @@ func (o *ProviderContract) SetSupportsAdvancedProviderSessions(v bool) {
 	o.SupportsAdvancedProviderSessions = v
 }
 
+// GetAvailableFields returns the AvailableFields field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderContract) GetAvailableFields() []ContractField {
+	if o == nil {
+		var ret []ContractField
+		return ret
+	}
+	return o.AvailableFields
+}
+
+// GetAvailableFieldsOk returns a tuple with the AvailableFields field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderContract) GetAvailableFieldsOk() ([]ContractField, bool) {
+	if o == nil || IsNil(o.AvailableFields) {
+		return nil, false
+	}
+	return o.AvailableFields, true
+}
+
+// HasAvailableFields returns a boolean if a field has been set.
+func (o *ProviderContract) HasAvailableFields() bool {
+	if o != nil && !IsNil(o.AvailableFields) {
+		return true
+	}
+
+	return false
+}
+
+// SetAvailableFields gets a reference to the given []ContractField and assigns it to the AvailableFields field.
+func (o *ProviderContract) SetAvailableFields(v []ContractField) {
+	o.AvailableFields = v
+}
+
 // GetSubProviders returns the SubProviders field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ProviderContract) GetSubProviders() []SubProviderMetadata {
 	if o == nil {
@@ -494,6 +560,7 @@ func (o ProviderContract) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["id"] = o.Id
 	toSerialize["name"] = o.Name
+	toSerialize["subtext"] = o.Subtext
 	toSerialize["description"] = o.Description
 	toSerialize["logoUrl"] = o.LogoUrl
 	toSerialize["available"] = o.Available
@@ -506,6 +573,9 @@ func (o ProviderContract) ToMap() (map[string]interface{}, error) {
 	toSerialize["requiresInput"] = o.RequiresInput
 	toSerialize["hasTrinsicInterface"] = o.HasTrinsicInterface
 	toSerialize["supportsAdvancedProviderSessions"] = o.SupportsAdvancedProviderSessions
+	if o.AvailableFields != nil {
+		toSerialize["availableFields"] = o.AvailableFields
+	}
 	if o.SubProviders != nil {
 		toSerialize["subProviders"] = o.SubProviders
 	}
@@ -520,6 +590,7 @@ func (o *ProviderContract) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"id",
 		"name",
+		"subtext",
 		"description",
 		"logoUrl",
 		"available",

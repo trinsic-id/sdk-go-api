@@ -21,6 +21,8 @@ var _ MappedNullable = &RecommendRequest{}
 type RecommendRequest struct {
 	// Information about the user you wish to generate a recommendation for.
 	RecommendationInfo NullableRecommendationInfo `json:"recommendationInfo,omitempty"`
+	// Filter providers by health status. Valid values: \"online\", \"offline\", \"all\". Defaults to \"online\".
+	Health NullableString `json:"health,omitempty"`
 }
 
 // NewRecommendRequest instantiates a new RecommendRequest object
@@ -82,6 +84,48 @@ func (o *RecommendRequest) UnsetRecommendationInfo() {
 	o.RecommendationInfo.Unset()
 }
 
+// GetHealth returns the Health field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *RecommendRequest) GetHealth() string {
+	if o == nil || IsNil(o.Health.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Health.Get()
+}
+
+// GetHealthOk returns a tuple with the Health field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *RecommendRequest) GetHealthOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Health.Get(), o.Health.IsSet()
+}
+
+// HasHealth returns a boolean if a field has been set.
+func (o *RecommendRequest) HasHealth() bool {
+	if o != nil && o.Health.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetHealth gets a reference to the given NullableString and assigns it to the Health field.
+func (o *RecommendRequest) SetHealth(v string) {
+	o.Health.Set(&v)
+}
+// SetHealthNil sets the value for Health to be an explicit nil
+func (o *RecommendRequest) SetHealthNil() {
+	o.Health.Set(nil)
+}
+
+// UnsetHealth ensures that no value is present for Health, not even an explicit nil
+func (o *RecommendRequest) UnsetHealth() {
+	o.Health.Unset()
+}
+
 func (o RecommendRequest) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -94,6 +138,9 @@ func (o RecommendRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if o.RecommendationInfo.IsSet() {
 		toSerialize["recommendationInfo"] = o.RecommendationInfo.Get()
+	}
+	if o.Health.IsSet() {
+		toSerialize["health"] = o.Health.Get()
 	}
 	return toSerialize, nil
 }

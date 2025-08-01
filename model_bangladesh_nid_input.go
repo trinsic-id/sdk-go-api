@@ -12,6 +12,8 @@ package trinsic_api
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the BangladeshNidInput type satisfies the MappedNullable interface at compile time
@@ -20,23 +22,28 @@ var _ MappedNullable = &BangladeshNidInput{}
 // BangladeshNidInput struct for BangladeshNidInput
 type BangladeshNidInput struct {
 	// The user's Bangladesh National ID number.
-	NationalIdNumber NullableString `json:"nationalIdNumber,omitempty"`
+	NationalIdNumber string `json:"nationalIdNumber"`
 	// The user's date of birth, in `YYYY-MM-DD` format
-	DateOfBirth NullableString `json:"dateOfBirth,omitempty"`
+	DateOfBirth string `json:"dateOfBirth"`
 	// The user's full name
-	Name NullableString `json:"name,omitempty"`
+	Name string `json:"name"`
 	// The raw bytes of the photo file collected from the user.
 	PhotoByes NullableString `json:"photoByes,omitempty"`
 	// The MIME Type of the file contained in `PhotoByes`.              Must be one of `image/jpeg`, or `image/png`.
 	PhotoImageMimeType NullableString `json:"photoImageMimeType,omitempty"`
 }
 
+type _BangladeshNidInput BangladeshNidInput
+
 // NewBangladeshNidInput instantiates a new BangladeshNidInput object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBangladeshNidInput() *BangladeshNidInput {
+func NewBangladeshNidInput(nationalIdNumber string, dateOfBirth string, name string) *BangladeshNidInput {
 	this := BangladeshNidInput{}
+	this.NationalIdNumber = nationalIdNumber
+	this.DateOfBirth = dateOfBirth
+	this.Name = name
 	return &this
 }
 
@@ -48,130 +55,76 @@ func NewBangladeshNidInputWithDefaults() *BangladeshNidInput {
 	return &this
 }
 
-// GetNationalIdNumber returns the NationalIdNumber field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetNationalIdNumber returns the NationalIdNumber field value
 func (o *BangladeshNidInput) GetNationalIdNumber() string {
-	if o == nil || IsNil(o.NationalIdNumber.Get()) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.NationalIdNumber.Get()
+
+	return o.NationalIdNumber
 }
 
-// GetNationalIdNumberOk returns a tuple with the NationalIdNumber field value if set, nil otherwise
+// GetNationalIdNumberOk returns a tuple with the NationalIdNumber field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *BangladeshNidInput) GetNationalIdNumberOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.NationalIdNumber.Get(), o.NationalIdNumber.IsSet()
+	return &o.NationalIdNumber, true
 }
 
-// HasNationalIdNumber returns a boolean if a field has been set.
-func (o *BangladeshNidInput) HasNationalIdNumber() bool {
-	if o != nil && o.NationalIdNumber.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetNationalIdNumber gets a reference to the given NullableString and assigns it to the NationalIdNumber field.
+// SetNationalIdNumber sets field value
 func (o *BangladeshNidInput) SetNationalIdNumber(v string) {
-	o.NationalIdNumber.Set(&v)
-}
-// SetNationalIdNumberNil sets the value for NationalIdNumber to be an explicit nil
-func (o *BangladeshNidInput) SetNationalIdNumberNil() {
-	o.NationalIdNumber.Set(nil)
+	o.NationalIdNumber = v
 }
 
-// UnsetNationalIdNumber ensures that no value is present for NationalIdNumber, not even an explicit nil
-func (o *BangladeshNidInput) UnsetNationalIdNumber() {
-	o.NationalIdNumber.Unset()
-}
-
-// GetDateOfBirth returns the DateOfBirth field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetDateOfBirth returns the DateOfBirth field value
 func (o *BangladeshNidInput) GetDateOfBirth() string {
-	if o == nil || IsNil(o.DateOfBirth.Get()) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.DateOfBirth.Get()
+
+	return o.DateOfBirth
 }
 
-// GetDateOfBirthOk returns a tuple with the DateOfBirth field value if set, nil otherwise
+// GetDateOfBirthOk returns a tuple with the DateOfBirth field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *BangladeshNidInput) GetDateOfBirthOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.DateOfBirth.Get(), o.DateOfBirth.IsSet()
+	return &o.DateOfBirth, true
 }
 
-// HasDateOfBirth returns a boolean if a field has been set.
-func (o *BangladeshNidInput) HasDateOfBirth() bool {
-	if o != nil && o.DateOfBirth.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetDateOfBirth gets a reference to the given NullableString and assigns it to the DateOfBirth field.
+// SetDateOfBirth sets field value
 func (o *BangladeshNidInput) SetDateOfBirth(v string) {
-	o.DateOfBirth.Set(&v)
-}
-// SetDateOfBirthNil sets the value for DateOfBirth to be an explicit nil
-func (o *BangladeshNidInput) SetDateOfBirthNil() {
-	o.DateOfBirth.Set(nil)
+	o.DateOfBirth = v
 }
 
-// UnsetDateOfBirth ensures that no value is present for DateOfBirth, not even an explicit nil
-func (o *BangladeshNidInput) UnsetDateOfBirth() {
-	o.DateOfBirth.Unset()
-}
-
-// GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetName returns the Name field value
 func (o *BangladeshNidInput) GetName() string {
-	if o == nil || IsNil(o.Name.Get()) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Name.Get()
+
+	return o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *BangladeshNidInput) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Name.Get(), o.Name.IsSet()
+	return &o.Name, true
 }
 
-// HasName returns a boolean if a field has been set.
-func (o *BangladeshNidInput) HasName() bool {
-	if o != nil && o.Name.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetName gets a reference to the given NullableString and assigns it to the Name field.
+// SetName sets field value
 func (o *BangladeshNidInput) SetName(v string) {
-	o.Name.Set(&v)
-}
-// SetNameNil sets the value for Name to be an explicit nil
-func (o *BangladeshNidInput) SetNameNil() {
-	o.Name.Set(nil)
-}
-
-// UnsetName ensures that no value is present for Name, not even an explicit nil
-func (o *BangladeshNidInput) UnsetName() {
-	o.Name.Unset()
+	o.Name = v
 }
 
 // GetPhotoByes returns the PhotoByes field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -268,15 +221,9 @@ func (o BangladeshNidInput) MarshalJSON() ([]byte, error) {
 
 func (o BangladeshNidInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.NationalIdNumber.IsSet() {
-		toSerialize["nationalIdNumber"] = o.NationalIdNumber.Get()
-	}
-	if o.DateOfBirth.IsSet() {
-		toSerialize["dateOfBirth"] = o.DateOfBirth.Get()
-	}
-	if o.Name.IsSet() {
-		toSerialize["name"] = o.Name.Get()
-	}
+	toSerialize["nationalIdNumber"] = o.NationalIdNumber
+	toSerialize["dateOfBirth"] = o.DateOfBirth
+	toSerialize["name"] = o.Name
 	if o.PhotoByes.IsSet() {
 		toSerialize["photoByes"] = o.PhotoByes.Get()
 	}
@@ -284,6 +231,45 @@ func (o BangladeshNidInput) ToMap() (map[string]interface{}, error) {
 		toSerialize["photoImageMimeType"] = o.PhotoImageMimeType.Get()
 	}
 	return toSerialize, nil
+}
+
+func (o *BangladeshNidInput) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"nationalIdNumber",
+		"dateOfBirth",
+		"name",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varBangladeshNidInput := _BangladeshNidInput{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varBangladeshNidInput)
+
+	if err != nil {
+		return err
+	}
+
+	*o = BangladeshNidInput(varBangladeshNidInput)
+
+	return err
 }
 
 type NullableBangladeshNidInput struct {

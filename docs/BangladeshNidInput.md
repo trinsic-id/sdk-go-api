@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**NationalIdNumber** | Pointer to **NullableString** | The user&#39;s Bangladesh National ID number. | [optional] 
-**DateOfBirth** | Pointer to **NullableString** | The user&#39;s date of birth, in &#x60;YYYY-MM-DD&#x60; format | [optional] 
-**Name** | Pointer to **NullableString** | The user&#39;s full name | [optional] 
+**NationalIdNumber** | **string** | The user&#39;s Bangladesh National ID number. | 
+**DateOfBirth** | **string** | The user&#39;s date of birth, in &#x60;YYYY-MM-DD&#x60; format | 
+**Name** | **string** | The user&#39;s full name | 
 **PhotoByes** | Pointer to **NullableString** | The raw bytes of the photo file collected from the user. | [optional] 
 **PhotoImageMimeType** | Pointer to **NullableString** | The MIME Type of the file contained in &#x60;PhotoByes&#x60;.              Must be one of &#x60;image/jpeg&#x60;, or &#x60;image/png&#x60;. | [optional] 
 
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 
 ### NewBangladeshNidInput
 
-`func NewBangladeshNidInput() *BangladeshNidInput`
+`func NewBangladeshNidInput(nationalIdNumber string, dateOfBirth string, name string, ) *BangladeshNidInput`
 
 NewBangladeshNidInput instantiates a new BangladeshNidInput object
 This constructor will assign default values to properties that have it defined,
@@ -48,22 +48,7 @@ and a boolean to check if the value has been set.
 
 SetNationalIdNumber sets NationalIdNumber field to given value.
 
-### HasNationalIdNumber
 
-`func (o *BangladeshNidInput) HasNationalIdNumber() bool`
-
-HasNationalIdNumber returns a boolean if a field has been set.
-
-### SetNationalIdNumberNil
-
-`func (o *BangladeshNidInput) SetNationalIdNumberNil(b bool)`
-
- SetNationalIdNumberNil sets the value for NationalIdNumber to be an explicit nil
-
-### UnsetNationalIdNumber
-`func (o *BangladeshNidInput) UnsetNationalIdNumber()`
-
-UnsetNationalIdNumber ensures that no value is present for NationalIdNumber, not even an explicit nil
 ### GetDateOfBirth
 
 `func (o *BangladeshNidInput) GetDateOfBirth() string`
@@ -83,22 +68,7 @@ and a boolean to check if the value has been set.
 
 SetDateOfBirth sets DateOfBirth field to given value.
 
-### HasDateOfBirth
 
-`func (o *BangladeshNidInput) HasDateOfBirth() bool`
-
-HasDateOfBirth returns a boolean if a field has been set.
-
-### SetDateOfBirthNil
-
-`func (o *BangladeshNidInput) SetDateOfBirthNil(b bool)`
-
- SetDateOfBirthNil sets the value for DateOfBirth to be an explicit nil
-
-### UnsetDateOfBirth
-`func (o *BangladeshNidInput) UnsetDateOfBirth()`
-
-UnsetDateOfBirth ensures that no value is present for DateOfBirth, not even an explicit nil
 ### GetName
 
 `func (o *BangladeshNidInput) GetName() string`
@@ -118,22 +88,7 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
-### HasName
 
-`func (o *BangladeshNidInput) HasName() bool`
-
-HasName returns a boolean if a field has been set.
-
-### SetNameNil
-
-`func (o *BangladeshNidInput) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *BangladeshNidInput) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetPhotoByes
 
 `func (o *BangladeshNidInput) GetPhotoByes() string`
