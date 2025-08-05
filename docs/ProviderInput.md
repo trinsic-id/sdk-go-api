@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **IndonesiaNik** | Pointer to [**NullableIndonesiaNikInput**](IndonesiaNikInput.md) | Input for the &#x60;indonesia-nik-lookup&#x60; provider | [optional] 
+**IndonesiaDukcapilBiometricMatch** | Pointer to [**NullableIndonesiaDukcapilBiometricMatchInput**](IndonesiaDukcapilBiometricMatchInput.md) | Input for the &#x60;indonesia-dukcapil-biometric-match&#x60; provider | [optional] 
 **MexicoCurp** | Pointer to [**NullableMexicoCurpInput**](MexicoCurpInput.md) | Input for the &#x60;mexico-curp-lookup&#x60; provider | [optional] 
 **SouthAfricaNid** | Pointer to [**NullableSouthAfricaNidInput**](SouthAfricaNidInput.md) | Input for the &#x60;south-africa-nid-lookup&#x60; provider | [optional] 
 **KenyaNid** | Pointer to [**NullableKenyaNidInput**](KenyaNidInput.md) | Input for the &#x60;kenya-nid-lookup&#x60; provider | [optional] 
@@ -76,6 +77,41 @@ HasIndonesiaNik returns a boolean if a field has been set.
 `func (o *ProviderInput) UnsetIndonesiaNik()`
 
 UnsetIndonesiaNik ensures that no value is present for IndonesiaNik, not even an explicit nil
+### GetIndonesiaDukcapilBiometricMatch
+
+`func (o *ProviderInput) GetIndonesiaDukcapilBiometricMatch() IndonesiaDukcapilBiometricMatchInput`
+
+GetIndonesiaDukcapilBiometricMatch returns the IndonesiaDukcapilBiometricMatch field if non-nil, zero value otherwise.
+
+### GetIndonesiaDukcapilBiometricMatchOk
+
+`func (o *ProviderInput) GetIndonesiaDukcapilBiometricMatchOk() (*IndonesiaDukcapilBiometricMatchInput, bool)`
+
+GetIndonesiaDukcapilBiometricMatchOk returns a tuple with the IndonesiaDukcapilBiometricMatch field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIndonesiaDukcapilBiometricMatch
+
+`func (o *ProviderInput) SetIndonesiaDukcapilBiometricMatch(v IndonesiaDukcapilBiometricMatchInput)`
+
+SetIndonesiaDukcapilBiometricMatch sets IndonesiaDukcapilBiometricMatch field to given value.
+
+### HasIndonesiaDukcapilBiometricMatch
+
+`func (o *ProviderInput) HasIndonesiaDukcapilBiometricMatch() bool`
+
+HasIndonesiaDukcapilBiometricMatch returns a boolean if a field has been set.
+
+### SetIndonesiaDukcapilBiometricMatchNil
+
+`func (o *ProviderInput) SetIndonesiaDukcapilBiometricMatchNil(b bool)`
+
+ SetIndonesiaDukcapilBiometricMatchNil sets the value for IndonesiaDukcapilBiometricMatch to be an explicit nil
+
+### UnsetIndonesiaDukcapilBiometricMatch
+`func (o *ProviderInput) UnsetIndonesiaDukcapilBiometricMatch()`
+
+UnsetIndonesiaDukcapilBiometricMatch ensures that no value is present for IndonesiaDukcapilBiometricMatch, not even an explicit nil
 ### GetMexicoCurp
 
 `func (o *ProviderInput) GetMexicoCurp() MexicoCurpInput`

@@ -1679,6 +1679,51 @@ components:
           nullable: true
           type: string
       type: object
+    IndonesiaDukcapilBiometricMatchInput:
+      additionalProperties: false
+      properties:
+        fullName:
+          description: The user's full name
+          nullable: true
+          type: string
+        dateOfBirth:
+          description: "The user's date of birth, in `YYYY-MM-DD` format"
+          format: date
+          nullable: true
+          type: string
+        nikIdNumber:
+          description: The user's Indonesia NIK ID number
+          nullable: true
+          type: string
+        email:
+          description: "The email address of the individual.\n            \nEither\
+            \ email or phone number must be provided."
+          nullable: true
+          type: string
+        phoneNumber:
+          description: "The phone number of the individual.\n            \nEither\
+            \ email or phone number must be provided."
+          nullable: true
+          type: string
+        selfieImage:
+          description: "The raw bytes of the selfie image of the individual.\n   \
+            \         \nMust be JPEG format; 1MB maximum."
+          format: byte
+          nullable: true
+          type: string
+        documentImage:
+          description: "The raw bytes of the image of the individual's KTP government\
+            \ ID.\n            \nMust be JPEG format; 1MB maximum.\n            \n\
+            Optional."
+          format: byte
+          nullable: true
+          type: string
+        consentGivenAt:
+          description: The timestamp when consent was given by the user for the verification.
+          format: date-time
+          nullable: true
+          type: string
+      type: object
     IndonesiaNikInput:
       additionalProperties: false
       properties:
@@ -2537,6 +2582,11 @@ components:
           allOf:
           - $ref: '#/components/schemas/IndonesiaNikInput'
           description: Input for the `indonesia-nik-lookup` provider
+          nullable: true
+        indonesiaDukcapilBiometricMatch:
+          allOf:
+          - $ref: '#/components/schemas/IndonesiaDukcapilBiometricMatchInput'
+          description: Input for the `indonesia-dukcapil-biometric-match` provider
           nullable: true
         mexicoCurp:
           allOf:
