@@ -15,11 +15,11 @@ import (
 	"time"
 )
 
-// checks if the IndonesiaDukcapilBiometricMatchInput type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &IndonesiaDukcapilBiometricMatchInput{}
+// checks if the IndonesiaDukcapilMatchInput type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &IndonesiaDukcapilMatchInput{}
 
-// IndonesiaDukcapilBiometricMatchInput struct for IndonesiaDukcapilBiometricMatchInput
-type IndonesiaDukcapilBiometricMatchInput struct {
+// IndonesiaDukcapilMatchInput struct for IndonesiaDukcapilMatchInput
+type IndonesiaDukcapilMatchInput struct {
 	// The user's full name
 	FullName NullableString `json:"fullName,omitempty"`
 	// The user's date of birth, in `YYYY-MM-DD` format
@@ -30,7 +30,7 @@ type IndonesiaDukcapilBiometricMatchInput struct {
 	Email NullableString `json:"email,omitempty"`
 	// The phone number of the individual.              Either email or phone number must be provided.
 	PhoneNumber NullableString `json:"phoneNumber,omitempty"`
-	// The raw bytes of the selfie image of the individual.              Must be JPEG format; 1MB maximum.
+	// The raw bytes of the selfie image of the individual.              Must be JPEG or PNG format; 10MB maximum.
 	SelfieImage NullableString `json:"selfieImage,omitempty"`
 	// The raw bytes of the image of the individual's KTP government ID.              Must be JPEG format; 1MB maximum.              Optional.
 	DocumentImage NullableString `json:"documentImage,omitempty"`
@@ -38,25 +38,25 @@ type IndonesiaDukcapilBiometricMatchInput struct {
 	ConsentGivenAt NullableTime `json:"consentGivenAt,omitempty"`
 }
 
-// NewIndonesiaDukcapilBiometricMatchInput instantiates a new IndonesiaDukcapilBiometricMatchInput object
+// NewIndonesiaDukcapilMatchInput instantiates a new IndonesiaDukcapilMatchInput object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewIndonesiaDukcapilBiometricMatchInput() *IndonesiaDukcapilBiometricMatchInput {
-	this := IndonesiaDukcapilBiometricMatchInput{}
+func NewIndonesiaDukcapilMatchInput() *IndonesiaDukcapilMatchInput {
+	this := IndonesiaDukcapilMatchInput{}
 	return &this
 }
 
-// NewIndonesiaDukcapilBiometricMatchInputWithDefaults instantiates a new IndonesiaDukcapilBiometricMatchInput object
+// NewIndonesiaDukcapilMatchInputWithDefaults instantiates a new IndonesiaDukcapilMatchInput object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewIndonesiaDukcapilBiometricMatchInputWithDefaults() *IndonesiaDukcapilBiometricMatchInput {
-	this := IndonesiaDukcapilBiometricMatchInput{}
+func NewIndonesiaDukcapilMatchInputWithDefaults() *IndonesiaDukcapilMatchInput {
+	this := IndonesiaDukcapilMatchInput{}
 	return &this
 }
 
 // GetFullName returns the FullName field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *IndonesiaDukcapilBiometricMatchInput) GetFullName() string {
+func (o *IndonesiaDukcapilMatchInput) GetFullName() string {
 	if o == nil || IsNil(o.FullName.Get()) {
 		var ret string
 		return ret
@@ -67,7 +67,7 @@ func (o *IndonesiaDukcapilBiometricMatchInput) GetFullName() string {
 // GetFullNameOk returns a tuple with the FullName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *IndonesiaDukcapilBiometricMatchInput) GetFullNameOk() (*string, bool) {
+func (o *IndonesiaDukcapilMatchInput) GetFullNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -75,7 +75,7 @@ func (o *IndonesiaDukcapilBiometricMatchInput) GetFullNameOk() (*string, bool) {
 }
 
 // HasFullName returns a boolean if a field has been set.
-func (o *IndonesiaDukcapilBiometricMatchInput) HasFullName() bool {
+func (o *IndonesiaDukcapilMatchInput) HasFullName() bool {
 	if o != nil && o.FullName.IsSet() {
 		return true
 	}
@@ -84,21 +84,21 @@ func (o *IndonesiaDukcapilBiometricMatchInput) HasFullName() bool {
 }
 
 // SetFullName gets a reference to the given NullableString and assigns it to the FullName field.
-func (o *IndonesiaDukcapilBiometricMatchInput) SetFullName(v string) {
+func (o *IndonesiaDukcapilMatchInput) SetFullName(v string) {
 	o.FullName.Set(&v)
 }
 // SetFullNameNil sets the value for FullName to be an explicit nil
-func (o *IndonesiaDukcapilBiometricMatchInput) SetFullNameNil() {
+func (o *IndonesiaDukcapilMatchInput) SetFullNameNil() {
 	o.FullName.Set(nil)
 }
 
 // UnsetFullName ensures that no value is present for FullName, not even an explicit nil
-func (o *IndonesiaDukcapilBiometricMatchInput) UnsetFullName() {
+func (o *IndonesiaDukcapilMatchInput) UnsetFullName() {
 	o.FullName.Unset()
 }
 
 // GetDateOfBirth returns the DateOfBirth field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *IndonesiaDukcapilBiometricMatchInput) GetDateOfBirth() string {
+func (o *IndonesiaDukcapilMatchInput) GetDateOfBirth() string {
 	if o == nil || IsNil(o.DateOfBirth.Get()) {
 		var ret string
 		return ret
@@ -109,7 +109,7 @@ func (o *IndonesiaDukcapilBiometricMatchInput) GetDateOfBirth() string {
 // GetDateOfBirthOk returns a tuple with the DateOfBirth field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *IndonesiaDukcapilBiometricMatchInput) GetDateOfBirthOk() (*string, bool) {
+func (o *IndonesiaDukcapilMatchInput) GetDateOfBirthOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -117,7 +117,7 @@ func (o *IndonesiaDukcapilBiometricMatchInput) GetDateOfBirthOk() (*string, bool
 }
 
 // HasDateOfBirth returns a boolean if a field has been set.
-func (o *IndonesiaDukcapilBiometricMatchInput) HasDateOfBirth() bool {
+func (o *IndonesiaDukcapilMatchInput) HasDateOfBirth() bool {
 	if o != nil && o.DateOfBirth.IsSet() {
 		return true
 	}
@@ -126,21 +126,21 @@ func (o *IndonesiaDukcapilBiometricMatchInput) HasDateOfBirth() bool {
 }
 
 // SetDateOfBirth gets a reference to the given NullableString and assigns it to the DateOfBirth field.
-func (o *IndonesiaDukcapilBiometricMatchInput) SetDateOfBirth(v string) {
+func (o *IndonesiaDukcapilMatchInput) SetDateOfBirth(v string) {
 	o.DateOfBirth.Set(&v)
 }
 // SetDateOfBirthNil sets the value for DateOfBirth to be an explicit nil
-func (o *IndonesiaDukcapilBiometricMatchInput) SetDateOfBirthNil() {
+func (o *IndonesiaDukcapilMatchInput) SetDateOfBirthNil() {
 	o.DateOfBirth.Set(nil)
 }
 
 // UnsetDateOfBirth ensures that no value is present for DateOfBirth, not even an explicit nil
-func (o *IndonesiaDukcapilBiometricMatchInput) UnsetDateOfBirth() {
+func (o *IndonesiaDukcapilMatchInput) UnsetDateOfBirth() {
 	o.DateOfBirth.Unset()
 }
 
 // GetNikIdNumber returns the NikIdNumber field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *IndonesiaDukcapilBiometricMatchInput) GetNikIdNumber() string {
+func (o *IndonesiaDukcapilMatchInput) GetNikIdNumber() string {
 	if o == nil || IsNil(o.NikIdNumber.Get()) {
 		var ret string
 		return ret
@@ -151,7 +151,7 @@ func (o *IndonesiaDukcapilBiometricMatchInput) GetNikIdNumber() string {
 // GetNikIdNumberOk returns a tuple with the NikIdNumber field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *IndonesiaDukcapilBiometricMatchInput) GetNikIdNumberOk() (*string, bool) {
+func (o *IndonesiaDukcapilMatchInput) GetNikIdNumberOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -159,7 +159,7 @@ func (o *IndonesiaDukcapilBiometricMatchInput) GetNikIdNumberOk() (*string, bool
 }
 
 // HasNikIdNumber returns a boolean if a field has been set.
-func (o *IndonesiaDukcapilBiometricMatchInput) HasNikIdNumber() bool {
+func (o *IndonesiaDukcapilMatchInput) HasNikIdNumber() bool {
 	if o != nil && o.NikIdNumber.IsSet() {
 		return true
 	}
@@ -168,21 +168,21 @@ func (o *IndonesiaDukcapilBiometricMatchInput) HasNikIdNumber() bool {
 }
 
 // SetNikIdNumber gets a reference to the given NullableString and assigns it to the NikIdNumber field.
-func (o *IndonesiaDukcapilBiometricMatchInput) SetNikIdNumber(v string) {
+func (o *IndonesiaDukcapilMatchInput) SetNikIdNumber(v string) {
 	o.NikIdNumber.Set(&v)
 }
 // SetNikIdNumberNil sets the value for NikIdNumber to be an explicit nil
-func (o *IndonesiaDukcapilBiometricMatchInput) SetNikIdNumberNil() {
+func (o *IndonesiaDukcapilMatchInput) SetNikIdNumberNil() {
 	o.NikIdNumber.Set(nil)
 }
 
 // UnsetNikIdNumber ensures that no value is present for NikIdNumber, not even an explicit nil
-func (o *IndonesiaDukcapilBiometricMatchInput) UnsetNikIdNumber() {
+func (o *IndonesiaDukcapilMatchInput) UnsetNikIdNumber() {
 	o.NikIdNumber.Unset()
 }
 
 // GetEmail returns the Email field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *IndonesiaDukcapilBiometricMatchInput) GetEmail() string {
+func (o *IndonesiaDukcapilMatchInput) GetEmail() string {
 	if o == nil || IsNil(o.Email.Get()) {
 		var ret string
 		return ret
@@ -193,7 +193,7 @@ func (o *IndonesiaDukcapilBiometricMatchInput) GetEmail() string {
 // GetEmailOk returns a tuple with the Email field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *IndonesiaDukcapilBiometricMatchInput) GetEmailOk() (*string, bool) {
+func (o *IndonesiaDukcapilMatchInput) GetEmailOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -201,7 +201,7 @@ func (o *IndonesiaDukcapilBiometricMatchInput) GetEmailOk() (*string, bool) {
 }
 
 // HasEmail returns a boolean if a field has been set.
-func (o *IndonesiaDukcapilBiometricMatchInput) HasEmail() bool {
+func (o *IndonesiaDukcapilMatchInput) HasEmail() bool {
 	if o != nil && o.Email.IsSet() {
 		return true
 	}
@@ -210,21 +210,21 @@ func (o *IndonesiaDukcapilBiometricMatchInput) HasEmail() bool {
 }
 
 // SetEmail gets a reference to the given NullableString and assigns it to the Email field.
-func (o *IndonesiaDukcapilBiometricMatchInput) SetEmail(v string) {
+func (o *IndonesiaDukcapilMatchInput) SetEmail(v string) {
 	o.Email.Set(&v)
 }
 // SetEmailNil sets the value for Email to be an explicit nil
-func (o *IndonesiaDukcapilBiometricMatchInput) SetEmailNil() {
+func (o *IndonesiaDukcapilMatchInput) SetEmailNil() {
 	o.Email.Set(nil)
 }
 
 // UnsetEmail ensures that no value is present for Email, not even an explicit nil
-func (o *IndonesiaDukcapilBiometricMatchInput) UnsetEmail() {
+func (o *IndonesiaDukcapilMatchInput) UnsetEmail() {
 	o.Email.Unset()
 }
 
 // GetPhoneNumber returns the PhoneNumber field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *IndonesiaDukcapilBiometricMatchInput) GetPhoneNumber() string {
+func (o *IndonesiaDukcapilMatchInput) GetPhoneNumber() string {
 	if o == nil || IsNil(o.PhoneNumber.Get()) {
 		var ret string
 		return ret
@@ -235,7 +235,7 @@ func (o *IndonesiaDukcapilBiometricMatchInput) GetPhoneNumber() string {
 // GetPhoneNumberOk returns a tuple with the PhoneNumber field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *IndonesiaDukcapilBiometricMatchInput) GetPhoneNumberOk() (*string, bool) {
+func (o *IndonesiaDukcapilMatchInput) GetPhoneNumberOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -243,7 +243,7 @@ func (o *IndonesiaDukcapilBiometricMatchInput) GetPhoneNumberOk() (*string, bool
 }
 
 // HasPhoneNumber returns a boolean if a field has been set.
-func (o *IndonesiaDukcapilBiometricMatchInput) HasPhoneNumber() bool {
+func (o *IndonesiaDukcapilMatchInput) HasPhoneNumber() bool {
 	if o != nil && o.PhoneNumber.IsSet() {
 		return true
 	}
@@ -252,21 +252,21 @@ func (o *IndonesiaDukcapilBiometricMatchInput) HasPhoneNumber() bool {
 }
 
 // SetPhoneNumber gets a reference to the given NullableString and assigns it to the PhoneNumber field.
-func (o *IndonesiaDukcapilBiometricMatchInput) SetPhoneNumber(v string) {
+func (o *IndonesiaDukcapilMatchInput) SetPhoneNumber(v string) {
 	o.PhoneNumber.Set(&v)
 }
 // SetPhoneNumberNil sets the value for PhoneNumber to be an explicit nil
-func (o *IndonesiaDukcapilBiometricMatchInput) SetPhoneNumberNil() {
+func (o *IndonesiaDukcapilMatchInput) SetPhoneNumberNil() {
 	o.PhoneNumber.Set(nil)
 }
 
 // UnsetPhoneNumber ensures that no value is present for PhoneNumber, not even an explicit nil
-func (o *IndonesiaDukcapilBiometricMatchInput) UnsetPhoneNumber() {
+func (o *IndonesiaDukcapilMatchInput) UnsetPhoneNumber() {
 	o.PhoneNumber.Unset()
 }
 
 // GetSelfieImage returns the SelfieImage field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *IndonesiaDukcapilBiometricMatchInput) GetSelfieImage() string {
+func (o *IndonesiaDukcapilMatchInput) GetSelfieImage() string {
 	if o == nil || IsNil(o.SelfieImage.Get()) {
 		var ret string
 		return ret
@@ -277,7 +277,7 @@ func (o *IndonesiaDukcapilBiometricMatchInput) GetSelfieImage() string {
 // GetSelfieImageOk returns a tuple with the SelfieImage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *IndonesiaDukcapilBiometricMatchInput) GetSelfieImageOk() (*string, bool) {
+func (o *IndonesiaDukcapilMatchInput) GetSelfieImageOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -285,7 +285,7 @@ func (o *IndonesiaDukcapilBiometricMatchInput) GetSelfieImageOk() (*string, bool
 }
 
 // HasSelfieImage returns a boolean if a field has been set.
-func (o *IndonesiaDukcapilBiometricMatchInput) HasSelfieImage() bool {
+func (o *IndonesiaDukcapilMatchInput) HasSelfieImage() bool {
 	if o != nil && o.SelfieImage.IsSet() {
 		return true
 	}
@@ -294,21 +294,21 @@ func (o *IndonesiaDukcapilBiometricMatchInput) HasSelfieImage() bool {
 }
 
 // SetSelfieImage gets a reference to the given NullableString and assigns it to the SelfieImage field.
-func (o *IndonesiaDukcapilBiometricMatchInput) SetSelfieImage(v string) {
+func (o *IndonesiaDukcapilMatchInput) SetSelfieImage(v string) {
 	o.SelfieImage.Set(&v)
 }
 // SetSelfieImageNil sets the value for SelfieImage to be an explicit nil
-func (o *IndonesiaDukcapilBiometricMatchInput) SetSelfieImageNil() {
+func (o *IndonesiaDukcapilMatchInput) SetSelfieImageNil() {
 	o.SelfieImage.Set(nil)
 }
 
 // UnsetSelfieImage ensures that no value is present for SelfieImage, not even an explicit nil
-func (o *IndonesiaDukcapilBiometricMatchInput) UnsetSelfieImage() {
+func (o *IndonesiaDukcapilMatchInput) UnsetSelfieImage() {
 	o.SelfieImage.Unset()
 }
 
 // GetDocumentImage returns the DocumentImage field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *IndonesiaDukcapilBiometricMatchInput) GetDocumentImage() string {
+func (o *IndonesiaDukcapilMatchInput) GetDocumentImage() string {
 	if o == nil || IsNil(o.DocumentImage.Get()) {
 		var ret string
 		return ret
@@ -319,7 +319,7 @@ func (o *IndonesiaDukcapilBiometricMatchInput) GetDocumentImage() string {
 // GetDocumentImageOk returns a tuple with the DocumentImage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *IndonesiaDukcapilBiometricMatchInput) GetDocumentImageOk() (*string, bool) {
+func (o *IndonesiaDukcapilMatchInput) GetDocumentImageOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -327,7 +327,7 @@ func (o *IndonesiaDukcapilBiometricMatchInput) GetDocumentImageOk() (*string, bo
 }
 
 // HasDocumentImage returns a boolean if a field has been set.
-func (o *IndonesiaDukcapilBiometricMatchInput) HasDocumentImage() bool {
+func (o *IndonesiaDukcapilMatchInput) HasDocumentImage() bool {
 	if o != nil && o.DocumentImage.IsSet() {
 		return true
 	}
@@ -336,21 +336,21 @@ func (o *IndonesiaDukcapilBiometricMatchInput) HasDocumentImage() bool {
 }
 
 // SetDocumentImage gets a reference to the given NullableString and assigns it to the DocumentImage field.
-func (o *IndonesiaDukcapilBiometricMatchInput) SetDocumentImage(v string) {
+func (o *IndonesiaDukcapilMatchInput) SetDocumentImage(v string) {
 	o.DocumentImage.Set(&v)
 }
 // SetDocumentImageNil sets the value for DocumentImage to be an explicit nil
-func (o *IndonesiaDukcapilBiometricMatchInput) SetDocumentImageNil() {
+func (o *IndonesiaDukcapilMatchInput) SetDocumentImageNil() {
 	o.DocumentImage.Set(nil)
 }
 
 // UnsetDocumentImage ensures that no value is present for DocumentImage, not even an explicit nil
-func (o *IndonesiaDukcapilBiometricMatchInput) UnsetDocumentImage() {
+func (o *IndonesiaDukcapilMatchInput) UnsetDocumentImage() {
 	o.DocumentImage.Unset()
 }
 
 // GetConsentGivenAt returns the ConsentGivenAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *IndonesiaDukcapilBiometricMatchInput) GetConsentGivenAt() time.Time {
+func (o *IndonesiaDukcapilMatchInput) GetConsentGivenAt() time.Time {
 	if o == nil || IsNil(o.ConsentGivenAt.Get()) {
 		var ret time.Time
 		return ret
@@ -361,7 +361,7 @@ func (o *IndonesiaDukcapilBiometricMatchInput) GetConsentGivenAt() time.Time {
 // GetConsentGivenAtOk returns a tuple with the ConsentGivenAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *IndonesiaDukcapilBiometricMatchInput) GetConsentGivenAtOk() (*time.Time, bool) {
+func (o *IndonesiaDukcapilMatchInput) GetConsentGivenAtOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -369,7 +369,7 @@ func (o *IndonesiaDukcapilBiometricMatchInput) GetConsentGivenAtOk() (*time.Time
 }
 
 // HasConsentGivenAt returns a boolean if a field has been set.
-func (o *IndonesiaDukcapilBiometricMatchInput) HasConsentGivenAt() bool {
+func (o *IndonesiaDukcapilMatchInput) HasConsentGivenAt() bool {
 	if o != nil && o.ConsentGivenAt.IsSet() {
 		return true
 	}
@@ -378,20 +378,20 @@ func (o *IndonesiaDukcapilBiometricMatchInput) HasConsentGivenAt() bool {
 }
 
 // SetConsentGivenAt gets a reference to the given NullableTime and assigns it to the ConsentGivenAt field.
-func (o *IndonesiaDukcapilBiometricMatchInput) SetConsentGivenAt(v time.Time) {
+func (o *IndonesiaDukcapilMatchInput) SetConsentGivenAt(v time.Time) {
 	o.ConsentGivenAt.Set(&v)
 }
 // SetConsentGivenAtNil sets the value for ConsentGivenAt to be an explicit nil
-func (o *IndonesiaDukcapilBiometricMatchInput) SetConsentGivenAtNil() {
+func (o *IndonesiaDukcapilMatchInput) SetConsentGivenAtNil() {
 	o.ConsentGivenAt.Set(nil)
 }
 
 // UnsetConsentGivenAt ensures that no value is present for ConsentGivenAt, not even an explicit nil
-func (o *IndonesiaDukcapilBiometricMatchInput) UnsetConsentGivenAt() {
+func (o *IndonesiaDukcapilMatchInput) UnsetConsentGivenAt() {
 	o.ConsentGivenAt.Unset()
 }
 
-func (o IndonesiaDukcapilBiometricMatchInput) MarshalJSON() ([]byte, error) {
+func (o IndonesiaDukcapilMatchInput) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -399,7 +399,7 @@ func (o IndonesiaDukcapilBiometricMatchInput) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o IndonesiaDukcapilBiometricMatchInput) ToMap() (map[string]interface{}, error) {
+func (o IndonesiaDukcapilMatchInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if o.FullName.IsSet() {
 		toSerialize["fullName"] = o.FullName.Get()
@@ -428,38 +428,38 @@ func (o IndonesiaDukcapilBiometricMatchInput) ToMap() (map[string]interface{}, e
 	return toSerialize, nil
 }
 
-type NullableIndonesiaDukcapilBiometricMatchInput struct {
-	value *IndonesiaDukcapilBiometricMatchInput
+type NullableIndonesiaDukcapilMatchInput struct {
+	value *IndonesiaDukcapilMatchInput
 	isSet bool
 }
 
-func (v NullableIndonesiaDukcapilBiometricMatchInput) Get() *IndonesiaDukcapilBiometricMatchInput {
+func (v NullableIndonesiaDukcapilMatchInput) Get() *IndonesiaDukcapilMatchInput {
 	return v.value
 }
 
-func (v *NullableIndonesiaDukcapilBiometricMatchInput) Set(val *IndonesiaDukcapilBiometricMatchInput) {
+func (v *NullableIndonesiaDukcapilMatchInput) Set(val *IndonesiaDukcapilMatchInput) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableIndonesiaDukcapilBiometricMatchInput) IsSet() bool {
+func (v NullableIndonesiaDukcapilMatchInput) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableIndonesiaDukcapilBiometricMatchInput) Unset() {
+func (v *NullableIndonesiaDukcapilMatchInput) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableIndonesiaDukcapilBiometricMatchInput(val *IndonesiaDukcapilBiometricMatchInput) *NullableIndonesiaDukcapilBiometricMatchInput {
-	return &NullableIndonesiaDukcapilBiometricMatchInput{value: val, isSet: true}
+func NewNullableIndonesiaDukcapilMatchInput(val *IndonesiaDukcapilMatchInput) *NullableIndonesiaDukcapilMatchInput {
+	return &NullableIndonesiaDukcapilMatchInput{value: val, isSet: true}
 }
 
-func (v NullableIndonesiaDukcapilBiometricMatchInput) MarshalJSON() ([]byte, error) {
+func (v NullableIndonesiaDukcapilMatchInput) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableIndonesiaDukcapilBiometricMatchInput) UnmarshalJSON(src []byte) error {
+func (v *NullableIndonesiaDukcapilMatchInput) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

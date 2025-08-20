@@ -23,6 +23,7 @@ type IdentityData struct {
 	OriginatingSubProviderId NullableString `json:"originatingSubProviderId,omitempty"`
 	Person NullablePersonData `json:"person,omitempty"`
 	Document NullableDocumentData `json:"document,omitempty"`
+	Match NullableMatchData `json:"match,omitempty"`
 	AttachmentAccessKeys NullableAttachmentAccessKeys `json:"attachmentAccessKeys,omitempty"`
 }
 
@@ -211,6 +212,48 @@ func (o *IdentityData) UnsetDocument() {
 	o.Document.Unset()
 }
 
+// GetMatch returns the Match field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *IdentityData) GetMatch() MatchData {
+	if o == nil || IsNil(o.Match.Get()) {
+		var ret MatchData
+		return ret
+	}
+	return *o.Match.Get()
+}
+
+// GetMatchOk returns a tuple with the Match field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *IdentityData) GetMatchOk() (*MatchData, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Match.Get(), o.Match.IsSet()
+}
+
+// HasMatch returns a boolean if a field has been set.
+func (o *IdentityData) HasMatch() bool {
+	if o != nil && o.Match.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetMatch gets a reference to the given NullableMatchData and assigns it to the Match field.
+func (o *IdentityData) SetMatch(v MatchData) {
+	o.Match.Set(&v)
+}
+// SetMatchNil sets the value for Match to be an explicit nil
+func (o *IdentityData) SetMatchNil() {
+	o.Match.Set(nil)
+}
+
+// UnsetMatch ensures that no value is present for Match, not even an explicit nil
+func (o *IdentityData) UnsetMatch() {
+	o.Match.Unset()
+}
+
 // GetAttachmentAccessKeys returns the AttachmentAccessKeys field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IdentityData) GetAttachmentAccessKeys() AttachmentAccessKeys {
 	if o == nil || IsNil(o.AttachmentAccessKeys.Get()) {
@@ -274,6 +317,9 @@ func (o IdentityData) ToMap() (map[string]interface{}, error) {
 	}
 	if o.Document.IsSet() {
 		toSerialize["document"] = o.Document.Get()
+	}
+	if o.Match.IsSet() {
+		toSerialize["match"] = o.Match.Get()
 	}
 	if o.AttachmentAccessKeys.IsSet() {
 		toSerialize["attachmentAccessKeys"] = o.AttachmentAccessKeys.Get()

@@ -21,8 +21,8 @@ var _ MappedNullable = &ProviderInput{}
 type ProviderInput struct {
 	// Input for the `indonesia-nik-lookup` provider
 	IndonesiaNik NullableIndonesiaNikInput `json:"indonesiaNik,omitempty"`
-	// Input for the `indonesia-dukcapil-biometric-match` provider
-	IndonesiaDukcapilBiometricMatch NullableIndonesiaDukcapilBiometricMatchInput `json:"indonesiaDukcapilBiometricMatch,omitempty"`
+	// Input for the `indonesia-dukcapil-match` provider
+	IndonesiaDukcapilMatch NullableIndonesiaDukcapilMatchInput `json:"indonesiaDukcapilMatch,omitempty"`
 	// Input for the `mexico-curp-lookup` provider
 	MexicoCurp NullableMexicoCurpInput `json:"mexicoCurp,omitempty"`
 	// Input for the `south-africa-nid-lookup` provider
@@ -116,46 +116,46 @@ func (o *ProviderInput) UnsetIndonesiaNik() {
 	o.IndonesiaNik.Unset()
 }
 
-// GetIndonesiaDukcapilBiometricMatch returns the IndonesiaDukcapilBiometricMatch field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ProviderInput) GetIndonesiaDukcapilBiometricMatch() IndonesiaDukcapilBiometricMatchInput {
-	if o == nil || IsNil(o.IndonesiaDukcapilBiometricMatch.Get()) {
-		var ret IndonesiaDukcapilBiometricMatchInput
+// GetIndonesiaDukcapilMatch returns the IndonesiaDukcapilMatch field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderInput) GetIndonesiaDukcapilMatch() IndonesiaDukcapilMatchInput {
+	if o == nil || IsNil(o.IndonesiaDukcapilMatch.Get()) {
+		var ret IndonesiaDukcapilMatchInput
 		return ret
 	}
-	return *o.IndonesiaDukcapilBiometricMatch.Get()
+	return *o.IndonesiaDukcapilMatch.Get()
 }
 
-// GetIndonesiaDukcapilBiometricMatchOk returns a tuple with the IndonesiaDukcapilBiometricMatch field value if set, nil otherwise
+// GetIndonesiaDukcapilMatchOk returns a tuple with the IndonesiaDukcapilMatch field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ProviderInput) GetIndonesiaDukcapilBiometricMatchOk() (*IndonesiaDukcapilBiometricMatchInput, bool) {
+func (o *ProviderInput) GetIndonesiaDukcapilMatchOk() (*IndonesiaDukcapilMatchInput, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.IndonesiaDukcapilBiometricMatch.Get(), o.IndonesiaDukcapilBiometricMatch.IsSet()
+	return o.IndonesiaDukcapilMatch.Get(), o.IndonesiaDukcapilMatch.IsSet()
 }
 
-// HasIndonesiaDukcapilBiometricMatch returns a boolean if a field has been set.
-func (o *ProviderInput) HasIndonesiaDukcapilBiometricMatch() bool {
-	if o != nil && o.IndonesiaDukcapilBiometricMatch.IsSet() {
+// HasIndonesiaDukcapilMatch returns a boolean if a field has been set.
+func (o *ProviderInput) HasIndonesiaDukcapilMatch() bool {
+	if o != nil && o.IndonesiaDukcapilMatch.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetIndonesiaDukcapilBiometricMatch gets a reference to the given NullableIndonesiaDukcapilBiometricMatchInput and assigns it to the IndonesiaDukcapilBiometricMatch field.
-func (o *ProviderInput) SetIndonesiaDukcapilBiometricMatch(v IndonesiaDukcapilBiometricMatchInput) {
-	o.IndonesiaDukcapilBiometricMatch.Set(&v)
+// SetIndonesiaDukcapilMatch gets a reference to the given NullableIndonesiaDukcapilMatchInput and assigns it to the IndonesiaDukcapilMatch field.
+func (o *ProviderInput) SetIndonesiaDukcapilMatch(v IndonesiaDukcapilMatchInput) {
+	o.IndonesiaDukcapilMatch.Set(&v)
 }
-// SetIndonesiaDukcapilBiometricMatchNil sets the value for IndonesiaDukcapilBiometricMatch to be an explicit nil
-func (o *ProviderInput) SetIndonesiaDukcapilBiometricMatchNil() {
-	o.IndonesiaDukcapilBiometricMatch.Set(nil)
+// SetIndonesiaDukcapilMatchNil sets the value for IndonesiaDukcapilMatch to be an explicit nil
+func (o *ProviderInput) SetIndonesiaDukcapilMatchNil() {
+	o.IndonesiaDukcapilMatch.Set(nil)
 }
 
-// UnsetIndonesiaDukcapilBiometricMatch ensures that no value is present for IndonesiaDukcapilBiometricMatch, not even an explicit nil
-func (o *ProviderInput) UnsetIndonesiaDukcapilBiometricMatch() {
-	o.IndonesiaDukcapilBiometricMatch.Unset()
+// UnsetIndonesiaDukcapilMatch ensures that no value is present for IndonesiaDukcapilMatch, not even an explicit nil
+func (o *ProviderInput) UnsetIndonesiaDukcapilMatch() {
+	o.IndonesiaDukcapilMatch.Unset()
 }
 
 // GetMexicoCurp returns the MexicoCurp field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -843,8 +843,8 @@ func (o ProviderInput) ToMap() (map[string]interface{}, error) {
 	if o.IndonesiaNik.IsSet() {
 		toSerialize["indonesiaNik"] = o.IndonesiaNik.Get()
 	}
-	if o.IndonesiaDukcapilBiometricMatch.IsSet() {
-		toSerialize["indonesiaDukcapilBiometricMatch"] = o.IndonesiaDukcapilBiometricMatch.Get()
+	if o.IndonesiaDukcapilMatch.IsSet() {
+		toSerialize["indonesiaDukcapilMatch"] = o.IndonesiaDukcapilMatch.Get()
 	}
 	if o.MexicoCurp.IsSet() {
 		toSerialize["mexicoCurp"] = o.MexicoCurp.Get()

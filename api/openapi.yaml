@@ -1665,6 +1665,10 @@ components:
           allOf:
           - $ref: '#/components/schemas/DocumentData'
           nullable: true
+        match:
+          allOf:
+          - $ref: '#/components/schemas/MatchData'
+          nullable: true
         attachmentAccessKeys:
           allOf:
           - $ref: '#/components/schemas/AttachmentAccessKeys'
@@ -1679,7 +1683,7 @@ components:
           nullable: true
           type: string
       type: object
-    IndonesiaDukcapilBiometricMatchInput:
+    IndonesiaDukcapilMatchInput:
       additionalProperties: false
       properties:
         fullName:
@@ -1707,7 +1711,7 @@ components:
           type: string
         selfieImage:
           description: "The raw bytes of the selfie image of the individual.\n   \
-            \         \nMust be JPEG format; 1MB maximum."
+            \         \nMust be JPEG or PNG format; 10MB maximum."
           format: byte
           nullable: true
           type: string
@@ -2043,6 +2047,61 @@ components:
       - more
       - sessions
       - total
+      type: object
+    Match:
+      additionalProperties: false
+      properties:
+        probabilityValue:
+          format: double
+          nullable: true
+          type: number
+        booleanValue:
+          nullable: true
+          type: boolean
+      type: object
+    MatchData:
+      additionalProperties: false
+      properties:
+        nationalIdNumber:
+          allOf:
+          - $ref: '#/components/schemas/Match'
+          nullable: true
+        fullName:
+          allOf:
+          - $ref: '#/components/schemas/Match'
+          nullable: true
+        givenName:
+          allOf:
+          - $ref: '#/components/schemas/Match'
+          nullable: true
+        middleName:
+          allOf:
+          - $ref: '#/components/schemas/Match'
+          nullable: true
+        familyName:
+          allOf:
+          - $ref: '#/components/schemas/Match'
+          nullable: true
+        sex:
+          allOf:
+          - $ref: '#/components/schemas/Match'
+          nullable: true
+        dateOfBirth:
+          allOf:
+          - $ref: '#/components/schemas/Match'
+          nullable: true
+        faceMatch:
+          allOf:
+          - $ref: '#/components/schemas/Match'
+          nullable: true
+        liveness:
+          allOf:
+          - $ref: '#/components/schemas/Match'
+          nullable: true
+        imageAuthenticity:
+          allOf:
+          - $ref: '#/components/schemas/Match'
+          nullable: true
       type: object
     MexicoCurpInput:
       additionalProperties: false
@@ -2583,10 +2642,10 @@ components:
           - $ref: '#/components/schemas/IndonesiaNikInput'
           description: Input for the `indonesia-nik-lookup` provider
           nullable: true
-        indonesiaDukcapilBiometricMatch:
+        indonesiaDukcapilMatch:
           allOf:
-          - $ref: '#/components/schemas/IndonesiaDukcapilBiometricMatchInput'
-          description: Input for the `indonesia-dukcapil-biometric-match` provider
+          - $ref: '#/components/schemas/IndonesiaDukcapilMatchInput'
+          description: Input for the `indonesia-dukcapil-match` provider
           nullable: true
         mexicoCurp:
           allOf:

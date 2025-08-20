@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **OriginatingSubProviderId** | Pointer to **NullableString** |  | [optional] 
 **Person** | Pointer to [**NullablePersonData**](PersonData.md) |  | [optional] 
 **Document** | Pointer to [**NullableDocumentData**](DocumentData.md) |  | [optional] 
+**Match** | Pointer to [**NullableMatchData**](MatchData.md) |  | [optional] 
 **AttachmentAccessKeys** | Pointer to [**NullableAttachmentAccessKeys**](AttachmentAccessKeys.md) |  | [optional] 
 
 ## Methods
@@ -169,6 +170,41 @@ HasDocument returns a boolean if a field has been set.
 `func (o *IdentityData) UnsetDocument()`
 
 UnsetDocument ensures that no value is present for Document, not even an explicit nil
+### GetMatch
+
+`func (o *IdentityData) GetMatch() MatchData`
+
+GetMatch returns the Match field if non-nil, zero value otherwise.
+
+### GetMatchOk
+
+`func (o *IdentityData) GetMatchOk() (*MatchData, bool)`
+
+GetMatchOk returns a tuple with the Match field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMatch
+
+`func (o *IdentityData) SetMatch(v MatchData)`
+
+SetMatch sets Match field to given value.
+
+### HasMatch
+
+`func (o *IdentityData) HasMatch() bool`
+
+HasMatch returns a boolean if a field has been set.
+
+### SetMatchNil
+
+`func (o *IdentityData) SetMatchNil(b bool)`
+
+ SetMatchNil sets the value for Match to be an explicit nil
+
+### UnsetMatch
+`func (o *IdentityData) UnsetMatch()`
+
+UnsetMatch ensures that no value is present for Match, not even an explicit nil
 ### GetAttachmentAccessKeys
 
 `func (o *IdentityData) GetAttachmentAccessKeys() AttachmentAccessKeys`

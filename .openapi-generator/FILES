@@ -35,7 +35,7 @@ docs/GetSessionResultResponse.md
 docs/HttpValidationProblemDetails.md
 docs/IdentityData.md
 docs/IdinInput.md
-docs/IndonesiaDukcapilBiometricMatchInput.md
+docs/IndonesiaDukcapilMatchInput.md
 docs/IndonesiaNikInput.md
 docs/IntegrationCapability.md
 docs/IntegrationLaunchMethod.md
@@ -45,6 +45,8 @@ docs/Language.md
 docs/ListProviderContractsResponse.md
 docs/ListProvidersResponse.md
 docs/ListSessionsResponse.md
+docs/Match.md
+docs/MatchData.md
 docs/MexicoCurpInput.md
 docs/MobileIdInput.md
 docs/NetworkAPI.md
@@ -108,7 +110,7 @@ model_get_session_result_response.go
 model_http_validation_problem_details.go
 model_identity_data.go
 model_idin_input.go
-model_indonesia_dukcapil_biometric_match_input.go
+model_indonesia_dukcapil_match_input.go
 model_indonesia_nik_input.go
 model_integration_capability.go
 model_integration_launch_method.go
@@ -118,6 +120,8 @@ model_language.go
 model_list_provider_contracts_response.go
 model_list_providers_response.go
 model_list_sessions_response.go
+model_match.go
+model_match_data.go
 model_mexico_curp_input.go
 model_mobile_id_input.go
 model_nigeria_nin_input.go
