@@ -4,15 +4,15 @@ All URIs are relative to *https://api.trinsic.id*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ListProviderContracts**](NetworkAPI.md#ListProviderContracts) | **Get** /api/v1/network/providers/contracts | List Provider Contracts
-[**ListProviders**](NetworkAPI.md#ListProviders) | **Get** /api/v1/network/providers | List Providers
+[**ListProviderContracts**](NetworkAPI.md#ListProviderContracts) | **Get** /api/v1/network/{verificationProfileId}/providers/contracts | List Provider Contracts
+[**ListProviders**](NetworkAPI.md#ListProviders) | **Get** /api/v1/network/{verificationProfileId}/providers | 
 [**RecommendProviders**](NetworkAPI.md#RecommendProviders) | **Post** /api/v1/network/recommend | Recommend Providers
 
 
 
 ## ListProviderContracts
 
-> ListProviderContractsResponse ListProviderContracts(ctx).Execute()
+> ListProviderContractsResponse ListProviderContracts(ctx, verificationProfileId).Execute()
 
 List Provider Contracts
 
@@ -31,10 +31,11 @@ import (
 )
 
 func main() {
+	verificationProfileId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.NetworkAPI.ListProviderContracts(context.Background()).Execute()
+	resp, r, err := apiClient.NetworkAPI.ListProviderContracts(context.Background(), verificationProfileId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NetworkAPI.ListProviderContracts``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -46,11 +47,19 @@ func main() {
 
 ### Path Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**verificationProfileId** | **string** |  | 
 
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiListProviderContractsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
 
 
 ### Return type
@@ -73,9 +82,7 @@ Other parameters are passed through a pointer to a apiListProviderContractsReque
 
 ## ListProviders
 
-> ListProvidersResponse ListProviders(ctx).Health(health).Execute()
-
-List Providers
+> ListProvidersResponse ListProviders(ctx, verificationProfileId).Health(health).Execute()
 
 
 
@@ -92,11 +99,12 @@ import (
 )
 
 func main() {
-	health := "health_example" // string | Filter providers by health status. Valid values: \"online\", \"offline\", \"all\". Defaults to \"all\". (optional)
+	verificationProfileId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	health := "health_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.NetworkAPI.ListProviders(context.Background()).Health(health).Execute()
+	resp, r, err := apiClient.NetworkAPI.ListProviders(context.Background(), verificationProfileId).Health(health).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NetworkAPI.ListProviders``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -109,6 +117,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**verificationProfileId** | **string** |  | 
 
 ### Other Parameters
 
@@ -117,7 +129,8 @@ Other parameters are passed through a pointer to a apiListProvidersRequest struc
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **health** | **string** | Filter providers by health status. Valid values: \&quot;online\&quot;, \&quot;offline\&quot;, \&quot;all\&quot;. Defaults to \&quot;all\&quot;. | 
+
+ **health** | **string** |  | 
 
 ### Return type
 
@@ -158,7 +171,7 @@ import (
 )
 
 func main() {
-	recommendRequest := *openapiclient.NewRecommendRequest() // RecommendRequest |  (optional)
+	recommendRequest := *openapiclient.NewRecommendRequest("VerificationProfileId_example") // RecommendRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

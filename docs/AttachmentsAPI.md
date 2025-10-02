@@ -29,7 +29,7 @@ import (
 )
 
 func main() {
-	getAttachmentRequest := *openapiclient.NewGetAttachmentRequest("AttachmentAccessKey_example") // GetAttachmentRequest |  (optional)
+	getAttachmentRequest := *openapiclient.NewGetAttachmentRequest("AttachmentAccessKey_example", "00000000-0000-0000-0000-000000000000") // GetAttachmentRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

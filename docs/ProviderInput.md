@@ -20,6 +20,8 @@ Name | Type | Description | Notes
 **MobileId** | Pointer to [**NullableMobileIdInput**](MobileIdInput.md) | Input for the &#x60;mobile-id&#x60; provider | [optional] 
 **Idin** | Pointer to [**NullableIdinInput**](IdinInput.md) | Input for the &#x60;netherlands-idin&#x60; provider | [optional] 
 **Spid** | Pointer to [**NullableSpidInput**](SpidInput.md) | Input for the &#x60;italy-spid&#x60; provider | [optional] 
+**GoogleWallet** | Pointer to [**NullableGoogleWalletInput**](GoogleWalletInput.md) | Input for the &#x60;google-wallet&#x60; provider | [optional] 
+**AppleWallet** | Pointer to [**NullableAppleWalletInput**](AppleWalletInput.md) | Input for the &#x60;apple-wallet&#x60; provider | [optional] 
 **TrinsicTestDatabaseLookup** | Pointer to [**NullableTrinsicTestDatabaseLookupInput**](TrinsicTestDatabaseLookupInput.md) | *TEST MODE ONLY.*              Input for the &#x60;trinsic-test-database-lookup&#x60; provider | [optional] 
 **TrinsicTestSubProviders** | Pointer to [**NullableTrinsicTestSubProvidersInput**](TrinsicTestSubProvidersInput.md) | *TEST MODE ONLY.*              Input for the &#x60;trinsic-test-sub-providers&#x60; provider | [optional] 
 
@@ -602,6 +604,76 @@ HasSpid returns a boolean if a field has been set.
 `func (o *ProviderInput) UnsetSpid()`
 
 UnsetSpid ensures that no value is present for Spid, not even an explicit nil
+### GetGoogleWallet
+
+`func (o *ProviderInput) GetGoogleWallet() GoogleWalletInput`
+
+GetGoogleWallet returns the GoogleWallet field if non-nil, zero value otherwise.
+
+### GetGoogleWalletOk
+
+`func (o *ProviderInput) GetGoogleWalletOk() (*GoogleWalletInput, bool)`
+
+GetGoogleWalletOk returns a tuple with the GoogleWallet field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGoogleWallet
+
+`func (o *ProviderInput) SetGoogleWallet(v GoogleWalletInput)`
+
+SetGoogleWallet sets GoogleWallet field to given value.
+
+### HasGoogleWallet
+
+`func (o *ProviderInput) HasGoogleWallet() bool`
+
+HasGoogleWallet returns a boolean if a field has been set.
+
+### SetGoogleWalletNil
+
+`func (o *ProviderInput) SetGoogleWalletNil(b bool)`
+
+ SetGoogleWalletNil sets the value for GoogleWallet to be an explicit nil
+
+### UnsetGoogleWallet
+`func (o *ProviderInput) UnsetGoogleWallet()`
+
+UnsetGoogleWallet ensures that no value is present for GoogleWallet, not even an explicit nil
+### GetAppleWallet
+
+`func (o *ProviderInput) GetAppleWallet() AppleWalletInput`
+
+GetAppleWallet returns the AppleWallet field if non-nil, zero value otherwise.
+
+### GetAppleWalletOk
+
+`func (o *ProviderInput) GetAppleWalletOk() (*AppleWalletInput, bool)`
+
+GetAppleWalletOk returns a tuple with the AppleWallet field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAppleWallet
+
+`func (o *ProviderInput) SetAppleWallet(v AppleWalletInput)`
+
+SetAppleWallet sets AppleWallet field to given value.
+
+### HasAppleWallet
+
+`func (o *ProviderInput) HasAppleWallet() bool`
+
+HasAppleWallet returns a boolean if a field has been set.
+
+### SetAppleWalletNil
+
+`func (o *ProviderInput) SetAppleWalletNil(b bool)`
+
+ SetAppleWalletNil sets the value for AppleWallet to be an explicit nil
+
+### UnsetAppleWallet
+`func (o *ProviderInput) UnsetAppleWallet()`
+
+UnsetAppleWallet ensures that no value is present for AppleWallet, not even an explicit nil
 ### GetTrinsicTestDatabaseLookup
 
 `func (o *ProviderInput) GetTrinsicTestDatabaseLookup() TrinsicTestDatabaseLookupInput`

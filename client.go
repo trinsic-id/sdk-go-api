@@ -51,6 +51,8 @@ type APIClient struct {
 
 	AttachmentsAPI *AttachmentsAPIService
 
+	MdlAPI *MdlAPIService
+
 	NetworkAPI *NetworkAPIService
 
 	SessionsAPI *SessionsAPIService
@@ -73,6 +75,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 
 	// API Services
 	c.AttachmentsAPI = (*AttachmentsAPIService)(&c.common)
+	c.MdlAPI = (*MdlAPIService)(&c.common)
 	c.NetworkAPI = (*NetworkAPIService)(&c.common)
 	c.SessionsAPI = (*SessionsAPIService)(&c.common)
 

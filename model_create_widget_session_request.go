@@ -12,6 +12,8 @@ package trinsic_api
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the CreateWidgetSessionRequest type satisfies the MappedNullable interface at compile time
@@ -19,7 +21,9 @@ var _ MappedNullable = &CreateWidgetSessionRequest{}
 
 // CreateWidgetSessionRequest struct for CreateWidgetSessionRequest
 type CreateWidgetSessionRequest struct {
-	// The URL to redirect the user to after the widget session is complete.              *Note*: this should NOT be set if you intend to use Trinsic's Web UI SDK to launch the Widget as an embedded iFrame or popup; in that case, session resolution is handled by our SDK, not via redirect.
+	// The ID of the Verification Profile to use for this session.
+	VerificationProfileId string `json:"verificationProfileId"`
+	// The URL to redirect the user to after the widget session is complete.              *Note*: this should NOT be set if you intend to use Trinsic's Web UI SDK to launch the Widget as a popup; in that case, session resolution is handled by our SDK, not via redirect.
 	RedirectUrl NullableString `json:"redirectUrl,omitempty"`
 	// The list of allowed identity providers. If not specified, all available providers will be allowed.
 	Providers []string `json:"providers,omitempty"`
@@ -27,12 +31,15 @@ type CreateWidgetSessionRequest struct {
 	RecommendationInfo NullableRecommendationInfo `json:"recommendationInfo,omitempty"`
 }
 
+type _CreateWidgetSessionRequest CreateWidgetSessionRequest
+
 // NewCreateWidgetSessionRequest instantiates a new CreateWidgetSessionRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateWidgetSessionRequest() *CreateWidgetSessionRequest {
+func NewCreateWidgetSessionRequest(verificationProfileId string) *CreateWidgetSessionRequest {
 	this := CreateWidgetSessionRequest{}
+	this.VerificationProfileId = verificationProfileId
 	return &this
 }
 
@@ -42,6 +49,30 @@ func NewCreateWidgetSessionRequest() *CreateWidgetSessionRequest {
 func NewCreateWidgetSessionRequestWithDefaults() *CreateWidgetSessionRequest {
 	this := CreateWidgetSessionRequest{}
 	return &this
+}
+
+// GetVerificationProfileId returns the VerificationProfileId field value
+func (o *CreateWidgetSessionRequest) GetVerificationProfileId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.VerificationProfileId
+}
+
+// GetVerificationProfileIdOk returns a tuple with the VerificationProfileId field value
+// and a boolean to check if the value has been set.
+func (o *CreateWidgetSessionRequest) GetVerificationProfileIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.VerificationProfileId, true
+}
+
+// SetVerificationProfileId sets field value
+func (o *CreateWidgetSessionRequest) SetVerificationProfileId(v string) {
+	o.VerificationProfileId = v
 }
 
 // GetRedirectUrl returns the RedirectUrl field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -171,6 +202,7 @@ func (o CreateWidgetSessionRequest) MarshalJSON() ([]byte, error) {
 
 func (o CreateWidgetSessionRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["verificationProfileId"] = o.VerificationProfileId
 	if o.RedirectUrl.IsSet() {
 		toSerialize["redirectUrl"] = o.RedirectUrl.Get()
 	}
@@ -181,6 +213,43 @@ func (o CreateWidgetSessionRequest) ToMap() (map[string]interface{}, error) {
 		toSerialize["recommendationInfo"] = o.RecommendationInfo.Get()
 	}
 	return toSerialize, nil
+}
+
+func (o *CreateWidgetSessionRequest) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"verificationProfileId",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varCreateWidgetSessionRequest := _CreateWidgetSessionRequest{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varCreateWidgetSessionRequest)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CreateWidgetSessionRequest(varCreateWidgetSessionRequest)
+
+	return err
 }
 
 type NullableCreateWidgetSessionRequest struct {

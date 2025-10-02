@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**VerificationProfileId** | **string** | The ID of the VerificationProfile to use for this recommendation. | 
 **RecommendationInfo** | Pointer to [**NullableRecommendationInfo**](RecommendationInfo.md) | Information about the user you wish to generate a recommendation for. | [optional] 
 **Health** | Pointer to **NullableString** | Filter providers by health status. Valid values: \&quot;online\&quot;, \&quot;offline\&quot;, \&quot;all\&quot;. Defaults to \&quot;online\&quot;. | [optional] 
 
@@ -11,7 +12,7 @@ Name | Type | Description | Notes
 
 ### NewRecommendRequest
 
-`func NewRecommendRequest() *RecommendRequest`
+`func NewRecommendRequest(verificationProfileId string, ) *RecommendRequest`
 
 NewRecommendRequest instantiates a new RecommendRequest object
 This constructor will assign default values to properties that have it defined,
@@ -25,6 +26,26 @@ will change when the set of required properties is changed
 NewRecommendRequestWithDefaults instantiates a new RecommendRequest object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetVerificationProfileId
+
+`func (o *RecommendRequest) GetVerificationProfileId() string`
+
+GetVerificationProfileId returns the VerificationProfileId field if non-nil, zero value otherwise.
+
+### GetVerificationProfileIdOk
+
+`func (o *RecommendRequest) GetVerificationProfileIdOk() (*string, bool)`
+
+GetVerificationProfileIdOk returns a tuple with the VerificationProfileId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVerificationProfileId
+
+`func (o *RecommendRequest) SetVerificationProfileId(v string)`
+
+SetVerificationProfileId sets VerificationProfileId field to given value.
+
 
 ### GetRecommendationInfo
 

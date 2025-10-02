@@ -24,6 +24,7 @@ const (
 	INTEGRATIONLAUNCHMETHOD_NONE IntegrationLaunchMethod = "None"
 	INTEGRATIONLAUNCHMETHOD_DEEPLINK_TO_MOBILE IntegrationLaunchMethod = "DeeplinkToMobile"
 	INTEGRATIONLAUNCHMETHOD_SHOW_CONTENT IntegrationLaunchMethod = "ShowContent"
+	INTEGRATIONLAUNCHMETHOD_PERFORM_NATIVE_CHALLENGE IntegrationLaunchMethod = "PerformNativeChallenge"
 )
 
 // All allowed values of IntegrationLaunchMethod enum
@@ -32,6 +33,7 @@ var AllowedIntegrationLaunchMethodEnumValues = []IntegrationLaunchMethod{
 	"None",
 	"DeeplinkToMobile",
 	"ShowContent",
+	"PerformNativeChallenge",
 }
 
 func (v *IntegrationLaunchMethod) UnmarshalJSON(src []byte) error {

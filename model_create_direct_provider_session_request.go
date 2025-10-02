@@ -16,16 +16,18 @@ import (
 	"fmt"
 )
 
-// checks if the CreateAdvancedProviderSessionRequest type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &CreateAdvancedProviderSessionRequest{}
+// checks if the CreateDirectProviderSessionRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateDirectProviderSessionRequest{}
 
-// CreateAdvancedProviderSessionRequest struct for CreateAdvancedProviderSessionRequest
-type CreateAdvancedProviderSessionRequest struct {
+// CreateDirectProviderSessionRequest struct for CreateDirectProviderSessionRequest
+type CreateDirectProviderSessionRequest struct {
 	// The ID of the provider to launch
 	Provider string `json:"provider"`
+	// The ID of the Verification Profile to use for this session.
+	VerificationProfileId string `json:"verificationProfileId"`
 	// The Redirect URL to which the user should be sent after the session is complete.              This field is required for providers which employ a redirect-based flow.
 	RedirectUrl NullableString `json:"redirectUrl,omitempty"`
-	// The list of capabilities your integration supports. Capabilities are the core of Trinsic's whitelabel-with-optional-fallback offering.              Most capabilities align with either an `IntegrationLaunchMethod` or an `IntegrationCollectionMethod`. The exception being refresh content to support updating the content of the launch method.              For example, to support a basic redirect-based flow, you must include the `LaunchRedirect` and `CaptureRedirect` capabilities. To support a mobile deeplink / polling flow, you must include the `DeeplinkToMobile` and `PollForResults` capabilities.              If `FallbackToHostedUi` is `true`, Trinsic will automatically fall back to a Trinsic-hosted UI to cover any gaps in your integration's capabilities. If `FallbackToHostedUi` is `false`, gaps in your integration's capabilities will result in an error during Session creation.              Read more on how to integrate at <a href=\"https://docs.trinsic.id/docs/advanced-provider-sessions\">the guide on Advanced Provider Sessions</a>
+	// The list of capabilities your integration supports. Capabilities are the core of Trinsic's whitelabel-with-optional-fallback offering.              Most capabilities align with either an `IntegrationLaunchMethod` or an `IntegrationCollectionMethod`. The exception being refresh content to support updating the content of the launch method.              For example, to support a basic redirect-based flow, you must include the `LaunchRedirect` and `CaptureRedirect` capabilities. To support a mobile deeplink / polling flow, you must include the `DeeplinkToMobile` and `PollForResults` capabilities.              If `FallbackToHostedUi` is `true`, Trinsic will automatically fall back to a Trinsic-hosted UI to cover any gaps in your integration's capabilities. If `FallbackToHostedUi` is `false`, gaps in your integration's capabilities will result in an error during Session creation.              Read more on how to integrate at <a href=\"https://docs.trinsic.id/docs/direct-provider-sessions\">the guide on Direct Provider Sessions</a>
 	Capabilities []IntegrationCapability `json:"capabilities"`
 	// Whether the session should fall back to a Trinsic-hosted UI in certain instances.              Specifically, fallback will occur if any of the following are true: - You attempted to launch a provider which requires a capability you did not express support for     - In this case, Trinsic's hosted UI will perform the necessary capability - You attempted to launch a provider which requires input, and the input was either not provided or incomplete     - In this case, Trinsic's hosted UI will collect the necessary input from the user              If fallback occurs, the session's NextStep will always be LaunchBrowser, and the CollectionMethod will always be CaptureRedirect.              If this field is set to `true`, you must also: 1. Set the `RedirectUrl` field to a non-empty value 2. Include the `LaunchBrowser` and `CaptureRedirect` capabilities in the `Capabilities` field
 	FallbackToHostedUI NullableBool `json:"fallbackToHostedUI,omitempty"`
@@ -33,29 +35,30 @@ type CreateAdvancedProviderSessionRequest struct {
 	ProviderInput NullableProviderInput `json:"providerInput,omitempty"`
 }
 
-type _CreateAdvancedProviderSessionRequest CreateAdvancedProviderSessionRequest
+type _CreateDirectProviderSessionRequest CreateDirectProviderSessionRequest
 
-// NewCreateAdvancedProviderSessionRequest instantiates a new CreateAdvancedProviderSessionRequest object
+// NewCreateDirectProviderSessionRequest instantiates a new CreateDirectProviderSessionRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateAdvancedProviderSessionRequest(provider string, capabilities []IntegrationCapability) *CreateAdvancedProviderSessionRequest {
-	this := CreateAdvancedProviderSessionRequest{}
+func NewCreateDirectProviderSessionRequest(provider string, verificationProfileId string, capabilities []IntegrationCapability) *CreateDirectProviderSessionRequest {
+	this := CreateDirectProviderSessionRequest{}
 	this.Provider = provider
+	this.VerificationProfileId = verificationProfileId
 	this.Capabilities = capabilities
 	return &this
 }
 
-// NewCreateAdvancedProviderSessionRequestWithDefaults instantiates a new CreateAdvancedProviderSessionRequest object
+// NewCreateDirectProviderSessionRequestWithDefaults instantiates a new CreateDirectProviderSessionRequest object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewCreateAdvancedProviderSessionRequestWithDefaults() *CreateAdvancedProviderSessionRequest {
-	this := CreateAdvancedProviderSessionRequest{}
+func NewCreateDirectProviderSessionRequestWithDefaults() *CreateDirectProviderSessionRequest {
+	this := CreateDirectProviderSessionRequest{}
 	return &this
 }
 
 // GetProvider returns the Provider field value
-func (o *CreateAdvancedProviderSessionRequest) GetProvider() string {
+func (o *CreateDirectProviderSessionRequest) GetProvider() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -66,7 +69,7 @@ func (o *CreateAdvancedProviderSessionRequest) GetProvider() string {
 
 // GetProviderOk returns a tuple with the Provider field value
 // and a boolean to check if the value has been set.
-func (o *CreateAdvancedProviderSessionRequest) GetProviderOk() (*string, bool) {
+func (o *CreateDirectProviderSessionRequest) GetProviderOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -74,12 +77,36 @@ func (o *CreateAdvancedProviderSessionRequest) GetProviderOk() (*string, bool) {
 }
 
 // SetProvider sets field value
-func (o *CreateAdvancedProviderSessionRequest) SetProvider(v string) {
+func (o *CreateDirectProviderSessionRequest) SetProvider(v string) {
 	o.Provider = v
 }
 
+// GetVerificationProfileId returns the VerificationProfileId field value
+func (o *CreateDirectProviderSessionRequest) GetVerificationProfileId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.VerificationProfileId
+}
+
+// GetVerificationProfileIdOk returns a tuple with the VerificationProfileId field value
+// and a boolean to check if the value has been set.
+func (o *CreateDirectProviderSessionRequest) GetVerificationProfileIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.VerificationProfileId, true
+}
+
+// SetVerificationProfileId sets field value
+func (o *CreateDirectProviderSessionRequest) SetVerificationProfileId(v string) {
+	o.VerificationProfileId = v
+}
+
 // GetRedirectUrl returns the RedirectUrl field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CreateAdvancedProviderSessionRequest) GetRedirectUrl() string {
+func (o *CreateDirectProviderSessionRequest) GetRedirectUrl() string {
 	if o == nil || IsNil(o.RedirectUrl.Get()) {
 		var ret string
 		return ret
@@ -90,7 +117,7 @@ func (o *CreateAdvancedProviderSessionRequest) GetRedirectUrl() string {
 // GetRedirectUrlOk returns a tuple with the RedirectUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CreateAdvancedProviderSessionRequest) GetRedirectUrlOk() (*string, bool) {
+func (o *CreateDirectProviderSessionRequest) GetRedirectUrlOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -98,7 +125,7 @@ func (o *CreateAdvancedProviderSessionRequest) GetRedirectUrlOk() (*string, bool
 }
 
 // HasRedirectUrl returns a boolean if a field has been set.
-func (o *CreateAdvancedProviderSessionRequest) HasRedirectUrl() bool {
+func (o *CreateDirectProviderSessionRequest) HasRedirectUrl() bool {
 	if o != nil && o.RedirectUrl.IsSet() {
 		return true
 	}
@@ -107,21 +134,21 @@ func (o *CreateAdvancedProviderSessionRequest) HasRedirectUrl() bool {
 }
 
 // SetRedirectUrl gets a reference to the given NullableString and assigns it to the RedirectUrl field.
-func (o *CreateAdvancedProviderSessionRequest) SetRedirectUrl(v string) {
+func (o *CreateDirectProviderSessionRequest) SetRedirectUrl(v string) {
 	o.RedirectUrl.Set(&v)
 }
 // SetRedirectUrlNil sets the value for RedirectUrl to be an explicit nil
-func (o *CreateAdvancedProviderSessionRequest) SetRedirectUrlNil() {
+func (o *CreateDirectProviderSessionRequest) SetRedirectUrlNil() {
 	o.RedirectUrl.Set(nil)
 }
 
 // UnsetRedirectUrl ensures that no value is present for RedirectUrl, not even an explicit nil
-func (o *CreateAdvancedProviderSessionRequest) UnsetRedirectUrl() {
+func (o *CreateDirectProviderSessionRequest) UnsetRedirectUrl() {
 	o.RedirectUrl.Unset()
 }
 
 // GetCapabilities returns the Capabilities field value
-func (o *CreateAdvancedProviderSessionRequest) GetCapabilities() []IntegrationCapability {
+func (o *CreateDirectProviderSessionRequest) GetCapabilities() []IntegrationCapability {
 	if o == nil {
 		var ret []IntegrationCapability
 		return ret
@@ -132,7 +159,7 @@ func (o *CreateAdvancedProviderSessionRequest) GetCapabilities() []IntegrationCa
 
 // GetCapabilitiesOk returns a tuple with the Capabilities field value
 // and a boolean to check if the value has been set.
-func (o *CreateAdvancedProviderSessionRequest) GetCapabilitiesOk() ([]IntegrationCapability, bool) {
+func (o *CreateDirectProviderSessionRequest) GetCapabilitiesOk() ([]IntegrationCapability, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -140,12 +167,12 @@ func (o *CreateAdvancedProviderSessionRequest) GetCapabilitiesOk() ([]Integratio
 }
 
 // SetCapabilities sets field value
-func (o *CreateAdvancedProviderSessionRequest) SetCapabilities(v []IntegrationCapability) {
+func (o *CreateDirectProviderSessionRequest) SetCapabilities(v []IntegrationCapability) {
 	o.Capabilities = v
 }
 
 // GetFallbackToHostedUI returns the FallbackToHostedUI field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CreateAdvancedProviderSessionRequest) GetFallbackToHostedUI() bool {
+func (o *CreateDirectProviderSessionRequest) GetFallbackToHostedUI() bool {
 	if o == nil || IsNil(o.FallbackToHostedUI.Get()) {
 		var ret bool
 		return ret
@@ -156,7 +183,7 @@ func (o *CreateAdvancedProviderSessionRequest) GetFallbackToHostedUI() bool {
 // GetFallbackToHostedUIOk returns a tuple with the FallbackToHostedUI field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CreateAdvancedProviderSessionRequest) GetFallbackToHostedUIOk() (*bool, bool) {
+func (o *CreateDirectProviderSessionRequest) GetFallbackToHostedUIOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -164,7 +191,7 @@ func (o *CreateAdvancedProviderSessionRequest) GetFallbackToHostedUIOk() (*bool,
 }
 
 // HasFallbackToHostedUI returns a boolean if a field has been set.
-func (o *CreateAdvancedProviderSessionRequest) HasFallbackToHostedUI() bool {
+func (o *CreateDirectProviderSessionRequest) HasFallbackToHostedUI() bool {
 	if o != nil && o.FallbackToHostedUI.IsSet() {
 		return true
 	}
@@ -173,21 +200,21 @@ func (o *CreateAdvancedProviderSessionRequest) HasFallbackToHostedUI() bool {
 }
 
 // SetFallbackToHostedUI gets a reference to the given NullableBool and assigns it to the FallbackToHostedUI field.
-func (o *CreateAdvancedProviderSessionRequest) SetFallbackToHostedUI(v bool) {
+func (o *CreateDirectProviderSessionRequest) SetFallbackToHostedUI(v bool) {
 	o.FallbackToHostedUI.Set(&v)
 }
 // SetFallbackToHostedUINil sets the value for FallbackToHostedUI to be an explicit nil
-func (o *CreateAdvancedProviderSessionRequest) SetFallbackToHostedUINil() {
+func (o *CreateDirectProviderSessionRequest) SetFallbackToHostedUINil() {
 	o.FallbackToHostedUI.Set(nil)
 }
 
 // UnsetFallbackToHostedUI ensures that no value is present for FallbackToHostedUI, not even an explicit nil
-func (o *CreateAdvancedProviderSessionRequest) UnsetFallbackToHostedUI() {
+func (o *CreateDirectProviderSessionRequest) UnsetFallbackToHostedUI() {
 	o.FallbackToHostedUI.Unset()
 }
 
 // GetProviderInput returns the ProviderInput field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CreateAdvancedProviderSessionRequest) GetProviderInput() ProviderInput {
+func (o *CreateDirectProviderSessionRequest) GetProviderInput() ProviderInput {
 	if o == nil || IsNil(o.ProviderInput.Get()) {
 		var ret ProviderInput
 		return ret
@@ -198,7 +225,7 @@ func (o *CreateAdvancedProviderSessionRequest) GetProviderInput() ProviderInput 
 // GetProviderInputOk returns a tuple with the ProviderInput field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CreateAdvancedProviderSessionRequest) GetProviderInputOk() (*ProviderInput, bool) {
+func (o *CreateDirectProviderSessionRequest) GetProviderInputOk() (*ProviderInput, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -206,7 +233,7 @@ func (o *CreateAdvancedProviderSessionRequest) GetProviderInputOk() (*ProviderIn
 }
 
 // HasProviderInput returns a boolean if a field has been set.
-func (o *CreateAdvancedProviderSessionRequest) HasProviderInput() bool {
+func (o *CreateDirectProviderSessionRequest) HasProviderInput() bool {
 	if o != nil && o.ProviderInput.IsSet() {
 		return true
 	}
@@ -215,20 +242,20 @@ func (o *CreateAdvancedProviderSessionRequest) HasProviderInput() bool {
 }
 
 // SetProviderInput gets a reference to the given NullableProviderInput and assigns it to the ProviderInput field.
-func (o *CreateAdvancedProviderSessionRequest) SetProviderInput(v ProviderInput) {
+func (o *CreateDirectProviderSessionRequest) SetProviderInput(v ProviderInput) {
 	o.ProviderInput.Set(&v)
 }
 // SetProviderInputNil sets the value for ProviderInput to be an explicit nil
-func (o *CreateAdvancedProviderSessionRequest) SetProviderInputNil() {
+func (o *CreateDirectProviderSessionRequest) SetProviderInputNil() {
 	o.ProviderInput.Set(nil)
 }
 
 // UnsetProviderInput ensures that no value is present for ProviderInput, not even an explicit nil
-func (o *CreateAdvancedProviderSessionRequest) UnsetProviderInput() {
+func (o *CreateDirectProviderSessionRequest) UnsetProviderInput() {
 	o.ProviderInput.Unset()
 }
 
-func (o CreateAdvancedProviderSessionRequest) MarshalJSON() ([]byte, error) {
+func (o CreateDirectProviderSessionRequest) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -236,9 +263,10 @@ func (o CreateAdvancedProviderSessionRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o CreateAdvancedProviderSessionRequest) ToMap() (map[string]interface{}, error) {
+func (o CreateDirectProviderSessionRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["provider"] = o.Provider
+	toSerialize["verificationProfileId"] = o.VerificationProfileId
 	if o.RedirectUrl.IsSet() {
 		toSerialize["redirectUrl"] = o.RedirectUrl.Get()
 	}
@@ -252,12 +280,13 @@ func (o CreateAdvancedProviderSessionRequest) ToMap() (map[string]interface{}, e
 	return toSerialize, nil
 }
 
-func (o *CreateAdvancedProviderSessionRequest) UnmarshalJSON(data []byte) (err error) {
+func (o *CreateDirectProviderSessionRequest) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"provider",
+		"verificationProfileId",
 		"capabilities",
 	}
 
@@ -275,53 +304,53 @@ func (o *CreateAdvancedProviderSessionRequest) UnmarshalJSON(data []byte) (err e
 		}
 	}
 
-	varCreateAdvancedProviderSessionRequest := _CreateAdvancedProviderSessionRequest{}
+	varCreateDirectProviderSessionRequest := _CreateDirectProviderSessionRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
 	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateAdvancedProviderSessionRequest)
+	err = decoder.Decode(&varCreateDirectProviderSessionRequest)
 
 	if err != nil {
 		return err
 	}
 
-	*o = CreateAdvancedProviderSessionRequest(varCreateAdvancedProviderSessionRequest)
+	*o = CreateDirectProviderSessionRequest(varCreateDirectProviderSessionRequest)
 
 	return err
 }
 
-type NullableCreateAdvancedProviderSessionRequest struct {
-	value *CreateAdvancedProviderSessionRequest
+type NullableCreateDirectProviderSessionRequest struct {
+	value *CreateDirectProviderSessionRequest
 	isSet bool
 }
 
-func (v NullableCreateAdvancedProviderSessionRequest) Get() *CreateAdvancedProviderSessionRequest {
+func (v NullableCreateDirectProviderSessionRequest) Get() *CreateDirectProviderSessionRequest {
 	return v.value
 }
 
-func (v *NullableCreateAdvancedProviderSessionRequest) Set(val *CreateAdvancedProviderSessionRequest) {
+func (v *NullableCreateDirectProviderSessionRequest) Set(val *CreateDirectProviderSessionRequest) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableCreateAdvancedProviderSessionRequest) IsSet() bool {
+func (v NullableCreateDirectProviderSessionRequest) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableCreateAdvancedProviderSessionRequest) Unset() {
+func (v *NullableCreateDirectProviderSessionRequest) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableCreateAdvancedProviderSessionRequest(val *CreateAdvancedProviderSessionRequest) *NullableCreateAdvancedProviderSessionRequest {
-	return &NullableCreateAdvancedProviderSessionRequest{value: val, isSet: true}
+func NewNullableCreateDirectProviderSessionRequest(val *CreateDirectProviderSessionRequest) *NullableCreateDirectProviderSessionRequest {
+	return &NullableCreateDirectProviderSessionRequest{value: val, isSet: true}
 }
 
-func (v NullableCreateAdvancedProviderSessionRequest) MarshalJSON() ([]byte, error) {
+func (v NullableCreateDirectProviderSessionRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableCreateAdvancedProviderSessionRequest) UnmarshalJSON(src []byte) error {
+func (v *NullableCreateDirectProviderSessionRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

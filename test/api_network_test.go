@@ -26,7 +26,9 @@ func Test_trinsic_api_NetworkAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.NetworkAPI.ListProviderContracts(context.Background()).Execute()
+		var verificationProfileId string
+
+		resp, httpRes, err := apiClient.NetworkAPI.ListProviderContracts(context.Background(), verificationProfileId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -38,7 +40,9 @@ func Test_trinsic_api_NetworkAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.NetworkAPI.ListProviders(context.Background()).Execute()
+		var verificationProfileId string
+
+		resp, httpRes, err := apiClient.NetworkAPI.ListProviders(context.Background(), verificationProfileId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

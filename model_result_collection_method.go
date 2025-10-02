@@ -22,12 +22,14 @@ type ResultCollectionMethod string
 const (
 	RESULTCOLLECTIONMETHOD_POLL_RESULT ResultCollectionMethod = "PollResult"
 	RESULTCOLLECTIONMETHOD_CAPTURE_REDIRECT ResultCollectionMethod = "CaptureRedirect"
+	RESULTCOLLECTIONMETHOD_SUBMIT_NATIVE_CHALLENGE_RESPONSE ResultCollectionMethod = "SubmitNativeChallengeResponse"
 )
 
 // All allowed values of ResultCollectionMethod enum
 var AllowedResultCollectionMethodEnumValues = []ResultCollectionMethod{
 	"PollResult",
 	"CaptureRedirect",
+	"SubmitNativeChallengeResponse",
 }
 
 func (v *ResultCollectionMethod) UnmarshalJSON(src []byte) error {

@@ -38,20 +38,23 @@ type ProviderContract struct {
 	Geography []string `json:"geography"`
 	// The regions within which the Provider is available.
 	Regions []string `json:"regions"`
-	// Relevant only to Advanced Provider Sessions.              The `LaunchMethod` which must be supported to launch the Provider Session in Advanced Provider Sessions.
+	// Relevant only to Direct Provider Sessions.              The `LaunchMethod` which must be supported to launch the Provider Session in Direct Provider Sessions.
 	LaunchMethod IntegrationLaunchMethod `json:"launchMethod"`
-	// Relevant only to Advanced Provider Sessions.              The `CollectionMethod` which must be supported to launch the Provider Session in Advanced Provider Sessions.
+	// Relevant only to Direct Provider Sessions.              The `CollectionMethod` which must be supported to launch the Provider Session in Direct Provider Sessions.
 	CollectionMethod ResultCollectionMethod `json:"collectionMethod"`
 	// If `true`, then the results for this Provider may not be available immediately after the user is redirected back to your application. In this case, the `GetSessionResults` API must be called until results are available.              This is an uncommon scenario, and only applies to Providers which cannot guarantee the availability of results immediately after the user is redirected back to your application.
 	ResultsMayBeDelayedAfterRedirect bool `json:"resultsMayBeDelayedAfterRedirect"`
-	// Relevant only to Advanced Provider Sessions.              Whether the Provider requires the `RefreshStepContent` capability.              For example, Samsung Wallet's deep links expire every 30 seconds, and must be refreshed periodically for a resilient user flow.
+	// Relevant only to Direct Provider Sessions.              Whether the Provider requires the `RefreshStepContent` capability.              For example, Samsung Wallet's deep links expire every 30 seconds, and must be refreshed periodically for a resilient user flow.
 	HasRefreshableContent bool `json:"hasRefreshableContent"`
-	// Relevant to Hosted Provider Sessions and Advanced Provider Sessions.              If `true`, this Provider requires provider-specific input on Session creation. If this input is not provided, Trinsic's Hosted UI will be invoked to collect the input from the user.
+	// Relevant to Hosted Provider Sessions and Direct Provider Sessions.              If `true`, this Provider requires provider-specific input on Session creation. If this input is not provided, Trinsic's Hosted UI will be invoked to collect the input from the user.
 	RequiresInput bool `json:"requiresInput"`
 	// Whether there exists a Trinsic-hosted UI for this Provider.              This is `true` for any Provider which is not a simple, OIDC-like redirect flow.
 	HasTrinsicInterface bool `json:"hasTrinsicInterface"`
-	// Whether this Provider can be fully whitelabeled/OEMed through the Advanced Provider Sessions API.              If `false`, the Provider may still be launched through Advanced Provider Sessions; however, it will necessarily require a Trinsic-hosted UI to function.
+	// Whether this Provider can be fully whitelabeled/OEMed through the Direct Provider Sessions API.              If `false`, the Provider may still be launched through Direct Provider Sessions; however, it will necessarily require a Trinsic-hosted UI to function.
+	// Deprecated
 	SupportsAdvancedProviderSessions bool `json:"supportsAdvancedProviderSessions"`
+	// Whether this Provider can be fully whitelabeled/OEMed through the Direct Provider Sessions API.              If `false`, the Provider may still be launched through Direct Provider Sessions; however, it will necessarily require a Trinsic-hosted UI to function.
+	SupportsDirectProviderSessions bool `json:"supportsDirectProviderSessions"`
 	// Information about the fields that this Provider will return in verification results.
 	AvailableFields []ContractField `json:"availableFields,omitempty"`
 	// Metadata about the sub-providers which are available for this Provider.              For example, Italy's SPID is a Provider which aggregates access to multiple sub-providers.
@@ -66,7 +69,7 @@ type _ProviderContract ProviderContract
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewProviderContract(id string, name string, subtext string, description string, logoUrl string, available bool, geography []string, regions []string, launchMethod IntegrationLaunchMethod, collectionMethod ResultCollectionMethod, resultsMayBeDelayedAfterRedirect bool, hasRefreshableContent bool, requiresInput bool, hasTrinsicInterface bool, supportsAdvancedProviderSessions bool, health ProviderHealth) *ProviderContract {
+func NewProviderContract(id string, name string, subtext string, description string, logoUrl string, available bool, geography []string, regions []string, launchMethod IntegrationLaunchMethod, collectionMethod ResultCollectionMethod, resultsMayBeDelayedAfterRedirect bool, hasRefreshableContent bool, requiresInput bool, hasTrinsicInterface bool, supportsAdvancedProviderSessions bool, supportsDirectProviderSessions bool, health ProviderHealth) *ProviderContract {
 	this := ProviderContract{}
 	this.Id = id
 	this.Name = name
@@ -83,6 +86,7 @@ func NewProviderContract(id string, name string, subtext string, description str
 	this.RequiresInput = requiresInput
 	this.HasTrinsicInterface = hasTrinsicInterface
 	this.SupportsAdvancedProviderSessions = supportsAdvancedProviderSessions
+	this.SupportsDirectProviderSessions = supportsDirectProviderSessions
 	this.Health = health
 	return &this
 }
@@ -435,6 +439,7 @@ func (o *ProviderContract) SetHasTrinsicInterface(v bool) {
 }
 
 // GetSupportsAdvancedProviderSessions returns the SupportsAdvancedProviderSessions field value
+// Deprecated
 func (o *ProviderContract) GetSupportsAdvancedProviderSessions() bool {
 	if o == nil {
 		var ret bool
@@ -446,6 +451,7 @@ func (o *ProviderContract) GetSupportsAdvancedProviderSessions() bool {
 
 // GetSupportsAdvancedProviderSessionsOk returns a tuple with the SupportsAdvancedProviderSessions field value
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *ProviderContract) GetSupportsAdvancedProviderSessionsOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
@@ -454,8 +460,33 @@ func (o *ProviderContract) GetSupportsAdvancedProviderSessionsOk() (*bool, bool)
 }
 
 // SetSupportsAdvancedProviderSessions sets field value
+// Deprecated
 func (o *ProviderContract) SetSupportsAdvancedProviderSessions(v bool) {
 	o.SupportsAdvancedProviderSessions = v
+}
+
+// GetSupportsDirectProviderSessions returns the SupportsDirectProviderSessions field value
+func (o *ProviderContract) GetSupportsDirectProviderSessions() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.SupportsDirectProviderSessions
+}
+
+// GetSupportsDirectProviderSessionsOk returns a tuple with the SupportsDirectProviderSessions field value
+// and a boolean to check if the value has been set.
+func (o *ProviderContract) GetSupportsDirectProviderSessionsOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.SupportsDirectProviderSessions, true
+}
+
+// SetSupportsDirectProviderSessions sets field value
+func (o *ProviderContract) SetSupportsDirectProviderSessions(v bool) {
+	o.SupportsDirectProviderSessions = v
 }
 
 // GetAvailableFields returns the AvailableFields field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -573,6 +604,7 @@ func (o ProviderContract) ToMap() (map[string]interface{}, error) {
 	toSerialize["requiresInput"] = o.RequiresInput
 	toSerialize["hasTrinsicInterface"] = o.HasTrinsicInterface
 	toSerialize["supportsAdvancedProviderSessions"] = o.SupportsAdvancedProviderSessions
+	toSerialize["supportsDirectProviderSessions"] = o.SupportsDirectProviderSessions
 	if o.AvailableFields != nil {
 		toSerialize["availableFields"] = o.AvailableFields
 	}
@@ -603,6 +635,7 @@ func (o *ProviderContract) UnmarshalJSON(data []byte) (err error) {
 		"requiresInput",
 		"hasTrinsicInterface",
 		"supportsAdvancedProviderSessions",
+		"supportsDirectProviderSessions",
 		"health",
 	}
 

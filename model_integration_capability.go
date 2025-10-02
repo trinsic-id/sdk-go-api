@@ -27,6 +27,7 @@ const (
 	INTEGRATIONCAPABILITY_CAPTURE_REDIRECT IntegrationCapability = "CaptureRedirect"
 	INTEGRATIONCAPABILITY_POLL_RESULT IntegrationCapability = "PollResult"
 	INTEGRATIONCAPABILITY_POLL_AFTER_REDIRECT IntegrationCapability = "PollAfterRedirect"
+	INTEGRATIONCAPABILITY_NATIVE_CHALLENGE IntegrationCapability = "NativeChallenge"
 )
 
 // All allowed values of IntegrationCapability enum
@@ -38,6 +39,7 @@ var AllowedIntegrationCapabilityEnumValues = []IntegrationCapability{
 	"CaptureRedirect",
 	"PollResult",
 	"PollAfterRedirect",
+	"NativeChallenge",
 }
 
 func (v *IntegrationCapability) UnmarshalJSON(src []byte) error {

@@ -16,361 +16,62 @@ import (
 	"io"
 	"net/http"
 	"net/url"
-	"strings"
 )
 
 
-// NetworkAPIService NetworkAPI service
-type NetworkAPIService service
+// MdlAPIService MdlAPI service
+type MdlAPIService service
 
-type ApiListProviderContractsRequest struct {
+type ApiCreateMdlExchangeRequest struct {
 	ctx context.Context
-	ApiService *NetworkAPIService
-	verificationProfileId string
+	ApiService *MdlAPIService
+	createMdlExchangeRequest *CreateMdlExchangeRequest
 }
 
-func (r ApiListProviderContractsRequest) Execute() (*ListProviderContractsResponse, *http.Response, error) {
-	return r.ApiService.ListProviderContractsExecute(r)
+func (r ApiCreateMdlExchangeRequest) CreateMdlExchangeRequest(createMdlExchangeRequest CreateMdlExchangeRequest) ApiCreateMdlExchangeRequest {
+	r.createMdlExchangeRequest = &createMdlExchangeRequest
+	return r
+}
+
+func (r ApiCreateMdlExchangeRequest) Execute() (*CreateMdlExchangeResponse, *http.Response, error) {
+	return r.ApiService.CreateMdlExchangeExecute(r)
 }
 
 /*
-ListProviderContracts List Provider Contracts
+CreateMdlExchange Create mDL Exchange
 
-List the contracts for all Providers available to your App.
+Creates a new mDL Exchange, returning an exchange ID, request object string, and context string.
             
-If your App is in test mode, this call will only return Providers available in test mode.
-If your App is not in test mode, this call will only return Providers available in production.
+mDL Exchanges are ephemeral until completion -- no state is stored within Trinsic until the exchange is finalized.
+            
+This API currently only supports Google Wallet on Android via Web or Native. Apple Wallet support is coming soon.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param verificationProfileId
- @return ApiListProviderContractsRequest
+ @return ApiCreateMdlExchangeRequest
 */
-func (a *NetworkAPIService) ListProviderContracts(ctx context.Context, verificationProfileId string) ApiListProviderContractsRequest {
-	return ApiListProviderContractsRequest{
-		ApiService: a,
-		ctx: ctx,
-		verificationProfileId: verificationProfileId,
-	}
-}
-
-// Execute executes the request
-//  @return ListProviderContractsResponse
-func (a *NetworkAPIService) ListProviderContractsExecute(r ApiListProviderContractsRequest) (*ListProviderContractsResponse, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ListProviderContractsResponse
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkAPIService.ListProviderContracts")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v1/network/{verificationProfileId}/providers/contracts"
-	localVarPath = strings.Replace(localVarPath, "{"+"verificationProfileId"+"}", url.PathEscape(parameterValueToString(r.verificationProfileId, "verificationProfileId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json", "application/problem+json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiListProvidersRequest struct {
-	ctx context.Context
-	ApiService *NetworkAPIService
-	verificationProfileId string
-	health *string
-}
-
-func (r ApiListProvidersRequest) Health(health string) ApiListProvidersRequest {
-	r.health = &health
-	return r
-}
-
-func (r ApiListProvidersRequest) Execute() (*ListProvidersResponse, *http.Response, error) {
-	return r.ApiService.ListProvidersExecute(r)
-}
-
-/*
-ListProviders Method for ListProviders
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param verificationProfileId
- @return ApiListProvidersRequest
-*/
-func (a *NetworkAPIService) ListProviders(ctx context.Context, verificationProfileId string) ApiListProvidersRequest {
-	return ApiListProvidersRequest{
-		ApiService: a,
-		ctx: ctx,
-		verificationProfileId: verificationProfileId,
-	}
-}
-
-// Execute executes the request
-//  @return ListProvidersResponse
-func (a *NetworkAPIService) ListProvidersExecute(r ApiListProvidersRequest) (*ListProvidersResponse, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ListProvidersResponse
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkAPIService.ListProviders")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v1/network/{verificationProfileId}/providers"
-	localVarPath = strings.Replace(localVarPath, "{"+"verificationProfileId"+"}", url.PathEscape(parameterValueToString(r.verificationProfileId, "verificationProfileId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	if r.health != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "health", r.health, "form", "")
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json", "application/problem+json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiRecommendProvidersRequest struct {
-	ctx context.Context
-	ApiService *NetworkAPIService
-	recommendRequest *RecommendRequest
-}
-
-func (r ApiRecommendProvidersRequest) RecommendRequest(recommendRequest RecommendRequest) ApiRecommendProvidersRequest {
-	r.recommendRequest = &recommendRequest
-	return r
-}
-
-func (r ApiRecommendProvidersRequest) Execute() (*RecommendResponse, *http.Response, error) {
-	return r.ApiService.RecommendProvidersExecute(r)
-}
-
-/*
-RecommendProviders Recommend Providers
-
-Generate provider recommendations based on signals about the user's location (phone number, countries, states).
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiRecommendProvidersRequest
-*/
-func (a *NetworkAPIService) RecommendProviders(ctx context.Context) ApiRecommendProvidersRequest {
-	return ApiRecommendProvidersRequest{
+func (a *MdlAPIService) CreateMdlExchange(ctx context.Context) ApiCreateMdlExchangeRequest {
+	return ApiCreateMdlExchangeRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//  @return RecommendResponse
-func (a *NetworkAPIService) RecommendProvidersExecute(r ApiRecommendProvidersRequest) (*RecommendResponse, *http.Response, error) {
+//  @return CreateMdlExchangeResponse
+func (a *MdlAPIService) CreateMdlExchangeExecute(r ApiCreateMdlExchangeRequest) (*CreateMdlExchangeResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *RecommendResponse
+		localVarReturnValue  *CreateMdlExchangeResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkAPIService.RecommendProviders")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MdlAPIService.CreateMdlExchange")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/network/recommend"
+	localVarPath := localBasePath + "/api/valpha/mdl/exchanges/create"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -394,7 +95,158 @@ func (a *NetworkAPIService) RecommendProvidersExecute(r ApiRecommendProvidersReq
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.recommendRequest
+	localVarPostBody = r.createMdlExchangeRequest
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiFinalizeMdlExchangeRequest struct {
+	ctx context.Context
+	ApiService *MdlAPIService
+	finalizeMdlExchangeRequest *FinalizeMdlExchangeRequest
+}
+
+// 
+func (r ApiFinalizeMdlExchangeRequest) FinalizeMdlExchangeRequest(finalizeMdlExchangeRequest FinalizeMdlExchangeRequest) ApiFinalizeMdlExchangeRequest {
+	r.finalizeMdlExchangeRequest = &finalizeMdlExchangeRequest
+	return r
+}
+
+func (r ApiFinalizeMdlExchangeRequest) Execute() (*FinalizeMdlExchangeResponse, *http.Response, error) {
+	return r.ApiService.FinalizeMdlExchangeExecute(r)
+}
+
+/*
+FinalizeMdlExchange Finalize mDL Exchange
+
+Finalizes an mDL Exchange, processing the results
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiFinalizeMdlExchangeRequest
+*/
+func (a *MdlAPIService) FinalizeMdlExchange(ctx context.Context) ApiFinalizeMdlExchangeRequest {
+	return ApiFinalizeMdlExchangeRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return FinalizeMdlExchangeResponse
+func (a *MdlAPIService) FinalizeMdlExchangeExecute(r ApiFinalizeMdlExchangeRequest) (*FinalizeMdlExchangeResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *FinalizeMdlExchangeResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MdlAPIService.FinalizeMdlExchange")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/valpha/mdl/exchanges/finalize"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json", "text/json", "application/*+json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json", "application/problem+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.finalizeMdlExchangeRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

@@ -19,7 +19,7 @@ import (
 // checks if the IntegrationStep type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &IntegrationStep{}
 
-// IntegrationStep A step to perform in the process of executing an Advanced Provider Session
+// IntegrationStep A step to perform in the process of executing an Direct Provider Session
 type IntegrationStep struct {
 	// The launch method to perform
 	Method IntegrationLaunchMethod `json:"method"`

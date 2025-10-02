@@ -169,23 +169,23 @@ func (a *SessionsAPIService) CancelSessionExecute(r ApiCancelSessionRequest) (*C
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiCreateAdvancedProviderSessionRequest struct {
+type ApiCreateDirectProviderSessionRequest struct {
 	ctx context.Context
 	ApiService *SessionsAPIService
-	createAdvancedProviderSessionRequest *CreateAdvancedProviderSessionRequest
+	createDirectProviderSessionRequest *CreateDirectProviderSessionRequest
 }
 
-func (r ApiCreateAdvancedProviderSessionRequest) CreateAdvancedProviderSessionRequest(createAdvancedProviderSessionRequest CreateAdvancedProviderSessionRequest) ApiCreateAdvancedProviderSessionRequest {
-	r.createAdvancedProviderSessionRequest = &createAdvancedProviderSessionRequest
+func (r ApiCreateDirectProviderSessionRequest) CreateDirectProviderSessionRequest(createDirectProviderSessionRequest CreateDirectProviderSessionRequest) ApiCreateDirectProviderSessionRequest {
+	r.createDirectProviderSessionRequest = &createDirectProviderSessionRequest
 	return r
 }
 
-func (r ApiCreateAdvancedProviderSessionRequest) Execute() (*CreateAdvancedProviderSessionResponse, *http.Response, error) {
-	return r.ApiService.CreateAdvancedProviderSessionExecute(r)
+func (r ApiCreateDirectProviderSessionRequest) Execute() (*CreateDirectProviderSessionResponse, *http.Response, error) {
+	return r.ApiService.CreateDirectProviderSessionExecute(r)
 }
 
 /*
-CreateAdvancedProviderSession Create Advanced Provider Session
+CreateDirectProviderSession Create Direct Provider Session
 
 Verify a user's identity with a specific provider, handling additional user interaction in your own UI. 
 
@@ -194,31 +194,31 @@ Signal which kinds of user interactions your UI can handle using the `Capabiliti
 If `FallbackToHostedUi` is `true`, Trinsic's hosted UI will automatically be invoked to handle any capabilities you do not support.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCreateAdvancedProviderSessionRequest
+ @return ApiCreateDirectProviderSessionRequest
 */
-func (a *SessionsAPIService) CreateAdvancedProviderSession(ctx context.Context) ApiCreateAdvancedProviderSessionRequest {
-	return ApiCreateAdvancedProviderSessionRequest{
+func (a *SessionsAPIService) CreateDirectProviderSession(ctx context.Context) ApiCreateDirectProviderSessionRequest {
+	return ApiCreateDirectProviderSessionRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//  @return CreateAdvancedProviderSessionResponse
-func (a *SessionsAPIService) CreateAdvancedProviderSessionExecute(r ApiCreateAdvancedProviderSessionRequest) (*CreateAdvancedProviderSessionResponse, *http.Response, error) {
+//  @return CreateDirectProviderSessionResponse
+func (a *SessionsAPIService) CreateDirectProviderSessionExecute(r ApiCreateDirectProviderSessionRequest) (*CreateDirectProviderSessionResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *CreateAdvancedProviderSessionResponse
+		localVarReturnValue  *CreateDirectProviderSessionResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SessionsAPIService.CreateAdvancedProviderSession")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SessionsAPIService.CreateDirectProviderSession")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/sessions/provider/advanced"
+	localVarPath := localBasePath + "/api/v1/sessions/provider/direct"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -242,7 +242,7 @@ func (a *SessionsAPIService) CreateAdvancedProviderSessionExecute(r ApiCreateAdv
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createAdvancedProviderSessionRequest
+	localVarPostBody = r.createDirectProviderSessionRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -924,6 +924,7 @@ func (a *SessionsAPIService) GetSessionResultExecute(r ApiGetSessionResultReques
 type ApiListSessionsRequest struct {
 	ctx context.Context
 	ApiService *SessionsAPIService
+	verificationProfileId string
 	orderBy *SessionOrdering
 	orderDirection *OrderDirection
 	pageSize *int32
@@ -960,15 +961,17 @@ func (r ApiListSessionsRequest) Execute() (*ListSessionsResponse, *http.Response
 /*
 ListSessions List Sessions
 
-List Sessions created by your account
+List Sessions created for a specific Verification Profile
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param verificationProfileId
  @return ApiListSessionsRequest
 */
-func (a *SessionsAPIService) ListSessions(ctx context.Context) ApiListSessionsRequest {
+func (a *SessionsAPIService) ListSessions(ctx context.Context, verificationProfileId string) ApiListSessionsRequest {
 	return ApiListSessionsRequest{
 		ApiService: a,
 		ctx: ctx,
+		verificationProfileId: verificationProfileId,
 	}
 }
 
@@ -987,7 +990,8 @@ func (a *SessionsAPIService) ListSessionsExecute(r ApiListSessionsRequest) (*Lis
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/sessions/list"
+	localVarPath := localBasePath + "/api/v1/verification-profiles/{verificationProfileId}/sessions"
+	localVarPath = strings.Replace(localVarPath, "{"+"verificationProfileId"+"}", url.PathEscape(parameterValueToString(r.verificationProfileId, "verificationProfileId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1258,7 +1262,7 @@ func (r ApiRefreshStepContentRequest) Execute() (*RefreshStepContentResponse, *h
 /*
 RefreshStepContent Refresh Step Content
 
-Refreshes the content of a Step for an Advanced Provider Session.
+Refreshes the content of a Step for a Direct Provider Session.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param acceptanceSessionId
@@ -1313,6 +1317,160 @@ func (a *SessionsAPIService) RefreshStepContentExecute(r ApiRefreshStepContentRe
 	}
 	// body params
 	localVarPostBody = r.refreshStepContentRequest
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiSubmitNativeChallengeResponseRequest struct {
+	ctx context.Context
+	ApiService *SessionsAPIService
+	acceptanceSessionId string
+	submitNativeChallengeResponseRequest *SubmitNativeChallengeResponseRequest
+}
+
+func (r ApiSubmitNativeChallengeResponseRequest) SubmitNativeChallengeResponseRequest(submitNativeChallengeResponseRequest SubmitNativeChallengeResponseRequest) ApiSubmitNativeChallengeResponseRequest {
+	r.submitNativeChallengeResponseRequest = &submitNativeChallengeResponseRequest
+	return r
+}
+
+func (r ApiSubmitNativeChallengeResponseRequest) Execute() (*SubmitNativeChallengeResponseResponse, *http.Response, error) {
+	return r.ApiService.SubmitNativeChallengeResponseExecute(r)
+}
+
+/*
+SubmitNativeChallengeResponse Submit Native Challenge Response
+
+Submits the response from a Native Challenge (e.g., mDL exchange via DC API) and processes the results.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param acceptanceSessionId
+ @return ApiSubmitNativeChallengeResponseRequest
+*/
+func (a *SessionsAPIService) SubmitNativeChallengeResponse(ctx context.Context, acceptanceSessionId string) ApiSubmitNativeChallengeResponseRequest {
+	return ApiSubmitNativeChallengeResponseRequest{
+		ApiService: a,
+		ctx: ctx,
+		acceptanceSessionId: acceptanceSessionId,
+	}
+}
+
+// Execute executes the request
+//  @return SubmitNativeChallengeResponseResponse
+func (a *SessionsAPIService) SubmitNativeChallengeResponseExecute(r ApiSubmitNativeChallengeResponseRequest) (*SubmitNativeChallengeResponseResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *SubmitNativeChallengeResponseResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SessionsAPIService.SubmitNativeChallengeResponse")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/sessions/{acceptanceSessionId}/native-challenge/submit"
+	localVarPath = strings.Replace(localVarPath, "{"+"acceptanceSessionId"+"}", url.PathEscape(parameterValueToString(r.acceptanceSessionId, "acceptanceSessionId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json", "text/json", "application/*+json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json", "application/problem+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.submitNativeChallengeResponseRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

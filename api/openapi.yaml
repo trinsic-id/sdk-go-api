@@ -24,14 +24,20 @@ paths:
             schema:
               allOf:
               - $ref: '#/components/schemas/GetAttachmentRequest'
+              required:
+              - sessionId
           text/json:
             schema:
               allOf:
               - $ref: '#/components/schemas/GetAttachmentRequest'
+              required:
+              - sessionId
           application/*+json:
             schema:
               allOf:
               - $ref: '#/components/schemas/GetAttachmentRequest'
+              required:
+              - sessionId
       responses:
         "200":
           content:
@@ -97,14 +103,193 @@ paths:
       summary: Get Attachment
       tags:
       - Attachments
-  /api/v1/network/providers:
+  /api/valpha/mdl/exchanges/create:
+    post:
+      description: "Creates a new mDL Exchange, returning an exchange ID, request\
+        \ object string, and context string.\n            \nmDL Exchanges are ephemeral\
+        \ until completion -- no state is stored within Trinsic until the exchange\
+        \ is finalized.\n            \nThis API currently only supports Google Wallet\
+        \ on Android via Web or Native. Apple Wallet support is coming soon."
+      operationId: CreateMdlExchange
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/CreateMdlExchangeRequest'
+              description: Request to create an mDL Exchange.
+          text/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/CreateMdlExchangeRequest'
+              description: Request to create an mDL Exchange.
+          application/*+json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/CreateMdlExchangeRequest'
+              description: Request to create an mDL Exchange.
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CreateMdlExchangeResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateMdlExchangeResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CreateMdlExchangeResponse'
+          description: OK
+        "400":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.5.1
+                title: Bad Request
+                detail: This feature is not supported for your configruation
+                status: 400
+                traceId: 00-3fcbc632c5caaca825849d495c62d7b0-09a3500f89acbbcc-00
+                instance: /api/v1/sample-request-path
+                errors:
+                  PropertyName:
+                  - Specific error description for property
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad request
+        "401":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Unauthorized
+                status: 401
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Forbidden
+                status: 403
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "500":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Internal Server Error
+                status: 500
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Internal server error
+      summary: Create mDL Exchange
+      tags:
+      - Mdl
+  /api/valpha/mdl/exchanges/finalize:
+    post:
+      description: "Finalizes an mDL Exchange, processing the results"
+      operationId: FinalizeMdlExchange
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/FinalizeMdlExchangeRequest'
+          text/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/FinalizeMdlExchangeRequest'
+          application/*+json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/FinalizeMdlExchangeRequest'
+        description: ""
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/FinalizeMdlExchangeResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FinalizeMdlExchangeResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/FinalizeMdlExchangeResponse'
+          description: OK
+        "400":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.5.1
+                title: Bad Request
+                detail: This feature is not supported for your configruation
+                status: 400
+                traceId: 00-3fcbc632c5caaca825849d495c62d7b0-09a3500f89acbbcc-00
+                instance: /api/v1/sample-request-path
+                errors:
+                  PropertyName:
+                  - Specific error description for property
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad request
+        "401":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Unauthorized
+                status: 401
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Forbidden
+                status: 403
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "500":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Internal Server Error
+                status: 500
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Internal server error
+      summary: Finalize mDL Exchange
+      tags:
+      - Mdl
+  /api/v1/network/{verificationProfileId}/providers:
     get:
-      description: List all identity providers available for use
       operationId: ListProviders
       parameters:
-      - description: "Filter providers by health status. Valid values: \"online\"\
-          , \"offline\", \"all\". Defaults to \"all\"."
-        explode: true
+      - explode: false
+        in: path
+        name: verificationProfileId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: true
         in: query
         name: health
         required: false
@@ -173,16 +358,24 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Internal server error
-      summary: List Providers
       tags:
       - Network
-  /api/v1/network/providers/contracts:
+  /api/v1/network/{verificationProfileId}/providers/contracts:
     get:
       description: "List the contracts for all Providers available to your App.\n\
         \            \nIf your App is in test mode, this call will only return Providers\
         \ available in test mode.\nIf your App is not in test mode, this call will\
         \ only return Providers available in production."
       operationId: ListProviderContracts
+      parameters:
+      - explode: false
+        in: path
+        name: verificationProfileId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
       responses:
         "200":
           content:
@@ -259,14 +452,20 @@ paths:
             schema:
               allOf:
               - $ref: '#/components/schemas/RecommendRequest'
+              required:
+              - verificationProfileId
           text/json:
             schema:
               allOf:
               - $ref: '#/components/schemas/RecommendRequest'
+              required:
+              - verificationProfileId
           application/*+json:
             schema:
               allOf:
               - $ref: '#/components/schemas/RecommendRequest'
+              required:
+              - verificationProfileId
       responses:
         "200":
           content:
@@ -332,357 +531,19 @@ paths:
       summary: Recommend Providers
       tags:
       - Network
-  /api/v1/sessions/provider/advanced:
-    post:
-      description: "Verify a user's identity with a specific provider, handling additional\
-        \ user interaction in your own UI. \n\nSignal which kinds of user interactions\
-        \ your UI can handle using the `Capabilities` field. \n\nIf `FallbackToHostedUi`\
-        \ is `true`, Trinsic's hosted UI will automatically be invoked to handle any\
-        \ capabilities you do not support."
-      operationId: CreateAdvancedProviderSession
-      requestBody:
-        content:
-          application/json:
-            schema:
-              allOf:
-              - $ref: '#/components/schemas/CreateAdvancedProviderSessionRequest'
-          text/json:
-            schema:
-              allOf:
-              - $ref: '#/components/schemas/CreateAdvancedProviderSessionRequest'
-          application/*+json:
-            schema:
-              allOf:
-              - $ref: '#/components/schemas/CreateAdvancedProviderSessionRequest'
-      responses:
-        "200":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/CreateAdvancedProviderSessionResponse'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CreateAdvancedProviderSessionResponse'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/CreateAdvancedProviderSessionResponse'
-          description: OK
-        "400":
-          content:
-            application/problem+json:
-              example:
-                type: https://tools.ietf.org/html/rfc7231#section-6.5.1
-                title: Bad Request
-                detail: This feature is not supported for your configruation
-                status: 400
-                traceId: 00-3fcbc632c5caaca825849d495c62d7b0-09a3500f89acbbcc-00
-                instance: /api/v1/sample-request-path
-                errors:
-                  PropertyName:
-                  - Specific error description for property
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Bad request
-        "401":
-          content:
-            application/problem+json:
-              example:
-                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
-                title: Unauthorized
-                status: 401
-                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Unauthorized
-        "403":
-          content:
-            application/problem+json:
-              example:
-                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
-                title: Forbidden
-                status: 403
-                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Forbidden
-        "500":
-          content:
-            application/problem+json:
-              example:
-                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
-                title: Internal Server Error
-                status: 500
-                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Internal server error
-      summary: Create Advanced Provider Session
-      tags:
-      - Sessions
-  /api/v1/sessions/{acceptanceSessionId}/step/refresh:
-    post:
-      description: Refreshes the content of a Step for an Advanced Provider Session.
-      operationId: RefreshStepContent
+  /api/v1/verification-profiles/{verificationProfileId}/sessions:
+    get:
+      description: List Sessions created for a specific Verification Profile
+      operationId: ListSessions
       parameters:
       - explode: false
         in: path
-        name: acceptanceSessionId
+        name: verificationProfileId
         required: true
         schema:
           format: uuid
           type: string
         style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              allOf:
-              - $ref: '#/components/schemas/RefreshStepContentRequest'
-          text/json:
-            schema:
-              allOf:
-              - $ref: '#/components/schemas/RefreshStepContentRequest'
-          application/*+json:
-            schema:
-              allOf:
-              - $ref: '#/components/schemas/RefreshStepContentRequest'
-      responses:
-        "200":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/RefreshStepContentResponse'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/RefreshStepContentResponse'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/RefreshStepContentResponse'
-          description: OK
-        "400":
-          content:
-            application/problem+json:
-              example:
-                type: https://tools.ietf.org/html/rfc7231#section-6.5.1
-                title: Bad Request
-                detail: This feature is not supported for your configruation
-                status: 400
-                traceId: 00-3fcbc632c5caaca825849d495c62d7b0-09a3500f89acbbcc-00
-                instance: /api/v1/sample-request-path
-                errors:
-                  PropertyName:
-                  - Specific error description for property
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Bad request
-        "401":
-          content:
-            application/problem+json:
-              example:
-                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
-                title: Unauthorized
-                status: 401
-                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Unauthorized
-        "403":
-          content:
-            application/problem+json:
-              example:
-                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
-                title: Forbidden
-                status: 403
-                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Forbidden
-        "500":
-          content:
-            application/problem+json:
-              example:
-                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
-                title: Internal Server Error
-                status: 500
-                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Internal server error
-      summary: Refresh Step Content
-      tags:
-      - Sessions
-  /api/v1/sessions/widget:
-    post:
-      description: Verify a user's identity using Trinsic's hosted Widget flow.
-      operationId: CreateWidgetSession
-      requestBody:
-        content:
-          application/json:
-            schema:
-              allOf:
-              - $ref: '#/components/schemas/CreateWidgetSessionRequest'
-          text/json:
-            schema:
-              allOf:
-              - $ref: '#/components/schemas/CreateWidgetSessionRequest'
-          application/*+json:
-            schema:
-              allOf:
-              - $ref: '#/components/schemas/CreateWidgetSessionRequest'
-      responses:
-        "200":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/CreateWidgetSessionResponse'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CreateWidgetSessionResponse'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/CreateWidgetSessionResponse'
-          description: OK
-        "400":
-          content:
-            application/problem+json:
-              example:
-                type: https://tools.ietf.org/html/rfc7231#section-6.5.1
-                title: Bad Request
-                detail: This feature is not supported for your configruation
-                status: 400
-                traceId: 00-3fcbc632c5caaca825849d495c62d7b0-09a3500f89acbbcc-00
-                instance: /api/v1/sample-request-path
-                errors:
-                  PropertyName:
-                  - Specific error description for property
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Bad request
-        "401":
-          content:
-            application/problem+json:
-              example:
-                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
-                title: Unauthorized
-                status: 401
-                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Unauthorized
-        "403":
-          content:
-            application/problem+json:
-              example:
-                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
-                title: Forbidden
-                status: 403
-                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Forbidden
-        "500":
-          content:
-            application/problem+json:
-              example:
-                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
-                title: Internal Server Error
-                status: 500
-                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Internal server error
-      summary: Create Widget Session
-      tags:
-      - Sessions
-  /api/v1/sessions/provider/hosted:
-    post:
-      description: "Verify a user's identity with a specific provider, using Trinsic-hosted\
-        \ UI for providers which require additional user interaction."
-      operationId: CreateHostedProviderSession
-      requestBody:
-        content:
-          application/json:
-            schema:
-              allOf:
-              - $ref: '#/components/schemas/CreateHostedProviderSessionRequest'
-          text/json:
-            schema:
-              allOf:
-              - $ref: '#/components/schemas/CreateHostedProviderSessionRequest'
-          application/*+json:
-            schema:
-              allOf:
-              - $ref: '#/components/schemas/CreateHostedProviderSessionRequest'
-      responses:
-        "200":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/CreateHostedProviderSessionResponse'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CreateHostedProviderSessionResponse'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/CreateHostedProviderSessionResponse'
-          description: OK
-        "400":
-          content:
-            application/problem+json:
-              example:
-                type: https://tools.ietf.org/html/rfc7231#section-6.5.1
-                title: Bad Request
-                detail: This feature is not supported for your configruation
-                status: 400
-                traceId: 00-3fcbc632c5caaca825849d495c62d7b0-09a3500f89acbbcc-00
-                instance: /api/v1/sample-request-path
-                errors:
-                  PropertyName:
-                  - Specific error description for property
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Bad request
-        "401":
-          content:
-            application/problem+json:
-              example:
-                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
-                title: Unauthorized
-                status: 401
-                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Unauthorized
-        "403":
-          content:
-            application/problem+json:
-              example:
-                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
-                title: Forbidden
-                status: 403
-                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Forbidden
-        "500":
-          content:
-            application/problem+json:
-              example:
-                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
-                title: Internal Server Error
-                status: 500
-                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Internal server error
-      summary: Create Hosted Provider Session
-      tags:
-      - Sessions
-  /api/v1/sessions/list:
-    get:
-      description: List Sessions created by your account
-      operationId: ListSessions
-      parameters:
       - description: The field by which sessions should be ordered
         example: Created
         explode: true
@@ -806,6 +667,7 @@ paths:
         name: sessionId
         required: true
         schema:
+          format: uuid
           type: string
         style: simple
       responses:
@@ -882,6 +744,7 @@ paths:
         name: sessionId
         required: true
         schema:
+          format: uuid
           type: string
         style: simple
       requestBody:
@@ -1112,6 +975,463 @@ paths:
       summary: Redact Session
       tags:
       - Sessions
+  /api/v1/sessions/provider/direct:
+    post:
+      description: "Verify a user's identity with a specific provider, handling additional\
+        \ user interaction in your own UI. \n\nSignal which kinds of user interactions\
+        \ your UI can handle using the `Capabilities` field. \n\nIf `FallbackToHostedUi`\
+        \ is `true`, Trinsic's hosted UI will automatically be invoked to handle any\
+        \ capabilities you do not support."
+      operationId: CreateDirectProviderSession
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/CreateDirectProviderSessionRequest'
+              required:
+              - verificationProfileId
+          text/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/CreateDirectProviderSessionRequest'
+              required:
+              - verificationProfileId
+          application/*+json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/CreateDirectProviderSessionRequest'
+              required:
+              - verificationProfileId
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CreateDirectProviderSessionResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateDirectProviderSessionResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CreateDirectProviderSessionResponse'
+          description: OK
+        "400":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.5.1
+                title: Bad Request
+                detail: This feature is not supported for your configruation
+                status: 400
+                traceId: 00-3fcbc632c5caaca825849d495c62d7b0-09a3500f89acbbcc-00
+                instance: /api/v1/sample-request-path
+                errors:
+                  PropertyName:
+                  - Specific error description for property
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad request
+        "401":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Unauthorized
+                status: 401
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Forbidden
+                status: 403
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "500":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Internal Server Error
+                status: 500
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Internal server error
+      summary: Create Direct Provider Session
+      tags:
+      - Sessions
+  /api/v1/sessions/{acceptanceSessionId}/step/refresh:
+    post:
+      description: Refreshes the content of a Step for a Direct Provider Session.
+      operationId: RefreshStepContent
+      parameters:
+      - explode: false
+        in: path
+        name: acceptanceSessionId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/RefreshStepContentRequest'
+          text/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/RefreshStepContentRequest'
+          application/*+json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/RefreshStepContentRequest'
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/RefreshStepContentResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RefreshStepContentResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/RefreshStepContentResponse'
+          description: OK
+        "400":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.5.1
+                title: Bad Request
+                detail: This feature is not supported for your configruation
+                status: 400
+                traceId: 00-3fcbc632c5caaca825849d495c62d7b0-09a3500f89acbbcc-00
+                instance: /api/v1/sample-request-path
+                errors:
+                  PropertyName:
+                  - Specific error description for property
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad request
+        "401":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Unauthorized
+                status: 401
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Forbidden
+                status: 403
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "500":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Internal Server Error
+                status: 500
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Internal server error
+      summary: Refresh Step Content
+      tags:
+      - Sessions
+  /api/v1/sessions/{acceptanceSessionId}/native-challenge/submit:
+    post:
+      description: "Submits the response from a Native Challenge (e.g., mDL exchange\
+        \ via DC API) and processes the results."
+      operationId: SubmitNativeChallengeResponse
+      parameters:
+      - explode: false
+        in: path
+        name: acceptanceSessionId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/SubmitNativeChallengeResponseRequest'
+          text/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/SubmitNativeChallengeResponseRequest'
+          application/*+json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/SubmitNativeChallengeResponseRequest'
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SubmitNativeChallengeResponseResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubmitNativeChallengeResponseResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SubmitNativeChallengeResponseResponse'
+          description: OK
+        "400":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.5.1
+                title: Bad Request
+                detail: This feature is not supported for your configruation
+                status: 400
+                traceId: 00-3fcbc632c5caaca825849d495c62d7b0-09a3500f89acbbcc-00
+                instance: /api/v1/sample-request-path
+                errors:
+                  PropertyName:
+                  - Specific error description for property
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad request
+        "401":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Unauthorized
+                status: 401
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Forbidden
+                status: 403
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "500":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Internal Server Error
+                status: 500
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Internal server error
+      summary: Submit Native Challenge Response
+      tags:
+      - Sessions
+  /api/v1/sessions/provider/hosted:
+    post:
+      description: "Verify a user's identity with a specific provider, using Trinsic-hosted\
+        \ UI for providers which require additional user interaction."
+      operationId: CreateHostedProviderSession
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/CreateHostedProviderSessionRequest'
+              required:
+              - verificationProfileId
+          text/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/CreateHostedProviderSessionRequest'
+              required:
+              - verificationProfileId
+          application/*+json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/CreateHostedProviderSessionRequest'
+              required:
+              - verificationProfileId
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CreateHostedProviderSessionResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateHostedProviderSessionResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CreateHostedProviderSessionResponse'
+          description: OK
+        "400":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.5.1
+                title: Bad Request
+                detail: This feature is not supported for your configruation
+                status: 400
+                traceId: 00-3fcbc632c5caaca825849d495c62d7b0-09a3500f89acbbcc-00
+                instance: /api/v1/sample-request-path
+                errors:
+                  PropertyName:
+                  - Specific error description for property
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad request
+        "401":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Unauthorized
+                status: 401
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Forbidden
+                status: 403
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "500":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Internal Server Error
+                status: 500
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Internal server error
+      summary: Create Hosted Provider Session
+      tags:
+      - Sessions
+  /api/v1/sessions/widget:
+    post:
+      description: Verify a user's identity using Trinsic's hosted Widget flow.
+      operationId: CreateWidgetSession
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/CreateWidgetSessionRequest'
+              required:
+              - verificationProfileId
+          text/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/CreateWidgetSessionRequest'
+              required:
+              - verificationProfileId
+          application/*+json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/CreateWidgetSessionRequest'
+              required:
+              - verificationProfileId
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CreateWidgetSessionResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateWidgetSessionResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CreateWidgetSessionResponse'
+          description: OK
+        "400":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.5.1
+                title: Bad Request
+                detail: This feature is not supported for your configruation
+                status: 400
+                traceId: 00-3fcbc632c5caaca825849d495c62d7b0-09a3500f89acbbcc-00
+                instance: /api/v1/sample-request-path
+                errors:
+                  PropertyName:
+                  - Specific error description for property
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad request
+        "401":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Unauthorized
+                status: 401
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Forbidden
+                status: 403
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "500":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Internal Server Error
+                status: 500
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Internal server error
+      summary: Create Widget Session
+      tags:
+      - Sessions
 components:
   schemas:
     AadhaarInput:
@@ -1154,6 +1474,17 @@ components:
         fullAddress:
           nullable: true
           type: string
+      type: object
+    AppleWalletInput:
+      additionalProperties: false
+      properties:
+        exchangeMechanism:
+          allOf:
+          - $ref: '#/components/schemas/MdlExchangeMechanism'
+          description: "The exchange mechanism to use for this Apple Wallet verification.\n\
+            \            \nUse `DigitalCredentialsApi` for Digital Credentials API\
+            \ on web, or `NativeApp` for a native iOS app."
+          nullable: true
       type: object
     AttachmentAccessKeys:
       additionalProperties: false
@@ -1285,7 +1616,7 @@ components:
       - name
       - outputted
       type: object
-    CreateAdvancedProviderSessionRequest:
+    CreateDirectProviderSessionRequest:
       additionalProperties: false
       example:
         fallbackToHostedUI: true
@@ -1295,10 +1626,15 @@ components:
         - LaunchBrowser
         provider: provider
         providerInput: ""
+        verificationProfileId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
         provider:
           description: The ID of the provider to launch
           minLength: 1
+          type: string
+        verificationProfileId:
+          description: The ID of the Verification Profile to use for this session.
+          format: uuid
           type: string
         redirectUrl:
           description: "The Redirect URL to which the user should be sent after the\
@@ -1320,8 +1656,8 @@ components:
             \ UI to cover any gaps in your integration's capabilities.\nIf `FallbackToHostedUi`\
             \ is `false`, gaps in your integration's capabilities will result in an\
             \ error during Session creation.\n            \nRead more on how to integrate\
-            \ at <a href=\"https://docs.trinsic.id/docs/advanced-provider-sessions\"\
-            >the guide on Advanced Provider Sessions</a>"
+            \ at <a href=\"https://docs.trinsic.id/docs/direct-provider-sessions\"\
+            >the guide on Direct Provider Sessions</a>"
           items:
             $ref: '#/components/schemas/IntegrationCapability'
           minItems: 1
@@ -1350,8 +1686,9 @@ components:
       required:
       - capabilities
       - provider
+      - verificationProfileId
       type: object
-    CreateAdvancedProviderSessionResponse:
+    CreateDirectProviderSessionResponse:
       additionalProperties: false
       example:
         resultCollection: ""
@@ -1383,10 +1720,15 @@ components:
         redirectUrl: redirectUrl
         provider: provider
         providerInput: ""
+        verificationProfileId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
         provider:
           description: The ID of the provider to launch
           minLength: 1
+          type: string
+        verificationProfileId:
+          description: The ID of the Verification Profile to use for this session.
+          format: uuid
           type: string
         redirectUrl:
           description: The Redirect URL to which the user should be sent after the
@@ -1403,11 +1745,12 @@ components:
 
             <b>Deprecated:</b> In the future, Hosted Provider Sessions will not accept input on creation,
             and will instead always redirect the user to a hosted interface to collect input. If you need
-            to collect input from the user yourself, please use the Create Advanced Session endpoint instead.
+            to collect input from the user yourself, please use the Create Direct Session endpoint instead.
           nullable: true
       required:
       - provider
       - redirectUrl
+      - verificationProfileId
       type: object
     CreateHostedProviderSessionResponse:
       example:
@@ -1443,21 +1786,146 @@ components:
       - resultsAccessKey
       - sessionId
       type: object
+    CreateMdlExchangeRequest:
+      additionalProperties: false
+      description: Request to create an mDL Exchange.
+      example:
+        androidNativeAppSigningCertificateFingerprint: 96:77:82:71:A3:FC:26:54:4C:8E:06:70:B7:BA:5D:E2:A5:36:F1:ED:8F:8A:70:81:26:98:EC:87:86:0F:D4:42
+        androidNativeAppPackageName: id.trinsic.example
+        nameSpaces:
+          org.iso.18013.5.1:
+            given_name: true
+            family_name: true
+            birth_date: true
+            age_over_21: true
+        provider: google-wallet
+        documentType: org.iso.18013.5.1.mDL
+        digitalCredentialsApiHost: verify.trinsic.id
+        verificationProfileId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        exchangeMechanism: DigitalCredentialsApi
+      properties:
+        verificationProfileId:
+          description: The ID of the VerificationProfile to use for this mDL exchange.
+          format: uuid
+          type: string
+        provider:
+          description: The ID of the provider to use for this mDL exchange.
+          example: google-wallet
+          type: string
+        exchangeMechanism:
+          allOf:
+          - $ref: '#/components/schemas/MdlExchangeMechanism'
+          description: "The mechanism by which the mDL exchange will occur (web, native\
+            \ SDK, etc.)"
+          example: DigitalCredentialsApi
+          x-enumDescriptions:
+            NativeApp: "The mDL exchange will be performed using a native mobile app\
+              \ SDK (e.g. Google Wallet, Apple Wallet)."
+            DigitalCredentialsApi: The mDL exchange will be performed using the Digital
+              Credentials API on web.
+        documentType:
+          description: "The document type to request from the wallet.\n          \
+            \  \nTypically, this is one of the following values:\n            \n-\
+            \ `org.iso.18013.5.1.mDL` (Mobile Driver's License)\n- `com.google.wallet.idcard.1`\
+            \ (Google Wallet ID Pass)"
+          example: org.iso.18013.5.1.mDL
+          type: string
+        nameSpaces:
+          additionalProperties:
+            additionalProperties:
+              type: boolean
+            type: object
+          description: "The namespaces and fields to request from the mDL.\n     \
+            \       \nThis is a nested map / dictionary. The outer dictionary's keys\
+            \ are namespaces (e.g. \"org.iso.18013.5.1\").\nThe inner dictionary's\
+            \ keys are field names within each namespace, with boolean values indicating\n\
+            whether the specified field will be retained post-verification."
+          example:
+            org.iso.18013.5.1:
+              given_name: true
+              family_name: true
+              birth_date: true
+              age_over_21: true
+          type: object
+        digitalCredentialsApiHost:
+          description: "If using the `DigitalCredentialsApi` exchange mechanism, this\
+            \ is the hostname on which\nthe Digital Credentials API will be called.\n\
+            \            \nFor example, if the user is on the page `https://foo.example.com/verify-mdl`,\
+            \ the proper value to use\nis `foo.example.com`.\n            \nPresent\
+            \ for ease of testing only. May be removed as this API is stabilized."
+          example: verify.trinsic.id
+          nullable: true
+          type: string
+        androidNativeAppPackageName:
+          description: "If using the `NativeApp` exchange mechanism with the `google-wallet`\
+            \ provider, this is the package name\nof the Android App which will execute\
+            \ the mDL exchange.\n            \nThis should be set to the package name\
+            \ of your app.\n            \nPresent for ease of testing only. May be\
+            \ removed as this API is stabilized."
+          example: id.trinsic.example
+          nullable: true
+          type: string
+        androidNativeAppSigningCertificateFingerprint:
+          description: "If using the `NativeApp` exchange mechanism with the `google-wallet`\
+            \ provider, this is the SHA-256\nfingerprint of the signing certificate\
+            \ used to sign the Android App which will execute the mDL exchange.\n\
+            \            \nPresent for ease of testing only. May be removed as this\
+            \ API is stabilized."
+          example: 96:77:82:71:A3:FC:26:54:4C:8E:06:70:B7:BA:5D:E2:A5:36:F1:ED:8F:8A:70:81:26:98:EC:87:86:0F:D4:42
+          nullable: true
+          type: string
+      required:
+      - documentType
+      - exchangeMechanism
+      - nameSpaces
+      - provider
+      - verificationProfileId
+      type: object
+    CreateMdlExchangeResponse:
+      additionalProperties: false
+      example:
+        exchangeId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        requestObjectBase64Url: requestObjectBase64Url
+        exchangeContext: exchangeContext
+      properties:
+        exchangeId:
+          description: The ID of the mDL exchange which was created.
+          format: uuid
+          type: string
+        requestObjectBase64Url:
+          description: "The request object for this mDL exchange.\n            \n\
+            Pass this into a Trinsic mDL SDK (Web, iOS, Android) exactly as-is to\
+            \ initiate the mDL exchange."
+          type: string
+        exchangeContext:
+          description: "The encrypted exchange context for this mDL exchange.\n  \
+            \          \nThis must be passed back to the API during finalization,\
+            \ alongside the response token from the wallet."
+          type: string
+      required:
+      - exchangeContext
+      - exchangeId
+      - requestObjectBase64Url
+      type: object
     CreateWidgetSessionRequest:
       additionalProperties: false
       example:
         redirectUrl: redirectUrl
+        verificationProfileId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         recommendationInfo: ""
         providers:
         - providers
         - providers
       properties:
+        verificationProfileId:
+          description: The ID of the Verification Profile to use for this session.
+          format: uuid
+          type: string
         redirectUrl:
           description: "The URL to redirect the user to after the widget session is\
             \ complete.\n            \n*Note*: this should NOT be set if you intend\
-            \ to use Trinsic's Web UI SDK to launch the Widget\nas an embedded iFrame\
-            \ or popup; in that case, session resolution is handled by our SDK, not\
-            \ via redirect."
+            \ to use Trinsic's Web UI SDK to launch the Widget\nas a popup; in that\
+            \ case, session resolution is handled by our SDK, not via redirect."
           nullable: true
           type: string
         providers:
@@ -1476,6 +1944,8 @@ components:
 
             This data is used to improve the user experience during provider selection, by surfacing the most relevant providers first.
           nullable: true
+      required:
+      - verificationProfileId
       type: object
     CreateWidgetSessionResponse:
       example:
@@ -1556,6 +2026,30 @@ components:
         NationalId: ""
         IdCard: ""
         Other: ""
+    ExternalMdlFieldData:
+      additionalProperties: false
+      properties:
+        type:
+          allOf:
+          - $ref: '#/components/schemas/MdlFieldDataType'
+          description: The type of data contained in `value`.
+          example: String
+          x-enumDescriptions:
+            String: "A raw string value, e.g. \"John\""
+            Boolean: "A boolean value, e.g. \"true\""
+            Number: "A numeric value, e.g. \"1234.56\", \"-1\", \"53\""
+            Base64Url: "Base64url-encoded binary data, e.g. a JPEG image."
+            EncodedCbor: "An encoded CBOR object which cannot be cleanly represented\
+              \ as a simple string.\n            \nWhen this type is used, the `value`\
+              \ field contains a base64url-encoded byte array of the raw CBOR data."
+        value:
+          description: The string-encoded value of the field.
+          example: 123 Fake St
+          type: string
+      required:
+      - type
+      - value
+      type: object
     FieldAvailability:
       description: Indicates when a field will be available in verification results.
       enum:
@@ -1568,18 +2062,91 @@ components:
         Sometimes: This field may or may not be present depending on the verification
           context.
         Always: This field will always be present in verification results.
+    FinalizeMdlExchangeRequest:
+      additionalProperties: false
+      example:
+        exchangeId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        verificationProfileId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        responseToken: responseToken
+        exchangeContext: exchangeContext
+      properties:
+        verificationProfileId:
+          description: The ID of the VerificationProfile which was used to create
+            the mDL exchange.
+          format: uuid
+          type: string
+        exchangeId:
+          description: The ID of the mDL exchange to finalize.
+          format: uuid
+          type: string
+        exchangeContext:
+          description: The encrypted exchange context which was returned when the
+            mDL exchange was created.
+          type: string
+        responseToken:
+          description: The response token returned by Trinsic's SDK after a successful
+            mDL exchange.
+          type: string
+      required:
+      - exchangeContext
+      - exchangeId
+      - responseToken
+      - verificationProfileId
+      type: object
+    FinalizeMdlExchangeResponse:
+      additionalProperties: false
+      example:
+        exchangeId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        mdlData: ""
+        normalizedIdentityData: ""
+        createdSession: ""
+      properties:
+        exchangeId:
+          description: The Exchange ID of the mDL exchange which was just finalized.
+          format: uuid
+          type: string
+        createdSession:
+          allOf:
+          - $ref: '#/components/schemas/Session'
+          description: The AcceptanceSession which was created as a result of finalizing
+            this mDL exchange.
+        mdlData:
+          allOf:
+          - $ref: '#/components/schemas/MdlIdentityData'
+          description: "The identity data from the mDL exchange, in a semi-normalized\
+            \ format.\n            \nSupports all possible fields and namespaces,\
+            \ but does not map them to Trinsic's common data model."
+          nullable: true
+        normalizedIdentityData:
+          allOf:
+          - $ref: '#/components/schemas/IdentityData'
+          description: "The identity data from the mDL exchange, normalized into Trinsic's\
+            \ common data model."
+          nullable: true
+      required:
+      - createdSession
+      - exchangeId
+      type: object
     GetAttachmentRequest:
       additionalProperties: false
       example:
         attachmentAccessKey: attachmentAccessKey
+        sessionId: 00000000-0000-0000-0000-000000000000
       properties:
         attachmentAccessKey:
           description: The Attachment Access Key to exchange for the raw file contents
             of the related Attachment
           minLength: 1
           type: string
+        sessionId:
+          description: The ID of the Acceptance Session for which the Attachment is
+            being requested.
+          example: 00000000-0000-0000-0000-000000000000
+          format: uuid
+          type: string
       required:
       - attachmentAccessKey
+      - sessionId
       type: object
     GetAttachmentResponse:
       additionalProperties: false
@@ -1635,6 +2202,17 @@ components:
           nullable: true
       required:
       - session
+      type: object
+    GoogleWalletInput:
+      additionalProperties: false
+      properties:
+        exchangeMechanism:
+          allOf:
+          - $ref: '#/components/schemas/MdlExchangeMechanism'
+          description: "The exchange mechanism to use for this Google Wallet verification.\n\
+            \            \nUse `DigitalCredentialsApi` for Digital Credentials API\
+            \ on web, or `NativeApp` for a native Android app."
+          nullable: true
       type: object
     HttpValidationProblemDetails:
       allOf:
@@ -1759,6 +2337,7 @@ components:
       - CaptureRedirect
       - PollResult
       - PollAfterRedirect
+      - NativeChallenge
       type: string
       x-enumDescriptions:
         LaunchBrowser: Signals that your integration supports the `LaunchBrowser`
@@ -1778,12 +2357,18 @@ components:
           \ is necessary for Providers which make results available asynchronously,\
           \ where the user is redirected back to your application before the results\
           \ are available."
+        NativeChallenge: "Signals that your integration supports the `PerformNativeChallenge`\
+          \ step type, paired with the `SubmitNativeChallengeResponse` collection\
+          \ method.\n            \n`NativeChallenge` currently refers only to a native\
+          \ mDL exchange API, such as Digital Credentials API on web\nor the Android\
+          \ / iOS native app equivalents."
     IntegrationLaunchMethod:
       enum:
       - LaunchBrowser
       - None
       - DeeplinkToMobile
       - ShowContent
+      - PerformNativeChallenge
       type: string
       x-enumDescriptions:
         LaunchBrowser: "The user's browser should be sent to the provided URL, either\
@@ -1796,9 +2381,13 @@ components:
           \ or as a QR code on desktop."
         ShowContent: Content must be displayed to the user to guide them through the
           process of verifying their identity.
+        PerformNativeChallenge: "A challenge must be sent to a native API on the user's\
+          \ device, such as the Digital Credentials API on web,\nor the equivalent\
+          \ mDL exchange APIs on Android or iOS.\n            \nUse Trinsic's UI SDKs\
+          \ on Web, Android, or iOS to streamline this process."
     IntegrationStep:
       additionalProperties: false
-      description: A step to perform in the process of executing an Advanced Provider
+      description: A step to perform in the process of executing an Direct Provider
         Session
       properties:
         method:
@@ -1817,6 +2406,10 @@ components:
               \ on mobile, or as a QR code on desktop."
             ShowContent: Content must be displayed to the user to guide them through
               the process of verifying their identity.
+            PerformNativeChallenge: "A challenge must be sent to a native API on the\
+              \ user's device, such as the Digital Credentials API on web,\nor the\
+              \ equivalent mDL exchange APIs on Android or iOS.\n            \nUse\
+              \ Trinsic's UI SDKs on Web, Android, or iOS to streamline this process."
         content:
           description: "Step type-specific content related to the step: a URL for\
             \ `LaunchBrowser`, a deeplink for `DeeplinkToMobile` or a string to show\
@@ -1907,6 +2500,7 @@ components:
           - CA
           name: CA DMV
           resultsMayBeDelayedAfterRedirect: false
+          supportsDirectProviderSessions: true
           hasRefreshableContent: false
           id: usa-california-dmv
           subProviders:
@@ -1941,6 +2535,7 @@ components:
           - CA
           name: CA DMV
           resultsMayBeDelayedAfterRedirect: false
+          supportsDirectProviderSessions: true
           hasRefreshableContent: false
           id: usa-california-dmv
           subProviders:
@@ -2102,6 +2697,101 @@ components:
           allOf:
           - $ref: '#/components/schemas/Match'
           nullable: true
+      type: object
+    MdlCertificateData:
+      additionalProperties: false
+      properties:
+        serialNumber:
+          description: The serial number of the certificate
+          type: string
+        commonName:
+          description: The common name (CN) of the certificate
+          type: string
+        stateOrProvinceName:
+          description: "The state or province name (ST) of the certificate.\n    \
+            \        \nMay be an empty string for certificates which are not state-specific\
+            \ (e.g., Google Wallet's ID Pass certificates)."
+          type: string
+        notBefore:
+          description: The date before which this certificate is not valid.
+          format: date-time
+          type: string
+        notAfter:
+          description: The date after which this certificate is not valid.
+          format: date-time
+          type: string
+      required:
+      - commonName
+      - notAfter
+      - notBefore
+      - serialNumber
+      - stateOrProvinceName
+      type: object
+    MdlExchangeMechanism:
+      enum:
+      - NativeApp
+      - DigitalCredentialsApi
+      type: string
+      x-enumDescriptions:
+        NativeApp: "The mDL exchange will be performed using a native mobile app SDK\
+          \ (e.g. Google Wallet, Apple Wallet)."
+        DigitalCredentialsApi: The mDL exchange will be performed using the Digital
+          Credentials API on web.
+    MdlFieldDataType:
+      enum:
+      - String
+      - Boolean
+      - Number
+      - Base64Url
+      - EncodedCbor
+      type: string
+      x-enumDescriptions:
+        String: "A raw string value, e.g. \"John\""
+        Boolean: "A boolean value, e.g. \"true\""
+        Number: "A numeric value, e.g. \"1234.56\", \"-1\", \"53\""
+        Base64Url: "Base64url-encoded binary data, e.g. a JPEG image."
+        EncodedCbor: "An encoded CBOR object which cannot be cleanly represented as\
+          \ a simple string.\n            \nWhen this type is used, the `value` field\
+          \ contains a base64url-encoded byte array of the raw CBOR data."
+    MdlIdentityData:
+      additionalProperties: false
+      properties:
+        iacaRootCertificate:
+          allOf:
+          - $ref: '#/components/schemas/MdlCertificateData'
+          description: Information about the IACA Root Certificate which signed the
+            Issuer Certificate for this mDL.
+        documentSignerCertificate:
+          allOf:
+          - $ref: '#/components/schemas/MdlCertificateData'
+          description: Information about the Document Signer Certificate which signed
+            the mDL presented by the user.
+        nameSpaces:
+          additionalProperties:
+            additionalProperties:
+              $ref: '#/components/schemas/ExternalMdlFieldData'
+            type: object
+          description: "The namespaces, and fields within those namespaces, which\
+            \ were present in the processed mDL."
+          example:
+            org.iso.18013.5.1:
+              family_name:
+                type: String
+                value: DOE
+              given_name:
+                type: String
+                value: JOHN
+              birth_date:
+                type: String
+                value: 2000-03-27
+              age_over_21:
+                type: Boolean
+                value: "true"
+          type: object
+      required:
+      - documentSignerCertificate
+      - iacaRootCertificate
+      - nameSpaces
       type: object
     MexicoCurpInput:
       additionalProperties: false
@@ -2312,6 +3002,7 @@ components:
         - CA
         name: CA DMV
         resultsMayBeDelayedAfterRedirect: false
+        supportsDirectProviderSessions: true
         hasRefreshableContent: false
         id: usa-california-dmv
         subProviders:
@@ -2376,9 +3067,9 @@ components:
         launchMethod:
           allOf:
           - $ref: '#/components/schemas/IntegrationLaunchMethod'
-          description: "Relevant only to Advanced Provider Sessions.\n           \
-            \ \nThe `LaunchMethod` which must be supported to launch the Provider\
-            \ Session in Advanced Provider Sessions."
+          description: "Relevant only to Direct Provider Sessions.\n            \n\
+            The `LaunchMethod` which must be supported to launch the Provider Session\
+            \ in Direct Provider Sessions."
           example: DeeplinkToMobile
           x-enumDescriptions:
             LaunchBrowser: "The user's browser should be sent to the provided URL,\
@@ -2391,12 +3082,16 @@ components:
               \ on mobile, or as a QR code on desktop."
             ShowContent: Content must be displayed to the user to guide them through
               the process of verifying their identity.
+            PerformNativeChallenge: "A challenge must be sent to a native API on the\
+              \ user's device, such as the Digital Credentials API on web,\nor the\
+              \ equivalent mDL exchange APIs on Android or iOS.\n            \nUse\
+              \ Trinsic's UI SDKs on Web, Android, or iOS to streamline this process."
         collectionMethod:
           allOf:
           - $ref: '#/components/schemas/ResultCollectionMethod'
-          description: "Relevant only to Advanced Provider Sessions.\n           \
-            \ \nThe `CollectionMethod` which must be supported to launch the Provider\
-            \ Session in Advanced Provider Sessions."
+          description: "Relevant only to Direct Provider Sessions.\n            \n\
+            The `CollectionMethod` which must be supported to launch the Provider\
+            \ Session in Direct Provider Sessions."
           example: PollResult
           x-enumDescriptions:
             PollResult: "The results will be made available asynchronously, via a\
@@ -2406,6 +3101,11 @@ components:
               \ a `resultsAccessKey` in the query string.\n            \nUpon redirect,\
               \ use the provided `ResultsAccessKey` to retrieve the results via the\
               \ `GetResults` API."
+            SubmitNativeChallengeResponse: "Submit a response to a native challenge\
+              \ performed on the user's device, such as a native mDL exchange\nvia\
+              \ the Digital Credentials API on web, or the equivalent native APIs\
+              \ on Android or iOS.\n            \nSee the `PerformNativeChallenge`\
+              \ launch method for more details."
         resultsMayBeDelayedAfterRedirect:
           description: "If `true`, then the results for this Provider may not be available\
             \ immediately after the user is redirected back\nto your application.\
@@ -2416,17 +3116,17 @@ components:
           example: false
           type: boolean
         hasRefreshableContent:
-          description: "Relevant only to Advanced Provider Sessions.\n           \
-            \ \nWhether the Provider requires the `RefreshStepContent` capability.\n\
-            \            \nFor example, Samsung Wallet's deep links expire every 30\
+          description: "Relevant only to Direct Provider Sessions.\n            \n\
+            Whether the Provider requires the `RefreshStepContent` capability.\n \
+            \           \nFor example, Samsung Wallet's deep links expire every 30\
             \ seconds, and must be refreshed periodically for a\nresilient user flow."
           example: false
           type: boolean
         requiresInput:
-          description: "Relevant to Hosted Provider Sessions and Advanced Provider\
-            \ Sessions.\n            \nIf `true`, this Provider requires provider-specific\
-            \ input on Session creation.\nIf this input is not provided, Trinsic's\
-            \ Hosted UI will be invoked to collect the input from the user."
+          description: "Relevant to Hosted Provider Sessions and Direct Provider Sessions.\n\
+            \            \nIf `true`, this Provider requires provider-specific input\
+            \ on Session creation.\nIf this input is not provided, Trinsic's Hosted\
+            \ UI will be invoked to collect the input from the user."
           example: false
           type: boolean
         hasTrinsicInterface:
@@ -2436,10 +3136,18 @@ components:
           example: true
           type: boolean
         supportsAdvancedProviderSessions:
+          deprecated: true
           description: "Whether this Provider can be fully whitelabeled/OEMed through\
-            \ the Advanced Provider Sessions API.\n            \nIf `false`, the Provider\
-            \ may still be launched through Advanced Provider Sessions;\nhowever,\
-            \ it will necessarily require a Trinsic-hosted UI to function."
+            \ the Direct Provider Sessions API.\n            \nIf `false`, the Provider\
+            \ may still be launched through Direct Provider Sessions;\nhowever, it\
+            \ will necessarily require a Trinsic-hosted UI to function."
+          example: true
+          type: boolean
+        supportsDirectProviderSessions:
+          description: "Whether this Provider can be fully whitelabeled/OEMed through\
+            \ the Direct Provider Sessions API.\n            \nIf `false`, the Provider\
+            \ may still be launched through Direct Provider Sessions;\nhowever, it\
+            \ will necessarily require a Trinsic-hosted UI to function."
           example: true
           type: boolean
         availableFields:
@@ -2484,6 +3192,7 @@ components:
       - resultsMayBeDelayedAfterRedirect
       - subtext
       - supportsAdvancedProviderSessions
+      - supportsDirectProviderSessions
       type: object
     ProviderHealth:
       description: The health for an integration to be able to successfully perform
@@ -2718,6 +3427,16 @@ components:
           - $ref: '#/components/schemas/SpidInput'
           description: Input for the `italy-spid` provider
           nullable: true
+        googleWallet:
+          allOf:
+          - $ref: '#/components/schemas/GoogleWalletInput'
+          description: Input for the `google-wallet` provider
+          nullable: true
+        appleWallet:
+          allOf:
+          - $ref: '#/components/schemas/AppleWalletInput'
+          description: Input for the `apple-wallet` provider
+          nullable: true
         trinsicTestDatabaseLookup:
           allOf:
           - $ref: '#/components/schemas/TrinsicTestDatabaseLookupInput'
@@ -2734,9 +3453,14 @@ components:
     RecommendRequest:
       additionalProperties: false
       example:
+        verificationProfileId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         health: health
         recommendationInfo: ""
       properties:
+        verificationProfileId:
+          description: The ID of the VerificationProfile to use for this recommendation.
+          format: uuid
+          type: string
         recommendationInfo:
           allOf:
           - $ref: '#/components/schemas/RecommendationInfo'
@@ -2748,6 +3472,8 @@ components:
             , \"offline\", \"all\". Defaults to \"online\"."
           nullable: true
           type: string
+      required:
+      - verificationProfileId
       type: object
     RecommendResponse:
       additionalProperties: false
@@ -2969,6 +3695,11 @@ components:
               \ a `resultsAccessKey` in the query string.\n            \nUpon redirect,\
               \ use the provided `ResultsAccessKey` to retrieve the results via the\
               \ `GetResults` API."
+            SubmitNativeChallengeResponse: "Submit a response to a native challenge\
+              \ performed on the user's device, such as a native mDL exchange\nvia\
+              \ the Digital Credentials API on web, or the equivalent native APIs\
+              \ on Android or iOS.\n            \nSee the `PerformNativeChallenge`\
+              \ launch method for more details."
         resultsAccessKey:
           description: "The `resultsAccessKey` for the Acceptance Session.\n     \
             \       \nThis is an encrypted payload which contains the decryption key\
@@ -2986,6 +3717,7 @@ components:
       enum:
       - PollResult
       - CaptureRedirect
+      - SubmitNativeChallengeResponse
       type: string
       x-enumDescriptions:
         PollResult: "The results will be made available asynchronously, via a polling\
@@ -2994,6 +3726,10 @@ components:
         CaptureRedirect: "The user will be sent back to your application with a `resultsAccessKey`\
           \ in the query string.\n            \nUpon redirect, use the provided `ResultsAccessKey`\
           \ to retrieve the results via the `GetResults` API."
+        SubmitNativeChallengeResponse: "Submit a response to a native challenge performed\
+          \ on the user's device, such as a native mDL exchange\nvia the Digital Credentials\
+          \ API on web, or the equivalent native APIs on Android or iOS.\n       \
+          \     \nSee the `PerformNativeChallenge` launch method for more details."
     Session:
       additionalProperties: false
       example:
@@ -3054,6 +3790,8 @@ components:
       - Inauthentic
       - UnsupportedDocument
       - AssuranceLevelNotMet
+      - SecurityValidationFailed
+      - InvalidResponse
       type: string
       x-enumDescriptions:
         Internal: An internal error has caused this session to fail
@@ -3072,6 +3810,10 @@ components:
           \ or from an unsupported country."
         AssuranceLevelNotMet: The user's identity does not meet the required assurance
           level for this verification.
+        SecurityValidationFailed: A critical security validation (such as a cryptographic
+          signature check or secure handshake with the provider) has failed.
+        InvalidResponse: "The response from the identity provider was malformed, incomplete,\
+          \ or otherwise could not be processed."
     SessionOrdering:
       enum:
       - Created
@@ -3208,6 +3950,37 @@ components:
       - logoUrl
       - name
       - subtext
+      type: object
+    SubmitNativeChallengeResponseRequest:
+      additionalProperties: false
+      example:
+        responseToken: responseToken
+        resultsAccessKey: resultsAccessKey
+      properties:
+        resultsAccessKey:
+          description: The Results Access Key for the Session in question
+          minLength: 1
+          type: string
+        responseToken:
+          description: The response token retrieved from a Trinsic UI SDK's performMdlExchange()
+            call.
+          minLength: 1
+          type: string
+      required:
+      - responseToken
+      - resultsAccessKey
+      type: object
+    SubmitNativeChallengeResponseResponse:
+      additionalProperties: false
+      example:
+        session: ""
+      properties:
+        session:
+          allOf:
+          - $ref: '#/components/schemas/Session'
+          description: The Session for which the challenge token was submitted
+      required:
+      - session
       type: object
     TrinsicTestDatabaseLookupInput:
       additionalProperties: false

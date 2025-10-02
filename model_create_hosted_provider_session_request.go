@@ -23,9 +23,11 @@ var _ MappedNullable = &CreateHostedProviderSessionRequest{}
 type CreateHostedProviderSessionRequest struct {
 	// The ID of the provider to launch
 	Provider string `json:"provider"`
+	// The ID of the Verification Profile to use for this session.
+	VerificationProfileId string `json:"verificationProfileId"`
 	// The Redirect URL to which the user should be sent after the session is complete.
 	RedirectUrl string `json:"redirectUrl"`
-	// Provider-specific input for those providers which require it.   <b>Deprecated:</b> In the future, Hosted Provider Sessions will not accept input on creation, and will instead always redirect the user to a hosted interface to collect input. If you need to collect input from the user yourself, please use the Create Advanced Session endpoint instead.
+	// Provider-specific input for those providers which require it.   <b>Deprecated:</b> In the future, Hosted Provider Sessions will not accept input on creation, and will instead always redirect the user to a hosted interface to collect input. If you need to collect input from the user yourself, please use the Create Direct Session endpoint instead.
 	// Deprecated
 	ProviderInput NullableProviderInput `json:"providerInput,omitempty"`
 }
@@ -36,9 +38,10 @@ type _CreateHostedProviderSessionRequest CreateHostedProviderSessionRequest
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateHostedProviderSessionRequest(provider string, redirectUrl string) *CreateHostedProviderSessionRequest {
+func NewCreateHostedProviderSessionRequest(provider string, verificationProfileId string, redirectUrl string) *CreateHostedProviderSessionRequest {
 	this := CreateHostedProviderSessionRequest{}
 	this.Provider = provider
+	this.VerificationProfileId = verificationProfileId
 	this.RedirectUrl = redirectUrl
 	return &this
 }
@@ -73,6 +76,30 @@ func (o *CreateHostedProviderSessionRequest) GetProviderOk() (*string, bool) {
 // SetProvider sets field value
 func (o *CreateHostedProviderSessionRequest) SetProvider(v string) {
 	o.Provider = v
+}
+
+// GetVerificationProfileId returns the VerificationProfileId field value
+func (o *CreateHostedProviderSessionRequest) GetVerificationProfileId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.VerificationProfileId
+}
+
+// GetVerificationProfileIdOk returns a tuple with the VerificationProfileId field value
+// and a boolean to check if the value has been set.
+func (o *CreateHostedProviderSessionRequest) GetVerificationProfileIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.VerificationProfileId, true
+}
+
+// SetVerificationProfileId sets field value
+func (o *CreateHostedProviderSessionRequest) SetVerificationProfileId(v string) {
+	o.VerificationProfileId = v
 }
 
 // GetRedirectUrl returns the RedirectUrl field value
@@ -155,6 +182,7 @@ func (o CreateHostedProviderSessionRequest) MarshalJSON() ([]byte, error) {
 func (o CreateHostedProviderSessionRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["provider"] = o.Provider
+	toSerialize["verificationProfileId"] = o.VerificationProfileId
 	toSerialize["redirectUrl"] = o.RedirectUrl
 	if o.ProviderInput.IsSet() {
 		toSerialize["providerInput"] = o.ProviderInput.Get()
@@ -168,6 +196,7 @@ func (o *CreateHostedProviderSessionRequest) UnmarshalJSON(data []byte) (err err
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"provider",
+		"verificationProfileId",
 		"redirectUrl",
 	}
 

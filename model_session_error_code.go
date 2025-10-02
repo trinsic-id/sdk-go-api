@@ -30,6 +30,8 @@ const (
 	SESSIONERRORCODE_INAUTHENTIC SessionErrorCode = "Inauthentic"
 	SESSIONERRORCODE_UNSUPPORTED_DOCUMENT SessionErrorCode = "UnsupportedDocument"
 	SESSIONERRORCODE_ASSURANCE_LEVEL_NOT_MET SessionErrorCode = "AssuranceLevelNotMet"
+	SESSIONERRORCODE_SECURITY_VALIDATION_FAILED SessionErrorCode = "SecurityValidationFailed"
+	SESSIONERRORCODE_INVALID_RESPONSE SessionErrorCode = "InvalidResponse"
 )
 
 // All allowed values of SessionErrorCode enum
@@ -44,6 +46,8 @@ var AllowedSessionErrorCodeEnumValues = []SessionErrorCode{
 	"Inauthentic",
 	"UnsupportedDocument",
 	"AssuranceLevelNotMet",
+	"SecurityValidationFailed",
+	"InvalidResponse",
 }
 
 func (v *SessionErrorCode) UnmarshalJSON(src []byte) error {

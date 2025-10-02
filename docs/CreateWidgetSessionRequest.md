@@ -4,7 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**RedirectUrl** | Pointer to **NullableString** | The URL to redirect the user to after the widget session is complete.              *Note*: this should NOT be set if you intend to use Trinsic&#39;s Web UI SDK to launch the Widget as an embedded iFrame or popup; in that case, session resolution is handled by our SDK, not via redirect. | [optional] 
+**VerificationProfileId** | **string** | The ID of the Verification Profile to use for this session. | 
+**RedirectUrl** | Pointer to **NullableString** | The URL to redirect the user to after the widget session is complete.              *Note*: this should NOT be set if you intend to use Trinsic&#39;s Web UI SDK to launch the Widget as a popup; in that case, session resolution is handled by our SDK, not via redirect. | [optional] 
 **Providers** | Pointer to **[]string** | The list of allowed identity providers. If not specified, all available providers will be allowed. | [optional] 
 **RecommendationInfo** | Pointer to [**NullableRecommendationInfo**](RecommendationInfo.md) | Data that you already know about the user being verified.   This data is used to improve the user experience during provider selection, by surfacing the most relevant providers first. | [optional] 
 
@@ -12,7 +13,7 @@ Name | Type | Description | Notes
 
 ### NewCreateWidgetSessionRequest
 
-`func NewCreateWidgetSessionRequest() *CreateWidgetSessionRequest`
+`func NewCreateWidgetSessionRequest(verificationProfileId string, ) *CreateWidgetSessionRequest`
 
 NewCreateWidgetSessionRequest instantiates a new CreateWidgetSessionRequest object
 This constructor will assign default values to properties that have it defined,
@@ -26,6 +27,26 @@ will change when the set of required properties is changed
 NewCreateWidgetSessionRequestWithDefaults instantiates a new CreateWidgetSessionRequest object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetVerificationProfileId
+
+`func (o *CreateWidgetSessionRequest) GetVerificationProfileId() string`
+
+GetVerificationProfileId returns the VerificationProfileId field if non-nil, zero value otherwise.
+
+### GetVerificationProfileIdOk
+
+`func (o *CreateWidgetSessionRequest) GetVerificationProfileIdOk() (*string, bool)`
+
+GetVerificationProfileIdOk returns a tuple with the VerificationProfileId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVerificationProfileId
+
+`func (o *CreateWidgetSessionRequest) SetVerificationProfileId(v string)`
+
+SetVerificationProfileId sets VerificationProfileId field to given value.
+
 
 ### GetRedirectUrl
 

@@ -5,14 +5,15 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Provider** | **string** | The ID of the provider to launch | 
+**VerificationProfileId** | **string** | The ID of the Verification Profile to use for this session. | 
 **RedirectUrl** | **string** | The Redirect URL to which the user should be sent after the session is complete. | 
-**ProviderInput** | Pointer to [**NullableProviderInput**](ProviderInput.md) | Provider-specific input for those providers which require it.   &lt;b&gt;Deprecated:&lt;/b&gt; In the future, Hosted Provider Sessions will not accept input on creation, and will instead always redirect the user to a hosted interface to collect input. If you need to collect input from the user yourself, please use the Create Advanced Session endpoint instead. | [optional] 
+**ProviderInput** | Pointer to [**NullableProviderInput**](ProviderInput.md) | Provider-specific input for those providers which require it.   &lt;b&gt;Deprecated:&lt;/b&gt; In the future, Hosted Provider Sessions will not accept input on creation, and will instead always redirect the user to a hosted interface to collect input. If you need to collect input from the user yourself, please use the Create Direct Session endpoint instead. | [optional] 
 
 ## Methods
 
 ### NewCreateHostedProviderSessionRequest
 
-`func NewCreateHostedProviderSessionRequest(provider string, redirectUrl string, ) *CreateHostedProviderSessionRequest`
+`func NewCreateHostedProviderSessionRequest(provider string, verificationProfileId string, redirectUrl string, ) *CreateHostedProviderSessionRequest`
 
 NewCreateHostedProviderSessionRequest instantiates a new CreateHostedProviderSessionRequest object
 This constructor will assign default values to properties that have it defined,
@@ -45,6 +46,26 @@ and a boolean to check if the value has been set.
 `func (o *CreateHostedProviderSessionRequest) SetProvider(v string)`
 
 SetProvider sets Provider field to given value.
+
+
+### GetVerificationProfileId
+
+`func (o *CreateHostedProviderSessionRequest) GetVerificationProfileId() string`
+
+GetVerificationProfileId returns the VerificationProfileId field if non-nil, zero value otherwise.
+
+### GetVerificationProfileIdOk
+
+`func (o *CreateHostedProviderSessionRequest) GetVerificationProfileIdOk() (*string, bool)`
+
+GetVerificationProfileIdOk returns a tuple with the VerificationProfileId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVerificationProfileId
+
+`func (o *CreateHostedProviderSessionRequest) SetVerificationProfileId(v string)`
+
+SetVerificationProfileId sets VerificationProfileId field to given value.
 
 
 ### GetRedirectUrl

@@ -5,14 +5,15 @@ All URIs are relative to *https://api.trinsic.id*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CancelSession**](SessionsAPI.md#CancelSession) | **Post** /api/v1/sessions/{sessionId}/cancel | Cancel Session
-[**CreateAdvancedProviderSession**](SessionsAPI.md#CreateAdvancedProviderSession) | **Post** /api/v1/sessions/provider/advanced | Create Advanced Provider Session
+[**CreateDirectProviderSession**](SessionsAPI.md#CreateDirectProviderSession) | **Post** /api/v1/sessions/provider/direct | Create Direct Provider Session
 [**CreateHostedProviderSession**](SessionsAPI.md#CreateHostedProviderSession) | **Post** /api/v1/sessions/provider/hosted | Create Hosted Provider Session
 [**CreateWidgetSession**](SessionsAPI.md#CreateWidgetSession) | **Post** /api/v1/sessions/widget | Create Widget Session
 [**GetSession**](SessionsAPI.md#GetSession) | **Get** /api/v1/sessions/{sessionId} | Get Session
 [**GetSessionResult**](SessionsAPI.md#GetSessionResult) | **Post** /api/v1/sessions/{sessionId}/results | Get Session Results
-[**ListSessions**](SessionsAPI.md#ListSessions) | **Get** /api/v1/sessions/list | List Sessions
+[**ListSessions**](SessionsAPI.md#ListSessions) | **Get** /api/v1/verification-profiles/{verificationProfileId}/sessions | List Sessions
 [**RedactSession**](SessionsAPI.md#RedactSession) | **Post** /api/v1/sessions/{sessionId}/redact | Redact Session
 [**RefreshStepContent**](SessionsAPI.md#RefreshStepContent) | **Post** /api/v1/sessions/{acceptanceSessionId}/step/refresh | Refresh Step Content
+[**SubmitNativeChallengeResponse**](SessionsAPI.md#SubmitNativeChallengeResponse) | **Post** /api/v1/sessions/{acceptanceSessionId}/native-challenge/submit | Submit Native Challenge Response
 
 
 
@@ -86,11 +87,11 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## CreateAdvancedProviderSession
+## CreateDirectProviderSession
 
-> CreateAdvancedProviderSessionResponse CreateAdvancedProviderSession(ctx).CreateAdvancedProviderSessionRequest(createAdvancedProviderSessionRequest).Execute()
+> CreateDirectProviderSessionResponse CreateDirectProviderSession(ctx).CreateDirectProviderSessionRequest(createDirectProviderSessionRequest).Execute()
 
-Create Advanced Provider Session
+Create Direct Provider Session
 
 
 
@@ -107,17 +108,17 @@ import (
 )
 
 func main() {
-	createAdvancedProviderSessionRequest := *openapiclient.NewCreateAdvancedProviderSessionRequest("Provider_example", []openapiclient.IntegrationCapability{openapiclient.IntegrationCapability("LaunchBrowser")}) // CreateAdvancedProviderSessionRequest |  (optional)
+	createDirectProviderSessionRequest := *openapiclient.NewCreateDirectProviderSessionRequest("Provider_example", "VerificationProfileId_example", []openapiclient.IntegrationCapability{openapiclient.IntegrationCapability("LaunchBrowser")}) // CreateDirectProviderSessionRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.SessionsAPI.CreateAdvancedProviderSession(context.Background()).CreateAdvancedProviderSessionRequest(createAdvancedProviderSessionRequest).Execute()
+	resp, r, err := apiClient.SessionsAPI.CreateDirectProviderSession(context.Background()).CreateDirectProviderSessionRequest(createDirectProviderSessionRequest).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `SessionsAPI.CreateAdvancedProviderSession``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `SessionsAPI.CreateDirectProviderSession``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateAdvancedProviderSession`: CreateAdvancedProviderSessionResponse
-	fmt.Fprintf(os.Stdout, "Response from `SessionsAPI.CreateAdvancedProviderSession`: %v\n", resp)
+	// response from `CreateDirectProviderSession`: CreateDirectProviderSessionResponse
+	fmt.Fprintf(os.Stdout, "Response from `SessionsAPI.CreateDirectProviderSession`: %v\n", resp)
 }
 ```
 
@@ -127,16 +128,16 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCreateAdvancedProviderSessionRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiCreateDirectProviderSessionRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createAdvancedProviderSessionRequest** | [**CreateAdvancedProviderSessionRequest**](CreateAdvancedProviderSessionRequest.md) |  | 
+ **createDirectProviderSessionRequest** | [**CreateDirectProviderSessionRequest**](CreateDirectProviderSessionRequest.md) |  | 
 
 ### Return type
 
-[**CreateAdvancedProviderSessionResponse**](CreateAdvancedProviderSessionResponse.md)
+[**CreateDirectProviderSessionResponse**](CreateDirectProviderSessionResponse.md)
 
 ### Authorization
 
@@ -173,7 +174,7 @@ import (
 )
 
 func main() {
-	createHostedProviderSessionRequest := *openapiclient.NewCreateHostedProviderSessionRequest("Provider_example", "RedirectUrl_example") // CreateHostedProviderSessionRequest |  (optional)
+	createHostedProviderSessionRequest := *openapiclient.NewCreateHostedProviderSessionRequest("Provider_example", "VerificationProfileId_example", "RedirectUrl_example") // CreateHostedProviderSessionRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -239,7 +240,7 @@ import (
 )
 
 func main() {
-	createWidgetSessionRequest := *openapiclient.NewCreateWidgetSessionRequest() // CreateWidgetSessionRequest |  (optional)
+	createWidgetSessionRequest := *openapiclient.NewCreateWidgetSessionRequest("VerificationProfileId_example") // CreateWidgetSessionRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -305,7 +306,7 @@ import (
 )
 
 func main() {
-	sessionId := "sessionId_example" // string | 
+	sessionId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -373,7 +374,7 @@ import (
 )
 
 func main() {
-	sessionId := "sessionId_example" // string | 
+	sessionId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
 	getSessionResultRequest := *openapiclient.NewGetSessionResultRequest("ResultsAccessKey_example") // GetSessionResultRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -426,7 +427,7 @@ Name | Type | Description  | Notes
 
 ## ListSessions
 
-> ListSessionsResponse ListSessions(ctx).OrderBy(orderBy).OrderDirection(orderDirection).PageSize(pageSize).Page(page).Execute()
+> ListSessionsResponse ListSessions(ctx, verificationProfileId).OrderBy(orderBy).OrderDirection(orderDirection).PageSize(pageSize).Page(page).Execute()
 
 List Sessions
 
@@ -445,6 +446,7 @@ import (
 )
 
 func main() {
+	verificationProfileId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
 	orderBy := openapiclient.SessionOrdering("Created") // SessionOrdering | The field by which sessions should be ordered (optional)
 	orderDirection := openapiclient.OrderDirection("Ascending") // OrderDirection |  (optional)
 	pageSize := int32(50) // int32 | The number of items to return per page -- must be between `1` and `50` (optional)
@@ -452,7 +454,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.SessionsAPI.ListSessions(context.Background()).OrderBy(orderBy).OrderDirection(orderDirection).PageSize(pageSize).Page(page).Execute()
+	resp, r, err := apiClient.SessionsAPI.ListSessions(context.Background(), verificationProfileId).OrderBy(orderBy).OrderDirection(orderDirection).PageSize(pageSize).Page(page).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SessionsAPI.ListSessions``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -465,6 +467,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**verificationProfileId** | **string** |  | 
 
 ### Other Parameters
 
@@ -473,6 +479,7 @@ Other parameters are passed through a pointer to a apiListSessionsRequest struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
  **orderBy** | [**SessionOrdering**](SessionOrdering.md) | The field by which sessions should be ordered | 
  **orderDirection** | [**OrderDirection**](OrderDirection.md) |  | 
  **pageSize** | **int32** | The number of items to return per page -- must be between &#x60;1&#x60; and &#x60;50&#x60; | 
@@ -621,6 +628,78 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**RefreshStepContentResponse**](RefreshStepContentResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## SubmitNativeChallengeResponse
+
+> SubmitNativeChallengeResponseResponse SubmitNativeChallengeResponse(ctx, acceptanceSessionId).SubmitNativeChallengeResponseRequest(submitNativeChallengeResponseRequest).Execute()
+
+Submit Native Challenge Response
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	acceptanceSessionId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	submitNativeChallengeResponseRequest := *openapiclient.NewSubmitNativeChallengeResponseRequest("ResultsAccessKey_example", "ResponseToken_example") // SubmitNativeChallengeResponseRequest |  (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.SessionsAPI.SubmitNativeChallengeResponse(context.Background(), acceptanceSessionId).SubmitNativeChallengeResponseRequest(submitNativeChallengeResponseRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `SessionsAPI.SubmitNativeChallengeResponse``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `SubmitNativeChallengeResponse`: SubmitNativeChallengeResponseResponse
+	fmt.Fprintf(os.Stdout, "Response from `SessionsAPI.SubmitNativeChallengeResponse`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**acceptanceSessionId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiSubmitNativeChallengeResponseRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **submitNativeChallengeResponseRequest** | [**SubmitNativeChallengeResponseRequest**](SubmitNativeChallengeResponseRequest.md) |  | 
+
+### Return type
+
+[**SubmitNativeChallengeResponseResponse**](SubmitNativeChallengeResponseResponse.md)
 
 ### Authorization
 

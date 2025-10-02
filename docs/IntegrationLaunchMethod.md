@@ -11,6 +11,8 @@
 
 * `SHOW_CONTENT` (value: `"ShowContent"`)
 
+* `PERFORM_NATIVE_CHALLENGE` (value: `"PerformNativeChallenge"`)
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -36,11 +36,11 @@ func Test_trinsic_api_SessionsAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test SessionsAPIService CreateAdvancedProviderSession", func(t *testing.T) {
+	t.Run("Test SessionsAPIService CreateDirectProviderSession", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.SessionsAPI.CreateAdvancedProviderSession(context.Background()).Execute()
+		resp, httpRes, err := apiClient.SessionsAPI.CreateDirectProviderSession(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -104,7 +104,9 @@ func Test_trinsic_api_SessionsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.SessionsAPI.ListSessions(context.Background()).Execute()
+		var verificationProfileId string
+
+		resp, httpRes, err := apiClient.SessionsAPI.ListSessions(context.Background(), verificationProfileId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -132,6 +134,20 @@ func Test_trinsic_api_SessionsAPIService(t *testing.T) {
 		var acceptanceSessionId string
 
 		resp, httpRes, err := apiClient.SessionsAPI.RefreshStepContent(context.Background(), acceptanceSessionId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test SessionsAPIService SubmitNativeChallengeResponse", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var acceptanceSessionId string
+
+		resp, httpRes, err := apiClient.SessionsAPI.SubmitNativeChallengeResponse(context.Background(), acceptanceSessionId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

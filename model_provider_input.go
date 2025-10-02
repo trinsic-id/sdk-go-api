@@ -51,6 +51,10 @@ type ProviderInput struct {
 	Idin NullableIdinInput `json:"idin,omitempty"`
 	// Input for the `italy-spid` provider
 	Spid NullableSpidInput `json:"spid,omitempty"`
+	// Input for the `google-wallet` provider
+	GoogleWallet NullableGoogleWalletInput `json:"googleWallet,omitempty"`
+	// Input for the `apple-wallet` provider
+	AppleWallet NullableAppleWalletInput `json:"appleWallet,omitempty"`
 	// *TEST MODE ONLY.*              Input for the `trinsic-test-database-lookup` provider
 	TrinsicTestDatabaseLookup NullableTrinsicTestDatabaseLookupInput `json:"trinsicTestDatabaseLookup,omitempty"`
 	// *TEST MODE ONLY.*              Input for the `trinsic-test-sub-providers` provider
@@ -746,6 +750,90 @@ func (o *ProviderInput) UnsetSpid() {
 	o.Spid.Unset()
 }
 
+// GetGoogleWallet returns the GoogleWallet field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderInput) GetGoogleWallet() GoogleWalletInput {
+	if o == nil || IsNil(o.GoogleWallet.Get()) {
+		var ret GoogleWalletInput
+		return ret
+	}
+	return *o.GoogleWallet.Get()
+}
+
+// GetGoogleWalletOk returns a tuple with the GoogleWallet field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderInput) GetGoogleWalletOk() (*GoogleWalletInput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.GoogleWallet.Get(), o.GoogleWallet.IsSet()
+}
+
+// HasGoogleWallet returns a boolean if a field has been set.
+func (o *ProviderInput) HasGoogleWallet() bool {
+	if o != nil && o.GoogleWallet.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetGoogleWallet gets a reference to the given NullableGoogleWalletInput and assigns it to the GoogleWallet field.
+func (o *ProviderInput) SetGoogleWallet(v GoogleWalletInput) {
+	o.GoogleWallet.Set(&v)
+}
+// SetGoogleWalletNil sets the value for GoogleWallet to be an explicit nil
+func (o *ProviderInput) SetGoogleWalletNil() {
+	o.GoogleWallet.Set(nil)
+}
+
+// UnsetGoogleWallet ensures that no value is present for GoogleWallet, not even an explicit nil
+func (o *ProviderInput) UnsetGoogleWallet() {
+	o.GoogleWallet.Unset()
+}
+
+// GetAppleWallet returns the AppleWallet field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderInput) GetAppleWallet() AppleWalletInput {
+	if o == nil || IsNil(o.AppleWallet.Get()) {
+		var ret AppleWalletInput
+		return ret
+	}
+	return *o.AppleWallet.Get()
+}
+
+// GetAppleWalletOk returns a tuple with the AppleWallet field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderInput) GetAppleWalletOk() (*AppleWalletInput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.AppleWallet.Get(), o.AppleWallet.IsSet()
+}
+
+// HasAppleWallet returns a boolean if a field has been set.
+func (o *ProviderInput) HasAppleWallet() bool {
+	if o != nil && o.AppleWallet.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAppleWallet gets a reference to the given NullableAppleWalletInput and assigns it to the AppleWallet field.
+func (o *ProviderInput) SetAppleWallet(v AppleWalletInput) {
+	o.AppleWallet.Set(&v)
+}
+// SetAppleWalletNil sets the value for AppleWallet to be an explicit nil
+func (o *ProviderInput) SetAppleWalletNil() {
+	o.AppleWallet.Set(nil)
+}
+
+// UnsetAppleWallet ensures that no value is present for AppleWallet, not even an explicit nil
+func (o *ProviderInput) UnsetAppleWallet() {
+	o.AppleWallet.Unset()
+}
+
 // GetTrinsicTestDatabaseLookup returns the TrinsicTestDatabaseLookup field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ProviderInput) GetTrinsicTestDatabaseLookup() TrinsicTestDatabaseLookupInput {
 	if o == nil || IsNil(o.TrinsicTestDatabaseLookup.Get()) {
@@ -887,6 +975,12 @@ func (o ProviderInput) ToMap() (map[string]interface{}, error) {
 	}
 	if o.Spid.IsSet() {
 		toSerialize["spid"] = o.Spid.Get()
+	}
+	if o.GoogleWallet.IsSet() {
+		toSerialize["googleWallet"] = o.GoogleWallet.Get()
+	}
+	if o.AppleWallet.IsSet() {
+		toSerialize["appleWallet"] = o.AppleWallet.Get()
 	}
 	if o.TrinsicTestDatabaseLookup.IsSet() {
 		toSerialize["trinsicTestDatabaseLookup"] = o.TrinsicTestDatabaseLookup.Get()

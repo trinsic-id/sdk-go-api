@@ -12,6 +12,8 @@ package trinsic_api
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the RecommendRequest type satisfies the MappedNullable interface at compile time
@@ -19,18 +21,23 @@ var _ MappedNullable = &RecommendRequest{}
 
 // RecommendRequest struct for RecommendRequest
 type RecommendRequest struct {
+	// The ID of the VerificationProfile to use for this recommendation.
+	VerificationProfileId string `json:"verificationProfileId"`
 	// Information about the user you wish to generate a recommendation for.
 	RecommendationInfo NullableRecommendationInfo `json:"recommendationInfo,omitempty"`
 	// Filter providers by health status. Valid values: \"online\", \"offline\", \"all\". Defaults to \"online\".
 	Health NullableString `json:"health,omitempty"`
 }
 
+type _RecommendRequest RecommendRequest
+
 // NewRecommendRequest instantiates a new RecommendRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRecommendRequest() *RecommendRequest {
+func NewRecommendRequest(verificationProfileId string) *RecommendRequest {
 	this := RecommendRequest{}
+	this.VerificationProfileId = verificationProfileId
 	return &this
 }
 
@@ -40,6 +47,30 @@ func NewRecommendRequest() *RecommendRequest {
 func NewRecommendRequestWithDefaults() *RecommendRequest {
 	this := RecommendRequest{}
 	return &this
+}
+
+// GetVerificationProfileId returns the VerificationProfileId field value
+func (o *RecommendRequest) GetVerificationProfileId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.VerificationProfileId
+}
+
+// GetVerificationProfileIdOk returns a tuple with the VerificationProfileId field value
+// and a boolean to check if the value has been set.
+func (o *RecommendRequest) GetVerificationProfileIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.VerificationProfileId, true
+}
+
+// SetVerificationProfileId sets field value
+func (o *RecommendRequest) SetVerificationProfileId(v string) {
+	o.VerificationProfileId = v
 }
 
 // GetRecommendationInfo returns the RecommendationInfo field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -136,6 +167,7 @@ func (o RecommendRequest) MarshalJSON() ([]byte, error) {
 
 func (o RecommendRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["verificationProfileId"] = o.VerificationProfileId
 	if o.RecommendationInfo.IsSet() {
 		toSerialize["recommendationInfo"] = o.RecommendationInfo.Get()
 	}
@@ -143,6 +175,43 @@ func (o RecommendRequest) ToMap() (map[string]interface{}, error) {
 		toSerialize["health"] = o.Health.Get()
 	}
 	return toSerialize, nil
+}
+
+func (o *RecommendRequest) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"verificationProfileId",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varRecommendRequest := _RecommendRequest{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varRecommendRequest)
+
+	if err != nil {
+		return err
+	}
+
+	*o = RecommendRequest(varRecommendRequest)
+
+	return err
 }
 
 type NullableRecommendRequest struct {

@@ -16,11 +16,11 @@ import (
 	"fmt"
 )
 
-// checks if the CreateAdvancedProviderSessionResponse type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &CreateAdvancedProviderSessionResponse{}
+// checks if the CreateDirectProviderSessionResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateDirectProviderSessionResponse{}
 
-// CreateAdvancedProviderSessionResponse struct for CreateAdvancedProviderSessionResponse
-type CreateAdvancedProviderSessionResponse struct {
+// CreateDirectProviderSessionResponse struct for CreateDirectProviderSessionResponse
+type CreateDirectProviderSessionResponse struct {
 	// The ID of the newly-created Acceptance Session
 	SessionId string `json:"sessionId"`
 	// The method by which you must collect the results of the Acceptance Session.
@@ -29,30 +29,30 @@ type CreateAdvancedProviderSessionResponse struct {
 	NextStep IntegrationStep `json:"nextStep"`
 }
 
-type _CreateAdvancedProviderSessionResponse CreateAdvancedProviderSessionResponse
+type _CreateDirectProviderSessionResponse CreateDirectProviderSessionResponse
 
-// NewCreateAdvancedProviderSessionResponse instantiates a new CreateAdvancedProviderSessionResponse object
+// NewCreateDirectProviderSessionResponse instantiates a new CreateDirectProviderSessionResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateAdvancedProviderSessionResponse(sessionId string, resultCollection ResultCollection, nextStep IntegrationStep) *CreateAdvancedProviderSessionResponse {
-	this := CreateAdvancedProviderSessionResponse{}
+func NewCreateDirectProviderSessionResponse(sessionId string, resultCollection ResultCollection, nextStep IntegrationStep) *CreateDirectProviderSessionResponse {
+	this := CreateDirectProviderSessionResponse{}
 	this.SessionId = sessionId
 	this.ResultCollection = resultCollection
 	this.NextStep = nextStep
 	return &this
 }
 
-// NewCreateAdvancedProviderSessionResponseWithDefaults instantiates a new CreateAdvancedProviderSessionResponse object
+// NewCreateDirectProviderSessionResponseWithDefaults instantiates a new CreateDirectProviderSessionResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewCreateAdvancedProviderSessionResponseWithDefaults() *CreateAdvancedProviderSessionResponse {
-	this := CreateAdvancedProviderSessionResponse{}
+func NewCreateDirectProviderSessionResponseWithDefaults() *CreateDirectProviderSessionResponse {
+	this := CreateDirectProviderSessionResponse{}
 	return &this
 }
 
 // GetSessionId returns the SessionId field value
-func (o *CreateAdvancedProviderSessionResponse) GetSessionId() string {
+func (o *CreateDirectProviderSessionResponse) GetSessionId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -63,7 +63,7 @@ func (o *CreateAdvancedProviderSessionResponse) GetSessionId() string {
 
 // GetSessionIdOk returns a tuple with the SessionId field value
 // and a boolean to check if the value has been set.
-func (o *CreateAdvancedProviderSessionResponse) GetSessionIdOk() (*string, bool) {
+func (o *CreateDirectProviderSessionResponse) GetSessionIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -71,12 +71,12 @@ func (o *CreateAdvancedProviderSessionResponse) GetSessionIdOk() (*string, bool)
 }
 
 // SetSessionId sets field value
-func (o *CreateAdvancedProviderSessionResponse) SetSessionId(v string) {
+func (o *CreateDirectProviderSessionResponse) SetSessionId(v string) {
 	o.SessionId = v
 }
 
 // GetResultCollection returns the ResultCollection field value
-func (o *CreateAdvancedProviderSessionResponse) GetResultCollection() ResultCollection {
+func (o *CreateDirectProviderSessionResponse) GetResultCollection() ResultCollection {
 	if o == nil {
 		var ret ResultCollection
 		return ret
@@ -87,7 +87,7 @@ func (o *CreateAdvancedProviderSessionResponse) GetResultCollection() ResultColl
 
 // GetResultCollectionOk returns a tuple with the ResultCollection field value
 // and a boolean to check if the value has been set.
-func (o *CreateAdvancedProviderSessionResponse) GetResultCollectionOk() (*ResultCollection, bool) {
+func (o *CreateDirectProviderSessionResponse) GetResultCollectionOk() (*ResultCollection, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -95,12 +95,12 @@ func (o *CreateAdvancedProviderSessionResponse) GetResultCollectionOk() (*Result
 }
 
 // SetResultCollection sets field value
-func (o *CreateAdvancedProviderSessionResponse) SetResultCollection(v ResultCollection) {
+func (o *CreateDirectProviderSessionResponse) SetResultCollection(v ResultCollection) {
 	o.ResultCollection = v
 }
 
 // GetNextStep returns the NextStep field value
-func (o *CreateAdvancedProviderSessionResponse) GetNextStep() IntegrationStep {
+func (o *CreateDirectProviderSessionResponse) GetNextStep() IntegrationStep {
 	if o == nil {
 		var ret IntegrationStep
 		return ret
@@ -111,7 +111,7 @@ func (o *CreateAdvancedProviderSessionResponse) GetNextStep() IntegrationStep {
 
 // GetNextStepOk returns a tuple with the NextStep field value
 // and a boolean to check if the value has been set.
-func (o *CreateAdvancedProviderSessionResponse) GetNextStepOk() (*IntegrationStep, bool) {
+func (o *CreateDirectProviderSessionResponse) GetNextStepOk() (*IntegrationStep, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -119,11 +119,11 @@ func (o *CreateAdvancedProviderSessionResponse) GetNextStepOk() (*IntegrationSte
 }
 
 // SetNextStep sets field value
-func (o *CreateAdvancedProviderSessionResponse) SetNextStep(v IntegrationStep) {
+func (o *CreateDirectProviderSessionResponse) SetNextStep(v IntegrationStep) {
 	o.NextStep = v
 }
 
-func (o CreateAdvancedProviderSessionResponse) MarshalJSON() ([]byte, error) {
+func (o CreateDirectProviderSessionResponse) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -131,7 +131,7 @@ func (o CreateAdvancedProviderSessionResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o CreateAdvancedProviderSessionResponse) ToMap() (map[string]interface{}, error) {
+func (o CreateDirectProviderSessionResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["sessionId"] = o.SessionId
 	toSerialize["resultCollection"] = o.ResultCollection
@@ -139,7 +139,7 @@ func (o CreateAdvancedProviderSessionResponse) ToMap() (map[string]interface{}, 
 	return toSerialize, nil
 }
 
-func (o *CreateAdvancedProviderSessionResponse) UnmarshalJSON(data []byte) (err error) {
+func (o *CreateDirectProviderSessionResponse) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
@@ -163,53 +163,53 @@ func (o *CreateAdvancedProviderSessionResponse) UnmarshalJSON(data []byte) (err 
 		}
 	}
 
-	varCreateAdvancedProviderSessionResponse := _CreateAdvancedProviderSessionResponse{}
+	varCreateDirectProviderSessionResponse := _CreateDirectProviderSessionResponse{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
 	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateAdvancedProviderSessionResponse)
+	err = decoder.Decode(&varCreateDirectProviderSessionResponse)
 
 	if err != nil {
 		return err
 	}
 
-	*o = CreateAdvancedProviderSessionResponse(varCreateAdvancedProviderSessionResponse)
+	*o = CreateDirectProviderSessionResponse(varCreateDirectProviderSessionResponse)
 
 	return err
 }
 
-type NullableCreateAdvancedProviderSessionResponse struct {
-	value *CreateAdvancedProviderSessionResponse
+type NullableCreateDirectProviderSessionResponse struct {
+	value *CreateDirectProviderSessionResponse
 	isSet bool
 }
 
-func (v NullableCreateAdvancedProviderSessionResponse) Get() *CreateAdvancedProviderSessionResponse {
+func (v NullableCreateDirectProviderSessionResponse) Get() *CreateDirectProviderSessionResponse {
 	return v.value
 }
 
-func (v *NullableCreateAdvancedProviderSessionResponse) Set(val *CreateAdvancedProviderSessionResponse) {
+func (v *NullableCreateDirectProviderSessionResponse) Set(val *CreateDirectProviderSessionResponse) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableCreateAdvancedProviderSessionResponse) IsSet() bool {
+func (v NullableCreateDirectProviderSessionResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableCreateAdvancedProviderSessionResponse) Unset() {
+func (v *NullableCreateDirectProviderSessionResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableCreateAdvancedProviderSessionResponse(val *CreateAdvancedProviderSessionResponse) *NullableCreateAdvancedProviderSessionResponse {
-	return &NullableCreateAdvancedProviderSessionResponse{value: val, isSet: true}
+func NewNullableCreateDirectProviderSessionResponse(val *CreateDirectProviderSessionResponse) *NullableCreateDirectProviderSessionResponse {
+	return &NullableCreateDirectProviderSessionResponse{value: val, isSet: true}
 }
 
-func (v NullableCreateAdvancedProviderSessionResponse) MarshalJSON() ([]byte, error) {
+func (v NullableCreateDirectProviderSessionResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableCreateAdvancedProviderSessionResponse) UnmarshalJSON(src []byte) error {
+func (v *NullableCreateDirectProviderSessionResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
