@@ -1246,7 +1246,7 @@ func (a *SessionsAPIService) RedactSessionExecute(r ApiRedactSessionRequest) (*h
 type ApiRefreshStepContentRequest struct {
 	ctx context.Context
 	ApiService *SessionsAPIService
-	acceptanceSessionId string
+	sessionId string
 	refreshStepContentRequest *RefreshStepContentRequest
 }
 
@@ -1265,14 +1265,14 @@ RefreshStepContent Refresh Step Content
 Refreshes the content of a Step for a Direct Provider Session.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param acceptanceSessionId
+ @param sessionId
  @return ApiRefreshStepContentRequest
 */
-func (a *SessionsAPIService) RefreshStepContent(ctx context.Context, acceptanceSessionId string) ApiRefreshStepContentRequest {
+func (a *SessionsAPIService) RefreshStepContent(ctx context.Context, sessionId string) ApiRefreshStepContentRequest {
 	return ApiRefreshStepContentRequest{
 		ApiService: a,
 		ctx: ctx,
-		acceptanceSessionId: acceptanceSessionId,
+		sessionId: sessionId,
 	}
 }
 
@@ -1291,8 +1291,8 @@ func (a *SessionsAPIService) RefreshStepContentExecute(r ApiRefreshStepContentRe
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/sessions/{acceptanceSessionId}/step/refresh"
-	localVarPath = strings.Replace(localVarPath, "{"+"acceptanceSessionId"+"}", url.PathEscape(parameterValueToString(r.acceptanceSessionId, "acceptanceSessionId")), -1)
+	localVarPath := localBasePath + "/api/v1/sessions/{sessionId}/step/refresh"
+	localVarPath = strings.Replace(localVarPath, "{"+"sessionId"+"}", url.PathEscape(parameterValueToString(r.sessionId, "sessionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1400,7 +1400,7 @@ func (a *SessionsAPIService) RefreshStepContentExecute(r ApiRefreshStepContentRe
 type ApiSubmitNativeChallengeResponseRequest struct {
 	ctx context.Context
 	ApiService *SessionsAPIService
-	acceptanceSessionId string
+	sessionId string
 	submitNativeChallengeResponseRequest *SubmitNativeChallengeResponseRequest
 }
 
@@ -1419,14 +1419,14 @@ SubmitNativeChallengeResponse Submit Native Challenge Response
 Submits the response from a Native Challenge (e.g., mDL exchange via DC API) and processes the results.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param acceptanceSessionId
+ @param sessionId
  @return ApiSubmitNativeChallengeResponseRequest
 */
-func (a *SessionsAPIService) SubmitNativeChallengeResponse(ctx context.Context, acceptanceSessionId string) ApiSubmitNativeChallengeResponseRequest {
+func (a *SessionsAPIService) SubmitNativeChallengeResponse(ctx context.Context, sessionId string) ApiSubmitNativeChallengeResponseRequest {
 	return ApiSubmitNativeChallengeResponseRequest{
 		ApiService: a,
 		ctx: ctx,
-		acceptanceSessionId: acceptanceSessionId,
+		sessionId: sessionId,
 	}
 }
 
@@ -1445,8 +1445,8 @@ func (a *SessionsAPIService) SubmitNativeChallengeResponseExecute(r ApiSubmitNat
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/sessions/{acceptanceSessionId}/native-challenge/submit"
-	localVarPath = strings.Replace(localVarPath, "{"+"acceptanceSessionId"+"}", url.PathEscape(parameterValueToString(r.acceptanceSessionId, "acceptanceSessionId")), -1)
+	localVarPath := localBasePath + "/api/v1/sessions/{sessionId}/native-challenge/submit"
+	localVarPath = strings.Replace(localVarPath, "{"+"sessionId"+"}", url.PathEscape(parameterValueToString(r.sessionId, "sessionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

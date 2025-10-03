@@ -179,6 +179,7 @@ type ApiListProvidersRequest struct {
 	health *string
 }
 
+// Filter providers by health status. Valid values: \&quot;online\&quot;, \&quot;offline\&quot;, \&quot;all\&quot;. Defaults to \&quot;all\&quot;.
 func (r ApiListProvidersRequest) Health(health string) ApiListProvidersRequest {
 	r.health = &health
 	return r
@@ -189,7 +190,9 @@ func (r ApiListProvidersRequest) Execute() (*ListProvidersResponse, *http.Respon
 }
 
 /*
-ListProviders Method for ListProviders
+ListProviders List Providers
+
+List all identity providers available for use
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param verificationProfileId

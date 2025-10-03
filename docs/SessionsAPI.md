@@ -12,8 +12,8 @@ Method | HTTP request | Description
 [**GetSessionResult**](SessionsAPI.md#GetSessionResult) | **Post** /api/v1/sessions/{sessionId}/results | Get Session Results
 [**ListSessions**](SessionsAPI.md#ListSessions) | **Get** /api/v1/verification-profiles/{verificationProfileId}/sessions | List Sessions
 [**RedactSession**](SessionsAPI.md#RedactSession) | **Post** /api/v1/sessions/{sessionId}/redact | Redact Session
-[**RefreshStepContent**](SessionsAPI.md#RefreshStepContent) | **Post** /api/v1/sessions/{acceptanceSessionId}/step/refresh | Refresh Step Content
-[**SubmitNativeChallengeResponse**](SessionsAPI.md#SubmitNativeChallengeResponse) | **Post** /api/v1/sessions/{acceptanceSessionId}/native-challenge/submit | Submit Native Challenge Response
+[**RefreshStepContent**](SessionsAPI.md#RefreshStepContent) | **Post** /api/v1/sessions/{sessionId}/step/refresh | Refresh Step Content
+[**SubmitNativeChallengeResponse**](SessionsAPI.md#SubmitNativeChallengeResponse) | **Post** /api/v1/sessions/{sessionId}/native-challenge/submit | Submit Native Challenge Response
 
 
 
@@ -573,7 +573,7 @@ Name | Type | Description  | Notes
 
 ## RefreshStepContent
 
-> RefreshStepContentResponse RefreshStepContent(ctx, acceptanceSessionId).RefreshStepContentRequest(refreshStepContentRequest).Execute()
+> RefreshStepContentResponse RefreshStepContent(ctx, sessionId).RefreshStepContentRequest(refreshStepContentRequest).Execute()
 
 Refresh Step Content
 
@@ -592,12 +592,12 @@ import (
 )
 
 func main() {
-	acceptanceSessionId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	sessionId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
 	refreshStepContentRequest := *openapiclient.NewRefreshStepContentRequest("ResultsAccessKey_example") // RefreshStepContentRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.SessionsAPI.RefreshStepContent(context.Background(), acceptanceSessionId).RefreshStepContentRequest(refreshStepContentRequest).Execute()
+	resp, r, err := apiClient.SessionsAPI.RefreshStepContent(context.Background(), sessionId).RefreshStepContentRequest(refreshStepContentRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SessionsAPI.RefreshStepContent``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -613,7 +613,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**acceptanceSessionId** | **string** |  | 
+**sessionId** | **string** |  | 
 
 ### Other Parameters
 
@@ -645,7 +645,7 @@ Name | Type | Description  | Notes
 
 ## SubmitNativeChallengeResponse
 
-> SubmitNativeChallengeResponseResponse SubmitNativeChallengeResponse(ctx, acceptanceSessionId).SubmitNativeChallengeResponseRequest(submitNativeChallengeResponseRequest).Execute()
+> SubmitNativeChallengeResponseResponse SubmitNativeChallengeResponse(ctx, sessionId).SubmitNativeChallengeResponseRequest(submitNativeChallengeResponseRequest).Execute()
 
 Submit Native Challenge Response
 
@@ -664,12 +664,12 @@ import (
 )
 
 func main() {
-	acceptanceSessionId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	sessionId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
 	submitNativeChallengeResponseRequest := *openapiclient.NewSubmitNativeChallengeResponseRequest("ResultsAccessKey_example", "ResponseToken_example") // SubmitNativeChallengeResponseRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.SessionsAPI.SubmitNativeChallengeResponse(context.Background(), acceptanceSessionId).SubmitNativeChallengeResponseRequest(submitNativeChallengeResponseRequest).Execute()
+	resp, r, err := apiClient.SessionsAPI.SubmitNativeChallengeResponse(context.Background(), sessionId).SubmitNativeChallengeResponseRequest(submitNativeChallengeResponseRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SessionsAPI.SubmitNativeChallengeResponse``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -685,7 +685,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**acceptanceSessionId** | **string** |  | 
+**sessionId** | **string** |  | 
 
 ### Other Parameters
 

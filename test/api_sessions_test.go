@@ -131,9 +131,9 @@ func Test_trinsic_api_SessionsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var acceptanceSessionId string
+		var sessionId string
 
-		resp, httpRes, err := apiClient.SessionsAPI.RefreshStepContent(context.Background(), acceptanceSessionId).Execute()
+		resp, httpRes, err := apiClient.SessionsAPI.RefreshStepContent(context.Background(), sessionId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -145,9 +145,9 @@ func Test_trinsic_api_SessionsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var acceptanceSessionId string
+		var sessionId string
 
-		resp, httpRes, err := apiClient.SessionsAPI.SubmitNativeChallengeResponse(context.Background(), acceptanceSessionId).Execute()
+		resp, httpRes, err := apiClient.SessionsAPI.SubmitNativeChallengeResponse(context.Background(), sessionId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

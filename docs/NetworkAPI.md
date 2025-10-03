@@ -5,7 +5,7 @@ All URIs are relative to *https://api.trinsic.id*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**ListProviderContracts**](NetworkAPI.md#ListProviderContracts) | **Get** /api/v1/network/{verificationProfileId}/providers/contracts | List Provider Contracts
-[**ListProviders**](NetworkAPI.md#ListProviders) | **Get** /api/v1/network/{verificationProfileId}/providers | 
+[**ListProviders**](NetworkAPI.md#ListProviders) | **Get** /api/v1/network/{verificationProfileId}/providers | List Providers
 [**RecommendProviders**](NetworkAPI.md#RecommendProviders) | **Post** /api/v1/network/recommend | Recommend Providers
 
 
@@ -84,6 +84,8 @@ Name | Type | Description  | Notes
 
 > ListProvidersResponse ListProviders(ctx, verificationProfileId).Health(health).Execute()
 
+List Providers
+
 
 
 ### Example
@@ -100,7 +102,7 @@ import (
 
 func main() {
 	verificationProfileId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
-	health := "health_example" // string |  (optional)
+	health := "health_example" // string | Filter providers by health status. Valid values: \"online\", \"offline\", \"all\". Defaults to \"all\". (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -130,7 +132,7 @@ Other parameters are passed through a pointer to a apiListProvidersRequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **health** | **string** |  | 
+ **health** | **string** | Filter providers by health status. Valid values: \&quot;online\&quot;, \&quot;offline\&quot;, \&quot;all\&quot;. Defaults to \&quot;all\&quot;. | 
 
 ### Return type
 
