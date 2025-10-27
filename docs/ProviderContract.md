@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **SupportsAdvancedProviderSessions** | **bool** | Whether this Provider can be fully whitelabeled/OEMed through the Direct Provider Sessions API.              If &#x60;false&#x60;, the Provider may still be launched through Direct Provider Sessions; however, it will necessarily require a Trinsic-hosted UI to function. | 
 **SupportsDirectProviderSessions** | **bool** | Whether this Provider can be fully whitelabeled/OEMed through the Direct Provider Sessions API.              If &#x60;false&#x60;, the Provider may still be launched through Direct Provider Sessions; however, it will necessarily require a Trinsic-hosted UI to function. | 
 **AvailableFields** | Pointer to [**[]ContractField**](ContractField.md) | Information about the fields that this Provider will return in verification results. | [optional] 
+**AvailableIdentifiers** | Pointer to [**[]ContractIdentifierField**](ContractIdentifierField.md) | Information about the identifiers this Provider returns in verification results. | [optional] 
 **SubProviders** | Pointer to [**[]SubProviderMetadata**](SubProviderMetadata.md) | Metadata about the sub-providers which are available for this Provider.              For example, Italy&#39;s SPID is a Provider which aggregates access to multiple sub-providers. | [optional] 
 **Health** | [**ProviderHealth**](ProviderHealth.md) | The health for an integration to be able to successfully perform a verification session. | 
 
@@ -398,6 +399,41 @@ HasAvailableFields returns a boolean if a field has been set.
 `func (o *ProviderContract) UnsetAvailableFields()`
 
 UnsetAvailableFields ensures that no value is present for AvailableFields, not even an explicit nil
+### GetAvailableIdentifiers
+
+`func (o *ProviderContract) GetAvailableIdentifiers() []ContractIdentifierField`
+
+GetAvailableIdentifiers returns the AvailableIdentifiers field if non-nil, zero value otherwise.
+
+### GetAvailableIdentifiersOk
+
+`func (o *ProviderContract) GetAvailableIdentifiersOk() (*[]ContractIdentifierField, bool)`
+
+GetAvailableIdentifiersOk returns a tuple with the AvailableIdentifiers field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAvailableIdentifiers
+
+`func (o *ProviderContract) SetAvailableIdentifiers(v []ContractIdentifierField)`
+
+SetAvailableIdentifiers sets AvailableIdentifiers field to given value.
+
+### HasAvailableIdentifiers
+
+`func (o *ProviderContract) HasAvailableIdentifiers() bool`
+
+HasAvailableIdentifiers returns a boolean if a field has been set.
+
+### SetAvailableIdentifiersNil
+
+`func (o *ProviderContract) SetAvailableIdentifiersNil(b bool)`
+
+ SetAvailableIdentifiersNil sets the value for AvailableIdentifiers to be an explicit nil
+
+### UnsetAvailableIdentifiers
+`func (o *ProviderContract) UnsetAvailableIdentifiers()`
+
+UnsetAvailableIdentifiers ensures that no value is present for AvailableIdentifiers, not even an explicit nil
 ### GetSubProviders
 
 `func (o *ProviderContract) GetSubProviders() []SubProviderMetadata`

@@ -10,12 +10,14 @@ Name | Type | Description | Notes
 **Document** | Pointer to [**NullableDocumentData**](DocumentData.md) |  | [optional] 
 **Match** | Pointer to [**NullableMatchData**](MatchData.md) |  | [optional] 
 **AttachmentAccessKeys** | Pointer to [**NullableAttachmentAccessKeys**](AttachmentAccessKeys.md) |  | [optional] 
+**ProviderOutput** | Pointer to [**NullableProviderOutput**](ProviderOutput.md) |  | [optional] 
+**Identifiers** | [**[]Identifier**](Identifier.md) |  | 
 
 ## Methods
 
 ### NewIdentityData
 
-`func NewIdentityData() *IdentityData`
+`func NewIdentityData(identifiers []Identifier, ) *IdentityData`
 
 NewIdentityData instantiates a new IdentityData object
 This constructor will assign default values to properties that have it defined,
@@ -240,6 +242,61 @@ HasAttachmentAccessKeys returns a boolean if a field has been set.
 `func (o *IdentityData) UnsetAttachmentAccessKeys()`
 
 UnsetAttachmentAccessKeys ensures that no value is present for AttachmentAccessKeys, not even an explicit nil
+### GetProviderOutput
+
+`func (o *IdentityData) GetProviderOutput() ProviderOutput`
+
+GetProviderOutput returns the ProviderOutput field if non-nil, zero value otherwise.
+
+### GetProviderOutputOk
+
+`func (o *IdentityData) GetProviderOutputOk() (*ProviderOutput, bool)`
+
+GetProviderOutputOk returns a tuple with the ProviderOutput field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProviderOutput
+
+`func (o *IdentityData) SetProviderOutput(v ProviderOutput)`
+
+SetProviderOutput sets ProviderOutput field to given value.
+
+### HasProviderOutput
+
+`func (o *IdentityData) HasProviderOutput() bool`
+
+HasProviderOutput returns a boolean if a field has been set.
+
+### SetProviderOutputNil
+
+`func (o *IdentityData) SetProviderOutputNil(b bool)`
+
+ SetProviderOutputNil sets the value for ProviderOutput to be an explicit nil
+
+### UnsetProviderOutput
+`func (o *IdentityData) UnsetProviderOutput()`
+
+UnsetProviderOutput ensures that no value is present for ProviderOutput, not even an explicit nil
+### GetIdentifiers
+
+`func (o *IdentityData) GetIdentifiers() []Identifier`
+
+GetIdentifiers returns the Identifiers field if non-nil, zero value otherwise.
+
+### GetIdentifiersOk
+
+`func (o *IdentityData) GetIdentifiersOk() (*[]Identifier, bool)`
+
+GetIdentifiersOk returns a tuple with the Identifiers field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIdentifiers
+
+`func (o *IdentityData) SetIdentifiers(v []Identifier)`
+
+SetIdentifiers sets Identifiers field to given value.
+
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

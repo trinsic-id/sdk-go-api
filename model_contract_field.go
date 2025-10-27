@@ -22,7 +22,10 @@ var _ MappedNullable = &ContractField{}
 // ContractField Information about a field that a Provider will return in verification results.
 type ContractField struct {
 	// The name of the field as it appears in verification results.
+	// Deprecated
 	Name string `json:"name"`
+	// The scope of the field as it appears in verification results.
+	Scope string `json:"scope"`
 	// Indicates when this field will be present in verification results.
 	Outputted FieldAvailability `json:"outputted"`
 }
@@ -33,9 +36,10 @@ type _ContractField ContractField
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewContractField(name string, outputted FieldAvailability) *ContractField {
+func NewContractField(name string, scope string, outputted FieldAvailability) *ContractField {
 	this := ContractField{}
 	this.Name = name
+	this.Scope = scope
 	this.Outputted = outputted
 	return &this
 }
@@ -49,6 +53,7 @@ func NewContractFieldWithDefaults() *ContractField {
 }
 
 // GetName returns the Name field value
+// Deprecated
 func (o *ContractField) GetName() string {
 	if o == nil {
 		var ret string
@@ -60,6 +65,7 @@ func (o *ContractField) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *ContractField) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
@@ -68,8 +74,33 @@ func (o *ContractField) GetNameOk() (*string, bool) {
 }
 
 // SetName sets field value
+// Deprecated
 func (o *ContractField) SetName(v string) {
 	o.Name = v
+}
+
+// GetScope returns the Scope field value
+func (o *ContractField) GetScope() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Scope
+}
+
+// GetScopeOk returns a tuple with the Scope field value
+// and a boolean to check if the value has been set.
+func (o *ContractField) GetScopeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Scope, true
+}
+
+// SetScope sets field value
+func (o *ContractField) SetScope(v string) {
+	o.Scope = v
 }
 
 // GetOutputted returns the Outputted field value
@@ -107,6 +138,7 @@ func (o ContractField) MarshalJSON() ([]byte, error) {
 func (o ContractField) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["name"] = o.Name
+	toSerialize["scope"] = o.Scope
 	toSerialize["outputted"] = o.Outputted
 	return toSerialize, nil
 }
@@ -117,6 +149,7 @@ func (o *ContractField) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"name",
+		"scope",
 		"outputted",
 	}
 

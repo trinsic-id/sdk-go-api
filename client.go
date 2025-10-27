@@ -51,11 +51,15 @@ type APIClient struct {
 
 	AttachmentsAPI *AttachmentsAPIService
 
+	EnvironmentRedirectUrisAPI *EnvironmentRedirectUrisAPIService
+
 	MdlAPI *MdlAPIService
 
 	NetworkAPI *NetworkAPIService
 
 	SessionsAPI *SessionsAPIService
+
+	VerificationProfilesAPI *VerificationProfilesAPIService
 }
 
 type service struct {
@@ -75,9 +79,11 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 
 	// API Services
 	c.AttachmentsAPI = (*AttachmentsAPIService)(&c.common)
+	c.EnvironmentRedirectUrisAPI = (*EnvironmentRedirectUrisAPIService)(&c.common)
 	c.MdlAPI = (*MdlAPIService)(&c.common)
 	c.NetworkAPI = (*NetworkAPIService)(&c.common)
 	c.SessionsAPI = (*SessionsAPIService)(&c.common)
+	c.VerificationProfilesAPI = (*VerificationProfilesAPIService)(&c.common)
 
 	return c
 }

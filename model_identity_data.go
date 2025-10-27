@@ -12,6 +12,8 @@ package trinsic_api
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the IdentityData type satisfies the MappedNullable interface at compile time
@@ -25,14 +27,19 @@ type IdentityData struct {
 	Document NullableDocumentData `json:"document,omitempty"`
 	Match NullableMatchData `json:"match,omitempty"`
 	AttachmentAccessKeys NullableAttachmentAccessKeys `json:"attachmentAccessKeys,omitempty"`
+	ProviderOutput NullableProviderOutput `json:"providerOutput,omitempty"`
+	Identifiers []Identifier `json:"identifiers"`
 }
+
+type _IdentityData IdentityData
 
 // NewIdentityData instantiates a new IdentityData object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewIdentityData() *IdentityData {
+func NewIdentityData(identifiers []Identifier) *IdentityData {
 	this := IdentityData{}
+	this.Identifiers = identifiers
 	return &this
 }
 
@@ -296,6 +303,72 @@ func (o *IdentityData) UnsetAttachmentAccessKeys() {
 	o.AttachmentAccessKeys.Unset()
 }
 
+// GetProviderOutput returns the ProviderOutput field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *IdentityData) GetProviderOutput() ProviderOutput {
+	if o == nil || IsNil(o.ProviderOutput.Get()) {
+		var ret ProviderOutput
+		return ret
+	}
+	return *o.ProviderOutput.Get()
+}
+
+// GetProviderOutputOk returns a tuple with the ProviderOutput field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *IdentityData) GetProviderOutputOk() (*ProviderOutput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ProviderOutput.Get(), o.ProviderOutput.IsSet()
+}
+
+// HasProviderOutput returns a boolean if a field has been set.
+func (o *IdentityData) HasProviderOutput() bool {
+	if o != nil && o.ProviderOutput.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetProviderOutput gets a reference to the given NullableProviderOutput and assigns it to the ProviderOutput field.
+func (o *IdentityData) SetProviderOutput(v ProviderOutput) {
+	o.ProviderOutput.Set(&v)
+}
+// SetProviderOutputNil sets the value for ProviderOutput to be an explicit nil
+func (o *IdentityData) SetProviderOutputNil() {
+	o.ProviderOutput.Set(nil)
+}
+
+// UnsetProviderOutput ensures that no value is present for ProviderOutput, not even an explicit nil
+func (o *IdentityData) UnsetProviderOutput() {
+	o.ProviderOutput.Unset()
+}
+
+// GetIdentifiers returns the Identifiers field value
+func (o *IdentityData) GetIdentifiers() []Identifier {
+	if o == nil {
+		var ret []Identifier
+		return ret
+	}
+
+	return o.Identifiers
+}
+
+// GetIdentifiersOk returns a tuple with the Identifiers field value
+// and a boolean to check if the value has been set.
+func (o *IdentityData) GetIdentifiersOk() ([]Identifier, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Identifiers, true
+}
+
+// SetIdentifiers sets field value
+func (o *IdentityData) SetIdentifiers(v []Identifier) {
+	o.Identifiers = v
+}
+
 func (o IdentityData) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -324,7 +397,48 @@ func (o IdentityData) ToMap() (map[string]interface{}, error) {
 	if o.AttachmentAccessKeys.IsSet() {
 		toSerialize["attachmentAccessKeys"] = o.AttachmentAccessKeys.Get()
 	}
+	if o.ProviderOutput.IsSet() {
+		toSerialize["providerOutput"] = o.ProviderOutput.Get()
+	}
+	toSerialize["identifiers"] = o.Identifiers
 	return toSerialize, nil
+}
+
+func (o *IdentityData) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"identifiers",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varIdentityData := _IdentityData{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varIdentityData)
+
+	if err != nil {
+		return err
+	}
+
+	*o = IdentityData(varIdentityData)
+
+	return err
 }
 
 type NullableIdentityData struct {

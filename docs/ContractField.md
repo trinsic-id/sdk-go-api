@@ -5,13 +5,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** | The name of the field as it appears in verification results. | 
+**Scope** | **string** | The scope of the field as it appears in verification results. | 
 **Outputted** | [**FieldAvailability**](FieldAvailability.md) | Indicates when this field will be present in verification results. | 
 
 ## Methods
 
 ### NewContractField
 
-`func NewContractField(name string, outputted FieldAvailability, ) *ContractField`
+`func NewContractField(name string, scope string, outputted FieldAvailability, ) *ContractField`
 
 NewContractField instantiates a new ContractField object
 This constructor will assign default values to properties that have it defined,
@@ -44,6 +45,26 @@ and a boolean to check if the value has been set.
 `func (o *ContractField) SetName(v string)`
 
 SetName sets Name field to given value.
+
+
+### GetScope
+
+`func (o *ContractField) GetScope() string`
+
+GetScope returns the Scope field if non-nil, zero value otherwise.
+
+### GetScopeOk
+
+`func (o *ContractField) GetScopeOk() (*string, bool)`
+
+GetScopeOk returns a tuple with the Scope field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetScope
+
+`func (o *ContractField) SetScope(v string)`
+
+SetScope sets Scope field to given value.
 
 
 ### GetOutputted

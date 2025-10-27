@@ -57,6 +57,8 @@ type ProviderContract struct {
 	SupportsDirectProviderSessions bool `json:"supportsDirectProviderSessions"`
 	// Information about the fields that this Provider will return in verification results.
 	AvailableFields []ContractField `json:"availableFields,omitempty"`
+	// Information about the identifiers this Provider returns in verification results.
+	AvailableIdentifiers []ContractIdentifierField `json:"availableIdentifiers,omitempty"`
 	// Metadata about the sub-providers which are available for this Provider.              For example, Italy's SPID is a Provider which aggregates access to multiple sub-providers.
 	SubProviders []SubProviderMetadata `json:"subProviders,omitempty"`
 	// The health for an integration to be able to successfully perform a verification session.
@@ -522,6 +524,39 @@ func (o *ProviderContract) SetAvailableFields(v []ContractField) {
 	o.AvailableFields = v
 }
 
+// GetAvailableIdentifiers returns the AvailableIdentifiers field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderContract) GetAvailableIdentifiers() []ContractIdentifierField {
+	if o == nil {
+		var ret []ContractIdentifierField
+		return ret
+	}
+	return o.AvailableIdentifiers
+}
+
+// GetAvailableIdentifiersOk returns a tuple with the AvailableIdentifiers field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderContract) GetAvailableIdentifiersOk() ([]ContractIdentifierField, bool) {
+	if o == nil || IsNil(o.AvailableIdentifiers) {
+		return nil, false
+	}
+	return o.AvailableIdentifiers, true
+}
+
+// HasAvailableIdentifiers returns a boolean if a field has been set.
+func (o *ProviderContract) HasAvailableIdentifiers() bool {
+	if o != nil && !IsNil(o.AvailableIdentifiers) {
+		return true
+	}
+
+	return false
+}
+
+// SetAvailableIdentifiers gets a reference to the given []ContractIdentifierField and assigns it to the AvailableIdentifiers field.
+func (o *ProviderContract) SetAvailableIdentifiers(v []ContractIdentifierField) {
+	o.AvailableIdentifiers = v
+}
+
 // GetSubProviders returns the SubProviders field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ProviderContract) GetSubProviders() []SubProviderMetadata {
 	if o == nil {
@@ -607,6 +642,9 @@ func (o ProviderContract) ToMap() (map[string]interface{}, error) {
 	toSerialize["supportsDirectProviderSessions"] = o.SupportsDirectProviderSessions
 	if o.AvailableFields != nil {
 		toSerialize["availableFields"] = o.AvailableFields
+	}
+	if o.AvailableIdentifiers != nil {
+		toSerialize["availableIdentifiers"] = o.AvailableIdentifiers
 	}
 	if o.SubProviders != nil {
 		toSerialize["subProviders"] = o.SubProviders

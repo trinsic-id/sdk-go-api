@@ -21,6 +21,8 @@ var _ MappedNullable = &SpidInput{}
 type SpidInput struct {
 	// The ID of the specific IDP to invoke within SPID.              If not specified, the user will be prompted to select an IDP.
 	SubProviderId NullableString `json:"subProviderId,omitempty"`
+	// Only applicable if period-based billing is enabled for your Verification Profile. Contact Trinsic to enable this.              A secret UTF-8 string between 32 and 64 characters in length, used to enable privacy-preserving tracking of unique user verifications during a billing period.              WARNING: This value must NOT change during the course of a billing period for a given Verification Profile, or double-billing may occur. If multiple Verification Profiles are configured to use the same Trinsic-managed SPID Service Provider, the same Billing Tracking Secret must be provided across all such Verification Profiles.
+	BillingTrackingSecret NullableString `json:"billingTrackingSecret,omitempty"`
 }
 
 // NewSpidInput instantiates a new SpidInput object
@@ -82,6 +84,48 @@ func (o *SpidInput) UnsetSubProviderId() {
 	o.SubProviderId.Unset()
 }
 
+// GetBillingTrackingSecret returns the BillingTrackingSecret field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *SpidInput) GetBillingTrackingSecret() string {
+	if o == nil || IsNil(o.BillingTrackingSecret.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.BillingTrackingSecret.Get()
+}
+
+// GetBillingTrackingSecretOk returns a tuple with the BillingTrackingSecret field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *SpidInput) GetBillingTrackingSecretOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.BillingTrackingSecret.Get(), o.BillingTrackingSecret.IsSet()
+}
+
+// HasBillingTrackingSecret returns a boolean if a field has been set.
+func (o *SpidInput) HasBillingTrackingSecret() bool {
+	if o != nil && o.BillingTrackingSecret.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetBillingTrackingSecret gets a reference to the given NullableString and assigns it to the BillingTrackingSecret field.
+func (o *SpidInput) SetBillingTrackingSecret(v string) {
+	o.BillingTrackingSecret.Set(&v)
+}
+// SetBillingTrackingSecretNil sets the value for BillingTrackingSecret to be an explicit nil
+func (o *SpidInput) SetBillingTrackingSecretNil() {
+	o.BillingTrackingSecret.Set(nil)
+}
+
+// UnsetBillingTrackingSecret ensures that no value is present for BillingTrackingSecret, not even an explicit nil
+func (o *SpidInput) UnsetBillingTrackingSecret() {
+	o.BillingTrackingSecret.Unset()
+}
+
 func (o SpidInput) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -94,6 +138,9 @@ func (o SpidInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if o.SubProviderId.IsSet() {
 		toSerialize["subProviderId"] = o.SubProviderId.Get()
+	}
+	if o.BillingTrackingSecret.IsSet() {
+		toSerialize["billingTrackingSecret"] = o.BillingTrackingSecret.Get()
 	}
 	return toSerialize, nil
 }

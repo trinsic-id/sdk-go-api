@@ -103,6 +103,253 @@ paths:
       summary: Get Attachment
       tags:
       - Attachments
+  /api/valpha/environments/redirect-uris:
+    get:
+      description: List redirect URIs within the environment.
+      operationId: List
+      parameters:
+      - description: Number of pages of uris to return.
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          format: int32
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        style: form
+      - description: Size of the list to be returned. Accepted range from 1 to 100
+        explode: true
+        in: query
+        name: pageSize
+        required: false
+        schema:
+          default: 20
+          format: int32
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ListEnvironmentRedirectUrisResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListEnvironmentRedirectUrisResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ListEnvironmentRedirectUrisResponse'
+          description: OK
+        "400":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.5.1
+                title: Bad Request
+                detail: This feature is not supported for your configruation
+                status: 400
+                traceId: 00-3fcbc632c5caaca825849d495c62d7b0-09a3500f89acbbcc-00
+                instance: /api/v1/sample-request-path
+                errors:
+                  PropertyName:
+                  - Specific error description for property
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad request
+        "401":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Unauthorized
+                status: 401
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Forbidden
+                status: 403
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "500":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Internal Server Error
+                status: 500
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Internal server error
+      summary: List Redirect URIs
+      tags:
+      - EnvironmentRedirectUris
+    post:
+      description: Add a new redirect uri to the environment.
+      operationId: Add
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/EnvironmentRedirectUrisAddRequest'
+          text/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/EnvironmentRedirectUrisAddRequest'
+          application/*+json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/EnvironmentRedirectUrisAddRequest'
+        description: "Request for uri to add to the environment. Must be absolute,\
+          \ not relative. Wildcard \"*\" accepted."
+      responses:
+        "201":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AddRedirectUriResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddRedirectUriResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AddRedirectUriResponse'
+          description: Created
+        "400":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.5.1
+                title: Bad Request
+                detail: This feature is not supported for your configruation
+                status: 400
+                traceId: 00-3fcbc632c5caaca825849d495c62d7b0-09a3500f89acbbcc-00
+                instance: /api/v1/sample-request-path
+                errors:
+                  PropertyName:
+                  - Specific error description for property
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad request
+        "401":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Unauthorized
+                status: 401
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Forbidden
+                status: 403
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "500":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Internal Server Error
+                status: 500
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Internal server error
+      summary: Add Redirect URI
+      tags:
+      - EnvironmentRedirectUris
+  /api/valpha/environments/redirect-uris/{id}:
+    delete:
+      description: Delete a redirect uri from the environment.
+      operationId: Delete
+      parameters:
+      - description: The id of the redirect uri to delete.
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: No Content
+        "400":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.5.1
+                title: Bad Request
+                detail: This feature is not supported for your configruation
+                status: 400
+                traceId: 00-3fcbc632c5caaca825849d495c62d7b0-09a3500f89acbbcc-00
+                instance: /api/v1/sample-request-path
+                errors:
+                  PropertyName:
+                  - Specific error description for property
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad request
+        "401":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Unauthorized
+                status: 401
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Forbidden
+                status: 403
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "500":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Internal Server Error
+                status: 500
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Internal server error
+      summary: Delete Redirect URI
+      tags:
+      - EnvironmentRedirectUris
   /api/valpha/mdl/exchanges/create:
     post:
       description: "Creates a new mDL Exchange, returning an exchange ID, request\
@@ -1436,6 +1683,263 @@ paths:
       summary: Create Widget Session
       tags:
       - Sessions
+  /api/valpha/verification-profiles:
+    get:
+      description: List the verification profiles for the current organization and
+        environment.
+      operationId: ListVerificationProfiles
+      parameters:
+      - description: ""
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          format: int32
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        style: form
+      - description: Size of the list to be returned. Accepted range from 1 to 100
+        explode: true
+        in: query
+        name: pageSize
+        required: false
+        schema:
+          default: 20
+          format: int32
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ListVerificationProfilesResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListVerificationProfilesResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ListVerificationProfilesResponse'
+          description: OK
+        "400":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.5.1
+                title: Bad Request
+                detail: This feature is not supported for your configruation
+                status: 400
+                traceId: 00-3fcbc632c5caaca825849d495c62d7b0-09a3500f89acbbcc-00
+                instance: /api/v1/sample-request-path
+                errors:
+                  PropertyName:
+                  - Specific error description for property
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad request
+        "401":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Unauthorized
+                status: 401
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Forbidden
+                status: 403
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "500":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Internal Server Error
+                status: 500
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Internal server error
+      summary: List Verification Profiles
+      tags:
+      - VerificationProfiles
+    post:
+      description: Creates a new verification profile within your organization.
+      operationId: CreateVerificationProfile
+      requestBody:
+        content:
+          multipart/form-data:
+            encoding:
+              Alias:
+                style: form
+              BrandName:
+                style: form
+              PrimaryColor:
+                style: form
+              Providers:
+                style: form
+              Logo:
+                style: form
+            schema:
+              $ref: '#/components/schemas/CreateVerificationProfile_request'
+      responses:
+        "201":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CreateVerificationProfileResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateVerificationProfileResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CreateVerificationProfileResponse'
+          description: Created
+        "400":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.5.1
+                title: Bad Request
+                detail: This feature is not supported for your configruation
+                status: 400
+                traceId: 00-3fcbc632c5caaca825849d495c62d7b0-09a3500f89acbbcc-00
+                instance: /api/v1/sample-request-path
+                errors:
+                  PropertyName:
+                  - Specific error description for property
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad request
+        "401":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Unauthorized
+                status: 401
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Forbidden
+                status: 403
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "500":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Internal Server Error
+                status: 500
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Internal server error
+      summary: Create Verification Profile
+      tags:
+      - VerificationProfiles
+  /api/valpha/verification-profiles/{id}:
+    get:
+      description: Gets a specific verification profile by ID.
+      operationId: GetVerificationProfileById
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/VerificationProfileResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VerificationProfileResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/VerificationProfileResponse'
+          description: OK
+        "400":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.5.1
+                title: Bad Request
+                detail: This feature is not supported for your configruation
+                status: 400
+                traceId: 00-3fcbc632c5caaca825849d495c62d7b0-09a3500f89acbbcc-00
+                instance: /api/v1/sample-request-path
+                errors:
+                  PropertyName:
+                  - Specific error description for property
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad request
+        "401":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Unauthorized
+                status: 401
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Forbidden
+                status: 403
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "500":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Internal Server Error
+                status: 500
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Internal server error
+      summary: Get Verification Profile
+      tags:
+      - VerificationProfiles
 components:
   schemas:
     AadhaarInput:
@@ -1450,6 +1954,17 @@ components:
           format: date
           nullable: true
           type: string
+      type: object
+    AddRedirectUriResponse:
+      additionalProperties: false
+      example:
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        id:
+          format: uuid
+          type: string
+      required:
+      - id
       type: object
     Address:
       additionalProperties: false
@@ -1599,11 +2114,17 @@ components:
       description: Information about a field that a Provider will return in verification
         results.
       example:
+        scope: person.givenName
         name: person.givenName
         outputted: Always
       properties:
         name:
+          deprecated: true
           description: The name of the field as it appears in verification results.
+          example: person.givenName
+          type: string
+        scope:
+          description: The scope of the field as it appears in verification results.
           example: person.givenName
           type: string
         outputted:
@@ -1619,6 +2140,40 @@ components:
       required:
       - name
       - outputted
+      - scope
+      type: object
+    ContractIdentifierField:
+      additionalProperties: false
+      description: Information about an identifier a Provider returns in verification
+        results.
+      example:
+        scope: vatNumber
+        description: Italian fiscal number from the SPID identity
+        outputted: Always
+      properties:
+        scope:
+          description: The scope of the identifier as it appears in verification results.
+          example: vatNumber
+          type: string
+        outputted:
+          allOf:
+          - $ref: '#/components/schemas/FieldAvailability'
+          description: Indicates when this field will be present in verification results.
+          example: Always
+          x-enumDescriptions:
+            Never: This field will never be present in verification results.
+            Sometimes: This field may or may not be present depending on the verification
+              context.
+            Always: This field will always be present in verification results.
+        description:
+          description: "A human-readable description of the identifier, written by\
+            \ Trinsic."
+          example: Italian fiscal number from the SPID identity
+          type: string
+      required:
+      - description
+      - outputted
+      - scope
       type: object
     CreateDirectProviderSessionRequest:
       additionalProperties: false
@@ -1911,6 +2466,18 @@ components:
       - exchangeId
       - requestObjectBase64Url
       type: object
+    CreateVerificationProfileResponse:
+      additionalProperties: false
+      example:
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        id:
+          description: The ID of the verification profile
+          format: uuid
+          type: string
+      required:
+      - id
+      type: object
     CreateWidgetSessionRequest:
       additionalProperties: false
       example:
@@ -2030,6 +2597,16 @@ components:
         NationalId: ""
         IdCard: ""
         Other: ""
+    EnvironmentRedirectUrisAddRequest:
+      additionalProperties: false
+      example:
+        uri: uri
+      properties:
+        uri:
+          type: string
+      required:
+      - uri
+      type: object
     ExternalMdlFieldData:
       additionalProperties: false
       properties:
@@ -2053,6 +2630,19 @@ components:
       required:
       - type
       - value
+      type: object
+    FaydaProviderOutput:
+      additionalProperties: false
+      properties:
+        sub:
+          description: "A unique eKYC identifying token used to match the original\
+            \ eKYC token received from the provider when the user was initially registered.\n\
+            \            \nSince Fayda does not return identifying data, it is the\
+            \ responsibility of the relying party to keep the unique user token received\
+            \ from Fayda when\nthe user was initially registered to do a comparison\
+            \ of the subs to verify that it is the same person."
+          nullable: true
+          type: string
       type: object
     FieldAvailability:
       description: Indicates when a field will be available in verification results.
@@ -2230,6 +2820,20 @@ components:
               type: array
             type: object
         type: object
+    Identifier:
+      additionalProperties: false
+      properties:
+        identifier:
+          type: string
+        scope:
+          type: string
+        description:
+          type: string
+      required:
+      - description
+      - identifier
+      - scope
+      type: object
     IdentityData:
       additionalProperties: false
       properties:
@@ -2255,6 +2859,16 @@ components:
           allOf:
           - $ref: '#/components/schemas/AttachmentAccessKeys'
           nullable: true
+        providerOutput:
+          allOf:
+          - $ref: '#/components/schemas/ProviderOutput'
+          nullable: true
+        identifiers:
+          items:
+            $ref: '#/components/schemas/Identifier'
+          type: array
+      required:
+      - identifiers
       type: object
     IdinInput:
       additionalProperties: false
@@ -2479,15 +3093,41 @@ components:
         EST: ""
         ENG: ""
         RUS: ""
+    ListEnvironmentRedirectUrisResponse:
+      additionalProperties: false
+      description: Response from listing redirect URIs within an environment.
+      example:
+        uris:
+        - id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          uri: uri
+        - id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          uri: uri
+        more: true
+      properties:
+        uris:
+          description: List of redirect uris within the environment.
+          items:
+            $ref: '#/components/schemas/RedirectUriResponse'
+          type: array
+        more:
+          description: Whether there are additional pages of uris to retrieve
+          example: true
+          type: boolean
+      required:
+      - more
+      - uris
+      type: object
     ListProviderContractsResponse:
       additionalProperties: false
       example:
         providerContracts:
         - collectionMethod: PollResult
           availableFields:
-          - name: person.givenName
+          - scope: person.givenName
+            name: person.givenName
             outputted: Always
-          - name: person.givenName
+          - scope: person.givenName
+            name: person.givenName
             outputted: Always
           subtext: dmv.ca.gov
           regions:
@@ -2500,6 +3140,13 @@ components:
           launchMethod: DeeplinkToMobile
           logoUrl: https://content.trinsic.id/connect/integrations/ca-dmv.png
           supportsAdvancedProviderSessions: true
+          availableIdentifiers:
+          - scope: vatNumber
+            description: Italian fiscal number from the SPID identity
+            outputted: Always
+          - scope: vatNumber
+            description: Italian fiscal number from the SPID identity
+            outputted: Always
           geography:
           - CA
           name: CA DMV
@@ -2520,9 +3167,11 @@ components:
             logoUrl: logoUrl
         - collectionMethod: PollResult
           availableFields:
-          - name: person.givenName
+          - scope: person.givenName
+            name: person.givenName
             outputted: Always
-          - name: person.givenName
+          - scope: person.givenName
+            name: person.givenName
             outputted: Always
           subtext: dmv.ca.gov
           regions:
@@ -2535,6 +3184,13 @@ components:
           launchMethod: DeeplinkToMobile
           logoUrl: https://content.trinsic.id/connect/integrations/ca-dmv.png
           supportsAdvancedProviderSessions: true
+          availableIdentifiers:
+          - scope: vatNumber
+            description: Italian fiscal number from the SPID identity
+            outputted: Always
+          - scope: vatNumber
+            description: Italian fiscal number from the SPID identity
+            outputted: Always
           geography:
           - CA
           name: CA DMV
@@ -2646,6 +3302,41 @@ components:
       - more
       - sessions
       - total
+      type: object
+    ListVerificationProfilesResponse:
+      additionalProperties: false
+      example:
+        verificationProfiles:
+        - enabledProviders:
+          - enabledProviders
+          - enabledProviders
+          brandName: brandName
+          primaryColor: primaryColor
+          alias: alias
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          logoUrl: logoUrl
+        - enabledProviders:
+          - enabledProviders
+          - enabledProviders
+          brandName: brandName
+          primaryColor: primaryColor
+          alias: alias
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          logoUrl: logoUrl
+        more: true
+      properties:
+        verificationProfiles:
+          items:
+            $ref: '#/components/schemas/VerificationProfileResponse'
+          type: array
+        more:
+          description: Whether there are additional pages of verification profiles
+            to retrieve
+          example: true
+          type: boolean
+      required:
+      - more
+      - verificationProfiles
       type: object
     Match:
       additionalProperties: false
@@ -2807,6 +3498,24 @@ components:
           type: string
       required:
       - curp
+      type: object
+    MexicoCurpProviderOutput:
+      additionalProperties: false
+      properties:
+        curpStatus:
+          description: "Curp status for the subject.\n            \nPossible values:\n\
+            - AN: Alta Normal (Normal registration) - Active\n- AH: Alta con Homonimia\
+            \ (Registration with homonymy) - Active\n- RCC: Registro de cambio afectando\
+            \ a CURP (Change affecting CURP) - Active\n- RCN: Registro de cambio no\
+            \ afectando a CURP (Change not affecting CURP) - Active\n- BAP: Baja por\
+            \ documento apócrifo (Low due to apocryphal document) - Inactive\n- BSU:\
+            \ Baja sin uso (Low curp without use) - Inactive\n- BD: Baja por defunció\
+            n (Low curp due to death) - Inactive\n- BDM: Baja administrativa (Low,\
+            \ due to administrative process) - Inactive\n- BDP: Baja por adopción\
+            \ (Low, due to adoption) - Inactive\n- BJD: Baja Judicial (Low for judicial\
+            \ reasons) - Inactive"
+          nullable: true
+          type: string
       type: object
     MobileIdInput:
       additionalProperties: false
@@ -2987,9 +3696,11 @@ components:
       example:
         collectionMethod: PollResult
         availableFields:
-        - name: person.givenName
+        - scope: person.givenName
+          name: person.givenName
           outputted: Always
-        - name: person.givenName
+        - scope: person.givenName
+          name: person.givenName
           outputted: Always
         subtext: dmv.ca.gov
         regions:
@@ -3002,6 +3713,13 @@ components:
         launchMethod: DeeplinkToMobile
         logoUrl: https://content.trinsic.id/connect/integrations/ca-dmv.png
         supportsAdvancedProviderSessions: true
+        availableIdentifiers:
+        - scope: vatNumber
+          description: Italian fiscal number from the SPID identity
+          outputted: Always
+        - scope: vatNumber
+          description: Italian fiscal number from the SPID identity
+          outputted: Always
         geography:
         - CA
         name: CA DMV
@@ -3159,6 +3877,13 @@ components:
             in verification results.
           items:
             $ref: '#/components/schemas/ContractField'
+          nullable: true
+          type: array
+        availableIdentifiers:
+          description: Information about the identifiers this Provider returns in
+            verification results.
+          items:
+            $ref: '#/components/schemas/ContractIdentifierField'
           nullable: true
           type: array
         subProviders:
@@ -3454,6 +4179,22 @@ components:
             \ provider"
           nullable: true
       type: object
+    ProviderOutput:
+      additionalProperties: false
+      properties:
+        italy-spid:
+          allOf:
+          - $ref: '#/components/schemas/SpidProviderOutput'
+          nullable: true
+        mexico-curp-lookup:
+          allOf:
+          - $ref: '#/components/schemas/MexicoCurpProviderOutput'
+          nullable: true
+        ethiopia-fayda:
+          allOf:
+          - $ref: '#/components/schemas/FaydaProviderOutput'
+          nullable: true
+      type: object
     RecommendRequest:
       additionalProperties: false
       example:
@@ -3657,6 +4398,21 @@ components:
             type: string
           nullable: true
           type: array
+      type: object
+    RedirectUriResponse:
+      additionalProperties: false
+      example:
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        uri: uri
+      properties:
+        id:
+          format: uuid
+          type: string
+        uri:
+          type: string
+      required:
+      - id
+      - uri
       type: object
     RefreshStepContentRequest:
       additionalProperties: false
@@ -3881,12 +4637,79 @@ components:
       - gender
       - nationalIdNumber
       type: object
+    SpidBillingInformation:
+      additionalProperties: false
+      description: Billing information for a SPID Verification.
+      properties:
+        isBillable:
+          description: Whether this SPID verification has resulted in a billable event.
+          example: true
+          type: boolean
+        verificationType:
+          description: "The billable verification type for this SPID verification.\n\
+            \            \nPossible values: \"Authentication\" | \"Registration\""
+          example: '"Authentication"'
+          type: string
+        verificationLevel:
+          description: "The billable verification level for this SPID verification.\n\
+            \            \nPossible values: 1 | 2 | 3"
+          example: 1
+          format: int32
+          type: integer
+      required:
+      - isBillable
+      - verificationLevel
+      - verificationType
+      type: object
     SpidInput:
       additionalProperties: false
       properties:
         subProviderId:
           description: "The ID of the specific IDP to invoke within SPID.\n      \
             \      \nIf not specified, the user will be prompted to select an IDP."
+          nullable: true
+          type: string
+        billingTrackingSecret:
+          description: "Only applicable if period-based billing is enabled for your\
+            \ Verification Profile. Contact Trinsic to enable this.\n            \n\
+            A secret UTF-8 string between 32 and 64 characters in length, used to\
+            \ enable privacy-preserving tracking of unique user verifications during\
+            \ a billing period.\n            \nWARNING: This value must NOT change\
+            \ during the course of a billing period for a given Verification Profile,\
+            \ or double-billing may occur.\nIf multiple Verification Profiles are\
+            \ configured to use the same Trinsic-managed SPID Service Provider, the\
+            \ same Billing Tracking Secret must be provided across all such Verification\
+            \ Profiles."
+          nullable: true
+          type: string
+      type: object
+    SpidProviderOutput:
+      additionalProperties: false
+      properties:
+        billingInformation:
+          allOf:
+          - $ref: '#/components/schemas/SpidBillingInformation'
+          description: "Information about the billable status of this SPID Verification.\n\
+            \            \nPresent only if your account has period-based billing enabled\
+            \ for SPID. Contact Trinsic to enable this."
+          nullable: true
+        fiscalNumber:
+          description: Fiscal tax number for the subject.
+          nullable: true
+          type: string
+        spidCode:
+          description: Unique user identifier contained within the SPID identity.
+          nullable: true
+          type: string
+        ivaCode:
+          description: VAT number for the subject.
+          nullable: true
+          type: string
+        spidCredentialExpirationDate:
+          description: "Expiration date of the user's SPID credential.\n         \
+            \   \nThis is not the same as the expiration date of the underlying identity\
+            \ document (such as a passport) which was\nused to create the SPID identity."
+          format: date
           nullable: true
           type: string
       type: object
@@ -4025,6 +4848,83 @@ components:
             \            \nIf not specified, the user will be prompted to select one."
           nullable: true
           type: string
+      type: object
+    VerificationProfileResponse:
+      additionalProperties: false
+      example:
+        enabledProviders:
+        - enabledProviders
+        - enabledProviders
+        brandName: brandName
+        primaryColor: primaryColor
+        alias: alias
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        logoUrl: logoUrl
+      properties:
+        id:
+          description: The ID of the verification profile
+          format: uuid
+          type: string
+        alias:
+          description: An alias of the verification profile shown to developers and
+            administrators.
+          type: string
+        brandName:
+          description: The brand name of the verification profile shown to end-users.
+          type: string
+        logoUrl:
+          description: The URL of the verification profile's logo.
+          type: string
+        primaryColor:
+          description: The primary color of the verification profile.
+          type: string
+        enabledProviders:
+          description: The providers that are currently enabled for the verification
+            profile.
+          items:
+            type: string
+          type: array
+      required:
+      - alias
+      - brandName
+      - enabledProviders
+      - id
+      - logoUrl
+      - primaryColor
+      type: object
+    CreateVerificationProfile_request:
+      properties:
+        Alias:
+          description: An alias of the verification profile shown to developers and
+            administrators.
+          maxLength: 255
+          minLength: 1
+          type: string
+        BrandName:
+          description: The brand name of the verification profile shown to end-users.
+          maxLength: 2500
+          minLength: 1
+          type: string
+        PrimaryColor:
+          description: |-
+            The primary color of the verification profile. Must be a 6-character hex string prefixed with a '#' character.
+            Example: #000000
+          maxLength: 7
+          minLength: 7
+          type: string
+        Providers:
+          description: The list of providers you'd like to select for this profile.
+            We will not currently enable any providers.
+          items:
+            type: string
+          type: array
+        Logo:
+          description: The logo of the verification profile.
+          format: binary
+          type: string
+      required:
+      - Alias
+      - BrandName
       type: object
   securitySchemes:
     Bearer:
