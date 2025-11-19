@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **PhoneNumber** | Pointer to **NullableString** | The user&#39;s phone number (optional) | [optional] 
 **DateOfBirth** | **string** | The user&#39;s date of birth, in &#x60;YYYY-MM-DD&#x60; format | 
 **Gender** | Pointer to **NullableString** | The user&#39;s gender as it appears in their National ID (e.g., male, female) | [optional] 
-**NationalIdNumber** | **string** | The user&#39;s South African National ID number | 
+**NationalIdNumber** | **string** | The user&#39;s National ID number | 
 
 ## Methods
 

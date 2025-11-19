@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **FullName** | **string** | The user&#39;s full name as it appears in their National ID | 
 **DateOfBirth** | **string** | The user&#39;s date of birth, in &#x60;YYYY-MM-DD&#x60; format | 
 **Gender** | **string** | The user&#39;s gender as it appears in their National ID (e.g., male, female) | 
-**NationalIdNumber** | **string** | The user&#39;s South African National ID number | 
+**NationalIdNumber** | **string** | The user&#39;s National ID number | 
 
 ## Methods
 

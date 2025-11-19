@@ -4,11 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**KenyaBiometric2** | Pointer to [**NullableKenyaNidBiometric2Input**](KenyaNidBiometric2Input.md) | Input for the &#x60;kenya-nid-match-biometric-2&#x60; provider | [optional] 
 **IndonesiaNik** | Pointer to [**NullableIndonesiaNikInput**](IndonesiaNikInput.md) | Input for the &#x60;indonesia-nik-lookup&#x60; provider | [optional] 
 **IndonesiaDukcapilMatch** | Pointer to [**NullableIndonesiaDukcapilMatchInput**](IndonesiaDukcapilMatchInput.md) | Input for the &#x60;indonesia-dukcapil-match&#x60; provider | [optional] 
 **MexicoCurp** | Pointer to [**NullableMexicoCurpInput**](MexicoCurpInput.md) | Input for the &#x60;mexico-curp-lookup&#x60; provider | [optional] 
 **SouthAfricaNid** | Pointer to [**NullableSouthAfricaNidInput**](SouthAfricaNidInput.md) | Input for the &#x60;south-africa-nid-lookup&#x60; provider | [optional] 
 **KenyaNid** | Pointer to [**NullableKenyaNidInput**](KenyaNidInput.md) | Input for the &#x60;kenya-nid-lookup&#x60; provider | [optional] 
+**KenyaNidMatch2** | Pointer to [**NullableKenyaNidMatch2Input**](KenyaNidMatch2Input.md) | Input for the &#x60;kenya-nid-match-2&#x60; provider | [optional] 
+**KenyaNidLookup2** | Pointer to [**NullableKenyaNidLookup2Input**](KenyaNidLookup2Input.md) | Input for the &#x60;kenya-nid-lookup-2&#x60; provider | [optional] 
+**SouthAfricaNidLookup2** | Pointer to [**NullableSouthAfricaNidLookup2Input**](SouthAfricaNidLookup2Input.md) | Input for the &#x60;south-africa-nid-lookup-2&#x60; provider | [optional] 
 **NigeriaNin** | Pointer to [**NullableNigeriaNinInput**](NigeriaNinInput.md) | Input for the &#x60;nigeria-nin-lookup&#x60; provider | [optional] 
 **Aadhaar** | Pointer to [**NullableAadhaarInput**](AadhaarInput.md) | Input for the &#x60;india-digilocker-aadhaar-match&#x60; provider | [optional] 
 **BangladeshNationalId** | Pointer to [**NullableBangladeshNidInput**](BangladeshNidInput.md) | Input for the &#x60;bangladesh-nid&#x60; provider | [optional] 
@@ -44,6 +48,41 @@ NewProviderInputWithDefaults instantiates a new ProviderInput object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
+### GetKenyaBiometric2
+
+`func (o *ProviderInput) GetKenyaBiometric2() KenyaNidBiometric2Input`
+
+GetKenyaBiometric2 returns the KenyaBiometric2 field if non-nil, zero value otherwise.
+
+### GetKenyaBiometric2Ok
+
+`func (o *ProviderInput) GetKenyaBiometric2Ok() (*KenyaNidBiometric2Input, bool)`
+
+GetKenyaBiometric2Ok returns a tuple with the KenyaBiometric2 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKenyaBiometric2
+
+`func (o *ProviderInput) SetKenyaBiometric2(v KenyaNidBiometric2Input)`
+
+SetKenyaBiometric2 sets KenyaBiometric2 field to given value.
+
+### HasKenyaBiometric2
+
+`func (o *ProviderInput) HasKenyaBiometric2() bool`
+
+HasKenyaBiometric2 returns a boolean if a field has been set.
+
+### SetKenyaBiometric2Nil
+
+`func (o *ProviderInput) SetKenyaBiometric2Nil(b bool)`
+
+ SetKenyaBiometric2Nil sets the value for KenyaBiometric2 to be an explicit nil
+
+### UnsetKenyaBiometric2
+`func (o *ProviderInput) UnsetKenyaBiometric2()`
+
+UnsetKenyaBiometric2 ensures that no value is present for KenyaBiometric2, not even an explicit nil
 ### GetIndonesiaNik
 
 `func (o *ProviderInput) GetIndonesiaNik() IndonesiaNikInput`
@@ -219,6 +258,111 @@ HasKenyaNid returns a boolean if a field has been set.
 `func (o *ProviderInput) UnsetKenyaNid()`
 
 UnsetKenyaNid ensures that no value is present for KenyaNid, not even an explicit nil
+### GetKenyaNidMatch2
+
+`func (o *ProviderInput) GetKenyaNidMatch2() KenyaNidMatch2Input`
+
+GetKenyaNidMatch2 returns the KenyaNidMatch2 field if non-nil, zero value otherwise.
+
+### GetKenyaNidMatch2Ok
+
+`func (o *ProviderInput) GetKenyaNidMatch2Ok() (*KenyaNidMatch2Input, bool)`
+
+GetKenyaNidMatch2Ok returns a tuple with the KenyaNidMatch2 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKenyaNidMatch2
+
+`func (o *ProviderInput) SetKenyaNidMatch2(v KenyaNidMatch2Input)`
+
+SetKenyaNidMatch2 sets KenyaNidMatch2 field to given value.
+
+### HasKenyaNidMatch2
+
+`func (o *ProviderInput) HasKenyaNidMatch2() bool`
+
+HasKenyaNidMatch2 returns a boolean if a field has been set.
+
+### SetKenyaNidMatch2Nil
+
+`func (o *ProviderInput) SetKenyaNidMatch2Nil(b bool)`
+
+ SetKenyaNidMatch2Nil sets the value for KenyaNidMatch2 to be an explicit nil
+
+### UnsetKenyaNidMatch2
+`func (o *ProviderInput) UnsetKenyaNidMatch2()`
+
+UnsetKenyaNidMatch2 ensures that no value is present for KenyaNidMatch2, not even an explicit nil
+### GetKenyaNidLookup2
+
+`func (o *ProviderInput) GetKenyaNidLookup2() KenyaNidLookup2Input`
+
+GetKenyaNidLookup2 returns the KenyaNidLookup2 field if non-nil, zero value otherwise.
+
+### GetKenyaNidLookup2Ok
+
+`func (o *ProviderInput) GetKenyaNidLookup2Ok() (*KenyaNidLookup2Input, bool)`
+
+GetKenyaNidLookup2Ok returns a tuple with the KenyaNidLookup2 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKenyaNidLookup2
+
+`func (o *ProviderInput) SetKenyaNidLookup2(v KenyaNidLookup2Input)`
+
+SetKenyaNidLookup2 sets KenyaNidLookup2 field to given value.
+
+### HasKenyaNidLookup2
+
+`func (o *ProviderInput) HasKenyaNidLookup2() bool`
+
+HasKenyaNidLookup2 returns a boolean if a field has been set.
+
+### SetKenyaNidLookup2Nil
+
+`func (o *ProviderInput) SetKenyaNidLookup2Nil(b bool)`
+
+ SetKenyaNidLookup2Nil sets the value for KenyaNidLookup2 to be an explicit nil
+
+### UnsetKenyaNidLookup2
+`func (o *ProviderInput) UnsetKenyaNidLookup2()`
+
+UnsetKenyaNidLookup2 ensures that no value is present for KenyaNidLookup2, not even an explicit nil
+### GetSouthAfricaNidLookup2
+
+`func (o *ProviderInput) GetSouthAfricaNidLookup2() SouthAfricaNidLookup2Input`
+
+GetSouthAfricaNidLookup2 returns the SouthAfricaNidLookup2 field if non-nil, zero value otherwise.
+
+### GetSouthAfricaNidLookup2Ok
+
+`func (o *ProviderInput) GetSouthAfricaNidLookup2Ok() (*SouthAfricaNidLookup2Input, bool)`
+
+GetSouthAfricaNidLookup2Ok returns a tuple with the SouthAfricaNidLookup2 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSouthAfricaNidLookup2
+
+`func (o *ProviderInput) SetSouthAfricaNidLookup2(v SouthAfricaNidLookup2Input)`
+
+SetSouthAfricaNidLookup2 sets SouthAfricaNidLookup2 field to given value.
+
+### HasSouthAfricaNidLookup2
+
+`func (o *ProviderInput) HasSouthAfricaNidLookup2() bool`
+
+HasSouthAfricaNidLookup2 returns a boolean if a field has been set.
+
+### SetSouthAfricaNidLookup2Nil
+
+`func (o *ProviderInput) SetSouthAfricaNidLookup2Nil(b bool)`
+
+ SetSouthAfricaNidLookup2Nil sets the value for SouthAfricaNidLookup2 to be an explicit nil
+
+### UnsetSouthAfricaNidLookup2
+`func (o *ProviderInput) UnsetSouthAfricaNidLookup2()`
+
+UnsetSouthAfricaNidLookup2 ensures that no value is present for SouthAfricaNidLookup2, not even an explicit nil
 ### GetNigeriaNin
 
 `func (o *ProviderInput) GetNigeriaNin() NigeriaNinInput`

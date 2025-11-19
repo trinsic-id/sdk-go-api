@@ -27,7 +27,7 @@ type SouthAfricaNidInput struct {
 	DateOfBirth string `json:"dateOfBirth"`
 	// The user's gender as it appears in their National ID (e.g., male, female)
 	Gender string `json:"gender"`
-	// The user's South African National ID number
+	// The user's National ID number
 	NationalIdNumber string `json:"nationalIdNumber" validate:"regexp=^\\\\d*$"`
 }
 

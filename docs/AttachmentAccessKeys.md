@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **DocumentFront** | Pointer to **NullableString** |  | [optional] 
 **DocumentBack** | Pointer to **NullableString** |  | [optional] 
 **DocumentPortrait** | Pointer to **NullableString** |  | [optional] 
+**DocumentSignature** | Pointer to **NullableString** |  | [optional] 
 **Provider** | [**ProviderAttachments**](ProviderAttachments.md) |  | 
 
 ## Methods
@@ -169,6 +170,41 @@ HasDocumentPortrait returns a boolean if a field has been set.
 `func (o *AttachmentAccessKeys) UnsetDocumentPortrait()`
 
 UnsetDocumentPortrait ensures that no value is present for DocumentPortrait, not even an explicit nil
+### GetDocumentSignature
+
+`func (o *AttachmentAccessKeys) GetDocumentSignature() string`
+
+GetDocumentSignature returns the DocumentSignature field if non-nil, zero value otherwise.
+
+### GetDocumentSignatureOk
+
+`func (o *AttachmentAccessKeys) GetDocumentSignatureOk() (*string, bool)`
+
+GetDocumentSignatureOk returns a tuple with the DocumentSignature field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDocumentSignature
+
+`func (o *AttachmentAccessKeys) SetDocumentSignature(v string)`
+
+SetDocumentSignature sets DocumentSignature field to given value.
+
+### HasDocumentSignature
+
+`func (o *AttachmentAccessKeys) HasDocumentSignature() bool`
+
+HasDocumentSignature returns a boolean if a field has been set.
+
+### SetDocumentSignatureNil
+
+`func (o *AttachmentAccessKeys) SetDocumentSignatureNil(b bool)`
+
+ SetDocumentSignatureNil sets the value for DocumentSignature to be an explicit nil
+
+### UnsetDocumentSignature
+`func (o *AttachmentAccessKeys) UnsetDocumentSignature()`
+
+UnsetDocumentSignature ensures that no value is present for DocumentSignature, not even an explicit nil
 ### GetProvider
 
 `func (o *AttachmentAccessKeys) GetProvider() ProviderAttachments`

@@ -12,6 +12,8 @@ package trinsic_api
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the SpidProviderOutput type satisfies the MappedNullable interface at compile time
@@ -21,22 +23,44 @@ var _ MappedNullable = &SpidProviderOutput{}
 type SpidProviderOutput struct {
 	// Information about the billable status of this SPID Verification.              Present only if your account has period-based billing enabled for SPID. Contact Trinsic to enable this.
 	BillingInformation NullableSpidBillingInformation `json:"billingInformation,omitempty"`
-	// Fiscal tax number for the subject.
-	FiscalNumber NullableString `json:"fiscalNumber,omitempty"`
-	// Unique user identifier contained within the SPID identity.
-	SpidCode NullableString `json:"spidCode,omitempty"`
-	// VAT number for the subject.
-	IvaCode NullableString `json:"ivaCode,omitempty"`
+	// The SPID Entity ID of the Identity Provider which issued the SPID identity.              This is an HTTPS URI which uniquely identifies the IdP within the SPID federation.              A normalized / simplified representation of this value is present in the `originatingSubProviderId` field in Trinsic's normalized data model.
+	IdentityProviderEntityId string `json:"identityProviderEntityId"`
+	// The identifier of the user's SPID credential.              This uniquely identifies the credential within the SPID federation.
+	SpidCode string `json:"spidCode"`
 	// Expiration date of the user's SPID credential.              This is not the same as the expiration date of the underlying identity document (such as a passport) which was used to create the SPID identity.
 	SpidCredentialExpirationDate NullableString `json:"spidCredentialExpirationDate,omitempty"`
+	// The user's place of birth.
+	PlaceOfBirth NullableString `json:"placeOfBirth,omitempty"`
+	// The user's county of birth.
+	CountyOfBirth NullableString `json:"countyOfBirth,omitempty"`
+	// The raw, space-separated string value for the \"IdCard\" field from the SPID identity.              Trinsic additionally parses this field and uses it to populate the `Document` object in the normalized data model.
+	RawIdCard NullableString `json:"rawIdCard,omitempty"`
+	// The email address of the user.
+	Email NullableString `json:"email,omitempty"`
+	// The digital address of the user.
+	DigitalAddress NullableString `json:"digitalAddress,omitempty"`
+	// Fiscal tax number for the subject.
+	FiscalNumber NullableString `json:"fiscalNumber,omitempty"`
+	// VAT number for the subject.
+	IvaCode NullableString `json:"ivaCode,omitempty"`
+	// The name of the company which the user is associated with.
+	CompanyName NullableString `json:"companyName,omitempty"`
+	// The fiscal tax number of the company which the user is associated with.
+	CompanyFiscalNumber NullableString `json:"companyFiscalNumber,omitempty"`
+	// The registered office address of the company which the user is associated with.
+	RegisteredOffice NullableString `json:"registeredOffice,omitempty"`
 }
+
+type _SpidProviderOutput SpidProviderOutput
 
 // NewSpidProviderOutput instantiates a new SpidProviderOutput object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSpidProviderOutput() *SpidProviderOutput {
+func NewSpidProviderOutput(identityProviderEntityId string, spidCode string) *SpidProviderOutput {
 	this := SpidProviderOutput{}
+	this.IdentityProviderEntityId = identityProviderEntityId
+	this.SpidCode = spidCode
 	return &this
 }
 
@@ -90,130 +114,52 @@ func (o *SpidProviderOutput) UnsetBillingInformation() {
 	o.BillingInformation.Unset()
 }
 
-// GetFiscalNumber returns the FiscalNumber field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *SpidProviderOutput) GetFiscalNumber() string {
-	if o == nil || IsNil(o.FiscalNumber.Get()) {
+// GetIdentityProviderEntityId returns the IdentityProviderEntityId field value
+func (o *SpidProviderOutput) GetIdentityProviderEntityId() string {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.FiscalNumber.Get()
+
+	return o.IdentityProviderEntityId
 }
 
-// GetFiscalNumberOk returns a tuple with the FiscalNumber field value if set, nil otherwise
+// GetIdentityProviderEntityIdOk returns a tuple with the IdentityProviderEntityId field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SpidProviderOutput) GetFiscalNumberOk() (*string, bool) {
+func (o *SpidProviderOutput) GetIdentityProviderEntityIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.FiscalNumber.Get(), o.FiscalNumber.IsSet()
+	return &o.IdentityProviderEntityId, true
 }
 
-// HasFiscalNumber returns a boolean if a field has been set.
-func (o *SpidProviderOutput) HasFiscalNumber() bool {
-	if o != nil && o.FiscalNumber.IsSet() {
-		return true
-	}
-
-	return false
+// SetIdentityProviderEntityId sets field value
+func (o *SpidProviderOutput) SetIdentityProviderEntityId(v string) {
+	o.IdentityProviderEntityId = v
 }
 
-// SetFiscalNumber gets a reference to the given NullableString and assigns it to the FiscalNumber field.
-func (o *SpidProviderOutput) SetFiscalNumber(v string) {
-	o.FiscalNumber.Set(&v)
-}
-// SetFiscalNumberNil sets the value for FiscalNumber to be an explicit nil
-func (o *SpidProviderOutput) SetFiscalNumberNil() {
-	o.FiscalNumber.Set(nil)
-}
-
-// UnsetFiscalNumber ensures that no value is present for FiscalNumber, not even an explicit nil
-func (o *SpidProviderOutput) UnsetFiscalNumber() {
-	o.FiscalNumber.Unset()
-}
-
-// GetSpidCode returns the SpidCode field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetSpidCode returns the SpidCode field value
 func (o *SpidProviderOutput) GetSpidCode() string {
-	if o == nil || IsNil(o.SpidCode.Get()) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.SpidCode.Get()
+
+	return o.SpidCode
 }
 
-// GetSpidCodeOk returns a tuple with the SpidCode field value if set, nil otherwise
+// GetSpidCodeOk returns a tuple with the SpidCode field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SpidProviderOutput) GetSpidCodeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.SpidCode.Get(), o.SpidCode.IsSet()
+	return &o.SpidCode, true
 }
 
-// HasSpidCode returns a boolean if a field has been set.
-func (o *SpidProviderOutput) HasSpidCode() bool {
-	if o != nil && o.SpidCode.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetSpidCode gets a reference to the given NullableString and assigns it to the SpidCode field.
+// SetSpidCode sets field value
 func (o *SpidProviderOutput) SetSpidCode(v string) {
-	o.SpidCode.Set(&v)
-}
-// SetSpidCodeNil sets the value for SpidCode to be an explicit nil
-func (o *SpidProviderOutput) SetSpidCodeNil() {
-	o.SpidCode.Set(nil)
-}
-
-// UnsetSpidCode ensures that no value is present for SpidCode, not even an explicit nil
-func (o *SpidProviderOutput) UnsetSpidCode() {
-	o.SpidCode.Unset()
-}
-
-// GetIvaCode returns the IvaCode field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *SpidProviderOutput) GetIvaCode() string {
-	if o == nil || IsNil(o.IvaCode.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.IvaCode.Get()
-}
-
-// GetIvaCodeOk returns a tuple with the IvaCode field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SpidProviderOutput) GetIvaCodeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.IvaCode.Get(), o.IvaCode.IsSet()
-}
-
-// HasIvaCode returns a boolean if a field has been set.
-func (o *SpidProviderOutput) HasIvaCode() bool {
-	if o != nil && o.IvaCode.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetIvaCode gets a reference to the given NullableString and assigns it to the IvaCode field.
-func (o *SpidProviderOutput) SetIvaCode(v string) {
-	o.IvaCode.Set(&v)
-}
-// SetIvaCodeNil sets the value for IvaCode to be an explicit nil
-func (o *SpidProviderOutput) SetIvaCodeNil() {
-	o.IvaCode.Set(nil)
-}
-
-// UnsetIvaCode ensures that no value is present for IvaCode, not even an explicit nil
-func (o *SpidProviderOutput) UnsetIvaCode() {
-	o.IvaCode.Unset()
+	o.SpidCode = v
 }
 
 // GetSpidCredentialExpirationDate returns the SpidCredentialExpirationDate field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -258,6 +204,426 @@ func (o *SpidProviderOutput) UnsetSpidCredentialExpirationDate() {
 	o.SpidCredentialExpirationDate.Unset()
 }
 
+// GetPlaceOfBirth returns the PlaceOfBirth field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *SpidProviderOutput) GetPlaceOfBirth() string {
+	if o == nil || IsNil(o.PlaceOfBirth.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.PlaceOfBirth.Get()
+}
+
+// GetPlaceOfBirthOk returns a tuple with the PlaceOfBirth field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *SpidProviderOutput) GetPlaceOfBirthOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.PlaceOfBirth.Get(), o.PlaceOfBirth.IsSet()
+}
+
+// HasPlaceOfBirth returns a boolean if a field has been set.
+func (o *SpidProviderOutput) HasPlaceOfBirth() bool {
+	if o != nil && o.PlaceOfBirth.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPlaceOfBirth gets a reference to the given NullableString and assigns it to the PlaceOfBirth field.
+func (o *SpidProviderOutput) SetPlaceOfBirth(v string) {
+	o.PlaceOfBirth.Set(&v)
+}
+// SetPlaceOfBirthNil sets the value for PlaceOfBirth to be an explicit nil
+func (o *SpidProviderOutput) SetPlaceOfBirthNil() {
+	o.PlaceOfBirth.Set(nil)
+}
+
+// UnsetPlaceOfBirth ensures that no value is present for PlaceOfBirth, not even an explicit nil
+func (o *SpidProviderOutput) UnsetPlaceOfBirth() {
+	o.PlaceOfBirth.Unset()
+}
+
+// GetCountyOfBirth returns the CountyOfBirth field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *SpidProviderOutput) GetCountyOfBirth() string {
+	if o == nil || IsNil(o.CountyOfBirth.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.CountyOfBirth.Get()
+}
+
+// GetCountyOfBirthOk returns a tuple with the CountyOfBirth field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *SpidProviderOutput) GetCountyOfBirthOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CountyOfBirth.Get(), o.CountyOfBirth.IsSet()
+}
+
+// HasCountyOfBirth returns a boolean if a field has been set.
+func (o *SpidProviderOutput) HasCountyOfBirth() bool {
+	if o != nil && o.CountyOfBirth.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCountyOfBirth gets a reference to the given NullableString and assigns it to the CountyOfBirth field.
+func (o *SpidProviderOutput) SetCountyOfBirth(v string) {
+	o.CountyOfBirth.Set(&v)
+}
+// SetCountyOfBirthNil sets the value for CountyOfBirth to be an explicit nil
+func (o *SpidProviderOutput) SetCountyOfBirthNil() {
+	o.CountyOfBirth.Set(nil)
+}
+
+// UnsetCountyOfBirth ensures that no value is present for CountyOfBirth, not even an explicit nil
+func (o *SpidProviderOutput) UnsetCountyOfBirth() {
+	o.CountyOfBirth.Unset()
+}
+
+// GetRawIdCard returns the RawIdCard field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *SpidProviderOutput) GetRawIdCard() string {
+	if o == nil || IsNil(o.RawIdCard.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.RawIdCard.Get()
+}
+
+// GetRawIdCardOk returns a tuple with the RawIdCard field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *SpidProviderOutput) GetRawIdCardOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.RawIdCard.Get(), o.RawIdCard.IsSet()
+}
+
+// HasRawIdCard returns a boolean if a field has been set.
+func (o *SpidProviderOutput) HasRawIdCard() bool {
+	if o != nil && o.RawIdCard.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRawIdCard gets a reference to the given NullableString and assigns it to the RawIdCard field.
+func (o *SpidProviderOutput) SetRawIdCard(v string) {
+	o.RawIdCard.Set(&v)
+}
+// SetRawIdCardNil sets the value for RawIdCard to be an explicit nil
+func (o *SpidProviderOutput) SetRawIdCardNil() {
+	o.RawIdCard.Set(nil)
+}
+
+// UnsetRawIdCard ensures that no value is present for RawIdCard, not even an explicit nil
+func (o *SpidProviderOutput) UnsetRawIdCard() {
+	o.RawIdCard.Unset()
+}
+
+// GetEmail returns the Email field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *SpidProviderOutput) GetEmail() string {
+	if o == nil || IsNil(o.Email.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Email.Get()
+}
+
+// GetEmailOk returns a tuple with the Email field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *SpidProviderOutput) GetEmailOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Email.Get(), o.Email.IsSet()
+}
+
+// HasEmail returns a boolean if a field has been set.
+func (o *SpidProviderOutput) HasEmail() bool {
+	if o != nil && o.Email.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetEmail gets a reference to the given NullableString and assigns it to the Email field.
+func (o *SpidProviderOutput) SetEmail(v string) {
+	o.Email.Set(&v)
+}
+// SetEmailNil sets the value for Email to be an explicit nil
+func (o *SpidProviderOutput) SetEmailNil() {
+	o.Email.Set(nil)
+}
+
+// UnsetEmail ensures that no value is present for Email, not even an explicit nil
+func (o *SpidProviderOutput) UnsetEmail() {
+	o.Email.Unset()
+}
+
+// GetDigitalAddress returns the DigitalAddress field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *SpidProviderOutput) GetDigitalAddress() string {
+	if o == nil || IsNil(o.DigitalAddress.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.DigitalAddress.Get()
+}
+
+// GetDigitalAddressOk returns a tuple with the DigitalAddress field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *SpidProviderOutput) GetDigitalAddressOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.DigitalAddress.Get(), o.DigitalAddress.IsSet()
+}
+
+// HasDigitalAddress returns a boolean if a field has been set.
+func (o *SpidProviderOutput) HasDigitalAddress() bool {
+	if o != nil && o.DigitalAddress.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDigitalAddress gets a reference to the given NullableString and assigns it to the DigitalAddress field.
+func (o *SpidProviderOutput) SetDigitalAddress(v string) {
+	o.DigitalAddress.Set(&v)
+}
+// SetDigitalAddressNil sets the value for DigitalAddress to be an explicit nil
+func (o *SpidProviderOutput) SetDigitalAddressNil() {
+	o.DigitalAddress.Set(nil)
+}
+
+// UnsetDigitalAddress ensures that no value is present for DigitalAddress, not even an explicit nil
+func (o *SpidProviderOutput) UnsetDigitalAddress() {
+	o.DigitalAddress.Unset()
+}
+
+// GetFiscalNumber returns the FiscalNumber field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *SpidProviderOutput) GetFiscalNumber() string {
+	if o == nil || IsNil(o.FiscalNumber.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.FiscalNumber.Get()
+}
+
+// GetFiscalNumberOk returns a tuple with the FiscalNumber field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *SpidProviderOutput) GetFiscalNumberOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.FiscalNumber.Get(), o.FiscalNumber.IsSet()
+}
+
+// HasFiscalNumber returns a boolean if a field has been set.
+func (o *SpidProviderOutput) HasFiscalNumber() bool {
+	if o != nil && o.FiscalNumber.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetFiscalNumber gets a reference to the given NullableString and assigns it to the FiscalNumber field.
+func (o *SpidProviderOutput) SetFiscalNumber(v string) {
+	o.FiscalNumber.Set(&v)
+}
+// SetFiscalNumberNil sets the value for FiscalNumber to be an explicit nil
+func (o *SpidProviderOutput) SetFiscalNumberNil() {
+	o.FiscalNumber.Set(nil)
+}
+
+// UnsetFiscalNumber ensures that no value is present for FiscalNumber, not even an explicit nil
+func (o *SpidProviderOutput) UnsetFiscalNumber() {
+	o.FiscalNumber.Unset()
+}
+
+// GetIvaCode returns the IvaCode field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *SpidProviderOutput) GetIvaCode() string {
+	if o == nil || IsNil(o.IvaCode.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.IvaCode.Get()
+}
+
+// GetIvaCodeOk returns a tuple with the IvaCode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *SpidProviderOutput) GetIvaCodeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.IvaCode.Get(), o.IvaCode.IsSet()
+}
+
+// HasIvaCode returns a boolean if a field has been set.
+func (o *SpidProviderOutput) HasIvaCode() bool {
+	if o != nil && o.IvaCode.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetIvaCode gets a reference to the given NullableString and assigns it to the IvaCode field.
+func (o *SpidProviderOutput) SetIvaCode(v string) {
+	o.IvaCode.Set(&v)
+}
+// SetIvaCodeNil sets the value for IvaCode to be an explicit nil
+func (o *SpidProviderOutput) SetIvaCodeNil() {
+	o.IvaCode.Set(nil)
+}
+
+// UnsetIvaCode ensures that no value is present for IvaCode, not even an explicit nil
+func (o *SpidProviderOutput) UnsetIvaCode() {
+	o.IvaCode.Unset()
+}
+
+// GetCompanyName returns the CompanyName field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *SpidProviderOutput) GetCompanyName() string {
+	if o == nil || IsNil(o.CompanyName.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.CompanyName.Get()
+}
+
+// GetCompanyNameOk returns a tuple with the CompanyName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *SpidProviderOutput) GetCompanyNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CompanyName.Get(), o.CompanyName.IsSet()
+}
+
+// HasCompanyName returns a boolean if a field has been set.
+func (o *SpidProviderOutput) HasCompanyName() bool {
+	if o != nil && o.CompanyName.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCompanyName gets a reference to the given NullableString and assigns it to the CompanyName field.
+func (o *SpidProviderOutput) SetCompanyName(v string) {
+	o.CompanyName.Set(&v)
+}
+// SetCompanyNameNil sets the value for CompanyName to be an explicit nil
+func (o *SpidProviderOutput) SetCompanyNameNil() {
+	o.CompanyName.Set(nil)
+}
+
+// UnsetCompanyName ensures that no value is present for CompanyName, not even an explicit nil
+func (o *SpidProviderOutput) UnsetCompanyName() {
+	o.CompanyName.Unset()
+}
+
+// GetCompanyFiscalNumber returns the CompanyFiscalNumber field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *SpidProviderOutput) GetCompanyFiscalNumber() string {
+	if o == nil || IsNil(o.CompanyFiscalNumber.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.CompanyFiscalNumber.Get()
+}
+
+// GetCompanyFiscalNumberOk returns a tuple with the CompanyFiscalNumber field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *SpidProviderOutput) GetCompanyFiscalNumberOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CompanyFiscalNumber.Get(), o.CompanyFiscalNumber.IsSet()
+}
+
+// HasCompanyFiscalNumber returns a boolean if a field has been set.
+func (o *SpidProviderOutput) HasCompanyFiscalNumber() bool {
+	if o != nil && o.CompanyFiscalNumber.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCompanyFiscalNumber gets a reference to the given NullableString and assigns it to the CompanyFiscalNumber field.
+func (o *SpidProviderOutput) SetCompanyFiscalNumber(v string) {
+	o.CompanyFiscalNumber.Set(&v)
+}
+// SetCompanyFiscalNumberNil sets the value for CompanyFiscalNumber to be an explicit nil
+func (o *SpidProviderOutput) SetCompanyFiscalNumberNil() {
+	o.CompanyFiscalNumber.Set(nil)
+}
+
+// UnsetCompanyFiscalNumber ensures that no value is present for CompanyFiscalNumber, not even an explicit nil
+func (o *SpidProviderOutput) UnsetCompanyFiscalNumber() {
+	o.CompanyFiscalNumber.Unset()
+}
+
+// GetRegisteredOffice returns the RegisteredOffice field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *SpidProviderOutput) GetRegisteredOffice() string {
+	if o == nil || IsNil(o.RegisteredOffice.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.RegisteredOffice.Get()
+}
+
+// GetRegisteredOfficeOk returns a tuple with the RegisteredOffice field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *SpidProviderOutput) GetRegisteredOfficeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.RegisteredOffice.Get(), o.RegisteredOffice.IsSet()
+}
+
+// HasRegisteredOffice returns a boolean if a field has been set.
+func (o *SpidProviderOutput) HasRegisteredOffice() bool {
+	if o != nil && o.RegisteredOffice.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRegisteredOffice gets a reference to the given NullableString and assigns it to the RegisteredOffice field.
+func (o *SpidProviderOutput) SetRegisteredOffice(v string) {
+	o.RegisteredOffice.Set(&v)
+}
+// SetRegisteredOfficeNil sets the value for RegisteredOffice to be an explicit nil
+func (o *SpidProviderOutput) SetRegisteredOfficeNil() {
+	o.RegisteredOffice.Set(nil)
+}
+
+// UnsetRegisteredOffice ensures that no value is present for RegisteredOffice, not even an explicit nil
+func (o *SpidProviderOutput) UnsetRegisteredOffice() {
+	o.RegisteredOffice.Unset()
+}
+
 func (o SpidProviderOutput) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -271,19 +637,80 @@ func (o SpidProviderOutput) ToMap() (map[string]interface{}, error) {
 	if o.BillingInformation.IsSet() {
 		toSerialize["billingInformation"] = o.BillingInformation.Get()
 	}
+	toSerialize["identityProviderEntityId"] = o.IdentityProviderEntityId
+	toSerialize["spidCode"] = o.SpidCode
+	if o.SpidCredentialExpirationDate.IsSet() {
+		toSerialize["spidCredentialExpirationDate"] = o.SpidCredentialExpirationDate.Get()
+	}
+	if o.PlaceOfBirth.IsSet() {
+		toSerialize["placeOfBirth"] = o.PlaceOfBirth.Get()
+	}
+	if o.CountyOfBirth.IsSet() {
+		toSerialize["countyOfBirth"] = o.CountyOfBirth.Get()
+	}
+	if o.RawIdCard.IsSet() {
+		toSerialize["rawIdCard"] = o.RawIdCard.Get()
+	}
+	if o.Email.IsSet() {
+		toSerialize["email"] = o.Email.Get()
+	}
+	if o.DigitalAddress.IsSet() {
+		toSerialize["digitalAddress"] = o.DigitalAddress.Get()
+	}
 	if o.FiscalNumber.IsSet() {
 		toSerialize["fiscalNumber"] = o.FiscalNumber.Get()
-	}
-	if o.SpidCode.IsSet() {
-		toSerialize["spidCode"] = o.SpidCode.Get()
 	}
 	if o.IvaCode.IsSet() {
 		toSerialize["ivaCode"] = o.IvaCode.Get()
 	}
-	if o.SpidCredentialExpirationDate.IsSet() {
-		toSerialize["spidCredentialExpirationDate"] = o.SpidCredentialExpirationDate.Get()
+	if o.CompanyName.IsSet() {
+		toSerialize["companyName"] = o.CompanyName.Get()
+	}
+	if o.CompanyFiscalNumber.IsSet() {
+		toSerialize["companyFiscalNumber"] = o.CompanyFiscalNumber.Get()
+	}
+	if o.RegisteredOffice.IsSet() {
+		toSerialize["registeredOffice"] = o.RegisteredOffice.Get()
 	}
 	return toSerialize, nil
+}
+
+func (o *SpidProviderOutput) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"identityProviderEntityId",
+		"spidCode",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varSpidProviderOutput := _SpidProviderOutput{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varSpidProviderOutput)
+
+	if err != nil {
+		return err
+	}
+
+	*o = SpidProviderOutput(varSpidProviderOutput)
+
+	return err
 }
 
 type NullableSpidProviderOutput struct {

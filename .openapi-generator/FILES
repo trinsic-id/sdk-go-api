@@ -57,7 +57,10 @@ docs/IndonesiaNikInput.md
 docs/IntegrationCapability.md
 docs/IntegrationLaunchMethod.md
 docs/IntegrationStep.md
+docs/KenyaNidBiometric2Input.md
 docs/KenyaNidInput.md
+docs/KenyaNidLookup2Input.md
+docs/KenyaNidMatch2Input.md
 docs/Language.md
 docs/ListEnvironmentRedirectUrisResponse.md
 docs/ListProviderContractsResponse.md
@@ -80,6 +83,8 @@ docs/OrderDirection.md
 docs/PersonData.md
 docs/PhilippineMatchInput.md
 docs/PhilippineQRInput.md
+docs/PhilippinesDigitalNidProviderOutput.md
+docs/PhilippinesPhysicalNidProviderOutput.md
 docs/ProblemDetails.md
 docs/ProviderAttachments.md
 docs/ProviderContract.md
@@ -101,8 +106,10 @@ docs/SessionErrorCode.md
 docs/SessionOrdering.md
 docs/SessionsAPI.md
 docs/Sex.md
+docs/SexV1.md
 docs/SmartIdInput.md
 docs/SouthAfricaNidInput.md
+docs/SouthAfricaNidLookup2Input.md
 docs/SpidBillingInformation.md
 docs/SpidInput.md
 docs/SpidProviderOutput.md
@@ -161,7 +168,10 @@ model_indonesia_nik_input.go
 model_integration_capability.go
 model_integration_launch_method.go
 model_integration_step.go
+model_kenya_nid_biometric2_input.go
 model_kenya_nid_input.go
+model_kenya_nid_lookup2_input.go
+model_kenya_nid_match2_input.go
 model_language.go
 model_list_environment_redirect_uris_response.go
 model_list_provider_contracts_response.go
@@ -182,6 +192,8 @@ model_order_direction.go
 model_person_data.go
 model_philippine_match_input.go
 model_philippine_qr_input.go
+model_philippines_digital_nid_provider_output.go
+model_philippines_physical_nid_provider_output.go
 model_problem_details.go
 model_provider_attachments.go
 model_provider_contract.go
@@ -202,8 +214,10 @@ model_session.go
 model_session_error_code.go
 model_session_ordering.go
 model_sex.go
+model_sex_v1.go
 model_smart_id_input.go
 model_south_africa_nid_input.go
+model_south_africa_nid_lookup2_input.go
 model_spid_billing_information.go
 model_spid_input.go
 model_spid_provider_output.go

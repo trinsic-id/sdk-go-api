@@ -7,6 +7,8 @@ Name | Type | Description | Notes
 **ItalySpid** | Pointer to [**NullableSpidProviderOutput**](SpidProviderOutput.md) |  | [optional] 
 **MexicoCurpLookup** | Pointer to [**NullableMexicoCurpProviderOutput**](MexicoCurpProviderOutput.md) |  | [optional] 
 **EthiopiaFayda** | Pointer to [**NullableFaydaProviderOutput**](FaydaProviderOutput.md) |  | [optional] 
+**PhilippinesPhysicalNationalIdQr** | Pointer to [**NullablePhilippinesPhysicalNidProviderOutput**](PhilippinesPhysicalNidProviderOutput.md) |  | [optional] 
+**PhilippinesDigitalNationalIdQr** | Pointer to [**NullablePhilippinesDigitalNidProviderOutput**](PhilippinesDigitalNidProviderOutput.md) |  | [optional] 
 
 ## Methods
 
@@ -132,6 +134,76 @@ HasEthiopiaFayda returns a boolean if a field has been set.
 `func (o *ProviderOutput) UnsetEthiopiaFayda()`
 
 UnsetEthiopiaFayda ensures that no value is present for EthiopiaFayda, not even an explicit nil
+### GetPhilippinesPhysicalNationalIdQr
+
+`func (o *ProviderOutput) GetPhilippinesPhysicalNationalIdQr() PhilippinesPhysicalNidProviderOutput`
+
+GetPhilippinesPhysicalNationalIdQr returns the PhilippinesPhysicalNationalIdQr field if non-nil, zero value otherwise.
+
+### GetPhilippinesPhysicalNationalIdQrOk
+
+`func (o *ProviderOutput) GetPhilippinesPhysicalNationalIdQrOk() (*PhilippinesPhysicalNidProviderOutput, bool)`
+
+GetPhilippinesPhysicalNationalIdQrOk returns a tuple with the PhilippinesPhysicalNationalIdQr field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPhilippinesPhysicalNationalIdQr
+
+`func (o *ProviderOutput) SetPhilippinesPhysicalNationalIdQr(v PhilippinesPhysicalNidProviderOutput)`
+
+SetPhilippinesPhysicalNationalIdQr sets PhilippinesPhysicalNationalIdQr field to given value.
+
+### HasPhilippinesPhysicalNationalIdQr
+
+`func (o *ProviderOutput) HasPhilippinesPhysicalNationalIdQr() bool`
+
+HasPhilippinesPhysicalNationalIdQr returns a boolean if a field has been set.
+
+### SetPhilippinesPhysicalNationalIdQrNil
+
+`func (o *ProviderOutput) SetPhilippinesPhysicalNationalIdQrNil(b bool)`
+
+ SetPhilippinesPhysicalNationalIdQrNil sets the value for PhilippinesPhysicalNationalIdQr to be an explicit nil
+
+### UnsetPhilippinesPhysicalNationalIdQr
+`func (o *ProviderOutput) UnsetPhilippinesPhysicalNationalIdQr()`
+
+UnsetPhilippinesPhysicalNationalIdQr ensures that no value is present for PhilippinesPhysicalNationalIdQr, not even an explicit nil
+### GetPhilippinesDigitalNationalIdQr
+
+`func (o *ProviderOutput) GetPhilippinesDigitalNationalIdQr() PhilippinesDigitalNidProviderOutput`
+
+GetPhilippinesDigitalNationalIdQr returns the PhilippinesDigitalNationalIdQr field if non-nil, zero value otherwise.
+
+### GetPhilippinesDigitalNationalIdQrOk
+
+`func (o *ProviderOutput) GetPhilippinesDigitalNationalIdQrOk() (*PhilippinesDigitalNidProviderOutput, bool)`
+
+GetPhilippinesDigitalNationalIdQrOk returns a tuple with the PhilippinesDigitalNationalIdQr field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPhilippinesDigitalNationalIdQr
+
+`func (o *ProviderOutput) SetPhilippinesDigitalNationalIdQr(v PhilippinesDigitalNidProviderOutput)`
+
+SetPhilippinesDigitalNationalIdQr sets PhilippinesDigitalNationalIdQr field to given value.
+
+### HasPhilippinesDigitalNationalIdQr
+
+`func (o *ProviderOutput) HasPhilippinesDigitalNationalIdQr() bool`
+
+HasPhilippinesDigitalNationalIdQr returns a boolean if a field has been set.
+
+### SetPhilippinesDigitalNationalIdQrNil
+
+`func (o *ProviderOutput) SetPhilippinesDigitalNationalIdQrNil(b bool)`
+
+ SetPhilippinesDigitalNationalIdQrNil sets the value for PhilippinesDigitalNationalIdQr to be an explicit nil
+
+### UnsetPhilippinesDigitalNationalIdQr
+`func (o *ProviderOutput) UnsetPhilippinesDigitalNationalIdQr()`
+
+UnsetPhilippinesDigitalNationalIdQr ensures that no value is present for PhilippinesDigitalNationalIdQr, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

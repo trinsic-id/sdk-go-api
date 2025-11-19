@@ -22,6 +22,8 @@ type ProviderOutput struct {
 	ItalySpid NullableSpidProviderOutput `json:"italy-spid,omitempty"`
 	MexicoCurpLookup NullableMexicoCurpProviderOutput `json:"mexico-curp-lookup,omitempty"`
 	EthiopiaFayda NullableFaydaProviderOutput `json:"ethiopia-fayda,omitempty"`
+	PhilippinesPhysicalNationalIdQr NullablePhilippinesPhysicalNidProviderOutput `json:"philippines-physical-national-id-qr,omitempty"`
+	PhilippinesDigitalNationalIdQr NullablePhilippinesDigitalNidProviderOutput `json:"philippines-digital-national-id-qr,omitempty"`
 }
 
 // NewProviderOutput instantiates a new ProviderOutput object
@@ -167,6 +169,90 @@ func (o *ProviderOutput) UnsetEthiopiaFayda() {
 	o.EthiopiaFayda.Unset()
 }
 
+// GetPhilippinesPhysicalNationalIdQr returns the PhilippinesPhysicalNationalIdQr field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderOutput) GetPhilippinesPhysicalNationalIdQr() PhilippinesPhysicalNidProviderOutput {
+	if o == nil || IsNil(o.PhilippinesPhysicalNationalIdQr.Get()) {
+		var ret PhilippinesPhysicalNidProviderOutput
+		return ret
+	}
+	return *o.PhilippinesPhysicalNationalIdQr.Get()
+}
+
+// GetPhilippinesPhysicalNationalIdQrOk returns a tuple with the PhilippinesPhysicalNationalIdQr field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderOutput) GetPhilippinesPhysicalNationalIdQrOk() (*PhilippinesPhysicalNidProviderOutput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.PhilippinesPhysicalNationalIdQr.Get(), o.PhilippinesPhysicalNationalIdQr.IsSet()
+}
+
+// HasPhilippinesPhysicalNationalIdQr returns a boolean if a field has been set.
+func (o *ProviderOutput) HasPhilippinesPhysicalNationalIdQr() bool {
+	if o != nil && o.PhilippinesPhysicalNationalIdQr.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPhilippinesPhysicalNationalIdQr gets a reference to the given NullablePhilippinesPhysicalNidProviderOutput and assigns it to the PhilippinesPhysicalNationalIdQr field.
+func (o *ProviderOutput) SetPhilippinesPhysicalNationalIdQr(v PhilippinesPhysicalNidProviderOutput) {
+	o.PhilippinesPhysicalNationalIdQr.Set(&v)
+}
+// SetPhilippinesPhysicalNationalIdQrNil sets the value for PhilippinesPhysicalNationalIdQr to be an explicit nil
+func (o *ProviderOutput) SetPhilippinesPhysicalNationalIdQrNil() {
+	o.PhilippinesPhysicalNationalIdQr.Set(nil)
+}
+
+// UnsetPhilippinesPhysicalNationalIdQr ensures that no value is present for PhilippinesPhysicalNationalIdQr, not even an explicit nil
+func (o *ProviderOutput) UnsetPhilippinesPhysicalNationalIdQr() {
+	o.PhilippinesPhysicalNationalIdQr.Unset()
+}
+
+// GetPhilippinesDigitalNationalIdQr returns the PhilippinesDigitalNationalIdQr field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderOutput) GetPhilippinesDigitalNationalIdQr() PhilippinesDigitalNidProviderOutput {
+	if o == nil || IsNil(o.PhilippinesDigitalNationalIdQr.Get()) {
+		var ret PhilippinesDigitalNidProviderOutput
+		return ret
+	}
+	return *o.PhilippinesDigitalNationalIdQr.Get()
+}
+
+// GetPhilippinesDigitalNationalIdQrOk returns a tuple with the PhilippinesDigitalNationalIdQr field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderOutput) GetPhilippinesDigitalNationalIdQrOk() (*PhilippinesDigitalNidProviderOutput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.PhilippinesDigitalNationalIdQr.Get(), o.PhilippinesDigitalNationalIdQr.IsSet()
+}
+
+// HasPhilippinesDigitalNationalIdQr returns a boolean if a field has been set.
+func (o *ProviderOutput) HasPhilippinesDigitalNationalIdQr() bool {
+	if o != nil && o.PhilippinesDigitalNationalIdQr.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPhilippinesDigitalNationalIdQr gets a reference to the given NullablePhilippinesDigitalNidProviderOutput and assigns it to the PhilippinesDigitalNationalIdQr field.
+func (o *ProviderOutput) SetPhilippinesDigitalNationalIdQr(v PhilippinesDigitalNidProviderOutput) {
+	o.PhilippinesDigitalNationalIdQr.Set(&v)
+}
+// SetPhilippinesDigitalNationalIdQrNil sets the value for PhilippinesDigitalNationalIdQr to be an explicit nil
+func (o *ProviderOutput) SetPhilippinesDigitalNationalIdQrNil() {
+	o.PhilippinesDigitalNationalIdQr.Set(nil)
+}
+
+// UnsetPhilippinesDigitalNationalIdQr ensures that no value is present for PhilippinesDigitalNationalIdQr, not even an explicit nil
+func (o *ProviderOutput) UnsetPhilippinesDigitalNationalIdQr() {
+	o.PhilippinesDigitalNationalIdQr.Unset()
+}
+
 func (o ProviderOutput) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -185,6 +271,12 @@ func (o ProviderOutput) ToMap() (map[string]interface{}, error) {
 	}
 	if o.EthiopiaFayda.IsSet() {
 		toSerialize["ethiopia-fayda"] = o.EthiopiaFayda.Get()
+	}
+	if o.PhilippinesPhysicalNationalIdQr.IsSet() {
+		toSerialize["philippines-physical-national-id-qr"] = o.PhilippinesPhysicalNationalIdQr.Get()
+	}
+	if o.PhilippinesDigitalNationalIdQr.IsSet() {
+		toSerialize["philippines-digital-national-id-qr"] = o.PhilippinesDigitalNationalIdQr.Get()
 	}
 	return toSerialize, nil
 }

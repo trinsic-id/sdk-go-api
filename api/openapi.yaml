@@ -2020,6 +2020,9 @@ components:
         documentPortrait:
           nullable: true
           type: string
+        documentSignature:
+          nullable: true
+          type: string
         provider:
           allOf:
           - $ref: '#/components/schemas/ProviderAttachments'
@@ -2314,7 +2317,7 @@ components:
     CreateHostedProviderSessionResponse:
       example:
         sessionId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        launchUrl: https://api.trinsic.id/api/session/launch?clientToken=...
+        launchUrl: https://verify.trinsic.id/api/session/launch?clientToken=...
         resultsAccessKey: 417zNGHMJp6Ht2jCoktTLNGDRZEt4BqTwwQ8Q9ZaQz8aS4Jd7nD1xff2WLhPS69j5q9QT4gvgV79Gv7QtaXwu5YC9Utr35...
       properties:
         sessionId:
@@ -2329,7 +2332,7 @@ components:
             \            \nThis URL is sensitive and as such can only be obtained\
             \ once. If you need to obtain it again, you will need to create a new\
             \ Acceptance Session."
-          example: https://api.trinsic.id/api/session/launch?clientToken=...
+          example: https://verify.trinsic.id/api/session/launch?clientToken=...
           type: string
         resultsAccessKey:
           description: "The `resultsAccessKey` for the Acceptance Session.\n     \
@@ -2521,7 +2524,7 @@ components:
     CreateWidgetSessionResponse:
       example:
         sessionId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        launchUrl: https://api.trinsic.id/api/session/launch?clientToken=...
+        launchUrl: https://verify.trinsic.id/api/session/launch?clientToken=...
         resultsAccessKey: 417zNGHMJp6Ht2jCoktTLNGDRZEt4BqTwwQ8Q9ZaQz8aS4Jd7nD1xff2WLhPS69j5q9QT4gvgV79Gv7QtaXwu5YC9Utr35...
       properties:
         sessionId:
@@ -2535,7 +2538,7 @@ components:
             \ the user's browser to this URL.\n            \nThis URL is sensitive\
             \ and as such can only be obtained once. If you need to obtain it again,\
             \ you will need to create a new Acceptance Session."
-          example: https://api.trinsic.id/api/session/launch?clientToken=...
+          example: https://verify.trinsic.id/api/session/launch?clientToken=...
           type: string
         resultsAccessKey:
           description: "The `resultsAccessKey` for the Acceptance Session.\n     \
@@ -3032,7 +3035,7 @@ components:
           description: "Step type-specific content related to the step: a URL for\
             \ `LaunchBrowser`, a deeplink for `DeeplinkToMobile` or a string to show\
             \ to the user for `ShowContent`."
-          example: https://api.trinsic.id/api/session/launch?clientToken=...
+          example: https://verify.trinsic.id/api/session/launch?clientToken=...
           type: string
         refresh:
           allOf:
@@ -3043,6 +3046,31 @@ components:
       required:
       - content
       - method
+      type: object
+    KenyaNidBiometric2Input:
+      additionalProperties: false
+      properties:
+        idNumber:
+          description: The user's Kenyan National ID number
+          nullable: true
+          type: string
+        livenessImages:
+          description: |-
+            An array of exactly 8 images required for biometric liveness verification.
+            The first 7 images should be liveness frames captured during the liveness detection process,
+            and the last image (8th) should be a selfie of the user. All images must be in JPEG format
+            and each image must be less than 15MB in size.
+          items:
+            format: byte
+            type: string
+          nullable: true
+          type: array
+        testSelfie:
+          description: "Test selfie for test environment (optional, maximum 15MB).\
+            \ Must be JPEG format."
+          format: byte
+          nullable: true
+          type: string
       type: object
     KenyaNidInput:
       additionalProperties: false
@@ -3069,7 +3097,7 @@ components:
           minLength: 1
           type: string
         nationalIdNumber:
-          description: The user's South Kenya National ID number
+          description: The user's Kenya National ID number
           maxLength: 8
           minLength: 8
           pattern: ^\d*$
@@ -3080,6 +3108,44 @@ components:
       - gender
       - lastName
       - nationalIdNumber
+      type: object
+    KenyaNidLookup2Input:
+      additionalProperties: false
+      properties:
+        idNumber:
+          description: The user's National ID number
+          nullable: true
+          type: string
+      type: object
+    KenyaNidMatch2Input:
+      additionalProperties: false
+      properties:
+        idNumber:
+          description: The user's Kenyan National ID number
+          nullable: true
+          type: string
+        givenName:
+          description: The user's first name as it appears in their National ID
+          nullable: true
+          type: string
+        familyName:
+          description: The user's last name as it appears in their National ID
+          nullable: true
+          type: string
+        middleName:
+          description: The user's middle name as it appears in their National ID (optional)
+          nullable: true
+          type: string
+        dateOfBirth:
+          description: "The user's date of birth, in `YYYY-MM-DD` format"
+          format: date
+          nullable: true
+          type: string
+        sex:
+          allOf:
+          - $ref: '#/components/schemas/SexV1'
+          description: The user's sex as it appears in their National ID
+          nullable: true
       type: object
     Language:
       enum:
@@ -3563,7 +3629,7 @@ components:
           nullable: true
           type: string
         nationalIdNumber:
-          description: The user's South African National ID number
+          description: The user's National ID number
           maxLength: 11
           minLength: 11
           pattern: ^\d*$
@@ -3656,6 +3722,24 @@ components:
           format: byte
           nullable: true
           type: string
+      type: object
+    PhilippinesDigitalNidProviderOutput:
+      additionalProperties: false
+      properties:
+        philsysCardNumber:
+          description: The PhilSys card number.
+          type: string
+      required:
+      - philsysCardNumber
+      type: object
+    PhilippinesPhysicalNidProviderOutput:
+      additionalProperties: false
+      properties:
+        philsysCardNumber:
+          description: The PhilSys card number.
+          type: string
+      required:
+      - philsysCardNumber
       type: object
     ProblemDetails:
       additionalProperties: {}
@@ -4075,6 +4159,11 @@ components:
     ProviderInput:
       additionalProperties: false
       properties:
+        kenyaBiometric2:
+          allOf:
+          - $ref: '#/components/schemas/KenyaNidBiometric2Input'
+          description: Input for the `kenya-nid-match-biometric-2` provider
+          nullable: true
         indonesiaNik:
           allOf:
           - $ref: '#/components/schemas/IndonesiaNikInput'
@@ -4099,6 +4188,21 @@ components:
           allOf:
           - $ref: '#/components/schemas/KenyaNidInput'
           description: Input for the `kenya-nid-lookup` provider
+          nullable: true
+        kenyaNidMatch2:
+          allOf:
+          - $ref: '#/components/schemas/KenyaNidMatch2Input'
+          description: Input for the `kenya-nid-match-2` provider
+          nullable: true
+        kenyaNidLookup2:
+          allOf:
+          - $ref: '#/components/schemas/KenyaNidLookup2Input'
+          description: Input for the `kenya-nid-lookup-2` provider
+          nullable: true
+        southAfricaNidLookup2:
+          allOf:
+          - $ref: '#/components/schemas/SouthAfricaNidLookup2Input'
+          description: Input for the `south-africa-nid-lookup-2` provider
           nullable: true
         nigeriaNin:
           allOf:
@@ -4193,6 +4297,14 @@ components:
         ethiopia-fayda:
           allOf:
           - $ref: '#/components/schemas/FaydaProviderOutput'
+          nullable: true
+        philippines-physical-national-id-qr:
+          allOf:
+          - $ref: '#/components/schemas/PhilippinesPhysicalNidProviderOutput'
+          nullable: true
+        philippines-digital-national-id-qr:
+          allOf:
+          - $ref: '#/components/schemas/PhilippinesDigitalNidProviderOutput'
           nullable: true
       type: object
     RecommendRequest:
@@ -4596,6 +4708,18 @@ components:
         NotApplicable: ""
         Male: ""
         Female: ""
+    SexV1:
+      enum:
+      - Unknown
+      - NotApplicable
+      - Male
+      - Female
+      type: string
+      x-enumDescriptions:
+        Unknown: ""
+        NotApplicable: ""
+        Male: ""
+        Female: ""
     SmartIdInput:
       additionalProperties: false
       properties:
@@ -4626,7 +4750,7 @@ components:
           minLength: 1
           type: string
         nationalIdNumber:
-          description: The user's South African National ID number
+          description: The user's National ID number
           maxLength: 13
           minLength: 13
           pattern: ^\d*$
@@ -4636,6 +4760,14 @@ components:
       - fullName
       - gender
       - nationalIdNumber
+      type: object
+    SouthAfricaNidLookup2Input:
+      additionalProperties: false
+      properties:
+        idNumber:
+          description: The user's National ID number
+          nullable: true
+          type: string
       type: object
     SpidBillingInformation:
       additionalProperties: false
@@ -4693,17 +4825,16 @@ components:
             \            \nPresent only if your account has period-based billing enabled\
             \ for SPID. Contact Trinsic to enable this."
           nullable: true
-        fiscalNumber:
-          description: Fiscal tax number for the subject.
-          nullable: true
+        identityProviderEntityId:
+          description: "The SPID Entity ID of the Identity Provider which issued the\
+            \ SPID identity.\n            \nThis is an HTTPS URI which uniquely identifies\
+            \ the IdP within the SPID federation.\n            \nA normalized / simplified\
+            \ representation of this value is present in the `originatingSubProviderId`\
+            \ field in Trinsic's normalized data model."
           type: string
         spidCode:
-          description: Unique user identifier contained within the SPID identity.
-          nullable: true
-          type: string
-        ivaCode:
-          description: VAT number for the subject.
-          nullable: true
+          description: "The identifier of the user's SPID credential.\n          \
+            \  \nThis uniquely identifies the credential within the SPID federation."
           type: string
         spidCredentialExpirationDate:
           description: "Expiration date of the user's SPID credential.\n         \
@@ -4712,6 +4843,54 @@ components:
           format: date
           nullable: true
           type: string
+        placeOfBirth:
+          description: The user's place of birth.
+          nullable: true
+          type: string
+        countyOfBirth:
+          description: The user's county of birth.
+          nullable: true
+          type: string
+        rawIdCard:
+          description: "The raw, space-separated string value for the \"IdCard\" field\
+            \ from the SPID identity.\n            \nTrinsic additionally parses this\
+            \ field and uses it to populate the `Document` object in the normalized\
+            \ data model."
+          nullable: true
+          type: string
+        email:
+          description: The email address of the user.
+          nullable: true
+          type: string
+        digitalAddress:
+          description: The digital address of the user.
+          nullable: true
+          type: string
+        fiscalNumber:
+          description: Fiscal tax number for the subject.
+          nullable: true
+          type: string
+        ivaCode:
+          description: VAT number for the subject.
+          nullable: true
+          type: string
+        companyName:
+          description: The name of the company which the user is associated with.
+          nullable: true
+          type: string
+        companyFiscalNumber:
+          description: The fiscal tax number of the company which the user is associated
+            with.
+          nullable: true
+          type: string
+        registeredOffice:
+          description: The registered office address of the company which the user
+            is associated with.
+          nullable: true
+          type: string
+      required:
+      - identityProviderEntityId
+      - spidCode
       type: object
     StepRefreshInfo:
       additionalProperties: false

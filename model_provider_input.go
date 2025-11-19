@@ -19,6 +19,8 @@ var _ MappedNullable = &ProviderInput{}
 
 // ProviderInput struct for ProviderInput
 type ProviderInput struct {
+	// Input for the `kenya-nid-match-biometric-2` provider
+	KenyaBiometric2 NullableKenyaNidBiometric2Input `json:"kenyaBiometric2,omitempty"`
 	// Input for the `indonesia-nik-lookup` provider
 	IndonesiaNik NullableIndonesiaNikInput `json:"indonesiaNik,omitempty"`
 	// Input for the `indonesia-dukcapil-match` provider
@@ -29,6 +31,12 @@ type ProviderInput struct {
 	SouthAfricaNid NullableSouthAfricaNidInput `json:"southAfricaNid,omitempty"`
 	// Input for the `kenya-nid-lookup` provider
 	KenyaNid NullableKenyaNidInput `json:"kenyaNid,omitempty"`
+	// Input for the `kenya-nid-match-2` provider
+	KenyaNidMatch2 NullableKenyaNidMatch2Input `json:"kenyaNidMatch2,omitempty"`
+	// Input for the `kenya-nid-lookup-2` provider
+	KenyaNidLookup2 NullableKenyaNidLookup2Input `json:"kenyaNidLookup2,omitempty"`
+	// Input for the `south-africa-nid-lookup-2` provider
+	SouthAfricaNidLookup2 NullableSouthAfricaNidLookup2Input `json:"southAfricaNidLookup2,omitempty"`
 	// Input for the `nigeria-nin-lookup` provider
 	NigeriaNin NullableNigeriaNinInput `json:"nigeriaNin,omitempty"`
 	// Input for the `india-digilocker-aadhaar-match` provider
@@ -76,6 +84,48 @@ func NewProviderInput() *ProviderInput {
 func NewProviderInputWithDefaults() *ProviderInput {
 	this := ProviderInput{}
 	return &this
+}
+
+// GetKenyaBiometric2 returns the KenyaBiometric2 field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderInput) GetKenyaBiometric2() KenyaNidBiometric2Input {
+	if o == nil || IsNil(o.KenyaBiometric2.Get()) {
+		var ret KenyaNidBiometric2Input
+		return ret
+	}
+	return *o.KenyaBiometric2.Get()
+}
+
+// GetKenyaBiometric2Ok returns a tuple with the KenyaBiometric2 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderInput) GetKenyaBiometric2Ok() (*KenyaNidBiometric2Input, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.KenyaBiometric2.Get(), o.KenyaBiometric2.IsSet()
+}
+
+// HasKenyaBiometric2 returns a boolean if a field has been set.
+func (o *ProviderInput) HasKenyaBiometric2() bool {
+	if o != nil && o.KenyaBiometric2.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetKenyaBiometric2 gets a reference to the given NullableKenyaNidBiometric2Input and assigns it to the KenyaBiometric2 field.
+func (o *ProviderInput) SetKenyaBiometric2(v KenyaNidBiometric2Input) {
+	o.KenyaBiometric2.Set(&v)
+}
+// SetKenyaBiometric2Nil sets the value for KenyaBiometric2 to be an explicit nil
+func (o *ProviderInput) SetKenyaBiometric2Nil() {
+	o.KenyaBiometric2.Set(nil)
+}
+
+// UnsetKenyaBiometric2 ensures that no value is present for KenyaBiometric2, not even an explicit nil
+func (o *ProviderInput) UnsetKenyaBiometric2() {
+	o.KenyaBiometric2.Unset()
 }
 
 // GetIndonesiaNik returns the IndonesiaNik field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -286,6 +336,132 @@ func (o *ProviderInput) SetKenyaNidNil() {
 // UnsetKenyaNid ensures that no value is present for KenyaNid, not even an explicit nil
 func (o *ProviderInput) UnsetKenyaNid() {
 	o.KenyaNid.Unset()
+}
+
+// GetKenyaNidMatch2 returns the KenyaNidMatch2 field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderInput) GetKenyaNidMatch2() KenyaNidMatch2Input {
+	if o == nil || IsNil(o.KenyaNidMatch2.Get()) {
+		var ret KenyaNidMatch2Input
+		return ret
+	}
+	return *o.KenyaNidMatch2.Get()
+}
+
+// GetKenyaNidMatch2Ok returns a tuple with the KenyaNidMatch2 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderInput) GetKenyaNidMatch2Ok() (*KenyaNidMatch2Input, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.KenyaNidMatch2.Get(), o.KenyaNidMatch2.IsSet()
+}
+
+// HasKenyaNidMatch2 returns a boolean if a field has been set.
+func (o *ProviderInput) HasKenyaNidMatch2() bool {
+	if o != nil && o.KenyaNidMatch2.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetKenyaNidMatch2 gets a reference to the given NullableKenyaNidMatch2Input and assigns it to the KenyaNidMatch2 field.
+func (o *ProviderInput) SetKenyaNidMatch2(v KenyaNidMatch2Input) {
+	o.KenyaNidMatch2.Set(&v)
+}
+// SetKenyaNidMatch2Nil sets the value for KenyaNidMatch2 to be an explicit nil
+func (o *ProviderInput) SetKenyaNidMatch2Nil() {
+	o.KenyaNidMatch2.Set(nil)
+}
+
+// UnsetKenyaNidMatch2 ensures that no value is present for KenyaNidMatch2, not even an explicit nil
+func (o *ProviderInput) UnsetKenyaNidMatch2() {
+	o.KenyaNidMatch2.Unset()
+}
+
+// GetKenyaNidLookup2 returns the KenyaNidLookup2 field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderInput) GetKenyaNidLookup2() KenyaNidLookup2Input {
+	if o == nil || IsNil(o.KenyaNidLookup2.Get()) {
+		var ret KenyaNidLookup2Input
+		return ret
+	}
+	return *o.KenyaNidLookup2.Get()
+}
+
+// GetKenyaNidLookup2Ok returns a tuple with the KenyaNidLookup2 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderInput) GetKenyaNidLookup2Ok() (*KenyaNidLookup2Input, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.KenyaNidLookup2.Get(), o.KenyaNidLookup2.IsSet()
+}
+
+// HasKenyaNidLookup2 returns a boolean if a field has been set.
+func (o *ProviderInput) HasKenyaNidLookup2() bool {
+	if o != nil && o.KenyaNidLookup2.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetKenyaNidLookup2 gets a reference to the given NullableKenyaNidLookup2Input and assigns it to the KenyaNidLookup2 field.
+func (o *ProviderInput) SetKenyaNidLookup2(v KenyaNidLookup2Input) {
+	o.KenyaNidLookup2.Set(&v)
+}
+// SetKenyaNidLookup2Nil sets the value for KenyaNidLookup2 to be an explicit nil
+func (o *ProviderInput) SetKenyaNidLookup2Nil() {
+	o.KenyaNidLookup2.Set(nil)
+}
+
+// UnsetKenyaNidLookup2 ensures that no value is present for KenyaNidLookup2, not even an explicit nil
+func (o *ProviderInput) UnsetKenyaNidLookup2() {
+	o.KenyaNidLookup2.Unset()
+}
+
+// GetSouthAfricaNidLookup2 returns the SouthAfricaNidLookup2 field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderInput) GetSouthAfricaNidLookup2() SouthAfricaNidLookup2Input {
+	if o == nil || IsNil(o.SouthAfricaNidLookup2.Get()) {
+		var ret SouthAfricaNidLookup2Input
+		return ret
+	}
+	return *o.SouthAfricaNidLookup2.Get()
+}
+
+// GetSouthAfricaNidLookup2Ok returns a tuple with the SouthAfricaNidLookup2 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderInput) GetSouthAfricaNidLookup2Ok() (*SouthAfricaNidLookup2Input, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.SouthAfricaNidLookup2.Get(), o.SouthAfricaNidLookup2.IsSet()
+}
+
+// HasSouthAfricaNidLookup2 returns a boolean if a field has been set.
+func (o *ProviderInput) HasSouthAfricaNidLookup2() bool {
+	if o != nil && o.SouthAfricaNidLookup2.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSouthAfricaNidLookup2 gets a reference to the given NullableSouthAfricaNidLookup2Input and assigns it to the SouthAfricaNidLookup2 field.
+func (o *ProviderInput) SetSouthAfricaNidLookup2(v SouthAfricaNidLookup2Input) {
+	o.SouthAfricaNidLookup2.Set(&v)
+}
+// SetSouthAfricaNidLookup2Nil sets the value for SouthAfricaNidLookup2 to be an explicit nil
+func (o *ProviderInput) SetSouthAfricaNidLookup2Nil() {
+	o.SouthAfricaNidLookup2.Set(nil)
+}
+
+// UnsetSouthAfricaNidLookup2 ensures that no value is present for SouthAfricaNidLookup2, not even an explicit nil
+func (o *ProviderInput) UnsetSouthAfricaNidLookup2() {
+	o.SouthAfricaNidLookup2.Unset()
 }
 
 // GetNigeriaNin returns the NigeriaNin field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -928,6 +1104,9 @@ func (o ProviderInput) MarshalJSON() ([]byte, error) {
 
 func (o ProviderInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if o.KenyaBiometric2.IsSet() {
+		toSerialize["kenyaBiometric2"] = o.KenyaBiometric2.Get()
+	}
 	if o.IndonesiaNik.IsSet() {
 		toSerialize["indonesiaNik"] = o.IndonesiaNik.Get()
 	}
@@ -942,6 +1121,15 @@ func (o ProviderInput) ToMap() (map[string]interface{}, error) {
 	}
 	if o.KenyaNid.IsSet() {
 		toSerialize["kenyaNid"] = o.KenyaNid.Get()
+	}
+	if o.KenyaNidMatch2.IsSet() {
+		toSerialize["kenyaNidMatch2"] = o.KenyaNidMatch2.Get()
+	}
+	if o.KenyaNidLookup2.IsSet() {
+		toSerialize["kenyaNidLookup2"] = o.KenyaNidLookup2.Get()
+	}
+	if o.SouthAfricaNidLookup2.IsSet() {
+		toSerialize["southAfricaNidLookup2"] = o.SouthAfricaNidLookup2.Get()
 	}
 	if o.NigeriaNin.IsSet() {
 		toSerialize["nigeriaNin"] = o.NigeriaNin.Get()

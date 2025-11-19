@@ -25,6 +25,7 @@ type AttachmentAccessKeys struct {
 	DocumentFront NullableString `json:"documentFront,omitempty"`
 	DocumentBack NullableString `json:"documentBack,omitempty"`
 	DocumentPortrait NullableString `json:"documentPortrait,omitempty"`
+	DocumentSignature NullableString `json:"documentSignature,omitempty"`
 	Provider ProviderAttachments `json:"provider"`
 }
 
@@ -216,6 +217,48 @@ func (o *AttachmentAccessKeys) UnsetDocumentPortrait() {
 	o.DocumentPortrait.Unset()
 }
 
+// GetDocumentSignature returns the DocumentSignature field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AttachmentAccessKeys) GetDocumentSignature() string {
+	if o == nil || IsNil(o.DocumentSignature.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.DocumentSignature.Get()
+}
+
+// GetDocumentSignatureOk returns a tuple with the DocumentSignature field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AttachmentAccessKeys) GetDocumentSignatureOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.DocumentSignature.Get(), o.DocumentSignature.IsSet()
+}
+
+// HasDocumentSignature returns a boolean if a field has been set.
+func (o *AttachmentAccessKeys) HasDocumentSignature() bool {
+	if o != nil && o.DocumentSignature.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDocumentSignature gets a reference to the given NullableString and assigns it to the DocumentSignature field.
+func (o *AttachmentAccessKeys) SetDocumentSignature(v string) {
+	o.DocumentSignature.Set(&v)
+}
+// SetDocumentSignatureNil sets the value for DocumentSignature to be an explicit nil
+func (o *AttachmentAccessKeys) SetDocumentSignatureNil() {
+	o.DocumentSignature.Set(nil)
+}
+
+// UnsetDocumentSignature ensures that no value is present for DocumentSignature, not even an explicit nil
+func (o *AttachmentAccessKeys) UnsetDocumentSignature() {
+	o.DocumentSignature.Unset()
+}
+
 // GetProvider returns the Provider field value
 func (o *AttachmentAccessKeys) GetProvider() ProviderAttachments {
 	if o == nil {
@@ -261,6 +304,9 @@ func (o AttachmentAccessKeys) ToMap() (map[string]interface{}, error) {
 	}
 	if o.DocumentPortrait.IsSet() {
 		toSerialize["documentPortrait"] = o.DocumentPortrait.Get()
+	}
+	if o.DocumentSignature.IsSet() {
+		toSerialize["documentSignature"] = o.DocumentSignature.Get()
 	}
 	toSerialize["provider"] = o.Provider
 	return toSerialize, nil
