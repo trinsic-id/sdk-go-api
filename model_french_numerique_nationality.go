@@ -23,7 +23,10 @@ type FrenchNumeriqueNationality struct {
 	Code NullableString `json:"code,omitempty"`
 	// Nationality label in French.
 	Label NullableString `json:"label,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _FrenchNumeriqueNationality FrenchNumeriqueNationality
 
 // NewFrenchNumeriqueNationality instantiates a new FrenchNumeriqueNationality object
 // This constructor will assign default values to properties that have it defined,
@@ -142,7 +145,34 @@ func (o FrenchNumeriqueNationality) ToMap() (map[string]interface{}, error) {
 	if o.Label.IsSet() {
 		toSerialize["label"] = o.Label.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *FrenchNumeriqueNationality) UnmarshalJSON(data []byte) (err error) {
+	varFrenchNumeriqueNationality := _FrenchNumeriqueNationality{}
+
+	err = json.Unmarshal(data, &varFrenchNumeriqueNationality)
+
+	if err != nil {
+		return err
+	}
+
+	*o = FrenchNumeriqueNationality(varFrenchNumeriqueNationality)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "code")
+		delete(additionalProperties, "label")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableFrenchNumeriqueNationality struct {

@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -35,6 +34,7 @@ type VerificationProfileResponse struct {
 	EnabledProviders []string `json:"enabledProviders"`
 	// Whether this profile is for production usage. Only applicable for Live environment profiles.
 	IsProductionUsage bool `json:"isProductionUsage"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _VerificationProfileResponse VerificationProfileResponse
@@ -248,6 +248,11 @@ func (o VerificationProfileResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["primaryColor"] = o.PrimaryColor
 	toSerialize["enabledProviders"] = o.EnabledProviders
 	toSerialize["isProductionUsage"] = o.IsProductionUsage
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -281,15 +286,26 @@ func (o *VerificationProfileResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varVerificationProfileResponse := _VerificationProfileResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varVerificationProfileResponse)
+	err = json.Unmarshal(data, &varVerificationProfileResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = VerificationProfileResponse(varVerificationProfileResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "alias")
+		delete(additionalProperties, "brandName")
+		delete(additionalProperties, "logoUrl")
+		delete(additionalProperties, "primaryColor")
+		delete(additionalProperties, "enabledProviders")
+		delete(additionalProperties, "isProductionUsage")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

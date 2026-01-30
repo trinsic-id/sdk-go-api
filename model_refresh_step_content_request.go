@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -23,6 +22,7 @@ var _ MappedNullable = &RefreshStepContentRequest{}
 type RefreshStepContentRequest struct {
 	// The `ResultsAccessKey` returned when the Session was created
 	ResultsAccessKey string `json:"resultsAccessKey"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _RefreshStepContentRequest RefreshStepContentRequest
@@ -80,6 +80,11 @@ func (o RefreshStepContentRequest) MarshalJSON() ([]byte, error) {
 func (o RefreshStepContentRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["resultsAccessKey"] = o.ResultsAccessKey
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *RefreshStepContentRequest) UnmarshalJSON(data []byte) (err error) {
 
 	varRefreshStepContentRequest := _RefreshStepContentRequest{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varRefreshStepContentRequest)
+	err = json.Unmarshal(data, &varRefreshStepContentRequest)
 
 	if err != nil {
 		return err
 	}
 
 	*o = RefreshStepContentRequest(varRefreshStepContentRequest)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "resultsAccessKey")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

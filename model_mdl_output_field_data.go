@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -25,6 +24,7 @@ type MdlOutputFieldData struct {
 	Type MdlOutputFieldDataType `json:"type"`
 	// The string-encoded value of the field.
 	Value string `json:"value"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _MdlOutputFieldData MdlOutputFieldData
@@ -108,6 +108,11 @@ func (o MdlOutputFieldData) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["type"] = o.Type
 	toSerialize["value"] = o.Value
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -136,15 +141,21 @@ func (o *MdlOutputFieldData) UnmarshalJSON(data []byte) (err error) {
 
 	varMdlOutputFieldData := _MdlOutputFieldData{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varMdlOutputFieldData)
+	err = json.Unmarshal(data, &varMdlOutputFieldData)
 
 	if err != nil {
 		return err
 	}
 
 	*o = MdlOutputFieldData(varMdlOutputFieldData)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "value")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

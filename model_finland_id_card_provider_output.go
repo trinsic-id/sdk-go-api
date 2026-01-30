@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -29,6 +28,7 @@ type FinlandIdCardProviderOutput struct {
 	DateOfBirth string `json:"dateOfBirth"`
 	// The 11-digit Finnish Personal Identification Code (Henkilötunnus) of the verified individual.               This is in the format DDMMYYCZZZQ, where: - DDMMYY is the date of birth - C is a symbol which determines the century of birth - ZZZ is an individual number, indicating gender - Q is a checksum character              If ZZZ is even, the individual is female. If ZZZ is odd, the individual is male.              If C is '+', the individual was born in the 19th century (1800-1899). If C is '-', 'U', 'V', 'W', 'X', or 'Y', the individual was born in the 20th century (1900-1999). If C is 'A', 'B', 'C', 'D', 'E', or 'F', the individual was born in the 21st century (2000-2099).
 	PersonalIdentificationCode string `json:"personalIdentificationCode"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _FinlandIdCardProviderOutput FinlandIdCardProviderOutput
@@ -164,6 +164,11 @@ func (o FinlandIdCardProviderOutput) ToMap() (map[string]interface{}, error) {
 	toSerialize["lastName"] = o.LastName
 	toSerialize["dateOfBirth"] = o.DateOfBirth
 	toSerialize["personalIdentificationCode"] = o.PersonalIdentificationCode
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -194,15 +199,23 @@ func (o *FinlandIdCardProviderOutput) UnmarshalJSON(data []byte) (err error) {
 
 	varFinlandIdCardProviderOutput := _FinlandIdCardProviderOutput{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varFinlandIdCardProviderOutput)
+	err = json.Unmarshal(data, &varFinlandIdCardProviderOutput)
 
 	if err != nil {
 		return err
 	}
 
 	*o = FinlandIdCardProviderOutput(varFinlandIdCardProviderOutput)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "firstName")
+		delete(additionalProperties, "lastName")
+		delete(additionalProperties, "dateOfBirth")
+		delete(additionalProperties, "personalIdentificationCode")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

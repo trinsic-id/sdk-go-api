@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -29,6 +28,7 @@ type MdlOutput struct {
 	DocumentType string `json:"documentType"`
 	// The namespaces, and fields within those namespaces, which were present in the processed mDL.
 	NameSpaces map[string]map[string]MdlOutputFieldData `json:"nameSpaces"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _MdlOutput MdlOutput
@@ -164,6 +164,11 @@ func (o MdlOutput) ToMap() (map[string]interface{}, error) {
 	toSerialize["documentSignerCertificate"] = o.DocumentSignerCertificate
 	toSerialize["documentType"] = o.DocumentType
 	toSerialize["nameSpaces"] = o.NameSpaces
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -194,15 +199,23 @@ func (o *MdlOutput) UnmarshalJSON(data []byte) (err error) {
 
 	varMdlOutput := _MdlOutput{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varMdlOutput)
+	err = json.Unmarshal(data, &varMdlOutput)
 
 	if err != nil {
 		return err
 	}
 
 	*o = MdlOutput(varMdlOutput)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "iacaRootCertificate")
+		delete(additionalProperties, "documentSignerCertificate")
+		delete(additionalProperties, "documentType")
+		delete(additionalProperties, "nameSpaces")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -29,7 +29,10 @@ type YotiDocumentDetails struct {
 	ExpirationDate NullableString `json:"expirationDate,omitempty"`
 	// The document's issuing authority. This can either be a country code as a specified ISO alpha-3 or the name of the issuing authority.
 	IssuingAuthority NullableString `json:"issuingAuthority,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _YotiDocumentDetails YotiDocumentDetails
 
 // NewYotiDocumentDetails instantiates a new YotiDocumentDetails object
 // This constructor will assign default values to properties that have it defined,
@@ -283,7 +286,37 @@ func (o YotiDocumentDetails) ToMap() (map[string]interface{}, error) {
 	if o.IssuingAuthority.IsSet() {
 		toSerialize["issuingAuthority"] = o.IssuingAuthority.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *YotiDocumentDetails) UnmarshalJSON(data []byte) (err error) {
+	varYotiDocumentDetails := _YotiDocumentDetails{}
+
+	err = json.Unmarshal(data, &varYotiDocumentDetails)
+
+	if err != nil {
+		return err
+	}
+
+	*o = YotiDocumentDetails(varYotiDocumentDetails)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "issuingCountry")
+		delete(additionalProperties, "documentNumber")
+		delete(additionalProperties, "expirationDate")
+		delete(additionalProperties, "issuingAuthority")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableYotiDocumentDetails struct {

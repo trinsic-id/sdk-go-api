@@ -46,7 +46,10 @@ type SwedenBankIdProviderOutput struct {
 	NotBefore NullableTime `json:"notBefore,omitempty"`
 	// The certificate validity end date (not after) in UTC
 	NotAfter NullableTime `json:"notAfter,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SwedenBankIdProviderOutput SwedenBankIdProviderOutput
 
 // NewSwedenBankIdProviderOutput instantiates a new SwedenBankIdProviderOutput object
 // This constructor will assign default values to properties that have it defined,
@@ -660,7 +663,45 @@ func (o SwedenBankIdProviderOutput) ToMap() (map[string]interface{}, error) {
 	if o.NotAfter.IsSet() {
 		toSerialize["notAfter"] = o.NotAfter.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *SwedenBankIdProviderOutput) UnmarshalJSON(data []byte) (err error) {
+	varSwedenBankIdProviderOutput := _SwedenBankIdProviderOutput{}
+
+	err = json.Unmarshal(data, &varSwedenBankIdProviderOutput)
+
+	if err != nil {
+		return err
+	}
+
+	*o = SwedenBankIdProviderOutput(varSwedenBankIdProviderOutput)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "fullName")
+		delete(additionalProperties, "dateOfBirth")
+		delete(additionalProperties, "personalIdentityNumber")
+		delete(additionalProperties, "givenName")
+		delete(additionalProperties, "familyName")
+		delete(additionalProperties, "country")
+		delete(additionalProperties, "certificatePolicy")
+		delete(additionalProperties, "commonName")
+		delete(additionalProperties, "distinguishedName")
+		delete(additionalProperties, "personalIdentityNumberIssuingCountry")
+		delete(additionalProperties, "authenticationDeviceIp")
+		delete(additionalProperties, "notBefore")
+		delete(additionalProperties, "notAfter")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableSwedenBankIdProviderOutput struct {

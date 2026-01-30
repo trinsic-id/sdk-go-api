@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -29,6 +28,7 @@ type BrazilDigitalCnhInput struct {
 	DigitalCnhFileContentType NullableString `json:"digitalCnhFileContentType,omitempty"`
 	// The raw bytes of the image of the user's face, collected for biometric comparison.
 	FacialBiometryPhoto NullableString `json:"facialBiometryPhoto,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _BrazilDigitalCnhInput BrazilDigitalCnhInput
@@ -221,6 +221,11 @@ func (o BrazilDigitalCnhInput) ToMap() (map[string]interface{}, error) {
 	if o.FacialBiometryPhoto.IsSet() {
 		toSerialize["facialBiometryPhoto"] = o.FacialBiometryPhoto.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -248,15 +253,23 @@ func (o *BrazilDigitalCnhInput) UnmarshalJSON(data []byte) (err error) {
 
 	varBrazilDigitalCnhInput := _BrazilDigitalCnhInput{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varBrazilDigitalCnhInput)
+	err = json.Unmarshal(data, &varBrazilDigitalCnhInput)
 
 	if err != nil {
 		return err
 	}
 
 	*o = BrazilDigitalCnhInput(varBrazilDigitalCnhInput)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "cpfNumber")
+		delete(additionalProperties, "digitalCnhFile")
+		delete(additionalProperties, "digitalCnhFileContentType")
+		delete(additionalProperties, "facialBiometryPhoto")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

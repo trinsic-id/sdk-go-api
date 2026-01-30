@@ -23,7 +23,10 @@ type SpidInput struct {
 	SubProviderId NullableString `json:"subProviderId,omitempty"`
 	// Only applicable if period-based billing is enabled for your Verification Profile. Contact Trinsic to enable this.              A secret UTF-8 string between 32 and 64 characters in length, used to enable privacy-preserving tracking of unique user verifications during a billing period.              WARNING: This value must NOT change during the course of a billing period for a given Verification Profile, or double-billing may occur. If multiple Verification Profiles are configured to use the same Trinsic-managed SPID Service Provider, the same Billing Tracking Secret must be provided across all such Verification Profiles.
 	BillingTrackingSecret NullableString `json:"billingTrackingSecret,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SpidInput SpidInput
 
 // NewSpidInput instantiates a new SpidInput object
 // This constructor will assign default values to properties that have it defined,
@@ -142,7 +145,34 @@ func (o SpidInput) ToMap() (map[string]interface{}, error) {
 	if o.BillingTrackingSecret.IsSet() {
 		toSerialize["billingTrackingSecret"] = o.BillingTrackingSecret.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *SpidInput) UnmarshalJSON(data []byte) (err error) {
+	varSpidInput := _SpidInput{}
+
+	err = json.Unmarshal(data, &varSpidInput)
+
+	if err != nil {
+		return err
+	}
+
+	*o = SpidInput(varSpidInput)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "subProviderId")
+		delete(additionalProperties, "billingTrackingSecret")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableSpidInput struct {

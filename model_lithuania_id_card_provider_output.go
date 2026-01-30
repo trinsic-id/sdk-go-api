@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -29,6 +28,7 @@ type LithuaniaIdCardProviderOutput struct {
 	DateOfBirth string `json:"dateOfBirth"`
 	// The 11-digit Lithuanian Personal Code (asmens kodas) of the verified individual.              If the first digit is \"9\" (rare), the rest of the identifier is random and has no structure.              Otherwise, this is in the format GYYMMDDSSSC, where:              - G is both gender and century of birth - YYMMDD is the date of birth - SSS is a sequential serial number - C is a checksum digit              If G is odd, the gender is male. If G is even, the gender is female.              If G is 1 or 2, the individual was born in the 19th century (1800-1899). If G is 3 or 4, the individual was born in the 20th century (1900-1999). If G is 5 or 6, the individual was born in the 21st century (2000-2099).              Rarely, the date of birth may be encoded as 000000 if it is not known.
 	PersonalCode string `json:"personalCode"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _LithuaniaIdCardProviderOutput LithuaniaIdCardProviderOutput
@@ -164,6 +164,11 @@ func (o LithuaniaIdCardProviderOutput) ToMap() (map[string]interface{}, error) {
 	toSerialize["lastName"] = o.LastName
 	toSerialize["dateOfBirth"] = o.DateOfBirth
 	toSerialize["personalCode"] = o.PersonalCode
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -194,15 +199,23 @@ func (o *LithuaniaIdCardProviderOutput) UnmarshalJSON(data []byte) (err error) {
 
 	varLithuaniaIdCardProviderOutput := _LithuaniaIdCardProviderOutput{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varLithuaniaIdCardProviderOutput)
+	err = json.Unmarshal(data, &varLithuaniaIdCardProviderOutput)
 
 	if err != nil {
 		return err
 	}
 
 	*o = LithuaniaIdCardProviderOutput(varLithuaniaIdCardProviderOutput)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "firstName")
+		delete(additionalProperties, "lastName")
+		delete(additionalProperties, "dateOfBirth")
+		delete(additionalProperties, "personalCode")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

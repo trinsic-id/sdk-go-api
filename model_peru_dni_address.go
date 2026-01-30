@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -27,6 +26,7 @@ type PeruDniAddress struct {
 	Province string `json:"province"`
 	// District within the province. This is the third level subdivision in the country.              Format: - All uppercase.
 	District string `json:"district"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _PeruDniAddress PeruDniAddress
@@ -136,6 +136,11 @@ func (o PeruDniAddress) ToMap() (map[string]interface{}, error) {
 	toSerialize["region"] = o.Region
 	toSerialize["province"] = o.Province
 	toSerialize["district"] = o.District
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -165,15 +170,22 @@ func (o *PeruDniAddress) UnmarshalJSON(data []byte) (err error) {
 
 	varPeruDniAddress := _PeruDniAddress{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varPeruDniAddress)
+	err = json.Unmarshal(data, &varPeruDniAddress)
 
 	if err != nil {
 		return err
 	}
 
 	*o = PeruDniAddress(varPeruDniAddress)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "region")
+		delete(additionalProperties, "province")
+		delete(additionalProperties, "district")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

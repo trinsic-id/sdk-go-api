@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -57,6 +56,7 @@ type LaWalletProviderOutput struct {
 	County string `json:"county"`
 	// The coarse age returned by LA Wallet for this credential              Possible values: - \"Under 18\" - \"Under 21\" - \"Over 21\"
 	CoarseAge string `json:"coarseAge"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _LaWalletProviderOutput LaWalletProviderOutput
@@ -575,6 +575,11 @@ func (o LaWalletProviderOutput) ToMap() (map[string]interface{}, error) {
 	toSerialize["addressZip"] = o.AddressZip
 	toSerialize["county"] = o.County
 	toSerialize["coarseAge"] = o.CoarseAge
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -618,15 +623,37 @@ func (o *LaWalletProviderOutput) UnmarshalJSON(data []byte) (err error) {
 
 	varLaWalletProviderOutput := _LaWalletProviderOutput{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varLaWalletProviderOutput)
+	err = json.Unmarshal(data, &varLaWalletProviderOutput)
 
 	if err != nil {
 		return err
 	}
 
 	*o = LaWalletProviderOutput(varLaWalletProviderOutput)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "driversLicenseNumber")
+		delete(additionalProperties, "issueDate")
+		delete(additionalProperties, "expirationDate")
+		delete(additionalProperties, "auditNumber")
+		delete(additionalProperties, "licenseStatus")
+		delete(additionalProperties, "licenseClass")
+		delete(additionalProperties, "firstName")
+		delete(additionalProperties, "middleName")
+		delete(additionalProperties, "lastName")
+		delete(additionalProperties, "dateOfBirth")
+		delete(additionalProperties, "sex")
+		delete(additionalProperties, "addressLine1")
+		delete(additionalProperties, "addressLine2")
+		delete(additionalProperties, "addressCity")
+		delete(additionalProperties, "addressState")
+		delete(additionalProperties, "addressZip")
+		delete(additionalProperties, "county")
+		delete(additionalProperties, "coarseAge")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -23,6 +22,7 @@ var _ MappedNullable = &SubmitNativeChallengeResponseResponse{}
 type SubmitNativeChallengeResponseResponse struct {
 	// The Session for which the challenge token was submitted
 	Session Session `json:"session"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _SubmitNativeChallengeResponseResponse SubmitNativeChallengeResponseResponse
@@ -80,6 +80,11 @@ func (o SubmitNativeChallengeResponseResponse) MarshalJSON() ([]byte, error) {
 func (o SubmitNativeChallengeResponseResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["session"] = o.Session
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *SubmitNativeChallengeResponseResponse) UnmarshalJSON(data []byte) (err 
 
 	varSubmitNativeChallengeResponseResponse := _SubmitNativeChallengeResponseResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varSubmitNativeChallengeResponseResponse)
+	err = json.Unmarshal(data, &varSubmitNativeChallengeResponseResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = SubmitNativeChallengeResponseResponse(varSubmitNativeChallengeResponseResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "session")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -32,6 +31,7 @@ type Session struct {
 	Created int64 `json:"created"`
 	// The unix timestamp, in seconds, when this session's data was last updated
 	Updated int64 `json:"updated"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Session Session
@@ -238,6 +238,11 @@ func (o Session) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["created"] = o.Created
 	toSerialize["updated"] = o.Updated
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -269,15 +274,25 @@ func (o *Session) UnmarshalJSON(data []byte) (err error) {
 
 	varSession := _Session{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varSession)
+	err = json.Unmarshal(data, &varSession)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Session(varSession)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "done")
+		delete(additionalProperties, "success")
+		delete(additionalProperties, "errorCode")
+		delete(additionalProperties, "created")
+		delete(additionalProperties, "updated")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

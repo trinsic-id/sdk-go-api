@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -29,6 +28,7 @@ type SubProviderMetadata struct {
 	Subtext string `json:"subtext"`
 	// A URL pointing to the logo on Trinsic's CDN.              May be a PNG, JPG, or SVG image.
 	LogoUrl string `json:"logoUrl"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _SubProviderMetadata SubProviderMetadata
@@ -164,6 +164,11 @@ func (o SubProviderMetadata) ToMap() (map[string]interface{}, error) {
 	toSerialize["name"] = o.Name
 	toSerialize["subtext"] = o.Subtext
 	toSerialize["logoUrl"] = o.LogoUrl
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -194,15 +199,23 @@ func (o *SubProviderMetadata) UnmarshalJSON(data []byte) (err error) {
 
 	varSubProviderMetadata := _SubProviderMetadata{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varSubProviderMetadata)
+	err = json.Unmarshal(data, &varSubProviderMetadata)
 
 	if err != nil {
 		return err
 	}
 
 	*o = SubProviderMetadata(varSubProviderMetadata)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "subtext")
+		delete(additionalProperties, "logoUrl")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

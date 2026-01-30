@@ -33,7 +33,10 @@ type DocumentData struct {
 	IssuingSubdivision NullableString `json:"issuingSubdivision,omitempty"`
 	// The name of the authority which issued the document.
 	IssuingAuthority NullableString `json:"issuingAuthority,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _DocumentData DocumentData
 
 // NewDocumentData instantiates a new DocumentData object
 // This constructor will assign default values to properties that have it defined,
@@ -377,7 +380,39 @@ func (o DocumentData) ToMap() (map[string]interface{}, error) {
 	if o.IssuingAuthority.IsSet() {
 		toSerialize["issuingAuthority"] = o.IssuingAuthority.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *DocumentData) UnmarshalJSON(data []byte) (err error) {
+	varDocumentData := _DocumentData{}
+
+	err = json.Unmarshal(data, &varDocumentData)
+
+	if err != nil {
+		return err
+	}
+
+	*o = DocumentData(varDocumentData)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "number")
+		delete(additionalProperties, "issueDate")
+		delete(additionalProperties, "expirationDate")
+		delete(additionalProperties, "issuingCountry")
+		delete(additionalProperties, "issuingSubdivision")
+		delete(additionalProperties, "issuingAuthority")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableDocumentData struct {

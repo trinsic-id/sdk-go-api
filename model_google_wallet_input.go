@@ -21,7 +21,10 @@ var _ MappedNullable = &GoogleWalletInput{}
 type GoogleWalletInput struct {
 	// The exchange mechanism to use for this Google Wallet verification.              Use `DigitalCredentialsApi` for Digital Credentials API on web, or `NativeApp` for a native Android app.
 	ExchangeMechanism NullableMdlExchangeMechanism `json:"exchangeMechanism,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _GoogleWalletInput GoogleWalletInput
 
 // NewGoogleWalletInput instantiates a new GoogleWalletInput object
 // This constructor will assign default values to properties that have it defined,
@@ -95,7 +98,33 @@ func (o GoogleWalletInput) ToMap() (map[string]interface{}, error) {
 	if o.ExchangeMechanism.IsSet() {
 		toSerialize["exchangeMechanism"] = o.ExchangeMechanism.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *GoogleWalletInput) UnmarshalJSON(data []byte) (err error) {
+	varGoogleWalletInput := _GoogleWalletInput{}
+
+	err = json.Unmarshal(data, &varGoogleWalletInput)
+
+	if err != nil {
+		return err
+	}
+
+	*o = GoogleWalletInput(varGoogleWalletInput)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "exchangeMechanism")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableGoogleWalletInput struct {

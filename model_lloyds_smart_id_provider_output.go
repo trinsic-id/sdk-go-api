@@ -43,7 +43,10 @@ type LloydsSmartIdProviderOutput struct {
 	PostalAddress NullableString `json:"postalAddress,omitempty"`
 	// The details of the underlying document used to help create the Yoti credential
 	DocumentDetails NullableYotiDocumentDetails `json:"documentDetails,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LloydsSmartIdProviderOutput LloydsSmartIdProviderOutput
 
 // NewLloydsSmartIdProviderOutput instantiates a new LloydsSmartIdProviderOutput object
 // This constructor will assign default values to properties that have it defined,
@@ -612,7 +615,44 @@ func (o LloydsSmartIdProviderOutput) ToMap() (map[string]interface{}, error) {
 	if o.DocumentDetails.IsSet() {
 		toSerialize["documentDetails"] = o.DocumentDetails.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *LloydsSmartIdProviderOutput) UnmarshalJSON(data []byte) (err error) {
+	varLloydsSmartIdProviderOutput := _LloydsSmartIdProviderOutput{}
+
+	err = json.Unmarshal(data, &varLloydsSmartIdProviderOutput)
+
+	if err != nil {
+		return err
+	}
+
+	*o = LloydsSmartIdProviderOutput(varLloydsSmartIdProviderOutput)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "rememberMeId")
+		delete(additionalProperties, "email")
+		delete(additionalProperties, "givenName")
+		delete(additionalProperties, "familyName")
+		delete(additionalProperties, "fullName")
+		delete(additionalProperties, "dateOfBirth")
+		delete(additionalProperties, "gender")
+		delete(additionalProperties, "nationality")
+		delete(additionalProperties, "mobileNumber")
+		delete(additionalProperties, "structuredPostalAddress")
+		delete(additionalProperties, "postalAddress")
+		delete(additionalProperties, "documentDetails")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableLloydsSmartIdProviderOutput struct {

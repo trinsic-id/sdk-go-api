@@ -25,7 +25,10 @@ type FrenchNumeriqueGivenName struct {
 	FirstName NullableString `json:"firstName,omitempty"`
 	// Middle name(s) (prénoms secondaires), separated by spaces if multiple.
 	MiddleName NullableString `json:"middleName,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _FrenchNumeriqueGivenName FrenchNumeriqueGivenName
 
 // NewFrenchNumeriqueGivenName instantiates a new FrenchNumeriqueGivenName object
 // This constructor will assign default values to properties that have it defined,
@@ -189,7 +192,35 @@ func (o FrenchNumeriqueGivenName) ToMap() (map[string]interface{}, error) {
 	if o.MiddleName.IsSet() {
 		toSerialize["middleName"] = o.MiddleName.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *FrenchNumeriqueGivenName) UnmarshalJSON(data []byte) (err error) {
+	varFrenchNumeriqueGivenName := _FrenchNumeriqueGivenName{}
+
+	err = json.Unmarshal(data, &varFrenchNumeriqueGivenName)
+
+	if err != nil {
+		return err
+	}
+
+	*o = FrenchNumeriqueGivenName(varFrenchNumeriqueGivenName)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "fullGivenName")
+		delete(additionalProperties, "firstName")
+		delete(additionalProperties, "middleName")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableFrenchNumeriqueGivenName struct {

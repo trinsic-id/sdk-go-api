@@ -21,7 +21,10 @@ var _ MappedNullable = &PeruDniLookupInput{}
 type PeruDniLookupInput struct {
 	// The user's DNI number (8 digits).              Format: - Must not include verification digit. On the DNI card, a ninth digit appears after the first eight, with value   0-9 or A-K. This is not included in the DNI number when verifying against Peru's database. - Peru DNI is sometimes represented with dots. Though uncommon, if dots are included, they will be sanitized.
 	DocumentNumber NullableString `json:"documentNumber,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PeruDniLookupInput PeruDniLookupInput
 
 // NewPeruDniLookupInput instantiates a new PeruDniLookupInput object
 // This constructor will assign default values to properties that have it defined,
@@ -95,7 +98,33 @@ func (o PeruDniLookupInput) ToMap() (map[string]interface{}, error) {
 	if o.DocumentNumber.IsSet() {
 		toSerialize["documentNumber"] = o.DocumentNumber.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PeruDniLookupInput) UnmarshalJSON(data []byte) (err error) {
+	varPeruDniLookupInput := _PeruDniLookupInput{}
+
+	err = json.Unmarshal(data, &varPeruDniLookupInput)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PeruDniLookupInput(varPeruDniLookupInput)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "documentNumber")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePeruDniLookupInput struct {

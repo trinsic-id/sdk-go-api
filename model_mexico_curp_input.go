@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -23,6 +22,7 @@ var _ MappedNullable = &MexicoCurpInput{}
 type MexicoCurpInput struct {
 	// The user's CURP number
 	Curp string `json:"curp"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _MexicoCurpInput MexicoCurpInput
@@ -80,6 +80,11 @@ func (o MexicoCurpInput) MarshalJSON() ([]byte, error) {
 func (o MexicoCurpInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["curp"] = o.Curp
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *MexicoCurpInput) UnmarshalJSON(data []byte) (err error) {
 
 	varMexicoCurpInput := _MexicoCurpInput{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varMexicoCurpInput)
+	err = json.Unmarshal(data, &varMexicoCurpInput)
 
 	if err != nil {
 		return err
 	}
 
 	*o = MexicoCurpInput(varMexicoCurpInput)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "curp")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

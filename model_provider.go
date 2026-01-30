@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -67,6 +66,7 @@ type Provider struct {
 	LiveHealth ProviderHealth `json:"liveHealth"`
 	// The health for a provider in the test environment
 	TestHealth ProviderHealth `json:"testHealth"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Provider Provider
@@ -706,6 +706,11 @@ func (o Provider) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["liveHealth"] = o.LiveHealth
 	toSerialize["testHealth"] = o.TestHealth
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -751,15 +756,41 @@ func (o *Provider) UnmarshalJSON(data []byte) (err error) {
 
 	varProvider := _Provider{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varProvider)
+	err = json.Unmarshal(data, &varProvider)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Provider(varProvider)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "logoUrl")
+		delete(additionalProperties, "subtext")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "geography")
+		delete(additionalProperties, "regions")
+		delete(additionalProperties, "countries")
+		delete(additionalProperties, "subdivisions")
+		delete(additionalProperties, "licensed")
+		delete(additionalProperties, "launchMethod")
+		delete(additionalProperties, "collectionMethod")
+		delete(additionalProperties, "resultsMayBeDelayedAfterRedirect")
+		delete(additionalProperties, "hasRefreshableContent")
+		delete(additionalProperties, "requiresInput")
+		delete(additionalProperties, "hasTrinsicInterface")
+		delete(additionalProperties, "supportsDirectProviderSessions")
+		delete(additionalProperties, "availableAttributes")
+		delete(additionalProperties, "availableAttachments")
+		delete(additionalProperties, "subProviders")
+		delete(additionalProperties, "liveHealth")
+		delete(additionalProperties, "testHealth")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

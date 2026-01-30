@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -27,6 +26,7 @@ type LatviaEparakstsProviderOutput struct {
 	LastName string `json:"lastName"`
 	// The 11-digit Latvian personal code (\"personas kods\") of the verified individual.              This has two possible formats, depending on whether the personal code was issued after July 1, 2017.              For personal codes issued before July 1, 2017, the format is DDMMYY-CZZZQ, where: - DDMMYY is the date of birth, followed by an optional hyphen - C represents the century of birth ('0' for 1800-1899, '1' for 1900-1999, '2' for 2000-2099) - ZZZ is a serial number - Q is a checksum digit              For personal codes issued on or after July 1, 2017, the format is 32ZZZZZZZZQ, where: - 32 is a fixed prefix - ZZZZZZZQ are 8 random digits - Q is a checksum digit              NOTE: Individuals born before July 1, 2017 can elect to be issued a new personal code which does not contain their birthdate. Therefore, no concrete assumptions may be made about an individual's date of birth based solely on the format of their personal code.
 	PersonalCode string `json:"personalCode"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _LatviaEparakstsProviderOutput LatviaEparakstsProviderOutput
@@ -136,6 +136,11 @@ func (o LatviaEparakstsProviderOutput) ToMap() (map[string]interface{}, error) {
 	toSerialize["firstName"] = o.FirstName
 	toSerialize["lastName"] = o.LastName
 	toSerialize["personalCode"] = o.PersonalCode
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -165,15 +170,22 @@ func (o *LatviaEparakstsProviderOutput) UnmarshalJSON(data []byte) (err error) {
 
 	varLatviaEparakstsProviderOutput := _LatviaEparakstsProviderOutput{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varLatviaEparakstsProviderOutput)
+	err = json.Unmarshal(data, &varLatviaEparakstsProviderOutput)
 
 	if err != nil {
 		return err
 	}
 
 	*o = LatviaEparakstsProviderOutput(varLatviaEparakstsProviderOutput)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "firstName")
+		delete(additionalProperties, "lastName")
+		delete(additionalProperties, "personalCode")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

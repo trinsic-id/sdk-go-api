@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -33,6 +32,7 @@ type CreateDirectProviderSessionRequest struct {
 	FallbackToHostedUI NullableBool `json:"fallbackToHostedUI,omitempty"`
 	// Provider-specific input for those providers which require it.
 	ProviderInput NullableProviderInput `json:"providerInput,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateDirectProviderSessionRequest CreateDirectProviderSessionRequest
@@ -277,6 +277,11 @@ func (o CreateDirectProviderSessionRequest) ToMap() (map[string]interface{}, err
 	if o.ProviderInput.IsSet() {
 		toSerialize["providerInput"] = o.ProviderInput.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -306,15 +311,25 @@ func (o *CreateDirectProviderSessionRequest) UnmarshalJSON(data []byte) (err err
 
 	varCreateDirectProviderSessionRequest := _CreateDirectProviderSessionRequest{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateDirectProviderSessionRequest)
+	err = json.Unmarshal(data, &varCreateDirectProviderSessionRequest)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateDirectProviderSessionRequest(varCreateDirectProviderSessionRequest)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "provider")
+		delete(additionalProperties, "verificationProfileId")
+		delete(additionalProperties, "redirectUrl")
+		delete(additionalProperties, "capabilities")
+		delete(additionalProperties, "fallbackToHostedUI")
+		delete(additionalProperties, "providerInput")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

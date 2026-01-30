@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -23,6 +22,7 @@ var _ MappedNullable = &GetAttachmentRequest{}
 type GetAttachmentRequest struct {
 	// The Results Access Key for the Session associated with the Attachment being retrieved.              This is returned during Session creation.
 	ResultsAccessKey string `json:"resultsAccessKey"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GetAttachmentRequest GetAttachmentRequest
@@ -80,6 +80,11 @@ func (o GetAttachmentRequest) MarshalJSON() ([]byte, error) {
 func (o GetAttachmentRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["resultsAccessKey"] = o.ResultsAccessKey
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *GetAttachmentRequest) UnmarshalJSON(data []byte) (err error) {
 
 	varGetAttachmentRequest := _GetAttachmentRequest{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varGetAttachmentRequest)
+	err = json.Unmarshal(data, &varGetAttachmentRequest)
 
 	if err != nil {
 		return err
 	}
 
 	*o = GetAttachmentRequest(varGetAttachmentRequest)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "resultsAccessKey")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

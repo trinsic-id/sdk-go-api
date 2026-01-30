@@ -43,7 +43,10 @@ type YotiProviderOutput struct {
 	PostalAddress NullableString `json:"postalAddress,omitempty"`
 	// The details of the underlying document used to help create the Yoti credential
 	DocumentDetails NullableYotiDocumentDetails `json:"documentDetails,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _YotiProviderOutput YotiProviderOutput
 
 // NewYotiProviderOutput instantiates a new YotiProviderOutput object
 // This constructor will assign default values to properties that have it defined,
@@ -612,7 +615,44 @@ func (o YotiProviderOutput) ToMap() (map[string]interface{}, error) {
 	if o.DocumentDetails.IsSet() {
 		toSerialize["documentDetails"] = o.DocumentDetails.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *YotiProviderOutput) UnmarshalJSON(data []byte) (err error) {
+	varYotiProviderOutput := _YotiProviderOutput{}
+
+	err = json.Unmarshal(data, &varYotiProviderOutput)
+
+	if err != nil {
+		return err
+	}
+
+	*o = YotiProviderOutput(varYotiProviderOutput)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "rememberMeId")
+		delete(additionalProperties, "email")
+		delete(additionalProperties, "givenName")
+		delete(additionalProperties, "familyName")
+		delete(additionalProperties, "fullName")
+		delete(additionalProperties, "dateOfBirth")
+		delete(additionalProperties, "gender")
+		delete(additionalProperties, "nationality")
+		delete(additionalProperties, "mobileNumber")
+		delete(additionalProperties, "structuredPostalAddress")
+		delete(additionalProperties, "postalAddress")
+		delete(additionalProperties, "documentDetails")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableYotiProviderOutput struct {

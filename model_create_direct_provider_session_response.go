@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -27,6 +26,7 @@ type CreateDirectProviderSessionResponse struct {
 	ResultCollection ResultCollection `json:"resultCollection"`
 	// The next step you must take to launch the user into the integration
 	NextStep IntegrationStep `json:"nextStep"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateDirectProviderSessionResponse CreateDirectProviderSessionResponse
@@ -136,6 +136,11 @@ func (o CreateDirectProviderSessionResponse) ToMap() (map[string]interface{}, er
 	toSerialize["sessionId"] = o.SessionId
 	toSerialize["resultCollection"] = o.ResultCollection
 	toSerialize["nextStep"] = o.NextStep
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -165,15 +170,22 @@ func (o *CreateDirectProviderSessionResponse) UnmarshalJSON(data []byte) (err er
 
 	varCreateDirectProviderSessionResponse := _CreateDirectProviderSessionResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateDirectProviderSessionResponse)
+	err = json.Unmarshal(data, &varCreateDirectProviderSessionResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateDirectProviderSessionResponse(varCreateDirectProviderSessionResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "sessionId")
+		delete(additionalProperties, "resultCollection")
+		delete(additionalProperties, "nextStep")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

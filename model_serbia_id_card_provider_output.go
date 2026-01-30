@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -29,6 +28,7 @@ type SerbiaIdCardProviderOutput struct {
 	DateOfBirth string `json:"dateOfBirth"`
 	// The 13-digit Serbian Unique Master Citizen Number (\"JMBG\" / \"Jedinstveni Matični Broj Građana\") of the verified individual.              This is in the format DDMMYYYRRSSSC, where: - DDMM is the day and month of birth - YYY is the last three digits of the year of birth - RR is the political region code of the region of birth (if born after 1976) or of first registration (if born before 1976) - SSS is a unique sex-specific serial number for individuals born on the same date in the same region - C is a checksum digit              If YYY is between 000 and 099, the millennium digit of the year is \"2\"; the individual was born after the year 2000. If YYY is between 800 and 999, the millennium digit of the year is \"1\"; the individual was born before the year 2000.              If SSS is between 000 and 499, the individual is male. If SSS is between 500 and 999, the individual is female.
 	UniqueMasterCitizenNumber string `json:"uniqueMasterCitizenNumber"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _SerbiaIdCardProviderOutput SerbiaIdCardProviderOutput
@@ -164,6 +164,11 @@ func (o SerbiaIdCardProviderOutput) ToMap() (map[string]interface{}, error) {
 	toSerialize["lastName"] = o.LastName
 	toSerialize["dateOfBirth"] = o.DateOfBirth
 	toSerialize["uniqueMasterCitizenNumber"] = o.UniqueMasterCitizenNumber
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -194,15 +199,23 @@ func (o *SerbiaIdCardProviderOutput) UnmarshalJSON(data []byte) (err error) {
 
 	varSerbiaIdCardProviderOutput := _SerbiaIdCardProviderOutput{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varSerbiaIdCardProviderOutput)
+	err = json.Unmarshal(data, &varSerbiaIdCardProviderOutput)
 
 	if err != nil {
 		return err
 	}
 
 	*o = SerbiaIdCardProviderOutput(varSerbiaIdCardProviderOutput)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "firstName")
+		delete(additionalProperties, "lastName")
+		delete(additionalProperties, "dateOfBirth")
+		delete(additionalProperties, "uniqueMasterCitizenNumber")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

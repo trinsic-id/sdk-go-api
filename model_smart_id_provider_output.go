@@ -45,7 +45,10 @@ type SmartIdProviderOutput struct {
 	InteractionFlowUsed NullableString `json:"interactionFlowUsed,omitempty"`
 	// The IP address of the device where the Smart ID app was used for authentication. Can be IPv4 or IPv6 format.
 	DeviceIpAddress NullableString `json:"deviceIpAddress,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SmartIdProviderOutput SmartIdProviderOutput
 
 // NewSmartIdProviderOutput instantiates a new SmartIdProviderOutput object
 // This constructor will assign default values to properties that have it defined,
@@ -659,7 +662,45 @@ func (o SmartIdProviderOutput) ToMap() (map[string]interface{}, error) {
 	if o.DeviceIpAddress.IsSet() {
 		toSerialize["deviceIpAddress"] = o.DeviceIpAddress.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *SmartIdProviderOutput) UnmarshalJSON(data []byte) (err error) {
+	varSmartIdProviderOutput := _SmartIdProviderOutput{}
+
+	err = json.Unmarshal(data, &varSmartIdProviderOutput)
+
+	if err != nil {
+		return err
+	}
+
+	*o = SmartIdProviderOutput(varSmartIdProviderOutput)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "givenName")
+		delete(additionalProperties, "familyName")
+		delete(additionalProperties, "dateOfBirth")
+		delete(additionalProperties, "sex")
+		delete(additionalProperties, "country")
+		delete(additionalProperties, "identityType")
+		delete(additionalProperties, "personalCode")
+		delete(additionalProperties, "serialNumber")
+		delete(additionalProperties, "certificateSubject")
+		delete(additionalProperties, "certificateLevel")
+		delete(additionalProperties, "documentNumber")
+		delete(additionalProperties, "interactionFlowUsed")
+		delete(additionalProperties, "deviceIpAddress")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableSmartIdProviderOutput struct {

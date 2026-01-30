@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -30,6 +29,7 @@ type CreateHostedProviderSessionRequest struct {
 	// Provider-specific input for those providers which require it.   <b>Deprecated:</b> In the future, Hosted Provider Sessions will not accept input on creation, and will instead always redirect the user to a hosted interface to collect input. If you need to collect input from the user yourself, please use the Create Direct Session endpoint instead.
 	// Deprecated
 	ProviderInput NullableProviderInput `json:"providerInput,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateHostedProviderSessionRequest CreateHostedProviderSessionRequest
@@ -187,6 +187,11 @@ func (o CreateHostedProviderSessionRequest) ToMap() (map[string]interface{}, err
 	if o.ProviderInput.IsSet() {
 		toSerialize["providerInput"] = o.ProviderInput.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -216,15 +221,23 @@ func (o *CreateHostedProviderSessionRequest) UnmarshalJSON(data []byte) (err err
 
 	varCreateHostedProviderSessionRequest := _CreateHostedProviderSessionRequest{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateHostedProviderSessionRequest)
+	err = json.Unmarshal(data, &varCreateHostedProviderSessionRequest)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateHostedProviderSessionRequest(varCreateHostedProviderSessionRequest)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "provider")
+		delete(additionalProperties, "verificationProfileId")
+		delete(additionalProperties, "redirectUrl")
+		delete(additionalProperties, "providerInput")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

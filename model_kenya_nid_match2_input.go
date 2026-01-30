@@ -31,7 +31,10 @@ type KenyaNidMatch2Input struct {
 	DateOfBirth NullableString `json:"dateOfBirth,omitempty"`
 	// The user's sex as it appears in their National ID
 	Sex NullableKenyaNidMatch2InputSex `json:"sex,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _KenyaNidMatch2Input KenyaNidMatch2Input
 
 // NewKenyaNidMatch2Input instantiates a new KenyaNidMatch2Input object
 // This constructor will assign default values to properties that have it defined,
@@ -330,7 +333,38 @@ func (o KenyaNidMatch2Input) ToMap() (map[string]interface{}, error) {
 	if o.Sex.IsSet() {
 		toSerialize["sex"] = o.Sex.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *KenyaNidMatch2Input) UnmarshalJSON(data []byte) (err error) {
+	varKenyaNidMatch2Input := _KenyaNidMatch2Input{}
+
+	err = json.Unmarshal(data, &varKenyaNidMatch2Input)
+
+	if err != nil {
+		return err
+	}
+
+	*o = KenyaNidMatch2Input(varKenyaNidMatch2Input)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "idNumber")
+		delete(additionalProperties, "givenName")
+		delete(additionalProperties, "familyName")
+		delete(additionalProperties, "middleName")
+		delete(additionalProperties, "dateOfBirth")
+		delete(additionalProperties, "sex")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableKenyaNidMatch2Input struct {

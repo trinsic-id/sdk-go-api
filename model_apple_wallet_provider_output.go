@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -23,6 +22,7 @@ var _ MappedNullable = &AppleWalletProviderOutput{}
 type AppleWalletProviderOutput struct {
 	// The raw output of the mDL exchange performed through Apple Wallet.
 	RawMdlOutput MdlOutput `json:"rawMdlOutput"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _AppleWalletProviderOutput AppleWalletProviderOutput
@@ -80,6 +80,11 @@ func (o AppleWalletProviderOutput) MarshalJSON() ([]byte, error) {
 func (o AppleWalletProviderOutput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["rawMdlOutput"] = o.RawMdlOutput
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *AppleWalletProviderOutput) UnmarshalJSON(data []byte) (err error) {
 
 	varAppleWalletProviderOutput := _AppleWalletProviderOutput{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varAppleWalletProviderOutput)
+	err = json.Unmarshal(data, &varAppleWalletProviderOutput)
 
 	if err != nil {
 		return err
 	}
 
 	*o = AppleWalletProviderOutput(varAppleWalletProviderOutput)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "rawMdlOutput")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -13,7 +13,6 @@ package trinsic_api
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -32,6 +31,7 @@ type MdlOutputCertificateData struct {
 	NotBefore time.Time `json:"notBefore"`
 	// The date after which this certificate is not valid.
 	NotAfter time.Time `json:"notAfter"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _MdlOutputCertificateData MdlOutputCertificateData
@@ -193,6 +193,11 @@ func (o MdlOutputCertificateData) ToMap() (map[string]interface{}, error) {
 	toSerialize["stateOrProvinceName"] = o.StateOrProvinceName
 	toSerialize["notBefore"] = o.NotBefore
 	toSerialize["notAfter"] = o.NotAfter
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -224,15 +229,24 @@ func (o *MdlOutputCertificateData) UnmarshalJSON(data []byte) (err error) {
 
 	varMdlOutputCertificateData := _MdlOutputCertificateData{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varMdlOutputCertificateData)
+	err = json.Unmarshal(data, &varMdlOutputCertificateData)
 
 	if err != nil {
 		return err
 	}
 
 	*o = MdlOutputCertificateData(varMdlOutputCertificateData)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "serialNumber")
+		delete(additionalProperties, "commonName")
+		delete(additionalProperties, "stateOrProvinceName")
+		delete(additionalProperties, "notBefore")
+		delete(additionalProperties, "notAfter")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

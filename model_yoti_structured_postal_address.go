@@ -59,7 +59,10 @@ type YotiStructuredPostalAddress struct {
 	PostOffice NullableString `json:"postOffice,omitempty"`
 	// The address's care-of field. This indicates that mail should be delivered to an individual through another person or entity who is a known resident at the address. This optional field may appear only for Indian addresses.
 	CareOf NullableString `json:"careOf,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _YotiStructuredPostalAddress YotiStructuredPostalAddress
 
 // NewYotiStructuredPostalAddress instantiates a new YotiStructuredPostalAddress object
 // This constructor will assign default values to properties that have it defined,
@@ -988,7 +991,52 @@ func (o YotiStructuredPostalAddress) ToMap() (map[string]interface{}, error) {
 	if o.CareOf.IsSet() {
 		toSerialize["careOf"] = o.CareOf.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *YotiStructuredPostalAddress) UnmarshalJSON(data []byte) (err error) {
+	varYotiStructuredPostalAddress := _YotiStructuredPostalAddress{}
+
+	err = json.Unmarshal(data, &varYotiStructuredPostalAddress)
+
+	if err != nil {
+		return err
+	}
+
+	*o = YotiStructuredPostalAddress(varYotiStructuredPostalAddress)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "country")
+		delete(additionalProperties, "countryIso")
+		delete(additionalProperties, "formattedAddress")
+		delete(additionalProperties, "line1")
+		delete(additionalProperties, "line2")
+		delete(additionalProperties, "line3")
+		delete(additionalProperties, "line4")
+		delete(additionalProperties, "townCity")
+		delete(additionalProperties, "state")
+		delete(additionalProperties, "postalCode")
+		delete(additionalProperties, "buildingNumber")
+		delete(additionalProperties, "building")
+		delete(additionalProperties, "subBuilding")
+		delete(additionalProperties, "locality")
+		delete(additionalProperties, "deliveryPointReferenceNumber")
+		delete(additionalProperties, "landmark")
+		delete(additionalProperties, "subdistrict")
+		delete(additionalProperties, "district")
+		delete(additionalProperties, "postOffice")
+		delete(additionalProperties, "careOf")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableYotiStructuredPostalAddress struct {

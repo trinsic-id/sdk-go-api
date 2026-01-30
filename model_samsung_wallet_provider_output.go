@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -23,6 +22,7 @@ var _ MappedNullable = &SamsungWalletProviderOutput{}
 type SamsungWalletProviderOutput struct {
 	// The raw output of the mDL exchange performed through Samsung Wallet.
 	RawMdlOutput MdlOutput `json:"rawMdlOutput"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _SamsungWalletProviderOutput SamsungWalletProviderOutput
@@ -80,6 +80,11 @@ func (o SamsungWalletProviderOutput) MarshalJSON() ([]byte, error) {
 func (o SamsungWalletProviderOutput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["rawMdlOutput"] = o.RawMdlOutput
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *SamsungWalletProviderOutput) UnmarshalJSON(data []byte) (err error) {
 
 	varSamsungWalletProviderOutput := _SamsungWalletProviderOutput{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varSamsungWalletProviderOutput)
+	err = json.Unmarshal(data, &varSamsungWalletProviderOutput)
 
 	if err != nil {
 		return err
 	}
 
 	*o = SamsungWalletProviderOutput(varSamsungWalletProviderOutput)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "rawMdlOutput")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

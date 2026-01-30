@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -24,6 +23,7 @@ type ListVerificationProfilesResponse struct {
 	VerificationProfiles []VerificationProfileResponse `json:"verificationProfiles"`
 	// Whether there are additional pages of verification profiles to retrieve
 	More bool `json:"more"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ListVerificationProfilesResponse ListVerificationProfilesResponse
@@ -107,6 +107,11 @@ func (o ListVerificationProfilesResponse) ToMap() (map[string]interface{}, error
 	toSerialize := map[string]interface{}{}
 	toSerialize["verificationProfiles"] = o.VerificationProfiles
 	toSerialize["more"] = o.More
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -135,15 +140,21 @@ func (o *ListVerificationProfilesResponse) UnmarshalJSON(data []byte) (err error
 
 	varListVerificationProfilesResponse := _ListVerificationProfilesResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varListVerificationProfilesResponse)
+	err = json.Unmarshal(data, &varListVerificationProfilesResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ListVerificationProfilesResponse(varListVerificationProfilesResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "verificationProfiles")
+		delete(additionalProperties, "more")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

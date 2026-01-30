@@ -23,7 +23,10 @@ type PhilippineQRInput struct {
 	QrCodeText NullableString `json:"qrCodeText,omitempty"`
 	// The raw bytes of the image containing the user's QR code.
 	QrCodeImage NullableString `json:"qrCodeImage,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PhilippineQRInput PhilippineQRInput
 
 // NewPhilippineQRInput instantiates a new PhilippineQRInput object
 // This constructor will assign default values to properties that have it defined,
@@ -142,7 +145,34 @@ func (o PhilippineQRInput) ToMap() (map[string]interface{}, error) {
 	if o.QrCodeImage.IsSet() {
 		toSerialize["qrCodeImage"] = o.QrCodeImage.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PhilippineQRInput) UnmarshalJSON(data []byte) (err error) {
+	varPhilippineQRInput := _PhilippineQRInput{}
+
+	err = json.Unmarshal(data, &varPhilippineQRInput)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PhilippineQRInput(varPhilippineQRInput)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "qrCodeText")
+		delete(additionalProperties, "qrCodeImage")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePhilippineQRInput struct {

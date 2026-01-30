@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -25,6 +24,7 @@ type GetAttachmentResponse struct {
 	Content string `json:"content"`
 	// The MIME type of the Attachment data
 	ContentType string `json:"contentType"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GetAttachmentResponse GetAttachmentResponse
@@ -108,6 +108,11 @@ func (o GetAttachmentResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["content"] = o.Content
 	toSerialize["contentType"] = o.ContentType
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -136,15 +141,21 @@ func (o *GetAttachmentResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varGetAttachmentResponse := _GetAttachmentResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varGetAttachmentResponse)
+	err = json.Unmarshal(data, &varGetAttachmentResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = GetAttachmentResponse(varGetAttachmentResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "content")
+		delete(additionalProperties, "contentType")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

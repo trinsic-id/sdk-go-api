@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -27,6 +26,7 @@ type IndonesiaNikInput struct {
 	DateOfBirth string `json:"dateOfBirth"`
 	// The user's Indonesia NIK ID number
 	NikIdNumber string `json:"nikIdNumber" validate:"regexp=^\\\\d*$"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _IndonesiaNikInput IndonesiaNikInput
@@ -136,6 +136,11 @@ func (o IndonesiaNikInput) ToMap() (map[string]interface{}, error) {
 	toSerialize["fullName"] = o.FullName
 	toSerialize["dateOfBirth"] = o.DateOfBirth
 	toSerialize["nikIdNumber"] = o.NikIdNumber
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -165,15 +170,22 @@ func (o *IndonesiaNikInput) UnmarshalJSON(data []byte) (err error) {
 
 	varIndonesiaNikInput := _IndonesiaNikInput{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varIndonesiaNikInput)
+	err = json.Unmarshal(data, &varIndonesiaNikInput)
 
 	if err != nil {
 		return err
 	}
 
 	*o = IndonesiaNikInput(varIndonesiaNikInput)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "fullName")
+		delete(additionalProperties, "dateOfBirth")
+		delete(additionalProperties, "nikIdNumber")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

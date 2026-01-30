@@ -35,7 +35,10 @@ type PersonData struct {
 	// Address information for an individual
 	Address NullableAddress `json:"address,omitempty"`
 	DateOfBirth NullableString `json:"dateOfBirth,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PersonData PersonData
 
 // NewPersonData instantiates a new PersonData object
 // This constructor will assign default values to properties that have it defined,
@@ -514,7 +517,42 @@ func (o PersonData) ToMap() (map[string]interface{}, error) {
 	if o.DateOfBirth.IsSet() {
 		toSerialize["dateOfBirth"] = o.DateOfBirth.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PersonData) UnmarshalJSON(data []byte) (err error) {
+	varPersonData := _PersonData{}
+
+	err = json.Unmarshal(data, &varPersonData)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PersonData(varPersonData)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "givenName")
+		delete(additionalProperties, "familyName")
+		delete(additionalProperties, "middleName")
+		delete(additionalProperties, "fullName")
+		delete(additionalProperties, "suffix")
+		delete(additionalProperties, "nationality")
+		delete(additionalProperties, "sex")
+		delete(additionalProperties, "phoneNumber")
+		delete(additionalProperties, "address")
+		delete(additionalProperties, "dateOfBirth")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePersonData struct {

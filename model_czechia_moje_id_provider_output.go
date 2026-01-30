@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -29,6 +28,7 @@ type CzechiaMojeIdProviderOutput struct {
 	DateOfBirth string `json:"dateOfBirth"`
 	// The OpenID 2.0 Identifier (\"openid2_id\") of the verified individual's MojeID account.              This is an HTTPS URL which uniquely identifies the user within the MojeID system.
 	OpenId2Identifier string `json:"openId2Identifier"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CzechiaMojeIdProviderOutput CzechiaMojeIdProviderOutput
@@ -164,6 +164,11 @@ func (o CzechiaMojeIdProviderOutput) ToMap() (map[string]interface{}, error) {
 	toSerialize["lastName"] = o.LastName
 	toSerialize["dateOfBirth"] = o.DateOfBirth
 	toSerialize["openId2Identifier"] = o.OpenId2Identifier
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -194,15 +199,23 @@ func (o *CzechiaMojeIdProviderOutput) UnmarshalJSON(data []byte) (err error) {
 
 	varCzechiaMojeIdProviderOutput := _CzechiaMojeIdProviderOutput{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCzechiaMojeIdProviderOutput)
+	err = json.Unmarshal(data, &varCzechiaMojeIdProviderOutput)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CzechiaMojeIdProviderOutput(varCzechiaMojeIdProviderOutput)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "firstName")
+		delete(additionalProperties, "lastName")
+		delete(additionalProperties, "dateOfBirth")
+		delete(additionalProperties, "openId2Identifier")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

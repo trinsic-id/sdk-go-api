@@ -23,7 +23,10 @@ type Match struct {
 	ProbabilityValue NullableFloat64 `json:"probabilityValue,omitempty"`
 	// The boolean value of the match.              This is a value of true or false, where true indicates a match and false indicates no match.              This field is non-null when the underlying Provider's match output is in the form of a boolean value.
 	BooleanValue NullableBool `json:"booleanValue,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Match Match
 
 // NewMatch instantiates a new Match object
 // This constructor will assign default values to properties that have it defined,
@@ -142,7 +145,34 @@ func (o Match) ToMap() (map[string]interface{}, error) {
 	if o.BooleanValue.IsSet() {
 		toSerialize["booleanValue"] = o.BooleanValue.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Match) UnmarshalJSON(data []byte) (err error) {
+	varMatch := _Match{}
+
+	err = json.Unmarshal(data, &varMatch)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Match(varMatch)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "probabilityValue")
+		delete(additionalProperties, "booleanValue")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableMatch struct {

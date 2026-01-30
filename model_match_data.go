@@ -41,7 +41,10 @@ type MatchData struct {
 	Liveness NullableMatch `json:"liveness,omitempty"`
 	// The confidence score for the image manipulation check performed against the selfie image of the individual.              Higher values indicate lower suspicion of image manipulation.
 	ImageAuthenticity NullableMatch `json:"imageAuthenticity,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _MatchData MatchData
 
 // NewMatchData instantiates a new MatchData object
 // This constructor will assign default values to properties that have it defined,
@@ -565,7 +568,43 @@ func (o MatchData) ToMap() (map[string]interface{}, error) {
 	if o.ImageAuthenticity.IsSet() {
 		toSerialize["imageAuthenticity"] = o.ImageAuthenticity.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *MatchData) UnmarshalJSON(data []byte) (err error) {
+	varMatchData := _MatchData{}
+
+	err = json.Unmarshal(data, &varMatchData)
+
+	if err != nil {
+		return err
+	}
+
+	*o = MatchData(varMatchData)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "nationalIdNumber")
+		delete(additionalProperties, "fullName")
+		delete(additionalProperties, "givenName")
+		delete(additionalProperties, "middleName")
+		delete(additionalProperties, "familyName")
+		delete(additionalProperties, "sex")
+		delete(additionalProperties, "dateOfBirth")
+		delete(additionalProperties, "phoneNumber")
+		delete(additionalProperties, "faceMatch")
+		delete(additionalProperties, "liveness")
+		delete(additionalProperties, "imageAuthenticity")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableMatchData struct {

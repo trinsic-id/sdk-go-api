@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -25,6 +24,7 @@ type ContractAttachment struct {
 	Type string `json:"type"`
 	// Indicates when this attachment will be present in verification results.
 	Outputted AttributeAvailability `json:"outputted"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ContractAttachment ContractAttachment
@@ -108,6 +108,11 @@ func (o ContractAttachment) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["type"] = o.Type
 	toSerialize["outputted"] = o.Outputted
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -136,15 +141,21 @@ func (o *ContractAttachment) UnmarshalJSON(data []byte) (err error) {
 
 	varContractAttachment := _ContractAttachment{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varContractAttachment)
+	err = json.Unmarshal(data, &varContractAttachment)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ContractAttachment(varContractAttachment)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "outputted")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

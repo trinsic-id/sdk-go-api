@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -23,6 +22,7 @@ var _ MappedNullable = &ListProvidersResponse{}
 type ListProvidersResponse struct {
 	// The list of providers available to this organization
 	Providers []Provider `json:"providers"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ListProvidersResponse ListProvidersResponse
@@ -80,6 +80,11 @@ func (o ListProvidersResponse) MarshalJSON() ([]byte, error) {
 func (o ListProvidersResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["providers"] = o.Providers
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *ListProvidersResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varListProvidersResponse := _ListProvidersResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varListProvidersResponse)
+	err = json.Unmarshal(data, &varListProvidersResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ListProvidersResponse(varListProvidersResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "providers")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

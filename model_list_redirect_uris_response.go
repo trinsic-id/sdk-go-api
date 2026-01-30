@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -25,6 +24,7 @@ type ListRedirectUrisResponse struct {
 	Uris []RedirectUriResponse `json:"uris"`
 	// Whether there are additional pages of uris to retrieve
 	More bool `json:"more"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ListRedirectUrisResponse ListRedirectUrisResponse
@@ -108,6 +108,11 @@ func (o ListRedirectUrisResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["uris"] = o.Uris
 	toSerialize["more"] = o.More
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -136,15 +141,21 @@ func (o *ListRedirectUrisResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varListRedirectUrisResponse := _ListRedirectUrisResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varListRedirectUrisResponse)
+	err = json.Unmarshal(data, &varListRedirectUrisResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ListRedirectUrisResponse(varListRedirectUrisResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "uris")
+		delete(additionalProperties, "more")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

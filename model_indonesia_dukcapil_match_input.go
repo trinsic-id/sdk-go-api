@@ -36,7 +36,10 @@ type IndonesiaDukcapilMatchInput struct {
 	DocumentImage NullableString `json:"documentImage,omitempty"`
 	// The timestamp when consent was given by the user for the verification.
 	ConsentGivenAt NullableTime `json:"consentGivenAt,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _IndonesiaDukcapilMatchInput IndonesiaDukcapilMatchInput
 
 // NewIndonesiaDukcapilMatchInput instantiates a new IndonesiaDukcapilMatchInput object
 // This constructor will assign default values to properties that have it defined,
@@ -425,7 +428,40 @@ func (o IndonesiaDukcapilMatchInput) ToMap() (map[string]interface{}, error) {
 	if o.ConsentGivenAt.IsSet() {
 		toSerialize["consentGivenAt"] = o.ConsentGivenAt.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *IndonesiaDukcapilMatchInput) UnmarshalJSON(data []byte) (err error) {
+	varIndonesiaDukcapilMatchInput := _IndonesiaDukcapilMatchInput{}
+
+	err = json.Unmarshal(data, &varIndonesiaDukcapilMatchInput)
+
+	if err != nil {
+		return err
+	}
+
+	*o = IndonesiaDukcapilMatchInput(varIndonesiaDukcapilMatchInput)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "fullName")
+		delete(additionalProperties, "dateOfBirth")
+		delete(additionalProperties, "nikIdNumber")
+		delete(additionalProperties, "email")
+		delete(additionalProperties, "phoneNumber")
+		delete(additionalProperties, "selfieImage")
+		delete(additionalProperties, "documentImage")
+		delete(additionalProperties, "consentGivenAt")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableIndonesiaDukcapilMatchInput struct {

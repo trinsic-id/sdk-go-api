@@ -21,7 +21,10 @@ var _ MappedNullable = &TrinsicTestSubProvidersInput{}
 type TrinsicTestSubProvidersInput struct {
 	// The ID of the specific IDP to invoke within the test federated provider.              Valid options are `sub-provider-a` and `sub-provider-b`.              If not specified, the user will be prompted to select one.
 	SubProviderId NullableString `json:"subProviderId,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _TrinsicTestSubProvidersInput TrinsicTestSubProvidersInput
 
 // NewTrinsicTestSubProvidersInput instantiates a new TrinsicTestSubProvidersInput object
 // This constructor will assign default values to properties that have it defined,
@@ -95,7 +98,33 @@ func (o TrinsicTestSubProvidersInput) ToMap() (map[string]interface{}, error) {
 	if o.SubProviderId.IsSet() {
 		toSerialize["subProviderId"] = o.SubProviderId.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *TrinsicTestSubProvidersInput) UnmarshalJSON(data []byte) (err error) {
+	varTrinsicTestSubProvidersInput := _TrinsicTestSubProvidersInput{}
+
+	err = json.Unmarshal(data, &varTrinsicTestSubProvidersInput)
+
+	if err != nil {
+		return err
+	}
+
+	*o = TrinsicTestSubProvidersInput(varTrinsicTestSubProvidersInput)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "subProviderId")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableTrinsicTestSubProvidersInput struct {

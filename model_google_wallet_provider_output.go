@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -23,6 +22,7 @@ var _ MappedNullable = &GoogleWalletProviderOutput{}
 type GoogleWalletProviderOutput struct {
 	// The raw output of the mDL exchange performed through Google Wallet.
 	RawMdlOutput MdlOutput `json:"rawMdlOutput"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GoogleWalletProviderOutput GoogleWalletProviderOutput
@@ -80,6 +80,11 @@ func (o GoogleWalletProviderOutput) MarshalJSON() ([]byte, error) {
 func (o GoogleWalletProviderOutput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["rawMdlOutput"] = o.RawMdlOutput
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *GoogleWalletProviderOutput) UnmarshalJSON(data []byte) (err error) {
 
 	varGoogleWalletProviderOutput := _GoogleWalletProviderOutput{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varGoogleWalletProviderOutput)
+	err = json.Unmarshal(data, &varGoogleWalletProviderOutput)
 
 	if err != nil {
 		return err
 	}
 
 	*o = GoogleWalletProviderOutput(varGoogleWalletProviderOutput)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "rawMdlOutput")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

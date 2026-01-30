@@ -69,7 +69,10 @@ type FrenchNumeriqueProviderOutput struct {
 	IdentityDocumentEmittingCountry NullableString `json:"identityDocumentEmittingCountry,omitempty"`
 	// Machine Readable Zone (MRZ) data from the ID Card, Passport or Residence Permit.
 	IdentityDocumentMrz NullableString `json:"identityDocumentMrz,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _FrenchNumeriqueProviderOutput FrenchNumeriqueProviderOutput
 
 // NewFrenchNumeriqueProviderOutput instantiates a new FrenchNumeriqueProviderOutput object
 // This constructor will assign default values to properties that have it defined,
@@ -1223,7 +1226,57 @@ func (o FrenchNumeriqueProviderOutput) ToMap() (map[string]interface{}, error) {
 	if o.IdentityDocumentMrz.IsSet() {
 		toSerialize["identityDocumentMrz"] = o.IdentityDocumentMrz.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *FrenchNumeriqueProviderOutput) UnmarshalJSON(data []byte) (err error) {
+	varFrenchNumeriqueProviderOutput := _FrenchNumeriqueProviderOutput{}
+
+	err = json.Unmarshal(data, &varFrenchNumeriqueProviderOutput)
+
+	if err != nil {
+		return err
+	}
+
+	*o = FrenchNumeriqueProviderOutput(varFrenchNumeriqueProviderOutput)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "givenName")
+		delete(additionalProperties, "familyName")
+		delete(additionalProperties, "preferredSurname")
+		delete(additionalProperties, "birthdate")
+		delete(additionalProperties, "nationality")
+		delete(additionalProperties, "sex")
+		delete(additionalProperties, "majority")
+		delete(additionalProperties, "phoneNumber")
+		delete(additionalProperties, "phoneNumberVerified")
+		delete(additionalProperties, "email")
+		delete(additionalProperties, "emailVerified")
+		delete(additionalProperties, "birthplace")
+		delete(additionalProperties, "birthplaceLabel")
+		delete(additionalProperties, "birthCountry")
+		delete(additionalProperties, "birthCountryIso")
+		delete(additionalProperties, "birthCountryLabel")
+		delete(additionalProperties, "birthDepartment")
+		delete(additionalProperties, "digitalIdentityCreationDate")
+		delete(additionalProperties, "digitalIdentityExpirationDate")
+		delete(additionalProperties, "identityDocumentType")
+		delete(additionalProperties, "identityDocumentNumber")
+		delete(additionalProperties, "identityDocumentEmittingDate")
+		delete(additionalProperties, "identityDocumentExpirationDate")
+		delete(additionalProperties, "identityDocumentEmittingCountry")
+		delete(additionalProperties, "identityDocumentMrz")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableFrenchNumeriqueProviderOutput struct {

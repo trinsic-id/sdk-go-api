@@ -25,7 +25,10 @@ type MobileIdInput struct {
 	MobileIdNationalIdentityNumber NullableString `json:"mobileIdNationalIdentityNumber,omitempty"`
 	// The user's language -- LIT, EST, ENG, or RUS
 	MobileIdLanguage NullableMobileIdLanguage `json:"mobileIdLanguage,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _MobileIdInput MobileIdInput
 
 // NewMobileIdInput instantiates a new MobileIdInput object
 // This constructor will assign default values to properties that have it defined,
@@ -189,7 +192,35 @@ func (o MobileIdInput) ToMap() (map[string]interface{}, error) {
 	if o.MobileIdLanguage.IsSet() {
 		toSerialize["mobileIdLanguage"] = o.MobileIdLanguage.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *MobileIdInput) UnmarshalJSON(data []byte) (err error) {
+	varMobileIdInput := _MobileIdInput{}
+
+	err = json.Unmarshal(data, &varMobileIdInput)
+
+	if err != nil {
+		return err
+	}
+
+	*o = MobileIdInput(varMobileIdInput)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "mobileIdPhoneNumber")
+		delete(additionalProperties, "mobileIdNationalIdentityNumber")
+		delete(additionalProperties, "mobileIdLanguage")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableMobileIdInput struct {

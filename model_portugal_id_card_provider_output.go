@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -29,6 +28,7 @@ type PortugalIdCardProviderOutput struct {
 	DateOfBirth string `json:"dateOfBirth"`
 	// The 8-digit Portuguese Civil Identification Number (número de identificação civil) of the verified individual.
 	CivilIdentificationNumber string `json:"civilIdentificationNumber"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _PortugalIdCardProviderOutput PortugalIdCardProviderOutput
@@ -164,6 +164,11 @@ func (o PortugalIdCardProviderOutput) ToMap() (map[string]interface{}, error) {
 	toSerialize["lastName"] = o.LastName
 	toSerialize["dateOfBirth"] = o.DateOfBirth
 	toSerialize["civilIdentificationNumber"] = o.CivilIdentificationNumber
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -194,15 +199,23 @@ func (o *PortugalIdCardProviderOutput) UnmarshalJSON(data []byte) (err error) {
 
 	varPortugalIdCardProviderOutput := _PortugalIdCardProviderOutput{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varPortugalIdCardProviderOutput)
+	err = json.Unmarshal(data, &varPortugalIdCardProviderOutput)
 
 	if err != nil {
 		return err
 	}
 
 	*o = PortugalIdCardProviderOutput(varPortugalIdCardProviderOutput)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "firstName")
+		delete(additionalProperties, "lastName")
+		delete(additionalProperties, "dateOfBirth")
+		delete(additionalProperties, "civilIdentificationNumber")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

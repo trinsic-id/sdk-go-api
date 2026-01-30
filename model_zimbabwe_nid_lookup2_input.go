@@ -21,7 +21,10 @@ var _ MappedNullable = &ZimbabweNidLookup2Input{}
 type ZimbabweNidLookup2Input struct {
 	// The user's National ID number
 	IdNumber NullableString `json:"idNumber,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ZimbabweNidLookup2Input ZimbabweNidLookup2Input
 
 // NewZimbabweNidLookup2Input instantiates a new ZimbabweNidLookup2Input object
 // This constructor will assign default values to properties that have it defined,
@@ -95,7 +98,33 @@ func (o ZimbabweNidLookup2Input) ToMap() (map[string]interface{}, error) {
 	if o.IdNumber.IsSet() {
 		toSerialize["idNumber"] = o.IdNumber.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ZimbabweNidLookup2Input) UnmarshalJSON(data []byte) (err error) {
+	varZimbabweNidLookup2Input := _ZimbabweNidLookup2Input{}
+
+	err = json.Unmarshal(data, &varZimbabweNidLookup2Input)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ZimbabweNidLookup2Input(varZimbabweNidLookup2Input)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "idNumber")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableZimbabweNidLookup2Input struct {

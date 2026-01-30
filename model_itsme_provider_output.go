@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -31,6 +30,7 @@ type ItsmeProviderOutput struct {
 	HashedNationalRegisterNumber NullableString `json:"hashedNationalRegisterNumber,omitempty"`
 	// The raw (not hashed) Belgian National Register Number (\"Rijksregisternummer\") of the verified individual.              Only returned if your account has been explicitly authorized to receive it by itsme; by law, this data is considered sensitive personal data.              This is an 11-digit number in the format YYMMDDXXXCC, where: - YYMMDD represents the individual's date of birth (year, month, day). - XXX is a sequential birth number, odd for females and even for males. - CC is a checksum, calculated with the equation: 97 - (YYMMDDXXX mod 97)              For births in the year 2000 or later, the digit '2' is prepended to the first 9 digits during checksum calculation.
 	NationalRegisterNumber NullableString `json:"nationalRegisterNumber,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ItsmeProviderOutput ItsmeProviderOutput
@@ -230,6 +230,11 @@ func (o ItsmeProviderOutput) ToMap() (map[string]interface{}, error) {
 	if o.NationalRegisterNumber.IsSet() {
 		toSerialize["nationalRegisterNumber"] = o.NationalRegisterNumber.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -259,15 +264,24 @@ func (o *ItsmeProviderOutput) UnmarshalJSON(data []byte) (err error) {
 
 	varItsmeProviderOutput := _ItsmeProviderOutput{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varItsmeProviderOutput)
+	err = json.Unmarshal(data, &varItsmeProviderOutput)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ItsmeProviderOutput(varItsmeProviderOutput)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "firstName")
+		delete(additionalProperties, "lastName")
+		delete(additionalProperties, "dateOfBirth")
+		delete(additionalProperties, "hashedNationalRegisterNumber")
+		delete(additionalProperties, "nationalRegisterNumber")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

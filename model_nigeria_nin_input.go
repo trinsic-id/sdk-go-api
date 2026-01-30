@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -35,6 +34,7 @@ type NigeriaNinInput struct {
 	Gender NullableString `json:"gender,omitempty"`
 	// The user's National ID number
 	NationalIdNumber string `json:"nationalIdNumber" validate:"regexp=^\\\\d*$"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _NigeriaNinInput NigeriaNinInput
@@ -305,6 +305,11 @@ func (o NigeriaNinInput) ToMap() (map[string]interface{}, error) {
 		toSerialize["gender"] = o.Gender.Get()
 	}
 	toSerialize["nationalIdNumber"] = o.NationalIdNumber
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -335,15 +340,26 @@ func (o *NigeriaNinInput) UnmarshalJSON(data []byte) (err error) {
 
 	varNigeriaNinInput := _NigeriaNinInput{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varNigeriaNinInput)
+	err = json.Unmarshal(data, &varNigeriaNinInput)
 
 	if err != nil {
 		return err
 	}
 
 	*o = NigeriaNinInput(varNigeriaNinInput)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "firstName")
+		delete(additionalProperties, "middleName")
+		delete(additionalProperties, "lastName")
+		delete(additionalProperties, "phoneNumber")
+		delete(additionalProperties, "dateOfBirth")
+		delete(additionalProperties, "gender")
+		delete(additionalProperties, "nationalIdNumber")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

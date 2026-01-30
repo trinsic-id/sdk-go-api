@@ -23,7 +23,10 @@ type AadhaarInput struct {
 	FullName NullableString `json:"fullName,omitempty"`
 	// The user's date of birth, in `YYYY-MM-DD` format
 	DateOfBirth NullableString `json:"dateOfBirth,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _AadhaarInput AadhaarInput
 
 // NewAadhaarInput instantiates a new AadhaarInput object
 // This constructor will assign default values to properties that have it defined,
@@ -142,7 +145,34 @@ func (o AadhaarInput) ToMap() (map[string]interface{}, error) {
 	if o.DateOfBirth.IsSet() {
 		toSerialize["dateOfBirth"] = o.DateOfBirth.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *AadhaarInput) UnmarshalJSON(data []byte) (err error) {
+	varAadhaarInput := _AadhaarInput{}
+
+	err = json.Unmarshal(data, &varAadhaarInput)
+
+	if err != nil {
+		return err
+	}
+
+	*o = AadhaarInput(varAadhaarInput)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "fullName")
+		delete(additionalProperties, "dateOfBirth")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableAadhaarInput struct {

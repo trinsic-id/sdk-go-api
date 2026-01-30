@@ -21,7 +21,10 @@ var _ MappedNullable = &AppleWalletInput{}
 type AppleWalletInput struct {
 	// The exchange mechanism to use for this Apple Wallet verification.              Use `DigitalCredentialsApi` for Digital Credentials API on web, or `NativeApp` for a native iOS app.
 	ExchangeMechanism NullableMdlExchangeMechanism `json:"exchangeMechanism,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _AppleWalletInput AppleWalletInput
 
 // NewAppleWalletInput instantiates a new AppleWalletInput object
 // This constructor will assign default values to properties that have it defined,
@@ -95,7 +98,33 @@ func (o AppleWalletInput) ToMap() (map[string]interface{}, error) {
 	if o.ExchangeMechanism.IsSet() {
 		toSerialize["exchangeMechanism"] = o.ExchangeMechanism.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *AppleWalletInput) UnmarshalJSON(data []byte) (err error) {
+	varAppleWalletInput := _AppleWalletInput{}
+
+	err = json.Unmarshal(data, &varAppleWalletInput)
+
+	if err != nil {
+		return err
+	}
+
+	*o = AppleWalletInput(varAppleWalletInput)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "exchangeMechanism")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableAppleWalletInput struct {

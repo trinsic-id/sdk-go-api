@@ -85,7 +85,10 @@ type ProviderInput struct {
 	TrinsicTestDatabaseLookup NullableTrinsicTestDatabaseLookupInput `json:"trinsic-test-database-lookup,omitempty"`
 	// *TEST MODE ONLY.*              Input for the `trinsic-test-sub-providers` provider
 	TrinsicTestSubProviders NullableTrinsicTestSubProvidersInput `json:"trinsic-test-sub-providers,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ProviderInput ProviderInput
 
 // NewProviderInput instantiates a new ProviderInput object
 // This constructor will assign default values to properties that have it defined,
@@ -1599,7 +1602,65 @@ func (o ProviderInput) ToMap() (map[string]interface{}, error) {
 	if o.TrinsicTestSubProviders.IsSet() {
 		toSerialize["trinsic-test-sub-providers"] = o.TrinsicTestSubProviders.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ProviderInput) UnmarshalJSON(data []byte) (err error) {
+	varProviderInput := _ProviderInput{}
+
+	err = json.Unmarshal(data, &varProviderInput)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ProviderInput(varProviderInput)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "kenya-nid-match-biometric-2")
+		delete(additionalProperties, "indonesia-nik-lookup")
+		delete(additionalProperties, "indonesia-dukcapil-match")
+		delete(additionalProperties, "mexico-curp-lookup")
+		delete(additionalProperties, "south-africa-nid-lookup")
+		delete(additionalProperties, "kenya-nid-lookup")
+		delete(additionalProperties, "kenya-nid-match-2")
+		delete(additionalProperties, "kenya-nid-lookup-2")
+		delete(additionalProperties, "south-africa-nid-lookup-2")
+		delete(additionalProperties, "south-africa-nid-match-2")
+		delete(additionalProperties, "south-africa-nid-match-biometric-2")
+		delete(additionalProperties, "nigeria-nin-lookup-2")
+		delete(additionalProperties, "cote-divoire-nid-lookup-2")
+		delete(additionalProperties, "zimbabwe-nid-lookup-2")
+		delete(additionalProperties, "nigeria-nin-match-2")
+		delete(additionalProperties, "uganda-nid-match-2")
+		delete(additionalProperties, "nigeria-nin-match-biometric-2")
+		delete(additionalProperties, "nigeria-nin-lookup")
+		delete(additionalProperties, "india-digilocker-aadhaar-match")
+		delete(additionalProperties, "brazil-cpf-lookup")
+		delete(additionalProperties, "brazil-digital-cnh")
+		delete(additionalProperties, "philippines-philsys-match")
+		delete(additionalProperties, "philippines-physical-national-id-qr")
+		delete(additionalProperties, "philippines-digital-national-id-qr")
+		delete(additionalProperties, "smart-id")
+		delete(additionalProperties, "mobile-id")
+		delete(additionalProperties, "netherlands-idin")
+		delete(additionalProperties, "italy-spid")
+		delete(additionalProperties, "google-wallet")
+		delete(additionalProperties, "apple-wallet")
+		delete(additionalProperties, "peru-dni-lookup")
+		delete(additionalProperties, "trinsic-test-database-lookup")
+		delete(additionalProperties, "trinsic-test-sub-providers")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableProviderInput struct {

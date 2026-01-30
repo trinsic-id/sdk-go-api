@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -22,6 +21,7 @@ var _ MappedNullable = &CancelSessionResponse{}
 // CancelSessionResponse struct for CancelSessionResponse
 type CancelSessionResponse struct {
 	Session Session `json:"session"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CancelSessionResponse CancelSessionResponse
@@ -79,6 +79,11 @@ func (o CancelSessionResponse) MarshalJSON() ([]byte, error) {
 func (o CancelSessionResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["session"] = o.Session
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *CancelSessionResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varCancelSessionResponse := _CancelSessionResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCancelSessionResponse)
+	err = json.Unmarshal(data, &varCancelSessionResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CancelSessionResponse(varCancelSessionResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "session")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

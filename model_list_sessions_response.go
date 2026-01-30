@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -26,6 +25,7 @@ type ListSessionsResponse struct {
 	Total int32 `json:"total"`
 	// Whether there are additional pages of sessions to retrieve
 	More bool `json:"more"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ListSessionsResponse ListSessionsResponse
@@ -135,6 +135,11 @@ func (o ListSessionsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["sessions"] = o.Sessions
 	toSerialize["total"] = o.Total
 	toSerialize["more"] = o.More
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -164,15 +169,22 @@ func (o *ListSessionsResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varListSessionsResponse := _ListSessionsResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varListSessionsResponse)
+	err = json.Unmarshal(data, &varListSessionsResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ListSessionsResponse(varListSessionsResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "sessions")
+		delete(additionalProperties, "total")
+		delete(additionalProperties, "more")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

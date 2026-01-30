@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -29,6 +28,7 @@ type AttachmentInfo struct {
 	ContentType string `json:"contentType"`
 	// The size in bytes of the attachment.
 	SizeBytes int32 `json:"sizeBytes"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _AttachmentInfo AttachmentInfo
@@ -164,6 +164,11 @@ func (o AttachmentInfo) ToMap() (map[string]interface{}, error) {
 	toSerialize["type"] = o.Type
 	toSerialize["contentType"] = o.ContentType
 	toSerialize["sizeBytes"] = o.SizeBytes
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -194,15 +199,23 @@ func (o *AttachmentInfo) UnmarshalJSON(data []byte) (err error) {
 
 	varAttachmentInfo := _AttachmentInfo{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varAttachmentInfo)
+	err = json.Unmarshal(data, &varAttachmentInfo)
 
 	if err != nil {
 		return err
 	}
 
 	*o = AttachmentInfo(varAttachmentInfo)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "contentType")
+		delete(additionalProperties, "sizeBytes")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

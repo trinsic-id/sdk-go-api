@@ -21,7 +21,10 @@ var _ MappedNullable = &MexicoCurpProviderOutput{}
 type MexicoCurpProviderOutput struct {
 	// Curp status for the subject.              Possible values: - AN: Alta Normal (Normal registration) - Active - AH: Alta con Homonimia (Registration with homonymy) - Active - RCC: Registro de cambio afectando a CURP (Change affecting CURP) - Active - RCN: Registro de cambio no afectando a CURP (Change not affecting CURP) - Active - BAP: Baja por documento apócrifo (Low due to apocryphal document) - Inactive - BSU: Baja sin uso (Low curp without use) - Inactive - BD: Baja por defunción (Low curp due to death) - Inactive - BDM: Baja administrativa (Low, due to administrative process) - Inactive - BDP: Baja por adopción (Low, due to adoption) - Inactive - BJD: Baja Judicial (Low for judicial reasons) - Inactive
 	CurpStatus NullableString `json:"curpStatus,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _MexicoCurpProviderOutput MexicoCurpProviderOutput
 
 // NewMexicoCurpProviderOutput instantiates a new MexicoCurpProviderOutput object
 // This constructor will assign default values to properties that have it defined,
@@ -95,7 +98,33 @@ func (o MexicoCurpProviderOutput) ToMap() (map[string]interface{}, error) {
 	if o.CurpStatus.IsSet() {
 		toSerialize["curpStatus"] = o.CurpStatus.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *MexicoCurpProviderOutput) UnmarshalJSON(data []byte) (err error) {
+	varMexicoCurpProviderOutput := _MexicoCurpProviderOutput{}
+
+	err = json.Unmarshal(data, &varMexicoCurpProviderOutput)
+
+	if err != nil {
+		return err
+	}
+
+	*o = MexicoCurpProviderOutput(varMexicoCurpProviderOutput)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "curpStatus")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableMexicoCurpProviderOutput struct {

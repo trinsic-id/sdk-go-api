@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -25,6 +24,7 @@ type AustriaHandySignaturProviderOutput struct {
 	FirstName string `json:"firstName"`
 	// The last name of the verified individual
 	LastName string `json:"lastName"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _AustriaHandySignaturProviderOutput AustriaHandySignaturProviderOutput
@@ -108,6 +108,11 @@ func (o AustriaHandySignaturProviderOutput) ToMap() (map[string]interface{}, err
 	toSerialize := map[string]interface{}{}
 	toSerialize["firstName"] = o.FirstName
 	toSerialize["lastName"] = o.LastName
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -136,15 +141,21 @@ func (o *AustriaHandySignaturProviderOutput) UnmarshalJSON(data []byte) (err err
 
 	varAustriaHandySignaturProviderOutput := _AustriaHandySignaturProviderOutput{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varAustriaHandySignaturProviderOutput)
+	err = json.Unmarshal(data, &varAustriaHandySignaturProviderOutput)
 
 	if err != nil {
 		return err
 	}
 
 	*o = AustriaHandySignaturProviderOutput(varAustriaHandySignaturProviderOutput)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "firstName")
+		delete(additionalProperties, "lastName")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

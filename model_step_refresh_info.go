@@ -13,7 +13,6 @@ package trinsic_api
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -28,6 +27,7 @@ type StepRefreshInfo struct {
 	RefreshAfter time.Time `json:"refreshAfter"`
 	// The total lifetime of the step `content`.
 	TimeToLiveSeconds int32 `json:"timeToLiveSeconds"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _StepRefreshInfo StepRefreshInfo
@@ -137,6 +137,11 @@ func (o StepRefreshInfo) ToMap() (map[string]interface{}, error) {
 	toSerialize["expiresAt"] = o.ExpiresAt
 	toSerialize["refreshAfter"] = o.RefreshAfter
 	toSerialize["timeToLiveSeconds"] = o.TimeToLiveSeconds
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -166,15 +171,22 @@ func (o *StepRefreshInfo) UnmarshalJSON(data []byte) (err error) {
 
 	varStepRefreshInfo := _StepRefreshInfo{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varStepRefreshInfo)
+	err = json.Unmarshal(data, &varStepRefreshInfo)
 
 	if err != nil {
 		return err
 	}
 
 	*o = StepRefreshInfo(varStepRefreshInfo)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "expiresAt")
+		delete(additionalProperties, "refreshAfter")
+		delete(additionalProperties, "timeToLiveSeconds")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

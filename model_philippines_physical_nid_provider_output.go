@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -23,6 +22,7 @@ var _ MappedNullable = &PhilippinesPhysicalNidProviderOutput{}
 type PhilippinesPhysicalNidProviderOutput struct {
 	// The PhilSys Card Number (PCN). Every citizen or resident alien registered in PhilSys has a PhilSys Number (PSN). This number is tokenized into a card number to protect the PSN. The PhilSys Card Number is 12 characters long, and often is written in octets with dashes in between.
 	PhilsysCardNumber string `json:"philsysCardNumber"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _PhilippinesPhysicalNidProviderOutput PhilippinesPhysicalNidProviderOutput
@@ -80,6 +80,11 @@ func (o PhilippinesPhysicalNidProviderOutput) MarshalJSON() ([]byte, error) {
 func (o PhilippinesPhysicalNidProviderOutput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["philsysCardNumber"] = o.PhilsysCardNumber
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *PhilippinesPhysicalNidProviderOutput) UnmarshalJSON(data []byte) (err e
 
 	varPhilippinesPhysicalNidProviderOutput := _PhilippinesPhysicalNidProviderOutput{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varPhilippinesPhysicalNidProviderOutput)
+	err = json.Unmarshal(data, &varPhilippinesPhysicalNidProviderOutput)
 
 	if err != nil {
 		return err
 	}
 
 	*o = PhilippinesPhysicalNidProviderOutput(varPhilippinesPhysicalNidProviderOutput)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "philsysCardNumber")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

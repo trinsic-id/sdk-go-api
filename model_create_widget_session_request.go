@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -29,6 +28,7 @@ type CreateWidgetSessionRequest struct {
 	Providers []string `json:"providers,omitempty"`
 	// Data that you already know about the user being verified.   This data is used to improve the user experience during provider selection, by surfacing the most relevant providers first.
 	RecommendationInfo NullableRecommendationInfo `json:"recommendationInfo,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateWidgetSessionRequest CreateWidgetSessionRequest
@@ -212,6 +212,11 @@ func (o CreateWidgetSessionRequest) ToMap() (map[string]interface{}, error) {
 	if o.RecommendationInfo.IsSet() {
 		toSerialize["recommendationInfo"] = o.RecommendationInfo.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -239,15 +244,23 @@ func (o *CreateWidgetSessionRequest) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateWidgetSessionRequest := _CreateWidgetSessionRequest{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateWidgetSessionRequest)
+	err = json.Unmarshal(data, &varCreateWidgetSessionRequest)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateWidgetSessionRequest(varCreateWidgetSessionRequest)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "verificationProfileId")
+		delete(additionalProperties, "redirectUrl")
+		delete(additionalProperties, "providers")
+		delete(additionalProperties, "recommendationInfo")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -25,6 +24,7 @@ type ContractAttribute struct {
 	Scope string `json:"scope"`
 	// Indicates when this attribute will be present in verification results.
 	Outputted AttributeAvailability `json:"outputted"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ContractAttribute ContractAttribute
@@ -108,6 +108,11 @@ func (o ContractAttribute) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["scope"] = o.Scope
 	toSerialize["outputted"] = o.Outputted
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -136,15 +141,21 @@ func (o *ContractAttribute) UnmarshalJSON(data []byte) (err error) {
 
 	varContractAttribute := _ContractAttribute{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varContractAttribute)
+	err = json.Unmarshal(data, &varContractAttribute)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ContractAttribute(varContractAttribute)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "scope")
+		delete(additionalProperties, "outputted")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

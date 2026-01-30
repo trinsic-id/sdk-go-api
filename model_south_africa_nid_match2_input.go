@@ -33,7 +33,10 @@ type SouthAfricaNidMatch2Input struct {
 	Sex NullableSouthAfricaNidMatch2InputSex `json:"sex,omitempty"`
 	// The user's phone number as it appears in their National ID (optional). Must be in E.164 international format: \"+27XXXXXXXXX\"
 	PhoneNumber NullableString `json:"phoneNumber,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SouthAfricaNidMatch2Input SouthAfricaNidMatch2Input
 
 // NewSouthAfricaNidMatch2Input instantiates a new SouthAfricaNidMatch2Input object
 // This constructor will assign default values to properties that have it defined,
@@ -377,7 +380,39 @@ func (o SouthAfricaNidMatch2Input) ToMap() (map[string]interface{}, error) {
 	if o.PhoneNumber.IsSet() {
 		toSerialize["phoneNumber"] = o.PhoneNumber.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *SouthAfricaNidMatch2Input) UnmarshalJSON(data []byte) (err error) {
+	varSouthAfricaNidMatch2Input := _SouthAfricaNidMatch2Input{}
+
+	err = json.Unmarshal(data, &varSouthAfricaNidMatch2Input)
+
+	if err != nil {
+		return err
+	}
+
+	*o = SouthAfricaNidMatch2Input(varSouthAfricaNidMatch2Input)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "idNumber")
+		delete(additionalProperties, "givenName")
+		delete(additionalProperties, "familyName")
+		delete(additionalProperties, "middleName")
+		delete(additionalProperties, "dateOfBirth")
+		delete(additionalProperties, "sex")
+		delete(additionalProperties, "phoneNumber")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableSouthAfricaNidMatch2Input struct {

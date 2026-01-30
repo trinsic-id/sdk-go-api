@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -35,6 +34,7 @@ type IdentityData struct {
 	Attachments []AttachmentInfo `json:"attachments"`
 	// Provider-specific output data that doesn't fit the standard identity data schema.              The structure of this object varies by provider.
 	ProviderOutput NullableProviderOutput `json:"providerOutput,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _IdentityData IdentityData
@@ -362,6 +362,11 @@ func (o IdentityData) ToMap() (map[string]interface{}, error) {
 	if o.ProviderOutput.IsSet() {
 		toSerialize["providerOutput"] = o.ProviderOutput.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -389,15 +394,26 @@ func (o *IdentityData) UnmarshalJSON(data []byte) (err error) {
 
 	varIdentityData := _IdentityData{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varIdentityData)
+	err = json.Unmarshal(data, &varIdentityData)
 
 	if err != nil {
 		return err
 	}
 
 	*o = IdentityData(varIdentityData)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "originatingProviderId")
+		delete(additionalProperties, "originatingSubProviderId")
+		delete(additionalProperties, "person")
+		delete(additionalProperties, "document")
+		delete(additionalProperties, "match")
+		delete(additionalProperties, "attachments")
+		delete(additionalProperties, "providerOutput")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

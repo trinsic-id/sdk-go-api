@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -23,6 +22,7 @@ var _ MappedNullable = &RefreshStepContentResponse{}
 type RefreshStepContentResponse struct {
 	// The integration's next step with refreshed content
 	NextStep IntegrationStep `json:"nextStep"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _RefreshStepContentResponse RefreshStepContentResponse
@@ -80,6 +80,11 @@ func (o RefreshStepContentResponse) MarshalJSON() ([]byte, error) {
 func (o RefreshStepContentResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["nextStep"] = o.NextStep
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *RefreshStepContentResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varRefreshStepContentResponse := _RefreshStepContentResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varRefreshStepContentResponse)
+	err = json.Unmarshal(data, &varRefreshStepContentResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = RefreshStepContentResponse(varRefreshStepContentResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "nextStep")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

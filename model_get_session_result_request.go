@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -23,6 +22,7 @@ var _ MappedNullable = &GetSessionResultRequest{}
 type GetSessionResultRequest struct {
 	// The Results Access Key to exchange
 	ResultsAccessKey string `json:"resultsAccessKey"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GetSessionResultRequest GetSessionResultRequest
@@ -80,6 +80,11 @@ func (o GetSessionResultRequest) MarshalJSON() ([]byte, error) {
 func (o GetSessionResultRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["resultsAccessKey"] = o.ResultsAccessKey
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *GetSessionResultRequest) UnmarshalJSON(data []byte) (err error) {
 
 	varGetSessionResultRequest := _GetSessionResultRequest{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varGetSessionResultRequest)
+	err = json.Unmarshal(data, &varGetSessionResultRequest)
 
 	if err != nil {
 		return err
 	}
 
 	*o = GetSessionResultRequest(varGetSessionResultRequest)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "resultsAccessKey")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -27,6 +26,7 @@ type RecommendProvidersRequest struct {
 	RecommendationInfo NullableRecommendationInfo `json:"recommendationInfo,omitempty"`
 	// Filter providers by health status.
 	Health NullableRecommendProviderHealthOption `json:"health,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _RecommendProvidersRequest RecommendProvidersRequest
@@ -174,6 +174,11 @@ func (o RecommendProvidersRequest) ToMap() (map[string]interface{}, error) {
 	if o.Health.IsSet() {
 		toSerialize["health"] = o.Health.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -201,15 +206,22 @@ func (o *RecommendProvidersRequest) UnmarshalJSON(data []byte) (err error) {
 
 	varRecommendProvidersRequest := _RecommendProvidersRequest{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varRecommendProvidersRequest)
+	err = json.Unmarshal(data, &varRecommendProvidersRequest)
 
 	if err != nil {
 		return err
 	}
 
 	*o = RecommendProvidersRequest(varRecommendProvidersRequest)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "verificationProfileId")
+		delete(additionalProperties, "recommendationInfo")
+		delete(additionalProperties, "health")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

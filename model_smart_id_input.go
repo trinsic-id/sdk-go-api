@@ -21,7 +21,10 @@ var _ MappedNullable = &SmartIdInput{}
 type SmartIdInput struct {
 	// The user's Smart ID ETSI number or document number.
 	SmartIdNumber NullableString `json:"smartIdNumber,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SmartIdInput SmartIdInput
 
 // NewSmartIdInput instantiates a new SmartIdInput object
 // This constructor will assign default values to properties that have it defined,
@@ -95,7 +98,33 @@ func (o SmartIdInput) ToMap() (map[string]interface{}, error) {
 	if o.SmartIdNumber.IsSet() {
 		toSerialize["smartIdNumber"] = o.SmartIdNumber.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *SmartIdInput) UnmarshalJSON(data []byte) (err error) {
+	varSmartIdInput := _SmartIdInput{}
+
+	err = json.Unmarshal(data, &varSmartIdInput)
+
+	if err != nil {
+		return err
+	}
+
+	*o = SmartIdInput(varSmartIdInput)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "smartIdNumber")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableSmartIdInput struct {

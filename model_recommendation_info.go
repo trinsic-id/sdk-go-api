@@ -27,7 +27,10 @@ type RecommendationInfo struct {
 	Subdivisions []string `json:"subdivisions,omitempty"`
 	// Any IP addresses related to the user.              Will be used to determine the user's geographic location.
 	IpAddresses []string `json:"ipAddresses,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _RecommendationInfo RecommendationInfo
 
 // NewRecommendationInfo instantiates a new RecommendationInfo object
 // This constructor will assign default values to properties that have it defined,
@@ -209,7 +212,36 @@ func (o RecommendationInfo) ToMap() (map[string]interface{}, error) {
 	if o.IpAddresses != nil {
 		toSerialize["ipAddresses"] = o.IpAddresses
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *RecommendationInfo) UnmarshalJSON(data []byte) (err error) {
+	varRecommendationInfo := _RecommendationInfo{}
+
+	err = json.Unmarshal(data, &varRecommendationInfo)
+
+	if err != nil {
+		return err
+	}
+
+	*o = RecommendationInfo(varRecommendationInfo)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "phoneNumber")
+		delete(additionalProperties, "countries")
+		delete(additionalProperties, "subdivisions")
+		delete(additionalProperties, "ipAddresses")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableRecommendationInfo struct {

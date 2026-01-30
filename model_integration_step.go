@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -27,6 +26,7 @@ type IntegrationStep struct {
 	Content string `json:"content"`
 	// If non-null, contains metadata about how to refresh the value of `content`.
 	Refresh NullableStepRefreshInfo `json:"refresh,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _IntegrationStep IntegrationStep
@@ -155,6 +155,11 @@ func (o IntegrationStep) ToMap() (map[string]interface{}, error) {
 	if o.Refresh.IsSet() {
 		toSerialize["refresh"] = o.Refresh.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -183,15 +188,22 @@ func (o *IntegrationStep) UnmarshalJSON(data []byte) (err error) {
 
 	varIntegrationStep := _IntegrationStep{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varIntegrationStep)
+	err = json.Unmarshal(data, &varIntegrationStep)
 
 	if err != nil {
 		return err
 	}
 
 	*o = IntegrationStep(varIntegrationStep)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "method")
+		delete(additionalProperties, "content")
+		delete(additionalProperties, "refresh")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

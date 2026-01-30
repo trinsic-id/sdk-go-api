@@ -27,7 +27,10 @@ type TrinsicTestDatabaseLookupInput struct {
 	IdentityCode NullableString `json:"identityCode,omitempty"`
 	// An optional selfie image, base64-encoded.              Will replace the existing test selfie attachment output if provided.
 	SelfieBase64 NullableString `json:"selfieBase64,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _TrinsicTestDatabaseLookupInput TrinsicTestDatabaseLookupInput
 
 // NewTrinsicTestDatabaseLookupInput instantiates a new TrinsicTestDatabaseLookupInput object
 // This constructor will assign default values to properties that have it defined,
@@ -236,7 +239,36 @@ func (o TrinsicTestDatabaseLookupInput) ToMap() (map[string]interface{}, error) 
 	if o.SelfieBase64.IsSet() {
 		toSerialize["selfieBase64"] = o.SelfieBase64.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *TrinsicTestDatabaseLookupInput) UnmarshalJSON(data []byte) (err error) {
+	varTrinsicTestDatabaseLookupInput := _TrinsicTestDatabaseLookupInput{}
+
+	err = json.Unmarshal(data, &varTrinsicTestDatabaseLookupInput)
+
+	if err != nil {
+		return err
+	}
+
+	*o = TrinsicTestDatabaseLookupInput(varTrinsicTestDatabaseLookupInput)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "givenName")
+		delete(additionalProperties, "familyName")
+		delete(additionalProperties, "identityCode")
+		delete(additionalProperties, "selfieBase64")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableTrinsicTestDatabaseLookupInput struct {

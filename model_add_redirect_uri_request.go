@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -22,6 +21,7 @@ var _ MappedNullable = &AddRedirectUriRequest{}
 // AddRedirectUriRequest struct for AddRedirectUriRequest
 type AddRedirectUriRequest struct {
 	Uri string `json:"uri"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _AddRedirectUriRequest AddRedirectUriRequest
@@ -79,6 +79,11 @@ func (o AddRedirectUriRequest) MarshalJSON() ([]byte, error) {
 func (o AddRedirectUriRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["uri"] = o.Uri
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *AddRedirectUriRequest) UnmarshalJSON(data []byte) (err error) {
 
 	varAddRedirectUriRequest := _AddRedirectUriRequest{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varAddRedirectUriRequest)
+	err = json.Unmarshal(data, &varAddRedirectUriRequest)
 
 	if err != nil {
 		return err
 	}
 
 	*o = AddRedirectUriRequest(varAddRedirectUriRequest)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "uri")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

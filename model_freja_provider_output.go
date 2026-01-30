@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -29,6 +28,7 @@ type FrejaProviderOutput struct {
 	PersonalNumber string `json:"personalNumber"`
 	// The 2-digit ISO country code of the country which issued the personal number.
 	PersonalNumberCountry string `json:"personalNumberCountry"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _FrejaProviderOutput FrejaProviderOutput
@@ -164,6 +164,11 @@ func (o FrejaProviderOutput) ToMap() (map[string]interface{}, error) {
 	toSerialize["lastName"] = o.LastName
 	toSerialize["personalNumber"] = o.PersonalNumber
 	toSerialize["personalNumberCountry"] = o.PersonalNumberCountry
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -194,15 +199,23 @@ func (o *FrejaProviderOutput) UnmarshalJSON(data []byte) (err error) {
 
 	varFrejaProviderOutput := _FrejaProviderOutput{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varFrejaProviderOutput)
+	err = json.Unmarshal(data, &varFrejaProviderOutput)
 
 	if err != nil {
 		return err
 	}
 
 	*o = FrejaProviderOutput(varFrejaProviderOutput)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "firstName")
+		delete(additionalProperties, "lastName")
+		delete(additionalProperties, "personalNumber")
+		delete(additionalProperties, "personalNumberCountry")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

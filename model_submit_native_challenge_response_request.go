@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -25,6 +24,7 @@ type SubmitNativeChallengeResponseRequest struct {
 	ResultsAccessKey string `json:"resultsAccessKey"`
 	// The response token retrieved from a Trinsic UI SDK's performMdlExchange() call.
 	ResponseToken string `json:"responseToken"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _SubmitNativeChallengeResponseRequest SubmitNativeChallengeResponseRequest
@@ -108,6 +108,11 @@ func (o SubmitNativeChallengeResponseRequest) ToMap() (map[string]interface{}, e
 	toSerialize := map[string]interface{}{}
 	toSerialize["resultsAccessKey"] = o.ResultsAccessKey
 	toSerialize["responseToken"] = o.ResponseToken
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -136,15 +141,21 @@ func (o *SubmitNativeChallengeResponseRequest) UnmarshalJSON(data []byte) (err e
 
 	varSubmitNativeChallengeResponseRequest := _SubmitNativeChallengeResponseRequest{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varSubmitNativeChallengeResponseRequest)
+	err = json.Unmarshal(data, &varSubmitNativeChallengeResponseRequest)
 
 	if err != nil {
 		return err
 	}
 
 	*o = SubmitNativeChallengeResponseRequest(varSubmitNativeChallengeResponseRequest)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "resultsAccessKey")
+		delete(additionalProperties, "responseToken")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

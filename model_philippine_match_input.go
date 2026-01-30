@@ -29,7 +29,10 @@ type PhilippineMatchInput struct {
 	Suffix NullableString `json:"suffix,omitempty"`
 	// The user's date of birth, in `YYYY-MM-DD` format
 	DateOfBirth NullableString `json:"dateOfBirth,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PhilippineMatchInput PhilippineMatchInput
 
 // NewPhilippineMatchInput instantiates a new PhilippineMatchInput object
 // This constructor will assign default values to properties that have it defined,
@@ -283,7 +286,37 @@ func (o PhilippineMatchInput) ToMap() (map[string]interface{}, error) {
 	if o.DateOfBirth.IsSet() {
 		toSerialize["dateOfBirth"] = o.DateOfBirth.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PhilippineMatchInput) UnmarshalJSON(data []byte) (err error) {
+	varPhilippineMatchInput := _PhilippineMatchInput{}
+
+	err = json.Unmarshal(data, &varPhilippineMatchInput)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PhilippineMatchInput(varPhilippineMatchInput)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "givenName")
+		delete(additionalProperties, "middleName")
+		delete(additionalProperties, "familyName")
+		delete(additionalProperties, "suffix")
+		delete(additionalProperties, "dateOfBirth")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePhilippineMatchInput struct {

@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -25,6 +24,7 @@ type ResultCollection struct {
 	Method ResultCollectionMethod `json:"method"`
 	// The `resultsAccessKey` for the Acceptance Session.              This is an encrypted payload which contains the decryption key necessary to access the Session's Data Vault.              Save this securely in your systems; it must be passed back with any API call which requires access to the Session's Data Vault.              Trinsic cannot access a Session's Data Vault without this key.
 	ResultsAccessKey string `json:"resultsAccessKey"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ResultCollection ResultCollection
@@ -108,6 +108,11 @@ func (o ResultCollection) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["method"] = o.Method
 	toSerialize["resultsAccessKey"] = o.ResultsAccessKey
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -136,15 +141,21 @@ func (o *ResultCollection) UnmarshalJSON(data []byte) (err error) {
 
 	varResultCollection := _ResultCollection{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varResultCollection)
+	err = json.Unmarshal(data, &varResultCollection)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ResultCollection(varResultCollection)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "method")
+		delete(additionalProperties, "resultsAccessKey")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

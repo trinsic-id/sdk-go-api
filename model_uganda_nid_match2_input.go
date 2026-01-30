@@ -25,7 +25,10 @@ type UgandaNidMatch2Input struct {
 	SecondaryIdNumber NullableString `json:"secondaryIdNumber,omitempty"`
 	// The user's date of birth, in `YYYY-MM-DD` format
 	DateOfBirth NullableString `json:"dateOfBirth,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UgandaNidMatch2Input UgandaNidMatch2Input
 
 // NewUgandaNidMatch2Input instantiates a new UgandaNidMatch2Input object
 // This constructor will assign default values to properties that have it defined,
@@ -189,7 +192,35 @@ func (o UgandaNidMatch2Input) ToMap() (map[string]interface{}, error) {
 	if o.DateOfBirth.IsSet() {
 		toSerialize["dateOfBirth"] = o.DateOfBirth.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *UgandaNidMatch2Input) UnmarshalJSON(data []byte) (err error) {
+	varUgandaNidMatch2Input := _UgandaNidMatch2Input{}
+
+	err = json.Unmarshal(data, &varUgandaNidMatch2Input)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UgandaNidMatch2Input(varUgandaNidMatch2Input)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "idNumber")
+		delete(additionalProperties, "secondaryIdNumber")
+		delete(additionalProperties, "dateOfBirth")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUgandaNidMatch2Input struct {

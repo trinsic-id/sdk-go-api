@@ -41,7 +41,10 @@ type MitIdProviderOutput struct {
 	OrganizationNumber NullableString `json:"organizationNumber,omitempty"`
 	// The organization number (CVR number) of the organization the user is authorized to represent. This is only returned if the requested scope is for an organization verification and the user provides a private source in behalf of a company.
 	AuthorizedRepresentativeNumber NullableString `json:"authorizedRepresentativeNumber,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _MitIdProviderOutput MitIdProviderOutput
 
 // NewMitIdProviderOutput instantiates a new MitIdProviderOutput object
 // This constructor will assign default values to properties that have it defined,
@@ -565,7 +568,43 @@ func (o MitIdProviderOutput) ToMap() (map[string]interface{}, error) {
 	if o.AuthorizedRepresentativeNumber.IsSet() {
 		toSerialize["authorizedRepresentativeNumber"] = o.AuthorizedRepresentativeNumber.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *MitIdProviderOutput) UnmarshalJSON(data []byte) (err error) {
+	varMitIdProviderOutput := _MitIdProviderOutput{}
+
+	err = json.Unmarshal(data, &varMitIdProviderOutput)
+
+	if err != nil {
+		return err
+	}
+
+	*o = MitIdProviderOutput(varMitIdProviderOutput)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "fullName")
+		delete(additionalProperties, "dateOfBirth")
+		delete(additionalProperties, "uniqueIdentifier")
+		delete(additionalProperties, "authenticationAssuranceLevel")
+		delete(additionalProperties, "identityAuthenticationLevel")
+		delete(additionalProperties, "levelOfAssurance")
+		delete(additionalProperties, "identificationSource")
+		delete(additionalProperties, "civilRegistrationNumber")
+		delete(additionalProperties, "organizationName")
+		delete(additionalProperties, "organizationNumber")
+		delete(additionalProperties, "authorizedRepresentativeNumber")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableMitIdProviderOutput struct {

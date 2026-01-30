@@ -21,7 +21,10 @@ var _ MappedNullable = &IdinInput{}
 type IdinInput struct {
 	// The ID of the specific bank to invoke with IDIN.              If not specified, the user will be prompted to select a bank.
 	SubProviderId NullableString `json:"subProviderId,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _IdinInput IdinInput
 
 // NewIdinInput instantiates a new IdinInput object
 // This constructor will assign default values to properties that have it defined,
@@ -95,7 +98,33 @@ func (o IdinInput) ToMap() (map[string]interface{}, error) {
 	if o.SubProviderId.IsSet() {
 		toSerialize["subProviderId"] = o.SubProviderId.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *IdinInput) UnmarshalJSON(data []byte) (err error) {
+	varIdinInput := _IdinInput{}
+
+	err = json.Unmarshal(data, &varIdinInput)
+
+	if err != nil {
+		return err
+	}
+
+	*o = IdinInput(varIdinInput)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "subProviderId")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableIdinInput struct {

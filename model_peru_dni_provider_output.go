@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -53,6 +52,7 @@ type PeruDniProviderOutput struct {
 	UbigeoReniec NullableString `json:"ubigeoReniec,omitempty"`
 	// The final (ninth) digit of the DNI, which serves as a checksum over the first eight digits.              This field is not always available.              Format: - Single character - Either 0-9 or A-K              Read more here:   https://elcomercio.pe/mag/respuestas/cual-es-el-digito-verificador-de-mi-dni-documento-nacional-de-identidad-reniec-peru-nnda-nnlt-noticia/
 	VerificationDigit NullableString `json:"verificationDigit,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _PeruDniProviderOutput PeruDniProviderOutput
@@ -652,6 +652,11 @@ func (o PeruDniProviderOutput) ToMap() (map[string]interface{}, error) {
 	if o.VerificationDigit.IsSet() {
 		toSerialize["verificationDigit"] = o.VerificationDigit.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -686,15 +691,35 @@ func (o *PeruDniProviderOutput) UnmarshalJSON(data []byte) (err error) {
 
 	varPeruDniProviderOutput := _PeruDniProviderOutput{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varPeruDniProviderOutput)
+	err = json.Unmarshal(data, &varPeruDniProviderOutput)
 
 	if err != nil {
 		return err
 	}
 
 	*o = PeruDniProviderOutput(varPeruDniProviderOutput)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "address")
+		delete(additionalProperties, "arrayName")
+		delete(additionalProperties, "civilStatus")
+		delete(additionalProperties, "dateOfBirth")
+		delete(additionalProperties, "documentNumber")
+		delete(additionalProperties, "documentType")
+		delete(additionalProperties, "expeditionDate")
+		delete(additionalProperties, "expirationDate")
+		delete(additionalProperties, "firstName")
+		delete(additionalProperties, "fullName")
+		delete(additionalProperties, "lastName")
+		delete(additionalProperties, "maternalLastName")
+		delete(additionalProperties, "paternalLastName")
+		delete(additionalProperties, "sex")
+		delete(additionalProperties, "ubigeoReniec")
+		delete(additionalProperties, "verificationDigit")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

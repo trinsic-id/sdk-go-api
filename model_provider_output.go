@@ -83,7 +83,10 @@ type ProviderOutput struct {
 	UsaLouisianaWallet NullableLaWalletProviderOutput `json:"usa-louisiana-wallet,omitempty"`
 	// Exposed properties for the `yoti` Provider which do not directly map to the normalized IdentityData model.
 	Yoti NullableYotiProviderOutput `json:"yoti,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ProviderOutput ProviderOutput
 
 // NewProviderOutput instantiates a new ProviderOutput object
 // This constructor will assign default values to properties that have it defined,
@@ -1552,7 +1555,64 @@ func (o ProviderOutput) ToMap() (map[string]interface{}, error) {
 	if o.Yoti.IsSet() {
 		toSerialize["yoti"] = o.Yoti.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ProviderOutput) UnmarshalJSON(data []byte) (err error) {
+	varProviderOutput := _ProviderOutput{}
+
+	err = json.Unmarshal(data, &varProviderOutput)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ProviderOutput(varProviderOutput)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "a-at-handy-signatur-login")
+		delete(additionalProperties, "a-be-id-login")
+		delete(additionalProperties, "a-edoapp-eid-login")
+		delete(additionalProperties, "a-ee-web-eid-login")
+		delete(additionalProperties, "a-fi-id-login")
+		delete(additionalProperties, "a-freja-eid-login")
+		delete(additionalProperties, "a-itsme-login")
+		delete(additionalProperties, "a-lt-id-login")
+		delete(additionalProperties, "a-lv-eparaksts-id-login")
+		delete(additionalProperties, "a-lv-eparaksts-mobile-login")
+		delete(additionalProperties, "a-mojeid")
+		delete(additionalProperties, "a-pl-mojeid-login")
+		delete(additionalProperties, "a-pt-id-login")
+		delete(additionalProperties, "a-rs-id-login")
+		delete(additionalProperties, "apple-wallet")
+		delete(additionalProperties, "denmark-mitid")
+		delete(additionalProperties, "ethiopia-fayda")
+		delete(additionalProperties, "france-identite-numerique")
+		delete(additionalProperties, "google-wallet")
+		delete(additionalProperties, "italy-spid")
+		delete(additionalProperties, "lloyds-smart-id")
+		delete(additionalProperties, "mexico-curp-lookup")
+		delete(additionalProperties, "mobile-id")
+		delete(additionalProperties, "peru-dni-lookup")
+		delete(additionalProperties, "philippines-digital-national-id-qr")
+		delete(additionalProperties, "philippines-physical-national-id-qr")
+		delete(additionalProperties, "post-office-easyid")
+		delete(additionalProperties, "samsung-wallet")
+		delete(additionalProperties, "smart-id")
+		delete(additionalProperties, "sweden-bankid")
+		delete(additionalProperties, "usa-louisiana-wallet")
+		delete(additionalProperties, "yoti")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableProviderOutput struct {

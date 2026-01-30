@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -29,6 +28,7 @@ type BelgiumIdCardProviderOutput struct {
 	DateOfBirth string `json:"dateOfBirth"`
 	// The Belgian National Register Number (\"Rijksregisternummer\") of the verified individual.              This is an 11-digit number in the format YYMMDDXXXCC, where: - YYMMDD represents the individual's date of birth (year, month, day). - XXX is a sequential birth number, odd for males and even for females. - CC is a checksum, calculated with the equation: 97 - (YYMMDDXXX mod 97)              For births in the year 2000 or later, the digit '2' is prepended to the first 9 digits during checksum calculation.
 	NationalRegisterNumber string `json:"nationalRegisterNumber"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _BelgiumIdCardProviderOutput BelgiumIdCardProviderOutput
@@ -164,6 +164,11 @@ func (o BelgiumIdCardProviderOutput) ToMap() (map[string]interface{}, error) {
 	toSerialize["lastName"] = o.LastName
 	toSerialize["dateOfBirth"] = o.DateOfBirth
 	toSerialize["nationalRegisterNumber"] = o.NationalRegisterNumber
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -194,15 +199,23 @@ func (o *BelgiumIdCardProviderOutput) UnmarshalJSON(data []byte) (err error) {
 
 	varBelgiumIdCardProviderOutput := _BelgiumIdCardProviderOutput{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varBelgiumIdCardProviderOutput)
+	err = json.Unmarshal(data, &varBelgiumIdCardProviderOutput)
 
 	if err != nil {
 		return err
 	}
 
 	*o = BelgiumIdCardProviderOutput(varBelgiumIdCardProviderOutput)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "firstName")
+		delete(additionalProperties, "lastName")
+		delete(additionalProperties, "dateOfBirth")
+		delete(additionalProperties, "nationalRegisterNumber")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

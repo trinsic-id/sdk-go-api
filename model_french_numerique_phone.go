@@ -25,7 +25,10 @@ type FrenchNumeriquePhone struct {
 	CountryPrefix NullableString `json:"countryPrefix,omitempty"`
 	// National phone number without the country prefix.
 	NationalNumber NullableString `json:"nationalNumber,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _FrenchNumeriquePhone FrenchNumeriquePhone
 
 // NewFrenchNumeriquePhone instantiates a new FrenchNumeriquePhone object
 // This constructor will assign default values to properties that have it defined,
@@ -189,7 +192,35 @@ func (o FrenchNumeriquePhone) ToMap() (map[string]interface{}, error) {
 	if o.NationalNumber.IsSet() {
 		toSerialize["nationalNumber"] = o.NationalNumber.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *FrenchNumeriquePhone) UnmarshalJSON(data []byte) (err error) {
+	varFrenchNumeriquePhone := _FrenchNumeriquePhone{}
+
+	err = json.Unmarshal(data, &varFrenchNumeriquePhone)
+
+	if err != nil {
+		return err
+	}
+
+	*o = FrenchNumeriquePhone(varFrenchNumeriquePhone)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "fullPhoneNumber")
+		delete(additionalProperties, "countryPrefix")
+		delete(additionalProperties, "nationalNumber")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableFrenchNumeriquePhone struct {

@@ -37,7 +37,10 @@ type MobileIdProviderOutput struct {
 	SerialNumber NullableString `json:"serialNumber,omitempty"`
 	// The full Subject Distinguished Name (Subject DN) from the Mobile ID authentication certificate. Contains comma-separated RDN (Relative Distinguished Name) components including C (Country), CN (Common Name), SN (Surname), G (Given Name), and SERIALNUMBER (Personal identifier).
 	CertificateSubject NullableString `json:"certificateSubject,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _MobileIdProviderOutput MobileIdProviderOutput
 
 // NewMobileIdProviderOutput instantiates a new MobileIdProviderOutput object
 // This constructor will assign default values to properties that have it defined,
@@ -471,7 +474,41 @@ func (o MobileIdProviderOutput) ToMap() (map[string]interface{}, error) {
 	if o.CertificateSubject.IsSet() {
 		toSerialize["certificateSubject"] = o.CertificateSubject.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *MobileIdProviderOutput) UnmarshalJSON(data []byte) (err error) {
+	varMobileIdProviderOutput := _MobileIdProviderOutput{}
+
+	err = json.Unmarshal(data, &varMobileIdProviderOutput)
+
+	if err != nil {
+		return err
+	}
+
+	*o = MobileIdProviderOutput(varMobileIdProviderOutput)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "givenName")
+		delete(additionalProperties, "familyName")
+		delete(additionalProperties, "dateOfBirth")
+		delete(additionalProperties, "sex")
+		delete(additionalProperties, "country")
+		delete(additionalProperties, "identityType")
+		delete(additionalProperties, "personalCode")
+		delete(additionalProperties, "serialNumber")
+		delete(additionalProperties, "certificateSubject")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableMobileIdProviderOutput struct {

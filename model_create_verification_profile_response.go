@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -23,6 +22,7 @@ var _ MappedNullable = &CreateVerificationProfileResponse{}
 type CreateVerificationProfileResponse struct {
 	// The ID of the verification profile
 	Id string `json:"id"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateVerificationProfileResponse CreateVerificationProfileResponse
@@ -80,6 +80,11 @@ func (o CreateVerificationProfileResponse) MarshalJSON() ([]byte, error) {
 func (o CreateVerificationProfileResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["id"] = o.Id
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *CreateVerificationProfileResponse) UnmarshalJSON(data []byte) (err erro
 
 	varCreateVerificationProfileResponse := _CreateVerificationProfileResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateVerificationProfileResponse)
+	err = json.Unmarshal(data, &varCreateVerificationProfileResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateVerificationProfileResponse(varCreateVerificationProfileResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -23,6 +22,7 @@ var _ MappedNullable = &BrazilCpfCheckInput{}
 type BrazilCpfCheckInput struct {
 	// The user's 11-digit, numeric CPF Number
 	CpfNumber string `json:"cpfNumber" validate:"regexp=^\\\\d*$"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _BrazilCpfCheckInput BrazilCpfCheckInput
@@ -80,6 +80,11 @@ func (o BrazilCpfCheckInput) MarshalJSON() ([]byte, error) {
 func (o BrazilCpfCheckInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["cpfNumber"] = o.CpfNumber
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *BrazilCpfCheckInput) UnmarshalJSON(data []byte) (err error) {
 
 	varBrazilCpfCheckInput := _BrazilCpfCheckInput{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varBrazilCpfCheckInput)
+	err = json.Unmarshal(data, &varBrazilCpfCheckInput)
 
 	if err != nil {
 		return err
 	}
 
 	*o = BrazilCpfCheckInput(varBrazilCpfCheckInput)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "cpfNumber")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

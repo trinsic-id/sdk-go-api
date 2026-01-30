@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -39,6 +38,7 @@ type RecommendProviderInformation struct {
 	Countries []string `json:"countries"`
 	// A list of subdivisions, in ISO 3166-2 format, that the provider is available in.
 	Subdivisions []string `json:"subdivisions"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _RecommendProviderInformation RecommendProviderInformation
@@ -314,6 +314,11 @@ func (o RecommendProviderInformation) ToMap() (map[string]interface{}, error) {
 	toSerialize["regions"] = o.Regions
 	toSerialize["countries"] = o.Countries
 	toSerialize["subdivisions"] = o.Subdivisions
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -348,15 +353,28 @@ func (o *RecommendProviderInformation) UnmarshalJSON(data []byte) (err error) {
 
 	varRecommendProviderInformation := _RecommendProviderInformation{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varRecommendProviderInformation)
+	err = json.Unmarshal(data, &varRecommendProviderInformation)
 
 	if err != nil {
 		return err
 	}
 
 	*o = RecommendProviderInformation(varRecommendProviderInformation)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "logoUrl")
+		delete(additionalProperties, "subtext")
+		delete(additionalProperties, "health")
+		delete(additionalProperties, "subProviders")
+		delete(additionalProperties, "regions")
+		delete(additionalProperties, "countries")
+		delete(additionalProperties, "subdivisions")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

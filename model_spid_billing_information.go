@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -27,6 +26,7 @@ type SpidBillingInformation struct {
 	VerificationType string `json:"verificationType"`
 	// The billable verification level for this SPID verification.              Possible values: 1 | 2 | 3
 	VerificationLevel int32 `json:"verificationLevel"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _SpidBillingInformation SpidBillingInformation
@@ -136,6 +136,11 @@ func (o SpidBillingInformation) ToMap() (map[string]interface{}, error) {
 	toSerialize["isBillable"] = o.IsBillable
 	toSerialize["verificationType"] = o.VerificationType
 	toSerialize["verificationLevel"] = o.VerificationLevel
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -165,15 +170,22 @@ func (o *SpidBillingInformation) UnmarshalJSON(data []byte) (err error) {
 
 	varSpidBillingInformation := _SpidBillingInformation{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varSpidBillingInformation)
+	err = json.Unmarshal(data, &varSpidBillingInformation)
 
 	if err != nil {
 		return err
 	}
 
 	*o = SpidBillingInformation(varSpidBillingInformation)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "isBillable")
+		delete(additionalProperties, "verificationType")
+		delete(additionalProperties, "verificationLevel")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

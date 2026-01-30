@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -69,6 +68,7 @@ type SpidProviderOutput struct {
 	CompanyFiscalNumber NullableString `json:"companyFiscalNumber,omitempty"`
 	// The registered office address of the organization which was verified, or of the organization which the verified individual is associated with.
 	RegisteredOffice NullableString `json:"registeredOffice,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _SpidProviderOutput SpidProviderOutput
@@ -1142,6 +1142,11 @@ func (o SpidProviderOutput) ToMap() (map[string]interface{}, error) {
 	if o.RegisteredOffice.IsSet() {
 		toSerialize["registeredOffice"] = o.RegisteredOffice.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -1170,15 +1175,43 @@ func (o *SpidProviderOutput) UnmarshalJSON(data []byte) (err error) {
 
 	varSpidProviderOutput := _SpidProviderOutput{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varSpidProviderOutput)
+	err = json.Unmarshal(data, &varSpidProviderOutput)
 
 	if err != nil {
 		return err
 	}
 
 	*o = SpidProviderOutput(varSpidProviderOutput)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "billingInformation")
+		delete(additionalProperties, "identityProviderEntityId")
+		delete(additionalProperties, "spidCode")
+		delete(additionalProperties, "spidCredentialExpirationDate")
+		delete(additionalProperties, "rawIdCard")
+		delete(additionalProperties, "givenName")
+		delete(additionalProperties, "familyName")
+		delete(additionalProperties, "dateOfBirth")
+		delete(additionalProperties, "gender")
+		delete(additionalProperties, "placeOfBirth")
+		delete(additionalProperties, "countyOfBirth")
+		delete(additionalProperties, "domicileStreetAddress")
+		delete(additionalProperties, "domicilePostalCode")
+		delete(additionalProperties, "domicileMunicipality")
+		delete(additionalProperties, "domicileProvince")
+		delete(additionalProperties, "domicileNation")
+		delete(additionalProperties, "email")
+		delete(additionalProperties, "mobilePhone")
+		delete(additionalProperties, "digitalAddress")
+		delete(additionalProperties, "fiscalNumber")
+		delete(additionalProperties, "ivaCode")
+		delete(additionalProperties, "companyName")
+		delete(additionalProperties, "companyFiscalNumber")
+		delete(additionalProperties, "registeredOffice")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -29,6 +28,7 @@ type EstoniaIdCardProviderOutput struct {
 	DateOfBirth string `json:"dateOfBirth"`
 	// The 11-digit Estonian personal identification code (\"isikukood\") of the verified individual.              This is in the format GYYMMDDSSSC, where: - G combines the century and sex of birth - YYMMDD is the date of birth within the given century - SSS is a serial number distinguishing people born on the same date - C is a checksum digit              If G is odd, the individual is male. If G is even, the individual is female.              If G is 1 or 2, the individual was born in the 19th century (1800-1899). If G is 3 or 4, the individual was born in the 20th century (1900-1999). If G is 5 or 6, the individual was born in the 21st century (2000-2099). If G is 7 or 8, the individual was born in the 22nd century (2100-2199).
 	PersonalIdentificationCode string `json:"personalIdentificationCode"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _EstoniaIdCardProviderOutput EstoniaIdCardProviderOutput
@@ -164,6 +164,11 @@ func (o EstoniaIdCardProviderOutput) ToMap() (map[string]interface{}, error) {
 	toSerialize["lastName"] = o.LastName
 	toSerialize["dateOfBirth"] = o.DateOfBirth
 	toSerialize["personalIdentificationCode"] = o.PersonalIdentificationCode
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -194,15 +199,23 @@ func (o *EstoniaIdCardProviderOutput) UnmarshalJSON(data []byte) (err error) {
 
 	varEstoniaIdCardProviderOutput := _EstoniaIdCardProviderOutput{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varEstoniaIdCardProviderOutput)
+	err = json.Unmarshal(data, &varEstoniaIdCardProviderOutput)
 
 	if err != nil {
 		return err
 	}
 
 	*o = EstoniaIdCardProviderOutput(varEstoniaIdCardProviderOutput)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "firstName")
+		delete(additionalProperties, "lastName")
+		delete(additionalProperties, "dateOfBirth")
+		delete(additionalProperties, "personalIdentificationCode")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -22,6 +21,7 @@ var _ MappedNullable = &RecommendProvidersResponse{}
 // RecommendProvidersResponse struct for RecommendProvidersResponse
 type RecommendProvidersResponse struct {
 	RecommendedProviders []RecommendProviderInformation `json:"recommendedProviders"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _RecommendProvidersResponse RecommendProvidersResponse
@@ -79,6 +79,11 @@ func (o RecommendProvidersResponse) MarshalJSON() ([]byte, error) {
 func (o RecommendProvidersResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["recommendedProviders"] = o.RecommendedProviders
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *RecommendProvidersResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varRecommendProvidersResponse := _RecommendProvidersResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varRecommendProvidersResponse)
+	err = json.Unmarshal(data, &varRecommendProvidersResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = RecommendProvidersResponse(varRecommendProvidersResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "recommendedProviders")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

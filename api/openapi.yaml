@@ -1686,7 +1686,6 @@ paths:
 components:
   schemas:
     AadhaarInput:
-      additionalProperties: false
       properties:
         fullName:
           description: The user's full name
@@ -1699,7 +1698,6 @@ components:
           type: string
       type: object
     AddRedirectUriRequest:
-      additionalProperties: false
       example:
         uri: uri
       properties:
@@ -1710,7 +1708,6 @@ components:
       - uri
       type: object
     AddRedirectUriResponse:
-      additionalProperties: false
       example:
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
@@ -1721,7 +1718,6 @@ components:
       - id
       type: object
     Address:
-      additionalProperties: false
       description: Address information for an individual
       properties:
         line1:
@@ -1755,7 +1751,6 @@ components:
           type: string
       type: object
     AppleWalletInput:
-      additionalProperties: false
       properties:
         exchangeMechanism:
           allOf:
@@ -1766,7 +1761,6 @@ components:
           nullable: true
       type: object
     AppleWalletProviderOutput:
-      additionalProperties: false
       description: Exposed properties for the `apple-wallet` Provider which do not
         directly map to the normalized IdentityData model.
       properties:
@@ -1779,7 +1773,6 @@ components:
       - rawMdlOutput
       type: object
     AttachmentInfo:
-      additionalProperties: false
       properties:
         id:
           description: "The unique identifier of the Attachment.\n            \nPass\
@@ -1820,7 +1813,6 @@ components:
           context.
         Always: This attribute will always be present in verification results.
     AustriaHandySignaturProviderOutput:
-      additionalProperties: false
       description: Exposed properties for the `a-at-handy-signatur-login` Provider
         which do not directly map to the normalized IdentityData model.
       properties:
@@ -1837,7 +1829,6 @@ components:
       - lastName
       type: object
     BelgiumIdCardProviderOutput:
-      additionalProperties: false
       description: Exposed properties for the `a-be-id-login` Provider which do not
         directly map to the normalized IdentityData model.
       properties:
@@ -1872,7 +1863,6 @@ components:
       - nationalRegisterNumber
       type: object
     BrazilCpfCheckInput:
-      additionalProperties: false
       properties:
         cpfNumber:
           description: "The user's 11-digit, numeric CPF Number"
@@ -1884,7 +1874,6 @@ components:
       - cpfNumber
       type: object
     BrazilDigitalCnhInput:
-      additionalProperties: false
       properties:
         cpfNumber:
           description: "The user's 11-digit, numeric CPF Number"
@@ -1912,7 +1901,6 @@ components:
       - cpfNumber
       type: object
     CancelSessionResponse:
-      additionalProperties: false
       example:
         session: ""
       properties:
@@ -1923,7 +1911,6 @@ components:
       - session
       type: object
     ContractAttachment:
-      additionalProperties: false
       description: Information about an attachment that a Provider may return in verification
         results.
       example:
@@ -1954,7 +1941,6 @@ components:
       - type
       type: object
     ContractAttribute:
-      additionalProperties: false
       description: Information about an attribute that a Provider may return in verification
         results.
       example:
@@ -1981,7 +1967,6 @@ components:
       - scope
       type: object
     CoteDIvoireNidLookup2Input:
-      additionalProperties: false
       properties:
         idNumber:
           description: The user's National ID number (NNI) or document number
@@ -1989,7 +1974,6 @@ components:
           type: string
       type: object
     CreateDirectProviderSessionRequest:
-      additionalProperties: false
       example:
         fallbackToHostedUI: true
         redirectUrl: redirectUrl
@@ -2061,7 +2045,6 @@ components:
       - verificationProfileId
       type: object
     CreateDirectProviderSessionResponse:
-      additionalProperties: false
       example:
         resultCollection: ""
         nextStep: ""
@@ -2087,7 +2070,6 @@ components:
       - sessionId
       type: object
     CreateHostedProviderSessionRequest:
-      additionalProperties: false
       example:
         redirectUrl: redirectUrl
         provider: provider
@@ -2159,7 +2141,6 @@ components:
       - sessionId
       type: object
     CreateVerificationProfileResponse:
-      additionalProperties: false
       example:
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
@@ -2171,7 +2152,6 @@ components:
       - id
       type: object
     CreateWidgetSessionRequest:
-      additionalProperties: false
       example:
         redirectUrl: redirectUrl
         verificationProfileId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -2244,7 +2224,6 @@ components:
       - sessionId
       type: object
     CzechiaMojeIdProviderOutput:
-      additionalProperties: false
       description: Exposed properties for the `a-mojeid` Provider which do not directly
         map to the normalized IdentityData model.
       properties:
@@ -2274,7 +2253,6 @@ components:
       - openId2Identifier
       type: object
     DocumentData:
-      additionalProperties: false
       properties:
         type:
           allOf:
@@ -2333,7 +2311,6 @@ components:
         IdCard: ""
         Other: ""
     EstoniaIdCardProviderOutput:
-      additionalProperties: false
       description: Exposed properties for the `a-ee-web-eid-login` Provider which
         do not directly map to the normalized IdentityData model.
       properties:
@@ -2371,7 +2348,6 @@ components:
       - personalIdentificationCode
       type: object
     FaydaProviderOutput:
-      additionalProperties: false
       description: Exposed properties for the `ethiopia-fayda` Provider which do not
         directly map to the normalized IdentityData model.
       properties:
@@ -2387,7 +2363,6 @@ components:
           type: string
       type: object
     FinlandIdCardProviderOutput:
-      additionalProperties: false
       description: Exposed properties for the `a-fi-id-login` Provider which do not
         directly map to the normalized IdentityData model.
       properties:
@@ -2424,7 +2399,6 @@ components:
       - personalIdentificationCode
       type: object
     FrejaProviderOutput:
-      additionalProperties: false
       description: Exposed properties for the `a-freja-eid-login` Provider which do
         not directly map to the normalized IdentityData model.
       properties:
@@ -2455,7 +2429,6 @@ components:
       - personalNumberCountry
       type: object
     FrenchNumeriqueGivenName:
-      additionalProperties: false
       description: Given name information including the full given name and its structured
         components.
       properties:
@@ -2479,7 +2452,6 @@ components:
           type: string
       type: object
     FrenchNumeriqueNationality:
-      additionalProperties: false
       description: Nationality information with ISO 3166 alpha-3 code and French label.
       properties:
         code:
@@ -2494,7 +2466,6 @@ components:
           type: string
       type: object
     FrenchNumeriquePhone:
-      additionalProperties: false
       description: Phone number information including the full phone number and its
         structured components.
       properties:
@@ -2515,7 +2486,6 @@ components:
           type: string
       type: object
     FrenchNumeriqueProviderOutput:
-      additionalProperties: false
       description: Exposed properties for the `france-identite-numerique` Provider
         which do not directly map to the normalized IdentityData model.
       properties:
@@ -2688,7 +2658,6 @@ components:
           type: string
       type: object
     GetAttachmentRequest:
-      additionalProperties: false
       example:
         resultsAccessKey: resultsAccessKey
       properties:
@@ -2702,7 +2671,6 @@ components:
       - resultsAccessKey
       type: object
     GetAttachmentResponse:
-      additionalProperties: false
       example:
         contentType: contentType
         content: content
@@ -2719,7 +2687,6 @@ components:
       - contentType
       type: object
     GetSessionResponse:
-      additionalProperties: false
       example:
         session: ""
       properties:
@@ -2730,7 +2697,6 @@ components:
       - session
       type: object
     GetSessionResultRequest:
-      additionalProperties: false
       example:
         resultsAccessKey: resultsAccessKey
       properties:
@@ -2741,7 +2707,6 @@ components:
       - resultsAccessKey
       type: object
     GetSessionResultResponse:
-      additionalProperties: false
       example:
         session: ""
         identityData: ""
@@ -2757,7 +2722,6 @@ components:
       - session
       type: object
     GoogleWalletInput:
-      additionalProperties: false
       properties:
         exchangeMechanism:
           allOf:
@@ -2768,7 +2732,6 @@ components:
           nullable: true
       type: object
     GoogleWalletProviderOutput:
-      additionalProperties: false
       description: Exposed properties for the `google-wallet` Provider which do not
         directly map to the normalized IdentityData model.
       properties:
@@ -2793,7 +2756,6 @@ components:
             type: object
         type: object
     IdentityData:
-      additionalProperties: false
       properties:
         originatingProviderId:
           description: "The ID of the provider from which this data originated (eg\
@@ -2843,7 +2805,6 @@ components:
       - attachments
       type: object
     IdinInput:
-      additionalProperties: false
       properties:
         subProviderId:
           description: "The ID of the specific bank to invoke with IDIN.\n       \
@@ -2852,7 +2813,6 @@ components:
           type: string
       type: object
     IndonesiaDukcapilMatchInput:
-      additionalProperties: false
       properties:
         fullName:
           description: The user's full name
@@ -2897,7 +2857,6 @@ components:
           type: string
       type: object
     IndonesiaNikInput:
-      additionalProperties: false
       properties:
         fullName:
           description: The user's full name
@@ -2976,7 +2935,6 @@ components:
           \ mDL exchange APIs on Android or iOS.\n            \nUse Trinsic's UI SDKs\
           \ on Web, Android, or iOS to streamline this process."
     IntegrationStep:
-      additionalProperties: false
       description: A step to perform in the process of executing an Direct Provider
         Session
       properties:
@@ -3017,7 +2975,6 @@ components:
       - method
       type: object
     ItsmeProviderOutput:
-      additionalProperties: false
       description: Exposed properties for the `a-itsme-login` Provider which do not
         directly map to the normalized IdentityData model.
       properties:
@@ -3064,7 +3021,6 @@ components:
       - lastName
       type: object
     KenyaNidBiometric2Input:
-      additionalProperties: false
       properties:
         idNumber:
           description: The user's Kenyan National ID number
@@ -3089,7 +3045,6 @@ components:
           type: string
       type: object
     KenyaNidInput:
-      additionalProperties: false
       properties:
         firstName:
           description: The user's first name as it appears in their National ID
@@ -3126,7 +3081,6 @@ components:
       - nationalIdNumber
       type: object
     KenyaNidLookup2Input:
-      additionalProperties: false
       properties:
         idNumber:
           description: The user's National ID number
@@ -3134,7 +3088,6 @@ components:
           type: string
       type: object
     KenyaNidMatch2Input:
-      additionalProperties: false
       properties:
         idNumber:
           description: The user's Kenyan National ID number
@@ -3172,7 +3125,6 @@ components:
         Male: ""
         Female: ""
     LaWalletProviderOutput:
-      additionalProperties: false
       description: Exposed properties for the `usa-louisiana-wallet` Provider which
         do not directly map to the normalized IdentityData model.
       properties:
@@ -3285,7 +3237,6 @@ components:
       - sex
       type: object
     LatviaEparakstsMobileProviderOutput:
-      additionalProperties: false
       description: Exposed properties for the `a-lv-eparaksts-mobile-login` Provider
         which do not directly map to the normalized IdentityData model.
       properties:
@@ -3320,7 +3271,6 @@ components:
       - personalCode
       type: object
     LatviaEparakstsProviderOutput:
-      additionalProperties: false
       description: Exposed properties for the `a-lv-eparaksts-id-login` Provider which
         do not directly map to the normalized IdentityData model.
       properties:
@@ -3355,7 +3305,6 @@ components:
       - personalCode
       type: object
     ListProvidersResponse:
-      additionalProperties: false
       example:
         providers:
         - collectionMethod: PollResult
@@ -3456,7 +3405,6 @@ components:
       - providers
       type: object
     ListRedirectUrisResponse:
-      additionalProperties: false
       description: Response from listing redirect URIs within an environment.
       example:
         uris:
@@ -3480,7 +3428,6 @@ components:
       - uris
       type: object
     ListSessionsResponse:
-      additionalProperties: false
       example:
         sessions:
         - success: true
@@ -3517,7 +3464,6 @@ components:
       - total
       type: object
     ListVerificationProfilesResponse:
-      additionalProperties: false
       example:
         verificationProfiles:
         - enabledProviders:
@@ -3554,7 +3500,6 @@ components:
       - verificationProfiles
       type: object
     LithuaniaIdCardProviderOutput:
-      additionalProperties: false
       description: Exposed properties for the `a-lt-id-login` Provider which do not
         directly map to the normalized IdentityData model.
       properties:
@@ -3593,7 +3538,6 @@ components:
       - personalCode
       type: object
     LloydsSmartIdProviderOutput:
-      additionalProperties: false
       description: Exposed properties for the `lloyds-smart-id` Provider which do
         not directly map to the normalized IdentityData model.
       properties:
@@ -3682,7 +3626,6 @@ components:
           nullable: true
       type: object
     Match:
-      additionalProperties: false
       properties:
         probabilityValue:
           description: "The probability value of the match.\n            \nThis is\
@@ -3701,7 +3644,6 @@ components:
           type: boolean
       type: object
     MatchData:
-      additionalProperties: false
       description: "Match results for the data being matched against.\n          \
         \  \nThis applies to Providers which operate based on matching data / biometrics\
         \ against a government database,\nreturning match scores or results as opposed\
@@ -3799,7 +3741,6 @@ components:
         DigitalCredentialsApi: The mDL exchange will be performed using the Digital
           Credentials API on web.
     MdlOutput:
-      additionalProperties: false
       properties:
         iacaRootCertificate:
           allOf:
@@ -3858,7 +3799,6 @@ components:
       - nameSpaces
       type: object
     MdlOutputCertificateData:
-      additionalProperties: false
       properties:
         serialNumber:
           description: The serial number of the certificate
@@ -3894,7 +3834,6 @@ components:
       - stateOrProvinceName
       type: object
     MdlOutputFieldData:
-      additionalProperties: false
       properties:
         type:
           allOf:
@@ -3948,7 +3887,6 @@ components:
           \ that the data was returned by the mDL, but has been omitted to reduce\
           \ payload size.\n            \nUse the Attachments API to fetch this field."
     MexicoCurpInput:
-      additionalProperties: false
       properties:
         curp:
           description: The user's CURP number
@@ -3959,7 +3897,6 @@ components:
       - curp
       type: object
     MexicoCurpProviderOutput:
-      additionalProperties: false
       description: Exposed properties for the `mexico-curp-lookup` Provider which
         do not directly map to the normalized IdentityData model.
       properties:
@@ -3980,7 +3917,6 @@ components:
           type: string
       type: object
     MitIdProviderOutput:
-      additionalProperties: false
       description: Exposed properties for the `denmark-mitid` Provider which do not
         directly map to the normalized IdentityData model.
       properties:
@@ -4099,7 +4035,6 @@ components:
           type: string
       type: object
     MobileIdInput:
-      additionalProperties: false
       properties:
         mobileIdPhoneNumber:
           description: The user's phone number in E.164 format
@@ -4128,7 +4063,6 @@ components:
         ENG: English
         RUS: Russian
     MobileIdProviderOutput:
-      additionalProperties: false
       description: Exposed properties for the `mobile-id` Provider which do not directly
         map to the normalized IdentityData model.
       properties:
@@ -4211,7 +4145,6 @@ components:
           type: string
       type: object
     NigeriaNinBiometric2Input:
-      additionalProperties: false
       properties:
         idNumber:
           description: The user's Nigerian National ID number (NIN)
@@ -4236,7 +4169,6 @@ components:
           type: string
       type: object
     NigeriaNinInput:
-      additionalProperties: false
       properties:
         firstName:
           description: The user's first name as it appears in their National ID
@@ -4276,7 +4208,6 @@ components:
       - nationalIdNumber
       type: object
     NigeriaNinLookup2Input:
-      additionalProperties: false
       properties:
         idNumber:
           description: The user's National ID number (NIN)
@@ -4284,7 +4215,6 @@ components:
           type: string
       type: object
     NigeriaNinMatch2Input:
-      additionalProperties: false
       properties:
         idNumber:
           description: The user's Nigerian National ID number (NIN)
@@ -4336,7 +4266,6 @@ components:
         Ascending: ""
         Descending: ""
     PersonData:
-      additionalProperties: false
       description: Identity information for the individual being verified
       properties:
         givenName:
@@ -4385,7 +4314,6 @@ components:
           type: string
       type: object
     PeruDniAddress:
-      additionalProperties: false
       description: "Not a typical address. Does not include street or city. Instead,\
         \ includes region, province and district."
       properties:
@@ -4410,7 +4338,6 @@ components:
       - region
       type: object
     PeruDniLookupInput:
-      additionalProperties: false
       properties:
         documentNumber:
           description: "The user's DNI number (8 digits).\n            \nFormat:\n\
@@ -4424,7 +4351,6 @@ components:
           type: string
       type: object
     PeruDniProviderOutput:
-      additionalProperties: false
       description: Exposed properties for the `peru-dni-lookup` Provider which do
         not directly map to the normalized IdentityData model.
       properties:
@@ -4561,7 +4487,6 @@ components:
       - paternalLastName
       type: object
     PhilippineMatchInput:
-      additionalProperties: false
       properties:
         givenName:
           description: The user's given / first name
@@ -4586,7 +4511,6 @@ components:
           type: string
       type: object
     PhilippineQRInput:
-      additionalProperties: false
       properties:
         qrCodeText:
           description: The raw text of the user's QR code after decoding it.
@@ -4599,7 +4523,6 @@ components:
           type: string
       type: object
     PhilippinesDigitalNidProviderOutput:
-      additionalProperties: false
       description: Exposed properties for the `philippines-digital-national-id-qr`
         Provider which do not directly map to the normalized IdentityData model.
       properties:
@@ -4613,7 +4536,6 @@ components:
       - philsysCardNumber
       type: object
     PhilippinesPhysicalNidProviderOutput:
-      additionalProperties: false
       description: Exposed properties for the `philippines-physical-national-id-qr`
         Provider which do not directly map to the normalized IdentityData model.
       properties:
@@ -4627,7 +4549,6 @@ components:
       - philsysCardNumber
       type: object
     PolandEdoAppProviderOutput:
-      additionalProperties: false
       description: Exposed properties for the `a-edoapp-eid-login` Provider which
         do not directly map to the normalized IdentityData model.
       properties:
@@ -4665,7 +4586,6 @@ components:
       - nationalIdentificationNumber
       type: object
     PolandMojeIdProviderOutput:
-      additionalProperties: false
       description: Exposed properties for the `a-pl-mojeid-login` Provider which do
         not directly map to the normalized IdentityData model.
       properties:
@@ -4697,7 +4617,6 @@ components:
       - nationalIdentificationNumber
       type: object
     PortugalIdCardProviderOutput:
-      additionalProperties: false
       description: Exposed properties for the `a-pt-id-login` Provider which do not
         directly map to the normalized IdentityData model.
       properties:
@@ -4726,7 +4645,6 @@ components:
       - lastName
       type: object
     PostOfficeEasyIdProviderOutput:
-      additionalProperties: false
       description: Exposed properties for the `post-office-easyid` Provider which
         do not directly map to the normalized IdentityData model.
       properties:
@@ -4841,7 +4759,6 @@ components:
           type: string
       type: object
     Provider:
-      additionalProperties: false
       example:
         collectionMethod: PollResult
         subtext: dmv.ca.gov
@@ -5100,7 +5017,6 @@ components:
         Offline: The integration has been disabled and unavailable at this time to
           perform verification sessions.
     ProviderInput:
-      additionalProperties: false
       properties:
         kenya-nid-match-biometric-2:
           allOf:
@@ -5271,7 +5187,6 @@ components:
           nullable: true
       type: object
     ProviderOutput:
-      additionalProperties: false
       properties:
         a-at-handy-signatur-login:
           allOf:
@@ -5477,7 +5392,6 @@ components:
         Offline: ""
         All: ""
     RecommendProviderInformation:
-      additionalProperties: false
       example:
         subtext: dmv.ca.gov
         regions:
@@ -5566,7 +5480,6 @@ components:
       - subtext
       type: object
     RecommendProvidersRequest:
-      additionalProperties: false
       example:
         verificationProfileId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         health: ""
@@ -5591,7 +5504,6 @@ components:
       - verificationProfileId
       type: object
     RecommendProvidersResponse:
-      additionalProperties: false
       example:
         recommendedProviders:
         - subtext: dmv.ca.gov
@@ -5649,7 +5561,6 @@ components:
       - recommendedProviders
       type: object
     RecommendationInfo:
-      additionalProperties: false
       description: Information relating to a user; used to generated Identity Provider
         recommendations.
       properties:
@@ -5683,7 +5594,6 @@ components:
           type: array
       type: object
     RedirectUriResponse:
-      additionalProperties: false
       example:
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         uri: uri
@@ -5699,7 +5609,6 @@ components:
       - uri
       type: object
     RefreshStepContentRequest:
-      additionalProperties: false
       example:
         resultsAccessKey: resultsAccessKey
       properties:
@@ -5711,7 +5620,6 @@ components:
       - resultsAccessKey
       type: object
     RefreshStepContentResponse:
-      additionalProperties: false
       example:
         nextStep: ""
       properties:
@@ -5723,7 +5631,6 @@ components:
       - nextStep
       type: object
     ResultCollection:
-      additionalProperties: false
       properties:
         method:
           allOf:
@@ -5775,7 +5682,6 @@ components:
           \ API on web, or the equivalent native APIs on Android or iOS.\n       \
           \     \nSee the `PerformNativeChallenge` launch method for more details."
     SamsungWalletProviderOutput:
-      additionalProperties: false
       description: Exposed properties for the `samsung-wallet` Provider which do not
         directly map to the normalized IdentityData model.
       properties:
@@ -5788,7 +5694,6 @@ components:
       - rawMdlOutput
       type: object
     SerbiaIdCardProviderOutput:
-      additionalProperties: false
       description: Exposed properties for the `a-rs-id-login` Provider which do not
         directly map to the normalized IdentityData model.
       properties:
@@ -5829,7 +5734,6 @@ components:
       - uniqueMasterCitizenNumber
       type: object
     Session:
-      additionalProperties: false
       example:
         success: true
         created: 1722526411
@@ -5935,7 +5839,6 @@ components:
         Male: ""
         Female: ""
     SmartIdInput:
-      additionalProperties: false
       properties:
         smartIdNumber:
           description: The user's Smart ID ETSI number or document number.
@@ -5943,7 +5846,6 @@ components:
           type: string
       type: object
     SmartIdProviderOutput:
-      additionalProperties: false
       description: Exposed properties for the `smart-id` Provider which do not directly
         map to the normalized IdentityData model.
       properties:
@@ -6070,7 +5972,6 @@ components:
           type: string
       type: object
     SouthAfricaNidBiometric2Input:
-      additionalProperties: false
       properties:
         idNumber:
           description: The user's South African National ID number
@@ -6095,7 +5996,6 @@ components:
           type: string
       type: object
     SouthAfricaNidInput:
-      additionalProperties: false
       properties:
         fullName:
           description: The user's full name as it appears in their National ID
@@ -6123,7 +6023,6 @@ components:
       - nationalIdNumber
       type: object
     SouthAfricaNidLookup2Input:
-      additionalProperties: false
       properties:
         idNumber:
           description: The user's National ID number
@@ -6131,7 +6030,6 @@ components:
           type: string
       type: object
     SouthAfricaNidMatch2Input:
-      additionalProperties: false
       properties:
         idNumber:
           description: The user's South African National ID number
@@ -6175,7 +6073,6 @@ components:
         Male: ""
         Female: ""
     SpidBillingInformation:
-      additionalProperties: false
       description: Billing information for a SPID Verification.
       properties:
         isBillable:
@@ -6199,7 +6096,6 @@ components:
       - verificationType
       type: object
     SpidInput:
-      additionalProperties: false
       properties:
         subProviderId:
           description: "The ID of the specific IDP to invoke within SPID.\n      \
@@ -6221,7 +6117,6 @@ components:
           type: string
       type: object
     SpidProviderOutput:
-      additionalProperties: false
       description: Exposed properties for the `italy-spid` Provider which do not directly
         map to the normalized IdentityData model.
       properties:
@@ -6375,7 +6270,6 @@ components:
       - spidCode
       type: object
     StepRefreshInfo:
-      additionalProperties: false
       properties:
         expiresAt:
           description: "The UTC date/time at which the step `content` will expire\
@@ -6398,7 +6292,6 @@ components:
       - timeToLiveSeconds
       type: object
     SubProviderMetadata:
-      additionalProperties: false
       description: Information about a sub-provider.
       example:
         subtext: dmv.ca.gov
@@ -6431,7 +6324,6 @@ components:
       - subtext
       type: object
     SubmitNativeChallengeResponseRequest:
-      additionalProperties: false
       example:
         responseToken: responseToken
         resultsAccessKey: resultsAccessKey
@@ -6450,7 +6342,6 @@ components:
       - resultsAccessKey
       type: object
     SubmitNativeChallengeResponseResponse:
-      additionalProperties: false
       example:
         session: ""
       properties:
@@ -6462,7 +6353,6 @@ components:
       - session
       type: object
     SwedenBankIdProviderOutput:
-      additionalProperties: false
       description: Exposed properties for the `sweden-bankid` Provider which do not
         directly map to the normalized IdentityData model.
       properties:
@@ -6546,7 +6436,6 @@ components:
           type: string
       type: object
     TrinsicTestDatabaseLookupInput:
-      additionalProperties: false
       properties:
         givenName:
           description: "The given name to use for the output of the test Session.\n\
@@ -6576,7 +6465,6 @@ components:
           type: string
       type: object
     TrinsicTestSubProvidersInput:
-      additionalProperties: false
       properties:
         subProviderId:
           description: "The ID of the specific IDP to invoke within the test federated\
@@ -6586,7 +6474,6 @@ components:
           type: string
       type: object
     UgandaNidMatch2Input:
-      additionalProperties: false
       properties:
         idNumber:
           description: The user's Uganda National ID number (NIN) - 14 alphanumeric
@@ -6606,7 +6493,6 @@ components:
           type: string
       type: object
     VerificationProfileResponse:
-      additionalProperties: false
       example:
         enabledProviders:
         - enabledProviders
@@ -6655,7 +6541,6 @@ components:
       - primaryColor
       type: object
     YotiDocumentDetails:
-      additionalProperties: false
       properties:
         type:
           description: "The type of document used to create the Yoti credential.\n\
@@ -6691,7 +6576,6 @@ components:
           type: string
       type: object
     YotiProviderOutput:
-      additionalProperties: false
       description: Exposed properties for the `yoti` Provider which do not directly
         map to the normalized IdentityData model.
       properties:
@@ -6780,7 +6664,6 @@ components:
           nullable: true
       type: object
     YotiStructuredPostalAddress:
-      additionalProperties: false
       properties:
         country:
           description: "The address's country. This field does not have a specified\
@@ -6899,7 +6782,6 @@ components:
           type: string
       type: object
     ZimbabweNidLookup2Input:
-      additionalProperties: false
       properties:
         idNumber:
           description: The user's National ID number

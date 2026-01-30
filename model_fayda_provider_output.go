@@ -21,7 +21,10 @@ var _ MappedNullable = &FaydaProviderOutput{}
 type FaydaProviderOutput struct {
 	// A unique eKYC identifying token used to match the original eKYC token received from the provider when the user was initially registered.              Since Fayda does not return identifying data, it is the responsibility of the relying party to keep the unique user token received from Fayda when the user was initially registered to do a comparison of the subs to verify that it is the same person.
 	Sub NullableString `json:"sub,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _FaydaProviderOutput FaydaProviderOutput
 
 // NewFaydaProviderOutput instantiates a new FaydaProviderOutput object
 // This constructor will assign default values to properties that have it defined,
@@ -95,7 +98,33 @@ func (o FaydaProviderOutput) ToMap() (map[string]interface{}, error) {
 	if o.Sub.IsSet() {
 		toSerialize["sub"] = o.Sub.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *FaydaProviderOutput) UnmarshalJSON(data []byte) (err error) {
+	varFaydaProviderOutput := _FaydaProviderOutput{}
+
+	err = json.Unmarshal(data, &varFaydaProviderOutput)
+
+	if err != nil {
+		return err
+	}
+
+	*o = FaydaProviderOutput(varFaydaProviderOutput)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "sub")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableFaydaProviderOutput struct {

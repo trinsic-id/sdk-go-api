@@ -29,7 +29,10 @@ type Address struct {
 	Country NullableString `json:"country,omitempty"`
 	// The full address as a single string
 	FullAddress NullableString `json:"fullAddress,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Address Address
 
 // NewAddress instantiates a new Address object
 // This constructor will assign default values to properties that have it defined,
@@ -418,7 +421,40 @@ func (o Address) ToMap() (map[string]interface{}, error) {
 	if o.FullAddress.IsSet() {
 		toSerialize["fullAddress"] = o.FullAddress.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Address) UnmarshalJSON(data []byte) (err error) {
+	varAddress := _Address{}
+
+	err = json.Unmarshal(data, &varAddress)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Address(varAddress)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "line1")
+		delete(additionalProperties, "line2")
+		delete(additionalProperties, "line3")
+		delete(additionalProperties, "city")
+		delete(additionalProperties, "subdivision")
+		delete(additionalProperties, "postalCode")
+		delete(additionalProperties, "country")
+		delete(additionalProperties, "fullAddress")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableAddress struct {

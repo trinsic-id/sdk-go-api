@@ -25,7 +25,10 @@ type SouthAfricaNidBiometric2Input struct {
 	LivenessImages []string `json:"livenessImages,omitempty"`
 	// Test selfie for test environment (optional, maximum 15MB). Must be JPEG format.
 	TestSelfie NullableString `json:"testSelfie,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SouthAfricaNidBiometric2Input SouthAfricaNidBiometric2Input
 
 // NewSouthAfricaNidBiometric2Input instantiates a new SouthAfricaNidBiometric2Input object
 // This constructor will assign default values to properties that have it defined,
@@ -180,7 +183,35 @@ func (o SouthAfricaNidBiometric2Input) ToMap() (map[string]interface{}, error) {
 	if o.TestSelfie.IsSet() {
 		toSerialize["testSelfie"] = o.TestSelfie.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *SouthAfricaNidBiometric2Input) UnmarshalJSON(data []byte) (err error) {
+	varSouthAfricaNidBiometric2Input := _SouthAfricaNidBiometric2Input{}
+
+	err = json.Unmarshal(data, &varSouthAfricaNidBiometric2Input)
+
+	if err != nil {
+		return err
+	}
+
+	*o = SouthAfricaNidBiometric2Input(varSouthAfricaNidBiometric2Input)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "idNumber")
+		delete(additionalProperties, "livenessImages")
+		delete(additionalProperties, "testSelfie")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableSouthAfricaNidBiometric2Input struct {
