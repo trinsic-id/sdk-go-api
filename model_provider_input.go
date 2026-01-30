@@ -20,53 +20,71 @@ var _ MappedNullable = &ProviderInput{}
 // ProviderInput struct for ProviderInput
 type ProviderInput struct {
 	// Input for the `kenya-nid-match-biometric-2` provider
-	KenyaBiometric2 NullableKenyaNidBiometric2Input `json:"kenyaBiometric2,omitempty"`
+	KenyaNidMatchBiometric2 NullableKenyaNidBiometric2Input `json:"kenya-nid-match-biometric-2,omitempty"`
 	// Input for the `indonesia-nik-lookup` provider
-	IndonesiaNik NullableIndonesiaNikInput `json:"indonesiaNik,omitempty"`
+	IndonesiaNikLookup NullableIndonesiaNikInput `json:"indonesia-nik-lookup,omitempty"`
 	// Input for the `indonesia-dukcapil-match` provider
-	IndonesiaDukcapilMatch NullableIndonesiaDukcapilMatchInput `json:"indonesiaDukcapilMatch,omitempty"`
+	IndonesiaDukcapilMatch NullableIndonesiaDukcapilMatchInput `json:"indonesia-dukcapil-match,omitempty"`
 	// Input for the `mexico-curp-lookup` provider
-	MexicoCurp NullableMexicoCurpInput `json:"mexicoCurp,omitempty"`
+	MexicoCurpLookup NullableMexicoCurpInput `json:"mexico-curp-lookup,omitempty"`
 	// Input for the `south-africa-nid-lookup` provider
-	SouthAfricaNid NullableSouthAfricaNidInput `json:"southAfricaNid,omitempty"`
+	SouthAfricaNidLookup NullableSouthAfricaNidInput `json:"south-africa-nid-lookup,omitempty"`
 	// Input for the `kenya-nid-lookup` provider
-	KenyaNid NullableKenyaNidInput `json:"kenyaNid,omitempty"`
+	KenyaNidLookup NullableKenyaNidInput `json:"kenya-nid-lookup,omitempty"`
 	// Input for the `kenya-nid-match-2` provider
-	KenyaNidMatch2 NullableKenyaNidMatch2Input `json:"kenyaNidMatch2,omitempty"`
+	KenyaNidMatch2 NullableKenyaNidMatch2Input `json:"kenya-nid-match-2,omitempty"`
 	// Input for the `kenya-nid-lookup-2` provider
-	KenyaNidLookup2 NullableKenyaNidLookup2Input `json:"kenyaNidLookup2,omitempty"`
+	KenyaNidLookup2 NullableKenyaNidLookup2Input `json:"kenya-nid-lookup-2,omitempty"`
 	// Input for the `south-africa-nid-lookup-2` provider
-	SouthAfricaNidLookup2 NullableSouthAfricaNidLookup2Input `json:"southAfricaNidLookup2,omitempty"`
+	SouthAfricaNidLookup2 NullableSouthAfricaNidLookup2Input `json:"south-africa-nid-lookup-2,omitempty"`
+	// Input for the `south-africa-nid-match-2` provider
+	SouthAfricaNidMatch2 NullableSouthAfricaNidMatch2Input `json:"south-africa-nid-match-2,omitempty"`
+	// Input for the `south-africa-nid-match-biometric-2` provider
+	SouthAfricaNidMatchBiometric2 NullableSouthAfricaNidBiometric2Input `json:"south-africa-nid-match-biometric-2,omitempty"`
+	// Input for the `nigeria-nin-lookup-2` provider
+	NigeriaNinLookup2 NullableNigeriaNinLookup2Input `json:"nigeria-nin-lookup-2,omitempty"`
+	// Input for the `cote-divoire-nid-lookup-2` provider
+	CoteDivoireNidLookup2 NullableCoteDIvoireNidLookup2Input `json:"cote-divoire-nid-lookup-2,omitempty"`
+	// Input for the `zimbabwe-nid-lookup-2` provider
+	ZimbabweNidLookup2 NullableZimbabweNidLookup2Input `json:"zimbabwe-nid-lookup-2,omitempty"`
+	// Input for the `nigeria-nin-match-2` provider
+	NigeriaNinMatch2 NullableNigeriaNinMatch2Input `json:"nigeria-nin-match-2,omitempty"`
+	// Input for the `uganda-nid-match-2` provider
+	UgandaNidMatch2 NullableUgandaNidMatch2Input `json:"uganda-nid-match-2,omitempty"`
+	// Input for the `nigeria-nin-match-biometric-2` provider
+	NigeriaNinMatchBiometric2 NullableNigeriaNinBiometric2Input `json:"nigeria-nin-match-biometric-2,omitempty"`
 	// Input for the `nigeria-nin-lookup` provider
-	NigeriaNin NullableNigeriaNinInput `json:"nigeriaNin,omitempty"`
+	NigeriaNinLookup NullableNigeriaNinInput `json:"nigeria-nin-lookup,omitempty"`
 	// Input for the `india-digilocker-aadhaar-match` provider
-	Aadhaar NullableAadhaarInput `json:"aadhaar,omitempty"`
-	// Input for the `bangladesh-nid` provider
-	BangladeshNationalId NullableBangladeshNidInput `json:"bangladeshNationalId,omitempty"`
+	IndiaDigilockerAadhaarMatch NullableAadhaarInput `json:"india-digilocker-aadhaar-match,omitempty"`
 	// Input for the `brazil-cpf-lookup` provider
-	BrazilCpfCheck NullableBrazilCpfCheckInput `json:"brazilCpfCheck,omitempty"`
+	BrazilCpfLookup NullableBrazilCpfCheckInput `json:"brazil-cpf-lookup,omitempty"`
 	// Input for the `brazil-digital-cnh` provider
-	BrazilDigitalCnh NullableBrazilDigitalCnhInput `json:"brazilDigitalCnh,omitempty"`
+	BrazilDigitalCnh NullableBrazilDigitalCnhInput `json:"brazil-digital-cnh,omitempty"`
 	// Input for the `philippines-philsys-match` provider
-	PhilippineMatch NullablePhilippineMatchInput `json:"philippineMatch,omitempty"`
-	// Input for the `philippines-digital-national-id-qr` and `philippines-physical-national-id-qr` providers
-	PhilippineQR NullablePhilippineQRInput `json:"philippineQR,omitempty"`
+	PhilippinesPhilsysMatch NullablePhilippineMatchInput `json:"philippines-philsys-match,omitempty"`
+	// Input for the `philippines-physical-national-id-qr` provider
+	PhilippinesPhysicalNationalIdQr NullablePhilippineQRInput `json:"philippines-physical-national-id-qr,omitempty"`
+	// Input for the `philippines-digital-national-id-qr` provider
+	PhilippinesDigitalNationalIdQr NullablePhilippineQRInput `json:"philippines-digital-national-id-qr,omitempty"`
 	// Input for the `smart-id` provider
-	SmartId NullableSmartIdInput `json:"smartId,omitempty"`
+	SmartId NullableSmartIdInput `json:"smart-id,omitempty"`
 	// Input for the `mobile-id` provider
-	MobileId NullableMobileIdInput `json:"mobileId,omitempty"`
+	MobileId NullableMobileIdInput `json:"mobile-id,omitempty"`
 	// Input for the `netherlands-idin` provider
-	Idin NullableIdinInput `json:"idin,omitempty"`
+	NetherlandsIdin NullableIdinInput `json:"netherlands-idin,omitempty"`
 	// Input for the `italy-spid` provider
-	Spid NullableSpidInput `json:"spid,omitempty"`
+	ItalySpid NullableSpidInput `json:"italy-spid,omitempty"`
 	// Input for the `google-wallet` provider
-	GoogleWallet NullableGoogleWalletInput `json:"googleWallet,omitempty"`
+	GoogleWallet NullableGoogleWalletInput `json:"google-wallet,omitempty"`
 	// Input for the `apple-wallet` provider
-	AppleWallet NullableAppleWalletInput `json:"appleWallet,omitempty"`
+	AppleWallet NullableAppleWalletInput `json:"apple-wallet,omitempty"`
+	// Input for the `peru-dni-lookup` provider
+	PeruDniLookup NullablePeruDniLookupInput `json:"peru-dni-lookup,omitempty"`
 	// *TEST MODE ONLY.*              Input for the `trinsic-test-database-lookup` provider
-	TrinsicTestDatabaseLookup NullableTrinsicTestDatabaseLookupInput `json:"trinsicTestDatabaseLookup,omitempty"`
+	TrinsicTestDatabaseLookup NullableTrinsicTestDatabaseLookupInput `json:"trinsic-test-database-lookup,omitempty"`
 	// *TEST MODE ONLY.*              Input for the `trinsic-test-sub-providers` provider
-	TrinsicTestSubProviders NullableTrinsicTestSubProvidersInput `json:"trinsicTestSubProviders,omitempty"`
+	TrinsicTestSubProviders NullableTrinsicTestSubProvidersInput `json:"trinsic-test-sub-providers,omitempty"`
 }
 
 // NewProviderInput instantiates a new ProviderInput object
@@ -86,88 +104,88 @@ func NewProviderInputWithDefaults() *ProviderInput {
 	return &this
 }
 
-// GetKenyaBiometric2 returns the KenyaBiometric2 field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ProviderInput) GetKenyaBiometric2() KenyaNidBiometric2Input {
-	if o == nil || IsNil(o.KenyaBiometric2.Get()) {
+// GetKenyaNidMatchBiometric2 returns the KenyaNidMatchBiometric2 field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderInput) GetKenyaNidMatchBiometric2() KenyaNidBiometric2Input {
+	if o == nil || IsNil(o.KenyaNidMatchBiometric2.Get()) {
 		var ret KenyaNidBiometric2Input
 		return ret
 	}
-	return *o.KenyaBiometric2.Get()
+	return *o.KenyaNidMatchBiometric2.Get()
 }
 
-// GetKenyaBiometric2Ok returns a tuple with the KenyaBiometric2 field value if set, nil otherwise
+// GetKenyaNidMatchBiometric2Ok returns a tuple with the KenyaNidMatchBiometric2 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ProviderInput) GetKenyaBiometric2Ok() (*KenyaNidBiometric2Input, bool) {
+func (o *ProviderInput) GetKenyaNidMatchBiometric2Ok() (*KenyaNidBiometric2Input, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.KenyaBiometric2.Get(), o.KenyaBiometric2.IsSet()
+	return o.KenyaNidMatchBiometric2.Get(), o.KenyaNidMatchBiometric2.IsSet()
 }
 
-// HasKenyaBiometric2 returns a boolean if a field has been set.
-func (o *ProviderInput) HasKenyaBiometric2() bool {
-	if o != nil && o.KenyaBiometric2.IsSet() {
+// HasKenyaNidMatchBiometric2 returns a boolean if a field has been set.
+func (o *ProviderInput) HasKenyaNidMatchBiometric2() bool {
+	if o != nil && o.KenyaNidMatchBiometric2.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetKenyaBiometric2 gets a reference to the given NullableKenyaNidBiometric2Input and assigns it to the KenyaBiometric2 field.
-func (o *ProviderInput) SetKenyaBiometric2(v KenyaNidBiometric2Input) {
-	o.KenyaBiometric2.Set(&v)
+// SetKenyaNidMatchBiometric2 gets a reference to the given NullableKenyaNidBiometric2Input and assigns it to the KenyaNidMatchBiometric2 field.
+func (o *ProviderInput) SetKenyaNidMatchBiometric2(v KenyaNidBiometric2Input) {
+	o.KenyaNidMatchBiometric2.Set(&v)
 }
-// SetKenyaBiometric2Nil sets the value for KenyaBiometric2 to be an explicit nil
-func (o *ProviderInput) SetKenyaBiometric2Nil() {
-	o.KenyaBiometric2.Set(nil)
-}
-
-// UnsetKenyaBiometric2 ensures that no value is present for KenyaBiometric2, not even an explicit nil
-func (o *ProviderInput) UnsetKenyaBiometric2() {
-	o.KenyaBiometric2.Unset()
+// SetKenyaNidMatchBiometric2Nil sets the value for KenyaNidMatchBiometric2 to be an explicit nil
+func (o *ProviderInput) SetKenyaNidMatchBiometric2Nil() {
+	o.KenyaNidMatchBiometric2.Set(nil)
 }
 
-// GetIndonesiaNik returns the IndonesiaNik field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ProviderInput) GetIndonesiaNik() IndonesiaNikInput {
-	if o == nil || IsNil(o.IndonesiaNik.Get()) {
+// UnsetKenyaNidMatchBiometric2 ensures that no value is present for KenyaNidMatchBiometric2, not even an explicit nil
+func (o *ProviderInput) UnsetKenyaNidMatchBiometric2() {
+	o.KenyaNidMatchBiometric2.Unset()
+}
+
+// GetIndonesiaNikLookup returns the IndonesiaNikLookup field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderInput) GetIndonesiaNikLookup() IndonesiaNikInput {
+	if o == nil || IsNil(o.IndonesiaNikLookup.Get()) {
 		var ret IndonesiaNikInput
 		return ret
 	}
-	return *o.IndonesiaNik.Get()
+	return *o.IndonesiaNikLookup.Get()
 }
 
-// GetIndonesiaNikOk returns a tuple with the IndonesiaNik field value if set, nil otherwise
+// GetIndonesiaNikLookupOk returns a tuple with the IndonesiaNikLookup field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ProviderInput) GetIndonesiaNikOk() (*IndonesiaNikInput, bool) {
+func (o *ProviderInput) GetIndonesiaNikLookupOk() (*IndonesiaNikInput, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.IndonesiaNik.Get(), o.IndonesiaNik.IsSet()
+	return o.IndonesiaNikLookup.Get(), o.IndonesiaNikLookup.IsSet()
 }
 
-// HasIndonesiaNik returns a boolean if a field has been set.
-func (o *ProviderInput) HasIndonesiaNik() bool {
-	if o != nil && o.IndonesiaNik.IsSet() {
+// HasIndonesiaNikLookup returns a boolean if a field has been set.
+func (o *ProviderInput) HasIndonesiaNikLookup() bool {
+	if o != nil && o.IndonesiaNikLookup.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetIndonesiaNik gets a reference to the given NullableIndonesiaNikInput and assigns it to the IndonesiaNik field.
-func (o *ProviderInput) SetIndonesiaNik(v IndonesiaNikInput) {
-	o.IndonesiaNik.Set(&v)
+// SetIndonesiaNikLookup gets a reference to the given NullableIndonesiaNikInput and assigns it to the IndonesiaNikLookup field.
+func (o *ProviderInput) SetIndonesiaNikLookup(v IndonesiaNikInput) {
+	o.IndonesiaNikLookup.Set(&v)
 }
-// SetIndonesiaNikNil sets the value for IndonesiaNik to be an explicit nil
-func (o *ProviderInput) SetIndonesiaNikNil() {
-	o.IndonesiaNik.Set(nil)
+// SetIndonesiaNikLookupNil sets the value for IndonesiaNikLookup to be an explicit nil
+func (o *ProviderInput) SetIndonesiaNikLookupNil() {
+	o.IndonesiaNikLookup.Set(nil)
 }
 
-// UnsetIndonesiaNik ensures that no value is present for IndonesiaNik, not even an explicit nil
-func (o *ProviderInput) UnsetIndonesiaNik() {
-	o.IndonesiaNik.Unset()
+// UnsetIndonesiaNikLookup ensures that no value is present for IndonesiaNikLookup, not even an explicit nil
+func (o *ProviderInput) UnsetIndonesiaNikLookup() {
+	o.IndonesiaNikLookup.Unset()
 }
 
 // GetIndonesiaDukcapilMatch returns the IndonesiaDukcapilMatch field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -212,130 +230,130 @@ func (o *ProviderInput) UnsetIndonesiaDukcapilMatch() {
 	o.IndonesiaDukcapilMatch.Unset()
 }
 
-// GetMexicoCurp returns the MexicoCurp field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ProviderInput) GetMexicoCurp() MexicoCurpInput {
-	if o == nil || IsNil(o.MexicoCurp.Get()) {
+// GetMexicoCurpLookup returns the MexicoCurpLookup field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderInput) GetMexicoCurpLookup() MexicoCurpInput {
+	if o == nil || IsNil(o.MexicoCurpLookup.Get()) {
 		var ret MexicoCurpInput
 		return ret
 	}
-	return *o.MexicoCurp.Get()
+	return *o.MexicoCurpLookup.Get()
 }
 
-// GetMexicoCurpOk returns a tuple with the MexicoCurp field value if set, nil otherwise
+// GetMexicoCurpLookupOk returns a tuple with the MexicoCurpLookup field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ProviderInput) GetMexicoCurpOk() (*MexicoCurpInput, bool) {
+func (o *ProviderInput) GetMexicoCurpLookupOk() (*MexicoCurpInput, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.MexicoCurp.Get(), o.MexicoCurp.IsSet()
+	return o.MexicoCurpLookup.Get(), o.MexicoCurpLookup.IsSet()
 }
 
-// HasMexicoCurp returns a boolean if a field has been set.
-func (o *ProviderInput) HasMexicoCurp() bool {
-	if o != nil && o.MexicoCurp.IsSet() {
+// HasMexicoCurpLookup returns a boolean if a field has been set.
+func (o *ProviderInput) HasMexicoCurpLookup() bool {
+	if o != nil && o.MexicoCurpLookup.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetMexicoCurp gets a reference to the given NullableMexicoCurpInput and assigns it to the MexicoCurp field.
-func (o *ProviderInput) SetMexicoCurp(v MexicoCurpInput) {
-	o.MexicoCurp.Set(&v)
+// SetMexicoCurpLookup gets a reference to the given NullableMexicoCurpInput and assigns it to the MexicoCurpLookup field.
+func (o *ProviderInput) SetMexicoCurpLookup(v MexicoCurpInput) {
+	o.MexicoCurpLookup.Set(&v)
 }
-// SetMexicoCurpNil sets the value for MexicoCurp to be an explicit nil
-func (o *ProviderInput) SetMexicoCurpNil() {
-	o.MexicoCurp.Set(nil)
-}
-
-// UnsetMexicoCurp ensures that no value is present for MexicoCurp, not even an explicit nil
-func (o *ProviderInput) UnsetMexicoCurp() {
-	o.MexicoCurp.Unset()
+// SetMexicoCurpLookupNil sets the value for MexicoCurpLookup to be an explicit nil
+func (o *ProviderInput) SetMexicoCurpLookupNil() {
+	o.MexicoCurpLookup.Set(nil)
 }
 
-// GetSouthAfricaNid returns the SouthAfricaNid field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ProviderInput) GetSouthAfricaNid() SouthAfricaNidInput {
-	if o == nil || IsNil(o.SouthAfricaNid.Get()) {
+// UnsetMexicoCurpLookup ensures that no value is present for MexicoCurpLookup, not even an explicit nil
+func (o *ProviderInput) UnsetMexicoCurpLookup() {
+	o.MexicoCurpLookup.Unset()
+}
+
+// GetSouthAfricaNidLookup returns the SouthAfricaNidLookup field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderInput) GetSouthAfricaNidLookup() SouthAfricaNidInput {
+	if o == nil || IsNil(o.SouthAfricaNidLookup.Get()) {
 		var ret SouthAfricaNidInput
 		return ret
 	}
-	return *o.SouthAfricaNid.Get()
+	return *o.SouthAfricaNidLookup.Get()
 }
 
-// GetSouthAfricaNidOk returns a tuple with the SouthAfricaNid field value if set, nil otherwise
+// GetSouthAfricaNidLookupOk returns a tuple with the SouthAfricaNidLookup field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ProviderInput) GetSouthAfricaNidOk() (*SouthAfricaNidInput, bool) {
+func (o *ProviderInput) GetSouthAfricaNidLookupOk() (*SouthAfricaNidInput, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.SouthAfricaNid.Get(), o.SouthAfricaNid.IsSet()
+	return o.SouthAfricaNidLookup.Get(), o.SouthAfricaNidLookup.IsSet()
 }
 
-// HasSouthAfricaNid returns a boolean if a field has been set.
-func (o *ProviderInput) HasSouthAfricaNid() bool {
-	if o != nil && o.SouthAfricaNid.IsSet() {
+// HasSouthAfricaNidLookup returns a boolean if a field has been set.
+func (o *ProviderInput) HasSouthAfricaNidLookup() bool {
+	if o != nil && o.SouthAfricaNidLookup.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetSouthAfricaNid gets a reference to the given NullableSouthAfricaNidInput and assigns it to the SouthAfricaNid field.
-func (o *ProviderInput) SetSouthAfricaNid(v SouthAfricaNidInput) {
-	o.SouthAfricaNid.Set(&v)
+// SetSouthAfricaNidLookup gets a reference to the given NullableSouthAfricaNidInput and assigns it to the SouthAfricaNidLookup field.
+func (o *ProviderInput) SetSouthAfricaNidLookup(v SouthAfricaNidInput) {
+	o.SouthAfricaNidLookup.Set(&v)
 }
-// SetSouthAfricaNidNil sets the value for SouthAfricaNid to be an explicit nil
-func (o *ProviderInput) SetSouthAfricaNidNil() {
-	o.SouthAfricaNid.Set(nil)
-}
-
-// UnsetSouthAfricaNid ensures that no value is present for SouthAfricaNid, not even an explicit nil
-func (o *ProviderInput) UnsetSouthAfricaNid() {
-	o.SouthAfricaNid.Unset()
+// SetSouthAfricaNidLookupNil sets the value for SouthAfricaNidLookup to be an explicit nil
+func (o *ProviderInput) SetSouthAfricaNidLookupNil() {
+	o.SouthAfricaNidLookup.Set(nil)
 }
 
-// GetKenyaNid returns the KenyaNid field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ProviderInput) GetKenyaNid() KenyaNidInput {
-	if o == nil || IsNil(o.KenyaNid.Get()) {
+// UnsetSouthAfricaNidLookup ensures that no value is present for SouthAfricaNidLookup, not even an explicit nil
+func (o *ProviderInput) UnsetSouthAfricaNidLookup() {
+	o.SouthAfricaNidLookup.Unset()
+}
+
+// GetKenyaNidLookup returns the KenyaNidLookup field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderInput) GetKenyaNidLookup() KenyaNidInput {
+	if o == nil || IsNil(o.KenyaNidLookup.Get()) {
 		var ret KenyaNidInput
 		return ret
 	}
-	return *o.KenyaNid.Get()
+	return *o.KenyaNidLookup.Get()
 }
 
-// GetKenyaNidOk returns a tuple with the KenyaNid field value if set, nil otherwise
+// GetKenyaNidLookupOk returns a tuple with the KenyaNidLookup field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ProviderInput) GetKenyaNidOk() (*KenyaNidInput, bool) {
+func (o *ProviderInput) GetKenyaNidLookupOk() (*KenyaNidInput, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.KenyaNid.Get(), o.KenyaNid.IsSet()
+	return o.KenyaNidLookup.Get(), o.KenyaNidLookup.IsSet()
 }
 
-// HasKenyaNid returns a boolean if a field has been set.
-func (o *ProviderInput) HasKenyaNid() bool {
-	if o != nil && o.KenyaNid.IsSet() {
+// HasKenyaNidLookup returns a boolean if a field has been set.
+func (o *ProviderInput) HasKenyaNidLookup() bool {
+	if o != nil && o.KenyaNidLookup.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetKenyaNid gets a reference to the given NullableKenyaNidInput and assigns it to the KenyaNid field.
-func (o *ProviderInput) SetKenyaNid(v KenyaNidInput) {
-	o.KenyaNid.Set(&v)
+// SetKenyaNidLookup gets a reference to the given NullableKenyaNidInput and assigns it to the KenyaNidLookup field.
+func (o *ProviderInput) SetKenyaNidLookup(v KenyaNidInput) {
+	o.KenyaNidLookup.Set(&v)
 }
-// SetKenyaNidNil sets the value for KenyaNid to be an explicit nil
-func (o *ProviderInput) SetKenyaNidNil() {
-	o.KenyaNid.Set(nil)
+// SetKenyaNidLookupNil sets the value for KenyaNidLookup to be an explicit nil
+func (o *ProviderInput) SetKenyaNidLookupNil() {
+	o.KenyaNidLookup.Set(nil)
 }
 
-// UnsetKenyaNid ensures that no value is present for KenyaNid, not even an explicit nil
-func (o *ProviderInput) UnsetKenyaNid() {
-	o.KenyaNid.Unset()
+// UnsetKenyaNidLookup ensures that no value is present for KenyaNidLookup, not even an explicit nil
+func (o *ProviderInput) UnsetKenyaNidLookup() {
+	o.KenyaNidLookup.Unset()
 }
 
 // GetKenyaNidMatch2 returns the KenyaNidMatch2 field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -464,172 +482,466 @@ func (o *ProviderInput) UnsetSouthAfricaNidLookup2() {
 	o.SouthAfricaNidLookup2.Unset()
 }
 
-// GetNigeriaNin returns the NigeriaNin field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ProviderInput) GetNigeriaNin() NigeriaNinInput {
-	if o == nil || IsNil(o.NigeriaNin.Get()) {
+// GetSouthAfricaNidMatch2 returns the SouthAfricaNidMatch2 field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderInput) GetSouthAfricaNidMatch2() SouthAfricaNidMatch2Input {
+	if o == nil || IsNil(o.SouthAfricaNidMatch2.Get()) {
+		var ret SouthAfricaNidMatch2Input
+		return ret
+	}
+	return *o.SouthAfricaNidMatch2.Get()
+}
+
+// GetSouthAfricaNidMatch2Ok returns a tuple with the SouthAfricaNidMatch2 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderInput) GetSouthAfricaNidMatch2Ok() (*SouthAfricaNidMatch2Input, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.SouthAfricaNidMatch2.Get(), o.SouthAfricaNidMatch2.IsSet()
+}
+
+// HasSouthAfricaNidMatch2 returns a boolean if a field has been set.
+func (o *ProviderInput) HasSouthAfricaNidMatch2() bool {
+	if o != nil && o.SouthAfricaNidMatch2.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSouthAfricaNidMatch2 gets a reference to the given NullableSouthAfricaNidMatch2Input and assigns it to the SouthAfricaNidMatch2 field.
+func (o *ProviderInput) SetSouthAfricaNidMatch2(v SouthAfricaNidMatch2Input) {
+	o.SouthAfricaNidMatch2.Set(&v)
+}
+// SetSouthAfricaNidMatch2Nil sets the value for SouthAfricaNidMatch2 to be an explicit nil
+func (o *ProviderInput) SetSouthAfricaNidMatch2Nil() {
+	o.SouthAfricaNidMatch2.Set(nil)
+}
+
+// UnsetSouthAfricaNidMatch2 ensures that no value is present for SouthAfricaNidMatch2, not even an explicit nil
+func (o *ProviderInput) UnsetSouthAfricaNidMatch2() {
+	o.SouthAfricaNidMatch2.Unset()
+}
+
+// GetSouthAfricaNidMatchBiometric2 returns the SouthAfricaNidMatchBiometric2 field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderInput) GetSouthAfricaNidMatchBiometric2() SouthAfricaNidBiometric2Input {
+	if o == nil || IsNil(o.SouthAfricaNidMatchBiometric2.Get()) {
+		var ret SouthAfricaNidBiometric2Input
+		return ret
+	}
+	return *o.SouthAfricaNidMatchBiometric2.Get()
+}
+
+// GetSouthAfricaNidMatchBiometric2Ok returns a tuple with the SouthAfricaNidMatchBiometric2 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderInput) GetSouthAfricaNidMatchBiometric2Ok() (*SouthAfricaNidBiometric2Input, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.SouthAfricaNidMatchBiometric2.Get(), o.SouthAfricaNidMatchBiometric2.IsSet()
+}
+
+// HasSouthAfricaNidMatchBiometric2 returns a boolean if a field has been set.
+func (o *ProviderInput) HasSouthAfricaNidMatchBiometric2() bool {
+	if o != nil && o.SouthAfricaNidMatchBiometric2.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSouthAfricaNidMatchBiometric2 gets a reference to the given NullableSouthAfricaNidBiometric2Input and assigns it to the SouthAfricaNidMatchBiometric2 field.
+func (o *ProviderInput) SetSouthAfricaNidMatchBiometric2(v SouthAfricaNidBiometric2Input) {
+	o.SouthAfricaNidMatchBiometric2.Set(&v)
+}
+// SetSouthAfricaNidMatchBiometric2Nil sets the value for SouthAfricaNidMatchBiometric2 to be an explicit nil
+func (o *ProviderInput) SetSouthAfricaNidMatchBiometric2Nil() {
+	o.SouthAfricaNidMatchBiometric2.Set(nil)
+}
+
+// UnsetSouthAfricaNidMatchBiometric2 ensures that no value is present for SouthAfricaNidMatchBiometric2, not even an explicit nil
+func (o *ProviderInput) UnsetSouthAfricaNidMatchBiometric2() {
+	o.SouthAfricaNidMatchBiometric2.Unset()
+}
+
+// GetNigeriaNinLookup2 returns the NigeriaNinLookup2 field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderInput) GetNigeriaNinLookup2() NigeriaNinLookup2Input {
+	if o == nil || IsNil(o.NigeriaNinLookup2.Get()) {
+		var ret NigeriaNinLookup2Input
+		return ret
+	}
+	return *o.NigeriaNinLookup2.Get()
+}
+
+// GetNigeriaNinLookup2Ok returns a tuple with the NigeriaNinLookup2 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderInput) GetNigeriaNinLookup2Ok() (*NigeriaNinLookup2Input, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.NigeriaNinLookup2.Get(), o.NigeriaNinLookup2.IsSet()
+}
+
+// HasNigeriaNinLookup2 returns a boolean if a field has been set.
+func (o *ProviderInput) HasNigeriaNinLookup2() bool {
+	if o != nil && o.NigeriaNinLookup2.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetNigeriaNinLookup2 gets a reference to the given NullableNigeriaNinLookup2Input and assigns it to the NigeriaNinLookup2 field.
+func (o *ProviderInput) SetNigeriaNinLookup2(v NigeriaNinLookup2Input) {
+	o.NigeriaNinLookup2.Set(&v)
+}
+// SetNigeriaNinLookup2Nil sets the value for NigeriaNinLookup2 to be an explicit nil
+func (o *ProviderInput) SetNigeriaNinLookup2Nil() {
+	o.NigeriaNinLookup2.Set(nil)
+}
+
+// UnsetNigeriaNinLookup2 ensures that no value is present for NigeriaNinLookup2, not even an explicit nil
+func (o *ProviderInput) UnsetNigeriaNinLookup2() {
+	o.NigeriaNinLookup2.Unset()
+}
+
+// GetCoteDivoireNidLookup2 returns the CoteDivoireNidLookup2 field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderInput) GetCoteDivoireNidLookup2() CoteDIvoireNidLookup2Input {
+	if o == nil || IsNil(o.CoteDivoireNidLookup2.Get()) {
+		var ret CoteDIvoireNidLookup2Input
+		return ret
+	}
+	return *o.CoteDivoireNidLookup2.Get()
+}
+
+// GetCoteDivoireNidLookup2Ok returns a tuple with the CoteDivoireNidLookup2 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderInput) GetCoteDivoireNidLookup2Ok() (*CoteDIvoireNidLookup2Input, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CoteDivoireNidLookup2.Get(), o.CoteDivoireNidLookup2.IsSet()
+}
+
+// HasCoteDivoireNidLookup2 returns a boolean if a field has been set.
+func (o *ProviderInput) HasCoteDivoireNidLookup2() bool {
+	if o != nil && o.CoteDivoireNidLookup2.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCoteDivoireNidLookup2 gets a reference to the given NullableCoteDIvoireNidLookup2Input and assigns it to the CoteDivoireNidLookup2 field.
+func (o *ProviderInput) SetCoteDivoireNidLookup2(v CoteDIvoireNidLookup2Input) {
+	o.CoteDivoireNidLookup2.Set(&v)
+}
+// SetCoteDivoireNidLookup2Nil sets the value for CoteDivoireNidLookup2 to be an explicit nil
+func (o *ProviderInput) SetCoteDivoireNidLookup2Nil() {
+	o.CoteDivoireNidLookup2.Set(nil)
+}
+
+// UnsetCoteDivoireNidLookup2 ensures that no value is present for CoteDivoireNidLookup2, not even an explicit nil
+func (o *ProviderInput) UnsetCoteDivoireNidLookup2() {
+	o.CoteDivoireNidLookup2.Unset()
+}
+
+// GetZimbabweNidLookup2 returns the ZimbabweNidLookup2 field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderInput) GetZimbabweNidLookup2() ZimbabweNidLookup2Input {
+	if o == nil || IsNil(o.ZimbabweNidLookup2.Get()) {
+		var ret ZimbabweNidLookup2Input
+		return ret
+	}
+	return *o.ZimbabweNidLookup2.Get()
+}
+
+// GetZimbabweNidLookup2Ok returns a tuple with the ZimbabweNidLookup2 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderInput) GetZimbabweNidLookup2Ok() (*ZimbabweNidLookup2Input, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ZimbabweNidLookup2.Get(), o.ZimbabweNidLookup2.IsSet()
+}
+
+// HasZimbabweNidLookup2 returns a boolean if a field has been set.
+func (o *ProviderInput) HasZimbabweNidLookup2() bool {
+	if o != nil && o.ZimbabweNidLookup2.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetZimbabweNidLookup2 gets a reference to the given NullableZimbabweNidLookup2Input and assigns it to the ZimbabweNidLookup2 field.
+func (o *ProviderInput) SetZimbabweNidLookup2(v ZimbabweNidLookup2Input) {
+	o.ZimbabweNidLookup2.Set(&v)
+}
+// SetZimbabweNidLookup2Nil sets the value for ZimbabweNidLookup2 to be an explicit nil
+func (o *ProviderInput) SetZimbabweNidLookup2Nil() {
+	o.ZimbabweNidLookup2.Set(nil)
+}
+
+// UnsetZimbabweNidLookup2 ensures that no value is present for ZimbabweNidLookup2, not even an explicit nil
+func (o *ProviderInput) UnsetZimbabweNidLookup2() {
+	o.ZimbabweNidLookup2.Unset()
+}
+
+// GetNigeriaNinMatch2 returns the NigeriaNinMatch2 field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderInput) GetNigeriaNinMatch2() NigeriaNinMatch2Input {
+	if o == nil || IsNil(o.NigeriaNinMatch2.Get()) {
+		var ret NigeriaNinMatch2Input
+		return ret
+	}
+	return *o.NigeriaNinMatch2.Get()
+}
+
+// GetNigeriaNinMatch2Ok returns a tuple with the NigeriaNinMatch2 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderInput) GetNigeriaNinMatch2Ok() (*NigeriaNinMatch2Input, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.NigeriaNinMatch2.Get(), o.NigeriaNinMatch2.IsSet()
+}
+
+// HasNigeriaNinMatch2 returns a boolean if a field has been set.
+func (o *ProviderInput) HasNigeriaNinMatch2() bool {
+	if o != nil && o.NigeriaNinMatch2.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetNigeriaNinMatch2 gets a reference to the given NullableNigeriaNinMatch2Input and assigns it to the NigeriaNinMatch2 field.
+func (o *ProviderInput) SetNigeriaNinMatch2(v NigeriaNinMatch2Input) {
+	o.NigeriaNinMatch2.Set(&v)
+}
+// SetNigeriaNinMatch2Nil sets the value for NigeriaNinMatch2 to be an explicit nil
+func (o *ProviderInput) SetNigeriaNinMatch2Nil() {
+	o.NigeriaNinMatch2.Set(nil)
+}
+
+// UnsetNigeriaNinMatch2 ensures that no value is present for NigeriaNinMatch2, not even an explicit nil
+func (o *ProviderInput) UnsetNigeriaNinMatch2() {
+	o.NigeriaNinMatch2.Unset()
+}
+
+// GetUgandaNidMatch2 returns the UgandaNidMatch2 field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderInput) GetUgandaNidMatch2() UgandaNidMatch2Input {
+	if o == nil || IsNil(o.UgandaNidMatch2.Get()) {
+		var ret UgandaNidMatch2Input
+		return ret
+	}
+	return *o.UgandaNidMatch2.Get()
+}
+
+// GetUgandaNidMatch2Ok returns a tuple with the UgandaNidMatch2 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderInput) GetUgandaNidMatch2Ok() (*UgandaNidMatch2Input, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.UgandaNidMatch2.Get(), o.UgandaNidMatch2.IsSet()
+}
+
+// HasUgandaNidMatch2 returns a boolean if a field has been set.
+func (o *ProviderInput) HasUgandaNidMatch2() bool {
+	if o != nil && o.UgandaNidMatch2.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetUgandaNidMatch2 gets a reference to the given NullableUgandaNidMatch2Input and assigns it to the UgandaNidMatch2 field.
+func (o *ProviderInput) SetUgandaNidMatch2(v UgandaNidMatch2Input) {
+	o.UgandaNidMatch2.Set(&v)
+}
+// SetUgandaNidMatch2Nil sets the value for UgandaNidMatch2 to be an explicit nil
+func (o *ProviderInput) SetUgandaNidMatch2Nil() {
+	o.UgandaNidMatch2.Set(nil)
+}
+
+// UnsetUgandaNidMatch2 ensures that no value is present for UgandaNidMatch2, not even an explicit nil
+func (o *ProviderInput) UnsetUgandaNidMatch2() {
+	o.UgandaNidMatch2.Unset()
+}
+
+// GetNigeriaNinMatchBiometric2 returns the NigeriaNinMatchBiometric2 field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderInput) GetNigeriaNinMatchBiometric2() NigeriaNinBiometric2Input {
+	if o == nil || IsNil(o.NigeriaNinMatchBiometric2.Get()) {
+		var ret NigeriaNinBiometric2Input
+		return ret
+	}
+	return *o.NigeriaNinMatchBiometric2.Get()
+}
+
+// GetNigeriaNinMatchBiometric2Ok returns a tuple with the NigeriaNinMatchBiometric2 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderInput) GetNigeriaNinMatchBiometric2Ok() (*NigeriaNinBiometric2Input, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.NigeriaNinMatchBiometric2.Get(), o.NigeriaNinMatchBiometric2.IsSet()
+}
+
+// HasNigeriaNinMatchBiometric2 returns a boolean if a field has been set.
+func (o *ProviderInput) HasNigeriaNinMatchBiometric2() bool {
+	if o != nil && o.NigeriaNinMatchBiometric2.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetNigeriaNinMatchBiometric2 gets a reference to the given NullableNigeriaNinBiometric2Input and assigns it to the NigeriaNinMatchBiometric2 field.
+func (o *ProviderInput) SetNigeriaNinMatchBiometric2(v NigeriaNinBiometric2Input) {
+	o.NigeriaNinMatchBiometric2.Set(&v)
+}
+// SetNigeriaNinMatchBiometric2Nil sets the value for NigeriaNinMatchBiometric2 to be an explicit nil
+func (o *ProviderInput) SetNigeriaNinMatchBiometric2Nil() {
+	o.NigeriaNinMatchBiometric2.Set(nil)
+}
+
+// UnsetNigeriaNinMatchBiometric2 ensures that no value is present for NigeriaNinMatchBiometric2, not even an explicit nil
+func (o *ProviderInput) UnsetNigeriaNinMatchBiometric2() {
+	o.NigeriaNinMatchBiometric2.Unset()
+}
+
+// GetNigeriaNinLookup returns the NigeriaNinLookup field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderInput) GetNigeriaNinLookup() NigeriaNinInput {
+	if o == nil || IsNil(o.NigeriaNinLookup.Get()) {
 		var ret NigeriaNinInput
 		return ret
 	}
-	return *o.NigeriaNin.Get()
+	return *o.NigeriaNinLookup.Get()
 }
 
-// GetNigeriaNinOk returns a tuple with the NigeriaNin field value if set, nil otherwise
+// GetNigeriaNinLookupOk returns a tuple with the NigeriaNinLookup field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ProviderInput) GetNigeriaNinOk() (*NigeriaNinInput, bool) {
+func (o *ProviderInput) GetNigeriaNinLookupOk() (*NigeriaNinInput, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.NigeriaNin.Get(), o.NigeriaNin.IsSet()
+	return o.NigeriaNinLookup.Get(), o.NigeriaNinLookup.IsSet()
 }
 
-// HasNigeriaNin returns a boolean if a field has been set.
-func (o *ProviderInput) HasNigeriaNin() bool {
-	if o != nil && o.NigeriaNin.IsSet() {
+// HasNigeriaNinLookup returns a boolean if a field has been set.
+func (o *ProviderInput) HasNigeriaNinLookup() bool {
+	if o != nil && o.NigeriaNinLookup.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetNigeriaNin gets a reference to the given NullableNigeriaNinInput and assigns it to the NigeriaNin field.
-func (o *ProviderInput) SetNigeriaNin(v NigeriaNinInput) {
-	o.NigeriaNin.Set(&v)
+// SetNigeriaNinLookup gets a reference to the given NullableNigeriaNinInput and assigns it to the NigeriaNinLookup field.
+func (o *ProviderInput) SetNigeriaNinLookup(v NigeriaNinInput) {
+	o.NigeriaNinLookup.Set(&v)
 }
-// SetNigeriaNinNil sets the value for NigeriaNin to be an explicit nil
-func (o *ProviderInput) SetNigeriaNinNil() {
-	o.NigeriaNin.Set(nil)
-}
-
-// UnsetNigeriaNin ensures that no value is present for NigeriaNin, not even an explicit nil
-func (o *ProviderInput) UnsetNigeriaNin() {
-	o.NigeriaNin.Unset()
+// SetNigeriaNinLookupNil sets the value for NigeriaNinLookup to be an explicit nil
+func (o *ProviderInput) SetNigeriaNinLookupNil() {
+	o.NigeriaNinLookup.Set(nil)
 }
 
-// GetAadhaar returns the Aadhaar field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ProviderInput) GetAadhaar() AadhaarInput {
-	if o == nil || IsNil(o.Aadhaar.Get()) {
+// UnsetNigeriaNinLookup ensures that no value is present for NigeriaNinLookup, not even an explicit nil
+func (o *ProviderInput) UnsetNigeriaNinLookup() {
+	o.NigeriaNinLookup.Unset()
+}
+
+// GetIndiaDigilockerAadhaarMatch returns the IndiaDigilockerAadhaarMatch field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderInput) GetIndiaDigilockerAadhaarMatch() AadhaarInput {
+	if o == nil || IsNil(o.IndiaDigilockerAadhaarMatch.Get()) {
 		var ret AadhaarInput
 		return ret
 	}
-	return *o.Aadhaar.Get()
+	return *o.IndiaDigilockerAadhaarMatch.Get()
 }
 
-// GetAadhaarOk returns a tuple with the Aadhaar field value if set, nil otherwise
+// GetIndiaDigilockerAadhaarMatchOk returns a tuple with the IndiaDigilockerAadhaarMatch field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ProviderInput) GetAadhaarOk() (*AadhaarInput, bool) {
+func (o *ProviderInput) GetIndiaDigilockerAadhaarMatchOk() (*AadhaarInput, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Aadhaar.Get(), o.Aadhaar.IsSet()
+	return o.IndiaDigilockerAadhaarMatch.Get(), o.IndiaDigilockerAadhaarMatch.IsSet()
 }
 
-// HasAadhaar returns a boolean if a field has been set.
-func (o *ProviderInput) HasAadhaar() bool {
-	if o != nil && o.Aadhaar.IsSet() {
+// HasIndiaDigilockerAadhaarMatch returns a boolean if a field has been set.
+func (o *ProviderInput) HasIndiaDigilockerAadhaarMatch() bool {
+	if o != nil && o.IndiaDigilockerAadhaarMatch.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetAadhaar gets a reference to the given NullableAadhaarInput and assigns it to the Aadhaar field.
-func (o *ProviderInput) SetAadhaar(v AadhaarInput) {
-	o.Aadhaar.Set(&v)
+// SetIndiaDigilockerAadhaarMatch gets a reference to the given NullableAadhaarInput and assigns it to the IndiaDigilockerAadhaarMatch field.
+func (o *ProviderInput) SetIndiaDigilockerAadhaarMatch(v AadhaarInput) {
+	o.IndiaDigilockerAadhaarMatch.Set(&v)
 }
-// SetAadhaarNil sets the value for Aadhaar to be an explicit nil
-func (o *ProviderInput) SetAadhaarNil() {
-	o.Aadhaar.Set(nil)
-}
-
-// UnsetAadhaar ensures that no value is present for Aadhaar, not even an explicit nil
-func (o *ProviderInput) UnsetAadhaar() {
-	o.Aadhaar.Unset()
+// SetIndiaDigilockerAadhaarMatchNil sets the value for IndiaDigilockerAadhaarMatch to be an explicit nil
+func (o *ProviderInput) SetIndiaDigilockerAadhaarMatchNil() {
+	o.IndiaDigilockerAadhaarMatch.Set(nil)
 }
 
-// GetBangladeshNationalId returns the BangladeshNationalId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ProviderInput) GetBangladeshNationalId() BangladeshNidInput {
-	if o == nil || IsNil(o.BangladeshNationalId.Get()) {
-		var ret BangladeshNidInput
-		return ret
-	}
-	return *o.BangladeshNationalId.Get()
+// UnsetIndiaDigilockerAadhaarMatch ensures that no value is present for IndiaDigilockerAadhaarMatch, not even an explicit nil
+func (o *ProviderInput) UnsetIndiaDigilockerAadhaarMatch() {
+	o.IndiaDigilockerAadhaarMatch.Unset()
 }
 
-// GetBangladeshNationalIdOk returns a tuple with the BangladeshNationalId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ProviderInput) GetBangladeshNationalIdOk() (*BangladeshNidInput, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.BangladeshNationalId.Get(), o.BangladeshNationalId.IsSet()
-}
-
-// HasBangladeshNationalId returns a boolean if a field has been set.
-func (o *ProviderInput) HasBangladeshNationalId() bool {
-	if o != nil && o.BangladeshNationalId.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetBangladeshNationalId gets a reference to the given NullableBangladeshNidInput and assigns it to the BangladeshNationalId field.
-func (o *ProviderInput) SetBangladeshNationalId(v BangladeshNidInput) {
-	o.BangladeshNationalId.Set(&v)
-}
-// SetBangladeshNationalIdNil sets the value for BangladeshNationalId to be an explicit nil
-func (o *ProviderInput) SetBangladeshNationalIdNil() {
-	o.BangladeshNationalId.Set(nil)
-}
-
-// UnsetBangladeshNationalId ensures that no value is present for BangladeshNationalId, not even an explicit nil
-func (o *ProviderInput) UnsetBangladeshNationalId() {
-	o.BangladeshNationalId.Unset()
-}
-
-// GetBrazilCpfCheck returns the BrazilCpfCheck field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ProviderInput) GetBrazilCpfCheck() BrazilCpfCheckInput {
-	if o == nil || IsNil(o.BrazilCpfCheck.Get()) {
+// GetBrazilCpfLookup returns the BrazilCpfLookup field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderInput) GetBrazilCpfLookup() BrazilCpfCheckInput {
+	if o == nil || IsNil(o.BrazilCpfLookup.Get()) {
 		var ret BrazilCpfCheckInput
 		return ret
 	}
-	return *o.BrazilCpfCheck.Get()
+	return *o.BrazilCpfLookup.Get()
 }
 
-// GetBrazilCpfCheckOk returns a tuple with the BrazilCpfCheck field value if set, nil otherwise
+// GetBrazilCpfLookupOk returns a tuple with the BrazilCpfLookup field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ProviderInput) GetBrazilCpfCheckOk() (*BrazilCpfCheckInput, bool) {
+func (o *ProviderInput) GetBrazilCpfLookupOk() (*BrazilCpfCheckInput, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.BrazilCpfCheck.Get(), o.BrazilCpfCheck.IsSet()
+	return o.BrazilCpfLookup.Get(), o.BrazilCpfLookup.IsSet()
 }
 
-// HasBrazilCpfCheck returns a boolean if a field has been set.
-func (o *ProviderInput) HasBrazilCpfCheck() bool {
-	if o != nil && o.BrazilCpfCheck.IsSet() {
+// HasBrazilCpfLookup returns a boolean if a field has been set.
+func (o *ProviderInput) HasBrazilCpfLookup() bool {
+	if o != nil && o.BrazilCpfLookup.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetBrazilCpfCheck gets a reference to the given NullableBrazilCpfCheckInput and assigns it to the BrazilCpfCheck field.
-func (o *ProviderInput) SetBrazilCpfCheck(v BrazilCpfCheckInput) {
-	o.BrazilCpfCheck.Set(&v)
+// SetBrazilCpfLookup gets a reference to the given NullableBrazilCpfCheckInput and assigns it to the BrazilCpfLookup field.
+func (o *ProviderInput) SetBrazilCpfLookup(v BrazilCpfCheckInput) {
+	o.BrazilCpfLookup.Set(&v)
 }
-// SetBrazilCpfCheckNil sets the value for BrazilCpfCheck to be an explicit nil
-func (o *ProviderInput) SetBrazilCpfCheckNil() {
-	o.BrazilCpfCheck.Set(nil)
+// SetBrazilCpfLookupNil sets the value for BrazilCpfLookup to be an explicit nil
+func (o *ProviderInput) SetBrazilCpfLookupNil() {
+	o.BrazilCpfLookup.Set(nil)
 }
 
-// UnsetBrazilCpfCheck ensures that no value is present for BrazilCpfCheck, not even an explicit nil
-func (o *ProviderInput) UnsetBrazilCpfCheck() {
-	o.BrazilCpfCheck.Unset()
+// UnsetBrazilCpfLookup ensures that no value is present for BrazilCpfLookup, not even an explicit nil
+func (o *ProviderInput) UnsetBrazilCpfLookup() {
+	o.BrazilCpfLookup.Unset()
 }
 
 // GetBrazilDigitalCnh returns the BrazilDigitalCnh field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -674,88 +986,130 @@ func (o *ProviderInput) UnsetBrazilDigitalCnh() {
 	o.BrazilDigitalCnh.Unset()
 }
 
-// GetPhilippineMatch returns the PhilippineMatch field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ProviderInput) GetPhilippineMatch() PhilippineMatchInput {
-	if o == nil || IsNil(o.PhilippineMatch.Get()) {
+// GetPhilippinesPhilsysMatch returns the PhilippinesPhilsysMatch field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderInput) GetPhilippinesPhilsysMatch() PhilippineMatchInput {
+	if o == nil || IsNil(o.PhilippinesPhilsysMatch.Get()) {
 		var ret PhilippineMatchInput
 		return ret
 	}
-	return *o.PhilippineMatch.Get()
+	return *o.PhilippinesPhilsysMatch.Get()
 }
 
-// GetPhilippineMatchOk returns a tuple with the PhilippineMatch field value if set, nil otherwise
+// GetPhilippinesPhilsysMatchOk returns a tuple with the PhilippinesPhilsysMatch field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ProviderInput) GetPhilippineMatchOk() (*PhilippineMatchInput, bool) {
+func (o *ProviderInput) GetPhilippinesPhilsysMatchOk() (*PhilippineMatchInput, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.PhilippineMatch.Get(), o.PhilippineMatch.IsSet()
+	return o.PhilippinesPhilsysMatch.Get(), o.PhilippinesPhilsysMatch.IsSet()
 }
 
-// HasPhilippineMatch returns a boolean if a field has been set.
-func (o *ProviderInput) HasPhilippineMatch() bool {
-	if o != nil && o.PhilippineMatch.IsSet() {
+// HasPhilippinesPhilsysMatch returns a boolean if a field has been set.
+func (o *ProviderInput) HasPhilippinesPhilsysMatch() bool {
+	if o != nil && o.PhilippinesPhilsysMatch.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetPhilippineMatch gets a reference to the given NullablePhilippineMatchInput and assigns it to the PhilippineMatch field.
-func (o *ProviderInput) SetPhilippineMatch(v PhilippineMatchInput) {
-	o.PhilippineMatch.Set(&v)
+// SetPhilippinesPhilsysMatch gets a reference to the given NullablePhilippineMatchInput and assigns it to the PhilippinesPhilsysMatch field.
+func (o *ProviderInput) SetPhilippinesPhilsysMatch(v PhilippineMatchInput) {
+	o.PhilippinesPhilsysMatch.Set(&v)
 }
-// SetPhilippineMatchNil sets the value for PhilippineMatch to be an explicit nil
-func (o *ProviderInput) SetPhilippineMatchNil() {
-	o.PhilippineMatch.Set(nil)
-}
-
-// UnsetPhilippineMatch ensures that no value is present for PhilippineMatch, not even an explicit nil
-func (o *ProviderInput) UnsetPhilippineMatch() {
-	o.PhilippineMatch.Unset()
+// SetPhilippinesPhilsysMatchNil sets the value for PhilippinesPhilsysMatch to be an explicit nil
+func (o *ProviderInput) SetPhilippinesPhilsysMatchNil() {
+	o.PhilippinesPhilsysMatch.Set(nil)
 }
 
-// GetPhilippineQR returns the PhilippineQR field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ProviderInput) GetPhilippineQR() PhilippineQRInput {
-	if o == nil || IsNil(o.PhilippineQR.Get()) {
+// UnsetPhilippinesPhilsysMatch ensures that no value is present for PhilippinesPhilsysMatch, not even an explicit nil
+func (o *ProviderInput) UnsetPhilippinesPhilsysMatch() {
+	o.PhilippinesPhilsysMatch.Unset()
+}
+
+// GetPhilippinesPhysicalNationalIdQr returns the PhilippinesPhysicalNationalIdQr field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderInput) GetPhilippinesPhysicalNationalIdQr() PhilippineQRInput {
+	if o == nil || IsNil(o.PhilippinesPhysicalNationalIdQr.Get()) {
 		var ret PhilippineQRInput
 		return ret
 	}
-	return *o.PhilippineQR.Get()
+	return *o.PhilippinesPhysicalNationalIdQr.Get()
 }
 
-// GetPhilippineQROk returns a tuple with the PhilippineQR field value if set, nil otherwise
+// GetPhilippinesPhysicalNationalIdQrOk returns a tuple with the PhilippinesPhysicalNationalIdQr field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ProviderInput) GetPhilippineQROk() (*PhilippineQRInput, bool) {
+func (o *ProviderInput) GetPhilippinesPhysicalNationalIdQrOk() (*PhilippineQRInput, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.PhilippineQR.Get(), o.PhilippineQR.IsSet()
+	return o.PhilippinesPhysicalNationalIdQr.Get(), o.PhilippinesPhysicalNationalIdQr.IsSet()
 }
 
-// HasPhilippineQR returns a boolean if a field has been set.
-func (o *ProviderInput) HasPhilippineQR() bool {
-	if o != nil && o.PhilippineQR.IsSet() {
+// HasPhilippinesPhysicalNationalIdQr returns a boolean if a field has been set.
+func (o *ProviderInput) HasPhilippinesPhysicalNationalIdQr() bool {
+	if o != nil && o.PhilippinesPhysicalNationalIdQr.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetPhilippineQR gets a reference to the given NullablePhilippineQRInput and assigns it to the PhilippineQR field.
-func (o *ProviderInput) SetPhilippineQR(v PhilippineQRInput) {
-	o.PhilippineQR.Set(&v)
+// SetPhilippinesPhysicalNationalIdQr gets a reference to the given NullablePhilippineQRInput and assigns it to the PhilippinesPhysicalNationalIdQr field.
+func (o *ProviderInput) SetPhilippinesPhysicalNationalIdQr(v PhilippineQRInput) {
+	o.PhilippinesPhysicalNationalIdQr.Set(&v)
 }
-// SetPhilippineQRNil sets the value for PhilippineQR to be an explicit nil
-func (o *ProviderInput) SetPhilippineQRNil() {
-	o.PhilippineQR.Set(nil)
+// SetPhilippinesPhysicalNationalIdQrNil sets the value for PhilippinesPhysicalNationalIdQr to be an explicit nil
+func (o *ProviderInput) SetPhilippinesPhysicalNationalIdQrNil() {
+	o.PhilippinesPhysicalNationalIdQr.Set(nil)
 }
 
-// UnsetPhilippineQR ensures that no value is present for PhilippineQR, not even an explicit nil
-func (o *ProviderInput) UnsetPhilippineQR() {
-	o.PhilippineQR.Unset()
+// UnsetPhilippinesPhysicalNationalIdQr ensures that no value is present for PhilippinesPhysicalNationalIdQr, not even an explicit nil
+func (o *ProviderInput) UnsetPhilippinesPhysicalNationalIdQr() {
+	o.PhilippinesPhysicalNationalIdQr.Unset()
+}
+
+// GetPhilippinesDigitalNationalIdQr returns the PhilippinesDigitalNationalIdQr field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderInput) GetPhilippinesDigitalNationalIdQr() PhilippineQRInput {
+	if o == nil || IsNil(o.PhilippinesDigitalNationalIdQr.Get()) {
+		var ret PhilippineQRInput
+		return ret
+	}
+	return *o.PhilippinesDigitalNationalIdQr.Get()
+}
+
+// GetPhilippinesDigitalNationalIdQrOk returns a tuple with the PhilippinesDigitalNationalIdQr field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderInput) GetPhilippinesDigitalNationalIdQrOk() (*PhilippineQRInput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.PhilippinesDigitalNationalIdQr.Get(), o.PhilippinesDigitalNationalIdQr.IsSet()
+}
+
+// HasPhilippinesDigitalNationalIdQr returns a boolean if a field has been set.
+func (o *ProviderInput) HasPhilippinesDigitalNationalIdQr() bool {
+	if o != nil && o.PhilippinesDigitalNationalIdQr.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPhilippinesDigitalNationalIdQr gets a reference to the given NullablePhilippineQRInput and assigns it to the PhilippinesDigitalNationalIdQr field.
+func (o *ProviderInput) SetPhilippinesDigitalNationalIdQr(v PhilippineQRInput) {
+	o.PhilippinesDigitalNationalIdQr.Set(&v)
+}
+// SetPhilippinesDigitalNationalIdQrNil sets the value for PhilippinesDigitalNationalIdQr to be an explicit nil
+func (o *ProviderInput) SetPhilippinesDigitalNationalIdQrNil() {
+	o.PhilippinesDigitalNationalIdQr.Set(nil)
+}
+
+// UnsetPhilippinesDigitalNationalIdQr ensures that no value is present for PhilippinesDigitalNationalIdQr, not even an explicit nil
+func (o *ProviderInput) UnsetPhilippinesDigitalNationalIdQr() {
+	o.PhilippinesDigitalNationalIdQr.Unset()
 }
 
 // GetSmartId returns the SmartId field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -842,88 +1196,88 @@ func (o *ProviderInput) UnsetMobileId() {
 	o.MobileId.Unset()
 }
 
-// GetIdin returns the Idin field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ProviderInput) GetIdin() IdinInput {
-	if o == nil || IsNil(o.Idin.Get()) {
+// GetNetherlandsIdin returns the NetherlandsIdin field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderInput) GetNetherlandsIdin() IdinInput {
+	if o == nil || IsNil(o.NetherlandsIdin.Get()) {
 		var ret IdinInput
 		return ret
 	}
-	return *o.Idin.Get()
+	return *o.NetherlandsIdin.Get()
 }
 
-// GetIdinOk returns a tuple with the Idin field value if set, nil otherwise
+// GetNetherlandsIdinOk returns a tuple with the NetherlandsIdin field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ProviderInput) GetIdinOk() (*IdinInput, bool) {
+func (o *ProviderInput) GetNetherlandsIdinOk() (*IdinInput, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Idin.Get(), o.Idin.IsSet()
+	return o.NetherlandsIdin.Get(), o.NetherlandsIdin.IsSet()
 }
 
-// HasIdin returns a boolean if a field has been set.
-func (o *ProviderInput) HasIdin() bool {
-	if o != nil && o.Idin.IsSet() {
+// HasNetherlandsIdin returns a boolean if a field has been set.
+func (o *ProviderInput) HasNetherlandsIdin() bool {
+	if o != nil && o.NetherlandsIdin.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetIdin gets a reference to the given NullableIdinInput and assigns it to the Idin field.
-func (o *ProviderInput) SetIdin(v IdinInput) {
-	o.Idin.Set(&v)
+// SetNetherlandsIdin gets a reference to the given NullableIdinInput and assigns it to the NetherlandsIdin field.
+func (o *ProviderInput) SetNetherlandsIdin(v IdinInput) {
+	o.NetherlandsIdin.Set(&v)
 }
-// SetIdinNil sets the value for Idin to be an explicit nil
-func (o *ProviderInput) SetIdinNil() {
-	o.Idin.Set(nil)
-}
-
-// UnsetIdin ensures that no value is present for Idin, not even an explicit nil
-func (o *ProviderInput) UnsetIdin() {
-	o.Idin.Unset()
+// SetNetherlandsIdinNil sets the value for NetherlandsIdin to be an explicit nil
+func (o *ProviderInput) SetNetherlandsIdinNil() {
+	o.NetherlandsIdin.Set(nil)
 }
 
-// GetSpid returns the Spid field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ProviderInput) GetSpid() SpidInput {
-	if o == nil || IsNil(o.Spid.Get()) {
+// UnsetNetherlandsIdin ensures that no value is present for NetherlandsIdin, not even an explicit nil
+func (o *ProviderInput) UnsetNetherlandsIdin() {
+	o.NetherlandsIdin.Unset()
+}
+
+// GetItalySpid returns the ItalySpid field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderInput) GetItalySpid() SpidInput {
+	if o == nil || IsNil(o.ItalySpid.Get()) {
 		var ret SpidInput
 		return ret
 	}
-	return *o.Spid.Get()
+	return *o.ItalySpid.Get()
 }
 
-// GetSpidOk returns a tuple with the Spid field value if set, nil otherwise
+// GetItalySpidOk returns a tuple with the ItalySpid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ProviderInput) GetSpidOk() (*SpidInput, bool) {
+func (o *ProviderInput) GetItalySpidOk() (*SpidInput, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Spid.Get(), o.Spid.IsSet()
+	return o.ItalySpid.Get(), o.ItalySpid.IsSet()
 }
 
-// HasSpid returns a boolean if a field has been set.
-func (o *ProviderInput) HasSpid() bool {
-	if o != nil && o.Spid.IsSet() {
+// HasItalySpid returns a boolean if a field has been set.
+func (o *ProviderInput) HasItalySpid() bool {
+	if o != nil && o.ItalySpid.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetSpid gets a reference to the given NullableSpidInput and assigns it to the Spid field.
-func (o *ProviderInput) SetSpid(v SpidInput) {
-	o.Spid.Set(&v)
+// SetItalySpid gets a reference to the given NullableSpidInput and assigns it to the ItalySpid field.
+func (o *ProviderInput) SetItalySpid(v SpidInput) {
+	o.ItalySpid.Set(&v)
 }
-// SetSpidNil sets the value for Spid to be an explicit nil
-func (o *ProviderInput) SetSpidNil() {
-	o.Spid.Set(nil)
+// SetItalySpidNil sets the value for ItalySpid to be an explicit nil
+func (o *ProviderInput) SetItalySpidNil() {
+	o.ItalySpid.Set(nil)
 }
 
-// UnsetSpid ensures that no value is present for Spid, not even an explicit nil
-func (o *ProviderInput) UnsetSpid() {
-	o.Spid.Unset()
+// UnsetItalySpid ensures that no value is present for ItalySpid, not even an explicit nil
+func (o *ProviderInput) UnsetItalySpid() {
+	o.ItalySpid.Unset()
 }
 
 // GetGoogleWallet returns the GoogleWallet field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -1008,6 +1362,48 @@ func (o *ProviderInput) SetAppleWalletNil() {
 // UnsetAppleWallet ensures that no value is present for AppleWallet, not even an explicit nil
 func (o *ProviderInput) UnsetAppleWallet() {
 	o.AppleWallet.Unset()
+}
+
+// GetPeruDniLookup returns the PeruDniLookup field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderInput) GetPeruDniLookup() PeruDniLookupInput {
+	if o == nil || IsNil(o.PeruDniLookup.Get()) {
+		var ret PeruDniLookupInput
+		return ret
+	}
+	return *o.PeruDniLookup.Get()
+}
+
+// GetPeruDniLookupOk returns a tuple with the PeruDniLookup field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderInput) GetPeruDniLookupOk() (*PeruDniLookupInput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.PeruDniLookup.Get(), o.PeruDniLookup.IsSet()
+}
+
+// HasPeruDniLookup returns a boolean if a field has been set.
+func (o *ProviderInput) HasPeruDniLookup() bool {
+	if o != nil && o.PeruDniLookup.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPeruDniLookup gets a reference to the given NullablePeruDniLookupInput and assigns it to the PeruDniLookup field.
+func (o *ProviderInput) SetPeruDniLookup(v PeruDniLookupInput) {
+	o.PeruDniLookup.Set(&v)
+}
+// SetPeruDniLookupNil sets the value for PeruDniLookup to be an explicit nil
+func (o *ProviderInput) SetPeruDniLookupNil() {
+	o.PeruDniLookup.Set(nil)
+}
+
+// UnsetPeruDniLookup ensures that no value is present for PeruDniLookup, not even an explicit nil
+func (o *ProviderInput) UnsetPeruDniLookup() {
+	o.PeruDniLookup.Unset()
 }
 
 // GetTrinsicTestDatabaseLookup returns the TrinsicTestDatabaseLookup field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -1104,77 +1500,104 @@ func (o ProviderInput) MarshalJSON() ([]byte, error) {
 
 func (o ProviderInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.KenyaBiometric2.IsSet() {
-		toSerialize["kenyaBiometric2"] = o.KenyaBiometric2.Get()
+	if o.KenyaNidMatchBiometric2.IsSet() {
+		toSerialize["kenya-nid-match-biometric-2"] = o.KenyaNidMatchBiometric2.Get()
 	}
-	if o.IndonesiaNik.IsSet() {
-		toSerialize["indonesiaNik"] = o.IndonesiaNik.Get()
+	if o.IndonesiaNikLookup.IsSet() {
+		toSerialize["indonesia-nik-lookup"] = o.IndonesiaNikLookup.Get()
 	}
 	if o.IndonesiaDukcapilMatch.IsSet() {
-		toSerialize["indonesiaDukcapilMatch"] = o.IndonesiaDukcapilMatch.Get()
+		toSerialize["indonesia-dukcapil-match"] = o.IndonesiaDukcapilMatch.Get()
 	}
-	if o.MexicoCurp.IsSet() {
-		toSerialize["mexicoCurp"] = o.MexicoCurp.Get()
+	if o.MexicoCurpLookup.IsSet() {
+		toSerialize["mexico-curp-lookup"] = o.MexicoCurpLookup.Get()
 	}
-	if o.SouthAfricaNid.IsSet() {
-		toSerialize["southAfricaNid"] = o.SouthAfricaNid.Get()
+	if o.SouthAfricaNidLookup.IsSet() {
+		toSerialize["south-africa-nid-lookup"] = o.SouthAfricaNidLookup.Get()
 	}
-	if o.KenyaNid.IsSet() {
-		toSerialize["kenyaNid"] = o.KenyaNid.Get()
+	if o.KenyaNidLookup.IsSet() {
+		toSerialize["kenya-nid-lookup"] = o.KenyaNidLookup.Get()
 	}
 	if o.KenyaNidMatch2.IsSet() {
-		toSerialize["kenyaNidMatch2"] = o.KenyaNidMatch2.Get()
+		toSerialize["kenya-nid-match-2"] = o.KenyaNidMatch2.Get()
 	}
 	if o.KenyaNidLookup2.IsSet() {
-		toSerialize["kenyaNidLookup2"] = o.KenyaNidLookup2.Get()
+		toSerialize["kenya-nid-lookup-2"] = o.KenyaNidLookup2.Get()
 	}
 	if o.SouthAfricaNidLookup2.IsSet() {
-		toSerialize["southAfricaNidLookup2"] = o.SouthAfricaNidLookup2.Get()
+		toSerialize["south-africa-nid-lookup-2"] = o.SouthAfricaNidLookup2.Get()
 	}
-	if o.NigeriaNin.IsSet() {
-		toSerialize["nigeriaNin"] = o.NigeriaNin.Get()
+	if o.SouthAfricaNidMatch2.IsSet() {
+		toSerialize["south-africa-nid-match-2"] = o.SouthAfricaNidMatch2.Get()
 	}
-	if o.Aadhaar.IsSet() {
-		toSerialize["aadhaar"] = o.Aadhaar.Get()
+	if o.SouthAfricaNidMatchBiometric2.IsSet() {
+		toSerialize["south-africa-nid-match-biometric-2"] = o.SouthAfricaNidMatchBiometric2.Get()
 	}
-	if o.BangladeshNationalId.IsSet() {
-		toSerialize["bangladeshNationalId"] = o.BangladeshNationalId.Get()
+	if o.NigeriaNinLookup2.IsSet() {
+		toSerialize["nigeria-nin-lookup-2"] = o.NigeriaNinLookup2.Get()
 	}
-	if o.BrazilCpfCheck.IsSet() {
-		toSerialize["brazilCpfCheck"] = o.BrazilCpfCheck.Get()
+	if o.CoteDivoireNidLookup2.IsSet() {
+		toSerialize["cote-divoire-nid-lookup-2"] = o.CoteDivoireNidLookup2.Get()
+	}
+	if o.ZimbabweNidLookup2.IsSet() {
+		toSerialize["zimbabwe-nid-lookup-2"] = o.ZimbabweNidLookup2.Get()
+	}
+	if o.NigeriaNinMatch2.IsSet() {
+		toSerialize["nigeria-nin-match-2"] = o.NigeriaNinMatch2.Get()
+	}
+	if o.UgandaNidMatch2.IsSet() {
+		toSerialize["uganda-nid-match-2"] = o.UgandaNidMatch2.Get()
+	}
+	if o.NigeriaNinMatchBiometric2.IsSet() {
+		toSerialize["nigeria-nin-match-biometric-2"] = o.NigeriaNinMatchBiometric2.Get()
+	}
+	if o.NigeriaNinLookup.IsSet() {
+		toSerialize["nigeria-nin-lookup"] = o.NigeriaNinLookup.Get()
+	}
+	if o.IndiaDigilockerAadhaarMatch.IsSet() {
+		toSerialize["india-digilocker-aadhaar-match"] = o.IndiaDigilockerAadhaarMatch.Get()
+	}
+	if o.BrazilCpfLookup.IsSet() {
+		toSerialize["brazil-cpf-lookup"] = o.BrazilCpfLookup.Get()
 	}
 	if o.BrazilDigitalCnh.IsSet() {
-		toSerialize["brazilDigitalCnh"] = o.BrazilDigitalCnh.Get()
+		toSerialize["brazil-digital-cnh"] = o.BrazilDigitalCnh.Get()
 	}
-	if o.PhilippineMatch.IsSet() {
-		toSerialize["philippineMatch"] = o.PhilippineMatch.Get()
+	if o.PhilippinesPhilsysMatch.IsSet() {
+		toSerialize["philippines-philsys-match"] = o.PhilippinesPhilsysMatch.Get()
 	}
-	if o.PhilippineQR.IsSet() {
-		toSerialize["philippineQR"] = o.PhilippineQR.Get()
+	if o.PhilippinesPhysicalNationalIdQr.IsSet() {
+		toSerialize["philippines-physical-national-id-qr"] = o.PhilippinesPhysicalNationalIdQr.Get()
+	}
+	if o.PhilippinesDigitalNationalIdQr.IsSet() {
+		toSerialize["philippines-digital-national-id-qr"] = o.PhilippinesDigitalNationalIdQr.Get()
 	}
 	if o.SmartId.IsSet() {
-		toSerialize["smartId"] = o.SmartId.Get()
+		toSerialize["smart-id"] = o.SmartId.Get()
 	}
 	if o.MobileId.IsSet() {
-		toSerialize["mobileId"] = o.MobileId.Get()
+		toSerialize["mobile-id"] = o.MobileId.Get()
 	}
-	if o.Idin.IsSet() {
-		toSerialize["idin"] = o.Idin.Get()
+	if o.NetherlandsIdin.IsSet() {
+		toSerialize["netherlands-idin"] = o.NetherlandsIdin.Get()
 	}
-	if o.Spid.IsSet() {
-		toSerialize["spid"] = o.Spid.Get()
+	if o.ItalySpid.IsSet() {
+		toSerialize["italy-spid"] = o.ItalySpid.Get()
 	}
 	if o.GoogleWallet.IsSet() {
-		toSerialize["googleWallet"] = o.GoogleWallet.Get()
+		toSerialize["google-wallet"] = o.GoogleWallet.Get()
 	}
 	if o.AppleWallet.IsSet() {
-		toSerialize["appleWallet"] = o.AppleWallet.Get()
+		toSerialize["apple-wallet"] = o.AppleWallet.Get()
+	}
+	if o.PeruDniLookup.IsSet() {
+		toSerialize["peru-dni-lookup"] = o.PeruDniLookup.Get()
 	}
 	if o.TrinsicTestDatabaseLookup.IsSet() {
-		toSerialize["trinsicTestDatabaseLookup"] = o.TrinsicTestDatabaseLookup.Get()
+		toSerialize["trinsic-test-database-lookup"] = o.TrinsicTestDatabaseLookup.Get()
 	}
 	if o.TrinsicTestSubProviders.IsSet() {
-		toSerialize["trinsicTestSubProviders"] = o.TrinsicTestSubProviders.Get()
+		toSerialize["trinsic-test-sub-providers"] = o.TrinsicTestSubProviders.Get()
 	}
 	return toSerialize, nil
 }

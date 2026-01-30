@@ -27,9 +27,6 @@ type SubProviderMetadata struct {
 	Name string `json:"name"`
 	// The Provider's subtext recommended to be shown next to the name.              This is flavor text, not a full, human-readable description of the provider.
 	Subtext string `json:"subtext"`
-	// The Provider's subtext recommended to be shown next to the name.              This is flavor text, not a full, human-readable description of the provider.
-	// Deprecated
-	Description string `json:"description"`
 	// A URL pointing to the logo on Trinsic's CDN.              May be a PNG, JPG, or SVG image.
 	LogoUrl string `json:"logoUrl"`
 }
@@ -40,12 +37,11 @@ type _SubProviderMetadata SubProviderMetadata
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSubProviderMetadata(id string, name string, subtext string, description string, logoUrl string) *SubProviderMetadata {
+func NewSubProviderMetadata(id string, name string, subtext string, logoUrl string) *SubProviderMetadata {
 	this := SubProviderMetadata{}
 	this.Id = id
 	this.Name = name
 	this.Subtext = subtext
-	this.Description = description
 	this.LogoUrl = logoUrl
 	return &this
 }
@@ -130,33 +126,6 @@ func (o *SubProviderMetadata) SetSubtext(v string) {
 	o.Subtext = v
 }
 
-// GetDescription returns the Description field value
-// Deprecated
-func (o *SubProviderMetadata) GetDescription() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Description
-}
-
-// GetDescriptionOk returns a tuple with the Description field value
-// and a boolean to check if the value has been set.
-// Deprecated
-func (o *SubProviderMetadata) GetDescriptionOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Description, true
-}
-
-// SetDescription sets field value
-// Deprecated
-func (o *SubProviderMetadata) SetDescription(v string) {
-	o.Description = v
-}
-
 // GetLogoUrl returns the LogoUrl field value
 func (o *SubProviderMetadata) GetLogoUrl() string {
 	if o == nil {
@@ -194,7 +163,6 @@ func (o SubProviderMetadata) ToMap() (map[string]interface{}, error) {
 	toSerialize["id"] = o.Id
 	toSerialize["name"] = o.Name
 	toSerialize["subtext"] = o.Subtext
-	toSerialize["description"] = o.Description
 	toSerialize["logoUrl"] = o.LogoUrl
 	return toSerialize, nil
 }
@@ -207,7 +175,6 @@ func (o *SubProviderMetadata) UnmarshalJSON(data []byte) (err error) {
 		"id",
 		"name",
 		"subtext",
-		"description",
 		"logoUrl",
 	}
 

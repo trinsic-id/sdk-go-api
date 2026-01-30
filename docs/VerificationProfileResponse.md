@@ -10,12 +10,13 @@ Name | Type | Description | Notes
 **LogoUrl** | **string** | The URL of the verification profile&#39;s logo. | 
 **PrimaryColor** | **string** | The primary color of the verification profile. | 
 **EnabledProviders** | **[]string** | The providers that are currently enabled for the verification profile. | 
+**IsProductionUsage** | **bool** | Whether this profile is for production usage. Only applicable for Live environment profiles. | 
 
 ## Methods
 
 ### NewVerificationProfileResponse
 
-`func NewVerificationProfileResponse(id string, alias string, brandName string, logoUrl string, primaryColor string, enabledProviders []string, ) *VerificationProfileResponse`
+`func NewVerificationProfileResponse(id string, alias string, brandName string, logoUrl string, primaryColor string, enabledProviders []string, isProductionUsage bool, ) *VerificationProfileResponse`
 
 NewVerificationProfileResponse instantiates a new VerificationProfileResponse object
 This constructor will assign default values to properties that have it defined,
@@ -148,6 +149,26 @@ and a boolean to check if the value has been set.
 `func (o *VerificationProfileResponse) SetEnabledProviders(v []string)`
 
 SetEnabledProviders sets EnabledProviders field to given value.
+
+
+### GetIsProductionUsage
+
+`func (o *VerificationProfileResponse) GetIsProductionUsage() bool`
+
+GetIsProductionUsage returns the IsProductionUsage field if non-nil, zero value otherwise.
+
+### GetIsProductionUsageOk
+
+`func (o *VerificationProfileResponse) GetIsProductionUsageOk() (*bool, bool)`
+
+GetIsProductionUsageOk returns a tuple with the IsProductionUsage field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsProductionUsage
+
+`func (o *VerificationProfileResponse) SetIsProductionUsage(v bool)`
+
+SetIsProductionUsage sets IsProductionUsage field to given value.
 
 
 

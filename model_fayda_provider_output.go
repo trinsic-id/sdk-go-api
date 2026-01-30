@@ -17,7 +17,7 @@ import (
 // checks if the FaydaProviderOutput type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &FaydaProviderOutput{}
 
-// FaydaProviderOutput struct for FaydaProviderOutput
+// FaydaProviderOutput Exposed properties for the `ethiopia-fayda` Provider which do not directly map to the normalized IdentityData model.
 type FaydaProviderOutput struct {
 	// A unique eKYC identifying token used to match the original eKYC token received from the provider when the user was initially registered.              Since Fayda does not return identifying data, it is the responsibility of the relying party to keep the unique user token received from Fayda when the user was initially registered to do a comparison of the subs to verify that it is the same person.
 	Sub NullableString `json:"sub,omitempty"`

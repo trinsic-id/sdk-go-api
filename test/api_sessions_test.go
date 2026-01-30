@@ -72,6 +72,21 @@ func Test_trinsic_api_SessionsAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test SessionsAPIService GetAttachment", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var sessionId string
+		var attachmentId string
+
+		resp, httpRes, err := apiClient.SessionsAPI.GetAttachment(context.Background(), sessionId, attachmentId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test SessionsAPIService GetSession", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -107,6 +122,18 @@ func Test_trinsic_api_SessionsAPIService(t *testing.T) {
 		var verificationProfileId string
 
 		resp, httpRes, err := apiClient.SessionsAPI.ListSessions(context.Background(), verificationProfileId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test SessionsAPIService RecommendProviders", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		resp, httpRes, err := apiClient.SessionsAPI.RecommendProviders(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

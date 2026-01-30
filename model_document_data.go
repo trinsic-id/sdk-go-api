@@ -19,11 +19,19 @@ var _ MappedNullable = &DocumentData{}
 
 // DocumentData struct for DocumentData
 type DocumentData struct {
+	// The type of the document.
 	Type NullableDocumentType `json:"type,omitempty"`
+	// The primary identifying number of the document.
 	Number NullableString `json:"number,omitempty"`
+	// The date the document was issued.
 	IssueDate NullableString `json:"issueDate,omitempty"`
+	// The date the document expires.
 	ExpirationDate NullableString `json:"expirationDate,omitempty"`
+	// The ISO 3166-1 alpha-2 country code of the country that issued the document.
 	IssuingCountry NullableString `json:"issuingCountry,omitempty"`
+	// The ISO 3166-2 subdivision code of the issuing authority which issued the document.              This is always in the form {CountryCode}-{SubdivisionCode}, where CountryCode is 2 letters and SubdivisionCode is 1-3 alphanumeric characters.
+	IssuingSubdivision NullableString `json:"issuingSubdivision,omitempty"`
+	// The name of the authority which issued the document.
 	IssuingAuthority NullableString `json:"issuingAuthority,omitempty"`
 }
 
@@ -254,6 +262,48 @@ func (o *DocumentData) UnsetIssuingCountry() {
 	o.IssuingCountry.Unset()
 }
 
+// GetIssuingSubdivision returns the IssuingSubdivision field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *DocumentData) GetIssuingSubdivision() string {
+	if o == nil || IsNil(o.IssuingSubdivision.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.IssuingSubdivision.Get()
+}
+
+// GetIssuingSubdivisionOk returns a tuple with the IssuingSubdivision field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *DocumentData) GetIssuingSubdivisionOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.IssuingSubdivision.Get(), o.IssuingSubdivision.IsSet()
+}
+
+// HasIssuingSubdivision returns a boolean if a field has been set.
+func (o *DocumentData) HasIssuingSubdivision() bool {
+	if o != nil && o.IssuingSubdivision.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetIssuingSubdivision gets a reference to the given NullableString and assigns it to the IssuingSubdivision field.
+func (o *DocumentData) SetIssuingSubdivision(v string) {
+	o.IssuingSubdivision.Set(&v)
+}
+// SetIssuingSubdivisionNil sets the value for IssuingSubdivision to be an explicit nil
+func (o *DocumentData) SetIssuingSubdivisionNil() {
+	o.IssuingSubdivision.Set(nil)
+}
+
+// UnsetIssuingSubdivision ensures that no value is present for IssuingSubdivision, not even an explicit nil
+func (o *DocumentData) UnsetIssuingSubdivision() {
+	o.IssuingSubdivision.Unset()
+}
+
 // GetIssuingAuthority returns the IssuingAuthority field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DocumentData) GetIssuingAuthority() string {
 	if o == nil || IsNil(o.IssuingAuthority.Get()) {
@@ -320,6 +370,9 @@ func (o DocumentData) ToMap() (map[string]interface{}, error) {
 	}
 	if o.IssuingCountry.IsSet() {
 		toSerialize["issuingCountry"] = o.IssuingCountry.Get()
+	}
+	if o.IssuingSubdivision.IsSet() {
+		toSerialize["issuingSubdivision"] = o.IssuingSubdivision.Get()
 	}
 	if o.IssuingAuthority.IsSet() {
 		toSerialize["issuingAuthority"] = o.IssuingAuthority.Get()

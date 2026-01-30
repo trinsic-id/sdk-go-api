@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **MobileIdPhoneNumber** | Pointer to **NullableString** | The user&#39;s phone number in E.164 format | [optional] 
 **MobileIdNationalIdentityNumber** | Pointer to **NullableString** | The user&#39;s National ID number | [optional] 
-**MobileIdLanguage** | Pointer to [**NullableLanguage**](Language.md) | The user&#39;s language -- LIT, EST, ENG, or RUS | [optional] 
+**MobileIdLanguage** | Pointer to [**NullableMobileIdLanguage**](MobileIdLanguage.md) | The user&#39;s language -- LIT, EST, ENG, or RUS | [optional] 
 
 ## Methods
 
@@ -99,20 +99,20 @@ HasMobileIdNationalIdentityNumber returns a boolean if a field has been set.
 UnsetMobileIdNationalIdentityNumber ensures that no value is present for MobileIdNationalIdentityNumber, not even an explicit nil
 ### GetMobileIdLanguage
 
-`func (o *MobileIdInput) GetMobileIdLanguage() Language`
+`func (o *MobileIdInput) GetMobileIdLanguage() MobileIdLanguage`
 
 GetMobileIdLanguage returns the MobileIdLanguage field if non-nil, zero value otherwise.
 
 ### GetMobileIdLanguageOk
 
-`func (o *MobileIdInput) GetMobileIdLanguageOk() (*Language, bool)`
+`func (o *MobileIdInput) GetMobileIdLanguageOk() (*MobileIdLanguage, bool)`
 
 GetMobileIdLanguageOk returns a tuple with the MobileIdLanguage field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMobileIdLanguage
 
-`func (o *MobileIdInput) SetMobileIdLanguage(v Language)`
+`func (o *MobileIdInput) SetMobileIdLanguage(v MobileIdLanguage)`
 
 SetMobileIdLanguage sets MobileIdLanguage field to given value.
 

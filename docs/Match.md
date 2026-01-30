@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ProbabilityValue** | Pointer to **NullableFloat64** |  | [optional] 
-**BooleanValue** | Pointer to **NullableBool** |  | [optional] 
+**ProbabilityValue** | Pointer to **NullableFloat64** | The probability value of the match.              This is a value between 0 and 1, where 1 indicates a perfect match and 0 indicates no match.              This field is non-null when the underlying Provider&#39;s match output is in the form of a probability score. | [optional] 
+**BooleanValue** | Pointer to **NullableBool** | The boolean value of the match.              This is a value of true or false, where true indicates a match and false indicates no match.              This field is non-null when the underlying Provider&#39;s match output is in the form of a boolean value. | [optional] 
 
 ## Methods
 

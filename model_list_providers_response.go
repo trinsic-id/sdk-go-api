@@ -21,8 +21,8 @@ var _ MappedNullable = &ListProvidersResponse{}
 
 // ListProvidersResponse struct for ListProvidersResponse
 type ListProvidersResponse struct {
-	// The list of identity providers available to your account
-	Providers []ProviderInfo `json:"providers"`
+	// The list of providers available to this organization
+	Providers []Provider `json:"providers"`
 }
 
 type _ListProvidersResponse ListProvidersResponse
@@ -31,7 +31,7 @@ type _ListProvidersResponse ListProvidersResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListProvidersResponse(providers []ProviderInfo) *ListProvidersResponse {
+func NewListProvidersResponse(providers []Provider) *ListProvidersResponse {
 	this := ListProvidersResponse{}
 	this.Providers = providers
 	return &this
@@ -46,9 +46,9 @@ func NewListProvidersResponseWithDefaults() *ListProvidersResponse {
 }
 
 // GetProviders returns the Providers field value
-func (o *ListProvidersResponse) GetProviders() []ProviderInfo {
+func (o *ListProvidersResponse) GetProviders() []Provider {
 	if o == nil {
-		var ret []ProviderInfo
+		var ret []Provider
 		return ret
 	}
 
@@ -57,7 +57,7 @@ func (o *ListProvidersResponse) GetProviders() []ProviderInfo {
 
 // GetProvidersOk returns a tuple with the Providers field value
 // and a boolean to check if the value has been set.
-func (o *ListProvidersResponse) GetProvidersOk() ([]ProviderInfo, bool) {
+func (o *ListProvidersResponse) GetProvidersOk() ([]Provider, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -65,7 +65,7 @@ func (o *ListProvidersResponse) GetProvidersOk() ([]ProviderInfo, bool) {
 }
 
 // SetProviders sets field value
-func (o *ListProvidersResponse) SetProviders(v []ProviderInfo) {
+func (o *ListProvidersResponse) SetProviders(v []Provider) {
 	o.Providers = v
 }
 

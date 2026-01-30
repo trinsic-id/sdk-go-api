@@ -30,7 +30,7 @@ type KenyaNidMatch2Input struct {
 	// The user's date of birth, in `YYYY-MM-DD` format
 	DateOfBirth NullableString `json:"dateOfBirth,omitempty"`
 	// The user's sex as it appears in their National ID
-	Sex NullableSexV1 `json:"sex,omitempty"`
+	Sex NullableKenyaNidMatch2InputSex `json:"sex,omitempty"`
 }
 
 // NewKenyaNidMatch2Input instantiates a new KenyaNidMatch2Input object
@@ -261,9 +261,9 @@ func (o *KenyaNidMatch2Input) UnsetDateOfBirth() {
 }
 
 // GetSex returns the Sex field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *KenyaNidMatch2Input) GetSex() SexV1 {
+func (o *KenyaNidMatch2Input) GetSex() KenyaNidMatch2InputSex {
 	if o == nil || IsNil(o.Sex.Get()) {
-		var ret SexV1
+		var ret KenyaNidMatch2InputSex
 		return ret
 	}
 	return *o.Sex.Get()
@@ -272,7 +272,7 @@ func (o *KenyaNidMatch2Input) GetSex() SexV1 {
 // GetSexOk returns a tuple with the Sex field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *KenyaNidMatch2Input) GetSexOk() (*SexV1, bool) {
+func (o *KenyaNidMatch2Input) GetSexOk() (*KenyaNidMatch2InputSex, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -288,8 +288,8 @@ func (o *KenyaNidMatch2Input) HasSex() bool {
 	return false
 }
 
-// SetSex gets a reference to the given NullableSexV1 and assigns it to the Sex field.
-func (o *KenyaNidMatch2Input) SetSex(v SexV1) {
+// SetSex gets a reference to the given NullableKenyaNidMatch2InputSex and assigns it to the Sex field.
+func (o *KenyaNidMatch2Input) SetSex(v KenyaNidMatch2InputSex) {
 	o.Sex.Set(&v)
 }
 // SetSexNil sets the value for Sex to be an explicit nil

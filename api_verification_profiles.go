@@ -32,6 +32,7 @@ type ApiCreateVerificationProfileRequest struct {
 	primaryColor *string
 	providers *[]string
 	logo *os.File
+	isProductionUsage *bool
 }
 
 // An alias of the verification profile shown to developers and administrators.
@@ -61,6 +62,12 @@ func (r ApiCreateVerificationProfileRequest) Providers(providers []string) ApiCr
 // The logo of the verification profile.
 func (r ApiCreateVerificationProfileRequest) Logo(logo *os.File) ApiCreateVerificationProfileRequest {
 	r.logo = logo
+	return r
+}
+
+// Whether this profile is for production usage. Only applicable for Live environment profiles. If not specified for Live profiles, defaults to false (Demo).
+func (r ApiCreateVerificationProfileRequest) IsProductionUsage(isProductionUsage bool) ApiCreateVerificationProfileRequest {
+	r.isProductionUsage = &isProductionUsage
 	return r
 }
 
@@ -161,6 +168,9 @@ func (a *VerificationProfilesAPIService) CreateVerificationProfileExecute(r ApiC
 		logoLocalVarFileName = logoLocalVarFile.Name()
 		logoLocalVarFile.Close()
 		formFiles = append(formFiles, formFile{fileBytes: logoLocalVarFileBytes, fileName: logoLocalVarFileName, formFileName: logoLocalVarFormFileName})
+	}
+	if r.isProductionUsage != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "IsProductionUsage", r.isProductionUsage, "form", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {

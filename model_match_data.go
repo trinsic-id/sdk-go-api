@@ -17,17 +17,29 @@ import (
 // checks if the MatchData type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &MatchData{}
 
-// MatchData struct for MatchData
+// MatchData Match results for the data being matched against.              This applies to Providers which operate based on matching data / biometrics against a government database, returning match scores or results as opposed to the data itself.
 type MatchData struct {
+	// Whether the provided National ID Number matched the information on file for the individual
 	NationalIdNumber NullableMatch `json:"nationalIdNumber,omitempty"`
+	// The match score for the full name of the individual.              Higher values indicate a closer match.
 	FullName NullableMatch `json:"fullName,omitempty"`
+	// The match score for the given (first) name of the individual.              Higher values indicate a closer match.
 	GivenName NullableMatch `json:"givenName,omitempty"`
+	// The match score for the middle name(s) of the individual.              Higher values indicate a closer match.
 	MiddleName NullableMatch `json:"middleName,omitempty"`
+	// The match score for the family (last) name of the individual.              Higher values indicate a closer match.
 	FamilyName NullableMatch `json:"familyName,omitempty"`
+	// Whether the provided sex of the individual matched the information on file for the individual
 	Sex NullableMatch `json:"sex,omitempty"`
+	// Whether the provided date of birth matched the information on file for the individual
 	DateOfBirth NullableMatch `json:"dateOfBirth,omitempty"`
+	// Whether the provided phone number matched the information on file for the individual
+	PhoneNumber NullableMatch `json:"phoneNumber,omitempty"`
+	// The match score for the face match between the provided selfie image and the biometrics on file for the individual.              Higher values indicate greater match confidence.
 	FaceMatch NullableMatch `json:"faceMatch,omitempty"`
+	// The confidence score for the liveness check performed against the selfie image of the individual.              Higher values indicate lower suspicion.
 	Liveness NullableMatch `json:"liveness,omitempty"`
+	// The confidence score for the image manipulation check performed against the selfie image of the individual.              Higher values indicate lower suspicion of image manipulation.
 	ImageAuthenticity NullableMatch `json:"imageAuthenticity,omitempty"`
 }
 
@@ -342,6 +354,48 @@ func (o *MatchData) UnsetDateOfBirth() {
 	o.DateOfBirth.Unset()
 }
 
+// GetPhoneNumber returns the PhoneNumber field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MatchData) GetPhoneNumber() Match {
+	if o == nil || IsNil(o.PhoneNumber.Get()) {
+		var ret Match
+		return ret
+	}
+	return *o.PhoneNumber.Get()
+}
+
+// GetPhoneNumberOk returns a tuple with the PhoneNumber field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MatchData) GetPhoneNumberOk() (*Match, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.PhoneNumber.Get(), o.PhoneNumber.IsSet()
+}
+
+// HasPhoneNumber returns a boolean if a field has been set.
+func (o *MatchData) HasPhoneNumber() bool {
+	if o != nil && o.PhoneNumber.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPhoneNumber gets a reference to the given NullableMatch and assigns it to the PhoneNumber field.
+func (o *MatchData) SetPhoneNumber(v Match) {
+	o.PhoneNumber.Set(&v)
+}
+// SetPhoneNumberNil sets the value for PhoneNumber to be an explicit nil
+func (o *MatchData) SetPhoneNumberNil() {
+	o.PhoneNumber.Set(nil)
+}
+
+// UnsetPhoneNumber ensures that no value is present for PhoneNumber, not even an explicit nil
+func (o *MatchData) UnsetPhoneNumber() {
+	o.PhoneNumber.Unset()
+}
+
 // GetFaceMatch returns the FaceMatch field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MatchData) GetFaceMatch() Match {
 	if o == nil || IsNil(o.FaceMatch.Get()) {
@@ -498,6 +552,9 @@ func (o MatchData) ToMap() (map[string]interface{}, error) {
 	}
 	if o.DateOfBirth.IsSet() {
 		toSerialize["dateOfBirth"] = o.DateOfBirth.Get()
+	}
+	if o.PhoneNumber.IsSet() {
+		toSerialize["phoneNumber"] = o.PhoneNumber.Get()
 	}
 	if o.FaceMatch.IsSet() {
 		toSerialize["faceMatch"] = o.FaceMatch.Get()

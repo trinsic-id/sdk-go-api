@@ -4,14 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AttachmentAccessKey** | **string** | The Attachment Access Key to exchange for the raw file contents of the related Attachment | 
-**SessionId** | **string** | The ID of the Acceptance Session for which the Attachment is being requested. | 
+**ResultsAccessKey** | **string** | The Results Access Key for the Session associated with the Attachment being retrieved.              This is returned during Session creation. | 
 
 ## Methods
 
 ### NewGetAttachmentRequest
 
-`func NewGetAttachmentRequest(attachmentAccessKey string, sessionId string, ) *GetAttachmentRequest`
+`func NewGetAttachmentRequest(resultsAccessKey string, ) *GetAttachmentRequest`
 
 NewGetAttachmentRequest instantiates a new GetAttachmentRequest object
 This constructor will assign default values to properties that have it defined,
@@ -26,44 +25,24 @@ NewGetAttachmentRequestWithDefaults instantiates a new GetAttachmentRequest obje
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetAttachmentAccessKey
+### GetResultsAccessKey
 
-`func (o *GetAttachmentRequest) GetAttachmentAccessKey() string`
+`func (o *GetAttachmentRequest) GetResultsAccessKey() string`
 
-GetAttachmentAccessKey returns the AttachmentAccessKey field if non-nil, zero value otherwise.
+GetResultsAccessKey returns the ResultsAccessKey field if non-nil, zero value otherwise.
 
-### GetAttachmentAccessKeyOk
+### GetResultsAccessKeyOk
 
-`func (o *GetAttachmentRequest) GetAttachmentAccessKeyOk() (*string, bool)`
+`func (o *GetAttachmentRequest) GetResultsAccessKeyOk() (*string, bool)`
 
-GetAttachmentAccessKeyOk returns a tuple with the AttachmentAccessKey field if it's non-nil, zero value otherwise
+GetResultsAccessKeyOk returns a tuple with the ResultsAccessKey field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAttachmentAccessKey
+### SetResultsAccessKey
 
-`func (o *GetAttachmentRequest) SetAttachmentAccessKey(v string)`
+`func (o *GetAttachmentRequest) SetResultsAccessKey(v string)`
 
-SetAttachmentAccessKey sets AttachmentAccessKey field to given value.
-
-
-### GetSessionId
-
-`func (o *GetAttachmentRequest) GetSessionId() string`
-
-GetSessionId returns the SessionId field if non-nil, zero value otherwise.
-
-### GetSessionIdOk
-
-`func (o *GetAttachmentRequest) GetSessionIdOk() (*string, bool)`
-
-GetSessionIdOk returns a tuple with the SessionId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSessionId
-
-`func (o *GetAttachmentRequest) SetSessionId(v string)`
-
-SetSessionId sets SessionId field to given value.
+SetResultsAccessKey sets ResultsAccessKey field to given value.
 
 
 

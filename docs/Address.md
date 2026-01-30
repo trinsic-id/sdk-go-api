@@ -8,10 +8,10 @@ Name | Type | Description | Notes
 **Line2** | Pointer to **NullableString** |  | [optional] 
 **Line3** | Pointer to **NullableString** |  | [optional] 
 **City** | Pointer to **NullableString** |  | [optional] 
-**Subdivision** | Pointer to **NullableString** |  | [optional] 
+**Subdivision** | Pointer to **NullableString** | The subdivision code of the address.              Subdivision refers to a state, province, or other similar division of a country. Examples include \&quot;CA\&quot; for California, \&quot;QC\&quot; for Québec, \&quot;MD\&quot; for Madrid, or \&quot;NSW\&quot; for New South Wales. | [optional] 
 **PostalCode** | Pointer to **NullableString** |  | [optional] 
 **Country** | Pointer to **NullableString** |  | [optional] 
-**FullAddress** | Pointer to **NullableString** |  | [optional] 
+**FullAddress** | Pointer to **NullableString** | The full address as a single string | [optional] 
 
 ## Methods
 

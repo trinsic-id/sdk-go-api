@@ -17,15 +17,17 @@ import (
 // checks if the Address type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Address{}
 
-// Address struct for Address
+// Address Address information for an individual
 type Address struct {
 	Line1 NullableString `json:"line1,omitempty"`
 	Line2 NullableString `json:"line2,omitempty"`
 	Line3 NullableString `json:"line3,omitempty"`
 	City NullableString `json:"city,omitempty"`
+	// The subdivision code of the address.              Subdivision refers to a state, province, or other similar division of a country. Examples include \"CA\" for California, \"QC\" for Québec, \"MD\" for Madrid, or \"NSW\" for New South Wales.
 	Subdivision NullableString `json:"subdivision,omitempty"`
 	PostalCode NullableString `json:"postalCode,omitempty"`
 	Country NullableString `json:"country,omitempty"`
+	// The full address as a single string
 	FullAddress NullableString `json:"fullAddress,omitempty"`
 }
 

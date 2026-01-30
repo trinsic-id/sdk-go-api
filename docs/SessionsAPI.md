@@ -8,9 +8,11 @@ Method | HTTP request | Description
 [**CreateDirectProviderSession**](SessionsAPI.md#CreateDirectProviderSession) | **Post** /api/v1/sessions/provider/direct | Create Direct Provider Session
 [**CreateHostedProviderSession**](SessionsAPI.md#CreateHostedProviderSession) | **Post** /api/v1/sessions/provider/hosted | Create Hosted Provider Session
 [**CreateWidgetSession**](SessionsAPI.md#CreateWidgetSession) | **Post** /api/v1/sessions/widget | Create Widget Session
+[**GetAttachment**](SessionsAPI.md#GetAttachment) | **Post** /api/v1/sessions/{sessionId}/attachments/{attachmentId}/get | Get Attachment
 [**GetSession**](SessionsAPI.md#GetSession) | **Get** /api/v1/sessions/{sessionId} | Get Session
 [**GetSessionResult**](SessionsAPI.md#GetSessionResult) | **Post** /api/v1/sessions/{sessionId}/results | Get Session Results
 [**ListSessions**](SessionsAPI.md#ListSessions) | **Get** /api/v1/verification-profiles/{verificationProfileId}/sessions | List Sessions
+[**RecommendProviders**](SessionsAPI.md#RecommendProviders) | **Post** /api/v1/sessions/providers/recommend | Recommend Providers
 [**RedactSession**](SessionsAPI.md#RedactSession) | **Post** /api/v1/sessions/{sessionId}/redact | Redact Session
 [**RefreshStepContent**](SessionsAPI.md#RefreshStepContent) | **Post** /api/v1/sessions/{sessionId}/step/refresh | Refresh Step Content
 [**SubmitNativeChallengeResponse**](SessionsAPI.md#SubmitNativeChallengeResponse) | **Post** /api/v1/sessions/{sessionId}/native-challenge/submit | Submit Native Challenge Response
@@ -285,6 +287,81 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetAttachment
+
+> GetAttachmentResponse GetAttachment(ctx, sessionId, attachmentId).GetAttachmentRequest(getAttachmentRequest).Execute()
+
+Get Attachment
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	sessionId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | The ID of the Session to fetch the Attachment from
+	attachmentId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | The ID of the Attachment to fetch
+	getAttachmentRequest := *openapiclient.NewGetAttachmentRequest("ResultsAccessKey_example") // GetAttachmentRequest |  (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.SessionsAPI.GetAttachment(context.Background(), sessionId, attachmentId).GetAttachmentRequest(getAttachmentRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `SessionsAPI.GetAttachment``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetAttachment`: GetAttachmentResponse
+	fmt.Fprintf(os.Stdout, "Response from `SessionsAPI.GetAttachment`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**sessionId** | **string** | The ID of the Session to fetch the Attachment from | 
+**attachmentId** | **string** | The ID of the Attachment to fetch | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetAttachmentRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **getAttachmentRequest** | [**GetAttachmentRequest**](GetAttachmentRequest.md) |  | 
+
+### Return type
+
+[**GetAttachmentResponse**](GetAttachmentResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetSession
 
 > GetSessionResponse GetSession(ctx, sessionId).Execute()
@@ -496,6 +573,72 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: text/plain, application/json, text/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## RecommendProviders
+
+> RecommendProvidersResponse RecommendProviders(ctx).RecommendProvidersRequest(recommendProvidersRequest).Execute()
+
+Recommend Providers
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	recommendProvidersRequest := *openapiclient.NewRecommendProvidersRequest("VerificationProfileId_example") // RecommendProvidersRequest |  (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.SessionsAPI.RecommendProviders(context.Background()).RecommendProvidersRequest(recommendProvidersRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `SessionsAPI.RecommendProviders``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RecommendProviders`: RecommendProvidersResponse
+	fmt.Fprintf(os.Stdout, "Response from `SessionsAPI.RecommendProviders`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiRecommendProvidersRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **recommendProvidersRequest** | [**RecommendProvidersRequest**](RecommendProvidersRequest.md) |  | 
+
+### Return type
+
+[**RecommendProvidersResponse**](RecommendProvidersResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, text/json, application/*+json
 - **Accept**: text/plain, application/json, text/json, application/problem+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

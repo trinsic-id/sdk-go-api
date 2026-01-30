@@ -6,18 +6,28 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **BillingInformation** | Pointer to [**NullableSpidBillingInformation**](SpidBillingInformation.md) | Information about the billable status of this SPID Verification.              Present only if your account has period-based billing enabled for SPID. Contact Trinsic to enable this. | [optional] 
 **IdentityProviderEntityId** | **string** | The SPID Entity ID of the Identity Provider which issued the SPID identity.              This is an HTTPS URI which uniquely identifies the IdP within the SPID federation.              A normalized / simplified representation of this value is present in the &#x60;originatingSubProviderId&#x60; field in Trinsic&#39;s normalized data model. | 
-**SpidCode** | **string** | The identifier of the user&#39;s SPID credential.              This uniquely identifies the credential within the SPID federation. | 
-**SpidCredentialExpirationDate** | Pointer to **NullableString** | Expiration date of the user&#39;s SPID credential.              This is not the same as the expiration date of the underlying identity document (such as a passport) which was used to create the SPID identity. | [optional] 
-**PlaceOfBirth** | Pointer to **NullableString** | The user&#39;s place of birth. | [optional] 
-**CountyOfBirth** | Pointer to **NullableString** | The user&#39;s county of birth. | [optional] 
-**RawIdCard** | Pointer to **NullableString** | The raw, space-separated string value for the \&quot;IdCard\&quot; field from the SPID identity.              Trinsic additionally parses this field and uses it to populate the &#x60;Document&#x60; object in the normalized data model. | [optional] 
-**Email** | Pointer to **NullableString** | The email address of the user. | [optional] 
-**DigitalAddress** | Pointer to **NullableString** | The digital address of the user. | [optional] 
-**FiscalNumber** | Pointer to **NullableString** | Fiscal tax number for the subject. | [optional] 
-**IvaCode** | Pointer to **NullableString** | VAT number for the subject. | [optional] 
-**CompanyName** | Pointer to **NullableString** | The name of the company which the user is associated with. | [optional] 
-**CompanyFiscalNumber** | Pointer to **NullableString** | The fiscal tax number of the company which the user is associated with. | [optional] 
-**RegisteredOffice** | Pointer to **NullableString** | The registered office address of the company which the user is associated with. | [optional] 
+**SpidCode** | **string** | The identifier of the SPID credential, uniquely identifying it within the SPID federation.              The format of this string is specific to each individual Identity Provider. | 
+**SpidCredentialExpirationDate** | Pointer to **NullableString** | Expiration date of the SPID credential.              This is not the same as the expiration date of the underlying identity document (such as a passport) which was used to create the SPID identity. | [optional] 
+**RawIdCard** | Pointer to **NullableString** | The raw, space-separated string value for the \&quot;IdCard\&quot; field from the SPID credential.              Trinsic additionally parses this field and uses it to populate the &#x60;Document&#x60; object in the normalized data model. | [optional] 
+**GivenName** | Pointer to **NullableString** | The individual&#39;s first / given name(s) | [optional] 
+**FamilyName** | Pointer to **NullableString** | The individual&#39;s last / family name(s) | [optional] 
+**DateOfBirth** | Pointer to **NullableString** | The date of birth of the individual | [optional] 
+**Gender** | Pointer to **NullableString** | The gender of the individual.              Possible values: \&quot;M\&quot; | \&quot;F\&quot; | [optional] 
+**PlaceOfBirth** | Pointer to **NullableString** | The individual&#39;s place of birth.              This is a 4-digit Belfiore Code identifying either the municipality of birth (for births in Italy) or a foreign country (for births outside Italy). | [optional] 
+**CountyOfBirth** | Pointer to **NullableString** | The individual&#39;s county (province) of birth, abbreviated.              For foreign births, this is \&quot;EE\&quot;. | [optional] 
+**DomicileStreetAddress** | Pointer to **NullableString** | The street address of the individual&#39;s residence.              This includes street name, street type, and house number, in the standard format for the given state. | [optional] 
+**DomicilePostalCode** | Pointer to **NullableString** | The postal code of the individual&#39;s residence | [optional] 
+**DomicileMunicipality** | Pointer to **NullableString** | The municipality of the individual&#39;s residence | [optional] 
+**DomicileProvince** | Pointer to **NullableString** | The province of the individual&#39;s residence | [optional] 
+**DomicileNation** | Pointer to **NullableString** | The 2-digit country code of the individual&#39;s residence | [optional] 
+**Email** | Pointer to **NullableString** | The email address of the individual | [optional] 
+**MobilePhone** | Pointer to **NullableString** | The mobile phone number of the individual, in Italian format. | [optional] 
+**DigitalAddress** | Pointer to **NullableString** | The PEC (Italian Certified Email) address of the individual or organization. | [optional] 
+**FiscalNumber** | Pointer to **NullableString** | Fiscal tax number for the individual. | [optional] 
+**IvaCode** | Pointer to **NullableString** | The VAT number of the organization which was verified, or of the organization which the verified individual is associated with. | [optional] 
+**CompanyName** | Pointer to **NullableString** | The name of the organization which was verified, or of the organization which the verified individual is associated with. | [optional] 
+**CompanyFiscalNumber** | Pointer to **NullableString** | The fiscal tax number of the organization which was verified, or of the organization which the verified individual is associated with. | [optional] 
+**RegisteredOffice** | Pointer to **NullableString** | The registered office address of the organization which was verified, or of the organization which the verified individual is associated with. | [optional] 
 
 ## Methods
 
@@ -148,6 +158,181 @@ HasSpidCredentialExpirationDate returns a boolean if a field has been set.
 `func (o *SpidProviderOutput) UnsetSpidCredentialExpirationDate()`
 
 UnsetSpidCredentialExpirationDate ensures that no value is present for SpidCredentialExpirationDate, not even an explicit nil
+### GetRawIdCard
+
+`func (o *SpidProviderOutput) GetRawIdCard() string`
+
+GetRawIdCard returns the RawIdCard field if non-nil, zero value otherwise.
+
+### GetRawIdCardOk
+
+`func (o *SpidProviderOutput) GetRawIdCardOk() (*string, bool)`
+
+GetRawIdCardOk returns a tuple with the RawIdCard field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRawIdCard
+
+`func (o *SpidProviderOutput) SetRawIdCard(v string)`
+
+SetRawIdCard sets RawIdCard field to given value.
+
+### HasRawIdCard
+
+`func (o *SpidProviderOutput) HasRawIdCard() bool`
+
+HasRawIdCard returns a boolean if a field has been set.
+
+### SetRawIdCardNil
+
+`func (o *SpidProviderOutput) SetRawIdCardNil(b bool)`
+
+ SetRawIdCardNil sets the value for RawIdCard to be an explicit nil
+
+### UnsetRawIdCard
+`func (o *SpidProviderOutput) UnsetRawIdCard()`
+
+UnsetRawIdCard ensures that no value is present for RawIdCard, not even an explicit nil
+### GetGivenName
+
+`func (o *SpidProviderOutput) GetGivenName() string`
+
+GetGivenName returns the GivenName field if non-nil, zero value otherwise.
+
+### GetGivenNameOk
+
+`func (o *SpidProviderOutput) GetGivenNameOk() (*string, bool)`
+
+GetGivenNameOk returns a tuple with the GivenName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGivenName
+
+`func (o *SpidProviderOutput) SetGivenName(v string)`
+
+SetGivenName sets GivenName field to given value.
+
+### HasGivenName
+
+`func (o *SpidProviderOutput) HasGivenName() bool`
+
+HasGivenName returns a boolean if a field has been set.
+
+### SetGivenNameNil
+
+`func (o *SpidProviderOutput) SetGivenNameNil(b bool)`
+
+ SetGivenNameNil sets the value for GivenName to be an explicit nil
+
+### UnsetGivenName
+`func (o *SpidProviderOutput) UnsetGivenName()`
+
+UnsetGivenName ensures that no value is present for GivenName, not even an explicit nil
+### GetFamilyName
+
+`func (o *SpidProviderOutput) GetFamilyName() string`
+
+GetFamilyName returns the FamilyName field if non-nil, zero value otherwise.
+
+### GetFamilyNameOk
+
+`func (o *SpidProviderOutput) GetFamilyNameOk() (*string, bool)`
+
+GetFamilyNameOk returns a tuple with the FamilyName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFamilyName
+
+`func (o *SpidProviderOutput) SetFamilyName(v string)`
+
+SetFamilyName sets FamilyName field to given value.
+
+### HasFamilyName
+
+`func (o *SpidProviderOutput) HasFamilyName() bool`
+
+HasFamilyName returns a boolean if a field has been set.
+
+### SetFamilyNameNil
+
+`func (o *SpidProviderOutput) SetFamilyNameNil(b bool)`
+
+ SetFamilyNameNil sets the value for FamilyName to be an explicit nil
+
+### UnsetFamilyName
+`func (o *SpidProviderOutput) UnsetFamilyName()`
+
+UnsetFamilyName ensures that no value is present for FamilyName, not even an explicit nil
+### GetDateOfBirth
+
+`func (o *SpidProviderOutput) GetDateOfBirth() string`
+
+GetDateOfBirth returns the DateOfBirth field if non-nil, zero value otherwise.
+
+### GetDateOfBirthOk
+
+`func (o *SpidProviderOutput) GetDateOfBirthOk() (*string, bool)`
+
+GetDateOfBirthOk returns a tuple with the DateOfBirth field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDateOfBirth
+
+`func (o *SpidProviderOutput) SetDateOfBirth(v string)`
+
+SetDateOfBirth sets DateOfBirth field to given value.
+
+### HasDateOfBirth
+
+`func (o *SpidProviderOutput) HasDateOfBirth() bool`
+
+HasDateOfBirth returns a boolean if a field has been set.
+
+### SetDateOfBirthNil
+
+`func (o *SpidProviderOutput) SetDateOfBirthNil(b bool)`
+
+ SetDateOfBirthNil sets the value for DateOfBirth to be an explicit nil
+
+### UnsetDateOfBirth
+`func (o *SpidProviderOutput) UnsetDateOfBirth()`
+
+UnsetDateOfBirth ensures that no value is present for DateOfBirth, not even an explicit nil
+### GetGender
+
+`func (o *SpidProviderOutput) GetGender() string`
+
+GetGender returns the Gender field if non-nil, zero value otherwise.
+
+### GetGenderOk
+
+`func (o *SpidProviderOutput) GetGenderOk() (*string, bool)`
+
+GetGenderOk returns a tuple with the Gender field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGender
+
+`func (o *SpidProviderOutput) SetGender(v string)`
+
+SetGender sets Gender field to given value.
+
+### HasGender
+
+`func (o *SpidProviderOutput) HasGender() bool`
+
+HasGender returns a boolean if a field has been set.
+
+### SetGenderNil
+
+`func (o *SpidProviderOutput) SetGenderNil(b bool)`
+
+ SetGenderNil sets the value for Gender to be an explicit nil
+
+### UnsetGender
+`func (o *SpidProviderOutput) UnsetGender()`
+
+UnsetGender ensures that no value is present for Gender, not even an explicit nil
 ### GetPlaceOfBirth
 
 `func (o *SpidProviderOutput) GetPlaceOfBirth() string`
@@ -218,41 +403,181 @@ HasCountyOfBirth returns a boolean if a field has been set.
 `func (o *SpidProviderOutput) UnsetCountyOfBirth()`
 
 UnsetCountyOfBirth ensures that no value is present for CountyOfBirth, not even an explicit nil
-### GetRawIdCard
+### GetDomicileStreetAddress
 
-`func (o *SpidProviderOutput) GetRawIdCard() string`
+`func (o *SpidProviderOutput) GetDomicileStreetAddress() string`
 
-GetRawIdCard returns the RawIdCard field if non-nil, zero value otherwise.
+GetDomicileStreetAddress returns the DomicileStreetAddress field if non-nil, zero value otherwise.
 
-### GetRawIdCardOk
+### GetDomicileStreetAddressOk
 
-`func (o *SpidProviderOutput) GetRawIdCardOk() (*string, bool)`
+`func (o *SpidProviderOutput) GetDomicileStreetAddressOk() (*string, bool)`
 
-GetRawIdCardOk returns a tuple with the RawIdCard field if it's non-nil, zero value otherwise
+GetDomicileStreetAddressOk returns a tuple with the DomicileStreetAddress field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetRawIdCard
+### SetDomicileStreetAddress
 
-`func (o *SpidProviderOutput) SetRawIdCard(v string)`
+`func (o *SpidProviderOutput) SetDomicileStreetAddress(v string)`
 
-SetRawIdCard sets RawIdCard field to given value.
+SetDomicileStreetAddress sets DomicileStreetAddress field to given value.
 
-### HasRawIdCard
+### HasDomicileStreetAddress
 
-`func (o *SpidProviderOutput) HasRawIdCard() bool`
+`func (o *SpidProviderOutput) HasDomicileStreetAddress() bool`
 
-HasRawIdCard returns a boolean if a field has been set.
+HasDomicileStreetAddress returns a boolean if a field has been set.
 
-### SetRawIdCardNil
+### SetDomicileStreetAddressNil
 
-`func (o *SpidProviderOutput) SetRawIdCardNil(b bool)`
+`func (o *SpidProviderOutput) SetDomicileStreetAddressNil(b bool)`
 
- SetRawIdCardNil sets the value for RawIdCard to be an explicit nil
+ SetDomicileStreetAddressNil sets the value for DomicileStreetAddress to be an explicit nil
 
-### UnsetRawIdCard
-`func (o *SpidProviderOutput) UnsetRawIdCard()`
+### UnsetDomicileStreetAddress
+`func (o *SpidProviderOutput) UnsetDomicileStreetAddress()`
 
-UnsetRawIdCard ensures that no value is present for RawIdCard, not even an explicit nil
+UnsetDomicileStreetAddress ensures that no value is present for DomicileStreetAddress, not even an explicit nil
+### GetDomicilePostalCode
+
+`func (o *SpidProviderOutput) GetDomicilePostalCode() string`
+
+GetDomicilePostalCode returns the DomicilePostalCode field if non-nil, zero value otherwise.
+
+### GetDomicilePostalCodeOk
+
+`func (o *SpidProviderOutput) GetDomicilePostalCodeOk() (*string, bool)`
+
+GetDomicilePostalCodeOk returns a tuple with the DomicilePostalCode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDomicilePostalCode
+
+`func (o *SpidProviderOutput) SetDomicilePostalCode(v string)`
+
+SetDomicilePostalCode sets DomicilePostalCode field to given value.
+
+### HasDomicilePostalCode
+
+`func (o *SpidProviderOutput) HasDomicilePostalCode() bool`
+
+HasDomicilePostalCode returns a boolean if a field has been set.
+
+### SetDomicilePostalCodeNil
+
+`func (o *SpidProviderOutput) SetDomicilePostalCodeNil(b bool)`
+
+ SetDomicilePostalCodeNil sets the value for DomicilePostalCode to be an explicit nil
+
+### UnsetDomicilePostalCode
+`func (o *SpidProviderOutput) UnsetDomicilePostalCode()`
+
+UnsetDomicilePostalCode ensures that no value is present for DomicilePostalCode, not even an explicit nil
+### GetDomicileMunicipality
+
+`func (o *SpidProviderOutput) GetDomicileMunicipality() string`
+
+GetDomicileMunicipality returns the DomicileMunicipality field if non-nil, zero value otherwise.
+
+### GetDomicileMunicipalityOk
+
+`func (o *SpidProviderOutput) GetDomicileMunicipalityOk() (*string, bool)`
+
+GetDomicileMunicipalityOk returns a tuple with the DomicileMunicipality field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDomicileMunicipality
+
+`func (o *SpidProviderOutput) SetDomicileMunicipality(v string)`
+
+SetDomicileMunicipality sets DomicileMunicipality field to given value.
+
+### HasDomicileMunicipality
+
+`func (o *SpidProviderOutput) HasDomicileMunicipality() bool`
+
+HasDomicileMunicipality returns a boolean if a field has been set.
+
+### SetDomicileMunicipalityNil
+
+`func (o *SpidProviderOutput) SetDomicileMunicipalityNil(b bool)`
+
+ SetDomicileMunicipalityNil sets the value for DomicileMunicipality to be an explicit nil
+
+### UnsetDomicileMunicipality
+`func (o *SpidProviderOutput) UnsetDomicileMunicipality()`
+
+UnsetDomicileMunicipality ensures that no value is present for DomicileMunicipality, not even an explicit nil
+### GetDomicileProvince
+
+`func (o *SpidProviderOutput) GetDomicileProvince() string`
+
+GetDomicileProvince returns the DomicileProvince field if non-nil, zero value otherwise.
+
+### GetDomicileProvinceOk
+
+`func (o *SpidProviderOutput) GetDomicileProvinceOk() (*string, bool)`
+
+GetDomicileProvinceOk returns a tuple with the DomicileProvince field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDomicileProvince
+
+`func (o *SpidProviderOutput) SetDomicileProvince(v string)`
+
+SetDomicileProvince sets DomicileProvince field to given value.
+
+### HasDomicileProvince
+
+`func (o *SpidProviderOutput) HasDomicileProvince() bool`
+
+HasDomicileProvince returns a boolean if a field has been set.
+
+### SetDomicileProvinceNil
+
+`func (o *SpidProviderOutput) SetDomicileProvinceNil(b bool)`
+
+ SetDomicileProvinceNil sets the value for DomicileProvince to be an explicit nil
+
+### UnsetDomicileProvince
+`func (o *SpidProviderOutput) UnsetDomicileProvince()`
+
+UnsetDomicileProvince ensures that no value is present for DomicileProvince, not even an explicit nil
+### GetDomicileNation
+
+`func (o *SpidProviderOutput) GetDomicileNation() string`
+
+GetDomicileNation returns the DomicileNation field if non-nil, zero value otherwise.
+
+### GetDomicileNationOk
+
+`func (o *SpidProviderOutput) GetDomicileNationOk() (*string, bool)`
+
+GetDomicileNationOk returns a tuple with the DomicileNation field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDomicileNation
+
+`func (o *SpidProviderOutput) SetDomicileNation(v string)`
+
+SetDomicileNation sets DomicileNation field to given value.
+
+### HasDomicileNation
+
+`func (o *SpidProviderOutput) HasDomicileNation() bool`
+
+HasDomicileNation returns a boolean if a field has been set.
+
+### SetDomicileNationNil
+
+`func (o *SpidProviderOutput) SetDomicileNationNil(b bool)`
+
+ SetDomicileNationNil sets the value for DomicileNation to be an explicit nil
+
+### UnsetDomicileNation
+`func (o *SpidProviderOutput) UnsetDomicileNation()`
+
+UnsetDomicileNation ensures that no value is present for DomicileNation, not even an explicit nil
 ### GetEmail
 
 `func (o *SpidProviderOutput) GetEmail() string`
@@ -288,6 +613,41 @@ HasEmail returns a boolean if a field has been set.
 `func (o *SpidProviderOutput) UnsetEmail()`
 
 UnsetEmail ensures that no value is present for Email, not even an explicit nil
+### GetMobilePhone
+
+`func (o *SpidProviderOutput) GetMobilePhone() string`
+
+GetMobilePhone returns the MobilePhone field if non-nil, zero value otherwise.
+
+### GetMobilePhoneOk
+
+`func (o *SpidProviderOutput) GetMobilePhoneOk() (*string, bool)`
+
+GetMobilePhoneOk returns a tuple with the MobilePhone field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMobilePhone
+
+`func (o *SpidProviderOutput) SetMobilePhone(v string)`
+
+SetMobilePhone sets MobilePhone field to given value.
+
+### HasMobilePhone
+
+`func (o *SpidProviderOutput) HasMobilePhone() bool`
+
+HasMobilePhone returns a boolean if a field has been set.
+
+### SetMobilePhoneNil
+
+`func (o *SpidProviderOutput) SetMobilePhoneNil(b bool)`
+
+ SetMobilePhoneNil sets the value for MobilePhone to be an explicit nil
+
+### UnsetMobilePhone
+`func (o *SpidProviderOutput) UnsetMobilePhone()`
+
+UnsetMobilePhone ensures that no value is present for MobilePhone, not even an explicit nil
 ### GetDigitalAddress
 
 `func (o *SpidProviderOutput) GetDigitalAddress() string`

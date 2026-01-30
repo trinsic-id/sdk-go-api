@@ -24,7 +24,7 @@ type MobileIdInput struct {
 	// The user's National ID number
 	MobileIdNationalIdentityNumber NullableString `json:"mobileIdNationalIdentityNumber,omitempty"`
 	// The user's language -- LIT, EST, ENG, or RUS
-	MobileIdLanguage NullableLanguage `json:"mobileIdLanguage,omitempty"`
+	MobileIdLanguage NullableMobileIdLanguage `json:"mobileIdLanguage,omitempty"`
 }
 
 // NewMobileIdInput instantiates a new MobileIdInput object
@@ -129,9 +129,9 @@ func (o *MobileIdInput) UnsetMobileIdNationalIdentityNumber() {
 }
 
 // GetMobileIdLanguage returns the MobileIdLanguage field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *MobileIdInput) GetMobileIdLanguage() Language {
+func (o *MobileIdInput) GetMobileIdLanguage() MobileIdLanguage {
 	if o == nil || IsNil(o.MobileIdLanguage.Get()) {
-		var ret Language
+		var ret MobileIdLanguage
 		return ret
 	}
 	return *o.MobileIdLanguage.Get()
@@ -140,7 +140,7 @@ func (o *MobileIdInput) GetMobileIdLanguage() Language {
 // GetMobileIdLanguageOk returns a tuple with the MobileIdLanguage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *MobileIdInput) GetMobileIdLanguageOk() (*Language, bool) {
+func (o *MobileIdInput) GetMobileIdLanguageOk() (*MobileIdLanguage, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -156,8 +156,8 @@ func (o *MobileIdInput) HasMobileIdLanguage() bool {
 	return false
 }
 
-// SetMobileIdLanguage gets a reference to the given NullableLanguage and assigns it to the MobileIdLanguage field.
-func (o *MobileIdInput) SetMobileIdLanguage(v Language) {
+// SetMobileIdLanguage gets a reference to the given NullableMobileIdLanguage and assigns it to the MobileIdLanguage field.
+func (o *MobileIdInput) SetMobileIdLanguage(v MobileIdLanguage) {
 	o.MobileIdLanguage.Set(&v)
 }
 // SetMobileIdLanguageNil sets the value for MobileIdLanguage to be an explicit nil

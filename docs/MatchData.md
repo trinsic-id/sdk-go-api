@@ -4,16 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**NationalIdNumber** | Pointer to [**NullableMatch**](Match.md) |  | [optional] 
-**FullName** | Pointer to [**NullableMatch**](Match.md) |  | [optional] 
-**GivenName** | Pointer to [**NullableMatch**](Match.md) |  | [optional] 
-**MiddleName** | Pointer to [**NullableMatch**](Match.md) |  | [optional] 
-**FamilyName** | Pointer to [**NullableMatch**](Match.md) |  | [optional] 
-**Sex** | Pointer to [**NullableMatch**](Match.md) |  | [optional] 
-**DateOfBirth** | Pointer to [**NullableMatch**](Match.md) |  | [optional] 
-**FaceMatch** | Pointer to [**NullableMatch**](Match.md) |  | [optional] 
-**Liveness** | Pointer to [**NullableMatch**](Match.md) |  | [optional] 
-**ImageAuthenticity** | Pointer to [**NullableMatch**](Match.md) |  | [optional] 
+**NationalIdNumber** | Pointer to [**NullableMatch**](Match.md) | Whether the provided National ID Number matched the information on file for the individual | [optional] 
+**FullName** | Pointer to [**NullableMatch**](Match.md) | The match score for the full name of the individual.              Higher values indicate a closer match. | [optional] 
+**GivenName** | Pointer to [**NullableMatch**](Match.md) | The match score for the given (first) name of the individual.              Higher values indicate a closer match. | [optional] 
+**MiddleName** | Pointer to [**NullableMatch**](Match.md) | The match score for the middle name(s) of the individual.              Higher values indicate a closer match. | [optional] 
+**FamilyName** | Pointer to [**NullableMatch**](Match.md) | The match score for the family (last) name of the individual.              Higher values indicate a closer match. | [optional] 
+**Sex** | Pointer to [**NullableMatch**](Match.md) | Whether the provided sex of the individual matched the information on file for the individual | [optional] 
+**DateOfBirth** | Pointer to [**NullableMatch**](Match.md) | Whether the provided date of birth matched the information on file for the individual | [optional] 
+**PhoneNumber** | Pointer to [**NullableMatch**](Match.md) | Whether the provided phone number matched the information on file for the individual | [optional] 
+**FaceMatch** | Pointer to [**NullableMatch**](Match.md) | The match score for the face match between the provided selfie image and the biometrics on file for the individual.              Higher values indicate greater match confidence. | [optional] 
+**Liveness** | Pointer to [**NullableMatch**](Match.md) | The confidence score for the liveness check performed against the selfie image of the individual.              Higher values indicate lower suspicion. | [optional] 
+**ImageAuthenticity** | Pointer to [**NullableMatch**](Match.md) | The confidence score for the image manipulation check performed against the selfie image of the individual.              Higher values indicate lower suspicion of image manipulation. | [optional] 
 
 ## Methods
 
@@ -279,6 +280,41 @@ HasDateOfBirth returns a boolean if a field has been set.
 `func (o *MatchData) UnsetDateOfBirth()`
 
 UnsetDateOfBirth ensures that no value is present for DateOfBirth, not even an explicit nil
+### GetPhoneNumber
+
+`func (o *MatchData) GetPhoneNumber() Match`
+
+GetPhoneNumber returns the PhoneNumber field if non-nil, zero value otherwise.
+
+### GetPhoneNumberOk
+
+`func (o *MatchData) GetPhoneNumberOk() (*Match, bool)`
+
+GetPhoneNumberOk returns a tuple with the PhoneNumber field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPhoneNumber
+
+`func (o *MatchData) SetPhoneNumber(v Match)`
+
+SetPhoneNumber sets PhoneNumber field to given value.
+
+### HasPhoneNumber
+
+`func (o *MatchData) HasPhoneNumber() bool`
+
+HasPhoneNumber returns a boolean if a field has been set.
+
+### SetPhoneNumberNil
+
+`func (o *MatchData) SetPhoneNumberNil(b bool)`
+
+ SetPhoneNumberNil sets the value for PhoneNumber to be an explicit nil
+
+### UnsetPhoneNumber
+`func (o *MatchData) UnsetPhoneNumber()`
+
+UnsetPhoneNumber ensures that no value is present for PhoneNumber, not even an explicit nil
 ### GetFaceMatch
 
 `func (o *MatchData) GetFaceMatch() Match`

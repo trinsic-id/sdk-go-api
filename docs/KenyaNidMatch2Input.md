@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **FamilyName** | Pointer to **NullableString** | The user&#39;s last name as it appears in their National ID | [optional] 
 **MiddleName** | Pointer to **NullableString** | The user&#39;s middle name as it appears in their National ID (optional) | [optional] 
 **DateOfBirth** | Pointer to **NullableString** | The user&#39;s date of birth, in &#x60;YYYY-MM-DD&#x60; format | [optional] 
-**Sex** | Pointer to [**NullableSexV1**](SexV1.md) | The user&#39;s sex as it appears in their National ID | [optional] 
+**Sex** | Pointer to [**NullableKenyaNidMatch2InputSex**](KenyaNidMatch2InputSex.md) | The user&#39;s sex as it appears in their National ID | [optional] 
 
 ## Methods
 
@@ -207,20 +207,20 @@ HasDateOfBirth returns a boolean if a field has been set.
 UnsetDateOfBirth ensures that no value is present for DateOfBirth, not even an explicit nil
 ### GetSex
 
-`func (o *KenyaNidMatch2Input) GetSex() SexV1`
+`func (o *KenyaNidMatch2Input) GetSex() KenyaNidMatch2InputSex`
 
 GetSex returns the Sex field if non-nil, zero value otherwise.
 
 ### GetSexOk
 
-`func (o *KenyaNidMatch2Input) GetSexOk() (*SexV1, bool)`
+`func (o *KenyaNidMatch2Input) GetSexOk() (*KenyaNidMatch2InputSex, bool)`
 
 GetSexOk returns a tuple with the Sex field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSex
 
-`func (o *KenyaNidMatch2Input) SetSex(v SexV1)`
+`func (o *KenyaNidMatch2Input) SetSex(v KenyaNidMatch2InputSex)`
 
 SetSex sets Sex field to given value.
 

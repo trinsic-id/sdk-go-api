@@ -17,16 +17,22 @@ import (
 // checks if the PersonData type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &PersonData{}
 
-// PersonData struct for PersonData
+// PersonData Identity information for the individual being verified
 type PersonData struct {
+	// Given (first) name of the individual
 	GivenName NullableString `json:"givenName,omitempty"`
+	// Family (last) name of the individual
 	FamilyName NullableString `json:"familyName,omitempty"`
+	// Middle name of the individual
 	MiddleName NullableString `json:"middleName,omitempty"`
+	// The individual's full name as a single string.              Useful for names which do not fit into a \"first middle last\" structure.
 	FullName NullableString `json:"fullName,omitempty"`
+	// Suffix of the individual's name
 	Suffix NullableString `json:"suffix,omitempty"`
 	Nationality NullableString `json:"nationality,omitempty"`
 	Sex NullableSex `json:"sex,omitempty"`
 	PhoneNumber NullableString `json:"phoneNumber,omitempty"`
+	// Address information for an individual
 	Address NullableAddress `json:"address,omitempty"`
 	DateOfBirth NullableString `json:"dateOfBirth,omitempty"`
 }

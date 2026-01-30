@@ -21,10 +21,8 @@ var _ MappedNullable = &GetAttachmentRequest{}
 
 // GetAttachmentRequest struct for GetAttachmentRequest
 type GetAttachmentRequest struct {
-	// The Attachment Access Key to exchange for the raw file contents of the related Attachment
-	AttachmentAccessKey string `json:"attachmentAccessKey"`
-	// The ID of the Acceptance Session for which the Attachment is being requested.
-	SessionId string `json:"sessionId"`
+	// The Results Access Key for the Session associated with the Attachment being retrieved.              This is returned during Session creation.
+	ResultsAccessKey string `json:"resultsAccessKey"`
 }
 
 type _GetAttachmentRequest GetAttachmentRequest
@@ -33,10 +31,9 @@ type _GetAttachmentRequest GetAttachmentRequest
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetAttachmentRequest(attachmentAccessKey string, sessionId string) *GetAttachmentRequest {
+func NewGetAttachmentRequest(resultsAccessKey string) *GetAttachmentRequest {
 	this := GetAttachmentRequest{}
-	this.AttachmentAccessKey = attachmentAccessKey
-	this.SessionId = sessionId
+	this.ResultsAccessKey = resultsAccessKey
 	return &this
 }
 
@@ -48,52 +45,28 @@ func NewGetAttachmentRequestWithDefaults() *GetAttachmentRequest {
 	return &this
 }
 
-// GetAttachmentAccessKey returns the AttachmentAccessKey field value
-func (o *GetAttachmentRequest) GetAttachmentAccessKey() string {
+// GetResultsAccessKey returns the ResultsAccessKey field value
+func (o *GetAttachmentRequest) GetResultsAccessKey() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.AttachmentAccessKey
+	return o.ResultsAccessKey
 }
 
-// GetAttachmentAccessKeyOk returns a tuple with the AttachmentAccessKey field value
+// GetResultsAccessKeyOk returns a tuple with the ResultsAccessKey field value
 // and a boolean to check if the value has been set.
-func (o *GetAttachmentRequest) GetAttachmentAccessKeyOk() (*string, bool) {
+func (o *GetAttachmentRequest) GetResultsAccessKeyOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.AttachmentAccessKey, true
+	return &o.ResultsAccessKey, true
 }
 
-// SetAttachmentAccessKey sets field value
-func (o *GetAttachmentRequest) SetAttachmentAccessKey(v string) {
-	o.AttachmentAccessKey = v
-}
-
-// GetSessionId returns the SessionId field value
-func (o *GetAttachmentRequest) GetSessionId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.SessionId
-}
-
-// GetSessionIdOk returns a tuple with the SessionId field value
-// and a boolean to check if the value has been set.
-func (o *GetAttachmentRequest) GetSessionIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.SessionId, true
-}
-
-// SetSessionId sets field value
-func (o *GetAttachmentRequest) SetSessionId(v string) {
-	o.SessionId = v
+// SetResultsAccessKey sets field value
+func (o *GetAttachmentRequest) SetResultsAccessKey(v string) {
+	o.ResultsAccessKey = v
 }
 
 func (o GetAttachmentRequest) MarshalJSON() ([]byte, error) {
@@ -106,8 +79,7 @@ func (o GetAttachmentRequest) MarshalJSON() ([]byte, error) {
 
 func (o GetAttachmentRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["attachmentAccessKey"] = o.AttachmentAccessKey
-	toSerialize["sessionId"] = o.SessionId
+	toSerialize["resultsAccessKey"] = o.ResultsAccessKey
 	return toSerialize, nil
 }
 
@@ -116,8 +88,7 @@ func (o *GetAttachmentRequest) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"attachmentAccessKey",
-		"sessionId",
+		"resultsAccessKey",
 	}
 
 	allProperties := make(map[string]interface{})

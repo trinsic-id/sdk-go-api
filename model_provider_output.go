@@ -19,11 +19,70 @@ var _ MappedNullable = &ProviderOutput{}
 
 // ProviderOutput struct for ProviderOutput
 type ProviderOutput struct {
-	ItalySpid NullableSpidProviderOutput `json:"italy-spid,omitempty"`
-	MexicoCurpLookup NullableMexicoCurpProviderOutput `json:"mexico-curp-lookup,omitempty"`
+	// Exposed properties for the `a-at-handy-signatur-login` Provider which do not directly map to the normalized IdentityData model.
+	AAtHandySignaturLogin NullableAustriaHandySignaturProviderOutput `json:"a-at-handy-signatur-login,omitempty"`
+	// Exposed properties for the `a-be-id-login` Provider which do not directly map to the normalized IdentityData model.
+	ABeIdLogin NullableBelgiumIdCardProviderOutput `json:"a-be-id-login,omitempty"`
+	// Exposed properties for the `a-edoapp-eid-login` Provider which do not directly map to the normalized IdentityData model.
+	AEdoappEidLogin NullablePolandEdoAppProviderOutput `json:"a-edoapp-eid-login,omitempty"`
+	// Exposed properties for the `a-ee-web-eid-login` Provider which do not directly map to the normalized IdentityData model.
+	AEeWebEidLogin NullableEstoniaIdCardProviderOutput `json:"a-ee-web-eid-login,omitempty"`
+	// Exposed properties for the `a-fi-id-login` Provider which do not directly map to the normalized IdentityData model.
+	AFiIdLogin NullableFinlandIdCardProviderOutput `json:"a-fi-id-login,omitempty"`
+	// Exposed properties for the `a-freja-eid-login` Provider which do not directly map to the normalized IdentityData model.
+	AFrejaEidLogin NullableFrejaProviderOutput `json:"a-freja-eid-login,omitempty"`
+	// Exposed properties for the `a-itsme-login` Provider which do not directly map to the normalized IdentityData model.
+	AItsmeLogin NullableItsmeProviderOutput `json:"a-itsme-login,omitempty"`
+	// Exposed properties for the `a-lt-id-login` Provider which do not directly map to the normalized IdentityData model.
+	ALtIdLogin NullableLithuaniaIdCardProviderOutput `json:"a-lt-id-login,omitempty"`
+	// Exposed properties for the `a-lv-eparaksts-id-login` Provider which do not directly map to the normalized IdentityData model.
+	ALvEparakstsIdLogin NullableLatviaEparakstsProviderOutput `json:"a-lv-eparaksts-id-login,omitempty"`
+	// Exposed properties for the `a-lv-eparaksts-mobile-login` Provider which do not directly map to the normalized IdentityData model.
+	ALvEparakstsMobileLogin NullableLatviaEparakstsMobileProviderOutput `json:"a-lv-eparaksts-mobile-login,omitempty"`
+	// Exposed properties for the `a-mojeid` Provider which do not directly map to the normalized IdentityData model.
+	AMojeid NullableCzechiaMojeIdProviderOutput `json:"a-mojeid,omitempty"`
+	// Exposed properties for the `a-pl-mojeid-login` Provider which do not directly map to the normalized IdentityData model.
+	APlMojeidLogin NullablePolandMojeIdProviderOutput `json:"a-pl-mojeid-login,omitempty"`
+	// Exposed properties for the `a-pt-id-login` Provider which do not directly map to the normalized IdentityData model.
+	APtIdLogin NullablePortugalIdCardProviderOutput `json:"a-pt-id-login,omitempty"`
+	// Exposed properties for the `a-rs-id-login` Provider which do not directly map to the normalized IdentityData model.
+	ARsIdLogin NullableSerbiaIdCardProviderOutput `json:"a-rs-id-login,omitempty"`
+	// Exposed properties for the `apple-wallet` Provider which do not directly map to the normalized IdentityData model.
+	AppleWallet NullableAppleWalletProviderOutput `json:"apple-wallet,omitempty"`
+	// Exposed properties for the `denmark-mitid` Provider which do not directly map to the normalized IdentityData model.
+	DenmarkMitid NullableMitIdProviderOutput `json:"denmark-mitid,omitempty"`
+	// Exposed properties for the `ethiopia-fayda` Provider which do not directly map to the normalized IdentityData model.
 	EthiopiaFayda NullableFaydaProviderOutput `json:"ethiopia-fayda,omitempty"`
-	PhilippinesPhysicalNationalIdQr NullablePhilippinesPhysicalNidProviderOutput `json:"philippines-physical-national-id-qr,omitempty"`
+	// Exposed properties for the `france-identite-numerique` Provider which do not directly map to the normalized IdentityData model.
+	FranceIdentiteNumerique NullableFrenchNumeriqueProviderOutput `json:"france-identite-numerique,omitempty"`
+	// Exposed properties for the `google-wallet` Provider which do not directly map to the normalized IdentityData model.
+	GoogleWallet NullableGoogleWalletProviderOutput `json:"google-wallet,omitempty"`
+	// Exposed properties for the `italy-spid` Provider which do not directly map to the normalized IdentityData model.
+	ItalySpid NullableSpidProviderOutput `json:"italy-spid,omitempty"`
+	// Exposed properties for the `lloyds-smart-id` Provider which do not directly map to the normalized IdentityData model.
+	LloydsSmartId NullableLloydsSmartIdProviderOutput `json:"lloyds-smart-id,omitempty"`
+	// Exposed properties for the `mexico-curp-lookup` Provider which do not directly map to the normalized IdentityData model.
+	MexicoCurpLookup NullableMexicoCurpProviderOutput `json:"mexico-curp-lookup,omitempty"`
+	// Exposed properties for the `mobile-id` Provider which do not directly map to the normalized IdentityData model.
+	MobileId NullableMobileIdProviderOutput `json:"mobile-id,omitempty"`
+	// Exposed properties for the `peru-dni-lookup` Provider which do not directly map to the normalized IdentityData model.
+	PeruDniLookup NullablePeruDniProviderOutput `json:"peru-dni-lookup,omitempty"`
+	// Exposed properties for the `philippines-digital-national-id-qr` Provider which do not directly map to the normalized IdentityData model.
 	PhilippinesDigitalNationalIdQr NullablePhilippinesDigitalNidProviderOutput `json:"philippines-digital-national-id-qr,omitempty"`
+	// Exposed properties for the `philippines-physical-national-id-qr` Provider which do not directly map to the normalized IdentityData model.
+	PhilippinesPhysicalNationalIdQr NullablePhilippinesPhysicalNidProviderOutput `json:"philippines-physical-national-id-qr,omitempty"`
+	// Exposed properties for the `post-office-easyid` Provider which do not directly map to the normalized IdentityData model.
+	PostOfficeEasyid NullablePostOfficeEasyIdProviderOutput `json:"post-office-easyid,omitempty"`
+	// Exposed properties for the `samsung-wallet` Provider which do not directly map to the normalized IdentityData model.
+	SamsungWallet NullableSamsungWalletProviderOutput `json:"samsung-wallet,omitempty"`
+	// Exposed properties for the `smart-id` Provider which do not directly map to the normalized IdentityData model.
+	SmartId NullableSmartIdProviderOutput `json:"smart-id,omitempty"`
+	// Exposed properties for the `sweden-bankid` Provider which do not directly map to the normalized IdentityData model.
+	SwedenBankid NullableSwedenBankIdProviderOutput `json:"sweden-bankid,omitempty"`
+	// Exposed properties for the `usa-louisiana-wallet` Provider which do not directly map to the normalized IdentityData model.
+	UsaLouisianaWallet NullableLaWalletProviderOutput `json:"usa-louisiana-wallet,omitempty"`
+	// Exposed properties for the `yoti` Provider which do not directly map to the normalized IdentityData model.
+	Yoti NullableYotiProviderOutput `json:"yoti,omitempty"`
 }
 
 // NewProviderOutput instantiates a new ProviderOutput object
@@ -43,88 +102,676 @@ func NewProviderOutputWithDefaults() *ProviderOutput {
 	return &this
 }
 
-// GetItalySpid returns the ItalySpid field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ProviderOutput) GetItalySpid() SpidProviderOutput {
-	if o == nil || IsNil(o.ItalySpid.Get()) {
-		var ret SpidProviderOutput
+// GetAAtHandySignaturLogin returns the AAtHandySignaturLogin field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderOutput) GetAAtHandySignaturLogin() AustriaHandySignaturProviderOutput {
+	if o == nil || IsNil(o.AAtHandySignaturLogin.Get()) {
+		var ret AustriaHandySignaturProviderOutput
 		return ret
 	}
-	return *o.ItalySpid.Get()
+	return *o.AAtHandySignaturLogin.Get()
 }
 
-// GetItalySpidOk returns a tuple with the ItalySpid field value if set, nil otherwise
+// GetAAtHandySignaturLoginOk returns a tuple with the AAtHandySignaturLogin field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ProviderOutput) GetItalySpidOk() (*SpidProviderOutput, bool) {
+func (o *ProviderOutput) GetAAtHandySignaturLoginOk() (*AustriaHandySignaturProviderOutput, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.ItalySpid.Get(), o.ItalySpid.IsSet()
+	return o.AAtHandySignaturLogin.Get(), o.AAtHandySignaturLogin.IsSet()
 }
 
-// HasItalySpid returns a boolean if a field has been set.
-func (o *ProviderOutput) HasItalySpid() bool {
-	if o != nil && o.ItalySpid.IsSet() {
+// HasAAtHandySignaturLogin returns a boolean if a field has been set.
+func (o *ProviderOutput) HasAAtHandySignaturLogin() bool {
+	if o != nil && o.AAtHandySignaturLogin.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetItalySpid gets a reference to the given NullableSpidProviderOutput and assigns it to the ItalySpid field.
-func (o *ProviderOutput) SetItalySpid(v SpidProviderOutput) {
-	o.ItalySpid.Set(&v)
+// SetAAtHandySignaturLogin gets a reference to the given NullableAustriaHandySignaturProviderOutput and assigns it to the AAtHandySignaturLogin field.
+func (o *ProviderOutput) SetAAtHandySignaturLogin(v AustriaHandySignaturProviderOutput) {
+	o.AAtHandySignaturLogin.Set(&v)
 }
-// SetItalySpidNil sets the value for ItalySpid to be an explicit nil
-func (o *ProviderOutput) SetItalySpidNil() {
-	o.ItalySpid.Set(nil)
-}
-
-// UnsetItalySpid ensures that no value is present for ItalySpid, not even an explicit nil
-func (o *ProviderOutput) UnsetItalySpid() {
-	o.ItalySpid.Unset()
+// SetAAtHandySignaturLoginNil sets the value for AAtHandySignaturLogin to be an explicit nil
+func (o *ProviderOutput) SetAAtHandySignaturLoginNil() {
+	o.AAtHandySignaturLogin.Set(nil)
 }
 
-// GetMexicoCurpLookup returns the MexicoCurpLookup field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ProviderOutput) GetMexicoCurpLookup() MexicoCurpProviderOutput {
-	if o == nil || IsNil(o.MexicoCurpLookup.Get()) {
-		var ret MexicoCurpProviderOutput
+// UnsetAAtHandySignaturLogin ensures that no value is present for AAtHandySignaturLogin, not even an explicit nil
+func (o *ProviderOutput) UnsetAAtHandySignaturLogin() {
+	o.AAtHandySignaturLogin.Unset()
+}
+
+// GetABeIdLogin returns the ABeIdLogin field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderOutput) GetABeIdLogin() BelgiumIdCardProviderOutput {
+	if o == nil || IsNil(o.ABeIdLogin.Get()) {
+		var ret BelgiumIdCardProviderOutput
 		return ret
 	}
-	return *o.MexicoCurpLookup.Get()
+	return *o.ABeIdLogin.Get()
 }
 
-// GetMexicoCurpLookupOk returns a tuple with the MexicoCurpLookup field value if set, nil otherwise
+// GetABeIdLoginOk returns a tuple with the ABeIdLogin field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ProviderOutput) GetMexicoCurpLookupOk() (*MexicoCurpProviderOutput, bool) {
+func (o *ProviderOutput) GetABeIdLoginOk() (*BelgiumIdCardProviderOutput, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.MexicoCurpLookup.Get(), o.MexicoCurpLookup.IsSet()
+	return o.ABeIdLogin.Get(), o.ABeIdLogin.IsSet()
 }
 
-// HasMexicoCurpLookup returns a boolean if a field has been set.
-func (o *ProviderOutput) HasMexicoCurpLookup() bool {
-	if o != nil && o.MexicoCurpLookup.IsSet() {
+// HasABeIdLogin returns a boolean if a field has been set.
+func (o *ProviderOutput) HasABeIdLogin() bool {
+	if o != nil && o.ABeIdLogin.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetMexicoCurpLookup gets a reference to the given NullableMexicoCurpProviderOutput and assigns it to the MexicoCurpLookup field.
-func (o *ProviderOutput) SetMexicoCurpLookup(v MexicoCurpProviderOutput) {
-	o.MexicoCurpLookup.Set(&v)
+// SetABeIdLogin gets a reference to the given NullableBelgiumIdCardProviderOutput and assigns it to the ABeIdLogin field.
+func (o *ProviderOutput) SetABeIdLogin(v BelgiumIdCardProviderOutput) {
+	o.ABeIdLogin.Set(&v)
 }
-// SetMexicoCurpLookupNil sets the value for MexicoCurpLookup to be an explicit nil
-func (o *ProviderOutput) SetMexicoCurpLookupNil() {
-	o.MexicoCurpLookup.Set(nil)
+// SetABeIdLoginNil sets the value for ABeIdLogin to be an explicit nil
+func (o *ProviderOutput) SetABeIdLoginNil() {
+	o.ABeIdLogin.Set(nil)
 }
 
-// UnsetMexicoCurpLookup ensures that no value is present for MexicoCurpLookup, not even an explicit nil
-func (o *ProviderOutput) UnsetMexicoCurpLookup() {
-	o.MexicoCurpLookup.Unset()
+// UnsetABeIdLogin ensures that no value is present for ABeIdLogin, not even an explicit nil
+func (o *ProviderOutput) UnsetABeIdLogin() {
+	o.ABeIdLogin.Unset()
+}
+
+// GetAEdoappEidLogin returns the AEdoappEidLogin field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderOutput) GetAEdoappEidLogin() PolandEdoAppProviderOutput {
+	if o == nil || IsNil(o.AEdoappEidLogin.Get()) {
+		var ret PolandEdoAppProviderOutput
+		return ret
+	}
+	return *o.AEdoappEidLogin.Get()
+}
+
+// GetAEdoappEidLoginOk returns a tuple with the AEdoappEidLogin field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderOutput) GetAEdoappEidLoginOk() (*PolandEdoAppProviderOutput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.AEdoappEidLogin.Get(), o.AEdoappEidLogin.IsSet()
+}
+
+// HasAEdoappEidLogin returns a boolean if a field has been set.
+func (o *ProviderOutput) HasAEdoappEidLogin() bool {
+	if o != nil && o.AEdoappEidLogin.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAEdoappEidLogin gets a reference to the given NullablePolandEdoAppProviderOutput and assigns it to the AEdoappEidLogin field.
+func (o *ProviderOutput) SetAEdoappEidLogin(v PolandEdoAppProviderOutput) {
+	o.AEdoappEidLogin.Set(&v)
+}
+// SetAEdoappEidLoginNil sets the value for AEdoappEidLogin to be an explicit nil
+func (o *ProviderOutput) SetAEdoappEidLoginNil() {
+	o.AEdoappEidLogin.Set(nil)
+}
+
+// UnsetAEdoappEidLogin ensures that no value is present for AEdoappEidLogin, not even an explicit nil
+func (o *ProviderOutput) UnsetAEdoappEidLogin() {
+	o.AEdoappEidLogin.Unset()
+}
+
+// GetAEeWebEidLogin returns the AEeWebEidLogin field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderOutput) GetAEeWebEidLogin() EstoniaIdCardProviderOutput {
+	if o == nil || IsNil(o.AEeWebEidLogin.Get()) {
+		var ret EstoniaIdCardProviderOutput
+		return ret
+	}
+	return *o.AEeWebEidLogin.Get()
+}
+
+// GetAEeWebEidLoginOk returns a tuple with the AEeWebEidLogin field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderOutput) GetAEeWebEidLoginOk() (*EstoniaIdCardProviderOutput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.AEeWebEidLogin.Get(), o.AEeWebEidLogin.IsSet()
+}
+
+// HasAEeWebEidLogin returns a boolean if a field has been set.
+func (o *ProviderOutput) HasAEeWebEidLogin() bool {
+	if o != nil && o.AEeWebEidLogin.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAEeWebEidLogin gets a reference to the given NullableEstoniaIdCardProviderOutput and assigns it to the AEeWebEidLogin field.
+func (o *ProviderOutput) SetAEeWebEidLogin(v EstoniaIdCardProviderOutput) {
+	o.AEeWebEidLogin.Set(&v)
+}
+// SetAEeWebEidLoginNil sets the value for AEeWebEidLogin to be an explicit nil
+func (o *ProviderOutput) SetAEeWebEidLoginNil() {
+	o.AEeWebEidLogin.Set(nil)
+}
+
+// UnsetAEeWebEidLogin ensures that no value is present for AEeWebEidLogin, not even an explicit nil
+func (o *ProviderOutput) UnsetAEeWebEidLogin() {
+	o.AEeWebEidLogin.Unset()
+}
+
+// GetAFiIdLogin returns the AFiIdLogin field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderOutput) GetAFiIdLogin() FinlandIdCardProviderOutput {
+	if o == nil || IsNil(o.AFiIdLogin.Get()) {
+		var ret FinlandIdCardProviderOutput
+		return ret
+	}
+	return *o.AFiIdLogin.Get()
+}
+
+// GetAFiIdLoginOk returns a tuple with the AFiIdLogin field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderOutput) GetAFiIdLoginOk() (*FinlandIdCardProviderOutput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.AFiIdLogin.Get(), o.AFiIdLogin.IsSet()
+}
+
+// HasAFiIdLogin returns a boolean if a field has been set.
+func (o *ProviderOutput) HasAFiIdLogin() bool {
+	if o != nil && o.AFiIdLogin.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAFiIdLogin gets a reference to the given NullableFinlandIdCardProviderOutput and assigns it to the AFiIdLogin field.
+func (o *ProviderOutput) SetAFiIdLogin(v FinlandIdCardProviderOutput) {
+	o.AFiIdLogin.Set(&v)
+}
+// SetAFiIdLoginNil sets the value for AFiIdLogin to be an explicit nil
+func (o *ProviderOutput) SetAFiIdLoginNil() {
+	o.AFiIdLogin.Set(nil)
+}
+
+// UnsetAFiIdLogin ensures that no value is present for AFiIdLogin, not even an explicit nil
+func (o *ProviderOutput) UnsetAFiIdLogin() {
+	o.AFiIdLogin.Unset()
+}
+
+// GetAFrejaEidLogin returns the AFrejaEidLogin field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderOutput) GetAFrejaEidLogin() FrejaProviderOutput {
+	if o == nil || IsNil(o.AFrejaEidLogin.Get()) {
+		var ret FrejaProviderOutput
+		return ret
+	}
+	return *o.AFrejaEidLogin.Get()
+}
+
+// GetAFrejaEidLoginOk returns a tuple with the AFrejaEidLogin field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderOutput) GetAFrejaEidLoginOk() (*FrejaProviderOutput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.AFrejaEidLogin.Get(), o.AFrejaEidLogin.IsSet()
+}
+
+// HasAFrejaEidLogin returns a boolean if a field has been set.
+func (o *ProviderOutput) HasAFrejaEidLogin() bool {
+	if o != nil && o.AFrejaEidLogin.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAFrejaEidLogin gets a reference to the given NullableFrejaProviderOutput and assigns it to the AFrejaEidLogin field.
+func (o *ProviderOutput) SetAFrejaEidLogin(v FrejaProviderOutput) {
+	o.AFrejaEidLogin.Set(&v)
+}
+// SetAFrejaEidLoginNil sets the value for AFrejaEidLogin to be an explicit nil
+func (o *ProviderOutput) SetAFrejaEidLoginNil() {
+	o.AFrejaEidLogin.Set(nil)
+}
+
+// UnsetAFrejaEidLogin ensures that no value is present for AFrejaEidLogin, not even an explicit nil
+func (o *ProviderOutput) UnsetAFrejaEidLogin() {
+	o.AFrejaEidLogin.Unset()
+}
+
+// GetAItsmeLogin returns the AItsmeLogin field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderOutput) GetAItsmeLogin() ItsmeProviderOutput {
+	if o == nil || IsNil(o.AItsmeLogin.Get()) {
+		var ret ItsmeProviderOutput
+		return ret
+	}
+	return *o.AItsmeLogin.Get()
+}
+
+// GetAItsmeLoginOk returns a tuple with the AItsmeLogin field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderOutput) GetAItsmeLoginOk() (*ItsmeProviderOutput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.AItsmeLogin.Get(), o.AItsmeLogin.IsSet()
+}
+
+// HasAItsmeLogin returns a boolean if a field has been set.
+func (o *ProviderOutput) HasAItsmeLogin() bool {
+	if o != nil && o.AItsmeLogin.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAItsmeLogin gets a reference to the given NullableItsmeProviderOutput and assigns it to the AItsmeLogin field.
+func (o *ProviderOutput) SetAItsmeLogin(v ItsmeProviderOutput) {
+	o.AItsmeLogin.Set(&v)
+}
+// SetAItsmeLoginNil sets the value for AItsmeLogin to be an explicit nil
+func (o *ProviderOutput) SetAItsmeLoginNil() {
+	o.AItsmeLogin.Set(nil)
+}
+
+// UnsetAItsmeLogin ensures that no value is present for AItsmeLogin, not even an explicit nil
+func (o *ProviderOutput) UnsetAItsmeLogin() {
+	o.AItsmeLogin.Unset()
+}
+
+// GetALtIdLogin returns the ALtIdLogin field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderOutput) GetALtIdLogin() LithuaniaIdCardProviderOutput {
+	if o == nil || IsNil(o.ALtIdLogin.Get()) {
+		var ret LithuaniaIdCardProviderOutput
+		return ret
+	}
+	return *o.ALtIdLogin.Get()
+}
+
+// GetALtIdLoginOk returns a tuple with the ALtIdLogin field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderOutput) GetALtIdLoginOk() (*LithuaniaIdCardProviderOutput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ALtIdLogin.Get(), o.ALtIdLogin.IsSet()
+}
+
+// HasALtIdLogin returns a boolean if a field has been set.
+func (o *ProviderOutput) HasALtIdLogin() bool {
+	if o != nil && o.ALtIdLogin.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetALtIdLogin gets a reference to the given NullableLithuaniaIdCardProviderOutput and assigns it to the ALtIdLogin field.
+func (o *ProviderOutput) SetALtIdLogin(v LithuaniaIdCardProviderOutput) {
+	o.ALtIdLogin.Set(&v)
+}
+// SetALtIdLoginNil sets the value for ALtIdLogin to be an explicit nil
+func (o *ProviderOutput) SetALtIdLoginNil() {
+	o.ALtIdLogin.Set(nil)
+}
+
+// UnsetALtIdLogin ensures that no value is present for ALtIdLogin, not even an explicit nil
+func (o *ProviderOutput) UnsetALtIdLogin() {
+	o.ALtIdLogin.Unset()
+}
+
+// GetALvEparakstsIdLogin returns the ALvEparakstsIdLogin field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderOutput) GetALvEparakstsIdLogin() LatviaEparakstsProviderOutput {
+	if o == nil || IsNil(o.ALvEparakstsIdLogin.Get()) {
+		var ret LatviaEparakstsProviderOutput
+		return ret
+	}
+	return *o.ALvEparakstsIdLogin.Get()
+}
+
+// GetALvEparakstsIdLoginOk returns a tuple with the ALvEparakstsIdLogin field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderOutput) GetALvEparakstsIdLoginOk() (*LatviaEparakstsProviderOutput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ALvEparakstsIdLogin.Get(), o.ALvEparakstsIdLogin.IsSet()
+}
+
+// HasALvEparakstsIdLogin returns a boolean if a field has been set.
+func (o *ProviderOutput) HasALvEparakstsIdLogin() bool {
+	if o != nil && o.ALvEparakstsIdLogin.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetALvEparakstsIdLogin gets a reference to the given NullableLatviaEparakstsProviderOutput and assigns it to the ALvEparakstsIdLogin field.
+func (o *ProviderOutput) SetALvEparakstsIdLogin(v LatviaEparakstsProviderOutput) {
+	o.ALvEparakstsIdLogin.Set(&v)
+}
+// SetALvEparakstsIdLoginNil sets the value for ALvEparakstsIdLogin to be an explicit nil
+func (o *ProviderOutput) SetALvEparakstsIdLoginNil() {
+	o.ALvEparakstsIdLogin.Set(nil)
+}
+
+// UnsetALvEparakstsIdLogin ensures that no value is present for ALvEparakstsIdLogin, not even an explicit nil
+func (o *ProviderOutput) UnsetALvEparakstsIdLogin() {
+	o.ALvEparakstsIdLogin.Unset()
+}
+
+// GetALvEparakstsMobileLogin returns the ALvEparakstsMobileLogin field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderOutput) GetALvEparakstsMobileLogin() LatviaEparakstsMobileProviderOutput {
+	if o == nil || IsNil(o.ALvEparakstsMobileLogin.Get()) {
+		var ret LatviaEparakstsMobileProviderOutput
+		return ret
+	}
+	return *o.ALvEparakstsMobileLogin.Get()
+}
+
+// GetALvEparakstsMobileLoginOk returns a tuple with the ALvEparakstsMobileLogin field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderOutput) GetALvEparakstsMobileLoginOk() (*LatviaEparakstsMobileProviderOutput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ALvEparakstsMobileLogin.Get(), o.ALvEparakstsMobileLogin.IsSet()
+}
+
+// HasALvEparakstsMobileLogin returns a boolean if a field has been set.
+func (o *ProviderOutput) HasALvEparakstsMobileLogin() bool {
+	if o != nil && o.ALvEparakstsMobileLogin.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetALvEparakstsMobileLogin gets a reference to the given NullableLatviaEparakstsMobileProviderOutput and assigns it to the ALvEparakstsMobileLogin field.
+func (o *ProviderOutput) SetALvEparakstsMobileLogin(v LatviaEparakstsMobileProviderOutput) {
+	o.ALvEparakstsMobileLogin.Set(&v)
+}
+// SetALvEparakstsMobileLoginNil sets the value for ALvEparakstsMobileLogin to be an explicit nil
+func (o *ProviderOutput) SetALvEparakstsMobileLoginNil() {
+	o.ALvEparakstsMobileLogin.Set(nil)
+}
+
+// UnsetALvEparakstsMobileLogin ensures that no value is present for ALvEparakstsMobileLogin, not even an explicit nil
+func (o *ProviderOutput) UnsetALvEparakstsMobileLogin() {
+	o.ALvEparakstsMobileLogin.Unset()
+}
+
+// GetAMojeid returns the AMojeid field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderOutput) GetAMojeid() CzechiaMojeIdProviderOutput {
+	if o == nil || IsNil(o.AMojeid.Get()) {
+		var ret CzechiaMojeIdProviderOutput
+		return ret
+	}
+	return *o.AMojeid.Get()
+}
+
+// GetAMojeidOk returns a tuple with the AMojeid field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderOutput) GetAMojeidOk() (*CzechiaMojeIdProviderOutput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.AMojeid.Get(), o.AMojeid.IsSet()
+}
+
+// HasAMojeid returns a boolean if a field has been set.
+func (o *ProviderOutput) HasAMojeid() bool {
+	if o != nil && o.AMojeid.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAMojeid gets a reference to the given NullableCzechiaMojeIdProviderOutput and assigns it to the AMojeid field.
+func (o *ProviderOutput) SetAMojeid(v CzechiaMojeIdProviderOutput) {
+	o.AMojeid.Set(&v)
+}
+// SetAMojeidNil sets the value for AMojeid to be an explicit nil
+func (o *ProviderOutput) SetAMojeidNil() {
+	o.AMojeid.Set(nil)
+}
+
+// UnsetAMojeid ensures that no value is present for AMojeid, not even an explicit nil
+func (o *ProviderOutput) UnsetAMojeid() {
+	o.AMojeid.Unset()
+}
+
+// GetAPlMojeidLogin returns the APlMojeidLogin field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderOutput) GetAPlMojeidLogin() PolandMojeIdProviderOutput {
+	if o == nil || IsNil(o.APlMojeidLogin.Get()) {
+		var ret PolandMojeIdProviderOutput
+		return ret
+	}
+	return *o.APlMojeidLogin.Get()
+}
+
+// GetAPlMojeidLoginOk returns a tuple with the APlMojeidLogin field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderOutput) GetAPlMojeidLoginOk() (*PolandMojeIdProviderOutput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.APlMojeidLogin.Get(), o.APlMojeidLogin.IsSet()
+}
+
+// HasAPlMojeidLogin returns a boolean if a field has been set.
+func (o *ProviderOutput) HasAPlMojeidLogin() bool {
+	if o != nil && o.APlMojeidLogin.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAPlMojeidLogin gets a reference to the given NullablePolandMojeIdProviderOutput and assigns it to the APlMojeidLogin field.
+func (o *ProviderOutput) SetAPlMojeidLogin(v PolandMojeIdProviderOutput) {
+	o.APlMojeidLogin.Set(&v)
+}
+// SetAPlMojeidLoginNil sets the value for APlMojeidLogin to be an explicit nil
+func (o *ProviderOutput) SetAPlMojeidLoginNil() {
+	o.APlMojeidLogin.Set(nil)
+}
+
+// UnsetAPlMojeidLogin ensures that no value is present for APlMojeidLogin, not even an explicit nil
+func (o *ProviderOutput) UnsetAPlMojeidLogin() {
+	o.APlMojeidLogin.Unset()
+}
+
+// GetAPtIdLogin returns the APtIdLogin field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderOutput) GetAPtIdLogin() PortugalIdCardProviderOutput {
+	if o == nil || IsNil(o.APtIdLogin.Get()) {
+		var ret PortugalIdCardProviderOutput
+		return ret
+	}
+	return *o.APtIdLogin.Get()
+}
+
+// GetAPtIdLoginOk returns a tuple with the APtIdLogin field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderOutput) GetAPtIdLoginOk() (*PortugalIdCardProviderOutput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.APtIdLogin.Get(), o.APtIdLogin.IsSet()
+}
+
+// HasAPtIdLogin returns a boolean if a field has been set.
+func (o *ProviderOutput) HasAPtIdLogin() bool {
+	if o != nil && o.APtIdLogin.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAPtIdLogin gets a reference to the given NullablePortugalIdCardProviderOutput and assigns it to the APtIdLogin field.
+func (o *ProviderOutput) SetAPtIdLogin(v PortugalIdCardProviderOutput) {
+	o.APtIdLogin.Set(&v)
+}
+// SetAPtIdLoginNil sets the value for APtIdLogin to be an explicit nil
+func (o *ProviderOutput) SetAPtIdLoginNil() {
+	o.APtIdLogin.Set(nil)
+}
+
+// UnsetAPtIdLogin ensures that no value is present for APtIdLogin, not even an explicit nil
+func (o *ProviderOutput) UnsetAPtIdLogin() {
+	o.APtIdLogin.Unset()
+}
+
+// GetARsIdLogin returns the ARsIdLogin field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderOutput) GetARsIdLogin() SerbiaIdCardProviderOutput {
+	if o == nil || IsNil(o.ARsIdLogin.Get()) {
+		var ret SerbiaIdCardProviderOutput
+		return ret
+	}
+	return *o.ARsIdLogin.Get()
+}
+
+// GetARsIdLoginOk returns a tuple with the ARsIdLogin field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderOutput) GetARsIdLoginOk() (*SerbiaIdCardProviderOutput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ARsIdLogin.Get(), o.ARsIdLogin.IsSet()
+}
+
+// HasARsIdLogin returns a boolean if a field has been set.
+func (o *ProviderOutput) HasARsIdLogin() bool {
+	if o != nil && o.ARsIdLogin.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetARsIdLogin gets a reference to the given NullableSerbiaIdCardProviderOutput and assigns it to the ARsIdLogin field.
+func (o *ProviderOutput) SetARsIdLogin(v SerbiaIdCardProviderOutput) {
+	o.ARsIdLogin.Set(&v)
+}
+// SetARsIdLoginNil sets the value for ARsIdLogin to be an explicit nil
+func (o *ProviderOutput) SetARsIdLoginNil() {
+	o.ARsIdLogin.Set(nil)
+}
+
+// UnsetARsIdLogin ensures that no value is present for ARsIdLogin, not even an explicit nil
+func (o *ProviderOutput) UnsetARsIdLogin() {
+	o.ARsIdLogin.Unset()
+}
+
+// GetAppleWallet returns the AppleWallet field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderOutput) GetAppleWallet() AppleWalletProviderOutput {
+	if o == nil || IsNil(o.AppleWallet.Get()) {
+		var ret AppleWalletProviderOutput
+		return ret
+	}
+	return *o.AppleWallet.Get()
+}
+
+// GetAppleWalletOk returns a tuple with the AppleWallet field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderOutput) GetAppleWalletOk() (*AppleWalletProviderOutput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.AppleWallet.Get(), o.AppleWallet.IsSet()
+}
+
+// HasAppleWallet returns a boolean if a field has been set.
+func (o *ProviderOutput) HasAppleWallet() bool {
+	if o != nil && o.AppleWallet.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAppleWallet gets a reference to the given NullableAppleWalletProviderOutput and assigns it to the AppleWallet field.
+func (o *ProviderOutput) SetAppleWallet(v AppleWalletProviderOutput) {
+	o.AppleWallet.Set(&v)
+}
+// SetAppleWalletNil sets the value for AppleWallet to be an explicit nil
+func (o *ProviderOutput) SetAppleWalletNil() {
+	o.AppleWallet.Set(nil)
+}
+
+// UnsetAppleWallet ensures that no value is present for AppleWallet, not even an explicit nil
+func (o *ProviderOutput) UnsetAppleWallet() {
+	o.AppleWallet.Unset()
+}
+
+// GetDenmarkMitid returns the DenmarkMitid field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderOutput) GetDenmarkMitid() MitIdProviderOutput {
+	if o == nil || IsNil(o.DenmarkMitid.Get()) {
+		var ret MitIdProviderOutput
+		return ret
+	}
+	return *o.DenmarkMitid.Get()
+}
+
+// GetDenmarkMitidOk returns a tuple with the DenmarkMitid field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderOutput) GetDenmarkMitidOk() (*MitIdProviderOutput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.DenmarkMitid.Get(), o.DenmarkMitid.IsSet()
+}
+
+// HasDenmarkMitid returns a boolean if a field has been set.
+func (o *ProviderOutput) HasDenmarkMitid() bool {
+	if o != nil && o.DenmarkMitid.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDenmarkMitid gets a reference to the given NullableMitIdProviderOutput and assigns it to the DenmarkMitid field.
+func (o *ProviderOutput) SetDenmarkMitid(v MitIdProviderOutput) {
+	o.DenmarkMitid.Set(&v)
+}
+// SetDenmarkMitidNil sets the value for DenmarkMitid to be an explicit nil
+func (o *ProviderOutput) SetDenmarkMitidNil() {
+	o.DenmarkMitid.Set(nil)
+}
+
+// UnsetDenmarkMitid ensures that no value is present for DenmarkMitid, not even an explicit nil
+func (o *ProviderOutput) UnsetDenmarkMitid() {
+	o.DenmarkMitid.Unset()
 }
 
 // GetEthiopiaFayda returns the EthiopiaFayda field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -169,46 +816,298 @@ func (o *ProviderOutput) UnsetEthiopiaFayda() {
 	o.EthiopiaFayda.Unset()
 }
 
-// GetPhilippinesPhysicalNationalIdQr returns the PhilippinesPhysicalNationalIdQr field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ProviderOutput) GetPhilippinesPhysicalNationalIdQr() PhilippinesPhysicalNidProviderOutput {
-	if o == nil || IsNil(o.PhilippinesPhysicalNationalIdQr.Get()) {
-		var ret PhilippinesPhysicalNidProviderOutput
+// GetFranceIdentiteNumerique returns the FranceIdentiteNumerique field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderOutput) GetFranceIdentiteNumerique() FrenchNumeriqueProviderOutput {
+	if o == nil || IsNil(o.FranceIdentiteNumerique.Get()) {
+		var ret FrenchNumeriqueProviderOutput
 		return ret
 	}
-	return *o.PhilippinesPhysicalNationalIdQr.Get()
+	return *o.FranceIdentiteNumerique.Get()
 }
 
-// GetPhilippinesPhysicalNationalIdQrOk returns a tuple with the PhilippinesPhysicalNationalIdQr field value if set, nil otherwise
+// GetFranceIdentiteNumeriqueOk returns a tuple with the FranceIdentiteNumerique field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ProviderOutput) GetPhilippinesPhysicalNationalIdQrOk() (*PhilippinesPhysicalNidProviderOutput, bool) {
+func (o *ProviderOutput) GetFranceIdentiteNumeriqueOk() (*FrenchNumeriqueProviderOutput, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.PhilippinesPhysicalNationalIdQr.Get(), o.PhilippinesPhysicalNationalIdQr.IsSet()
+	return o.FranceIdentiteNumerique.Get(), o.FranceIdentiteNumerique.IsSet()
 }
 
-// HasPhilippinesPhysicalNationalIdQr returns a boolean if a field has been set.
-func (o *ProviderOutput) HasPhilippinesPhysicalNationalIdQr() bool {
-	if o != nil && o.PhilippinesPhysicalNationalIdQr.IsSet() {
+// HasFranceIdentiteNumerique returns a boolean if a field has been set.
+func (o *ProviderOutput) HasFranceIdentiteNumerique() bool {
+	if o != nil && o.FranceIdentiteNumerique.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetPhilippinesPhysicalNationalIdQr gets a reference to the given NullablePhilippinesPhysicalNidProviderOutput and assigns it to the PhilippinesPhysicalNationalIdQr field.
-func (o *ProviderOutput) SetPhilippinesPhysicalNationalIdQr(v PhilippinesPhysicalNidProviderOutput) {
-	o.PhilippinesPhysicalNationalIdQr.Set(&v)
+// SetFranceIdentiteNumerique gets a reference to the given NullableFrenchNumeriqueProviderOutput and assigns it to the FranceIdentiteNumerique field.
+func (o *ProviderOutput) SetFranceIdentiteNumerique(v FrenchNumeriqueProviderOutput) {
+	o.FranceIdentiteNumerique.Set(&v)
 }
-// SetPhilippinesPhysicalNationalIdQrNil sets the value for PhilippinesPhysicalNationalIdQr to be an explicit nil
-func (o *ProviderOutput) SetPhilippinesPhysicalNationalIdQrNil() {
-	o.PhilippinesPhysicalNationalIdQr.Set(nil)
+// SetFranceIdentiteNumeriqueNil sets the value for FranceIdentiteNumerique to be an explicit nil
+func (o *ProviderOutput) SetFranceIdentiteNumeriqueNil() {
+	o.FranceIdentiteNumerique.Set(nil)
 }
 
-// UnsetPhilippinesPhysicalNationalIdQr ensures that no value is present for PhilippinesPhysicalNationalIdQr, not even an explicit nil
-func (o *ProviderOutput) UnsetPhilippinesPhysicalNationalIdQr() {
-	o.PhilippinesPhysicalNationalIdQr.Unset()
+// UnsetFranceIdentiteNumerique ensures that no value is present for FranceIdentiteNumerique, not even an explicit nil
+func (o *ProviderOutput) UnsetFranceIdentiteNumerique() {
+	o.FranceIdentiteNumerique.Unset()
+}
+
+// GetGoogleWallet returns the GoogleWallet field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderOutput) GetGoogleWallet() GoogleWalletProviderOutput {
+	if o == nil || IsNil(o.GoogleWallet.Get()) {
+		var ret GoogleWalletProviderOutput
+		return ret
+	}
+	return *o.GoogleWallet.Get()
+}
+
+// GetGoogleWalletOk returns a tuple with the GoogleWallet field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderOutput) GetGoogleWalletOk() (*GoogleWalletProviderOutput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.GoogleWallet.Get(), o.GoogleWallet.IsSet()
+}
+
+// HasGoogleWallet returns a boolean if a field has been set.
+func (o *ProviderOutput) HasGoogleWallet() bool {
+	if o != nil && o.GoogleWallet.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetGoogleWallet gets a reference to the given NullableGoogleWalletProviderOutput and assigns it to the GoogleWallet field.
+func (o *ProviderOutput) SetGoogleWallet(v GoogleWalletProviderOutput) {
+	o.GoogleWallet.Set(&v)
+}
+// SetGoogleWalletNil sets the value for GoogleWallet to be an explicit nil
+func (o *ProviderOutput) SetGoogleWalletNil() {
+	o.GoogleWallet.Set(nil)
+}
+
+// UnsetGoogleWallet ensures that no value is present for GoogleWallet, not even an explicit nil
+func (o *ProviderOutput) UnsetGoogleWallet() {
+	o.GoogleWallet.Unset()
+}
+
+// GetItalySpid returns the ItalySpid field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderOutput) GetItalySpid() SpidProviderOutput {
+	if o == nil || IsNil(o.ItalySpid.Get()) {
+		var ret SpidProviderOutput
+		return ret
+	}
+	return *o.ItalySpid.Get()
+}
+
+// GetItalySpidOk returns a tuple with the ItalySpid field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderOutput) GetItalySpidOk() (*SpidProviderOutput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ItalySpid.Get(), o.ItalySpid.IsSet()
+}
+
+// HasItalySpid returns a boolean if a field has been set.
+func (o *ProviderOutput) HasItalySpid() bool {
+	if o != nil && o.ItalySpid.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetItalySpid gets a reference to the given NullableSpidProviderOutput and assigns it to the ItalySpid field.
+func (o *ProviderOutput) SetItalySpid(v SpidProviderOutput) {
+	o.ItalySpid.Set(&v)
+}
+// SetItalySpidNil sets the value for ItalySpid to be an explicit nil
+func (o *ProviderOutput) SetItalySpidNil() {
+	o.ItalySpid.Set(nil)
+}
+
+// UnsetItalySpid ensures that no value is present for ItalySpid, not even an explicit nil
+func (o *ProviderOutput) UnsetItalySpid() {
+	o.ItalySpid.Unset()
+}
+
+// GetLloydsSmartId returns the LloydsSmartId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderOutput) GetLloydsSmartId() LloydsSmartIdProviderOutput {
+	if o == nil || IsNil(o.LloydsSmartId.Get()) {
+		var ret LloydsSmartIdProviderOutput
+		return ret
+	}
+	return *o.LloydsSmartId.Get()
+}
+
+// GetLloydsSmartIdOk returns a tuple with the LloydsSmartId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderOutput) GetLloydsSmartIdOk() (*LloydsSmartIdProviderOutput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.LloydsSmartId.Get(), o.LloydsSmartId.IsSet()
+}
+
+// HasLloydsSmartId returns a boolean if a field has been set.
+func (o *ProviderOutput) HasLloydsSmartId() bool {
+	if o != nil && o.LloydsSmartId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetLloydsSmartId gets a reference to the given NullableLloydsSmartIdProviderOutput and assigns it to the LloydsSmartId field.
+func (o *ProviderOutput) SetLloydsSmartId(v LloydsSmartIdProviderOutput) {
+	o.LloydsSmartId.Set(&v)
+}
+// SetLloydsSmartIdNil sets the value for LloydsSmartId to be an explicit nil
+func (o *ProviderOutput) SetLloydsSmartIdNil() {
+	o.LloydsSmartId.Set(nil)
+}
+
+// UnsetLloydsSmartId ensures that no value is present for LloydsSmartId, not even an explicit nil
+func (o *ProviderOutput) UnsetLloydsSmartId() {
+	o.LloydsSmartId.Unset()
+}
+
+// GetMexicoCurpLookup returns the MexicoCurpLookup field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderOutput) GetMexicoCurpLookup() MexicoCurpProviderOutput {
+	if o == nil || IsNil(o.MexicoCurpLookup.Get()) {
+		var ret MexicoCurpProviderOutput
+		return ret
+	}
+	return *o.MexicoCurpLookup.Get()
+}
+
+// GetMexicoCurpLookupOk returns a tuple with the MexicoCurpLookup field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderOutput) GetMexicoCurpLookupOk() (*MexicoCurpProviderOutput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.MexicoCurpLookup.Get(), o.MexicoCurpLookup.IsSet()
+}
+
+// HasMexicoCurpLookup returns a boolean if a field has been set.
+func (o *ProviderOutput) HasMexicoCurpLookup() bool {
+	if o != nil && o.MexicoCurpLookup.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetMexicoCurpLookup gets a reference to the given NullableMexicoCurpProviderOutput and assigns it to the MexicoCurpLookup field.
+func (o *ProviderOutput) SetMexicoCurpLookup(v MexicoCurpProviderOutput) {
+	o.MexicoCurpLookup.Set(&v)
+}
+// SetMexicoCurpLookupNil sets the value for MexicoCurpLookup to be an explicit nil
+func (o *ProviderOutput) SetMexicoCurpLookupNil() {
+	o.MexicoCurpLookup.Set(nil)
+}
+
+// UnsetMexicoCurpLookup ensures that no value is present for MexicoCurpLookup, not even an explicit nil
+func (o *ProviderOutput) UnsetMexicoCurpLookup() {
+	o.MexicoCurpLookup.Unset()
+}
+
+// GetMobileId returns the MobileId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderOutput) GetMobileId() MobileIdProviderOutput {
+	if o == nil || IsNil(o.MobileId.Get()) {
+		var ret MobileIdProviderOutput
+		return ret
+	}
+	return *o.MobileId.Get()
+}
+
+// GetMobileIdOk returns a tuple with the MobileId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderOutput) GetMobileIdOk() (*MobileIdProviderOutput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.MobileId.Get(), o.MobileId.IsSet()
+}
+
+// HasMobileId returns a boolean if a field has been set.
+func (o *ProviderOutput) HasMobileId() bool {
+	if o != nil && o.MobileId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetMobileId gets a reference to the given NullableMobileIdProviderOutput and assigns it to the MobileId field.
+func (o *ProviderOutput) SetMobileId(v MobileIdProviderOutput) {
+	o.MobileId.Set(&v)
+}
+// SetMobileIdNil sets the value for MobileId to be an explicit nil
+func (o *ProviderOutput) SetMobileIdNil() {
+	o.MobileId.Set(nil)
+}
+
+// UnsetMobileId ensures that no value is present for MobileId, not even an explicit nil
+func (o *ProviderOutput) UnsetMobileId() {
+	o.MobileId.Unset()
+}
+
+// GetPeruDniLookup returns the PeruDniLookup field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderOutput) GetPeruDniLookup() PeruDniProviderOutput {
+	if o == nil || IsNil(o.PeruDniLookup.Get()) {
+		var ret PeruDniProviderOutput
+		return ret
+	}
+	return *o.PeruDniLookup.Get()
+}
+
+// GetPeruDniLookupOk returns a tuple with the PeruDniLookup field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderOutput) GetPeruDniLookupOk() (*PeruDniProviderOutput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.PeruDniLookup.Get(), o.PeruDniLookup.IsSet()
+}
+
+// HasPeruDniLookup returns a boolean if a field has been set.
+func (o *ProviderOutput) HasPeruDniLookup() bool {
+	if o != nil && o.PeruDniLookup.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPeruDniLookup gets a reference to the given NullablePeruDniProviderOutput and assigns it to the PeruDniLookup field.
+func (o *ProviderOutput) SetPeruDniLookup(v PeruDniProviderOutput) {
+	o.PeruDniLookup.Set(&v)
+}
+// SetPeruDniLookupNil sets the value for PeruDniLookup to be an explicit nil
+func (o *ProviderOutput) SetPeruDniLookupNil() {
+	o.PeruDniLookup.Set(nil)
+}
+
+// UnsetPeruDniLookup ensures that no value is present for PeruDniLookup, not even an explicit nil
+func (o *ProviderOutput) UnsetPeruDniLookup() {
+	o.PeruDniLookup.Unset()
 }
 
 // GetPhilippinesDigitalNationalIdQr returns the PhilippinesDigitalNationalIdQr field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -253,6 +1152,300 @@ func (o *ProviderOutput) UnsetPhilippinesDigitalNationalIdQr() {
 	o.PhilippinesDigitalNationalIdQr.Unset()
 }
 
+// GetPhilippinesPhysicalNationalIdQr returns the PhilippinesPhysicalNationalIdQr field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderOutput) GetPhilippinesPhysicalNationalIdQr() PhilippinesPhysicalNidProviderOutput {
+	if o == nil || IsNil(o.PhilippinesPhysicalNationalIdQr.Get()) {
+		var ret PhilippinesPhysicalNidProviderOutput
+		return ret
+	}
+	return *o.PhilippinesPhysicalNationalIdQr.Get()
+}
+
+// GetPhilippinesPhysicalNationalIdQrOk returns a tuple with the PhilippinesPhysicalNationalIdQr field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderOutput) GetPhilippinesPhysicalNationalIdQrOk() (*PhilippinesPhysicalNidProviderOutput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.PhilippinesPhysicalNationalIdQr.Get(), o.PhilippinesPhysicalNationalIdQr.IsSet()
+}
+
+// HasPhilippinesPhysicalNationalIdQr returns a boolean if a field has been set.
+func (o *ProviderOutput) HasPhilippinesPhysicalNationalIdQr() bool {
+	if o != nil && o.PhilippinesPhysicalNationalIdQr.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPhilippinesPhysicalNationalIdQr gets a reference to the given NullablePhilippinesPhysicalNidProviderOutput and assigns it to the PhilippinesPhysicalNationalIdQr field.
+func (o *ProviderOutput) SetPhilippinesPhysicalNationalIdQr(v PhilippinesPhysicalNidProviderOutput) {
+	o.PhilippinesPhysicalNationalIdQr.Set(&v)
+}
+// SetPhilippinesPhysicalNationalIdQrNil sets the value for PhilippinesPhysicalNationalIdQr to be an explicit nil
+func (o *ProviderOutput) SetPhilippinesPhysicalNationalIdQrNil() {
+	o.PhilippinesPhysicalNationalIdQr.Set(nil)
+}
+
+// UnsetPhilippinesPhysicalNationalIdQr ensures that no value is present for PhilippinesPhysicalNationalIdQr, not even an explicit nil
+func (o *ProviderOutput) UnsetPhilippinesPhysicalNationalIdQr() {
+	o.PhilippinesPhysicalNationalIdQr.Unset()
+}
+
+// GetPostOfficeEasyid returns the PostOfficeEasyid field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderOutput) GetPostOfficeEasyid() PostOfficeEasyIdProviderOutput {
+	if o == nil || IsNil(o.PostOfficeEasyid.Get()) {
+		var ret PostOfficeEasyIdProviderOutput
+		return ret
+	}
+	return *o.PostOfficeEasyid.Get()
+}
+
+// GetPostOfficeEasyidOk returns a tuple with the PostOfficeEasyid field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderOutput) GetPostOfficeEasyidOk() (*PostOfficeEasyIdProviderOutput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.PostOfficeEasyid.Get(), o.PostOfficeEasyid.IsSet()
+}
+
+// HasPostOfficeEasyid returns a boolean if a field has been set.
+func (o *ProviderOutput) HasPostOfficeEasyid() bool {
+	if o != nil && o.PostOfficeEasyid.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPostOfficeEasyid gets a reference to the given NullablePostOfficeEasyIdProviderOutput and assigns it to the PostOfficeEasyid field.
+func (o *ProviderOutput) SetPostOfficeEasyid(v PostOfficeEasyIdProviderOutput) {
+	o.PostOfficeEasyid.Set(&v)
+}
+// SetPostOfficeEasyidNil sets the value for PostOfficeEasyid to be an explicit nil
+func (o *ProviderOutput) SetPostOfficeEasyidNil() {
+	o.PostOfficeEasyid.Set(nil)
+}
+
+// UnsetPostOfficeEasyid ensures that no value is present for PostOfficeEasyid, not even an explicit nil
+func (o *ProviderOutput) UnsetPostOfficeEasyid() {
+	o.PostOfficeEasyid.Unset()
+}
+
+// GetSamsungWallet returns the SamsungWallet field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderOutput) GetSamsungWallet() SamsungWalletProviderOutput {
+	if o == nil || IsNil(o.SamsungWallet.Get()) {
+		var ret SamsungWalletProviderOutput
+		return ret
+	}
+	return *o.SamsungWallet.Get()
+}
+
+// GetSamsungWalletOk returns a tuple with the SamsungWallet field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderOutput) GetSamsungWalletOk() (*SamsungWalletProviderOutput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.SamsungWallet.Get(), o.SamsungWallet.IsSet()
+}
+
+// HasSamsungWallet returns a boolean if a field has been set.
+func (o *ProviderOutput) HasSamsungWallet() bool {
+	if o != nil && o.SamsungWallet.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSamsungWallet gets a reference to the given NullableSamsungWalletProviderOutput and assigns it to the SamsungWallet field.
+func (o *ProviderOutput) SetSamsungWallet(v SamsungWalletProviderOutput) {
+	o.SamsungWallet.Set(&v)
+}
+// SetSamsungWalletNil sets the value for SamsungWallet to be an explicit nil
+func (o *ProviderOutput) SetSamsungWalletNil() {
+	o.SamsungWallet.Set(nil)
+}
+
+// UnsetSamsungWallet ensures that no value is present for SamsungWallet, not even an explicit nil
+func (o *ProviderOutput) UnsetSamsungWallet() {
+	o.SamsungWallet.Unset()
+}
+
+// GetSmartId returns the SmartId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderOutput) GetSmartId() SmartIdProviderOutput {
+	if o == nil || IsNil(o.SmartId.Get()) {
+		var ret SmartIdProviderOutput
+		return ret
+	}
+	return *o.SmartId.Get()
+}
+
+// GetSmartIdOk returns a tuple with the SmartId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderOutput) GetSmartIdOk() (*SmartIdProviderOutput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.SmartId.Get(), o.SmartId.IsSet()
+}
+
+// HasSmartId returns a boolean if a field has been set.
+func (o *ProviderOutput) HasSmartId() bool {
+	if o != nil && o.SmartId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSmartId gets a reference to the given NullableSmartIdProviderOutput and assigns it to the SmartId field.
+func (o *ProviderOutput) SetSmartId(v SmartIdProviderOutput) {
+	o.SmartId.Set(&v)
+}
+// SetSmartIdNil sets the value for SmartId to be an explicit nil
+func (o *ProviderOutput) SetSmartIdNil() {
+	o.SmartId.Set(nil)
+}
+
+// UnsetSmartId ensures that no value is present for SmartId, not even an explicit nil
+func (o *ProviderOutput) UnsetSmartId() {
+	o.SmartId.Unset()
+}
+
+// GetSwedenBankid returns the SwedenBankid field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderOutput) GetSwedenBankid() SwedenBankIdProviderOutput {
+	if o == nil || IsNil(o.SwedenBankid.Get()) {
+		var ret SwedenBankIdProviderOutput
+		return ret
+	}
+	return *o.SwedenBankid.Get()
+}
+
+// GetSwedenBankidOk returns a tuple with the SwedenBankid field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderOutput) GetSwedenBankidOk() (*SwedenBankIdProviderOutput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.SwedenBankid.Get(), o.SwedenBankid.IsSet()
+}
+
+// HasSwedenBankid returns a boolean if a field has been set.
+func (o *ProviderOutput) HasSwedenBankid() bool {
+	if o != nil && o.SwedenBankid.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSwedenBankid gets a reference to the given NullableSwedenBankIdProviderOutput and assigns it to the SwedenBankid field.
+func (o *ProviderOutput) SetSwedenBankid(v SwedenBankIdProviderOutput) {
+	o.SwedenBankid.Set(&v)
+}
+// SetSwedenBankidNil sets the value for SwedenBankid to be an explicit nil
+func (o *ProviderOutput) SetSwedenBankidNil() {
+	o.SwedenBankid.Set(nil)
+}
+
+// UnsetSwedenBankid ensures that no value is present for SwedenBankid, not even an explicit nil
+func (o *ProviderOutput) UnsetSwedenBankid() {
+	o.SwedenBankid.Unset()
+}
+
+// GetUsaLouisianaWallet returns the UsaLouisianaWallet field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderOutput) GetUsaLouisianaWallet() LaWalletProviderOutput {
+	if o == nil || IsNil(o.UsaLouisianaWallet.Get()) {
+		var ret LaWalletProviderOutput
+		return ret
+	}
+	return *o.UsaLouisianaWallet.Get()
+}
+
+// GetUsaLouisianaWalletOk returns a tuple with the UsaLouisianaWallet field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderOutput) GetUsaLouisianaWalletOk() (*LaWalletProviderOutput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.UsaLouisianaWallet.Get(), o.UsaLouisianaWallet.IsSet()
+}
+
+// HasUsaLouisianaWallet returns a boolean if a field has been set.
+func (o *ProviderOutput) HasUsaLouisianaWallet() bool {
+	if o != nil && o.UsaLouisianaWallet.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetUsaLouisianaWallet gets a reference to the given NullableLaWalletProviderOutput and assigns it to the UsaLouisianaWallet field.
+func (o *ProviderOutput) SetUsaLouisianaWallet(v LaWalletProviderOutput) {
+	o.UsaLouisianaWallet.Set(&v)
+}
+// SetUsaLouisianaWalletNil sets the value for UsaLouisianaWallet to be an explicit nil
+func (o *ProviderOutput) SetUsaLouisianaWalletNil() {
+	o.UsaLouisianaWallet.Set(nil)
+}
+
+// UnsetUsaLouisianaWallet ensures that no value is present for UsaLouisianaWallet, not even an explicit nil
+func (o *ProviderOutput) UnsetUsaLouisianaWallet() {
+	o.UsaLouisianaWallet.Unset()
+}
+
+// GetYoti returns the Yoti field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderOutput) GetYoti() YotiProviderOutput {
+	if o == nil || IsNil(o.Yoti.Get()) {
+		var ret YotiProviderOutput
+		return ret
+	}
+	return *o.Yoti.Get()
+}
+
+// GetYotiOk returns a tuple with the Yoti field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderOutput) GetYotiOk() (*YotiProviderOutput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Yoti.Get(), o.Yoti.IsSet()
+}
+
+// HasYoti returns a boolean if a field has been set.
+func (o *ProviderOutput) HasYoti() bool {
+	if o != nil && o.Yoti.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetYoti gets a reference to the given NullableYotiProviderOutput and assigns it to the Yoti field.
+func (o *ProviderOutput) SetYoti(v YotiProviderOutput) {
+	o.Yoti.Set(&v)
+}
+// SetYotiNil sets the value for Yoti to be an explicit nil
+func (o *ProviderOutput) SetYotiNil() {
+	o.Yoti.Set(nil)
+}
+
+// UnsetYoti ensures that no value is present for Yoti, not even an explicit nil
+func (o *ProviderOutput) UnsetYoti() {
+	o.Yoti.Unset()
+}
+
 func (o ProviderOutput) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -263,20 +1456,101 @@ func (o ProviderOutput) MarshalJSON() ([]byte, error) {
 
 func (o ProviderOutput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.ItalySpid.IsSet() {
-		toSerialize["italy-spid"] = o.ItalySpid.Get()
+	if o.AAtHandySignaturLogin.IsSet() {
+		toSerialize["a-at-handy-signatur-login"] = o.AAtHandySignaturLogin.Get()
 	}
-	if o.MexicoCurpLookup.IsSet() {
-		toSerialize["mexico-curp-lookup"] = o.MexicoCurpLookup.Get()
+	if o.ABeIdLogin.IsSet() {
+		toSerialize["a-be-id-login"] = o.ABeIdLogin.Get()
+	}
+	if o.AEdoappEidLogin.IsSet() {
+		toSerialize["a-edoapp-eid-login"] = o.AEdoappEidLogin.Get()
+	}
+	if o.AEeWebEidLogin.IsSet() {
+		toSerialize["a-ee-web-eid-login"] = o.AEeWebEidLogin.Get()
+	}
+	if o.AFiIdLogin.IsSet() {
+		toSerialize["a-fi-id-login"] = o.AFiIdLogin.Get()
+	}
+	if o.AFrejaEidLogin.IsSet() {
+		toSerialize["a-freja-eid-login"] = o.AFrejaEidLogin.Get()
+	}
+	if o.AItsmeLogin.IsSet() {
+		toSerialize["a-itsme-login"] = o.AItsmeLogin.Get()
+	}
+	if o.ALtIdLogin.IsSet() {
+		toSerialize["a-lt-id-login"] = o.ALtIdLogin.Get()
+	}
+	if o.ALvEparakstsIdLogin.IsSet() {
+		toSerialize["a-lv-eparaksts-id-login"] = o.ALvEparakstsIdLogin.Get()
+	}
+	if o.ALvEparakstsMobileLogin.IsSet() {
+		toSerialize["a-lv-eparaksts-mobile-login"] = o.ALvEparakstsMobileLogin.Get()
+	}
+	if o.AMojeid.IsSet() {
+		toSerialize["a-mojeid"] = o.AMojeid.Get()
+	}
+	if o.APlMojeidLogin.IsSet() {
+		toSerialize["a-pl-mojeid-login"] = o.APlMojeidLogin.Get()
+	}
+	if o.APtIdLogin.IsSet() {
+		toSerialize["a-pt-id-login"] = o.APtIdLogin.Get()
+	}
+	if o.ARsIdLogin.IsSet() {
+		toSerialize["a-rs-id-login"] = o.ARsIdLogin.Get()
+	}
+	if o.AppleWallet.IsSet() {
+		toSerialize["apple-wallet"] = o.AppleWallet.Get()
+	}
+	if o.DenmarkMitid.IsSet() {
+		toSerialize["denmark-mitid"] = o.DenmarkMitid.Get()
 	}
 	if o.EthiopiaFayda.IsSet() {
 		toSerialize["ethiopia-fayda"] = o.EthiopiaFayda.Get()
 	}
-	if o.PhilippinesPhysicalNationalIdQr.IsSet() {
-		toSerialize["philippines-physical-national-id-qr"] = o.PhilippinesPhysicalNationalIdQr.Get()
+	if o.FranceIdentiteNumerique.IsSet() {
+		toSerialize["france-identite-numerique"] = o.FranceIdentiteNumerique.Get()
+	}
+	if o.GoogleWallet.IsSet() {
+		toSerialize["google-wallet"] = o.GoogleWallet.Get()
+	}
+	if o.ItalySpid.IsSet() {
+		toSerialize["italy-spid"] = o.ItalySpid.Get()
+	}
+	if o.LloydsSmartId.IsSet() {
+		toSerialize["lloyds-smart-id"] = o.LloydsSmartId.Get()
+	}
+	if o.MexicoCurpLookup.IsSet() {
+		toSerialize["mexico-curp-lookup"] = o.MexicoCurpLookup.Get()
+	}
+	if o.MobileId.IsSet() {
+		toSerialize["mobile-id"] = o.MobileId.Get()
+	}
+	if o.PeruDniLookup.IsSet() {
+		toSerialize["peru-dni-lookup"] = o.PeruDniLookup.Get()
 	}
 	if o.PhilippinesDigitalNationalIdQr.IsSet() {
 		toSerialize["philippines-digital-national-id-qr"] = o.PhilippinesDigitalNationalIdQr.Get()
+	}
+	if o.PhilippinesPhysicalNationalIdQr.IsSet() {
+		toSerialize["philippines-physical-national-id-qr"] = o.PhilippinesPhysicalNationalIdQr.Get()
+	}
+	if o.PostOfficeEasyid.IsSet() {
+		toSerialize["post-office-easyid"] = o.PostOfficeEasyid.Get()
+	}
+	if o.SamsungWallet.IsSet() {
+		toSerialize["samsung-wallet"] = o.SamsungWallet.Get()
+	}
+	if o.SmartId.IsSet() {
+		toSerialize["smart-id"] = o.SmartId.Get()
+	}
+	if o.SwedenBankid.IsSet() {
+		toSerialize["sweden-bankid"] = o.SwedenBankid.Get()
+	}
+	if o.UsaLouisianaWallet.IsSet() {
+		toSerialize["usa-louisiana-wallet"] = o.UsaLouisianaWallet.Get()
+	}
+	if o.Yoti.IsSet() {
+		toSerialize["yoti"] = o.Yoti.Get()
 	}
 	return toSerialize, nil
 }

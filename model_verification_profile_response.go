@@ -33,6 +33,8 @@ type VerificationProfileResponse struct {
 	PrimaryColor string `json:"primaryColor"`
 	// The providers that are currently enabled for the verification profile.
 	EnabledProviders []string `json:"enabledProviders"`
+	// Whether this profile is for production usage. Only applicable for Live environment profiles.
+	IsProductionUsage bool `json:"isProductionUsage"`
 }
 
 type _VerificationProfileResponse VerificationProfileResponse
@@ -41,7 +43,7 @@ type _VerificationProfileResponse VerificationProfileResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVerificationProfileResponse(id string, alias string, brandName string, logoUrl string, primaryColor string, enabledProviders []string) *VerificationProfileResponse {
+func NewVerificationProfileResponse(id string, alias string, brandName string, logoUrl string, primaryColor string, enabledProviders []string, isProductionUsage bool) *VerificationProfileResponse {
 	this := VerificationProfileResponse{}
 	this.Id = id
 	this.Alias = alias
@@ -49,6 +51,7 @@ func NewVerificationProfileResponse(id string, alias string, brandName string, l
 	this.LogoUrl = logoUrl
 	this.PrimaryColor = primaryColor
 	this.EnabledProviders = enabledProviders
+	this.IsProductionUsage = isProductionUsage
 	return &this
 }
 
@@ -204,6 +207,30 @@ func (o *VerificationProfileResponse) SetEnabledProviders(v []string) {
 	o.EnabledProviders = v
 }
 
+// GetIsProductionUsage returns the IsProductionUsage field value
+func (o *VerificationProfileResponse) GetIsProductionUsage() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.IsProductionUsage
+}
+
+// GetIsProductionUsageOk returns a tuple with the IsProductionUsage field value
+// and a boolean to check if the value has been set.
+func (o *VerificationProfileResponse) GetIsProductionUsageOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.IsProductionUsage, true
+}
+
+// SetIsProductionUsage sets field value
+func (o *VerificationProfileResponse) SetIsProductionUsage(v bool) {
+	o.IsProductionUsage = v
+}
+
 func (o VerificationProfileResponse) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -220,6 +247,7 @@ func (o VerificationProfileResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["logoUrl"] = o.LogoUrl
 	toSerialize["primaryColor"] = o.PrimaryColor
 	toSerialize["enabledProviders"] = o.EnabledProviders
+	toSerialize["isProductionUsage"] = o.IsProductionUsage
 	return toSerialize, nil
 }
 
@@ -234,6 +262,7 @@ func (o *VerificationProfileResponse) UnmarshalJSON(data []byte) (err error) {
 		"logoUrl",
 		"primaryColor",
 		"enabledProviders",
+		"isProductionUsage",
 	}
 
 	allProperties := make(map[string]interface{})

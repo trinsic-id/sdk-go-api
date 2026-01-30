@@ -21,14 +21,20 @@ var _ MappedNullable = &IdentityData{}
 
 // IdentityData struct for IdentityData
 type IdentityData struct {
+	// The ID of the provider from which this data originated (eg \"yoti\", \"clear\")
 	OriginatingProviderId NullableString `json:"originatingProviderId,omitempty"`
+	// The sub-provider ID of the provider from which this data originated (eg \"rabo\", \"poste-italiane\")              This is applicable only to federated Identity Providers such as SPID and IDIN.
 	OriginatingSubProviderId NullableString `json:"originatingSubProviderId,omitempty"`
+	// Identity data of the individual who was verified
 	Person NullablePersonData `json:"person,omitempty"`
+	// Identity data of the document involved in verification, if relevant
 	Document NullableDocumentData `json:"document,omitempty"`
+	// Match results for the data being matched against.              This applies to Providers which operate based on matching data / biometrics against a government database, returning match scores or results as opposed to the data itself.
 	Match NullableMatchData `json:"match,omitempty"`
-	AttachmentAccessKeys NullableAttachmentAccessKeys `json:"attachmentAccessKeys,omitempty"`
+	// Information for each attachment included with this set of identity data.              Use the Attachments API to fetch an attachment by its ID for a given Session.
+	Attachments []AttachmentInfo `json:"attachments"`
+	// Provider-specific output data that doesn't fit the standard identity data schema.              The structure of this object varies by provider.
 	ProviderOutput NullableProviderOutput `json:"providerOutput,omitempty"`
-	Identifiers []Identifier `json:"identifiers"`
 }
 
 type _IdentityData IdentityData
@@ -37,9 +43,9 @@ type _IdentityData IdentityData
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewIdentityData(identifiers []Identifier) *IdentityData {
+func NewIdentityData(attachments []AttachmentInfo) *IdentityData {
 	this := IdentityData{}
-	this.Identifiers = identifiers
+	this.Attachments = attachments
 	return &this
 }
 
@@ -261,46 +267,28 @@ func (o *IdentityData) UnsetMatch() {
 	o.Match.Unset()
 }
 
-// GetAttachmentAccessKeys returns the AttachmentAccessKeys field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *IdentityData) GetAttachmentAccessKeys() AttachmentAccessKeys {
-	if o == nil || IsNil(o.AttachmentAccessKeys.Get()) {
-		var ret AttachmentAccessKeys
+// GetAttachments returns the Attachments field value
+func (o *IdentityData) GetAttachments() []AttachmentInfo {
+	if o == nil {
+		var ret []AttachmentInfo
 		return ret
 	}
-	return *o.AttachmentAccessKeys.Get()
+
+	return o.Attachments
 }
 
-// GetAttachmentAccessKeysOk returns a tuple with the AttachmentAccessKeys field value if set, nil otherwise
+// GetAttachmentsOk returns a tuple with the Attachments field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *IdentityData) GetAttachmentAccessKeysOk() (*AttachmentAccessKeys, bool) {
+func (o *IdentityData) GetAttachmentsOk() ([]AttachmentInfo, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.AttachmentAccessKeys.Get(), o.AttachmentAccessKeys.IsSet()
+	return o.Attachments, true
 }
 
-// HasAttachmentAccessKeys returns a boolean if a field has been set.
-func (o *IdentityData) HasAttachmentAccessKeys() bool {
-	if o != nil && o.AttachmentAccessKeys.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetAttachmentAccessKeys gets a reference to the given NullableAttachmentAccessKeys and assigns it to the AttachmentAccessKeys field.
-func (o *IdentityData) SetAttachmentAccessKeys(v AttachmentAccessKeys) {
-	o.AttachmentAccessKeys.Set(&v)
-}
-// SetAttachmentAccessKeysNil sets the value for AttachmentAccessKeys to be an explicit nil
-func (o *IdentityData) SetAttachmentAccessKeysNil() {
-	o.AttachmentAccessKeys.Set(nil)
-}
-
-// UnsetAttachmentAccessKeys ensures that no value is present for AttachmentAccessKeys, not even an explicit nil
-func (o *IdentityData) UnsetAttachmentAccessKeys() {
-	o.AttachmentAccessKeys.Unset()
+// SetAttachments sets field value
+func (o *IdentityData) SetAttachments(v []AttachmentInfo) {
+	o.Attachments = v
 }
 
 // GetProviderOutput returns the ProviderOutput field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -345,30 +333,6 @@ func (o *IdentityData) UnsetProviderOutput() {
 	o.ProviderOutput.Unset()
 }
 
-// GetIdentifiers returns the Identifiers field value
-func (o *IdentityData) GetIdentifiers() []Identifier {
-	if o == nil {
-		var ret []Identifier
-		return ret
-	}
-
-	return o.Identifiers
-}
-
-// GetIdentifiersOk returns a tuple with the Identifiers field value
-// and a boolean to check if the value has been set.
-func (o *IdentityData) GetIdentifiersOk() ([]Identifier, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Identifiers, true
-}
-
-// SetIdentifiers sets field value
-func (o *IdentityData) SetIdentifiers(v []Identifier) {
-	o.Identifiers = v
-}
-
 func (o IdentityData) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -394,13 +358,10 @@ func (o IdentityData) ToMap() (map[string]interface{}, error) {
 	if o.Match.IsSet() {
 		toSerialize["match"] = o.Match.Get()
 	}
-	if o.AttachmentAccessKeys.IsSet() {
-		toSerialize["attachmentAccessKeys"] = o.AttachmentAccessKeys.Get()
-	}
+	toSerialize["attachments"] = o.Attachments
 	if o.ProviderOutput.IsSet() {
 		toSerialize["providerOutput"] = o.ProviderOutput.Get()
 	}
-	toSerialize["identifiers"] = o.Identifiers
 	return toSerialize, nil
 }
 
@@ -409,7 +370,7 @@ func (o *IdentityData) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"identifiers",
+		"attachments",
 	}
 
 	allProperties := make(map[string]interface{})

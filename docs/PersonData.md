@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**GivenName** | Pointer to **NullableString** |  | [optional] 
-**FamilyName** | Pointer to **NullableString** |  | [optional] 
-**MiddleName** | Pointer to **NullableString** |  | [optional] 
-**FullName** | Pointer to **NullableString** |  | [optional] 
-**Suffix** | Pointer to **NullableString** |  | [optional] 
+**GivenName** | Pointer to **NullableString** | Given (first) name of the individual | [optional] 
+**FamilyName** | Pointer to **NullableString** | Family (last) name of the individual | [optional] 
+**MiddleName** | Pointer to **NullableString** | Middle name of the individual | [optional] 
+**FullName** | Pointer to **NullableString** | The individual&#39;s full name as a single string.              Useful for names which do not fit into a \&quot;first middle last\&quot; structure. | [optional] 
+**Suffix** | Pointer to **NullableString** | Suffix of the individual&#39;s name | [optional] 
 **Nationality** | Pointer to **NullableString** |  | [optional] 
 **Sex** | Pointer to [**NullableSex**](Sex.md) |  | [optional] 
 **PhoneNumber** | Pointer to **NullableString** |  | [optional] 
-**Address** | Pointer to [**NullableAddress**](Address.md) |  | [optional] 
+**Address** | Pointer to [**NullableAddress**](Address.md) | Address information for an individual | [optional] 
 **DateOfBirth** | Pointer to **NullableString** |  | [optional] 
 
 ## Methods

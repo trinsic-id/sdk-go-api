@@ -4,20 +4,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**OriginatingProviderId** | Pointer to **NullableString** |  | [optional] 
-**OriginatingSubProviderId** | Pointer to **NullableString** |  | [optional] 
-**Person** | Pointer to [**NullablePersonData**](PersonData.md) |  | [optional] 
-**Document** | Pointer to [**NullableDocumentData**](DocumentData.md) |  | [optional] 
-**Match** | Pointer to [**NullableMatchData**](MatchData.md) |  | [optional] 
-**AttachmentAccessKeys** | Pointer to [**NullableAttachmentAccessKeys**](AttachmentAccessKeys.md) |  | [optional] 
-**ProviderOutput** | Pointer to [**NullableProviderOutput**](ProviderOutput.md) |  | [optional] 
-**Identifiers** | [**[]Identifier**](Identifier.md) |  | 
+**OriginatingProviderId** | Pointer to **NullableString** | The ID of the provider from which this data originated (eg \&quot;yoti\&quot;, \&quot;clear\&quot;) | [optional] 
+**OriginatingSubProviderId** | Pointer to **NullableString** | The sub-provider ID of the provider from which this data originated (eg \&quot;rabo\&quot;, \&quot;poste-italiane\&quot;)              This is applicable only to federated Identity Providers such as SPID and IDIN. | [optional] 
+**Person** | Pointer to [**NullablePersonData**](PersonData.md) | Identity data of the individual who was verified | [optional] 
+**Document** | Pointer to [**NullableDocumentData**](DocumentData.md) | Identity data of the document involved in verification, if relevant | [optional] 
+**Match** | Pointer to [**NullableMatchData**](MatchData.md) | Match results for the data being matched against.              This applies to Providers which operate based on matching data / biometrics against a government database, returning match scores or results as opposed to the data itself. | [optional] 
+**Attachments** | [**[]AttachmentInfo**](AttachmentInfo.md) | Information for each attachment included with this set of identity data.              Use the Attachments API to fetch an attachment by its ID for a given Session. | 
+**ProviderOutput** | Pointer to [**NullableProviderOutput**](ProviderOutput.md) | Provider-specific output data that doesn&#39;t fit the standard identity data schema.              The structure of this object varies by provider. | [optional] 
 
 ## Methods
 
 ### NewIdentityData
 
-`func NewIdentityData(identifiers []Identifier, ) *IdentityData`
+`func NewIdentityData(attachments []AttachmentInfo, ) *IdentityData`
 
 NewIdentityData instantiates a new IdentityData object
 This constructor will assign default values to properties that have it defined,
@@ -207,41 +206,26 @@ HasMatch returns a boolean if a field has been set.
 `func (o *IdentityData) UnsetMatch()`
 
 UnsetMatch ensures that no value is present for Match, not even an explicit nil
-### GetAttachmentAccessKeys
+### GetAttachments
 
-`func (o *IdentityData) GetAttachmentAccessKeys() AttachmentAccessKeys`
+`func (o *IdentityData) GetAttachments() []AttachmentInfo`
 
-GetAttachmentAccessKeys returns the AttachmentAccessKeys field if non-nil, zero value otherwise.
+GetAttachments returns the Attachments field if non-nil, zero value otherwise.
 
-### GetAttachmentAccessKeysOk
+### GetAttachmentsOk
 
-`func (o *IdentityData) GetAttachmentAccessKeysOk() (*AttachmentAccessKeys, bool)`
+`func (o *IdentityData) GetAttachmentsOk() (*[]AttachmentInfo, bool)`
 
-GetAttachmentAccessKeysOk returns a tuple with the AttachmentAccessKeys field if it's non-nil, zero value otherwise
+GetAttachmentsOk returns a tuple with the Attachments field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAttachmentAccessKeys
+### SetAttachments
 
-`func (o *IdentityData) SetAttachmentAccessKeys(v AttachmentAccessKeys)`
+`func (o *IdentityData) SetAttachments(v []AttachmentInfo)`
 
-SetAttachmentAccessKeys sets AttachmentAccessKeys field to given value.
+SetAttachments sets Attachments field to given value.
 
-### HasAttachmentAccessKeys
 
-`func (o *IdentityData) HasAttachmentAccessKeys() bool`
-
-HasAttachmentAccessKeys returns a boolean if a field has been set.
-
-### SetAttachmentAccessKeysNil
-
-`func (o *IdentityData) SetAttachmentAccessKeysNil(b bool)`
-
- SetAttachmentAccessKeysNil sets the value for AttachmentAccessKeys to be an explicit nil
-
-### UnsetAttachmentAccessKeys
-`func (o *IdentityData) UnsetAttachmentAccessKeys()`
-
-UnsetAttachmentAccessKeys ensures that no value is present for AttachmentAccessKeys, not even an explicit nil
 ### GetProviderOutput
 
 `func (o *IdentityData) GetProviderOutput() ProviderOutput`
@@ -277,26 +261,6 @@ HasProviderOutput returns a boolean if a field has been set.
 `func (o *IdentityData) UnsetProviderOutput()`
 
 UnsetProviderOutput ensures that no value is present for ProviderOutput, not even an explicit nil
-### GetIdentifiers
-
-`func (o *IdentityData) GetIdentifiers() []Identifier`
-
-GetIdentifiers returns the Identifiers field if non-nil, zero value otherwise.
-
-### GetIdentifiersOk
-
-`func (o *IdentityData) GetIdentifiersOk() (*[]Identifier, bool)`
-
-GetIdentifiersOk returns a tuple with the Identifiers field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetIdentifiers
-
-`func (o *IdentityData) SetIdentifiers(v []Identifier)`
-
-SetIdentifiers sets Identifiers field to given value.
-
-
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -7,14 +7,13 @@ Name | Type | Description | Notes
 **Id** | **string** | The ID of the sub-provider.              This cannot be used as a standalone Provider ID when creating a Session. It must be passed in via the Provider-specific input. | 
 **Name** | **string** | The name of the sub-provider | 
 **Subtext** | **string** | The Provider&#39;s subtext recommended to be shown next to the name.              This is flavor text, not a full, human-readable description of the provider. | 
-**Description** | **string** | The Provider&#39;s subtext recommended to be shown next to the name.              This is flavor text, not a full, human-readable description of the provider. | 
 **LogoUrl** | **string** | A URL pointing to the logo on Trinsic&#39;s CDN.              May be a PNG, JPG, or SVG image. | 
 
 ## Methods
 
 ### NewSubProviderMetadata
 
-`func NewSubProviderMetadata(id string, name string, subtext string, description string, logoUrl string, ) *SubProviderMetadata`
+`func NewSubProviderMetadata(id string, name string, subtext string, logoUrl string, ) *SubProviderMetadata`
 
 NewSubProviderMetadata instantiates a new SubProviderMetadata object
 This constructor will assign default values to properties that have it defined,
@@ -87,26 +86,6 @@ and a boolean to check if the value has been set.
 `func (o *SubProviderMetadata) SetSubtext(v string)`
 
 SetSubtext sets Subtext field to given value.
-
-
-### GetDescription
-
-`func (o *SubProviderMetadata) GetDescription() string`
-
-GetDescription returns the Description field if non-nil, zero value otherwise.
-
-### GetDescriptionOk
-
-`func (o *SubProviderMetadata) GetDescriptionOk() (*string, bool)`
-
-GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDescription
-
-`func (o *SubProviderMetadata) SetDescription(v string)`
-
-SetDescription sets Description field to given value.
 
 
 ### GetLogoUrl

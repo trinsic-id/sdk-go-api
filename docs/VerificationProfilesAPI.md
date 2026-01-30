@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 ## CreateVerificationProfile
 
-> CreateVerificationProfileResponse CreateVerificationProfile(ctx).Alias(alias).BrandName(brandName).PrimaryColor(primaryColor).Providers(providers).Logo(logo).Execute()
+> CreateVerificationProfileResponse CreateVerificationProfile(ctx).Alias(alias).BrandName(brandName).PrimaryColor(primaryColor).Providers(providers).Logo(logo).IsProductionUsage(isProductionUsage).Execute()
 
 Create Verification Profile
 
@@ -36,10 +36,11 @@ func main() {
 	primaryColor := "primaryColor_example" // string | The primary color of the verification profile. Must be a 6-character hex string prefixed with a '#' character. Example: #000000 (optional)
 	providers := []string{"Inner_example"} // []string | The list of providers you'd like to select for this profile. We will not currently enable any providers. (optional)
 	logo := os.NewFile(1234, "some_file") // *os.File | The logo of the verification profile. (optional)
+	isProductionUsage := true // bool | Whether this profile is for production usage. Only applicable for Live environment profiles. If not specified for Live profiles, defaults to false (Demo). (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.VerificationProfilesAPI.CreateVerificationProfile(context.Background()).Alias(alias).BrandName(brandName).PrimaryColor(primaryColor).Providers(providers).Logo(logo).Execute()
+	resp, r, err := apiClient.VerificationProfilesAPI.CreateVerificationProfile(context.Background()).Alias(alias).BrandName(brandName).PrimaryColor(primaryColor).Providers(providers).Logo(logo).IsProductionUsage(isProductionUsage).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `VerificationProfilesAPI.CreateVerificationProfile``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -65,6 +66,7 @@ Name | Type | Description  | Notes
  **primaryColor** | **string** | The primary color of the verification profile. Must be a 6-character hex string prefixed with a &#39;#&#39; character. Example: #000000 | 
  **providers** | **[]string** | The list of providers you&#39;d like to select for this profile. We will not currently enable any providers. | 
  **logo** | ***os.File** | The logo of the verification profile. | 
+ **isProductionUsage** | **bool** | Whether this profile is for production usage. Only applicable for Live environment profiles. If not specified for Live profiles, defaults to false (Demo). | 
 
 ### Return type
 

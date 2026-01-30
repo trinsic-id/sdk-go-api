@@ -4,12 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | Pointer to [**NullableDocumentType**](DocumentType.md) |  | [optional] 
-**Number** | Pointer to **NullableString** |  | [optional] 
-**IssueDate** | Pointer to **NullableString** |  | [optional] 
-**ExpirationDate** | Pointer to **NullableString** |  | [optional] 
-**IssuingCountry** | Pointer to **NullableString** |  | [optional] 
-**IssuingAuthority** | Pointer to **NullableString** |  | [optional] 
+**Type** | Pointer to [**NullableDocumentType**](DocumentType.md) | The type of the document. | [optional] 
+**Number** | Pointer to **NullableString** | The primary identifying number of the document. | [optional] 
+**IssueDate** | Pointer to **NullableString** | The date the document was issued. | [optional] 
+**ExpirationDate** | Pointer to **NullableString** | The date the document expires. | [optional] 
+**IssuingCountry** | Pointer to **NullableString** | The ISO 3166-1 alpha-2 country code of the country that issued the document. | [optional] 
+**IssuingSubdivision** | Pointer to **NullableString** | The ISO 3166-2 subdivision code of the issuing authority which issued the document.              This is always in the form {CountryCode}-{SubdivisionCode}, where CountryCode is 2 letters and SubdivisionCode is 1-3 alphanumeric characters. | [optional] 
+**IssuingAuthority** | Pointer to **NullableString** | The name of the authority which issued the document. | [optional] 
 
 ## Methods
 
@@ -205,6 +206,41 @@ HasIssuingCountry returns a boolean if a field has been set.
 `func (o *DocumentData) UnsetIssuingCountry()`
 
 UnsetIssuingCountry ensures that no value is present for IssuingCountry, not even an explicit nil
+### GetIssuingSubdivision
+
+`func (o *DocumentData) GetIssuingSubdivision() string`
+
+GetIssuingSubdivision returns the IssuingSubdivision field if non-nil, zero value otherwise.
+
+### GetIssuingSubdivisionOk
+
+`func (o *DocumentData) GetIssuingSubdivisionOk() (*string, bool)`
+
+GetIssuingSubdivisionOk returns a tuple with the IssuingSubdivision field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIssuingSubdivision
+
+`func (o *DocumentData) SetIssuingSubdivision(v string)`
+
+SetIssuingSubdivision sets IssuingSubdivision field to given value.
+
+### HasIssuingSubdivision
+
+`func (o *DocumentData) HasIssuingSubdivision() bool`
+
+HasIssuingSubdivision returns a boolean if a field has been set.
+
+### SetIssuingSubdivisionNil
+
+`func (o *DocumentData) SetIssuingSubdivisionNil(b bool)`
+
+ SetIssuingSubdivisionNil sets the value for IssuingSubdivision to be an explicit nil
+
+### UnsetIssuingSubdivision
+`func (o *DocumentData) UnsetIssuingSubdivision()`
+
+UnsetIssuingSubdivision ensures that no value is present for IssuingSubdivision, not even an explicit nil
 ### GetIssuingAuthority
 
 `func (o *DocumentData) GetIssuingAuthority() string`
