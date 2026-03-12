@@ -21,6 +21,8 @@ var _ MappedNullable = &GoogleWalletInput{}
 type GoogleWalletInput struct {
 	// The exchange mechanism to use for this Google Wallet verification.              Use `DigitalCredentialsApi` for Digital Credentials API on web, or `NativeApp` for a native Android app.
 	ExchangeMechanism NullableMdlExchangeMechanism `json:"exchangeMechanism,omitempty"`
+	// **Preview feature: not suitable for production use cases**              The raw 18013-7 exchange request to use for this verification.              If set, this overrides any default configuration on your Verification Profile.
+	PreviewRaw18013Request NullableRaw18013RequestInput `json:"preview_raw18013Request,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -85,6 +87,48 @@ func (o *GoogleWalletInput) UnsetExchangeMechanism() {
 	o.ExchangeMechanism.Unset()
 }
 
+// GetPreviewRaw18013Request returns the PreviewRaw18013Request field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GoogleWalletInput) GetPreviewRaw18013Request() Raw18013RequestInput {
+	if o == nil || IsNil(o.PreviewRaw18013Request.Get()) {
+		var ret Raw18013RequestInput
+		return ret
+	}
+	return *o.PreviewRaw18013Request.Get()
+}
+
+// GetPreviewRaw18013RequestOk returns a tuple with the PreviewRaw18013Request field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GoogleWalletInput) GetPreviewRaw18013RequestOk() (*Raw18013RequestInput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.PreviewRaw18013Request.Get(), o.PreviewRaw18013Request.IsSet()
+}
+
+// HasPreviewRaw18013Request returns a boolean if a field has been set.
+func (o *GoogleWalletInput) HasPreviewRaw18013Request() bool {
+	if o != nil && o.PreviewRaw18013Request.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPreviewRaw18013Request gets a reference to the given NullableRaw18013RequestInput and assigns it to the PreviewRaw18013Request field.
+func (o *GoogleWalletInput) SetPreviewRaw18013Request(v Raw18013RequestInput) {
+	o.PreviewRaw18013Request.Set(&v)
+}
+// SetPreviewRaw18013RequestNil sets the value for PreviewRaw18013Request to be an explicit nil
+func (o *GoogleWalletInput) SetPreviewRaw18013RequestNil() {
+	o.PreviewRaw18013Request.Set(nil)
+}
+
+// UnsetPreviewRaw18013Request ensures that no value is present for PreviewRaw18013Request, not even an explicit nil
+func (o *GoogleWalletInput) UnsetPreviewRaw18013Request() {
+	o.PreviewRaw18013Request.Unset()
+}
+
 func (o GoogleWalletInput) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -97,6 +141,9 @@ func (o GoogleWalletInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if o.ExchangeMechanism.IsSet() {
 		toSerialize["exchangeMechanism"] = o.ExchangeMechanism.Get()
+	}
+	if o.PreviewRaw18013Request.IsSet() {
+		toSerialize["preview_raw18013Request"] = o.PreviewRaw18013Request.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -121,6 +168,7 @@ func (o *GoogleWalletInput) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "exchangeMechanism")
+		delete(additionalProperties, "preview_raw18013Request")
 		o.AdditionalProperties = additionalProperties
 	}
 

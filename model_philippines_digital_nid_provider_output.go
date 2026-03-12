@@ -22,6 +22,26 @@ var _ MappedNullable = &PhilippinesDigitalNidProviderOutput{}
 type PhilippinesDigitalNidProviderOutput struct {
 	// The PhilSys Card Number (PCN). Every citizen or resident alien registered in PhilSys has a PhilSys Number (PSN). This number is tokenized into a card number to protect the PSN. The PhilSys Card Number is 12 characters long, and often is written in octets with dashes in between.
 	PhilsysCardNumber string `json:"philsysCardNumber"`
+	// The given (first) name of the individual.
+	GivenName NullableString `json:"givenName,omitempty"`
+	// The middle name of the individual.
+	MiddleName NullableString `json:"middleName,omitempty"`
+	// The family (last) name of the individual.
+	FamilyName NullableString `json:"familyName,omitempty"`
+	// The date of birth of the individual.
+	DateOfBirth NullableString `json:"dateOfBirth,omitempty"`
+	// The name suffix of the individual (e.g. Jr., III).
+	Suffix NullableString `json:"suffix,omitempty"`
+	// The sex of the individual.              Possible values: - Male - Female
+	Sex NullableString `json:"sex,omitempty"`
+	// The place of birth of the individual as recorded on the PhilSys credential.
+	PlaceOfBirth NullableString `json:"placeOfBirth,omitempty"`
+	// The date the document was issued.
+	DocumentIssueDate NullableString `json:"documentIssueDate,omitempty"`
+	// The document number of the digital National ID.
+	DocumentNumber NullableString `json:"documentNumber,omitempty"`
+	// The issuing authority of the document.
+	IssuingAuthority NullableString `json:"issuingAuthority,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -69,6 +89,426 @@ func (o *PhilippinesDigitalNidProviderOutput) SetPhilsysCardNumber(v string) {
 	o.PhilsysCardNumber = v
 }
 
+// GetGivenName returns the GivenName field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PhilippinesDigitalNidProviderOutput) GetGivenName() string {
+	if o == nil || IsNil(o.GivenName.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.GivenName.Get()
+}
+
+// GetGivenNameOk returns a tuple with the GivenName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PhilippinesDigitalNidProviderOutput) GetGivenNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.GivenName.Get(), o.GivenName.IsSet()
+}
+
+// HasGivenName returns a boolean if a field has been set.
+func (o *PhilippinesDigitalNidProviderOutput) HasGivenName() bool {
+	if o != nil && o.GivenName.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetGivenName gets a reference to the given NullableString and assigns it to the GivenName field.
+func (o *PhilippinesDigitalNidProviderOutput) SetGivenName(v string) {
+	o.GivenName.Set(&v)
+}
+// SetGivenNameNil sets the value for GivenName to be an explicit nil
+func (o *PhilippinesDigitalNidProviderOutput) SetGivenNameNil() {
+	o.GivenName.Set(nil)
+}
+
+// UnsetGivenName ensures that no value is present for GivenName, not even an explicit nil
+func (o *PhilippinesDigitalNidProviderOutput) UnsetGivenName() {
+	o.GivenName.Unset()
+}
+
+// GetMiddleName returns the MiddleName field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PhilippinesDigitalNidProviderOutput) GetMiddleName() string {
+	if o == nil || IsNil(o.MiddleName.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.MiddleName.Get()
+}
+
+// GetMiddleNameOk returns a tuple with the MiddleName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PhilippinesDigitalNidProviderOutput) GetMiddleNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.MiddleName.Get(), o.MiddleName.IsSet()
+}
+
+// HasMiddleName returns a boolean if a field has been set.
+func (o *PhilippinesDigitalNidProviderOutput) HasMiddleName() bool {
+	if o != nil && o.MiddleName.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetMiddleName gets a reference to the given NullableString and assigns it to the MiddleName field.
+func (o *PhilippinesDigitalNidProviderOutput) SetMiddleName(v string) {
+	o.MiddleName.Set(&v)
+}
+// SetMiddleNameNil sets the value for MiddleName to be an explicit nil
+func (o *PhilippinesDigitalNidProviderOutput) SetMiddleNameNil() {
+	o.MiddleName.Set(nil)
+}
+
+// UnsetMiddleName ensures that no value is present for MiddleName, not even an explicit nil
+func (o *PhilippinesDigitalNidProviderOutput) UnsetMiddleName() {
+	o.MiddleName.Unset()
+}
+
+// GetFamilyName returns the FamilyName field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PhilippinesDigitalNidProviderOutput) GetFamilyName() string {
+	if o == nil || IsNil(o.FamilyName.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.FamilyName.Get()
+}
+
+// GetFamilyNameOk returns a tuple with the FamilyName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PhilippinesDigitalNidProviderOutput) GetFamilyNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.FamilyName.Get(), o.FamilyName.IsSet()
+}
+
+// HasFamilyName returns a boolean if a field has been set.
+func (o *PhilippinesDigitalNidProviderOutput) HasFamilyName() bool {
+	if o != nil && o.FamilyName.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetFamilyName gets a reference to the given NullableString and assigns it to the FamilyName field.
+func (o *PhilippinesDigitalNidProviderOutput) SetFamilyName(v string) {
+	o.FamilyName.Set(&v)
+}
+// SetFamilyNameNil sets the value for FamilyName to be an explicit nil
+func (o *PhilippinesDigitalNidProviderOutput) SetFamilyNameNil() {
+	o.FamilyName.Set(nil)
+}
+
+// UnsetFamilyName ensures that no value is present for FamilyName, not even an explicit nil
+func (o *PhilippinesDigitalNidProviderOutput) UnsetFamilyName() {
+	o.FamilyName.Unset()
+}
+
+// GetDateOfBirth returns the DateOfBirth field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PhilippinesDigitalNidProviderOutput) GetDateOfBirth() string {
+	if o == nil || IsNil(o.DateOfBirth.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.DateOfBirth.Get()
+}
+
+// GetDateOfBirthOk returns a tuple with the DateOfBirth field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PhilippinesDigitalNidProviderOutput) GetDateOfBirthOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.DateOfBirth.Get(), o.DateOfBirth.IsSet()
+}
+
+// HasDateOfBirth returns a boolean if a field has been set.
+func (o *PhilippinesDigitalNidProviderOutput) HasDateOfBirth() bool {
+	if o != nil && o.DateOfBirth.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDateOfBirth gets a reference to the given NullableString and assigns it to the DateOfBirth field.
+func (o *PhilippinesDigitalNidProviderOutput) SetDateOfBirth(v string) {
+	o.DateOfBirth.Set(&v)
+}
+// SetDateOfBirthNil sets the value for DateOfBirth to be an explicit nil
+func (o *PhilippinesDigitalNidProviderOutput) SetDateOfBirthNil() {
+	o.DateOfBirth.Set(nil)
+}
+
+// UnsetDateOfBirth ensures that no value is present for DateOfBirth, not even an explicit nil
+func (o *PhilippinesDigitalNidProviderOutput) UnsetDateOfBirth() {
+	o.DateOfBirth.Unset()
+}
+
+// GetSuffix returns the Suffix field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PhilippinesDigitalNidProviderOutput) GetSuffix() string {
+	if o == nil || IsNil(o.Suffix.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Suffix.Get()
+}
+
+// GetSuffixOk returns a tuple with the Suffix field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PhilippinesDigitalNidProviderOutput) GetSuffixOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Suffix.Get(), o.Suffix.IsSet()
+}
+
+// HasSuffix returns a boolean if a field has been set.
+func (o *PhilippinesDigitalNidProviderOutput) HasSuffix() bool {
+	if o != nil && o.Suffix.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSuffix gets a reference to the given NullableString and assigns it to the Suffix field.
+func (o *PhilippinesDigitalNidProviderOutput) SetSuffix(v string) {
+	o.Suffix.Set(&v)
+}
+// SetSuffixNil sets the value for Suffix to be an explicit nil
+func (o *PhilippinesDigitalNidProviderOutput) SetSuffixNil() {
+	o.Suffix.Set(nil)
+}
+
+// UnsetSuffix ensures that no value is present for Suffix, not even an explicit nil
+func (o *PhilippinesDigitalNidProviderOutput) UnsetSuffix() {
+	o.Suffix.Unset()
+}
+
+// GetSex returns the Sex field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PhilippinesDigitalNidProviderOutput) GetSex() string {
+	if o == nil || IsNil(o.Sex.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Sex.Get()
+}
+
+// GetSexOk returns a tuple with the Sex field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PhilippinesDigitalNidProviderOutput) GetSexOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Sex.Get(), o.Sex.IsSet()
+}
+
+// HasSex returns a boolean if a field has been set.
+func (o *PhilippinesDigitalNidProviderOutput) HasSex() bool {
+	if o != nil && o.Sex.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSex gets a reference to the given NullableString and assigns it to the Sex field.
+func (o *PhilippinesDigitalNidProviderOutput) SetSex(v string) {
+	o.Sex.Set(&v)
+}
+// SetSexNil sets the value for Sex to be an explicit nil
+func (o *PhilippinesDigitalNidProviderOutput) SetSexNil() {
+	o.Sex.Set(nil)
+}
+
+// UnsetSex ensures that no value is present for Sex, not even an explicit nil
+func (o *PhilippinesDigitalNidProviderOutput) UnsetSex() {
+	o.Sex.Unset()
+}
+
+// GetPlaceOfBirth returns the PlaceOfBirth field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PhilippinesDigitalNidProviderOutput) GetPlaceOfBirth() string {
+	if o == nil || IsNil(o.PlaceOfBirth.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.PlaceOfBirth.Get()
+}
+
+// GetPlaceOfBirthOk returns a tuple with the PlaceOfBirth field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PhilippinesDigitalNidProviderOutput) GetPlaceOfBirthOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.PlaceOfBirth.Get(), o.PlaceOfBirth.IsSet()
+}
+
+// HasPlaceOfBirth returns a boolean if a field has been set.
+func (o *PhilippinesDigitalNidProviderOutput) HasPlaceOfBirth() bool {
+	if o != nil && o.PlaceOfBirth.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPlaceOfBirth gets a reference to the given NullableString and assigns it to the PlaceOfBirth field.
+func (o *PhilippinesDigitalNidProviderOutput) SetPlaceOfBirth(v string) {
+	o.PlaceOfBirth.Set(&v)
+}
+// SetPlaceOfBirthNil sets the value for PlaceOfBirth to be an explicit nil
+func (o *PhilippinesDigitalNidProviderOutput) SetPlaceOfBirthNil() {
+	o.PlaceOfBirth.Set(nil)
+}
+
+// UnsetPlaceOfBirth ensures that no value is present for PlaceOfBirth, not even an explicit nil
+func (o *PhilippinesDigitalNidProviderOutput) UnsetPlaceOfBirth() {
+	o.PlaceOfBirth.Unset()
+}
+
+// GetDocumentIssueDate returns the DocumentIssueDate field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PhilippinesDigitalNidProviderOutput) GetDocumentIssueDate() string {
+	if o == nil || IsNil(o.DocumentIssueDate.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.DocumentIssueDate.Get()
+}
+
+// GetDocumentIssueDateOk returns a tuple with the DocumentIssueDate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PhilippinesDigitalNidProviderOutput) GetDocumentIssueDateOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.DocumentIssueDate.Get(), o.DocumentIssueDate.IsSet()
+}
+
+// HasDocumentIssueDate returns a boolean if a field has been set.
+func (o *PhilippinesDigitalNidProviderOutput) HasDocumentIssueDate() bool {
+	if o != nil && o.DocumentIssueDate.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDocumentIssueDate gets a reference to the given NullableString and assigns it to the DocumentIssueDate field.
+func (o *PhilippinesDigitalNidProviderOutput) SetDocumentIssueDate(v string) {
+	o.DocumentIssueDate.Set(&v)
+}
+// SetDocumentIssueDateNil sets the value for DocumentIssueDate to be an explicit nil
+func (o *PhilippinesDigitalNidProviderOutput) SetDocumentIssueDateNil() {
+	o.DocumentIssueDate.Set(nil)
+}
+
+// UnsetDocumentIssueDate ensures that no value is present for DocumentIssueDate, not even an explicit nil
+func (o *PhilippinesDigitalNidProviderOutput) UnsetDocumentIssueDate() {
+	o.DocumentIssueDate.Unset()
+}
+
+// GetDocumentNumber returns the DocumentNumber field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PhilippinesDigitalNidProviderOutput) GetDocumentNumber() string {
+	if o == nil || IsNil(o.DocumentNumber.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.DocumentNumber.Get()
+}
+
+// GetDocumentNumberOk returns a tuple with the DocumentNumber field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PhilippinesDigitalNidProviderOutput) GetDocumentNumberOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.DocumentNumber.Get(), o.DocumentNumber.IsSet()
+}
+
+// HasDocumentNumber returns a boolean if a field has been set.
+func (o *PhilippinesDigitalNidProviderOutput) HasDocumentNumber() bool {
+	if o != nil && o.DocumentNumber.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDocumentNumber gets a reference to the given NullableString and assigns it to the DocumentNumber field.
+func (o *PhilippinesDigitalNidProviderOutput) SetDocumentNumber(v string) {
+	o.DocumentNumber.Set(&v)
+}
+// SetDocumentNumberNil sets the value for DocumentNumber to be an explicit nil
+func (o *PhilippinesDigitalNidProviderOutput) SetDocumentNumberNil() {
+	o.DocumentNumber.Set(nil)
+}
+
+// UnsetDocumentNumber ensures that no value is present for DocumentNumber, not even an explicit nil
+func (o *PhilippinesDigitalNidProviderOutput) UnsetDocumentNumber() {
+	o.DocumentNumber.Unset()
+}
+
+// GetIssuingAuthority returns the IssuingAuthority field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PhilippinesDigitalNidProviderOutput) GetIssuingAuthority() string {
+	if o == nil || IsNil(o.IssuingAuthority.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.IssuingAuthority.Get()
+}
+
+// GetIssuingAuthorityOk returns a tuple with the IssuingAuthority field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PhilippinesDigitalNidProviderOutput) GetIssuingAuthorityOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.IssuingAuthority.Get(), o.IssuingAuthority.IsSet()
+}
+
+// HasIssuingAuthority returns a boolean if a field has been set.
+func (o *PhilippinesDigitalNidProviderOutput) HasIssuingAuthority() bool {
+	if o != nil && o.IssuingAuthority.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetIssuingAuthority gets a reference to the given NullableString and assigns it to the IssuingAuthority field.
+func (o *PhilippinesDigitalNidProviderOutput) SetIssuingAuthority(v string) {
+	o.IssuingAuthority.Set(&v)
+}
+// SetIssuingAuthorityNil sets the value for IssuingAuthority to be an explicit nil
+func (o *PhilippinesDigitalNidProviderOutput) SetIssuingAuthorityNil() {
+	o.IssuingAuthority.Set(nil)
+}
+
+// UnsetIssuingAuthority ensures that no value is present for IssuingAuthority, not even an explicit nil
+func (o *PhilippinesDigitalNidProviderOutput) UnsetIssuingAuthority() {
+	o.IssuingAuthority.Unset()
+}
+
 func (o PhilippinesDigitalNidProviderOutput) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -80,6 +520,36 @@ func (o PhilippinesDigitalNidProviderOutput) MarshalJSON() ([]byte, error) {
 func (o PhilippinesDigitalNidProviderOutput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["philsysCardNumber"] = o.PhilsysCardNumber
+	if o.GivenName.IsSet() {
+		toSerialize["givenName"] = o.GivenName.Get()
+	}
+	if o.MiddleName.IsSet() {
+		toSerialize["middleName"] = o.MiddleName.Get()
+	}
+	if o.FamilyName.IsSet() {
+		toSerialize["familyName"] = o.FamilyName.Get()
+	}
+	if o.DateOfBirth.IsSet() {
+		toSerialize["dateOfBirth"] = o.DateOfBirth.Get()
+	}
+	if o.Suffix.IsSet() {
+		toSerialize["suffix"] = o.Suffix.Get()
+	}
+	if o.Sex.IsSet() {
+		toSerialize["sex"] = o.Sex.Get()
+	}
+	if o.PlaceOfBirth.IsSet() {
+		toSerialize["placeOfBirth"] = o.PlaceOfBirth.Get()
+	}
+	if o.DocumentIssueDate.IsSet() {
+		toSerialize["documentIssueDate"] = o.DocumentIssueDate.Get()
+	}
+	if o.DocumentNumber.IsSet() {
+		toSerialize["documentNumber"] = o.DocumentNumber.Get()
+	}
+	if o.IssuingAuthority.IsSet() {
+		toSerialize["issuingAuthority"] = o.IssuingAuthority.Get()
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -124,6 +594,16 @@ func (o *PhilippinesDigitalNidProviderOutput) UnmarshalJSON(data []byte) (err er
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "philsysCardNumber")
+		delete(additionalProperties, "givenName")
+		delete(additionalProperties, "middleName")
+		delete(additionalProperties, "familyName")
+		delete(additionalProperties, "dateOfBirth")
+		delete(additionalProperties, "suffix")
+		delete(additionalProperties, "sex")
+		delete(additionalProperties, "placeOfBirth")
+		delete(additionalProperties, "documentIssueDate")
+		delete(additionalProperties, "documentNumber")
+		delete(additionalProperties, "issuingAuthority")
 		o.AdditionalProperties = additionalProperties
 	}
 

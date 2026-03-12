@@ -32,6 +32,8 @@ type ApiCreateVerificationProfileRequest struct {
 	primaryColor *string
 	providers *[]string
 	logo *os.File
+	redactionPeriod *string
+	sessionExpiration *string
 	isProductionUsage *bool
 }
 
@@ -62,6 +64,18 @@ func (r ApiCreateVerificationProfileRequest) Providers(providers []string) ApiCr
 // The logo of the verification profile.
 func (r ApiCreateVerificationProfileRequest) Logo(logo *os.File) ApiCreateVerificationProfileRequest {
 	r.logo = logo
+	return r
+}
+
+// The redaction period for verification data. Must be between 0 and 31 days, and at least 15 minutes greater than the session expiration. If not specified, defaults to 31 days.
+func (r ApiCreateVerificationProfileRequest) RedactionPeriod(redactionPeriod string) ApiCreateVerificationProfileRequest {
+	r.redactionPeriod = &redactionPeriod
+	return r
+}
+
+// The session expiration for verification sessions created with this profile. Must be between 15 minutes and 24 hours. Defaults to 1 hour if not specified.
+func (r ApiCreateVerificationProfileRequest) SessionExpiration(sessionExpiration string) ApiCreateVerificationProfileRequest {
+	r.sessionExpiration = &sessionExpiration
 	return r
 }
 
@@ -168,6 +182,12 @@ func (a *VerificationProfilesAPIService) CreateVerificationProfileExecute(r ApiC
 		logoLocalVarFileName = logoLocalVarFile.Name()
 		logoLocalVarFile.Close()
 		formFiles = append(formFiles, formFile{fileBytes: logoLocalVarFileBytes, fileName: logoLocalVarFileName, formFileName: logoLocalVarFormFileName})
+	}
+	if r.redactionPeriod != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "RedactionPeriod", r.redactionPeriod, "form", "")
+	}
+	if r.sessionExpiration != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "SessionExpiration", r.sessionExpiration, "form", "")
 	}
 	if r.isProductionUsage != nil {
 		parameterAddToHeaderOrQuery(localVarFormParams, "IsProductionUsage", r.isProductionUsage, "form", "")

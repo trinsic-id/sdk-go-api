@@ -10,13 +10,14 @@ Name | Type | Description | Notes
 **LogoUrl** | **string** | The URL of the verification profile&#39;s logo. | 
 **PrimaryColor** | **string** | The primary color of the verification profile. | 
 **EnabledProviders** | **[]string** | The providers that are currently enabled for the verification profile. | 
+**SessionExpiration** | **string** | The session expiration for verification sessions created with this profile. | 
 **IsProductionUsage** | **bool** | Whether this profile is for production usage. Only applicable for Live environment profiles. | 
 
 ## Methods
 
 ### NewVerificationProfileResponse
 
-`func NewVerificationProfileResponse(id string, alias string, brandName string, logoUrl string, primaryColor string, enabledProviders []string, isProductionUsage bool, ) *VerificationProfileResponse`
+`func NewVerificationProfileResponse(id string, alias string, brandName string, logoUrl string, primaryColor string, enabledProviders []string, sessionExpiration string, isProductionUsage bool, ) *VerificationProfileResponse`
 
 NewVerificationProfileResponse instantiates a new VerificationProfileResponse object
 This constructor will assign default values to properties that have it defined,
@@ -149,6 +150,26 @@ and a boolean to check if the value has been set.
 `func (o *VerificationProfileResponse) SetEnabledProviders(v []string)`
 
 SetEnabledProviders sets EnabledProviders field to given value.
+
+
+### GetSessionExpiration
+
+`func (o *VerificationProfileResponse) GetSessionExpiration() string`
+
+GetSessionExpiration returns the SessionExpiration field if non-nil, zero value otherwise.
+
+### GetSessionExpirationOk
+
+`func (o *VerificationProfileResponse) GetSessionExpirationOk() (*string, bool)`
+
+GetSessionExpirationOk returns a tuple with the SessionExpiration field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSessionExpiration
+
+`func (o *VerificationProfileResponse) SetSessionExpiration(v string)`
+
+SetSessionExpiration sets SessionExpiration field to given value.
 
 
 ### GetIsProductionUsage

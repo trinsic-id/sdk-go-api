@@ -88,6 +88,84 @@ paths:
       summary: List Providers
       tags:
       - Providers
+  /api/v1/providers/{providerId}:
+    get:
+      description: "Get a single identity provider by ID, including its license status."
+      operationId: GetProvider
+      parameters:
+      - description: The ID of the provider to retrieve
+        explode: false
+        in: path
+        name: providerId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/GetProviderResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetProviderResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GetProviderResponse'
+          description: OK
+        "400":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.5.1
+                title: Bad Request
+                detail: This feature is not supported for your configruation
+                status: 400
+                traceId: 00-3fcbc632c5caaca825849d495c62d7b0-09a3500f89acbbcc-00
+                instance: /api/v1/sample-request-path
+                errors:
+                  PropertyName:
+                  - Specific error description for property
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad request
+        "401":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Unauthorized
+                status: 401
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Forbidden
+                status: 403
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "500":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Internal Server Error
+                status: 500
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Internal server error
+      summary: Get Provider
+      tags:
+      - Providers
   /api/valpha/redirect-uris:
     get:
       description: List registered Redirect URIs for the authenticated environment
@@ -1536,6 +1614,10 @@ paths:
                 style: form
               Logo:
                 style: form
+              RedactionPeriod:
+                style: form
+              SessionExpiration:
+                style: form
               IsProductionUsage:
                 style: form
             schema:
@@ -1685,6 +1767,90 @@ paths:
       - VerificationProfiles
 components:
   schemas:
+    AadhaarClaims:
+      properties:
+        name:
+          description: The full name.
+          example: Rajesh Kumar
+          nullable: true
+          type: string
+        dateOfBirth:
+          description: "The date of birth.\n            \nThe format is YYYY-MM-DD."
+          example: 1943-08-15
+          format: date
+          nullable: true
+          type: string
+        gender:
+          description: "The gender of the individual.\n            \nPossible values:\n\
+            - M (Male)\n- F (Female)\n- T (Transgender)"
+          example: M
+          nullable: true
+          type: string
+        careOf:
+          description: The address's care-of field. This indicates that mail should
+            be delivered to an individual through another person or entity who is
+            a known resident at the address.
+          example: "S/O: Priya Kumari"
+          nullable: true
+          type: string
+        country:
+          description: "The address's country.\n            \nThis is formatted as\
+            \ an alpha-2 country code."
+          example: IN
+          nullable: true
+          type: string
+        district:
+          description: The address's district.
+          example: Ludhiana
+          nullable: true
+          type: string
+        house:
+          description: The identifier for the house address.
+          example: "12"
+          nullable: true
+          type: string
+        location:
+          description: The location or locality that helps identify where the address
+            is within a city.
+          example: Rajguru Nagar
+          nullable: true
+          type: string
+        landmark:
+          description: A landmark near the address.
+          example: Near City Mall
+          nullable: true
+          type: string
+        postalCode:
+          description: The address's postal code.
+          example: "226010"
+          nullable: true
+          type: string
+        postOffice:
+          description: The address's post office.
+          example: Rajguru Nagar
+          nullable: true
+          type: string
+        state:
+          description: The address's state or union territory.
+          example: Jammu and Kashmir
+          nullable: true
+          type: string
+        street:
+          description: The address's street name.
+          example: MG Road
+          nullable: true
+          type: string
+        subdistrict:
+          description: The address's subdistrict.
+          example: Ludhiana
+          nullable: true
+          type: string
+        villageTownCity:
+          description: The address's village/town/city.
+          example: Malota
+          nullable: true
+          type: string
+      type: object
     AadhaarInput:
       properties:
         fullName:
@@ -1694,6 +1860,94 @@ components:
         dateOfBirth:
           description: "The user's date of birth, in `YYYY-MM-DD` format"
           format: date
+          nullable: true
+          type: string
+      type: object
+    AadhaarLanguage:
+      description: The language used for the localized claims.
+      properties:
+        languageCode:
+          description: The language code for the localized claims.
+          example: "05"
+          nullable: true
+          type: string
+        languageName:
+          description: "The language name for the localized claims.\n            \n\
+            This is Trinsic attempting to map the language from the code. This is\
+            \ based on the spec, however, the language code may be inaccurate with\
+            \ the actual language used.\nUse this as a reference.\nPossible values:\n\
+            - Assamese (01)\n- Bengali (02)\n- Gujarati (05)\n- Hindi (06)\n- Kannada\
+            \ (07)\n- Malayalam (11)\n- Manipuri (12)\n- Marathi (13)\n- Oriya (15)\n\
+            - Punjabi (16)\n- Tamil (20)\n- Telugu (21)\n- Urdu (22)"
+          example: Gujarati
+          readOnly: true
+          type: string
+      required:
+      - languageName
+      type: object
+    AadhaarLocalizedClaims:
+      properties:
+        language:
+          allOf:
+          - $ref: '#/components/schemas/AadhaarLanguage'
+          description: The language code for the localized claims.
+          nullable: true
+        name:
+          description: The full name.
+          example: રાજેશ કુમાર
+          nullable: true
+          type: string
+        careOf:
+          description: The address's care-of field. This indicates that mail should
+            be delivered to an individual through another person or entity who is
+            a known resident at the address.
+          example: "પિતા: પ્રિયા કુમારી"
+          nullable: true
+          type: string
+        country:
+          description: The address's country.
+          example: ભારત
+          nullable: true
+          type: string
+        district:
+          description: The address's district.
+          example: અમદાવાદ
+          nullable: true
+          type: string
+        house:
+          description: The identifier for the house address.
+          example: "12"
+          nullable: true
+          type: string
+        location:
+          description: The location or locality that helps identify where the address
+            is within a city.
+          example: નવરંગપુરા
+          nullable: true
+          type: string
+        landmark:
+          description: A landmark near the address.
+          example: સિટી મોલ પાસે
+          nullable: true
+          type: string
+        postalCode:
+          description: The address's postal code.
+          example: "226010"
+          nullable: true
+          type: string
+        state:
+          description: The address's state or union territory.
+          example: ગુજરાત
+          nullable: true
+          type: string
+        street:
+          description: The address's street name.
+          example: મહાત્મા ગાંધી રોડ
+          nullable: true
+          type: string
+        villageTownCity:
+          description: The address's village/town/city.
+          example: અમદાવાદ
           nullable: true
           type: string
       type: object
@@ -1758,6 +2012,16 @@ components:
           description: "The exchange mechanism to use for this Apple Wallet verification.\n\
             \            \nUse `DigitalCredentialsApi` for Digital Credentials API\
             \ on web, or `NativeApp` for a native iOS app."
+          nullable: true
+        preview_raw18013Request:
+          allOf:
+          - $ref: '#/components/schemas/Raw18013RequestInput'
+          description: "**Preview feature: not suitable for production use cases**\n\
+            \            \nThe raw 18013-7 exchange request to use for this verification.\n\
+            \            \nIf set, this overrides any default configuration on your\
+            \ Verification Profile.\n            \nNOTE: For Apple Wallet, this cannot\
+            \ (yet) be used with the `NativeApp` (in-app) exchange mechanism. Only\
+            \ the `DigitalCredentialsApi` (web) exchange mechanism supports this input."
           nullable: true
       type: object
     AppleWalletProviderOutput:
@@ -1909,6 +2173,136 @@ components:
           - $ref: '#/components/schemas/Session'
       required:
       - session
+      type: object
+    ConnectIdAddress:
+      properties:
+        streetAddress:
+          description: The address' line or street.
+          example: L 7 SE 3 17 Jones St
+          nullable: true
+          type: string
+        locality:
+          description: The address' locality or city.
+          example: North Sydney
+          nullable: true
+          type: string
+        region:
+          description: "The address' region, state, or territory."
+          example: NSW
+          nullable: true
+          type: string
+        country:
+          description: "The address' country.\n            \nThis value is not normalized\
+            \ and may be an alpha-3 code or full country name."
+          example: AUS
+          nullable: true
+          type: string
+        postalCode:
+          description: The address' postal code.
+          example: "2060"
+          nullable: true
+          type: string
+      type: object
+    ConnectIdAgeVerification:
+      properties:
+        over18:
+          description: If the individual is over 18 years old.
+          example: true
+          nullable: true
+          type: boolean
+        trustFramework:
+          description: The authority that verified the claim.
+          example: au_connectid
+          nullable: true
+          type: string
+      type: object
+    ConnectIdBeneficiaryAccount:
+      properties:
+        beneficiaryName:
+          description: The beneficiary's name.
+          example: Olivia Smith
+          nullable: true
+          type: string
+        accountBankStateBranch:
+          description: "The bank state branch (BSB) which the account belongs to.\n\
+            \            \nThis will be a six-digit number."
+          example: "064001"
+          nullable: true
+          type: string
+        accountNumber:
+          description: The account number.
+          example: "96688384"
+          nullable: true
+          type: string
+        trustFramework:
+          description: The authority that verified the claim.
+          example: au_connectid
+          nullable: true
+          type: string
+      type: object
+    ConnectIdProviderOutput:
+      description: Exposed properties for the `australia-connect-id` Provider which
+        do not directly map to the normalized IdentityData model.
+      properties:
+        birthdate:
+          description: The date of birth of an individual in YYYY-MM-DD format.
+          example: 1985-01-31
+          format: date
+          nullable: true
+          type: string
+        givenName:
+          description: The given name of an individual.
+          example: John
+          nullable: true
+          type: string
+        middleName:
+          description: The middle name of an individual.
+          example: Albert
+          nullable: true
+          type: string
+        familyName:
+          description: The family/last name of an individual.
+          example: Smith
+          nullable: true
+          type: string
+        phoneNumber:
+          description: The phone number of an individual.
+          example: "+61271111222"
+          nullable: true
+          type: string
+        email:
+          description: The email of an individual.
+          example: johnasmith@example.com
+          nullable: true
+          type: string
+        sub:
+          description: The OpenID Connect (OIDC) subject identifier (sub).
+          example: abcdefg123456
+          nullable: true
+          type: string
+        ageVerification:
+          allOf:
+          - $ref: '#/components/schemas/ConnectIdAgeVerification'
+          description: The age verification claim and whether the individual meets
+            the age requirement.
+          nullable: true
+        transaction:
+          description: "The verification session's transaction number.\n         \
+            \   \nThis is a unique identifier assigned to a single ConnectID transaction\
+            \ flow. It can be used for audit purposes or to flag fraudulent activity."
+          example: qaTTTTuhVnTck8zQlba4pFW2jo55555UfIoOEYv8sJq
+          nullable: true
+          type: string
+        beneficiaryAccount:
+          allOf:
+          - $ref: '#/components/schemas/ConnectIdBeneficiaryAccount'
+          description: The beneficiary account that has been designated by the individual.
+          nullable: true
+        address:
+          allOf:
+          - $ref: '#/components/schemas/ConnectIdAddress'
+          description: The address.
+          nullable: true
       type: object
     ContractAttachment:
       description: Information about an attachment that a Provider may return in verification
@@ -2223,6 +2617,179 @@ components:
       - resultsAccessKey
       - sessionId
       type: object
+    CzechMojeIdAddressOutput:
+      properties:
+        streetAddress:
+          description: "The street address line, including house number."
+          example: HAVELSKÁ 65
+          nullable: true
+          type: string
+        city:
+          description: The city or locality.
+          example: BRNO
+          nullable: true
+          type: string
+        region:
+          description: The region or state.
+          example: Jihomoravský kraj
+          nullable: true
+          type: string
+        postalCode:
+          description: The postal code.
+          example: 250 23
+          nullable: true
+          type: string
+        country:
+          description: The ISO 3166-1 alpha-2 country code.
+          example: CZ
+          nullable: true
+          type: string
+        formattedAddress:
+          description: "The full address as a formatted string, with components separated\
+            \ by newlines."
+          example: HAVELSKÁ 65\n250 23 BRNO\nCZ
+          nullable: true
+          type: string
+      type: object
+    CzechMojeIdProviderOutput:
+      description: Exposed properties for the `czech-moje-id` Provider which do not
+        directly map to the normalized IdentityData model.
+      properties:
+        subjectIdentifier:
+          description: "The subject identifier (sub) of the verified individual's\
+            \ MojeID account.\n            \nThis is a unique identifier that represents\
+            \ the user within the MojeID system."
+          example: abc123def456
+          nullable: true
+          type: string
+        name:
+          description: The individual's full name.
+          example: Jan Novak
+          nullable: true
+          type: string
+        givenName:
+          description: The individual's given (first) name.
+          example: Jan
+          nullable: true
+          type: string
+        familyName:
+          description: The individual's family (last) name.
+          example: Novak
+          nullable: true
+          type: string
+        nickname:
+          description: The individual's nickname.
+          example: Honza
+          nullable: true
+          type: string
+        email:
+          description: The individual's email address.
+          example: jan.novak@example.com
+          nullable: true
+          type: string
+        emailVerified:
+          description: |-
+            Whether the individual's email address has been verified by MojeID.
+            (Verification email and link clicked)
+          example: true
+          nullable: true
+          type: boolean
+        phoneNumber:
+          description: The individual's phone number.
+          example: "+420123456789"
+          nullable: true
+          type: string
+        phoneNumberVerified:
+          description: |-
+            An individual's phone number has been verified by MojeID.
+            (SMS verification)
+          example: true
+          nullable: true
+          type: boolean
+        dateOfBirth:
+          description: "The individual's date of birth.\n            \nFormatted as\
+            \ an ISO 8601 Date."
+          example: 1990-01-15
+          format: date
+          nullable: true
+          type: string
+        gender:
+          description: The individual's gender as reported by MojeID.
+          example: male
+          nullable: true
+          type: string
+        idCardNumber:
+          description: The individual's Czech ID card number.
+          example: "123456789"
+          nullable: true
+          type: string
+        passportNumber:
+          description: The individual's Czech passport number.
+          example: "49206778"
+          nullable: true
+          type: string
+        socialSecurityNumber:
+          description: The individual's Ministry of Labour and Social Affairs identifier
+            (Czech social security equivalent).
+          example: "7801011234"
+          nullable: true
+          type: string
+        isAdult:
+          description: The individual is an adult (18 years or older).
+          example: true
+          nullable: true
+          type: boolean
+        accountValidated:
+          description: "The MojeID account has been validated.\n            \nA validated\
+            \ account indicates the individual's identity has been verified\nto a\
+            \ higher level of assurance within the MojeID system."
+          example: true
+          nullable: true
+          type: boolean
+        companyRegistrationNumber:
+          description: "The individual's or organization's Czech Registration ID (ICO),\
+            \ the Czech company registration number."
+          example: "12345678"
+          nullable: true
+          type: string
+        taxIdentificationNumber:
+          description: "The individual's or organization's Danove Identifikacni Cislo\
+            \ (DIC), the Czech tax identification number."
+          example: CZ12345678
+          nullable: true
+          type: string
+        niaVerified:
+          description: "The individual's identity has been verified through the Czech\
+            \ National Identity Authority (NIA).\n            \nNIA verification indicates\
+            \ a higher level of identity assurance, typically involving government-issued\n\
+            credentials verified through the Czech eGovernment infrastructure."
+          example: true
+          nullable: true
+          type: boolean
+        transactionId:
+          description: Unique login transaction identifier
+          example: af82asdfjacv945a98afasf
+          nullable: true
+          type: string
+        homeAddress:
+          allOf:
+          - $ref: '#/components/schemas/CzechMojeIdAddressOutput'
+          description: "The individual's home (default) address, from the `mojeid_address_def`\
+            \ claim."
+          nullable: true
+        billingAddress:
+          allOf:
+          - $ref: '#/components/schemas/CzechMojeIdAddressOutput'
+          description: "The individual's billing address, from the `mojeid_address_bill`\
+            \ claim."
+          nullable: true
+        shippingAddress:
+          allOf:
+          - $ref: '#/components/schemas/CzechMojeIdAddressOutput'
+          description: "The individual's shipping address, from the `mojeid_address_ship`\
+            \ claim."
+          nullable: true
+      type: object
     CzechiaMojeIdProviderOutput:
       description: Exposed properties for the `a-mojeid` Provider which do not directly
         map to the normalized IdentityData model.
@@ -2251,6 +2818,58 @@ components:
       - firstName
       - lastName
       - openId2Identifier
+      type: object
+    DigilockerAadhaarProviderOutput:
+      description: Exposed properties for the `india-digilocker-aadhaar` Provider
+        which do not directly map to the normalized IdentityData model.
+      properties:
+        documentType:
+          description: "The document type from which the identity data was retrieved\
+            \ from.\n            \nPossible values:\n- ADHAR\n- PANCR"
+          example: ADHAR
+          nullable: true
+          type: string
+        documentSignatureValidated:
+          description: "Whether the downloaded Aadhaar document signature and certificate\
+            \ chain validation succeeded.\n            \nIn some cases, the document\
+            \ may not be returned, but the data is. When the document is received,\
+            \ a certificate validation is performed. When it is not, the signature\
+            \ can not be validated."
+          example: true
+          type: boolean
+        timestamp:
+          description: "The timestamp when the signed document was generated and verified.\n\
+            \            \nThis is parsed as a date-time value. Aadhaar may omit timezone\
+            \ information."
+          example: 2025-06-01T20:43:54.472+05:30
+          format: date-time
+          nullable: true
+          type: string
+        timeToLive:
+          description: "The validity expiration timestamp for the verification document.\n\
+            \            \nThis is parsed as a date-time value. Aadhaar may omit timezone\
+            \ information."
+          format: date-time
+          nullable: true
+          type: string
+        aadhaarNumberLastFour:
+          description: "The Aadhaar number (UID) value for the individual.\n     \
+            \       \nThis is only the last four digits of the Aadhaar number."
+          example: "1234"
+          nullable: true
+          type: string
+        claims:
+          allOf:
+          - $ref: '#/components/schemas/AadhaarClaims'
+          description: The claims extracted from the signed Aadhaar document.
+          nullable: true
+        localizedClaims:
+          allOf:
+          - $ref: '#/components/schemas/AadhaarLocalizedClaims'
+          description: The localized claims extracted from the signed Aadhaar document.
+          nullable: true
+      required:
+      - documentSignatureValidated
       type: object
     DocumentData:
       properties:
@@ -2361,6 +2980,23 @@ components:
           example: F50278D6-7C38-4284-83CD-549BBC818F5C
           nullable: true
           type: string
+        name:
+          description: "The full name of the verified individual.\n            \n\
+            This may be an English or Arabic name if the individual only has it one\
+            \ language, otherwise this will be null and the other names will be populated."
+          example: Yohannes Tesfaye
+          nullable: true
+          type: string
+        englishName:
+          description: The full English name of the verified individual.
+          example: Yohannes Tesfaye
+          nullable: true
+          type: string
+        arabicName:
+          description: The full Arabic name of the verified individual.
+          example: يوهانس تيسفاي
+          nullable: true
+          type: string
       type: object
     FinlandIdCardProviderOutput:
       description: Exposed properties for the `a-fi-id-login` Provider which do not
@@ -2398,7 +3034,122 @@ components:
       - lastName
       - personalIdentificationCode
       type: object
-    FrejaProviderOutput:
+    FinnishTrustNetworkProviderOutput:
+      description: Exposed properties for the `finnish-trust-network` Provider which
+        do not directly map to the normalized IdentityData model.
+      properties:
+        fullName:
+          description: The full name of the individual.
+          example: Ove Henriksen
+          nullable: true
+          type: string
+        dateOfBirth:
+          description: The date of birth of the individual.
+          example: 1943-08-15
+          format: date
+          nullable: true
+          type: string
+        personalIdentificationCode:
+          description: "The 11-digit Finnish Personal Identification Code (Henkilö\
+            tunnus) of the verified individual.\n            \nThis is in the format\
+            \ DDMMYYCZZZQ, where:\n- DDMMYY is the date of birth\n- C is a symbol\
+            \ which determines the century of birth\n- ZZZ is an individual number,\
+            \ indicating gender\n- Q is a checksum character\n            \nIf ZZZ\
+            \ is even, the individual is female.\nIf ZZZ is odd, the individual is\
+            \ male.\n            \nIf C is '+', the individual was born in the 19th\
+            \ century (1800-1899).\nIf C is '-', 'U', 'V', 'W', 'X', or 'Y', the individual\
+            \ was born in the 20th century (1900-1999).\nIf C is 'A', 'B', 'C', 'D',\
+            \ 'E', or 'F', the individual was born in the 21st century (2000-2099)."
+          example: 300690-543X
+          nullable: true
+          type: string
+        uniqueIdentificationNumber:
+          description: "The 9-digit Finnish Unique Identification Number (FINUID,\
+            \ or sähköinen asiointitunnus SATU) of the verified individual.\nThis\
+            \ number is typically used for online transactions and unlike the Finnish\
+            \ Personal Identification Code, does not reveal personal information such\
+            \ as birthdate.\n            \nThe first 8 digits are randomly generated\
+            \ and the last character is a check control."
+          example: 30069054X
+          nullable: true
+          type: string
+        givenName:
+          description: The given name of the individual.
+          example: Ove
+          nullable: true
+          type: string
+        familyName:
+          description: The family name of the individual.
+          example: Henriksen
+          nullable: true
+          type: string
+        levelOfAssurance:
+          description: "The level of assurance (LOA) for the verification.\n     \
+            \       \nThe LOA refers to the degree of confidence in the claimed identity\
+            \ of a person.\nThe European Digital Identity Framework (EUDI) measures\
+            \ the confidence of the digital identity's verification and authentication\
+            \ strength by a set of requirements for different levels.\nTo learn more,\
+            \ see: https://ec.europa.eu/digital-building-blocks/sites/spaces/DIGITAL/pages/467110081/eIDAS+Levels+of+Assurance\n\
+            \            \nPossible values:\n- Low: The user has self asserted their\
+            \ identity and multifactor authentication is not required.\n- Substantial:\
+            \ The user has performed either a remote or in-person identity verification\
+            \ and multifactor authentication is required.\n- High: The user has performed\
+            \ an in-person identity proofing with an authorized representative and\
+            \ has strong cryptographic authentication requirements such as using a\
+            \ smart card."
+          example: High
+          nullable: true
+          type: string
+        bank:
+          description: The bank used to perform the identification for the verified
+            individual.
+          example: opbank
+          nullable: true
+          type: string
+        phoneNumber:
+          description: "The phone number of the verified individual.\n           \
+            \ \nThis is only returned if the user authenticated with MobileID (Mobiilivarmenne)."
+          example: "+358401234567"
+          nullable: true
+          type: string
+        organizationName:
+          description: "The organization name that the individual is associated with.\n\
+            \            \nThis is returned for requests that contain the organization\
+            \ scope."
+          example: Acme Company
+          nullable: true
+          type: string
+        vatNumber:
+          description: "The VAT number of the organization that the individual is\
+            \ associated with.\n            \nThis is returned for requests that contain\
+            \ the organization scope."
+          example: FI07654321
+          nullable: true
+          type: string
+      type: object
+    FranceIdentiteInput:
+      properties:
+        preview_raw18013Request:
+          allOf:
+          - $ref: '#/components/schemas/Raw18013RequestInput'
+          description: "The raw 18013-7 exchange request to use for this verification.\n\
+            \            \nIf set, this overrides any default configuration on your\
+            \ Verification Profile."
+          nullable: true
+      type: object
+    FranceIdentiteProviderOutput:
+      description: Exposed properties for the `france-identite` Provider which do
+        not directly map to the normalized IdentityData model.
+      properties:
+        raw18013Output:
+          allOf:
+          - $ref: '#/components/schemas/MdlOutput'
+          description: The raw output of the 18013-7 exchange performed through France
+            Identité.
+      required:
+      - raw18013Output
+      type: object
+    FrejaIndirectProviderOutput:
       description: Exposed properties for the `a-freja-eid-login` Provider which do
         not directly map to the normalized IdentityData model.
       properties:
@@ -2427,6 +3178,143 @@ components:
       - lastName
       - personalNumber
       - personalNumberCountry
+      type: object
+    FrejaProviderOutput:
+      description: Exposed properties for the `freja` Provider which do not directly
+        map to the normalized IdentityData model.
+      properties:
+        name:
+          description: The individual's full name.
+          example: Ada Lovelace
+          nullable: true
+          type: string
+        givenName:
+          description: The individual's first name.
+          example: Ada
+          nullable: true
+          type: string
+        familyName:
+          description: The individual's last name.
+          example: Lovelace
+          nullable: true
+          type: string
+        dateOfBirth:
+          description: "The date of birth of the individual.\n            \nFormatted\
+            \ as an ISO 8601 Date."
+          example: 1990-01-01
+          format: date
+          nullable: true
+          type: string
+        email:
+          description: The individual's primary email address within Freja.
+          example: ada.lovelace@example.com
+          nullable: true
+          type: string
+        emailVerified:
+          description: A boolean which indicates whether the individual's primary
+            email address has been verified by Freja.
+          example: true
+          nullable: true
+          type: boolean
+        allEmailAddresses:
+          description: An array of all associated email addresses of the individual.
+          example:
+          - ada.lovelace@example.com
+          - ada@example.org
+          items:
+            type: string
+          nullable: true
+          type: array
+        primaryPhysicalAddress:
+          allOf:
+          - $ref: '#/components/schemas/OutputFrejaAddress'
+          description: The individual's primary address on file.
+          example:
+            line1: 123 Residential St
+            city: Townsville
+            postalCode: "12345"
+            country: US
+          nullable: true
+        allPhysicalAddresses:
+          description: A list of all associated addresses of the individual.
+          example:
+          - line1: 123 Residential St
+            city: Townsville
+            postalCode: "12345"
+            country: US
+          - line1: 456 Billing St
+            city: Citysville
+            postalCode: "67890"
+            country: US
+          items:
+            $ref: '#/components/schemas/OutputFrejaAddress'
+          nullable: true
+          type: array
+        age:
+          description: The individual's age in years.
+          example: 35
+          format: int32
+          nullable: true
+          type: integer
+        phoneNumber:
+          description: The individual's phone number in the E.164 format.
+          example: "+1234567890"
+          nullable: true
+          type: string
+        phoneNumberVerified:
+          description: Whether the individual's phone number has been verified by
+            Freja.
+          example: true
+          nullable: true
+          type: boolean
+        personalIdentityNumber:
+          description: |-
+            The individual's personal identity number. The actual value of this field depends on the country of origin used to
+            create the Freja credential. It is typically a Social Security Number, National Identification Number, or equivalent
+            personal identifier.
+          example: A1234567890
+          nullable: true
+          type: string
+        country:
+          description: The ISO 3166-1 alpha-2 country code associated with the individual's
+            country of origin.
+          example: SE
+          nullable: true
+          type: string
+        document:
+          allOf:
+          - $ref: '#/components/schemas/OutputFrejaDocument'
+          description: "The underlying document, such as a passport, used to create\
+            \ the Freja credential."
+          example:
+            type: PASS
+            number: SA23579258
+            expirationDate: 2030-12-31
+            issuingCountry: SE
+          nullable: true
+        registrationLevel:
+          description: |-
+            The Freja registration level associated with this individual. This can be BASIC, EXTENDED, or PLUS.
+            * BASIC: Individual has a registered account with Freja.
+            * EXTENDED: Individual has an official identity document verified by Freja.
+            * PLUS: Individual has undergone in-person verification with Freja.
+          example: EXTENDED
+          nullable: true
+          type: string
+        relyingPartyUserId:
+          description: |-
+            The relying party user identifier for this individual. This is an identifier specific to the individual and the
+            relying party (your service).
+          example: FA9C4BAF97489D51B5A97B41F46AB1B514D66757DBBE8AA66EAD010262B2CCE3
+          nullable: true
+          type: string
+        transactionReference:
+          description: |-
+            The Freja transaction reference for this verification. This is an identifier specific to the verification
+            transaction.
+          example: hstRVGtMdQ-HLN8huVYY3HOfq0RS7BSZhgANDyk80UF-JLh8q8lS9Y7tVM44HLkg
+          nullable: true
+          type: string
       type: object
     FrenchNumeriqueGivenName:
       description: Given name information including the full given name and its structured
@@ -2686,6 +3574,17 @@ components:
       - content
       - contentType
       type: object
+    GetProviderResponse:
+      example:
+        provider: ""
+      properties:
+        provider:
+          allOf:
+          - $ref: '#/components/schemas/Provider'
+          description: The provider available to this organization
+      required:
+      - provider
+      type: object
     GetSessionResponse:
       example:
         session: ""
@@ -2729,6 +3628,14 @@ components:
           description: "The exchange mechanism to use for this Google Wallet verification.\n\
             \            \nUse `DigitalCredentialsApi` for Digital Credentials API\
             \ on web, or `NativeApp` for a native Android app."
+          nullable: true
+        preview_raw18013Request:
+          allOf:
+          - $ref: '#/components/schemas/Raw18013RequestInput'
+          description: "**Preview feature: not suitable for production use cases**\n\
+            \            \nThe raw 18013-7 exchange request to use for this verification.\n\
+            \            \nIf set, this overrides any default configuration on your\
+            \ Verification Profile."
           nullable: true
       type: object
     GoogleWalletProviderOutput:
@@ -2935,7 +3842,7 @@ components:
           \ mDL exchange APIs on Android or iOS.\n            \nUse Trinsic's UI SDKs\
           \ on Web, Android, or iOS to streamline this process."
     IntegrationStep:
-      description: A step to perform in the process of executing an Direct Provider
+      description: A step to perform in the process of executing a Direct Provider
         Session
       properties:
         method:
@@ -3080,12 +3987,181 @@ components:
       - lastName
       - nationalIdNumber
       type: object
+    KenyaNidLookup2Address:
+      description: "Represents a Kenya address as stored in the IPRS (Integrated Population\
+        \ Registration System) database.\n            \nThe structure reflects the\
+        \ pre-2010 provincial administration system: District > Division > Location.\n\
+        Since the 2010 constitutional change to counties, these legacy administrative\
+        \ divisions are still\nmaintained in IPRS records for historical continuity.\n\
+        \            \nThe raw address from IPRS is a newline-separated string with\
+        \ labeled administrative components.\nExample format:\n            \n```\n\
+        P O BOX 41842 NAIROBI\nPARLIAMENT BUILDINGS\nLOCATION - CITY SQUARE\nDIVISION\
+        \ - CENTRAL\nDISTRICT - NAIROBI\n```\n            \nThe first lines contain\
+        \ informal address details (village, P.O. Box) while the suffixed lines\n\
+        contain official administrative designations prefixed with labels like \"\
+        LOCATION -\", \"DIVISION -\", \"DISTRICT -\"."
+      properties:
+        district:
+          description: "The district where the person resides.\n            \nThis\
+            \ is the highest level of the pre-2010 administrative hierarchy stored\
+            \ in IPRS. Districts were\nthe primary administrative units under Kenya's\
+            \ provincial system before the change to counties in 2010.\nDistricts\
+            \ roughly correspond to sub-counties in the current administrative structure."
+          example: NAIROBI
+          nullable: true
+          type: string
+        division:
+          description: "The division within the district.\n            \nThis is the\
+            \ second level of the pre-2010 administrative hierarchy. Divisions were\
+            \ administrative\nunits between districts and locations."
+          example: CENTRAL
+          nullable: true
+          type: string
+        location:
+          description: "The location within the division.\n            \nThis is the\
+            \ third level of the pre-2010 administrative hierarchy. Locations were\
+            \ the smallest\nadministrative units."
+          example: CITY SQUARE
+          nullable: true
+          type: string
+        additionalLines:
+          description: "Additional address lines that appear before the structured\
+            \ administrative parts.\n            \nMay include P.O. Box (format: \"\
+            P O BOX [number] [location]\"), village names, estate names,\nor other\
+            \ informal locality information."
+          example:
+          - P O BOX 41842 NAIROBI
+          - PARLIAMENT BUILDINGS
+          items:
+            type: string
+          nullable: true
+          type: array
+        raw:
+          description: "The raw, unparsed address string as returned from IPRS (Integrated\
+            \ Population Registration System).\n            \nThis preserves the original\
+            \ newline-separated format containing both informal address components\n\
+            (village, P.O. Box) and labeled administrative divisions (LOCATION, DIVISION,\
+            \ DISTRICT)."
+          example: P O BOX 41842 NAIROBI\nPARLIAMENT BUILDINGS\nLOCATION - CITY SQUARE\nDIVISION
+            - CENTRAL\nDISTRICT - NAIROBI
+          nullable: true
+          type: string
+      type: object
     KenyaNidLookup2Input:
       properties:
         idNumber:
           description: The user's National ID number
           nullable: true
           type: string
+      type: object
+    KenyaNidLookup2ProviderOutput:
+      description: Exposed properties for the `kenya-nid-lookup-2` Provider which
+        do not directly map to the normalized IdentityData model.
+      properties:
+        firstName:
+          description: The first name (given name) of the ID holder as recorded in
+            IPRS.
+          example: JUMA
+          type: string
+        surname:
+          description: The surname (family name) of the ID holder as recorded in IPRS.
+          example: ODHIAMBO
+          type: string
+        otherName:
+          description: The other name (middle name) of the ID holder as recorded in
+            IPRS.
+          example: OTIENO
+          nullable: true
+          type: string
+        sex:
+          description: "The sex of the ID holder as recorded on the National ID.\n\
+            \            \nPossible values:\n- Male\n- Female"
+          example: Male
+          type: string
+        dateOfBirth:
+          description: The date of birth of the ID holder as recorded in IPRS.
+          example: 1985-01-01
+          format: date
+          nullable: true
+          type: string
+        citizenship:
+          description: "Citizenship status as recorded in the IPRS civil registry\
+            \ database.\n            \nFor the Kenya National ID lookup, this value\
+            \ will always be \"Kenyan\" as the National ID is only\nissued to Kenyan\
+            \ citizens. Non-citizens residing in Kenya are issued different identification\n\
+            documents (Alien ID cards, refugee documentation, etc.) which are not\
+            \ supported by this provider."
+          example: Kenyan
+          type: string
+        idNumber:
+          description: "The Kenya National ID Number (Nambari ya Kitambulisho).\n\
+            \            \nThis is the primary unique identifier for Kenyan citizens\
+            \ in all government systems, issued by\nthe National Registration Bureau\
+            \ (NRB). The format is 1 to 9 numeric digits (regex: /^[0-9]{1,9}$/).\n\
+            This number is assigned upon first registration at age 18 (or upon naturalization\
+            \ for new citizens)\nand remains constant for life."
+          example: "12345678"
+          type: string
+        serialNumber:
+          description: "The physical card serial number printed on the Kenya National\
+            \ ID card.\n            \nThis is distinct from the ID Number and serves\
+            \ as a card issuance tracking identifier maintained\nby IPRS. This value\
+            \ changes each time a new physical card is issued (loss, damage, renewal)."
+          example: "98765432"
+          type: string
+        dateOfIssue:
+          description: The date the National ID was issued by the National Registration
+            Bureau (NRB).
+          example: 2010-06-15
+          format: date
+          nullable: true
+          type: string
+        placeOfBirth:
+          allOf:
+          - $ref: '#/components/schemas/KenyaNidLookup2Address'
+          description: "Place of birth as recorded in Kenya's civil registry (IPRS).\n\
+            \            \nThis is structured according to Kenya's pre-2010 administrative\
+            \ hierarchy (District > Division > Location)."
+          example:
+            district: NAIROBI
+            division: CENTRAL
+            location: NGARA
+            additionalLines:
+            - KENYATTA NATIONAL HOSPITAL
+            raw: |-
+              KENYATTA NATIONAL HOSPITAL
+              LOCATION - NGARA
+              DIVISION - CENTRAL
+              DISTRICT - NAIROBI
+          nullable: true
+        placeOfResidence:
+          allOf:
+          - $ref: '#/components/schemas/KenyaNidLookup2Address'
+          description: "Current residence address as registered in IPRS.\n       \
+            \     \nThis represents the address on file at the time of ID registration\
+            \ or last update, structured\naccording to Kenya's pre-2010 administrative\
+            \ hierarchy (District > Division > Location)."
+          example:
+            district: NAIROBI
+            division: CENTRAL
+            location: CITY SQUARE
+            additionalLines:
+            - P O BOX 41842 NAIROBI
+            - PARLIAMENT BUILDINGS
+            raw: |-
+              P O BOX 41842 NAIROBI
+              PARLIAMENT BUILDINGS
+              LOCATION - CITY SQUARE
+              DIVISION - CENTRAL
+              DISTRICT - NAIROBI
+          nullable: true
+      required:
+      - citizenship
+      - firstName
+      - idNumber
+      - serialNumber
+      - sex
+      - surname
       type: object
     KenyaNidMatch2Input:
       properties:
@@ -3471,6 +4547,7 @@ components:
           - enabledProviders
           brandName: brandName
           primaryColor: primaryColor
+          sessionExpiration: sessionExpiration
           alias: alias
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           isProductionUsage: true
@@ -3480,6 +4557,7 @@ components:
           - enabledProviders
           brandName: brandName
           primaryColor: primaryColor
+          sessionExpiration: sessionExpiration
           alias: alias
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           isProductionUsage: true
@@ -4214,6 +5292,85 @@ components:
           nullable: true
           type: string
       type: object
+    NigeriaNinLookup2ProviderOutput:
+      description: Exposed properties for the `nigeria-nin-lookup-2` Provider which
+        do not directly map to the normalized IdentityData model.
+      properties:
+        firstName:
+          description: The first name (given name) of the ID holder.
+          example: MUSA
+          type: string
+        middleName:
+          description: The middle name of the ID holder.
+          example: IBRAHIM
+          nullable: true
+          type: string
+        surname:
+          description: The surname (family name) of the ID holder.
+          example: MOHAMMED
+          type: string
+        sex:
+          description: "The sex of the ID holder.\n            \nPossible values:\n\
+            - Male\n- Female"
+          example: Male
+          nullable: true
+          type: string
+        dateOfBirth:
+          description: The date of birth of the ID holder.
+          example: 1990-01-31
+          format: date
+          nullable: true
+          type: string
+        birthCountry:
+          description: Country of birth as an ISO 3166-1 alpha-2 code.
+          example: NG
+          nullable: true
+          type: string
+        nationalIdentityNumber:
+          description: "National Identification Number (NIN).\n            \nThis\
+            \ is a unique, permanent identifier assigned by the National Identity\
+            \ Management Commission\nupon enrollment.\n            \nFormat: 11 numeric\
+            \ digits (regex: /^[0-9]{11}$/). The digits are validated using the Verhoeff\n\
+            algorithm, meaning the last digit serves as a check digit."
+          example: "12345678901"
+          type: string
+        phoneNumber:
+          description: Phone number registered with the National Identity Management
+            Commission.
+          example: "+2340123456789"
+          nullable: true
+          type: string
+        email:
+          description: Email address registered with the National Identity Management
+            Commission.
+          example: user@example.com
+          nullable: true
+          type: string
+        address:
+          description: "Full residential address as a single string, normalized to\
+            \ lowercase without delimiters."
+          example: 816 ahmadu bello way central business district abuja
+          nullable: true
+          type: string
+        localGovernmentArea:
+          description: "Local Government Area of residence.\n            \nNigeria\
+            \ is divided into 774 Local Government Areas (LGAs), which are the third-tier\n\
+            administrative divisions below states and the Federal Capital Territory.\
+            \ LGAs are roughly\nequivalent to counties or municipalities in other\
+            \ countries."
+          example: Abuja Municipal
+          nullable: true
+          type: string
+        state:
+          description: State of residence.
+          example: Federal Capital Territory
+          nullable: true
+          type: string
+      required:
+      - firstName
+      - nationalIdentityNumber
+      - surname
+      type: object
     NigeriaNinMatch2Input:
       properties:
         idNumber:
@@ -4257,6 +5414,138 @@ components:
       x-enumDescriptions:
         Male: ""
         Female: ""
+    NorwegianBankIdProviderOutput:
+      description: Exposed properties for the `norway-bankid` Provider which do not
+        directly map to the normalized IdentityData model.
+      properties:
+        fullName:
+          description: The full name of the individual.
+          example: Ove Henriksen
+          nullable: true
+          type: string
+        dateOfBirth:
+          description: The date of birth of the individual.
+          example: 1943-08-15
+          format: date
+          nullable: true
+          type: string
+        personalIdentifier:
+          description: "The personal identifier for Norwegian BankID.\n          \
+            \  \nThis uniquely identifies the user in the Norwegian BankID system\
+            \ and is considered a stable identifier to use."
+          example: 9578-5999-4-1765512
+          nullable: true
+          type: string
+        nationalIdentityNumber:
+          description: "The 11-digit Norwegian National Identity Number (fødselsnummer)\
+            \ of the verified individual.\n            \nThis is in the format DDMMYYZZZCC,\
+            \ where:\n- DDMMYY is the date of birth (In some cases, this is not the\
+            \ date of birth due to no available identity numbers for some dates\n\
+            - ZZZ is an individual number, indicating gender\n- CC is a checksum character\n\
+            \            \nIf ZZZ is even, the individual is female.\nIf ZZZ is odd,\
+            \ the individual is male."
+          example: "30069012345"
+          nullable: true
+          type: string
+        givenName:
+          description: The given name of the individual.
+          example: Ole
+          nullable: true
+          type: string
+        familyName:
+          description: The family name of the individual.
+          example: Olsen
+          nullable: true
+          type: string
+        levelOfAssurance:
+          description: "The level of assurance (LOA) for the verification.\n     \
+            \       \nThe LOA refers to the degree of confidence in the claimed identity\
+            \ of a person.\nThe European Digital Identity Framework (EUDI) measures\
+            \ the confidence of the digital identity's verification and authentication\
+            \ strength by a set of requirements for different levels.\nTo learn more,\
+            \ see: https://ec.europa.eu/digital-building-blocks/sites/spaces/DIGITAL/pages/467110081/eIDAS+Levels+of+Assurance\n\
+            \            \nPossible values:\n- Low: The user has self asserted their\
+            \ identity and multifactor authentication is not required.\n- Substantial:\
+            \ The user has performed either a remote or in-person identity verification\
+            \ and multifactor authentication is required.\n- High: The user has performed\
+            \ an in-person identity proofing with an authorized representative and\
+            \ has strong cryptographic authentication requirements such as using a\
+            \ smart card."
+          example: High
+          nullable: true
+          type: string
+        authenticationMethod:
+          description: "The authentication method used by the individual.\n      \
+            \      \nPossible values:\n- urn:bankid:bis - BankID with Biometrics\n\
+            - urn:bankid:bid - Standard BankID with High Assurance"
+          example: urn:bankid:bis
+          nullable: true
+          type: string
+      type: object
+    OneIdProviderAddress:
+      properties:
+        streetAddress:
+          description: The line or street portion of the address.
+          example: "80 Temple Way, Winterton-On-Sea"
+          nullable: true
+          type: string
+        locality:
+          description: The locality or city portion of the address.
+          example: Great Yarmouth
+          nullable: true
+          type: string
+        region:
+          description: The region or subdivision portion of the address.
+          example: Norfolk
+          nullable: true
+          type: string
+        postalCode:
+          description: The postal code of the address.
+          example: NR29 9QS
+          nullable: true
+          type: string
+        countryCode:
+          description: The alpha-2 country code of the address.
+          example: GB
+          nullable: true
+          type: string
+      type: object
+    OneIdProviderOutput:
+      description: Exposed properties for the `oneid` Provider which do not directly
+        map to the normalized IdentityData model.
+      properties:
+        sub:
+          description: The OpenID Connect (OIDC) subject identifier (sub).
+          example: 458924ee-f856-59ad-ae9f-6de2429a3c74
+          nullable: true
+          type: string
+        fullName:
+          description: The individual's full name.
+          example: John Smith
+          nullable: true
+          type: string
+        givenName:
+          description: The individual's given name.
+          example: John
+          nullable: true
+          type: string
+        familyName:
+          description: The individual's family name.
+          example: Smith
+          nullable: true
+          type: string
+        birthdate:
+          description: The date of birth of the individual.
+          example: 1985-01-31
+          format: date
+          nullable: true
+          type: string
+        address:
+          allOf:
+          - $ref: '#/components/schemas/OneIdProviderAddress'
+          description: The address of the individual.
+          nullable: true
+      type: object
     OrderDirection:
       enum:
       - Ascending
@@ -4265,6 +5554,62 @@ components:
       x-enumDescriptions:
         Ascending: ""
         Descending: ""
+    OutputFrejaAddress:
+      properties:
+        line1:
+          description: "The line1 portion of the address. Incorporates all address\
+            \ details that are not included by city, postal code, and country."
+          example: 123 Residential St
+          nullable: true
+          type: string
+        city:
+          description: The name of the city associated with the address.
+          example: New York
+          nullable: true
+          type: string
+        postalCode:
+          description: The postal code associated with the address.
+          example: "12345"
+          nullable: true
+          type: string
+        country:
+          description: The ISO 3166-1 alpha-2 country code associated with the address.
+          example: SE
+          nullable: true
+          type: string
+      type: object
+    OutputFrejaDocument:
+      properties:
+        type:
+          description: |-
+            Type of document. Possible values are:
+            * "PASS": Passport
+            * "DRILIC": Driver's License
+            * "NATID": National ID
+            * "IDSIS": SiS certified ID document
+            * "TAXID": Tax Agency ID card
+            * "OTHERID": Other IDs
+          example: PASS
+          nullable: true
+          type: string
+        serialNumber:
+          description: The document serial number. The structure of this number depends
+            on the type and nationality of the document.
+          example: SA1234567890
+          nullable: true
+          type: string
+        expirationDate:
+          description: Expiration date of the document. Formatted as an ISO 8601 Date.
+          example: 2028-12-31
+          format: date
+          nullable: true
+          type: string
+        country:
+          description: The ISO 3166-1 alpha-2 country code associated with the document.
+          example: SE
+          nullable: true
+          type: string
+      type: object
     PersonData:
       description: Identity information for the individual being verified
       properties:
@@ -4532,18 +5877,117 @@ components:
             The PhilSys Card Number is 12 characters long, and often is written in octets with dashes in between.
           example: 1234-5678-9101-1213
           type: string
+        givenName:
+          description: The given (first) name of the individual.
+          example: Juan
+          nullable: true
+          type: string
+        middleName:
+          description: The middle name of the individual.
+          example: Santos
+          nullable: true
+          type: string
+        familyName:
+          description: The family (last) name of the individual.
+          example: Dela Cruz
+          nullable: true
+          type: string
+        dateOfBirth:
+          description: The date of birth of the individual.
+          example: 1985-01-31
+          format: date
+          nullable: true
+          type: string
+        suffix:
+          description: "The name suffix of the individual (e.g. Jr., III)."
+          example: Jr.
+          nullable: true
+          type: string
+        sex:
+          description: "The sex of the individual.\n            \nPossible values:\n\
+            - Male\n- Female"
+          example: Male
+          nullable: true
+          type: string
+        placeOfBirth:
+          description: The place of birth of the individual as recorded on the PhilSys
+            credential.
+          example: Manila
+          nullable: true
+          type: string
+        documentIssueDate:
+          description: The date the document was issued.
+          example: 2024-03-15
+          format: date
+          nullable: true
+          type: string
+        documentNumber:
+          description: The document number of the digital National ID.
+          example: "12345678901234"
+          nullable: true
+          type: string
+        issuingAuthority:
+          description: The issuing authority of the document.
+          example: Philippine Statistics Authority
+          nullable: true
+          type: string
       required:
       - philsysCardNumber
       type: object
     PhilippinesPhysicalNidProviderOutput:
-      description: Exposed properties for the `philippines-physical-national-id-qr`
-        Provider which do not directly map to the normalized IdentityData model.
+      description: |-
+        Exposed properties for the `philippines-physical-national-id-qr` Provider which do not directly map to the
+        normalized IdentityData model.
       properties:
         philsysCardNumber:
           description: |-
             The PhilSys Card Number (PCN). Every citizen or resident alien registered in PhilSys has a PhilSys Number (PSN). This number is tokenized into a card number to protect the PSN.
             The PhilSys Card Number is 12 characters long, and often is written in octets with dashes in between.
           example: 1234-5678-9101-1213
+          type: string
+        givenName:
+          description: The given (first) name of the individual.
+          example: Juan
+          nullable: true
+          type: string
+        middleName:
+          description: The middle name of the individual.
+          example: Santos
+          nullable: true
+          type: string
+        familyName:
+          description: The family (last) name of the individual.
+          example: Dela Cruz
+          nullable: true
+          type: string
+        dateOfBirth:
+          description: The date of birth of the individual.
+          example: 1985-01-31
+          format: date
+          nullable: true
+          type: string
+        suffix:
+          description: "The name suffix of the individual (e.g. Jr., III)."
+          example: Jr.
+          nullable: true
+          type: string
+        sex:
+          description: "The sex of the individual.\n            \nPossible values:\n\
+            - Male\n- Female"
+          example: Male
+          nullable: true
+          type: string
+        placeOfBirth:
+          description: The place of birth of the individual as recorded on the PhilSys
+            credential.
+          example: Manila
+          nullable: true
+          type: string
+        documentIssueDate:
+          description: The date the document was issued.
+          example: 2024-03-15
+          format: date
+          nullable: true
           type: string
       required:
       - philsysCardNumber
@@ -5168,10 +6612,25 @@ components:
           - $ref: '#/components/schemas/AppleWalletInput'
           description: Input for the `apple-wallet` provider
           nullable: true
+        samsung-wallet:
+          allOf:
+          - $ref: '#/components/schemas/SamsungWalletInput'
+          description: Input for the `samsung-wallet` provider
+          nullable: true
+        france-identite:
+          allOf:
+          - $ref: '#/components/schemas/FranceIdentiteInput'
+          description: Input for the `france-identite` provider
+          nullable: true
         peru-dni-lookup:
           allOf:
           - $ref: '#/components/schemas/PeruDniLookupInput'
           description: Input for the `peru-dni-lookup` provider
+          nullable: true
+        uk-evisa-lookup:
+          allOf:
+          - $ref: '#/components/schemas/UkEvisaLookupInput'
+          description: Input for the `uk-evisa-lookup` provider
           nullable: true
         trinsic-test-database-lookup:
           allOf:
@@ -5220,9 +6679,10 @@ components:
           nullable: true
         a-freja-eid-login:
           allOf:
-          - $ref: '#/components/schemas/FrejaProviderOutput'
-          description: Exposed properties for the `a-freja-eid-login` Provider which
-            do not directly map to the normalized IdentityData model.
+          - $ref: '#/components/schemas/FrejaIndirectProviderOutput'
+          description: |-
+            Exposed properties for the `a-freja-eid-login` Provider which do not directly map to the normalized IdentityData
+            model.
           nullable: true
         a-itsme-login:
           allOf:
@@ -5260,6 +6720,18 @@ components:
           description: Exposed properties for the `a-pl-mojeid-login` Provider which
             do not directly map to the normalized IdentityData model.
           nullable: true
+        australia-connect-id:
+          allOf:
+          - $ref: '#/components/schemas/ConnectIdProviderOutput'
+          description: Exposed properties for the `australia-connect-id` Provider
+            which do not directly map to the normalized IdentityData model.
+          nullable: true
+        czech-republic-mojeid:
+          allOf:
+          - $ref: '#/components/schemas/CzechMojeIdProviderOutput'
+          description: Exposed properties for the `czech-moje-id` Provider which do
+            not directly map to the normalized IdentityData model.
+          nullable: true
         a-pt-id-login:
           allOf:
           - $ref: '#/components/schemas/PortugalIdCardProviderOutput'
@@ -5290,11 +6762,30 @@ components:
           description: Exposed properties for the `ethiopia-fayda` Provider which
             do not directly map to the normalized IdentityData model.
           nullable: true
+        finnish-trust-network:
+          allOf:
+          - $ref: '#/components/schemas/FinnishTrustNetworkProviderOutput'
+          description: Exposed properties for the `finnish-trust-network` Provider
+            which do not directly map to the normalized IdentityData model.
+          nullable: true
+        france-identite:
+          allOf:
+          - $ref: '#/components/schemas/FranceIdentiteProviderOutput'
+          description: Exposed properties for the `france-identite` Provider which
+            do not directly map to the normalized IdentityData model.
+          nullable: true
         france-identite-numerique:
           allOf:
           - $ref: '#/components/schemas/FrenchNumeriqueProviderOutput'
           description: Exposed properties for the `france-identite-numerique` Provider
             which do not directly map to the normalized IdentityData model.
+          nullable: true
+        freja:
+          allOf:
+          - $ref: '#/components/schemas/FrejaProviderOutput'
+          description: |-
+            Exposed properties for the `freja` Provider which do not directly map to the normalized IdentityData
+            model.
           nullable: true
         google-wallet:
           allOf:
@@ -5302,11 +6793,23 @@ components:
           description: Exposed properties for the `google-wallet` Provider which do
             not directly map to the normalized IdentityData model.
           nullable: true
+        india-digilocker-aadhaar:
+          allOf:
+          - $ref: '#/components/schemas/DigilockerAadhaarProviderOutput'
+          description: Exposed properties for the `india-digilocker-aadhaar` Provider
+            which do not directly map to the normalized IdentityData model.
+          nullable: true
         italy-spid:
           allOf:
           - $ref: '#/components/schemas/SpidProviderOutput'
           description: Exposed properties for the `italy-spid` Provider which do not
             directly map to the normalized IdentityData model.
+          nullable: true
+        kenya-nid-lookup-2:
+          allOf:
+          - $ref: '#/components/schemas/KenyaNidLookup2ProviderOutput'
+          description: Exposed properties for the `kenya-nid-lookup-2` Provider which
+            do not directly map to the normalized IdentityData model.
           nullable: true
         lloyds-smart-id:
           allOf:
@@ -5326,11 +6829,29 @@ components:
           description: Exposed properties for the `mobile-id` Provider which do not
             directly map to the normalized IdentityData model.
           nullable: true
+        nigeria-nin-lookup-2:
+          allOf:
+          - $ref: '#/components/schemas/NigeriaNinLookup2ProviderOutput'
+          description: Exposed properties for the `nigeria-nin-lookup-2` Provider
+            which do not directly map to the normalized IdentityData model.
+          nullable: true
+        oneid:
+          allOf:
+          - $ref: '#/components/schemas/OneIdProviderOutput'
+          description: Exposed properties for the `oneid` Provider which do not directly
+            map to the normalized IdentityData model.
+          nullable: true
         peru-dni-lookup:
           allOf:
           - $ref: '#/components/schemas/PeruDniProviderOutput'
           description: Exposed properties for the `peru-dni-lookup` Provider which
             do not directly map to the normalized IdentityData model.
+          nullable: true
+        norway-bankid:
+          allOf:
+          - $ref: '#/components/schemas/NorwegianBankIdProviderOutput'
+          description: Exposed properties for the `norway-bankid` Provider which do
+            not directly map to the normalized IdentityData model.
           nullable: true
         philippines-digital-national-id-qr:
           allOf:
@@ -5362,6 +6883,12 @@ components:
           description: Exposed properties for the `smart-id` Provider which do not
             directly map to the normalized IdentityData model.
           nullable: true
+        uk-evisa-lookup:
+          allOf:
+          - $ref: '#/components/schemas/UnitedKingdomEvisaProviderOutput'
+          description: Exposed properties for the `uk-evisa-lookup` Provider which
+            do not directly map to the normalized IdentityData model.
+          nullable: true
         sweden-bankid:
           allOf:
           - $ref: '#/components/schemas/SwedenBankIdProviderOutput'
@@ -5380,6 +6907,73 @@ components:
           description: Exposed properties for the `yoti` Provider which do not directly
             map to the normalized IdentityData model.
           nullable: true
+        yoti-deeplink:
+          allOf:
+          - $ref: '#/components/schemas/YotiDeeplinkProviderOutput'
+          description: Exposed properties for the `yoti-deeplink` Provider which do
+            not directly map to the normalized IdentityData model.
+          nullable: true
+      type: object
+    Raw18013DocumentRequest:
+      properties:
+        documentType:
+          description: "The type of the document being requested, as defined by ISO\
+            \ specifications 18013-5, 18013-7, 23220-2, or a similar or related standard.\n\
+            \            \nCommon values:\n- \"org.iso.18013.5.1.mDL\" -- a Mobile\
+            \ Driver's License\n- \"eu.europa.ec.eudi.pid.1\" -- an EUDI Wallet PID\n\
+            - \"com.google.wallet.idcard.1\" -- a Google Wallet ID Pass\n- \"org.iso.23220.photoid.1\"\
+            \ -- a generic ISO 23220-2 compliant Photo ID (used by Apple Wallet's\
+            \ ID Pass)"
+          example: org.iso.18013.5.1.mDL
+          minLength: 1
+          type: string
+        nameSpaces:
+          additionalProperties:
+            additionalProperties:
+              type: boolean
+            type: object
+          description: "The namespaces and attributes (PII) to request from the document.\n\
+            \            \nThis is a map of (nameSpaceName -> (attributeName -> willRetain)),\
+            \ where:\n            \n- nameSpaceName is the name of a NameSpace within\
+            \ the document\n- attributeName is the name of a specific attribute within\
+            \ the NameSpace\n- willRetain indicates, to the Wallet, whether you as\
+            \ the Relying Party intend to retain the data for longer than the scope\
+            \ of the transaction\n            \nCommon namespace values:\n- \"org.iso.18013.5.1\"\
+            \ -- the primary namespace of a Mobile Driver's License or a Google Wallet\
+            \ ID Pass\n- \"org.iso.18013.5.1.aamva\" -- the secondary, AAMVA-defined\
+            \ namespace of a Mobile Driver's License\n- \"eu.europa.ec.eudi.pid.1\"\
+            \ -- the primary namespace of an EUDI Wallet PID\n- \"org.iso.23220.1\"\
+            \ -- the primary namespace of an ISO 23220-2 credential or an Apple Wallet\
+            \ ID Pass"
+          example:
+            org.iso.18013.5.1:
+              given_name: true
+              family_name: true
+              portrait: false
+            org.iso.18013.5.1.aamva:
+              name_suffix: true
+          minLength: 1
+          type: object
+      required:
+      - documentType
+      - nameSpaces
+      type: object
+    Raw18013RequestInput:
+      description: "A raw 18013-7 exchange request.\n            \nUse this to specify\
+        \ a raw 18013-7 exchange against an arbitrary document type, namespace, and\
+        \ set of fields."
+      properties:
+        documentRequests:
+          description: "A collection of requests for specific document(s), any of\
+            \ which may be used to satisfy the verification.\n            \nAt least\
+            \ one request must be provided.\nNo more than 10 requests may be provided."
+          items:
+            $ref: '#/components/schemas/Raw18013DocumentRequest'
+          maxItems: 10
+          minItems: 1
+          type: array
+      required:
+      - documentRequests
       type: object
     RecommendProviderHealthOption:
       enum:
@@ -5552,13 +7146,67 @@ components:
           subdivisions:
           - subdivisions
           - subdivisions
+        remainder:
+        - subtext: dmv.ca.gov
+          regions:
+          - regions
+          - regions
+          name: name
+          health: online | offline
+          id: id
+          countries:
+          - countries
+          - countries
+          subProviders:
+          - subtext: dmv.ca.gov
+            name: name
+            id: id
+            logoUrl: logoUrl
+          - subtext: dmv.ca.gov
+            name: name
+            id: id
+            logoUrl: logoUrl
+          logoUrl: logoUrl
+          subdivisions:
+          - subdivisions
+          - subdivisions
+        - subtext: dmv.ca.gov
+          regions:
+          - regions
+          - regions
+          name: name
+          health: online | offline
+          id: id
+          countries:
+          - countries
+          - countries
+          subProviders:
+          - subtext: dmv.ca.gov
+            name: name
+            id: id
+            logoUrl: logoUrl
+          - subtext: dmv.ca.gov
+            name: name
+            id: id
+            logoUrl: logoUrl
+          logoUrl: logoUrl
+          subdivisions:
+          - subdivisions
+          - subdivisions
       properties:
         recommendedProviders:
           items:
             $ref: '#/components/schemas/RecommendProviderInformation'
           type: array
+        remainder:
+          description: All Providers available to your Verification Profile which
+            are not in `recommendedProviders`
+          items:
+            $ref: '#/components/schemas/RecommendProviderInformation'
+          type: array
       required:
       - recommendedProviders
+      - remainder
       type: object
     RecommendationInfo:
       description: Information relating to a user; used to generated Identity Provider
@@ -5681,6 +7329,17 @@ components:
           \ on the user's device, such as a native mDL exchange\nvia the Digital Credentials\
           \ API on web, or the equivalent native APIs on Android or iOS.\n       \
           \     \nSee the `PerformNativeChallenge` launch method for more details."
+    SamsungWalletInput:
+      properties:
+        preview_raw18013Request:
+          allOf:
+          - $ref: '#/components/schemas/Raw18013RequestInput'
+          description: "**Preview feature: not suitable for production use cases**\n\
+            \            \nThe raw 18013-7 exchange request to use for this verification.\n\
+            \            \nIf set, this overrides any default configuration on your\
+            \ Verification Profile."
+          nullable: true
+      type: object
     SamsungWalletProviderOutput:
       description: Exposed properties for the `samsung-wallet` Provider which do not
         directly map to the normalized IdentityData model.
@@ -6492,6 +8151,106 @@ components:
           nullable: true
           type: string
       type: object
+    UkEvisaLookupInput:
+      properties:
+        shareCode:
+          description: The 9-character share code.
+          example: R9Z3X7K2P
+          maxLength: 9
+          minLength: 9
+          type: string
+        dateOfBirth:
+          description: "The user's date of birth, in `YYYY-MM-DD` format."
+          format: date
+          type: string
+      required:
+      - dateOfBirth
+      - shareCode
+      type: object
+    UnitedKingdomEvisaProviderOutput:
+      description: Exposed properties for the `uk-evisa-lookup` Provider which do
+        not directly map to the normalized IdentityData model.
+      properties:
+        firstName:
+          description: The first name of the individual as recorded on the eVisa.
+          example: MUSA
+          nullable: true
+          type: string
+        lastName:
+          description: The last name of the individual as recorded on the eVisa.
+          example: MOHAMMED
+          nullable: true
+          type: string
+        dateOfBirth:
+          description: The date of birth of the individual.
+          example: 1990-05-15
+          format: date
+          nullable: true
+          type: string
+        shareCode:
+          description: The 9-character share code used for the verification.
+          example: W86BC8RAH
+          nullable: true
+          type: string
+        referenceNumber:
+          description: The eVisa reference number issued by UK Visas and Immigration
+            (UKVI).
+          example: ABC1234567
+          nullable: true
+          type: string
+        expirationDate:
+          description: The expiration date of the eVisa. Only present for immigration_status
+            verifications.
+          example: 2028-12-31
+          format: date
+          nullable: true
+          type: string
+        validFrom:
+          description: The start date from which the eVisa is valid. Only returned
+            for immigration_status and right_to_rent verifications — not returned
+            for right_to_work.
+          example: 2024-01-15
+          format: date
+          nullable: true
+          type: string
+        nationality:
+          description: The nationality of the individual as recorded on the eVisa.
+            Only present for immigration_status verifications.
+          example: NG
+          nullable: true
+          type: string
+        immigrationStatus:
+          description: |-
+            The immigration status of the individual. Only present for immigration_status verifications.
+            This is a personalized record for each individual, and there is no single definitive list.
+            Some common values:
+            - Settled
+            - Pre-settled
+            - Student
+            - Graduate
+            - Youth Mobility
+            - Global Talent
+            - Skilled Worker
+            - Limited leave
+          example: Settled
+          nullable: true
+          type: string
+        outcome:
+          description: "Overall verification outcome: \"pass\" or \"fail\"."
+          example: pass
+          nullable: true
+          type: string
+        evidenceType:
+          description: |-
+            Type of verification.
+            List of possible values:
+            - immigration_status
+            - right_to_work
+            - right_to_rent
+          example: immigration_status
+          nullable: true
+          type: string
+      type: object
     VerificationProfileResponse:
       example:
         enabledProviders:
@@ -6499,6 +8258,7 @@ components:
         - enabledProviders
         brandName: brandName
         primaryColor: primaryColor
+        sessionExpiration: sessionExpiration
         alias: alias
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         isProductionUsage: true
@@ -6527,6 +8287,11 @@ components:
           items:
             type: string
           type: array
+        sessionExpiration:
+          description: The session expiration for verification sessions created with
+            this profile.
+          format: date-span
+          type: string
         isProductionUsage:
           description: Whether this profile is for production usage. Only applicable
             for Live environment profiles.
@@ -6539,6 +8304,95 @@ components:
       - isProductionUsage
       - logoUrl
       - primaryColor
+      - sessionExpiration
+      type: object
+    YotiDeeplinkProviderOutput:
+      description: Exposed properties for the `yoti-deeplink` Provider which do not
+        directly map to the normalized IdentityData model.
+      properties:
+        rememberMeId:
+          description: "The unique id for your service of the individual. This is\
+            \ not shared between different services so if the user logs into a different\
+            \ service, the user will have a new id for the other service."
+          example: 9f63ff98-e1e3-433c-9b86-7c697d0b4e5f
+          format: uuid
+          nullable: true
+          type: string
+        email:
+          description: The email address of the individual
+          example: johndoe@example.com
+          nullable: true
+          type: string
+        givenName:
+          description: The given name of the individual. This can correspond to first
+            and middle names in English.
+          example: John Alvin
+          nullable: true
+          type: string
+        familyName:
+          description: The family name of the individual
+          example: Doe
+          nullable: true
+          type: string
+        fullName:
+          description: |-
+            Full name of the individual which is composed of the given and family name.
+            Unverified full name may be safe to use. For example, Aadhaar card provides full name, but due to certain limitations of verifying Aadhaar, Yoti is unable to verify this property so it is listed as "unverified".
+          example: John Alvin Doe
+          nullable: true
+          type: string
+        dateOfBirth:
+          description: |-
+            The date of birth of the individual.
+            Unverified date of birth may be safe to use. For example, Aadhaar card provides date of birth, but due to certain limitations of verifying Aadhaar, Yoti is unable to verify this property so it is listed as "unverified".
+          example: 1985-01-31
+          format: date
+          nullable: true
+          type: string
+        gender:
+          description: "The gender of the individual. Depending on the source or country,\
+            \ gender may not be verified. This is a setting that can be configured\
+            \ while setting up scopes.\n            \nUnverified gender may be safe\
+            \ to use. For example, Aadhaar card provides gender, but due to certain\
+            \ limitations of verifying Aadhaar, Yoti is unable to verify this property\
+            \ so it is listed as \"unverified\".\nIn some countries\nPossible values:\n\
+            - \"MALE\"\n- \"FEMALE\"\n- \"TRANSGENDER\"\n- \"OTHER\""
+          example: MALE
+          nullable: true
+          type: string
+        nationality:
+          description: The nationality of the individual as a ISO alpha-3 code
+          example: GBR
+          nullable: true
+          type: string
+        mobileNumber:
+          description: "The mobile phone number of the individual. This number was\
+            \ verified with a one time password (OTP) during the user's registration\
+            \ with Yoti. In some cases, Yoti may do additional checks against its\
+            \ sources to confirm the user's identity."
+          example: "+447777123456"
+          nullable: true
+          type: string
+        structuredPostalAddress:
+          allOf:
+          - $ref: '#/components/schemas/YotiStructuredPostalAddress'
+          description: |-
+            A structured postal address for the individual that comes from the underlying document or can be manually added. In the case of being manually added, the address is considered "unverified".
+            Unverified addresses may be safe to use. For example, Aadhaar card provides an address, but due to certain limitations of verifying Aadhaar, Yoti is unable to verify this property so it is listed as "unverified".
+          nullable: true
+        postalAddress:
+          description: |-
+            The whole address for the individual that comes from the underlying document or can be manually added. In the case of being manually added, the address is considered "unverified". The format of this will be different for each country.
+            Refer to `StructuredPostalAddress` for a detailed version of the address.
+          example: "6th Floor, 107 Leadenhall St, London, EC3A 4AF"
+          nullable: true
+          type: string
+        documentDetails:
+          allOf:
+          - $ref: '#/components/schemas/YotiDocumentDetails'
+          description: The details of the underlying document used to help create
+            the Yoti credential
+          nullable: true
       type: object
     YotiDocumentDetails:
       properties:
@@ -6817,6 +8671,19 @@ components:
         Logo:
           description: The logo of the verification profile.
           format: binary
+          type: string
+        RedactionPeriod:
+          description: |-
+            The redaction period for verification data.
+            Must be between 0 and 31 days, and at least 15 minutes greater than the session expiration.
+            If not specified, defaults to 31 days.
+          format: date-span
+          type: string
+        SessionExpiration:
+          description: |-
+            The session expiration for verification sessions created with this profile.
+            Must be between 15 minutes and 24 hours. Defaults to 1 hour if not specified.
+          format: date-span
           type: string
         IsProductionUsage:
           description: |-

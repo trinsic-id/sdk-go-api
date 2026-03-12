@@ -21,6 +21,12 @@ var _ MappedNullable = &FaydaProviderOutput{}
 type FaydaProviderOutput struct {
 	// A unique eKYC identifying token used to match the original eKYC token received from the provider when the user was initially registered.              Since Fayda does not return identifying data, it is the responsibility of the relying party to keep the unique user token received from Fayda when the user was initially registered to do a comparison of the subs to verify that it is the same person.
 	Sub NullableString `json:"sub,omitempty"`
+	// The full name of the verified individual.              This may be an English or Arabic name if the individual only has it one language, otherwise this will be null and the other names will be populated.
+	Name NullableString `json:"name,omitempty"`
+	// The full English name of the verified individual.
+	EnglishName NullableString `json:"englishName,omitempty"`
+	// The full Arabic name of the verified individual.
+	ArabicName NullableString `json:"arabicName,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -85,6 +91,132 @@ func (o *FaydaProviderOutput) UnsetSub() {
 	o.Sub.Unset()
 }
 
+// GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *FaydaProviderOutput) GetName() string {
+	if o == nil || IsNil(o.Name.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Name.Get()
+}
+
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *FaydaProviderOutput) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Name.Get(), o.Name.IsSet()
+}
+
+// HasName returns a boolean if a field has been set.
+func (o *FaydaProviderOutput) HasName() bool {
+	if o != nil && o.Name.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given NullableString and assigns it to the Name field.
+func (o *FaydaProviderOutput) SetName(v string) {
+	o.Name.Set(&v)
+}
+// SetNameNil sets the value for Name to be an explicit nil
+func (o *FaydaProviderOutput) SetNameNil() {
+	o.Name.Set(nil)
+}
+
+// UnsetName ensures that no value is present for Name, not even an explicit nil
+func (o *FaydaProviderOutput) UnsetName() {
+	o.Name.Unset()
+}
+
+// GetEnglishName returns the EnglishName field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *FaydaProviderOutput) GetEnglishName() string {
+	if o == nil || IsNil(o.EnglishName.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.EnglishName.Get()
+}
+
+// GetEnglishNameOk returns a tuple with the EnglishName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *FaydaProviderOutput) GetEnglishNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.EnglishName.Get(), o.EnglishName.IsSet()
+}
+
+// HasEnglishName returns a boolean if a field has been set.
+func (o *FaydaProviderOutput) HasEnglishName() bool {
+	if o != nil && o.EnglishName.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetEnglishName gets a reference to the given NullableString and assigns it to the EnglishName field.
+func (o *FaydaProviderOutput) SetEnglishName(v string) {
+	o.EnglishName.Set(&v)
+}
+// SetEnglishNameNil sets the value for EnglishName to be an explicit nil
+func (o *FaydaProviderOutput) SetEnglishNameNil() {
+	o.EnglishName.Set(nil)
+}
+
+// UnsetEnglishName ensures that no value is present for EnglishName, not even an explicit nil
+func (o *FaydaProviderOutput) UnsetEnglishName() {
+	o.EnglishName.Unset()
+}
+
+// GetArabicName returns the ArabicName field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *FaydaProviderOutput) GetArabicName() string {
+	if o == nil || IsNil(o.ArabicName.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.ArabicName.Get()
+}
+
+// GetArabicNameOk returns a tuple with the ArabicName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *FaydaProviderOutput) GetArabicNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ArabicName.Get(), o.ArabicName.IsSet()
+}
+
+// HasArabicName returns a boolean if a field has been set.
+func (o *FaydaProviderOutput) HasArabicName() bool {
+	if o != nil && o.ArabicName.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetArabicName gets a reference to the given NullableString and assigns it to the ArabicName field.
+func (o *FaydaProviderOutput) SetArabicName(v string) {
+	o.ArabicName.Set(&v)
+}
+// SetArabicNameNil sets the value for ArabicName to be an explicit nil
+func (o *FaydaProviderOutput) SetArabicNameNil() {
+	o.ArabicName.Set(nil)
+}
+
+// UnsetArabicName ensures that no value is present for ArabicName, not even an explicit nil
+func (o *FaydaProviderOutput) UnsetArabicName() {
+	o.ArabicName.Unset()
+}
+
 func (o FaydaProviderOutput) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -97,6 +229,15 @@ func (o FaydaProviderOutput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Sub.IsSet() {
 		toSerialize["sub"] = o.Sub.Get()
+	}
+	if o.Name.IsSet() {
+		toSerialize["name"] = o.Name.Get()
+	}
+	if o.EnglishName.IsSet() {
+		toSerialize["englishName"] = o.EnglishName.Get()
+	}
+	if o.ArabicName.IsSet() {
+		toSerialize["arabicName"] = o.ArabicName.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -121,6 +262,9 @@ func (o *FaydaProviderOutput) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "sub")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "englishName")
+		delete(additionalProperties, "arabicName")
 		o.AdditionalProperties = additionalProperties
 	}
 

@@ -21,6 +21,8 @@ var _ MappedNullable = &RecommendProvidersResponse{}
 // RecommendProvidersResponse struct for RecommendProvidersResponse
 type RecommendProvidersResponse struct {
 	RecommendedProviders []RecommendProviderInformation `json:"recommendedProviders"`
+	// All Providers available to your Verification Profile which are not in `recommendedProviders`
+	Remainder []RecommendProviderInformation `json:"remainder"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -30,9 +32,10 @@ type _RecommendProvidersResponse RecommendProvidersResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRecommendProvidersResponse(recommendedProviders []RecommendProviderInformation) *RecommendProvidersResponse {
+func NewRecommendProvidersResponse(recommendedProviders []RecommendProviderInformation, remainder []RecommendProviderInformation) *RecommendProvidersResponse {
 	this := RecommendProvidersResponse{}
 	this.RecommendedProviders = recommendedProviders
+	this.Remainder = remainder
 	return &this
 }
 
@@ -68,6 +71,30 @@ func (o *RecommendProvidersResponse) SetRecommendedProviders(v []RecommendProvid
 	o.RecommendedProviders = v
 }
 
+// GetRemainder returns the Remainder field value
+func (o *RecommendProvidersResponse) GetRemainder() []RecommendProviderInformation {
+	if o == nil {
+		var ret []RecommendProviderInformation
+		return ret
+	}
+
+	return o.Remainder
+}
+
+// GetRemainderOk returns a tuple with the Remainder field value
+// and a boolean to check if the value has been set.
+func (o *RecommendProvidersResponse) GetRemainderOk() ([]RecommendProviderInformation, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Remainder, true
+}
+
+// SetRemainder sets field value
+func (o *RecommendProvidersResponse) SetRemainder(v []RecommendProviderInformation) {
+	o.Remainder = v
+}
+
 func (o RecommendProvidersResponse) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -79,6 +106,7 @@ func (o RecommendProvidersResponse) MarshalJSON() ([]byte, error) {
 func (o RecommendProvidersResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["recommendedProviders"] = o.RecommendedProviders
+	toSerialize["remainder"] = o.Remainder
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -93,6 +121,7 @@ func (o *RecommendProvidersResponse) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"recommendedProviders",
+		"remainder",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -123,6 +152,7 @@ func (o *RecommendProvidersResponse) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "recommendedProviders")
+		delete(additionalProperties, "remainder")
 		o.AdditionalProperties = additionalProperties
 	}
 

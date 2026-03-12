@@ -32,6 +32,8 @@ type VerificationProfileResponse struct {
 	PrimaryColor string `json:"primaryColor"`
 	// The providers that are currently enabled for the verification profile.
 	EnabledProviders []string `json:"enabledProviders"`
+	// The session expiration for verification sessions created with this profile.
+	SessionExpiration string `json:"sessionExpiration"`
 	// Whether this profile is for production usage. Only applicable for Live environment profiles.
 	IsProductionUsage bool `json:"isProductionUsage"`
 	AdditionalProperties map[string]interface{}
@@ -43,7 +45,7 @@ type _VerificationProfileResponse VerificationProfileResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVerificationProfileResponse(id string, alias string, brandName string, logoUrl string, primaryColor string, enabledProviders []string, isProductionUsage bool) *VerificationProfileResponse {
+func NewVerificationProfileResponse(id string, alias string, brandName string, logoUrl string, primaryColor string, enabledProviders []string, sessionExpiration string, isProductionUsage bool) *VerificationProfileResponse {
 	this := VerificationProfileResponse{}
 	this.Id = id
 	this.Alias = alias
@@ -51,6 +53,7 @@ func NewVerificationProfileResponse(id string, alias string, brandName string, l
 	this.LogoUrl = logoUrl
 	this.PrimaryColor = primaryColor
 	this.EnabledProviders = enabledProviders
+	this.SessionExpiration = sessionExpiration
 	this.IsProductionUsage = isProductionUsage
 	return &this
 }
@@ -207,6 +210,30 @@ func (o *VerificationProfileResponse) SetEnabledProviders(v []string) {
 	o.EnabledProviders = v
 }
 
+// GetSessionExpiration returns the SessionExpiration field value
+func (o *VerificationProfileResponse) GetSessionExpiration() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.SessionExpiration
+}
+
+// GetSessionExpirationOk returns a tuple with the SessionExpiration field value
+// and a boolean to check if the value has been set.
+func (o *VerificationProfileResponse) GetSessionExpirationOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.SessionExpiration, true
+}
+
+// SetSessionExpiration sets field value
+func (o *VerificationProfileResponse) SetSessionExpiration(v string) {
+	o.SessionExpiration = v
+}
+
 // GetIsProductionUsage returns the IsProductionUsage field value
 func (o *VerificationProfileResponse) GetIsProductionUsage() bool {
 	if o == nil {
@@ -247,6 +274,7 @@ func (o VerificationProfileResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["logoUrl"] = o.LogoUrl
 	toSerialize["primaryColor"] = o.PrimaryColor
 	toSerialize["enabledProviders"] = o.EnabledProviders
+	toSerialize["sessionExpiration"] = o.SessionExpiration
 	toSerialize["isProductionUsage"] = o.IsProductionUsage
 
 	for key, value := range o.AdditionalProperties {
@@ -267,6 +295,7 @@ func (o *VerificationProfileResponse) UnmarshalJSON(data []byte) (err error) {
 		"logoUrl",
 		"primaryColor",
 		"enabledProviders",
+		"sessionExpiration",
 		"isProductionUsage",
 	}
 
@@ -303,6 +332,7 @@ func (o *VerificationProfileResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "logoUrl")
 		delete(additionalProperties, "primaryColor")
 		delete(additionalProperties, "enabledProviders")
+		delete(additionalProperties, "sessionExpiration")
 		delete(additionalProperties, "isProductionUsage")
 		o.AdditionalProperties = additionalProperties
 	}

@@ -79,8 +79,14 @@ type ProviderInput struct {
 	GoogleWallet NullableGoogleWalletInput `json:"google-wallet,omitempty"`
 	// Input for the `apple-wallet` provider
 	AppleWallet NullableAppleWalletInput `json:"apple-wallet,omitempty"`
+	// Input for the `samsung-wallet` provider
+	SamsungWallet NullableSamsungWalletInput `json:"samsung-wallet,omitempty"`
+	// Input for the `france-identite` provider
+	FranceIdentite NullableFranceIdentiteInput `json:"france-identite,omitempty"`
 	// Input for the `peru-dni-lookup` provider
 	PeruDniLookup NullablePeruDniLookupInput `json:"peru-dni-lookup,omitempty"`
+	// Input for the `uk-evisa-lookup` provider
+	UkEvisaLookup NullableUkEvisaLookupInput `json:"uk-evisa-lookup,omitempty"`
 	// *TEST MODE ONLY.*              Input for the `trinsic-test-database-lookup` provider
 	TrinsicTestDatabaseLookup NullableTrinsicTestDatabaseLookupInput `json:"trinsic-test-database-lookup,omitempty"`
 	// *TEST MODE ONLY.*              Input for the `trinsic-test-sub-providers` provider
@@ -1367,6 +1373,90 @@ func (o *ProviderInput) UnsetAppleWallet() {
 	o.AppleWallet.Unset()
 }
 
+// GetSamsungWallet returns the SamsungWallet field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderInput) GetSamsungWallet() SamsungWalletInput {
+	if o == nil || IsNil(o.SamsungWallet.Get()) {
+		var ret SamsungWalletInput
+		return ret
+	}
+	return *o.SamsungWallet.Get()
+}
+
+// GetSamsungWalletOk returns a tuple with the SamsungWallet field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderInput) GetSamsungWalletOk() (*SamsungWalletInput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.SamsungWallet.Get(), o.SamsungWallet.IsSet()
+}
+
+// HasSamsungWallet returns a boolean if a field has been set.
+func (o *ProviderInput) HasSamsungWallet() bool {
+	if o != nil && o.SamsungWallet.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSamsungWallet gets a reference to the given NullableSamsungWalletInput and assigns it to the SamsungWallet field.
+func (o *ProviderInput) SetSamsungWallet(v SamsungWalletInput) {
+	o.SamsungWallet.Set(&v)
+}
+// SetSamsungWalletNil sets the value for SamsungWallet to be an explicit nil
+func (o *ProviderInput) SetSamsungWalletNil() {
+	o.SamsungWallet.Set(nil)
+}
+
+// UnsetSamsungWallet ensures that no value is present for SamsungWallet, not even an explicit nil
+func (o *ProviderInput) UnsetSamsungWallet() {
+	o.SamsungWallet.Unset()
+}
+
+// GetFranceIdentite returns the FranceIdentite field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderInput) GetFranceIdentite() FranceIdentiteInput {
+	if o == nil || IsNil(o.FranceIdentite.Get()) {
+		var ret FranceIdentiteInput
+		return ret
+	}
+	return *o.FranceIdentite.Get()
+}
+
+// GetFranceIdentiteOk returns a tuple with the FranceIdentite field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderInput) GetFranceIdentiteOk() (*FranceIdentiteInput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.FranceIdentite.Get(), o.FranceIdentite.IsSet()
+}
+
+// HasFranceIdentite returns a boolean if a field has been set.
+func (o *ProviderInput) HasFranceIdentite() bool {
+	if o != nil && o.FranceIdentite.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetFranceIdentite gets a reference to the given NullableFranceIdentiteInput and assigns it to the FranceIdentite field.
+func (o *ProviderInput) SetFranceIdentite(v FranceIdentiteInput) {
+	o.FranceIdentite.Set(&v)
+}
+// SetFranceIdentiteNil sets the value for FranceIdentite to be an explicit nil
+func (o *ProviderInput) SetFranceIdentiteNil() {
+	o.FranceIdentite.Set(nil)
+}
+
+// UnsetFranceIdentite ensures that no value is present for FranceIdentite, not even an explicit nil
+func (o *ProviderInput) UnsetFranceIdentite() {
+	o.FranceIdentite.Unset()
+}
+
 // GetPeruDniLookup returns the PeruDniLookup field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ProviderInput) GetPeruDniLookup() PeruDniLookupInput {
 	if o == nil || IsNil(o.PeruDniLookup.Get()) {
@@ -1407,6 +1497,48 @@ func (o *ProviderInput) SetPeruDniLookupNil() {
 // UnsetPeruDniLookup ensures that no value is present for PeruDniLookup, not even an explicit nil
 func (o *ProviderInput) UnsetPeruDniLookup() {
 	o.PeruDniLookup.Unset()
+}
+
+// GetUkEvisaLookup returns the UkEvisaLookup field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderInput) GetUkEvisaLookup() UkEvisaLookupInput {
+	if o == nil || IsNil(o.UkEvisaLookup.Get()) {
+		var ret UkEvisaLookupInput
+		return ret
+	}
+	return *o.UkEvisaLookup.Get()
+}
+
+// GetUkEvisaLookupOk returns a tuple with the UkEvisaLookup field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderInput) GetUkEvisaLookupOk() (*UkEvisaLookupInput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.UkEvisaLookup.Get(), o.UkEvisaLookup.IsSet()
+}
+
+// HasUkEvisaLookup returns a boolean if a field has been set.
+func (o *ProviderInput) HasUkEvisaLookup() bool {
+	if o != nil && o.UkEvisaLookup.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetUkEvisaLookup gets a reference to the given NullableUkEvisaLookupInput and assigns it to the UkEvisaLookup field.
+func (o *ProviderInput) SetUkEvisaLookup(v UkEvisaLookupInput) {
+	o.UkEvisaLookup.Set(&v)
+}
+// SetUkEvisaLookupNil sets the value for UkEvisaLookup to be an explicit nil
+func (o *ProviderInput) SetUkEvisaLookupNil() {
+	o.UkEvisaLookup.Set(nil)
+}
+
+// UnsetUkEvisaLookup ensures that no value is present for UkEvisaLookup, not even an explicit nil
+func (o *ProviderInput) UnsetUkEvisaLookup() {
+	o.UkEvisaLookup.Unset()
 }
 
 // GetTrinsicTestDatabaseLookup returns the TrinsicTestDatabaseLookup field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -1593,8 +1725,17 @@ func (o ProviderInput) ToMap() (map[string]interface{}, error) {
 	if o.AppleWallet.IsSet() {
 		toSerialize["apple-wallet"] = o.AppleWallet.Get()
 	}
+	if o.SamsungWallet.IsSet() {
+		toSerialize["samsung-wallet"] = o.SamsungWallet.Get()
+	}
+	if o.FranceIdentite.IsSet() {
+		toSerialize["france-identite"] = o.FranceIdentite.Get()
+	}
 	if o.PeruDniLookup.IsSet() {
 		toSerialize["peru-dni-lookup"] = o.PeruDniLookup.Get()
+	}
+	if o.UkEvisaLookup.IsSet() {
+		toSerialize["uk-evisa-lookup"] = o.UkEvisaLookup.Get()
 	}
 	if o.TrinsicTestDatabaseLookup.IsSet() {
 		toSerialize["trinsic-test-database-lookup"] = o.TrinsicTestDatabaseLookup.Get()
@@ -1654,7 +1795,10 @@ func (o *ProviderInput) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "italy-spid")
 		delete(additionalProperties, "google-wallet")
 		delete(additionalProperties, "apple-wallet")
+		delete(additionalProperties, "samsung-wallet")
+		delete(additionalProperties, "france-identite")
 		delete(additionalProperties, "peru-dni-lookup")
+		delete(additionalProperties, "uk-evisa-lookup")
 		delete(additionalProperties, "trinsic-test-database-lookup")
 		delete(additionalProperties, "trinsic-test-sub-providers")
 		o.AdditionalProperties = additionalProperties

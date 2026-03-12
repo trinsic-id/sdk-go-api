@@ -34,7 +34,10 @@ Name | Type | Description | Notes
 **ItalySpid** | Pointer to [**NullableSpidInput**](SpidInput.md) | Input for the &#x60;italy-spid&#x60; provider | [optional] 
 **GoogleWallet** | Pointer to [**NullableGoogleWalletInput**](GoogleWalletInput.md) | Input for the &#x60;google-wallet&#x60; provider | [optional] 
 **AppleWallet** | Pointer to [**NullableAppleWalletInput**](AppleWalletInput.md) | Input for the &#x60;apple-wallet&#x60; provider | [optional] 
+**SamsungWallet** | Pointer to [**NullableSamsungWalletInput**](SamsungWalletInput.md) | Input for the &#x60;samsung-wallet&#x60; provider | [optional] 
+**FranceIdentite** | Pointer to [**NullableFranceIdentiteInput**](FranceIdentiteInput.md) | Input for the &#x60;france-identite&#x60; provider | [optional] 
 **PeruDniLookup** | Pointer to [**NullablePeruDniLookupInput**](PeruDniLookupInput.md) | Input for the &#x60;peru-dni-lookup&#x60; provider | [optional] 
+**UkEvisaLookup** | Pointer to [**NullableUkEvisaLookupInput**](UkEvisaLookupInput.md) | Input for the &#x60;uk-evisa-lookup&#x60; provider | [optional] 
 **TrinsicTestDatabaseLookup** | Pointer to [**NullableTrinsicTestDatabaseLookupInput**](TrinsicTestDatabaseLookupInput.md) | *TEST MODE ONLY.*              Input for the &#x60;trinsic-test-database-lookup&#x60; provider | [optional] 
 **TrinsicTestSubProviders** | Pointer to [**NullableTrinsicTestSubProvidersInput**](TrinsicTestSubProvidersInput.md) | *TEST MODE ONLY.*              Input for the &#x60;trinsic-test-sub-providers&#x60; provider | [optional] 
 
@@ -1107,6 +1110,76 @@ HasAppleWallet returns a boolean if a field has been set.
 `func (o *ProviderInput) UnsetAppleWallet()`
 
 UnsetAppleWallet ensures that no value is present for AppleWallet, not even an explicit nil
+### GetSamsungWallet
+
+`func (o *ProviderInput) GetSamsungWallet() SamsungWalletInput`
+
+GetSamsungWallet returns the SamsungWallet field if non-nil, zero value otherwise.
+
+### GetSamsungWalletOk
+
+`func (o *ProviderInput) GetSamsungWalletOk() (*SamsungWalletInput, bool)`
+
+GetSamsungWalletOk returns a tuple with the SamsungWallet field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSamsungWallet
+
+`func (o *ProviderInput) SetSamsungWallet(v SamsungWalletInput)`
+
+SetSamsungWallet sets SamsungWallet field to given value.
+
+### HasSamsungWallet
+
+`func (o *ProviderInput) HasSamsungWallet() bool`
+
+HasSamsungWallet returns a boolean if a field has been set.
+
+### SetSamsungWalletNil
+
+`func (o *ProviderInput) SetSamsungWalletNil(b bool)`
+
+ SetSamsungWalletNil sets the value for SamsungWallet to be an explicit nil
+
+### UnsetSamsungWallet
+`func (o *ProviderInput) UnsetSamsungWallet()`
+
+UnsetSamsungWallet ensures that no value is present for SamsungWallet, not even an explicit nil
+### GetFranceIdentite
+
+`func (o *ProviderInput) GetFranceIdentite() FranceIdentiteInput`
+
+GetFranceIdentite returns the FranceIdentite field if non-nil, zero value otherwise.
+
+### GetFranceIdentiteOk
+
+`func (o *ProviderInput) GetFranceIdentiteOk() (*FranceIdentiteInput, bool)`
+
+GetFranceIdentiteOk returns a tuple with the FranceIdentite field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFranceIdentite
+
+`func (o *ProviderInput) SetFranceIdentite(v FranceIdentiteInput)`
+
+SetFranceIdentite sets FranceIdentite field to given value.
+
+### HasFranceIdentite
+
+`func (o *ProviderInput) HasFranceIdentite() bool`
+
+HasFranceIdentite returns a boolean if a field has been set.
+
+### SetFranceIdentiteNil
+
+`func (o *ProviderInput) SetFranceIdentiteNil(b bool)`
+
+ SetFranceIdentiteNil sets the value for FranceIdentite to be an explicit nil
+
+### UnsetFranceIdentite
+`func (o *ProviderInput) UnsetFranceIdentite()`
+
+UnsetFranceIdentite ensures that no value is present for FranceIdentite, not even an explicit nil
 ### GetPeruDniLookup
 
 `func (o *ProviderInput) GetPeruDniLookup() PeruDniLookupInput`
@@ -1142,6 +1215,41 @@ HasPeruDniLookup returns a boolean if a field has been set.
 `func (o *ProviderInput) UnsetPeruDniLookup()`
 
 UnsetPeruDniLookup ensures that no value is present for PeruDniLookup, not even an explicit nil
+### GetUkEvisaLookup
+
+`func (o *ProviderInput) GetUkEvisaLookup() UkEvisaLookupInput`
+
+GetUkEvisaLookup returns the UkEvisaLookup field if non-nil, zero value otherwise.
+
+### GetUkEvisaLookupOk
+
+`func (o *ProviderInput) GetUkEvisaLookupOk() (*UkEvisaLookupInput, bool)`
+
+GetUkEvisaLookupOk returns a tuple with the UkEvisaLookup field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUkEvisaLookup
+
+`func (o *ProviderInput) SetUkEvisaLookup(v UkEvisaLookupInput)`
+
+SetUkEvisaLookup sets UkEvisaLookup field to given value.
+
+### HasUkEvisaLookup
+
+`func (o *ProviderInput) HasUkEvisaLookup() bool`
+
+HasUkEvisaLookup returns a boolean if a field has been set.
+
+### SetUkEvisaLookupNil
+
+`func (o *ProviderInput) SetUkEvisaLookupNil(b bool)`
+
+ SetUkEvisaLookupNil sets the value for UkEvisaLookup to be an explicit nil
+
+### UnsetUkEvisaLookup
+`func (o *ProviderInput) UnsetUkEvisaLookup()`
+
+UnsetUkEvisaLookup ensures that no value is present for UkEvisaLookup, not even an explicit nil
 ### GetTrinsicTestDatabaseLookup
 
 `func (o *ProviderInput) GetTrinsicTestDatabaseLookup() TrinsicTestDatabaseLookupInput`

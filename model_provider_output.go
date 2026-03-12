@@ -30,7 +30,7 @@ type ProviderOutput struct {
 	// Exposed properties for the `a-fi-id-login` Provider which do not directly map to the normalized IdentityData model.
 	AFiIdLogin NullableFinlandIdCardProviderOutput `json:"a-fi-id-login,omitempty"`
 	// Exposed properties for the `a-freja-eid-login` Provider which do not directly map to the normalized IdentityData model.
-	AFrejaEidLogin NullableFrejaProviderOutput `json:"a-freja-eid-login,omitempty"`
+	AFrejaEidLogin NullableFrejaIndirectProviderOutput `json:"a-freja-eid-login,omitempty"`
 	// Exposed properties for the `a-itsme-login` Provider which do not directly map to the normalized IdentityData model.
 	AItsmeLogin NullableItsmeProviderOutput `json:"a-itsme-login,omitempty"`
 	// Exposed properties for the `a-lt-id-login` Provider which do not directly map to the normalized IdentityData model.
@@ -43,6 +43,10 @@ type ProviderOutput struct {
 	AMojeid NullableCzechiaMojeIdProviderOutput `json:"a-mojeid,omitempty"`
 	// Exposed properties for the `a-pl-mojeid-login` Provider which do not directly map to the normalized IdentityData model.
 	APlMojeidLogin NullablePolandMojeIdProviderOutput `json:"a-pl-mojeid-login,omitempty"`
+	// Exposed properties for the `australia-connect-id` Provider which do not directly map to the normalized IdentityData model.
+	AustraliaConnectId NullableConnectIdProviderOutput `json:"australia-connect-id,omitempty"`
+	// Exposed properties for the `czech-moje-id` Provider which do not directly map to the normalized IdentityData model.
+	CzechRepublicMojeid NullableCzechMojeIdProviderOutput `json:"czech-republic-mojeid,omitempty"`
 	// Exposed properties for the `a-pt-id-login` Provider which do not directly map to the normalized IdentityData model.
 	APtIdLogin NullablePortugalIdCardProviderOutput `json:"a-pt-id-login,omitempty"`
 	// Exposed properties for the `a-rs-id-login` Provider which do not directly map to the normalized IdentityData model.
@@ -53,20 +57,36 @@ type ProviderOutput struct {
 	DenmarkMitid NullableMitIdProviderOutput `json:"denmark-mitid,omitempty"`
 	// Exposed properties for the `ethiopia-fayda` Provider which do not directly map to the normalized IdentityData model.
 	EthiopiaFayda NullableFaydaProviderOutput `json:"ethiopia-fayda,omitempty"`
+	// Exposed properties for the `finnish-trust-network` Provider which do not directly map to the normalized IdentityData model.
+	FinnishTrustNetwork NullableFinnishTrustNetworkProviderOutput `json:"finnish-trust-network,omitempty"`
+	// Exposed properties for the `france-identite` Provider which do not directly map to the normalized IdentityData model.
+	FranceIdentite NullableFranceIdentiteProviderOutput `json:"france-identite,omitempty"`
 	// Exposed properties for the `france-identite-numerique` Provider which do not directly map to the normalized IdentityData model.
 	FranceIdentiteNumerique NullableFrenchNumeriqueProviderOutput `json:"france-identite-numerique,omitempty"`
+	// Exposed properties for the `freja` Provider which do not directly map to the normalized IdentityData model.
+	Freja NullableFrejaProviderOutput `json:"freja,omitempty"`
 	// Exposed properties for the `google-wallet` Provider which do not directly map to the normalized IdentityData model.
 	GoogleWallet NullableGoogleWalletProviderOutput `json:"google-wallet,omitempty"`
+	// Exposed properties for the `india-digilocker-aadhaar` Provider which do not directly map to the normalized IdentityData model.
+	IndiaDigilockerAadhaar NullableDigilockerAadhaarProviderOutput `json:"india-digilocker-aadhaar,omitempty"`
 	// Exposed properties for the `italy-spid` Provider which do not directly map to the normalized IdentityData model.
 	ItalySpid NullableSpidProviderOutput `json:"italy-spid,omitempty"`
+	// Exposed properties for the `kenya-nid-lookup-2` Provider which do not directly map to the normalized IdentityData model.
+	KenyaNidLookup2 NullableKenyaNidLookup2ProviderOutput `json:"kenya-nid-lookup-2,omitempty"`
 	// Exposed properties for the `lloyds-smart-id` Provider which do not directly map to the normalized IdentityData model.
 	LloydsSmartId NullableLloydsSmartIdProviderOutput `json:"lloyds-smart-id,omitempty"`
 	// Exposed properties for the `mexico-curp-lookup` Provider which do not directly map to the normalized IdentityData model.
 	MexicoCurpLookup NullableMexicoCurpProviderOutput `json:"mexico-curp-lookup,omitempty"`
 	// Exposed properties for the `mobile-id` Provider which do not directly map to the normalized IdentityData model.
 	MobileId NullableMobileIdProviderOutput `json:"mobile-id,omitempty"`
+	// Exposed properties for the `nigeria-nin-lookup-2` Provider which do not directly map to the normalized IdentityData model.
+	NigeriaNinLookup2 NullableNigeriaNinLookup2ProviderOutput `json:"nigeria-nin-lookup-2,omitempty"`
+	// Exposed properties for the `oneid` Provider which do not directly map to the normalized IdentityData model.
+	Oneid NullableOneIdProviderOutput `json:"oneid,omitempty"`
 	// Exposed properties for the `peru-dni-lookup` Provider which do not directly map to the normalized IdentityData model.
 	PeruDniLookup NullablePeruDniProviderOutput `json:"peru-dni-lookup,omitempty"`
+	// Exposed properties for the `norway-bankid` Provider which do not directly map to the normalized IdentityData model.
+	NorwayBankid NullableNorwegianBankIdProviderOutput `json:"norway-bankid,omitempty"`
 	// Exposed properties for the `philippines-digital-national-id-qr` Provider which do not directly map to the normalized IdentityData model.
 	PhilippinesDigitalNationalIdQr NullablePhilippinesDigitalNidProviderOutput `json:"philippines-digital-national-id-qr,omitempty"`
 	// Exposed properties for the `philippines-physical-national-id-qr` Provider which do not directly map to the normalized IdentityData model.
@@ -77,12 +97,16 @@ type ProviderOutput struct {
 	SamsungWallet NullableSamsungWalletProviderOutput `json:"samsung-wallet,omitempty"`
 	// Exposed properties for the `smart-id` Provider which do not directly map to the normalized IdentityData model.
 	SmartId NullableSmartIdProviderOutput `json:"smart-id,omitempty"`
+	// Exposed properties for the `uk-evisa-lookup` Provider which do not directly map to the normalized IdentityData model.
+	UkEvisaLookup NullableUnitedKingdomEvisaProviderOutput `json:"uk-evisa-lookup,omitempty"`
 	// Exposed properties for the `sweden-bankid` Provider which do not directly map to the normalized IdentityData model.
 	SwedenBankid NullableSwedenBankIdProviderOutput `json:"sweden-bankid,omitempty"`
 	// Exposed properties for the `usa-louisiana-wallet` Provider which do not directly map to the normalized IdentityData model.
 	UsaLouisianaWallet NullableLaWalletProviderOutput `json:"usa-louisiana-wallet,omitempty"`
 	// Exposed properties for the `yoti` Provider which do not directly map to the normalized IdentityData model.
 	Yoti NullableYotiProviderOutput `json:"yoti,omitempty"`
+	// Exposed properties for the `yoti-deeplink` Provider which do not directly map to the normalized IdentityData model.
+	YotiDeeplink NullableYotiDeeplinkProviderOutput `json:"yoti-deeplink,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -316,9 +340,9 @@ func (o *ProviderOutput) UnsetAFiIdLogin() {
 }
 
 // GetAFrejaEidLogin returns the AFrejaEidLogin field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ProviderOutput) GetAFrejaEidLogin() FrejaProviderOutput {
+func (o *ProviderOutput) GetAFrejaEidLogin() FrejaIndirectProviderOutput {
 	if o == nil || IsNil(o.AFrejaEidLogin.Get()) {
-		var ret FrejaProviderOutput
+		var ret FrejaIndirectProviderOutput
 		return ret
 	}
 	return *o.AFrejaEidLogin.Get()
@@ -327,7 +351,7 @@ func (o *ProviderOutput) GetAFrejaEidLogin() FrejaProviderOutput {
 // GetAFrejaEidLoginOk returns a tuple with the AFrejaEidLogin field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ProviderOutput) GetAFrejaEidLoginOk() (*FrejaProviderOutput, bool) {
+func (o *ProviderOutput) GetAFrejaEidLoginOk() (*FrejaIndirectProviderOutput, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -343,8 +367,8 @@ func (o *ProviderOutput) HasAFrejaEidLogin() bool {
 	return false
 }
 
-// SetAFrejaEidLogin gets a reference to the given NullableFrejaProviderOutput and assigns it to the AFrejaEidLogin field.
-func (o *ProviderOutput) SetAFrejaEidLogin(v FrejaProviderOutput) {
+// SetAFrejaEidLogin gets a reference to the given NullableFrejaIndirectProviderOutput and assigns it to the AFrejaEidLogin field.
+func (o *ProviderOutput) SetAFrejaEidLogin(v FrejaIndirectProviderOutput) {
 	o.AFrejaEidLogin.Set(&v)
 }
 // SetAFrejaEidLoginNil sets the value for AFrejaEidLogin to be an explicit nil
@@ -609,6 +633,90 @@ func (o *ProviderOutput) UnsetAPlMojeidLogin() {
 	o.APlMojeidLogin.Unset()
 }
 
+// GetAustraliaConnectId returns the AustraliaConnectId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderOutput) GetAustraliaConnectId() ConnectIdProviderOutput {
+	if o == nil || IsNil(o.AustraliaConnectId.Get()) {
+		var ret ConnectIdProviderOutput
+		return ret
+	}
+	return *o.AustraliaConnectId.Get()
+}
+
+// GetAustraliaConnectIdOk returns a tuple with the AustraliaConnectId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderOutput) GetAustraliaConnectIdOk() (*ConnectIdProviderOutput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.AustraliaConnectId.Get(), o.AustraliaConnectId.IsSet()
+}
+
+// HasAustraliaConnectId returns a boolean if a field has been set.
+func (o *ProviderOutput) HasAustraliaConnectId() bool {
+	if o != nil && o.AustraliaConnectId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAustraliaConnectId gets a reference to the given NullableConnectIdProviderOutput and assigns it to the AustraliaConnectId field.
+func (o *ProviderOutput) SetAustraliaConnectId(v ConnectIdProviderOutput) {
+	o.AustraliaConnectId.Set(&v)
+}
+// SetAustraliaConnectIdNil sets the value for AustraliaConnectId to be an explicit nil
+func (o *ProviderOutput) SetAustraliaConnectIdNil() {
+	o.AustraliaConnectId.Set(nil)
+}
+
+// UnsetAustraliaConnectId ensures that no value is present for AustraliaConnectId, not even an explicit nil
+func (o *ProviderOutput) UnsetAustraliaConnectId() {
+	o.AustraliaConnectId.Unset()
+}
+
+// GetCzechRepublicMojeid returns the CzechRepublicMojeid field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderOutput) GetCzechRepublicMojeid() CzechMojeIdProviderOutput {
+	if o == nil || IsNil(o.CzechRepublicMojeid.Get()) {
+		var ret CzechMojeIdProviderOutput
+		return ret
+	}
+	return *o.CzechRepublicMojeid.Get()
+}
+
+// GetCzechRepublicMojeidOk returns a tuple with the CzechRepublicMojeid field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderOutput) GetCzechRepublicMojeidOk() (*CzechMojeIdProviderOutput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CzechRepublicMojeid.Get(), o.CzechRepublicMojeid.IsSet()
+}
+
+// HasCzechRepublicMojeid returns a boolean if a field has been set.
+func (o *ProviderOutput) HasCzechRepublicMojeid() bool {
+	if o != nil && o.CzechRepublicMojeid.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCzechRepublicMojeid gets a reference to the given NullableCzechMojeIdProviderOutput and assigns it to the CzechRepublicMojeid field.
+func (o *ProviderOutput) SetCzechRepublicMojeid(v CzechMojeIdProviderOutput) {
+	o.CzechRepublicMojeid.Set(&v)
+}
+// SetCzechRepublicMojeidNil sets the value for CzechRepublicMojeid to be an explicit nil
+func (o *ProviderOutput) SetCzechRepublicMojeidNil() {
+	o.CzechRepublicMojeid.Set(nil)
+}
+
+// UnsetCzechRepublicMojeid ensures that no value is present for CzechRepublicMojeid, not even an explicit nil
+func (o *ProviderOutput) UnsetCzechRepublicMojeid() {
+	o.CzechRepublicMojeid.Unset()
+}
+
 // GetAPtIdLogin returns the APtIdLogin field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ProviderOutput) GetAPtIdLogin() PortugalIdCardProviderOutput {
 	if o == nil || IsNil(o.APtIdLogin.Get()) {
@@ -819,6 +927,90 @@ func (o *ProviderOutput) UnsetEthiopiaFayda() {
 	o.EthiopiaFayda.Unset()
 }
 
+// GetFinnishTrustNetwork returns the FinnishTrustNetwork field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderOutput) GetFinnishTrustNetwork() FinnishTrustNetworkProviderOutput {
+	if o == nil || IsNil(o.FinnishTrustNetwork.Get()) {
+		var ret FinnishTrustNetworkProviderOutput
+		return ret
+	}
+	return *o.FinnishTrustNetwork.Get()
+}
+
+// GetFinnishTrustNetworkOk returns a tuple with the FinnishTrustNetwork field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderOutput) GetFinnishTrustNetworkOk() (*FinnishTrustNetworkProviderOutput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.FinnishTrustNetwork.Get(), o.FinnishTrustNetwork.IsSet()
+}
+
+// HasFinnishTrustNetwork returns a boolean if a field has been set.
+func (o *ProviderOutput) HasFinnishTrustNetwork() bool {
+	if o != nil && o.FinnishTrustNetwork.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetFinnishTrustNetwork gets a reference to the given NullableFinnishTrustNetworkProviderOutput and assigns it to the FinnishTrustNetwork field.
+func (o *ProviderOutput) SetFinnishTrustNetwork(v FinnishTrustNetworkProviderOutput) {
+	o.FinnishTrustNetwork.Set(&v)
+}
+// SetFinnishTrustNetworkNil sets the value for FinnishTrustNetwork to be an explicit nil
+func (o *ProviderOutput) SetFinnishTrustNetworkNil() {
+	o.FinnishTrustNetwork.Set(nil)
+}
+
+// UnsetFinnishTrustNetwork ensures that no value is present for FinnishTrustNetwork, not even an explicit nil
+func (o *ProviderOutput) UnsetFinnishTrustNetwork() {
+	o.FinnishTrustNetwork.Unset()
+}
+
+// GetFranceIdentite returns the FranceIdentite field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderOutput) GetFranceIdentite() FranceIdentiteProviderOutput {
+	if o == nil || IsNil(o.FranceIdentite.Get()) {
+		var ret FranceIdentiteProviderOutput
+		return ret
+	}
+	return *o.FranceIdentite.Get()
+}
+
+// GetFranceIdentiteOk returns a tuple with the FranceIdentite field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderOutput) GetFranceIdentiteOk() (*FranceIdentiteProviderOutput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.FranceIdentite.Get(), o.FranceIdentite.IsSet()
+}
+
+// HasFranceIdentite returns a boolean if a field has been set.
+func (o *ProviderOutput) HasFranceIdentite() bool {
+	if o != nil && o.FranceIdentite.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetFranceIdentite gets a reference to the given NullableFranceIdentiteProviderOutput and assigns it to the FranceIdentite field.
+func (o *ProviderOutput) SetFranceIdentite(v FranceIdentiteProviderOutput) {
+	o.FranceIdentite.Set(&v)
+}
+// SetFranceIdentiteNil sets the value for FranceIdentite to be an explicit nil
+func (o *ProviderOutput) SetFranceIdentiteNil() {
+	o.FranceIdentite.Set(nil)
+}
+
+// UnsetFranceIdentite ensures that no value is present for FranceIdentite, not even an explicit nil
+func (o *ProviderOutput) UnsetFranceIdentite() {
+	o.FranceIdentite.Unset()
+}
+
 // GetFranceIdentiteNumerique returns the FranceIdentiteNumerique field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ProviderOutput) GetFranceIdentiteNumerique() FrenchNumeriqueProviderOutput {
 	if o == nil || IsNil(o.FranceIdentiteNumerique.Get()) {
@@ -859,6 +1051,48 @@ func (o *ProviderOutput) SetFranceIdentiteNumeriqueNil() {
 // UnsetFranceIdentiteNumerique ensures that no value is present for FranceIdentiteNumerique, not even an explicit nil
 func (o *ProviderOutput) UnsetFranceIdentiteNumerique() {
 	o.FranceIdentiteNumerique.Unset()
+}
+
+// GetFreja returns the Freja field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderOutput) GetFreja() FrejaProviderOutput {
+	if o == nil || IsNil(o.Freja.Get()) {
+		var ret FrejaProviderOutput
+		return ret
+	}
+	return *o.Freja.Get()
+}
+
+// GetFrejaOk returns a tuple with the Freja field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderOutput) GetFrejaOk() (*FrejaProviderOutput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Freja.Get(), o.Freja.IsSet()
+}
+
+// HasFreja returns a boolean if a field has been set.
+func (o *ProviderOutput) HasFreja() bool {
+	if o != nil && o.Freja.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetFreja gets a reference to the given NullableFrejaProviderOutput and assigns it to the Freja field.
+func (o *ProviderOutput) SetFreja(v FrejaProviderOutput) {
+	o.Freja.Set(&v)
+}
+// SetFrejaNil sets the value for Freja to be an explicit nil
+func (o *ProviderOutput) SetFrejaNil() {
+	o.Freja.Set(nil)
+}
+
+// UnsetFreja ensures that no value is present for Freja, not even an explicit nil
+func (o *ProviderOutput) UnsetFreja() {
+	o.Freja.Unset()
 }
 
 // GetGoogleWallet returns the GoogleWallet field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -903,6 +1137,48 @@ func (o *ProviderOutput) UnsetGoogleWallet() {
 	o.GoogleWallet.Unset()
 }
 
+// GetIndiaDigilockerAadhaar returns the IndiaDigilockerAadhaar field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderOutput) GetIndiaDigilockerAadhaar() DigilockerAadhaarProviderOutput {
+	if o == nil || IsNil(o.IndiaDigilockerAadhaar.Get()) {
+		var ret DigilockerAadhaarProviderOutput
+		return ret
+	}
+	return *o.IndiaDigilockerAadhaar.Get()
+}
+
+// GetIndiaDigilockerAadhaarOk returns a tuple with the IndiaDigilockerAadhaar field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderOutput) GetIndiaDigilockerAadhaarOk() (*DigilockerAadhaarProviderOutput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.IndiaDigilockerAadhaar.Get(), o.IndiaDigilockerAadhaar.IsSet()
+}
+
+// HasIndiaDigilockerAadhaar returns a boolean if a field has been set.
+func (o *ProviderOutput) HasIndiaDigilockerAadhaar() bool {
+	if o != nil && o.IndiaDigilockerAadhaar.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetIndiaDigilockerAadhaar gets a reference to the given NullableDigilockerAadhaarProviderOutput and assigns it to the IndiaDigilockerAadhaar field.
+func (o *ProviderOutput) SetIndiaDigilockerAadhaar(v DigilockerAadhaarProviderOutput) {
+	o.IndiaDigilockerAadhaar.Set(&v)
+}
+// SetIndiaDigilockerAadhaarNil sets the value for IndiaDigilockerAadhaar to be an explicit nil
+func (o *ProviderOutput) SetIndiaDigilockerAadhaarNil() {
+	o.IndiaDigilockerAadhaar.Set(nil)
+}
+
+// UnsetIndiaDigilockerAadhaar ensures that no value is present for IndiaDigilockerAadhaar, not even an explicit nil
+func (o *ProviderOutput) UnsetIndiaDigilockerAadhaar() {
+	o.IndiaDigilockerAadhaar.Unset()
+}
+
 // GetItalySpid returns the ItalySpid field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ProviderOutput) GetItalySpid() SpidProviderOutput {
 	if o == nil || IsNil(o.ItalySpid.Get()) {
@@ -943,6 +1219,48 @@ func (o *ProviderOutput) SetItalySpidNil() {
 // UnsetItalySpid ensures that no value is present for ItalySpid, not even an explicit nil
 func (o *ProviderOutput) UnsetItalySpid() {
 	o.ItalySpid.Unset()
+}
+
+// GetKenyaNidLookup2 returns the KenyaNidLookup2 field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderOutput) GetKenyaNidLookup2() KenyaNidLookup2ProviderOutput {
+	if o == nil || IsNil(o.KenyaNidLookup2.Get()) {
+		var ret KenyaNidLookup2ProviderOutput
+		return ret
+	}
+	return *o.KenyaNidLookup2.Get()
+}
+
+// GetKenyaNidLookup2Ok returns a tuple with the KenyaNidLookup2 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderOutput) GetKenyaNidLookup2Ok() (*KenyaNidLookup2ProviderOutput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.KenyaNidLookup2.Get(), o.KenyaNidLookup2.IsSet()
+}
+
+// HasKenyaNidLookup2 returns a boolean if a field has been set.
+func (o *ProviderOutput) HasKenyaNidLookup2() bool {
+	if o != nil && o.KenyaNidLookup2.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetKenyaNidLookup2 gets a reference to the given NullableKenyaNidLookup2ProviderOutput and assigns it to the KenyaNidLookup2 field.
+func (o *ProviderOutput) SetKenyaNidLookup2(v KenyaNidLookup2ProviderOutput) {
+	o.KenyaNidLookup2.Set(&v)
+}
+// SetKenyaNidLookup2Nil sets the value for KenyaNidLookup2 to be an explicit nil
+func (o *ProviderOutput) SetKenyaNidLookup2Nil() {
+	o.KenyaNidLookup2.Set(nil)
+}
+
+// UnsetKenyaNidLookup2 ensures that no value is present for KenyaNidLookup2, not even an explicit nil
+func (o *ProviderOutput) UnsetKenyaNidLookup2() {
+	o.KenyaNidLookup2.Unset()
 }
 
 // GetLloydsSmartId returns the LloydsSmartId field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -1071,6 +1389,90 @@ func (o *ProviderOutput) UnsetMobileId() {
 	o.MobileId.Unset()
 }
 
+// GetNigeriaNinLookup2 returns the NigeriaNinLookup2 field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderOutput) GetNigeriaNinLookup2() NigeriaNinLookup2ProviderOutput {
+	if o == nil || IsNil(o.NigeriaNinLookup2.Get()) {
+		var ret NigeriaNinLookup2ProviderOutput
+		return ret
+	}
+	return *o.NigeriaNinLookup2.Get()
+}
+
+// GetNigeriaNinLookup2Ok returns a tuple with the NigeriaNinLookup2 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderOutput) GetNigeriaNinLookup2Ok() (*NigeriaNinLookup2ProviderOutput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.NigeriaNinLookup2.Get(), o.NigeriaNinLookup2.IsSet()
+}
+
+// HasNigeriaNinLookup2 returns a boolean if a field has been set.
+func (o *ProviderOutput) HasNigeriaNinLookup2() bool {
+	if o != nil && o.NigeriaNinLookup2.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetNigeriaNinLookup2 gets a reference to the given NullableNigeriaNinLookup2ProviderOutput and assigns it to the NigeriaNinLookup2 field.
+func (o *ProviderOutput) SetNigeriaNinLookup2(v NigeriaNinLookup2ProviderOutput) {
+	o.NigeriaNinLookup2.Set(&v)
+}
+// SetNigeriaNinLookup2Nil sets the value for NigeriaNinLookup2 to be an explicit nil
+func (o *ProviderOutput) SetNigeriaNinLookup2Nil() {
+	o.NigeriaNinLookup2.Set(nil)
+}
+
+// UnsetNigeriaNinLookup2 ensures that no value is present for NigeriaNinLookup2, not even an explicit nil
+func (o *ProviderOutput) UnsetNigeriaNinLookup2() {
+	o.NigeriaNinLookup2.Unset()
+}
+
+// GetOneid returns the Oneid field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderOutput) GetOneid() OneIdProviderOutput {
+	if o == nil || IsNil(o.Oneid.Get()) {
+		var ret OneIdProviderOutput
+		return ret
+	}
+	return *o.Oneid.Get()
+}
+
+// GetOneidOk returns a tuple with the Oneid field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderOutput) GetOneidOk() (*OneIdProviderOutput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Oneid.Get(), o.Oneid.IsSet()
+}
+
+// HasOneid returns a boolean if a field has been set.
+func (o *ProviderOutput) HasOneid() bool {
+	if o != nil && o.Oneid.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetOneid gets a reference to the given NullableOneIdProviderOutput and assigns it to the Oneid field.
+func (o *ProviderOutput) SetOneid(v OneIdProviderOutput) {
+	o.Oneid.Set(&v)
+}
+// SetOneidNil sets the value for Oneid to be an explicit nil
+func (o *ProviderOutput) SetOneidNil() {
+	o.Oneid.Set(nil)
+}
+
+// UnsetOneid ensures that no value is present for Oneid, not even an explicit nil
+func (o *ProviderOutput) UnsetOneid() {
+	o.Oneid.Unset()
+}
+
 // GetPeruDniLookup returns the PeruDniLookup field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ProviderOutput) GetPeruDniLookup() PeruDniProviderOutput {
 	if o == nil || IsNil(o.PeruDniLookup.Get()) {
@@ -1111,6 +1513,48 @@ func (o *ProviderOutput) SetPeruDniLookupNil() {
 // UnsetPeruDniLookup ensures that no value is present for PeruDniLookup, not even an explicit nil
 func (o *ProviderOutput) UnsetPeruDniLookup() {
 	o.PeruDniLookup.Unset()
+}
+
+// GetNorwayBankid returns the NorwayBankid field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderOutput) GetNorwayBankid() NorwegianBankIdProviderOutput {
+	if o == nil || IsNil(o.NorwayBankid.Get()) {
+		var ret NorwegianBankIdProviderOutput
+		return ret
+	}
+	return *o.NorwayBankid.Get()
+}
+
+// GetNorwayBankidOk returns a tuple with the NorwayBankid field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderOutput) GetNorwayBankidOk() (*NorwegianBankIdProviderOutput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.NorwayBankid.Get(), o.NorwayBankid.IsSet()
+}
+
+// HasNorwayBankid returns a boolean if a field has been set.
+func (o *ProviderOutput) HasNorwayBankid() bool {
+	if o != nil && o.NorwayBankid.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetNorwayBankid gets a reference to the given NullableNorwegianBankIdProviderOutput and assigns it to the NorwayBankid field.
+func (o *ProviderOutput) SetNorwayBankid(v NorwegianBankIdProviderOutput) {
+	o.NorwayBankid.Set(&v)
+}
+// SetNorwayBankidNil sets the value for NorwayBankid to be an explicit nil
+func (o *ProviderOutput) SetNorwayBankidNil() {
+	o.NorwayBankid.Set(nil)
+}
+
+// UnsetNorwayBankid ensures that no value is present for NorwayBankid, not even an explicit nil
+func (o *ProviderOutput) UnsetNorwayBankid() {
+	o.NorwayBankid.Unset()
 }
 
 // GetPhilippinesDigitalNationalIdQr returns the PhilippinesDigitalNationalIdQr field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -1323,6 +1767,48 @@ func (o *ProviderOutput) UnsetSmartId() {
 	o.SmartId.Unset()
 }
 
+// GetUkEvisaLookup returns the UkEvisaLookup field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderOutput) GetUkEvisaLookup() UnitedKingdomEvisaProviderOutput {
+	if o == nil || IsNil(o.UkEvisaLookup.Get()) {
+		var ret UnitedKingdomEvisaProviderOutput
+		return ret
+	}
+	return *o.UkEvisaLookup.Get()
+}
+
+// GetUkEvisaLookupOk returns a tuple with the UkEvisaLookup field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderOutput) GetUkEvisaLookupOk() (*UnitedKingdomEvisaProviderOutput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.UkEvisaLookup.Get(), o.UkEvisaLookup.IsSet()
+}
+
+// HasUkEvisaLookup returns a boolean if a field has been set.
+func (o *ProviderOutput) HasUkEvisaLookup() bool {
+	if o != nil && o.UkEvisaLookup.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetUkEvisaLookup gets a reference to the given NullableUnitedKingdomEvisaProviderOutput and assigns it to the UkEvisaLookup field.
+func (o *ProviderOutput) SetUkEvisaLookup(v UnitedKingdomEvisaProviderOutput) {
+	o.UkEvisaLookup.Set(&v)
+}
+// SetUkEvisaLookupNil sets the value for UkEvisaLookup to be an explicit nil
+func (o *ProviderOutput) SetUkEvisaLookupNil() {
+	o.UkEvisaLookup.Set(nil)
+}
+
+// UnsetUkEvisaLookup ensures that no value is present for UkEvisaLookup, not even an explicit nil
+func (o *ProviderOutput) UnsetUkEvisaLookup() {
+	o.UkEvisaLookup.Unset()
+}
+
 // GetSwedenBankid returns the SwedenBankid field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ProviderOutput) GetSwedenBankid() SwedenBankIdProviderOutput {
 	if o == nil || IsNil(o.SwedenBankid.Get()) {
@@ -1449,6 +1935,48 @@ func (o *ProviderOutput) UnsetYoti() {
 	o.Yoti.Unset()
 }
 
+// GetYotiDeeplink returns the YotiDeeplink field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderOutput) GetYotiDeeplink() YotiDeeplinkProviderOutput {
+	if o == nil || IsNil(o.YotiDeeplink.Get()) {
+		var ret YotiDeeplinkProviderOutput
+		return ret
+	}
+	return *o.YotiDeeplink.Get()
+}
+
+// GetYotiDeeplinkOk returns a tuple with the YotiDeeplink field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderOutput) GetYotiDeeplinkOk() (*YotiDeeplinkProviderOutput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.YotiDeeplink.Get(), o.YotiDeeplink.IsSet()
+}
+
+// HasYotiDeeplink returns a boolean if a field has been set.
+func (o *ProviderOutput) HasYotiDeeplink() bool {
+	if o != nil && o.YotiDeeplink.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetYotiDeeplink gets a reference to the given NullableYotiDeeplinkProviderOutput and assigns it to the YotiDeeplink field.
+func (o *ProviderOutput) SetYotiDeeplink(v YotiDeeplinkProviderOutput) {
+	o.YotiDeeplink.Set(&v)
+}
+// SetYotiDeeplinkNil sets the value for YotiDeeplink to be an explicit nil
+func (o *ProviderOutput) SetYotiDeeplinkNil() {
+	o.YotiDeeplink.Set(nil)
+}
+
+// UnsetYotiDeeplink ensures that no value is present for YotiDeeplink, not even an explicit nil
+func (o *ProviderOutput) UnsetYotiDeeplink() {
+	o.YotiDeeplink.Unset()
+}
+
 func (o ProviderOutput) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -1495,6 +2023,12 @@ func (o ProviderOutput) ToMap() (map[string]interface{}, error) {
 	if o.APlMojeidLogin.IsSet() {
 		toSerialize["a-pl-mojeid-login"] = o.APlMojeidLogin.Get()
 	}
+	if o.AustraliaConnectId.IsSet() {
+		toSerialize["australia-connect-id"] = o.AustraliaConnectId.Get()
+	}
+	if o.CzechRepublicMojeid.IsSet() {
+		toSerialize["czech-republic-mojeid"] = o.CzechRepublicMojeid.Get()
+	}
 	if o.APtIdLogin.IsSet() {
 		toSerialize["a-pt-id-login"] = o.APtIdLogin.Get()
 	}
@@ -1510,14 +2044,29 @@ func (o ProviderOutput) ToMap() (map[string]interface{}, error) {
 	if o.EthiopiaFayda.IsSet() {
 		toSerialize["ethiopia-fayda"] = o.EthiopiaFayda.Get()
 	}
+	if o.FinnishTrustNetwork.IsSet() {
+		toSerialize["finnish-trust-network"] = o.FinnishTrustNetwork.Get()
+	}
+	if o.FranceIdentite.IsSet() {
+		toSerialize["france-identite"] = o.FranceIdentite.Get()
+	}
 	if o.FranceIdentiteNumerique.IsSet() {
 		toSerialize["france-identite-numerique"] = o.FranceIdentiteNumerique.Get()
+	}
+	if o.Freja.IsSet() {
+		toSerialize["freja"] = o.Freja.Get()
 	}
 	if o.GoogleWallet.IsSet() {
 		toSerialize["google-wallet"] = o.GoogleWallet.Get()
 	}
+	if o.IndiaDigilockerAadhaar.IsSet() {
+		toSerialize["india-digilocker-aadhaar"] = o.IndiaDigilockerAadhaar.Get()
+	}
 	if o.ItalySpid.IsSet() {
 		toSerialize["italy-spid"] = o.ItalySpid.Get()
+	}
+	if o.KenyaNidLookup2.IsSet() {
+		toSerialize["kenya-nid-lookup-2"] = o.KenyaNidLookup2.Get()
 	}
 	if o.LloydsSmartId.IsSet() {
 		toSerialize["lloyds-smart-id"] = o.LloydsSmartId.Get()
@@ -1528,8 +2077,17 @@ func (o ProviderOutput) ToMap() (map[string]interface{}, error) {
 	if o.MobileId.IsSet() {
 		toSerialize["mobile-id"] = o.MobileId.Get()
 	}
+	if o.NigeriaNinLookup2.IsSet() {
+		toSerialize["nigeria-nin-lookup-2"] = o.NigeriaNinLookup2.Get()
+	}
+	if o.Oneid.IsSet() {
+		toSerialize["oneid"] = o.Oneid.Get()
+	}
 	if o.PeruDniLookup.IsSet() {
 		toSerialize["peru-dni-lookup"] = o.PeruDniLookup.Get()
+	}
+	if o.NorwayBankid.IsSet() {
+		toSerialize["norway-bankid"] = o.NorwayBankid.Get()
 	}
 	if o.PhilippinesDigitalNationalIdQr.IsSet() {
 		toSerialize["philippines-digital-national-id-qr"] = o.PhilippinesDigitalNationalIdQr.Get()
@@ -1546,6 +2104,9 @@ func (o ProviderOutput) ToMap() (map[string]interface{}, error) {
 	if o.SmartId.IsSet() {
 		toSerialize["smart-id"] = o.SmartId.Get()
 	}
+	if o.UkEvisaLookup.IsSet() {
+		toSerialize["uk-evisa-lookup"] = o.UkEvisaLookup.Get()
+	}
 	if o.SwedenBankid.IsSet() {
 		toSerialize["sweden-bankid"] = o.SwedenBankid.Get()
 	}
@@ -1554,6 +2115,9 @@ func (o ProviderOutput) ToMap() (map[string]interface{}, error) {
 	}
 	if o.Yoti.IsSet() {
 		toSerialize["yoti"] = o.Yoti.Get()
+	}
+	if o.YotiDeeplink.IsSet() {
+		toSerialize["yoti-deeplink"] = o.YotiDeeplink.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -1589,26 +2153,38 @@ func (o *ProviderOutput) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "a-lv-eparaksts-mobile-login")
 		delete(additionalProperties, "a-mojeid")
 		delete(additionalProperties, "a-pl-mojeid-login")
+		delete(additionalProperties, "australia-connect-id")
+		delete(additionalProperties, "czech-republic-mojeid")
 		delete(additionalProperties, "a-pt-id-login")
 		delete(additionalProperties, "a-rs-id-login")
 		delete(additionalProperties, "apple-wallet")
 		delete(additionalProperties, "denmark-mitid")
 		delete(additionalProperties, "ethiopia-fayda")
+		delete(additionalProperties, "finnish-trust-network")
+		delete(additionalProperties, "france-identite")
 		delete(additionalProperties, "france-identite-numerique")
+		delete(additionalProperties, "freja")
 		delete(additionalProperties, "google-wallet")
+		delete(additionalProperties, "india-digilocker-aadhaar")
 		delete(additionalProperties, "italy-spid")
+		delete(additionalProperties, "kenya-nid-lookup-2")
 		delete(additionalProperties, "lloyds-smart-id")
 		delete(additionalProperties, "mexico-curp-lookup")
 		delete(additionalProperties, "mobile-id")
+		delete(additionalProperties, "nigeria-nin-lookup-2")
+		delete(additionalProperties, "oneid")
 		delete(additionalProperties, "peru-dni-lookup")
+		delete(additionalProperties, "norway-bankid")
 		delete(additionalProperties, "philippines-digital-national-id-qr")
 		delete(additionalProperties, "philippines-physical-national-id-qr")
 		delete(additionalProperties, "post-office-easyid")
 		delete(additionalProperties, "samsung-wallet")
 		delete(additionalProperties, "smart-id")
+		delete(additionalProperties, "uk-evisa-lookup")
 		delete(additionalProperties, "sweden-bankid")
 		delete(additionalProperties, "usa-louisiana-wallet")
 		delete(additionalProperties, "yoti")
+		delete(additionalProperties, "yoti-deeplink")
 		o.AdditionalProperties = additionalProperties
 	}
 

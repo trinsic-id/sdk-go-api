@@ -12,22 +12,49 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the FrejaProviderOutput type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &FrejaProviderOutput{}
 
-// FrejaProviderOutput Exposed properties for the `a-freja-eid-login` Provider which do not directly map to the normalized IdentityData model.
+// FrejaProviderOutput Exposed properties for the `freja` Provider which do not directly map to the normalized IdentityData model.
 type FrejaProviderOutput struct {
-	// The first name of the verified individual
-	FirstName string `json:"firstName"`
-	// The last name of the verified individual
-	LastName string `json:"lastName"`
-	// The value returned by Freja in the \"ssn\" field.              The actual value of this field depends on the country of origin used to create the Freja credential. It is typically a Social Security Number, National Identification Number, or equivalent personal identifier.
-	PersonalNumber string `json:"personalNumber"`
-	// The 2-digit ISO country code of the country which issued the personal number.
-	PersonalNumberCountry string `json:"personalNumberCountry"`
+	// The individual's full name.
+	Name NullableString `json:"name,omitempty"`
+	// The individual's first name.
+	GivenName NullableString `json:"givenName,omitempty"`
+	// The individual's last name.
+	FamilyName NullableString `json:"familyName,omitempty"`
+	// The date of birth of the individual.              Formatted as an ISO 8601 Date.
+	DateOfBirth NullableString `json:"dateOfBirth,omitempty"`
+	// The individual's primary email address within Freja.
+	Email NullableString `json:"email,omitempty"`
+	// A boolean which indicates whether the individual's primary email address has been verified by Freja.
+	EmailVerified NullableBool `json:"emailVerified,omitempty"`
+	// An array of all associated email addresses of the individual.
+	AllEmailAddresses []string `json:"allEmailAddresses,omitempty"`
+	// The individual's primary address on file.
+	PrimaryPhysicalAddress NullableOutputFrejaAddress `json:"primaryPhysicalAddress,omitempty"`
+	// A list of all associated addresses of the individual.
+	AllPhysicalAddresses []OutputFrejaAddress `json:"allPhysicalAddresses,omitempty"`
+	// The individual's age in years.
+	Age NullableInt32 `json:"age,omitempty"`
+	// The individual's phone number in the E.164 format.
+	PhoneNumber NullableString `json:"phoneNumber,omitempty"`
+	// Whether the individual's phone number has been verified by Freja.
+	PhoneNumberVerified NullableBool `json:"phoneNumberVerified,omitempty"`
+	// The individual's personal identity number. The actual value of this field depends on the country of origin used to create the Freja credential. It is typically a Social Security Number, National Identification Number, or equivalent personal identifier.
+	PersonalIdentityNumber NullableString `json:"personalIdentityNumber,omitempty"`
+	// The ISO 3166-1 alpha-2 country code associated with the individual's country of origin.
+	Country NullableString `json:"country,omitempty"`
+	// The underlying document, such as a passport, used to create the Freja credential.
+	Document NullableOutputFrejaDocument `json:"document,omitempty"`
+	// The Freja registration level associated with this individual. This can be BASIC, EXTENDED, or PLUS. * BASIC: Individual has a registered account with Freja. * EXTENDED: Individual has an official identity document verified by Freja. * PLUS: Individual has undergone in-person verification with Freja.
+	RegistrationLevel NullableString `json:"registrationLevel,omitempty"`
+	// The relying party user identifier for this individual. This is an identifier specific to the individual and the relying party (your service).
+	RelyingPartyUserId NullableString `json:"relyingPartyUserId,omitempty"`
+	// The Freja transaction reference for this verification. This is an identifier specific to the verification transaction.
+	TransactionReference NullableString `json:"transactionReference,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -37,12 +64,8 @@ type _FrejaProviderOutput FrejaProviderOutput
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFrejaProviderOutput(firstName string, lastName string, personalNumber string, personalNumberCountry string) *FrejaProviderOutput {
+func NewFrejaProviderOutput() *FrejaProviderOutput {
 	this := FrejaProviderOutput{}
-	this.FirstName = firstName
-	this.LastName = lastName
-	this.PersonalNumber = personalNumber
-	this.PersonalNumberCountry = personalNumberCountry
 	return &this
 }
 
@@ -54,100 +77,742 @@ func NewFrejaProviderOutputWithDefaults() *FrejaProviderOutput {
 	return &this
 }
 
-// GetFirstName returns the FirstName field value
-func (o *FrejaProviderOutput) GetFirstName() string {
-	if o == nil {
+// GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *FrejaProviderOutput) GetName() string {
+	if o == nil || IsNil(o.Name.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.FirstName
+	return *o.Name.Get()
 }
 
-// GetFirstNameOk returns a tuple with the FirstName field value
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FrejaProviderOutput) GetFirstNameOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *FrejaProviderOutput) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.FirstName, true
+	return o.Name.Get(), o.Name.IsSet()
 }
 
-// SetFirstName sets field value
-func (o *FrejaProviderOutput) SetFirstName(v string) {
-	o.FirstName = v
+// HasName returns a boolean if a field has been set.
+func (o *FrejaProviderOutput) HasName() bool {
+	if o != nil && o.Name.IsSet() {
+		return true
+	}
+
+	return false
 }
 
-// GetLastName returns the LastName field value
-func (o *FrejaProviderOutput) GetLastName() string {
-	if o == nil {
+// SetName gets a reference to the given NullableString and assigns it to the Name field.
+func (o *FrejaProviderOutput) SetName(v string) {
+	o.Name.Set(&v)
+}
+// SetNameNil sets the value for Name to be an explicit nil
+func (o *FrejaProviderOutput) SetNameNil() {
+	o.Name.Set(nil)
+}
+
+// UnsetName ensures that no value is present for Name, not even an explicit nil
+func (o *FrejaProviderOutput) UnsetName() {
+	o.Name.Unset()
+}
+
+// GetGivenName returns the GivenName field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *FrejaProviderOutput) GetGivenName() string {
+	if o == nil || IsNil(o.GivenName.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.LastName
+	return *o.GivenName.Get()
 }
 
-// GetLastNameOk returns a tuple with the LastName field value
+// GetGivenNameOk returns a tuple with the GivenName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FrejaProviderOutput) GetLastNameOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *FrejaProviderOutput) GetGivenNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.LastName, true
+	return o.GivenName.Get(), o.GivenName.IsSet()
 }
 
-// SetLastName sets field value
-func (o *FrejaProviderOutput) SetLastName(v string) {
-	o.LastName = v
+// HasGivenName returns a boolean if a field has been set.
+func (o *FrejaProviderOutput) HasGivenName() bool {
+	if o != nil && o.GivenName.IsSet() {
+		return true
+	}
+
+	return false
 }
 
-// GetPersonalNumber returns the PersonalNumber field value
-func (o *FrejaProviderOutput) GetPersonalNumber() string {
-	if o == nil {
+// SetGivenName gets a reference to the given NullableString and assigns it to the GivenName field.
+func (o *FrejaProviderOutput) SetGivenName(v string) {
+	o.GivenName.Set(&v)
+}
+// SetGivenNameNil sets the value for GivenName to be an explicit nil
+func (o *FrejaProviderOutput) SetGivenNameNil() {
+	o.GivenName.Set(nil)
+}
+
+// UnsetGivenName ensures that no value is present for GivenName, not even an explicit nil
+func (o *FrejaProviderOutput) UnsetGivenName() {
+	o.GivenName.Unset()
+}
+
+// GetFamilyName returns the FamilyName field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *FrejaProviderOutput) GetFamilyName() string {
+	if o == nil || IsNil(o.FamilyName.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.PersonalNumber
+	return *o.FamilyName.Get()
 }
 
-// GetPersonalNumberOk returns a tuple with the PersonalNumber field value
+// GetFamilyNameOk returns a tuple with the FamilyName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FrejaProviderOutput) GetPersonalNumberOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *FrejaProviderOutput) GetFamilyNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.PersonalNumber, true
+	return o.FamilyName.Get(), o.FamilyName.IsSet()
 }
 
-// SetPersonalNumber sets field value
-func (o *FrejaProviderOutput) SetPersonalNumber(v string) {
-	o.PersonalNumber = v
+// HasFamilyName returns a boolean if a field has been set.
+func (o *FrejaProviderOutput) HasFamilyName() bool {
+	if o != nil && o.FamilyName.IsSet() {
+		return true
+	}
+
+	return false
 }
 
-// GetPersonalNumberCountry returns the PersonalNumberCountry field value
-func (o *FrejaProviderOutput) GetPersonalNumberCountry() string {
-	if o == nil {
+// SetFamilyName gets a reference to the given NullableString and assigns it to the FamilyName field.
+func (o *FrejaProviderOutput) SetFamilyName(v string) {
+	o.FamilyName.Set(&v)
+}
+// SetFamilyNameNil sets the value for FamilyName to be an explicit nil
+func (o *FrejaProviderOutput) SetFamilyNameNil() {
+	o.FamilyName.Set(nil)
+}
+
+// UnsetFamilyName ensures that no value is present for FamilyName, not even an explicit nil
+func (o *FrejaProviderOutput) UnsetFamilyName() {
+	o.FamilyName.Unset()
+}
+
+// GetDateOfBirth returns the DateOfBirth field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *FrejaProviderOutput) GetDateOfBirth() string {
+	if o == nil || IsNil(o.DateOfBirth.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.PersonalNumberCountry
+	return *o.DateOfBirth.Get()
 }
 
-// GetPersonalNumberCountryOk returns a tuple with the PersonalNumberCountry field value
+// GetDateOfBirthOk returns a tuple with the DateOfBirth field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FrejaProviderOutput) GetPersonalNumberCountryOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *FrejaProviderOutput) GetDateOfBirthOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.PersonalNumberCountry, true
+	return o.DateOfBirth.Get(), o.DateOfBirth.IsSet()
 }
 
-// SetPersonalNumberCountry sets field value
-func (o *FrejaProviderOutput) SetPersonalNumberCountry(v string) {
-	o.PersonalNumberCountry = v
+// HasDateOfBirth returns a boolean if a field has been set.
+func (o *FrejaProviderOutput) HasDateOfBirth() bool {
+	if o != nil && o.DateOfBirth.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDateOfBirth gets a reference to the given NullableString and assigns it to the DateOfBirth field.
+func (o *FrejaProviderOutput) SetDateOfBirth(v string) {
+	o.DateOfBirth.Set(&v)
+}
+// SetDateOfBirthNil sets the value for DateOfBirth to be an explicit nil
+func (o *FrejaProviderOutput) SetDateOfBirthNil() {
+	o.DateOfBirth.Set(nil)
+}
+
+// UnsetDateOfBirth ensures that no value is present for DateOfBirth, not even an explicit nil
+func (o *FrejaProviderOutput) UnsetDateOfBirth() {
+	o.DateOfBirth.Unset()
+}
+
+// GetEmail returns the Email field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *FrejaProviderOutput) GetEmail() string {
+	if o == nil || IsNil(o.Email.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Email.Get()
+}
+
+// GetEmailOk returns a tuple with the Email field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *FrejaProviderOutput) GetEmailOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Email.Get(), o.Email.IsSet()
+}
+
+// HasEmail returns a boolean if a field has been set.
+func (o *FrejaProviderOutput) HasEmail() bool {
+	if o != nil && o.Email.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetEmail gets a reference to the given NullableString and assigns it to the Email field.
+func (o *FrejaProviderOutput) SetEmail(v string) {
+	o.Email.Set(&v)
+}
+// SetEmailNil sets the value for Email to be an explicit nil
+func (o *FrejaProviderOutput) SetEmailNil() {
+	o.Email.Set(nil)
+}
+
+// UnsetEmail ensures that no value is present for Email, not even an explicit nil
+func (o *FrejaProviderOutput) UnsetEmail() {
+	o.Email.Unset()
+}
+
+// GetEmailVerified returns the EmailVerified field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *FrejaProviderOutput) GetEmailVerified() bool {
+	if o == nil || IsNil(o.EmailVerified.Get()) {
+		var ret bool
+		return ret
+	}
+	return *o.EmailVerified.Get()
+}
+
+// GetEmailVerifiedOk returns a tuple with the EmailVerified field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *FrejaProviderOutput) GetEmailVerifiedOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.EmailVerified.Get(), o.EmailVerified.IsSet()
+}
+
+// HasEmailVerified returns a boolean if a field has been set.
+func (o *FrejaProviderOutput) HasEmailVerified() bool {
+	if o != nil && o.EmailVerified.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetEmailVerified gets a reference to the given NullableBool and assigns it to the EmailVerified field.
+func (o *FrejaProviderOutput) SetEmailVerified(v bool) {
+	o.EmailVerified.Set(&v)
+}
+// SetEmailVerifiedNil sets the value for EmailVerified to be an explicit nil
+func (o *FrejaProviderOutput) SetEmailVerifiedNil() {
+	o.EmailVerified.Set(nil)
+}
+
+// UnsetEmailVerified ensures that no value is present for EmailVerified, not even an explicit nil
+func (o *FrejaProviderOutput) UnsetEmailVerified() {
+	o.EmailVerified.Unset()
+}
+
+// GetAllEmailAddresses returns the AllEmailAddresses field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *FrejaProviderOutput) GetAllEmailAddresses() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+	return o.AllEmailAddresses
+}
+
+// GetAllEmailAddressesOk returns a tuple with the AllEmailAddresses field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *FrejaProviderOutput) GetAllEmailAddressesOk() ([]string, bool) {
+	if o == nil || IsNil(o.AllEmailAddresses) {
+		return nil, false
+	}
+	return o.AllEmailAddresses, true
+}
+
+// HasAllEmailAddresses returns a boolean if a field has been set.
+func (o *FrejaProviderOutput) HasAllEmailAddresses() bool {
+	if o != nil && !IsNil(o.AllEmailAddresses) {
+		return true
+	}
+
+	return false
+}
+
+// SetAllEmailAddresses gets a reference to the given []string and assigns it to the AllEmailAddresses field.
+func (o *FrejaProviderOutput) SetAllEmailAddresses(v []string) {
+	o.AllEmailAddresses = v
+}
+
+// GetPrimaryPhysicalAddress returns the PrimaryPhysicalAddress field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *FrejaProviderOutput) GetPrimaryPhysicalAddress() OutputFrejaAddress {
+	if o == nil || IsNil(o.PrimaryPhysicalAddress.Get()) {
+		var ret OutputFrejaAddress
+		return ret
+	}
+	return *o.PrimaryPhysicalAddress.Get()
+}
+
+// GetPrimaryPhysicalAddressOk returns a tuple with the PrimaryPhysicalAddress field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *FrejaProviderOutput) GetPrimaryPhysicalAddressOk() (*OutputFrejaAddress, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.PrimaryPhysicalAddress.Get(), o.PrimaryPhysicalAddress.IsSet()
+}
+
+// HasPrimaryPhysicalAddress returns a boolean if a field has been set.
+func (o *FrejaProviderOutput) HasPrimaryPhysicalAddress() bool {
+	if o != nil && o.PrimaryPhysicalAddress.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPrimaryPhysicalAddress gets a reference to the given NullableOutputFrejaAddress and assigns it to the PrimaryPhysicalAddress field.
+func (o *FrejaProviderOutput) SetPrimaryPhysicalAddress(v OutputFrejaAddress) {
+	o.PrimaryPhysicalAddress.Set(&v)
+}
+// SetPrimaryPhysicalAddressNil sets the value for PrimaryPhysicalAddress to be an explicit nil
+func (o *FrejaProviderOutput) SetPrimaryPhysicalAddressNil() {
+	o.PrimaryPhysicalAddress.Set(nil)
+}
+
+// UnsetPrimaryPhysicalAddress ensures that no value is present for PrimaryPhysicalAddress, not even an explicit nil
+func (o *FrejaProviderOutput) UnsetPrimaryPhysicalAddress() {
+	o.PrimaryPhysicalAddress.Unset()
+}
+
+// GetAllPhysicalAddresses returns the AllPhysicalAddresses field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *FrejaProviderOutput) GetAllPhysicalAddresses() []OutputFrejaAddress {
+	if o == nil {
+		var ret []OutputFrejaAddress
+		return ret
+	}
+	return o.AllPhysicalAddresses
+}
+
+// GetAllPhysicalAddressesOk returns a tuple with the AllPhysicalAddresses field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *FrejaProviderOutput) GetAllPhysicalAddressesOk() ([]OutputFrejaAddress, bool) {
+	if o == nil || IsNil(o.AllPhysicalAddresses) {
+		return nil, false
+	}
+	return o.AllPhysicalAddresses, true
+}
+
+// HasAllPhysicalAddresses returns a boolean if a field has been set.
+func (o *FrejaProviderOutput) HasAllPhysicalAddresses() bool {
+	if o != nil && !IsNil(o.AllPhysicalAddresses) {
+		return true
+	}
+
+	return false
+}
+
+// SetAllPhysicalAddresses gets a reference to the given []OutputFrejaAddress and assigns it to the AllPhysicalAddresses field.
+func (o *FrejaProviderOutput) SetAllPhysicalAddresses(v []OutputFrejaAddress) {
+	o.AllPhysicalAddresses = v
+}
+
+// GetAge returns the Age field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *FrejaProviderOutput) GetAge() int32 {
+	if o == nil || IsNil(o.Age.Get()) {
+		var ret int32
+		return ret
+	}
+	return *o.Age.Get()
+}
+
+// GetAgeOk returns a tuple with the Age field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *FrejaProviderOutput) GetAgeOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Age.Get(), o.Age.IsSet()
+}
+
+// HasAge returns a boolean if a field has been set.
+func (o *FrejaProviderOutput) HasAge() bool {
+	if o != nil && o.Age.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAge gets a reference to the given NullableInt32 and assigns it to the Age field.
+func (o *FrejaProviderOutput) SetAge(v int32) {
+	o.Age.Set(&v)
+}
+// SetAgeNil sets the value for Age to be an explicit nil
+func (o *FrejaProviderOutput) SetAgeNil() {
+	o.Age.Set(nil)
+}
+
+// UnsetAge ensures that no value is present for Age, not even an explicit nil
+func (o *FrejaProviderOutput) UnsetAge() {
+	o.Age.Unset()
+}
+
+// GetPhoneNumber returns the PhoneNumber field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *FrejaProviderOutput) GetPhoneNumber() string {
+	if o == nil || IsNil(o.PhoneNumber.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.PhoneNumber.Get()
+}
+
+// GetPhoneNumberOk returns a tuple with the PhoneNumber field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *FrejaProviderOutput) GetPhoneNumberOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.PhoneNumber.Get(), o.PhoneNumber.IsSet()
+}
+
+// HasPhoneNumber returns a boolean if a field has been set.
+func (o *FrejaProviderOutput) HasPhoneNumber() bool {
+	if o != nil && o.PhoneNumber.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPhoneNumber gets a reference to the given NullableString and assigns it to the PhoneNumber field.
+func (o *FrejaProviderOutput) SetPhoneNumber(v string) {
+	o.PhoneNumber.Set(&v)
+}
+// SetPhoneNumberNil sets the value for PhoneNumber to be an explicit nil
+func (o *FrejaProviderOutput) SetPhoneNumberNil() {
+	o.PhoneNumber.Set(nil)
+}
+
+// UnsetPhoneNumber ensures that no value is present for PhoneNumber, not even an explicit nil
+func (o *FrejaProviderOutput) UnsetPhoneNumber() {
+	o.PhoneNumber.Unset()
+}
+
+// GetPhoneNumberVerified returns the PhoneNumberVerified field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *FrejaProviderOutput) GetPhoneNumberVerified() bool {
+	if o == nil || IsNil(o.PhoneNumberVerified.Get()) {
+		var ret bool
+		return ret
+	}
+	return *o.PhoneNumberVerified.Get()
+}
+
+// GetPhoneNumberVerifiedOk returns a tuple with the PhoneNumberVerified field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *FrejaProviderOutput) GetPhoneNumberVerifiedOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.PhoneNumberVerified.Get(), o.PhoneNumberVerified.IsSet()
+}
+
+// HasPhoneNumberVerified returns a boolean if a field has been set.
+func (o *FrejaProviderOutput) HasPhoneNumberVerified() bool {
+	if o != nil && o.PhoneNumberVerified.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPhoneNumberVerified gets a reference to the given NullableBool and assigns it to the PhoneNumberVerified field.
+func (o *FrejaProviderOutput) SetPhoneNumberVerified(v bool) {
+	o.PhoneNumberVerified.Set(&v)
+}
+// SetPhoneNumberVerifiedNil sets the value for PhoneNumberVerified to be an explicit nil
+func (o *FrejaProviderOutput) SetPhoneNumberVerifiedNil() {
+	o.PhoneNumberVerified.Set(nil)
+}
+
+// UnsetPhoneNumberVerified ensures that no value is present for PhoneNumberVerified, not even an explicit nil
+func (o *FrejaProviderOutput) UnsetPhoneNumberVerified() {
+	o.PhoneNumberVerified.Unset()
+}
+
+// GetPersonalIdentityNumber returns the PersonalIdentityNumber field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *FrejaProviderOutput) GetPersonalIdentityNumber() string {
+	if o == nil || IsNil(o.PersonalIdentityNumber.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.PersonalIdentityNumber.Get()
+}
+
+// GetPersonalIdentityNumberOk returns a tuple with the PersonalIdentityNumber field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *FrejaProviderOutput) GetPersonalIdentityNumberOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.PersonalIdentityNumber.Get(), o.PersonalIdentityNumber.IsSet()
+}
+
+// HasPersonalIdentityNumber returns a boolean if a field has been set.
+func (o *FrejaProviderOutput) HasPersonalIdentityNumber() bool {
+	if o != nil && o.PersonalIdentityNumber.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPersonalIdentityNumber gets a reference to the given NullableString and assigns it to the PersonalIdentityNumber field.
+func (o *FrejaProviderOutput) SetPersonalIdentityNumber(v string) {
+	o.PersonalIdentityNumber.Set(&v)
+}
+// SetPersonalIdentityNumberNil sets the value for PersonalIdentityNumber to be an explicit nil
+func (o *FrejaProviderOutput) SetPersonalIdentityNumberNil() {
+	o.PersonalIdentityNumber.Set(nil)
+}
+
+// UnsetPersonalIdentityNumber ensures that no value is present for PersonalIdentityNumber, not even an explicit nil
+func (o *FrejaProviderOutput) UnsetPersonalIdentityNumber() {
+	o.PersonalIdentityNumber.Unset()
+}
+
+// GetCountry returns the Country field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *FrejaProviderOutput) GetCountry() string {
+	if o == nil || IsNil(o.Country.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Country.Get()
+}
+
+// GetCountryOk returns a tuple with the Country field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *FrejaProviderOutput) GetCountryOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Country.Get(), o.Country.IsSet()
+}
+
+// HasCountry returns a boolean if a field has been set.
+func (o *FrejaProviderOutput) HasCountry() bool {
+	if o != nil && o.Country.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCountry gets a reference to the given NullableString and assigns it to the Country field.
+func (o *FrejaProviderOutput) SetCountry(v string) {
+	o.Country.Set(&v)
+}
+// SetCountryNil sets the value for Country to be an explicit nil
+func (o *FrejaProviderOutput) SetCountryNil() {
+	o.Country.Set(nil)
+}
+
+// UnsetCountry ensures that no value is present for Country, not even an explicit nil
+func (o *FrejaProviderOutput) UnsetCountry() {
+	o.Country.Unset()
+}
+
+// GetDocument returns the Document field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *FrejaProviderOutput) GetDocument() OutputFrejaDocument {
+	if o == nil || IsNil(o.Document.Get()) {
+		var ret OutputFrejaDocument
+		return ret
+	}
+	return *o.Document.Get()
+}
+
+// GetDocumentOk returns a tuple with the Document field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *FrejaProviderOutput) GetDocumentOk() (*OutputFrejaDocument, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Document.Get(), o.Document.IsSet()
+}
+
+// HasDocument returns a boolean if a field has been set.
+func (o *FrejaProviderOutput) HasDocument() bool {
+	if o != nil && o.Document.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDocument gets a reference to the given NullableOutputFrejaDocument and assigns it to the Document field.
+func (o *FrejaProviderOutput) SetDocument(v OutputFrejaDocument) {
+	o.Document.Set(&v)
+}
+// SetDocumentNil sets the value for Document to be an explicit nil
+func (o *FrejaProviderOutput) SetDocumentNil() {
+	o.Document.Set(nil)
+}
+
+// UnsetDocument ensures that no value is present for Document, not even an explicit nil
+func (o *FrejaProviderOutput) UnsetDocument() {
+	o.Document.Unset()
+}
+
+// GetRegistrationLevel returns the RegistrationLevel field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *FrejaProviderOutput) GetRegistrationLevel() string {
+	if o == nil || IsNil(o.RegistrationLevel.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.RegistrationLevel.Get()
+}
+
+// GetRegistrationLevelOk returns a tuple with the RegistrationLevel field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *FrejaProviderOutput) GetRegistrationLevelOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.RegistrationLevel.Get(), o.RegistrationLevel.IsSet()
+}
+
+// HasRegistrationLevel returns a boolean if a field has been set.
+func (o *FrejaProviderOutput) HasRegistrationLevel() bool {
+	if o != nil && o.RegistrationLevel.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRegistrationLevel gets a reference to the given NullableString and assigns it to the RegistrationLevel field.
+func (o *FrejaProviderOutput) SetRegistrationLevel(v string) {
+	o.RegistrationLevel.Set(&v)
+}
+// SetRegistrationLevelNil sets the value for RegistrationLevel to be an explicit nil
+func (o *FrejaProviderOutput) SetRegistrationLevelNil() {
+	o.RegistrationLevel.Set(nil)
+}
+
+// UnsetRegistrationLevel ensures that no value is present for RegistrationLevel, not even an explicit nil
+func (o *FrejaProviderOutput) UnsetRegistrationLevel() {
+	o.RegistrationLevel.Unset()
+}
+
+// GetRelyingPartyUserId returns the RelyingPartyUserId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *FrejaProviderOutput) GetRelyingPartyUserId() string {
+	if o == nil || IsNil(o.RelyingPartyUserId.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.RelyingPartyUserId.Get()
+}
+
+// GetRelyingPartyUserIdOk returns a tuple with the RelyingPartyUserId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *FrejaProviderOutput) GetRelyingPartyUserIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.RelyingPartyUserId.Get(), o.RelyingPartyUserId.IsSet()
+}
+
+// HasRelyingPartyUserId returns a boolean if a field has been set.
+func (o *FrejaProviderOutput) HasRelyingPartyUserId() bool {
+	if o != nil && o.RelyingPartyUserId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRelyingPartyUserId gets a reference to the given NullableString and assigns it to the RelyingPartyUserId field.
+func (o *FrejaProviderOutput) SetRelyingPartyUserId(v string) {
+	o.RelyingPartyUserId.Set(&v)
+}
+// SetRelyingPartyUserIdNil sets the value for RelyingPartyUserId to be an explicit nil
+func (o *FrejaProviderOutput) SetRelyingPartyUserIdNil() {
+	o.RelyingPartyUserId.Set(nil)
+}
+
+// UnsetRelyingPartyUserId ensures that no value is present for RelyingPartyUserId, not even an explicit nil
+func (o *FrejaProviderOutput) UnsetRelyingPartyUserId() {
+	o.RelyingPartyUserId.Unset()
+}
+
+// GetTransactionReference returns the TransactionReference field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *FrejaProviderOutput) GetTransactionReference() string {
+	if o == nil || IsNil(o.TransactionReference.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.TransactionReference.Get()
+}
+
+// GetTransactionReferenceOk returns a tuple with the TransactionReference field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *FrejaProviderOutput) GetTransactionReferenceOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.TransactionReference.Get(), o.TransactionReference.IsSet()
+}
+
+// HasTransactionReference returns a boolean if a field has been set.
+func (o *FrejaProviderOutput) HasTransactionReference() bool {
+	if o != nil && o.TransactionReference.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTransactionReference gets a reference to the given NullableString and assigns it to the TransactionReference field.
+func (o *FrejaProviderOutput) SetTransactionReference(v string) {
+	o.TransactionReference.Set(&v)
+}
+// SetTransactionReferenceNil sets the value for TransactionReference to be an explicit nil
+func (o *FrejaProviderOutput) SetTransactionReferenceNil() {
+	o.TransactionReference.Set(nil)
+}
+
+// UnsetTransactionReference ensures that no value is present for TransactionReference, not even an explicit nil
+func (o *FrejaProviderOutput) UnsetTransactionReference() {
+	o.TransactionReference.Unset()
 }
 
 func (o FrejaProviderOutput) MarshalJSON() ([]byte, error) {
@@ -160,10 +825,60 @@ func (o FrejaProviderOutput) MarshalJSON() ([]byte, error) {
 
 func (o FrejaProviderOutput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["firstName"] = o.FirstName
-	toSerialize["lastName"] = o.LastName
-	toSerialize["personalNumber"] = o.PersonalNumber
-	toSerialize["personalNumberCountry"] = o.PersonalNumberCountry
+	if o.Name.IsSet() {
+		toSerialize["name"] = o.Name.Get()
+	}
+	if o.GivenName.IsSet() {
+		toSerialize["givenName"] = o.GivenName.Get()
+	}
+	if o.FamilyName.IsSet() {
+		toSerialize["familyName"] = o.FamilyName.Get()
+	}
+	if o.DateOfBirth.IsSet() {
+		toSerialize["dateOfBirth"] = o.DateOfBirth.Get()
+	}
+	if o.Email.IsSet() {
+		toSerialize["email"] = o.Email.Get()
+	}
+	if o.EmailVerified.IsSet() {
+		toSerialize["emailVerified"] = o.EmailVerified.Get()
+	}
+	if o.AllEmailAddresses != nil {
+		toSerialize["allEmailAddresses"] = o.AllEmailAddresses
+	}
+	if o.PrimaryPhysicalAddress.IsSet() {
+		toSerialize["primaryPhysicalAddress"] = o.PrimaryPhysicalAddress.Get()
+	}
+	if o.AllPhysicalAddresses != nil {
+		toSerialize["allPhysicalAddresses"] = o.AllPhysicalAddresses
+	}
+	if o.Age.IsSet() {
+		toSerialize["age"] = o.Age.Get()
+	}
+	if o.PhoneNumber.IsSet() {
+		toSerialize["phoneNumber"] = o.PhoneNumber.Get()
+	}
+	if o.PhoneNumberVerified.IsSet() {
+		toSerialize["phoneNumberVerified"] = o.PhoneNumberVerified.Get()
+	}
+	if o.PersonalIdentityNumber.IsSet() {
+		toSerialize["personalIdentityNumber"] = o.PersonalIdentityNumber.Get()
+	}
+	if o.Country.IsSet() {
+		toSerialize["country"] = o.Country.Get()
+	}
+	if o.Document.IsSet() {
+		toSerialize["document"] = o.Document.Get()
+	}
+	if o.RegistrationLevel.IsSet() {
+		toSerialize["registrationLevel"] = o.RegistrationLevel.Get()
+	}
+	if o.RelyingPartyUserId.IsSet() {
+		toSerialize["relyingPartyUserId"] = o.RelyingPartyUserId.Get()
+	}
+	if o.TransactionReference.IsSet() {
+		toSerialize["transactionReference"] = o.TransactionReference.Get()
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -173,30 +888,6 @@ func (o FrejaProviderOutput) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *FrejaProviderOutput) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"firstName",
-		"lastName",
-		"personalNumber",
-		"personalNumberCountry",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varFrejaProviderOutput := _FrejaProviderOutput{}
 
 	err = json.Unmarshal(data, &varFrejaProviderOutput)
@@ -210,10 +901,24 @@ func (o *FrejaProviderOutput) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "firstName")
-		delete(additionalProperties, "lastName")
-		delete(additionalProperties, "personalNumber")
-		delete(additionalProperties, "personalNumberCountry")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "givenName")
+		delete(additionalProperties, "familyName")
+		delete(additionalProperties, "dateOfBirth")
+		delete(additionalProperties, "email")
+		delete(additionalProperties, "emailVerified")
+		delete(additionalProperties, "allEmailAddresses")
+		delete(additionalProperties, "primaryPhysicalAddress")
+		delete(additionalProperties, "allPhysicalAddresses")
+		delete(additionalProperties, "age")
+		delete(additionalProperties, "phoneNumber")
+		delete(additionalProperties, "phoneNumberVerified")
+		delete(additionalProperties, "personalIdentityNumber")
+		delete(additionalProperties, "country")
+		delete(additionalProperties, "document")
+		delete(additionalProperties, "registrationLevel")
+		delete(additionalProperties, "relyingPartyUserId")
+		delete(additionalProperties, "transactionReference")
 		o.AdditionalProperties = additionalProperties
 	}
 

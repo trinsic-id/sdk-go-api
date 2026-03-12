@@ -5,12 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **RecommendedProviders** | [**[]RecommendProviderInformation**](RecommendProviderInformation.md) |  | 
+**Remainder** | [**[]RecommendProviderInformation**](RecommendProviderInformation.md) | All Providers available to your Verification Profile which are not in &#x60;recommendedProviders&#x60; | 
 
 ## Methods
 
 ### NewRecommendProvidersResponse
 
-`func NewRecommendProvidersResponse(recommendedProviders []RecommendProviderInformation, ) *RecommendProvidersResponse`
+`func NewRecommendProvidersResponse(recommendedProviders []RecommendProviderInformation, remainder []RecommendProviderInformation, ) *RecommendProvidersResponse`
 
 NewRecommendProvidersResponse instantiates a new RecommendProvidersResponse object
 This constructor will assign default values to properties that have it defined,
@@ -43,6 +44,26 @@ and a boolean to check if the value has been set.
 `func (o *RecommendProvidersResponse) SetRecommendedProviders(v []RecommendProviderInformation)`
 
 SetRecommendedProviders sets RecommendedProviders field to given value.
+
+
+### GetRemainder
+
+`func (o *RecommendProvidersResponse) GetRemainder() []RecommendProviderInformation`
+
+GetRemainder returns the Remainder field if non-nil, zero value otherwise.
+
+### GetRemainderOk
+
+`func (o *RecommendProvidersResponse) GetRemainderOk() (*[]RecommendProviderInformation, bool)`
+
+GetRemainderOk returns a tuple with the Remainder field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRemainder
+
+`func (o *RecommendProvidersResponse) SetRemainder(v []RecommendProviderInformation)`
+
+SetRemainder sets Remainder field to given value.
 
 
 
