@@ -51,7 +51,7 @@ type FrejaProviderOutput struct {
 	Document NullableOutputFrejaDocument `json:"document,omitempty"`
 	// The Freja registration level associated with this individual. This can be BASIC, EXTENDED, or PLUS. * BASIC: Individual has a registered account with Freja. * EXTENDED: Individual has an official identity document verified by Freja. * PLUS: Individual has undergone in-person verification with Freja.
 	RegistrationLevel NullableString `json:"registrationLevel,omitempty"`
-	// The relying party user identifier for this individual. This is an identifier specific to the individual and the relying party (your service).
+	// The relying party identifier for this individual. This is an identifier specific to the individual and the relying party (your service).
 	RelyingPartyUserId NullableString `json:"relyingPartyUserId,omitempty"`
 	// The Freja transaction reference for this verification. This is an identifier specific to the verification transaction.
 	TransactionReference NullableString `json:"transactionReference,omitempty"`

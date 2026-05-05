@@ -23,6 +23,8 @@ type ProviderInput struct {
 	KenyaNidMatchBiometric2 NullableKenyaNidBiometric2Input `json:"kenya-nid-match-biometric-2,omitempty"`
 	// Input for the `indonesia-nik-lookup` provider
 	IndonesiaNikLookup NullableIndonesiaNikInput `json:"indonesia-nik-lookup,omitempty"`
+	// Input for the `china-resident-id-match` provider
+	ChinaResidentIdMatch NullableChinaResidentIdMatchInput `json:"china-resident-id-match,omitempty"`
 	// Input for the `indonesia-dukcapil-match` provider
 	IndonesiaDukcapilMatch NullableIndonesiaDukcapilMatchInput `json:"indonesia-dukcapil-match,omitempty"`
 	// Input for the `mexico-curp-lookup` provider
@@ -57,6 +59,10 @@ type ProviderInput struct {
 	NigeriaNinLookup NullableNigeriaNinInput `json:"nigeria-nin-lookup,omitempty"`
 	// Input for the `india-digilocker-aadhaar-match` provider
 	IndiaDigilockerAadhaarMatch NullableAadhaarInput `json:"india-digilocker-aadhaar-match,omitempty"`
+	// Input for the `india-pan-lookup` provider
+	IndiaPanLookup NullableIndiaPanLookupInput `json:"india-pan-lookup,omitempty"`
+	// Input for the `korea-telco-match` provider
+	KoreaTelcoMatch NullableKoreaTelcoMatchInput `json:"korea-telco-match,omitempty"`
 	// Input for the `brazil-cpf-lookup` provider
 	BrazilCpfLookup NullableBrazilCpfCheckInput `json:"brazil-cpf-lookup,omitempty"`
 	// Input for the `brazil-digital-cnh` provider
@@ -83,10 +89,24 @@ type ProviderInput struct {
 	SamsungWallet NullableSamsungWalletInput `json:"samsung-wallet,omitempty"`
 	// Input for the `france-identite` provider
 	FranceIdentite NullableFranceIdentiteInput `json:"france-identite,omitempty"`
+	// Input for the `poland-mobywatel-match` provider
+	PolandMobywatelMatch NullablePolandMobywatelMatchInput `json:"poland-mobywatel-match,omitempty"`
+	// Input for the `bolivia-ci-lookup` provider
+	BoliviaCiLookup NullableBoliviaCiLookupInput `json:"bolivia-ci-lookup,omitempty"`
+	// Input for the `colombia-cc-lookup` provider
+	ColombiaCcLookup NullableColombiaCcLookupInput `json:"colombia-cc-lookup,omitempty"`
+	// Input for the `el-salvador-dui-lookup` provider
+	ElSalvadorDuiLookup NullableElSalvadorDuiLookupInput `json:"el-salvador-dui-lookup,omitempty"`
+	// Input for the `guatemala-cui-lookup` provider
+	GuatemalaCuiLookup NullableGuatemalaCuiLookupInput `json:"guatemala-cui-lookup,omitempty"`
+	// Input for the `panama-cedula-lookup` provider
+	PanamaCedulaLookup NullablePanamaCedulaLookupInput `json:"panama-cedula-lookup,omitempty"`
 	// Input for the `peru-dni-lookup` provider
 	PeruDniLookup NullablePeruDniLookupInput `json:"peru-dni-lookup,omitempty"`
 	// Input for the `uk-evisa-lookup` provider
 	UkEvisaLookup NullableUkEvisaLookupInput `json:"uk-evisa-lookup,omitempty"`
+	// Input for the `usa-california-dmv` provider
+	UsaCaliforniaDmv NullableUsaCaliforniaDmvInput `json:"usa-california-dmv,omitempty"`
 	// *TEST MODE ONLY.*              Input for the `trinsic-test-database-lookup` provider
 	TrinsicTestDatabaseLookup NullableTrinsicTestDatabaseLookupInput `json:"trinsic-test-database-lookup,omitempty"`
 	// *TEST MODE ONLY.*              Input for the `trinsic-test-sub-providers` provider
@@ -195,6 +215,48 @@ func (o *ProviderInput) SetIndonesiaNikLookupNil() {
 // UnsetIndonesiaNikLookup ensures that no value is present for IndonesiaNikLookup, not even an explicit nil
 func (o *ProviderInput) UnsetIndonesiaNikLookup() {
 	o.IndonesiaNikLookup.Unset()
+}
+
+// GetChinaResidentIdMatch returns the ChinaResidentIdMatch field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderInput) GetChinaResidentIdMatch() ChinaResidentIdMatchInput {
+	if o == nil || IsNil(o.ChinaResidentIdMatch.Get()) {
+		var ret ChinaResidentIdMatchInput
+		return ret
+	}
+	return *o.ChinaResidentIdMatch.Get()
+}
+
+// GetChinaResidentIdMatchOk returns a tuple with the ChinaResidentIdMatch field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderInput) GetChinaResidentIdMatchOk() (*ChinaResidentIdMatchInput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ChinaResidentIdMatch.Get(), o.ChinaResidentIdMatch.IsSet()
+}
+
+// HasChinaResidentIdMatch returns a boolean if a field has been set.
+func (o *ProviderInput) HasChinaResidentIdMatch() bool {
+	if o != nil && o.ChinaResidentIdMatch.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetChinaResidentIdMatch gets a reference to the given NullableChinaResidentIdMatchInput and assigns it to the ChinaResidentIdMatch field.
+func (o *ProviderInput) SetChinaResidentIdMatch(v ChinaResidentIdMatchInput) {
+	o.ChinaResidentIdMatch.Set(&v)
+}
+// SetChinaResidentIdMatchNil sets the value for ChinaResidentIdMatch to be an explicit nil
+func (o *ProviderInput) SetChinaResidentIdMatchNil() {
+	o.ChinaResidentIdMatch.Set(nil)
+}
+
+// UnsetChinaResidentIdMatch ensures that no value is present for ChinaResidentIdMatch, not even an explicit nil
+func (o *ProviderInput) UnsetChinaResidentIdMatch() {
+	o.ChinaResidentIdMatch.Unset()
 }
 
 // GetIndonesiaDukcapilMatch returns the IndonesiaDukcapilMatch field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -911,6 +973,90 @@ func (o *ProviderInput) UnsetIndiaDigilockerAadhaarMatch() {
 	o.IndiaDigilockerAadhaarMatch.Unset()
 }
 
+// GetIndiaPanLookup returns the IndiaPanLookup field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderInput) GetIndiaPanLookup() IndiaPanLookupInput {
+	if o == nil || IsNil(o.IndiaPanLookup.Get()) {
+		var ret IndiaPanLookupInput
+		return ret
+	}
+	return *o.IndiaPanLookup.Get()
+}
+
+// GetIndiaPanLookupOk returns a tuple with the IndiaPanLookup field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderInput) GetIndiaPanLookupOk() (*IndiaPanLookupInput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.IndiaPanLookup.Get(), o.IndiaPanLookup.IsSet()
+}
+
+// HasIndiaPanLookup returns a boolean if a field has been set.
+func (o *ProviderInput) HasIndiaPanLookup() bool {
+	if o != nil && o.IndiaPanLookup.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetIndiaPanLookup gets a reference to the given NullableIndiaPanLookupInput and assigns it to the IndiaPanLookup field.
+func (o *ProviderInput) SetIndiaPanLookup(v IndiaPanLookupInput) {
+	o.IndiaPanLookup.Set(&v)
+}
+// SetIndiaPanLookupNil sets the value for IndiaPanLookup to be an explicit nil
+func (o *ProviderInput) SetIndiaPanLookupNil() {
+	o.IndiaPanLookup.Set(nil)
+}
+
+// UnsetIndiaPanLookup ensures that no value is present for IndiaPanLookup, not even an explicit nil
+func (o *ProviderInput) UnsetIndiaPanLookup() {
+	o.IndiaPanLookup.Unset()
+}
+
+// GetKoreaTelcoMatch returns the KoreaTelcoMatch field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderInput) GetKoreaTelcoMatch() KoreaTelcoMatchInput {
+	if o == nil || IsNil(o.KoreaTelcoMatch.Get()) {
+		var ret KoreaTelcoMatchInput
+		return ret
+	}
+	return *o.KoreaTelcoMatch.Get()
+}
+
+// GetKoreaTelcoMatchOk returns a tuple with the KoreaTelcoMatch field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderInput) GetKoreaTelcoMatchOk() (*KoreaTelcoMatchInput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.KoreaTelcoMatch.Get(), o.KoreaTelcoMatch.IsSet()
+}
+
+// HasKoreaTelcoMatch returns a boolean if a field has been set.
+func (o *ProviderInput) HasKoreaTelcoMatch() bool {
+	if o != nil && o.KoreaTelcoMatch.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetKoreaTelcoMatch gets a reference to the given NullableKoreaTelcoMatchInput and assigns it to the KoreaTelcoMatch field.
+func (o *ProviderInput) SetKoreaTelcoMatch(v KoreaTelcoMatchInput) {
+	o.KoreaTelcoMatch.Set(&v)
+}
+// SetKoreaTelcoMatchNil sets the value for KoreaTelcoMatch to be an explicit nil
+func (o *ProviderInput) SetKoreaTelcoMatchNil() {
+	o.KoreaTelcoMatch.Set(nil)
+}
+
+// UnsetKoreaTelcoMatch ensures that no value is present for KoreaTelcoMatch, not even an explicit nil
+func (o *ProviderInput) UnsetKoreaTelcoMatch() {
+	o.KoreaTelcoMatch.Unset()
+}
+
 // GetBrazilCpfLookup returns the BrazilCpfLookup field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ProviderInput) GetBrazilCpfLookup() BrazilCpfCheckInput {
 	if o == nil || IsNil(o.BrazilCpfLookup.Get()) {
@@ -1457,6 +1603,258 @@ func (o *ProviderInput) UnsetFranceIdentite() {
 	o.FranceIdentite.Unset()
 }
 
+// GetPolandMobywatelMatch returns the PolandMobywatelMatch field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderInput) GetPolandMobywatelMatch() PolandMobywatelMatchInput {
+	if o == nil || IsNil(o.PolandMobywatelMatch.Get()) {
+		var ret PolandMobywatelMatchInput
+		return ret
+	}
+	return *o.PolandMobywatelMatch.Get()
+}
+
+// GetPolandMobywatelMatchOk returns a tuple with the PolandMobywatelMatch field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderInput) GetPolandMobywatelMatchOk() (*PolandMobywatelMatchInput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.PolandMobywatelMatch.Get(), o.PolandMobywatelMatch.IsSet()
+}
+
+// HasPolandMobywatelMatch returns a boolean if a field has been set.
+func (o *ProviderInput) HasPolandMobywatelMatch() bool {
+	if o != nil && o.PolandMobywatelMatch.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPolandMobywatelMatch gets a reference to the given NullablePolandMobywatelMatchInput and assigns it to the PolandMobywatelMatch field.
+func (o *ProviderInput) SetPolandMobywatelMatch(v PolandMobywatelMatchInput) {
+	o.PolandMobywatelMatch.Set(&v)
+}
+// SetPolandMobywatelMatchNil sets the value for PolandMobywatelMatch to be an explicit nil
+func (o *ProviderInput) SetPolandMobywatelMatchNil() {
+	o.PolandMobywatelMatch.Set(nil)
+}
+
+// UnsetPolandMobywatelMatch ensures that no value is present for PolandMobywatelMatch, not even an explicit nil
+func (o *ProviderInput) UnsetPolandMobywatelMatch() {
+	o.PolandMobywatelMatch.Unset()
+}
+
+// GetBoliviaCiLookup returns the BoliviaCiLookup field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderInput) GetBoliviaCiLookup() BoliviaCiLookupInput {
+	if o == nil || IsNil(o.BoliviaCiLookup.Get()) {
+		var ret BoliviaCiLookupInput
+		return ret
+	}
+	return *o.BoliviaCiLookup.Get()
+}
+
+// GetBoliviaCiLookupOk returns a tuple with the BoliviaCiLookup field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderInput) GetBoliviaCiLookupOk() (*BoliviaCiLookupInput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.BoliviaCiLookup.Get(), o.BoliviaCiLookup.IsSet()
+}
+
+// HasBoliviaCiLookup returns a boolean if a field has been set.
+func (o *ProviderInput) HasBoliviaCiLookup() bool {
+	if o != nil && o.BoliviaCiLookup.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetBoliviaCiLookup gets a reference to the given NullableBoliviaCiLookupInput and assigns it to the BoliviaCiLookup field.
+func (o *ProviderInput) SetBoliviaCiLookup(v BoliviaCiLookupInput) {
+	o.BoliviaCiLookup.Set(&v)
+}
+// SetBoliviaCiLookupNil sets the value for BoliviaCiLookup to be an explicit nil
+func (o *ProviderInput) SetBoliviaCiLookupNil() {
+	o.BoliviaCiLookup.Set(nil)
+}
+
+// UnsetBoliviaCiLookup ensures that no value is present for BoliviaCiLookup, not even an explicit nil
+func (o *ProviderInput) UnsetBoliviaCiLookup() {
+	o.BoliviaCiLookup.Unset()
+}
+
+// GetColombiaCcLookup returns the ColombiaCcLookup field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderInput) GetColombiaCcLookup() ColombiaCcLookupInput {
+	if o == nil || IsNil(o.ColombiaCcLookup.Get()) {
+		var ret ColombiaCcLookupInput
+		return ret
+	}
+	return *o.ColombiaCcLookup.Get()
+}
+
+// GetColombiaCcLookupOk returns a tuple with the ColombiaCcLookup field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderInput) GetColombiaCcLookupOk() (*ColombiaCcLookupInput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ColombiaCcLookup.Get(), o.ColombiaCcLookup.IsSet()
+}
+
+// HasColombiaCcLookup returns a boolean if a field has been set.
+func (o *ProviderInput) HasColombiaCcLookup() bool {
+	if o != nil && o.ColombiaCcLookup.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetColombiaCcLookup gets a reference to the given NullableColombiaCcLookupInput and assigns it to the ColombiaCcLookup field.
+func (o *ProviderInput) SetColombiaCcLookup(v ColombiaCcLookupInput) {
+	o.ColombiaCcLookup.Set(&v)
+}
+// SetColombiaCcLookupNil sets the value for ColombiaCcLookup to be an explicit nil
+func (o *ProviderInput) SetColombiaCcLookupNil() {
+	o.ColombiaCcLookup.Set(nil)
+}
+
+// UnsetColombiaCcLookup ensures that no value is present for ColombiaCcLookup, not even an explicit nil
+func (o *ProviderInput) UnsetColombiaCcLookup() {
+	o.ColombiaCcLookup.Unset()
+}
+
+// GetElSalvadorDuiLookup returns the ElSalvadorDuiLookup field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderInput) GetElSalvadorDuiLookup() ElSalvadorDuiLookupInput {
+	if o == nil || IsNil(o.ElSalvadorDuiLookup.Get()) {
+		var ret ElSalvadorDuiLookupInput
+		return ret
+	}
+	return *o.ElSalvadorDuiLookup.Get()
+}
+
+// GetElSalvadorDuiLookupOk returns a tuple with the ElSalvadorDuiLookup field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderInput) GetElSalvadorDuiLookupOk() (*ElSalvadorDuiLookupInput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ElSalvadorDuiLookup.Get(), o.ElSalvadorDuiLookup.IsSet()
+}
+
+// HasElSalvadorDuiLookup returns a boolean if a field has been set.
+func (o *ProviderInput) HasElSalvadorDuiLookup() bool {
+	if o != nil && o.ElSalvadorDuiLookup.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetElSalvadorDuiLookup gets a reference to the given NullableElSalvadorDuiLookupInput and assigns it to the ElSalvadorDuiLookup field.
+func (o *ProviderInput) SetElSalvadorDuiLookup(v ElSalvadorDuiLookupInput) {
+	o.ElSalvadorDuiLookup.Set(&v)
+}
+// SetElSalvadorDuiLookupNil sets the value for ElSalvadorDuiLookup to be an explicit nil
+func (o *ProviderInput) SetElSalvadorDuiLookupNil() {
+	o.ElSalvadorDuiLookup.Set(nil)
+}
+
+// UnsetElSalvadorDuiLookup ensures that no value is present for ElSalvadorDuiLookup, not even an explicit nil
+func (o *ProviderInput) UnsetElSalvadorDuiLookup() {
+	o.ElSalvadorDuiLookup.Unset()
+}
+
+// GetGuatemalaCuiLookup returns the GuatemalaCuiLookup field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderInput) GetGuatemalaCuiLookup() GuatemalaCuiLookupInput {
+	if o == nil || IsNil(o.GuatemalaCuiLookup.Get()) {
+		var ret GuatemalaCuiLookupInput
+		return ret
+	}
+	return *o.GuatemalaCuiLookup.Get()
+}
+
+// GetGuatemalaCuiLookupOk returns a tuple with the GuatemalaCuiLookup field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderInput) GetGuatemalaCuiLookupOk() (*GuatemalaCuiLookupInput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.GuatemalaCuiLookup.Get(), o.GuatemalaCuiLookup.IsSet()
+}
+
+// HasGuatemalaCuiLookup returns a boolean if a field has been set.
+func (o *ProviderInput) HasGuatemalaCuiLookup() bool {
+	if o != nil && o.GuatemalaCuiLookup.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetGuatemalaCuiLookup gets a reference to the given NullableGuatemalaCuiLookupInput and assigns it to the GuatemalaCuiLookup field.
+func (o *ProviderInput) SetGuatemalaCuiLookup(v GuatemalaCuiLookupInput) {
+	o.GuatemalaCuiLookup.Set(&v)
+}
+// SetGuatemalaCuiLookupNil sets the value for GuatemalaCuiLookup to be an explicit nil
+func (o *ProviderInput) SetGuatemalaCuiLookupNil() {
+	o.GuatemalaCuiLookup.Set(nil)
+}
+
+// UnsetGuatemalaCuiLookup ensures that no value is present for GuatemalaCuiLookup, not even an explicit nil
+func (o *ProviderInput) UnsetGuatemalaCuiLookup() {
+	o.GuatemalaCuiLookup.Unset()
+}
+
+// GetPanamaCedulaLookup returns the PanamaCedulaLookup field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderInput) GetPanamaCedulaLookup() PanamaCedulaLookupInput {
+	if o == nil || IsNil(o.PanamaCedulaLookup.Get()) {
+		var ret PanamaCedulaLookupInput
+		return ret
+	}
+	return *o.PanamaCedulaLookup.Get()
+}
+
+// GetPanamaCedulaLookupOk returns a tuple with the PanamaCedulaLookup field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderInput) GetPanamaCedulaLookupOk() (*PanamaCedulaLookupInput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.PanamaCedulaLookup.Get(), o.PanamaCedulaLookup.IsSet()
+}
+
+// HasPanamaCedulaLookup returns a boolean if a field has been set.
+func (o *ProviderInput) HasPanamaCedulaLookup() bool {
+	if o != nil && o.PanamaCedulaLookup.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPanamaCedulaLookup gets a reference to the given NullablePanamaCedulaLookupInput and assigns it to the PanamaCedulaLookup field.
+func (o *ProviderInput) SetPanamaCedulaLookup(v PanamaCedulaLookupInput) {
+	o.PanamaCedulaLookup.Set(&v)
+}
+// SetPanamaCedulaLookupNil sets the value for PanamaCedulaLookup to be an explicit nil
+func (o *ProviderInput) SetPanamaCedulaLookupNil() {
+	o.PanamaCedulaLookup.Set(nil)
+}
+
+// UnsetPanamaCedulaLookup ensures that no value is present for PanamaCedulaLookup, not even an explicit nil
+func (o *ProviderInput) UnsetPanamaCedulaLookup() {
+	o.PanamaCedulaLookup.Unset()
+}
+
 // GetPeruDniLookup returns the PeruDniLookup field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ProviderInput) GetPeruDniLookup() PeruDniLookupInput {
 	if o == nil || IsNil(o.PeruDniLookup.Get()) {
@@ -1539,6 +1937,48 @@ func (o *ProviderInput) SetUkEvisaLookupNil() {
 // UnsetUkEvisaLookup ensures that no value is present for UkEvisaLookup, not even an explicit nil
 func (o *ProviderInput) UnsetUkEvisaLookup() {
 	o.UkEvisaLookup.Unset()
+}
+
+// GetUsaCaliforniaDmv returns the UsaCaliforniaDmv field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderInput) GetUsaCaliforniaDmv() UsaCaliforniaDmvInput {
+	if o == nil || IsNil(o.UsaCaliforniaDmv.Get()) {
+		var ret UsaCaliforniaDmvInput
+		return ret
+	}
+	return *o.UsaCaliforniaDmv.Get()
+}
+
+// GetUsaCaliforniaDmvOk returns a tuple with the UsaCaliforniaDmv field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderInput) GetUsaCaliforniaDmvOk() (*UsaCaliforniaDmvInput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.UsaCaliforniaDmv.Get(), o.UsaCaliforniaDmv.IsSet()
+}
+
+// HasUsaCaliforniaDmv returns a boolean if a field has been set.
+func (o *ProviderInput) HasUsaCaliforniaDmv() bool {
+	if o != nil && o.UsaCaliforniaDmv.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetUsaCaliforniaDmv gets a reference to the given NullableUsaCaliforniaDmvInput and assigns it to the UsaCaliforniaDmv field.
+func (o *ProviderInput) SetUsaCaliforniaDmv(v UsaCaliforniaDmvInput) {
+	o.UsaCaliforniaDmv.Set(&v)
+}
+// SetUsaCaliforniaDmvNil sets the value for UsaCaliforniaDmv to be an explicit nil
+func (o *ProviderInput) SetUsaCaliforniaDmvNil() {
+	o.UsaCaliforniaDmv.Set(nil)
+}
+
+// UnsetUsaCaliforniaDmv ensures that no value is present for UsaCaliforniaDmv, not even an explicit nil
+func (o *ProviderInput) UnsetUsaCaliforniaDmv() {
+	o.UsaCaliforniaDmv.Unset()
 }
 
 // GetTrinsicTestDatabaseLookup returns the TrinsicTestDatabaseLookup field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -1641,6 +2081,9 @@ func (o ProviderInput) ToMap() (map[string]interface{}, error) {
 	if o.IndonesiaNikLookup.IsSet() {
 		toSerialize["indonesia-nik-lookup"] = o.IndonesiaNikLookup.Get()
 	}
+	if o.ChinaResidentIdMatch.IsSet() {
+		toSerialize["china-resident-id-match"] = o.ChinaResidentIdMatch.Get()
+	}
 	if o.IndonesiaDukcapilMatch.IsSet() {
 		toSerialize["indonesia-dukcapil-match"] = o.IndonesiaDukcapilMatch.Get()
 	}
@@ -1692,6 +2135,12 @@ func (o ProviderInput) ToMap() (map[string]interface{}, error) {
 	if o.IndiaDigilockerAadhaarMatch.IsSet() {
 		toSerialize["india-digilocker-aadhaar-match"] = o.IndiaDigilockerAadhaarMatch.Get()
 	}
+	if o.IndiaPanLookup.IsSet() {
+		toSerialize["india-pan-lookup"] = o.IndiaPanLookup.Get()
+	}
+	if o.KoreaTelcoMatch.IsSet() {
+		toSerialize["korea-telco-match"] = o.KoreaTelcoMatch.Get()
+	}
 	if o.BrazilCpfLookup.IsSet() {
 		toSerialize["brazil-cpf-lookup"] = o.BrazilCpfLookup.Get()
 	}
@@ -1731,11 +2180,32 @@ func (o ProviderInput) ToMap() (map[string]interface{}, error) {
 	if o.FranceIdentite.IsSet() {
 		toSerialize["france-identite"] = o.FranceIdentite.Get()
 	}
+	if o.PolandMobywatelMatch.IsSet() {
+		toSerialize["poland-mobywatel-match"] = o.PolandMobywatelMatch.Get()
+	}
+	if o.BoliviaCiLookup.IsSet() {
+		toSerialize["bolivia-ci-lookup"] = o.BoliviaCiLookup.Get()
+	}
+	if o.ColombiaCcLookup.IsSet() {
+		toSerialize["colombia-cc-lookup"] = o.ColombiaCcLookup.Get()
+	}
+	if o.ElSalvadorDuiLookup.IsSet() {
+		toSerialize["el-salvador-dui-lookup"] = o.ElSalvadorDuiLookup.Get()
+	}
+	if o.GuatemalaCuiLookup.IsSet() {
+		toSerialize["guatemala-cui-lookup"] = o.GuatemalaCuiLookup.Get()
+	}
+	if o.PanamaCedulaLookup.IsSet() {
+		toSerialize["panama-cedula-lookup"] = o.PanamaCedulaLookup.Get()
+	}
 	if o.PeruDniLookup.IsSet() {
 		toSerialize["peru-dni-lookup"] = o.PeruDniLookup.Get()
 	}
 	if o.UkEvisaLookup.IsSet() {
 		toSerialize["uk-evisa-lookup"] = o.UkEvisaLookup.Get()
+	}
+	if o.UsaCaliforniaDmv.IsSet() {
+		toSerialize["usa-california-dmv"] = o.UsaCaliforniaDmv.Get()
 	}
 	if o.TrinsicTestDatabaseLookup.IsSet() {
 		toSerialize["trinsic-test-database-lookup"] = o.TrinsicTestDatabaseLookup.Get()
@@ -1767,6 +2237,7 @@ func (o *ProviderInput) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "kenya-nid-match-biometric-2")
 		delete(additionalProperties, "indonesia-nik-lookup")
+		delete(additionalProperties, "china-resident-id-match")
 		delete(additionalProperties, "indonesia-dukcapil-match")
 		delete(additionalProperties, "mexico-curp-lookup")
 		delete(additionalProperties, "south-africa-nid-lookup")
@@ -1784,6 +2255,8 @@ func (o *ProviderInput) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "nigeria-nin-match-biometric-2")
 		delete(additionalProperties, "nigeria-nin-lookup")
 		delete(additionalProperties, "india-digilocker-aadhaar-match")
+		delete(additionalProperties, "india-pan-lookup")
+		delete(additionalProperties, "korea-telco-match")
 		delete(additionalProperties, "brazil-cpf-lookup")
 		delete(additionalProperties, "brazil-digital-cnh")
 		delete(additionalProperties, "philippines-philsys-match")
@@ -1797,8 +2270,15 @@ func (o *ProviderInput) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "apple-wallet")
 		delete(additionalProperties, "samsung-wallet")
 		delete(additionalProperties, "france-identite")
+		delete(additionalProperties, "poland-mobywatel-match")
+		delete(additionalProperties, "bolivia-ci-lookup")
+		delete(additionalProperties, "colombia-cc-lookup")
+		delete(additionalProperties, "el-salvador-dui-lookup")
+		delete(additionalProperties, "guatemala-cui-lookup")
+		delete(additionalProperties, "panama-cedula-lookup")
 		delete(additionalProperties, "peru-dni-lookup")
 		delete(additionalProperties, "uk-evisa-lookup")
+		delete(additionalProperties, "usa-california-dmv")
 		delete(additionalProperties, "trinsic-test-database-lookup")
 		delete(additionalProperties, "trinsic-test-sub-providers")
 		o.AdditionalProperties = additionalProperties

@@ -23,26 +23,8 @@ type AadhaarLocalizedClaims struct {
 	Language NullableAadhaarLanguage `json:"language,omitempty"`
 	// The full name.
 	Name NullableString `json:"name,omitempty"`
-	// The address's care-of field. This indicates that mail should be delivered to an individual through another person or entity who is a known resident at the address.
-	CareOf NullableString `json:"careOf,omitempty"`
-	// The address's country.
-	Country NullableString `json:"country,omitempty"`
-	// The address's district.
-	District NullableString `json:"district,omitempty"`
-	// The identifier for the house address.
-	House NullableString `json:"house,omitempty"`
-	// The location or locality that helps identify where the address is within a city.
-	Location NullableString `json:"location,omitempty"`
-	// A landmark near the address.
-	Landmark NullableString `json:"landmark,omitempty"`
-	// The address's postal code.
-	PostalCode NullableString `json:"postalCode,omitempty"`
-	// The address's state or union territory.
-	State NullableString `json:"state,omitempty"`
-	// The address's street name.
-	Street NullableString `json:"street,omitempty"`
-	// The address's village/town/city.
-	VillageTownCity NullableString `json:"villageTownCity,omitempty"`
+	// The structured address.
+	Address NullableAadhaarAddress `json:"address,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -149,424 +131,46 @@ func (o *AadhaarLocalizedClaims) UnsetName() {
 	o.Name.Unset()
 }
 
-// GetCareOf returns the CareOf field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AadhaarLocalizedClaims) GetCareOf() string {
-	if o == nil || IsNil(o.CareOf.Get()) {
-		var ret string
+// GetAddress returns the Address field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AadhaarLocalizedClaims) GetAddress() AadhaarAddress {
+	if o == nil || IsNil(o.Address.Get()) {
+		var ret AadhaarAddress
 		return ret
 	}
-	return *o.CareOf.Get()
+	return *o.Address.Get()
 }
 
-// GetCareOfOk returns a tuple with the CareOf field value if set, nil otherwise
+// GetAddressOk returns a tuple with the Address field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AadhaarLocalizedClaims) GetCareOfOk() (*string, bool) {
+func (o *AadhaarLocalizedClaims) GetAddressOk() (*AadhaarAddress, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.CareOf.Get(), o.CareOf.IsSet()
+	return o.Address.Get(), o.Address.IsSet()
 }
 
-// HasCareOf returns a boolean if a field has been set.
-func (o *AadhaarLocalizedClaims) HasCareOf() bool {
-	if o != nil && o.CareOf.IsSet() {
+// HasAddress returns a boolean if a field has been set.
+func (o *AadhaarLocalizedClaims) HasAddress() bool {
+	if o != nil && o.Address.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetCareOf gets a reference to the given NullableString and assigns it to the CareOf field.
-func (o *AadhaarLocalizedClaims) SetCareOf(v string) {
-	o.CareOf.Set(&v)
+// SetAddress gets a reference to the given NullableAadhaarAddress and assigns it to the Address field.
+func (o *AadhaarLocalizedClaims) SetAddress(v AadhaarAddress) {
+	o.Address.Set(&v)
 }
-// SetCareOfNil sets the value for CareOf to be an explicit nil
-func (o *AadhaarLocalizedClaims) SetCareOfNil() {
-	o.CareOf.Set(nil)
-}
-
-// UnsetCareOf ensures that no value is present for CareOf, not even an explicit nil
-func (o *AadhaarLocalizedClaims) UnsetCareOf() {
-	o.CareOf.Unset()
+// SetAddressNil sets the value for Address to be an explicit nil
+func (o *AadhaarLocalizedClaims) SetAddressNil() {
+	o.Address.Set(nil)
 }
 
-// GetCountry returns the Country field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AadhaarLocalizedClaims) GetCountry() string {
-	if o == nil || IsNil(o.Country.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Country.Get()
-}
-
-// GetCountryOk returns a tuple with the Country field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AadhaarLocalizedClaims) GetCountryOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Country.Get(), o.Country.IsSet()
-}
-
-// HasCountry returns a boolean if a field has been set.
-func (o *AadhaarLocalizedClaims) HasCountry() bool {
-	if o != nil && o.Country.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetCountry gets a reference to the given NullableString and assigns it to the Country field.
-func (o *AadhaarLocalizedClaims) SetCountry(v string) {
-	o.Country.Set(&v)
-}
-// SetCountryNil sets the value for Country to be an explicit nil
-func (o *AadhaarLocalizedClaims) SetCountryNil() {
-	o.Country.Set(nil)
-}
-
-// UnsetCountry ensures that no value is present for Country, not even an explicit nil
-func (o *AadhaarLocalizedClaims) UnsetCountry() {
-	o.Country.Unset()
-}
-
-// GetDistrict returns the District field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AadhaarLocalizedClaims) GetDistrict() string {
-	if o == nil || IsNil(o.District.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.District.Get()
-}
-
-// GetDistrictOk returns a tuple with the District field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AadhaarLocalizedClaims) GetDistrictOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.District.Get(), o.District.IsSet()
-}
-
-// HasDistrict returns a boolean if a field has been set.
-func (o *AadhaarLocalizedClaims) HasDistrict() bool {
-	if o != nil && o.District.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetDistrict gets a reference to the given NullableString and assigns it to the District field.
-func (o *AadhaarLocalizedClaims) SetDistrict(v string) {
-	o.District.Set(&v)
-}
-// SetDistrictNil sets the value for District to be an explicit nil
-func (o *AadhaarLocalizedClaims) SetDistrictNil() {
-	o.District.Set(nil)
-}
-
-// UnsetDistrict ensures that no value is present for District, not even an explicit nil
-func (o *AadhaarLocalizedClaims) UnsetDistrict() {
-	o.District.Unset()
-}
-
-// GetHouse returns the House field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AadhaarLocalizedClaims) GetHouse() string {
-	if o == nil || IsNil(o.House.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.House.Get()
-}
-
-// GetHouseOk returns a tuple with the House field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AadhaarLocalizedClaims) GetHouseOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.House.Get(), o.House.IsSet()
-}
-
-// HasHouse returns a boolean if a field has been set.
-func (o *AadhaarLocalizedClaims) HasHouse() bool {
-	if o != nil && o.House.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetHouse gets a reference to the given NullableString and assigns it to the House field.
-func (o *AadhaarLocalizedClaims) SetHouse(v string) {
-	o.House.Set(&v)
-}
-// SetHouseNil sets the value for House to be an explicit nil
-func (o *AadhaarLocalizedClaims) SetHouseNil() {
-	o.House.Set(nil)
-}
-
-// UnsetHouse ensures that no value is present for House, not even an explicit nil
-func (o *AadhaarLocalizedClaims) UnsetHouse() {
-	o.House.Unset()
-}
-
-// GetLocation returns the Location field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AadhaarLocalizedClaims) GetLocation() string {
-	if o == nil || IsNil(o.Location.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Location.Get()
-}
-
-// GetLocationOk returns a tuple with the Location field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AadhaarLocalizedClaims) GetLocationOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Location.Get(), o.Location.IsSet()
-}
-
-// HasLocation returns a boolean if a field has been set.
-func (o *AadhaarLocalizedClaims) HasLocation() bool {
-	if o != nil && o.Location.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetLocation gets a reference to the given NullableString and assigns it to the Location field.
-func (o *AadhaarLocalizedClaims) SetLocation(v string) {
-	o.Location.Set(&v)
-}
-// SetLocationNil sets the value for Location to be an explicit nil
-func (o *AadhaarLocalizedClaims) SetLocationNil() {
-	o.Location.Set(nil)
-}
-
-// UnsetLocation ensures that no value is present for Location, not even an explicit nil
-func (o *AadhaarLocalizedClaims) UnsetLocation() {
-	o.Location.Unset()
-}
-
-// GetLandmark returns the Landmark field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AadhaarLocalizedClaims) GetLandmark() string {
-	if o == nil || IsNil(o.Landmark.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Landmark.Get()
-}
-
-// GetLandmarkOk returns a tuple with the Landmark field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AadhaarLocalizedClaims) GetLandmarkOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Landmark.Get(), o.Landmark.IsSet()
-}
-
-// HasLandmark returns a boolean if a field has been set.
-func (o *AadhaarLocalizedClaims) HasLandmark() bool {
-	if o != nil && o.Landmark.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetLandmark gets a reference to the given NullableString and assigns it to the Landmark field.
-func (o *AadhaarLocalizedClaims) SetLandmark(v string) {
-	o.Landmark.Set(&v)
-}
-// SetLandmarkNil sets the value for Landmark to be an explicit nil
-func (o *AadhaarLocalizedClaims) SetLandmarkNil() {
-	o.Landmark.Set(nil)
-}
-
-// UnsetLandmark ensures that no value is present for Landmark, not even an explicit nil
-func (o *AadhaarLocalizedClaims) UnsetLandmark() {
-	o.Landmark.Unset()
-}
-
-// GetPostalCode returns the PostalCode field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AadhaarLocalizedClaims) GetPostalCode() string {
-	if o == nil || IsNil(o.PostalCode.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.PostalCode.Get()
-}
-
-// GetPostalCodeOk returns a tuple with the PostalCode field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AadhaarLocalizedClaims) GetPostalCodeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.PostalCode.Get(), o.PostalCode.IsSet()
-}
-
-// HasPostalCode returns a boolean if a field has been set.
-func (o *AadhaarLocalizedClaims) HasPostalCode() bool {
-	if o != nil && o.PostalCode.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetPostalCode gets a reference to the given NullableString and assigns it to the PostalCode field.
-func (o *AadhaarLocalizedClaims) SetPostalCode(v string) {
-	o.PostalCode.Set(&v)
-}
-// SetPostalCodeNil sets the value for PostalCode to be an explicit nil
-func (o *AadhaarLocalizedClaims) SetPostalCodeNil() {
-	o.PostalCode.Set(nil)
-}
-
-// UnsetPostalCode ensures that no value is present for PostalCode, not even an explicit nil
-func (o *AadhaarLocalizedClaims) UnsetPostalCode() {
-	o.PostalCode.Unset()
-}
-
-// GetState returns the State field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AadhaarLocalizedClaims) GetState() string {
-	if o == nil || IsNil(o.State.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.State.Get()
-}
-
-// GetStateOk returns a tuple with the State field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AadhaarLocalizedClaims) GetStateOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.State.Get(), o.State.IsSet()
-}
-
-// HasState returns a boolean if a field has been set.
-func (o *AadhaarLocalizedClaims) HasState() bool {
-	if o != nil && o.State.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetState gets a reference to the given NullableString and assigns it to the State field.
-func (o *AadhaarLocalizedClaims) SetState(v string) {
-	o.State.Set(&v)
-}
-// SetStateNil sets the value for State to be an explicit nil
-func (o *AadhaarLocalizedClaims) SetStateNil() {
-	o.State.Set(nil)
-}
-
-// UnsetState ensures that no value is present for State, not even an explicit nil
-func (o *AadhaarLocalizedClaims) UnsetState() {
-	o.State.Unset()
-}
-
-// GetStreet returns the Street field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AadhaarLocalizedClaims) GetStreet() string {
-	if o == nil || IsNil(o.Street.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Street.Get()
-}
-
-// GetStreetOk returns a tuple with the Street field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AadhaarLocalizedClaims) GetStreetOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Street.Get(), o.Street.IsSet()
-}
-
-// HasStreet returns a boolean if a field has been set.
-func (o *AadhaarLocalizedClaims) HasStreet() bool {
-	if o != nil && o.Street.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetStreet gets a reference to the given NullableString and assigns it to the Street field.
-func (o *AadhaarLocalizedClaims) SetStreet(v string) {
-	o.Street.Set(&v)
-}
-// SetStreetNil sets the value for Street to be an explicit nil
-func (o *AadhaarLocalizedClaims) SetStreetNil() {
-	o.Street.Set(nil)
-}
-
-// UnsetStreet ensures that no value is present for Street, not even an explicit nil
-func (o *AadhaarLocalizedClaims) UnsetStreet() {
-	o.Street.Unset()
-}
-
-// GetVillageTownCity returns the VillageTownCity field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AadhaarLocalizedClaims) GetVillageTownCity() string {
-	if o == nil || IsNil(o.VillageTownCity.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.VillageTownCity.Get()
-}
-
-// GetVillageTownCityOk returns a tuple with the VillageTownCity field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AadhaarLocalizedClaims) GetVillageTownCityOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.VillageTownCity.Get(), o.VillageTownCity.IsSet()
-}
-
-// HasVillageTownCity returns a boolean if a field has been set.
-func (o *AadhaarLocalizedClaims) HasVillageTownCity() bool {
-	if o != nil && o.VillageTownCity.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetVillageTownCity gets a reference to the given NullableString and assigns it to the VillageTownCity field.
-func (o *AadhaarLocalizedClaims) SetVillageTownCity(v string) {
-	o.VillageTownCity.Set(&v)
-}
-// SetVillageTownCityNil sets the value for VillageTownCity to be an explicit nil
-func (o *AadhaarLocalizedClaims) SetVillageTownCityNil() {
-	o.VillageTownCity.Set(nil)
-}
-
-// UnsetVillageTownCity ensures that no value is present for VillageTownCity, not even an explicit nil
-func (o *AadhaarLocalizedClaims) UnsetVillageTownCity() {
-	o.VillageTownCity.Unset()
+// UnsetAddress ensures that no value is present for Address, not even an explicit nil
+func (o *AadhaarLocalizedClaims) UnsetAddress() {
+	o.Address.Unset()
 }
 
 func (o AadhaarLocalizedClaims) MarshalJSON() ([]byte, error) {
@@ -585,35 +189,8 @@ func (o AadhaarLocalizedClaims) ToMap() (map[string]interface{}, error) {
 	if o.Name.IsSet() {
 		toSerialize["name"] = o.Name.Get()
 	}
-	if o.CareOf.IsSet() {
-		toSerialize["careOf"] = o.CareOf.Get()
-	}
-	if o.Country.IsSet() {
-		toSerialize["country"] = o.Country.Get()
-	}
-	if o.District.IsSet() {
-		toSerialize["district"] = o.District.Get()
-	}
-	if o.House.IsSet() {
-		toSerialize["house"] = o.House.Get()
-	}
-	if o.Location.IsSet() {
-		toSerialize["location"] = o.Location.Get()
-	}
-	if o.Landmark.IsSet() {
-		toSerialize["landmark"] = o.Landmark.Get()
-	}
-	if o.PostalCode.IsSet() {
-		toSerialize["postalCode"] = o.PostalCode.Get()
-	}
-	if o.State.IsSet() {
-		toSerialize["state"] = o.State.Get()
-	}
-	if o.Street.IsSet() {
-		toSerialize["street"] = o.Street.Get()
-	}
-	if o.VillageTownCity.IsSet() {
-		toSerialize["villageTownCity"] = o.VillageTownCity.Get()
+	if o.Address.IsSet() {
+		toSerialize["address"] = o.Address.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -639,16 +216,7 @@ func (o *AadhaarLocalizedClaims) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "language")
 		delete(additionalProperties, "name")
-		delete(additionalProperties, "careOf")
-		delete(additionalProperties, "country")
-		delete(additionalProperties, "district")
-		delete(additionalProperties, "house")
-		delete(additionalProperties, "location")
-		delete(additionalProperties, "landmark")
-		delete(additionalProperties, "postalCode")
-		delete(additionalProperties, "state")
-		delete(additionalProperties, "street")
-		delete(additionalProperties, "villageTownCity")
+		delete(additionalProperties, "address")
 		o.AdditionalProperties = additionalProperties
 	}
 

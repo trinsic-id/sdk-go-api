@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Provider** | **string** | The ID of the provider to launch | 
 **VerificationProfileId** | **string** | The ID of the Verification Profile to use for this session. | 
 **RedirectUrl** | **string** | The Redirect URL to which the user should be sent after the session is complete. | 
+**BrowserLanguages** | Pointer to **[]string** | Preferences for languages to show first in the Hosted UI. If left empty, the Hosted UI defaults to the user&#39;s navigator languages. If no preferred language is available, the Hosted UI falls back to English. | [optional] 
 **ProviderInput** | Pointer to [**NullableProviderInput**](ProviderInput.md) | Provider-specific input for those providers which require it.   &lt;b&gt;Deprecated:&lt;/b&gt; In the future, Hosted Provider Sessions will not accept input on creation, and will instead always redirect the user to a hosted interface to collect input. If you need to collect input from the user yourself, please use the Create Direct Session endpoint instead. | [optional] 
 
 ## Methods
@@ -88,6 +89,41 @@ and a boolean to check if the value has been set.
 SetRedirectUrl sets RedirectUrl field to given value.
 
 
+### GetBrowserLanguages
+
+`func (o *CreateHostedProviderSessionRequest) GetBrowserLanguages() []string`
+
+GetBrowserLanguages returns the BrowserLanguages field if non-nil, zero value otherwise.
+
+### GetBrowserLanguagesOk
+
+`func (o *CreateHostedProviderSessionRequest) GetBrowserLanguagesOk() (*[]string, bool)`
+
+GetBrowserLanguagesOk returns a tuple with the BrowserLanguages field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBrowserLanguages
+
+`func (o *CreateHostedProviderSessionRequest) SetBrowserLanguages(v []string)`
+
+SetBrowserLanguages sets BrowserLanguages field to given value.
+
+### HasBrowserLanguages
+
+`func (o *CreateHostedProviderSessionRequest) HasBrowserLanguages() bool`
+
+HasBrowserLanguages returns a boolean if a field has been set.
+
+### SetBrowserLanguagesNil
+
+`func (o *CreateHostedProviderSessionRequest) SetBrowserLanguagesNil(b bool)`
+
+ SetBrowserLanguagesNil sets the value for BrowserLanguages to be an explicit nil
+
+### UnsetBrowserLanguages
+`func (o *CreateHostedProviderSessionRequest) UnsetBrowserLanguages()`
+
+UnsetBrowserLanguages ensures that no value is present for BrowserLanguages, not even an explicit nil
 ### GetProviderInput
 
 `func (o *CreateHostedProviderSessionRequest) GetProviderInput() ProviderInput`

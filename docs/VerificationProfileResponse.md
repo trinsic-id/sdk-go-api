@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Id** | **string** | The ID of the verification profile | 
 **Alias** | **string** | An alias of the verification profile shown to developers and administrators. | 
 **BrandName** | **string** | The brand name of the verification profile shown to end-users. | 
+**ExternalId** | Pointer to **NullableString** | A customer-defined external ID for this verification profile, unique within your organization. | [optional] 
 **LogoUrl** | **string** | The URL of the verification profile&#39;s logo. | 
 **PrimaryColor** | **string** | The primary color of the verification profile. | 
 **EnabledProviders** | **[]string** | The providers that are currently enabled for the verification profile. | 
@@ -92,6 +93,41 @@ and a boolean to check if the value has been set.
 SetBrandName sets BrandName field to given value.
 
 
+### GetExternalId
+
+`func (o *VerificationProfileResponse) GetExternalId() string`
+
+GetExternalId returns the ExternalId field if non-nil, zero value otherwise.
+
+### GetExternalIdOk
+
+`func (o *VerificationProfileResponse) GetExternalIdOk() (*string, bool)`
+
+GetExternalIdOk returns a tuple with the ExternalId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExternalId
+
+`func (o *VerificationProfileResponse) SetExternalId(v string)`
+
+SetExternalId sets ExternalId field to given value.
+
+### HasExternalId
+
+`func (o *VerificationProfileResponse) HasExternalId() bool`
+
+HasExternalId returns a boolean if a field has been set.
+
+### SetExternalIdNil
+
+`func (o *VerificationProfileResponse) SetExternalIdNil(b bool)`
+
+ SetExternalIdNil sets the value for ExternalId to be an explicit nil
+
+### UnsetExternalId
+`func (o *VerificationProfileResponse) UnsetExternalId()`
+
+UnsetExternalId ensures that no value is present for ExternalId, not even an explicit nil
 ### GetLogoUrl
 
 `func (o *VerificationProfileResponse) GetLogoUrl() string`

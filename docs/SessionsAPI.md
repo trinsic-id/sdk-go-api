@@ -7,7 +7,6 @@ Method | HTTP request | Description
 [**CancelSession**](SessionsAPI.md#CancelSession) | **Post** /api/v1/sessions/{sessionId}/cancel | Cancel Session
 [**CreateDirectProviderSession**](SessionsAPI.md#CreateDirectProviderSession) | **Post** /api/v1/sessions/provider/direct | Create Direct Provider Session
 [**CreateHostedProviderSession**](SessionsAPI.md#CreateHostedProviderSession) | **Post** /api/v1/sessions/provider/hosted | Create Hosted Provider Session
-[**CreateWidgetSession**](SessionsAPI.md#CreateWidgetSession) | **Post** /api/v1/sessions/widget | Create Widget Session
 [**GetAttachment**](SessionsAPI.md#GetAttachment) | **Post** /api/v1/sessions/{sessionId}/attachments/{attachmentId}/get | Get Attachment
 [**GetSession**](SessionsAPI.md#GetSession) | **Get** /api/v1/sessions/{sessionId} | Get Session
 [**GetSessionResult**](SessionsAPI.md#GetSessionResult) | **Post** /api/v1/sessions/{sessionId}/results | Get Session Results
@@ -206,72 +205,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**CreateHostedProviderSessionResponse**](CreateHostedProviderSessionResponse.md)
-
-### Authorization
-
-[Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
-- **Content-Type**: application/json, text/json, application/*+json
-- **Accept**: text/plain, application/json, text/json, application/problem+json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## CreateWidgetSession
-
-> CreateWidgetSessionResponse CreateWidgetSession(ctx).CreateWidgetSessionRequest(createWidgetSessionRequest).Execute()
-
-Create Widget Session
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
-
-func main() {
-	createWidgetSessionRequest := *openapiclient.NewCreateWidgetSessionRequest("VerificationProfileId_example") // CreateWidgetSessionRequest |  (optional)
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.SessionsAPI.CreateWidgetSession(context.Background()).CreateWidgetSessionRequest(createWidgetSessionRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `SessionsAPI.CreateWidgetSession``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `CreateWidgetSession`: CreateWidgetSessionResponse
-	fmt.Fprintf(os.Stdout, "Response from `SessionsAPI.CreateWidgetSession`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateWidgetSessionRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **createWidgetSessionRequest** | [**CreateWidgetSessionRequest**](CreateWidgetSessionRequest.md) |  | 
-
-### Return type
-
-[**CreateWidgetSessionResponse**](CreateWidgetSessionResponse.md)
 
 ### Authorization
 

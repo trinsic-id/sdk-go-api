@@ -30,6 +30,8 @@ type CreateDirectProviderSessionRequest struct {
 	Capabilities []IntegrationCapability `json:"capabilities"`
 	// Whether the session should fall back to a Trinsic-hosted UI in certain instances.              Specifically, fallback will occur if any of the following are true: - You attempted to launch a provider which requires a capability you did not express support for     - In this case, Trinsic's hosted UI will perform the necessary capability - You attempted to launch a provider which requires input, and the input was either not provided or incomplete     - In this case, Trinsic's hosted UI will collect the necessary input from the user              If fallback occurs, the session's NextStep will always be LaunchBrowser, and the CollectionMethod will always be CaptureRedirect.              If this field is set to `true`, you must also: 1. Set the `RedirectUrl` field to a non-empty value 2. Include the `LaunchBrowser` and `CaptureRedirect` capabilities in the `Capabilities` field
 	FallbackToHostedUI NullableBool `json:"fallbackToHostedUI,omitempty"`
+	// Preferences for languages to show first if the session falls back to the Trinsic-hosted UI. If left empty, the Hosted UI defaults to the user's navigator languages. If no preferred language is available, the Hosted UI falls back to English. This only will be used if the session falls back to the Trinsic-hosted UI.
+	BrowserLanguages []string `json:"browserLanguages,omitempty"`
 	// Provider-specific input for those providers which require it.
 	ProviderInput NullableProviderInput `json:"providerInput,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -213,6 +215,39 @@ func (o *CreateDirectProviderSessionRequest) UnsetFallbackToHostedUI() {
 	o.FallbackToHostedUI.Unset()
 }
 
+// GetBrowserLanguages returns the BrowserLanguages field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateDirectProviderSessionRequest) GetBrowserLanguages() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+	return o.BrowserLanguages
+}
+
+// GetBrowserLanguagesOk returns a tuple with the BrowserLanguages field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateDirectProviderSessionRequest) GetBrowserLanguagesOk() ([]string, bool) {
+	if o == nil || IsNil(o.BrowserLanguages) {
+		return nil, false
+	}
+	return o.BrowserLanguages, true
+}
+
+// HasBrowserLanguages returns a boolean if a field has been set.
+func (o *CreateDirectProviderSessionRequest) HasBrowserLanguages() bool {
+	if o != nil && !IsNil(o.BrowserLanguages) {
+		return true
+	}
+
+	return false
+}
+
+// SetBrowserLanguages gets a reference to the given []string and assigns it to the BrowserLanguages field.
+func (o *CreateDirectProviderSessionRequest) SetBrowserLanguages(v []string) {
+	o.BrowserLanguages = v
+}
+
 // GetProviderInput returns the ProviderInput field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CreateDirectProviderSessionRequest) GetProviderInput() ProviderInput {
 	if o == nil || IsNil(o.ProviderInput.Get()) {
@@ -274,6 +309,9 @@ func (o CreateDirectProviderSessionRequest) ToMap() (map[string]interface{}, err
 	if o.FallbackToHostedUI.IsSet() {
 		toSerialize["fallbackToHostedUI"] = o.FallbackToHostedUI.Get()
 	}
+	if o.BrowserLanguages != nil {
+		toSerialize["browserLanguages"] = o.BrowserLanguages
+	}
 	if o.ProviderInput.IsSet() {
 		toSerialize["providerInput"] = o.ProviderInput.Get()
 	}
@@ -327,6 +365,7 @@ func (o *CreateDirectProviderSessionRequest) UnmarshalJSON(data []byte) (err err
 		delete(additionalProperties, "redirectUrl")
 		delete(additionalProperties, "capabilities")
 		delete(additionalProperties, "fallbackToHostedUI")
+		delete(additionalProperties, "browserLanguages")
 		delete(additionalProperties, "providerInput")
 		o.AdditionalProperties = additionalProperties
 	}

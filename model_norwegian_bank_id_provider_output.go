@@ -23,7 +23,7 @@ type NorwegianBankIdProviderOutput struct {
 	FullName NullableString `json:"fullName,omitempty"`
 	// The date of birth of the individual.
 	DateOfBirth NullableString `json:"dateOfBirth,omitempty"`
-	// The personal identifier for Norwegian BankID.              This uniquely identifies the user in the Norwegian BankID system and is considered a stable identifier to use.
+	// The personal identifier for Norwegian BankID.              This uniquely identifies the individual in the Norwegian BankID system and is considered a stable identifier to use.
 	PersonalIdentifier NullableString `json:"personalIdentifier,omitempty"`
 	// The 11-digit Norwegian National Identity Number (fødselsnummer) of the verified individual.              This is in the format DDMMYYZZZCC, where: - DDMMYY is the date of birth (In some cases, this is not the date of birth due to no available identity numbers for some dates - ZZZ is an individual number, indicating gender - CC is a checksum character              If ZZZ is even, the individual is female. If ZZZ is odd, the individual is male.
 	NationalIdentityNumber NullableString `json:"nationalIdentityNumber,omitempty"`
@@ -31,7 +31,7 @@ type NorwegianBankIdProviderOutput struct {
 	GivenName NullableString `json:"givenName,omitempty"`
 	// The family name of the individual.
 	FamilyName NullableString `json:"familyName,omitempty"`
-	// The level of assurance (LOA) for the verification.              The LOA refers to the degree of confidence in the claimed identity of a person. The European Digital Identity Framework (EUDI) measures the confidence of the digital identity's verification and authentication strength by a set of requirements for different levels. To learn more, see: https://ec.europa.eu/digital-building-blocks/sites/spaces/DIGITAL/pages/467110081/eIDAS+Levels+of+Assurance              Possible values: - Low: The user has self asserted their identity and multifactor authentication is not required. - Substantial: The user has performed either a remote or in-person identity verification and multifactor authentication is required. - High: The user has performed an in-person identity proofing with an authorized representative and has strong cryptographic authentication requirements such as using a smart card.
+	// The level of assurance (LOA) for the verification.              The LOA refers to the degree of confidence in the claimed identity of a person. The European Digital Identity Framework (EUDI) measures the confidence of the digital identity's verification and authentication strength by a set of requirements for different levels. To learn more, see: https://ec.europa.eu/digital-building-blocks/sites/spaces/DIGITAL/pages/467110081/eIDAS+Levels+of+Assurance              Possible values: - Low: The individual has self asserted their identity and multifactor authentication is not required. - Substantial: The individual has performed either a remote or in-person identity verification and multifactor authentication is required. - High: The individual has performed an in-person identity proofing with an authorized representative and has strong cryptographic authentication requirements such as using a smart card.
 	LevelOfAssurance NullableString `json:"levelOfAssurance,omitempty"`
 	// The authentication method used by the individual.              Possible values: - urn:bankid:bis - BankID with Biometrics - urn:bankid:bid - Standard BankID with High Assurance
 	AuthenticationMethod NullableString `json:"authenticationMethod,omitempty"`

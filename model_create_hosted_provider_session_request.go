@@ -26,6 +26,8 @@ type CreateHostedProviderSessionRequest struct {
 	VerificationProfileId string `json:"verificationProfileId"`
 	// The Redirect URL to which the user should be sent after the session is complete.
 	RedirectUrl string `json:"redirectUrl"`
+	// Preferences for languages to show first in the Hosted UI. If left empty, the Hosted UI defaults to the user's navigator languages. If no preferred language is available, the Hosted UI falls back to English.
+	BrowserLanguages []string `json:"browserLanguages,omitempty"`
 	// Provider-specific input for those providers which require it.   <b>Deprecated:</b> In the future, Hosted Provider Sessions will not accept input on creation, and will instead always redirect the user to a hosted interface to collect input. If you need to collect input from the user yourself, please use the Create Direct Session endpoint instead.
 	// Deprecated
 	ProviderInput NullableProviderInput `json:"providerInput,omitempty"`
@@ -126,6 +128,39 @@ func (o *CreateHostedProviderSessionRequest) SetRedirectUrl(v string) {
 	o.RedirectUrl = v
 }
 
+// GetBrowserLanguages returns the BrowserLanguages field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateHostedProviderSessionRequest) GetBrowserLanguages() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+	return o.BrowserLanguages
+}
+
+// GetBrowserLanguagesOk returns a tuple with the BrowserLanguages field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateHostedProviderSessionRequest) GetBrowserLanguagesOk() ([]string, bool) {
+	if o == nil || IsNil(o.BrowserLanguages) {
+		return nil, false
+	}
+	return o.BrowserLanguages, true
+}
+
+// HasBrowserLanguages returns a boolean if a field has been set.
+func (o *CreateHostedProviderSessionRequest) HasBrowserLanguages() bool {
+	if o != nil && !IsNil(o.BrowserLanguages) {
+		return true
+	}
+
+	return false
+}
+
+// SetBrowserLanguages gets a reference to the given []string and assigns it to the BrowserLanguages field.
+func (o *CreateHostedProviderSessionRequest) SetBrowserLanguages(v []string) {
+	o.BrowserLanguages = v
+}
+
 // GetProviderInput returns the ProviderInput field value if set, zero value otherwise (both if not set or set to explicit null).
 // Deprecated
 func (o *CreateHostedProviderSessionRequest) GetProviderInput() ProviderInput {
@@ -184,6 +219,9 @@ func (o CreateHostedProviderSessionRequest) ToMap() (map[string]interface{}, err
 	toSerialize["provider"] = o.Provider
 	toSerialize["verificationProfileId"] = o.VerificationProfileId
 	toSerialize["redirectUrl"] = o.RedirectUrl
+	if o.BrowserLanguages != nil {
+		toSerialize["browserLanguages"] = o.BrowserLanguages
+	}
 	if o.ProviderInput.IsSet() {
 		toSerialize["providerInput"] = o.ProviderInput.Get()
 	}
@@ -235,6 +273,7 @@ func (o *CreateHostedProviderSessionRequest) UnmarshalJSON(data []byte) (err err
 		delete(additionalProperties, "provider")
 		delete(additionalProperties, "verificationProfileId")
 		delete(additionalProperties, "redirectUrl")
+		delete(additionalProperties, "browserLanguages")
 		delete(additionalProperties, "providerInput")
 		o.AdditionalProperties = additionalProperties
 	}

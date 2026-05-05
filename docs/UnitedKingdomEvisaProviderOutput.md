@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **ValidFrom** | Pointer to **NullableString** | The start date from which the eVisa is valid. Only returned for immigration_status and right_to_rent verifications — not returned for right_to_work. | [optional] 
 **Nationality** | Pointer to **NullableString** | The nationality of the individual as recorded on the eVisa. Only present for immigration_status verifications. | [optional] 
 **ImmigrationStatus** | Pointer to **NullableString** | The immigration status of the individual. Only present for immigration_status verifications. This is a personalized record for each individual, and there is no single definitive list. Some common values: - Settled - Pre-settled - Student - Graduate - Youth Mobility - Global Talent - Skilled Worker - Limited leave | [optional] 
-**Outcome** | Pointer to **NullableString** | Overall verification outcome: \&quot;pass\&quot; or \&quot;fail\&quot;. | [optional] 
+**Outcome** | Pointer to **NullableString** | Overall verification outcome: \&quot;pass\&quot;, \&quot;fail\&quot;, or \&quot;inconclusive\&quot;. \&quot;inconclusive\&quot; is returned for indefinite immigration statuses not yet on the provider&#39;s official list — identity details are still returned, but date validations cannot be performed. | [optional] 
 **EvidenceType** | Pointer to **NullableString** | Type of verification. List of possible values: - immigration_status - right_to_work - right_to_rent | [optional] 
 
 ## Methods

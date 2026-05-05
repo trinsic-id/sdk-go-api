@@ -28,7 +28,7 @@ type PeruDniProviderOutput struct {
 	CivilStatus NullableString `json:"civilStatus,omitempty"`
 	// Date of birth as it appears on the DNI.              This field is not always available.
 	DateOfBirth NullableString `json:"dateOfBirth,omitempty"`
-	// The user's National Identity Document number (Documento Nacional de Identidad or DNI).              Format: - 8 digits - Does NOT include verification digit. On the DNI card, a ninth digit appears next to the first eight. It is   0-9 or A-K. This is NOT included in the DNI number when returned from Peru's database. - Does NOT include dots or hyphens
+	// The individual's National Identity Document number (Documento Nacional de Identidad or DNI).              Format: - 8 digits - Does NOT include verification digit. On the DNI card, a ninth digit appears next to the first eight. It is   0-9 or A-K. This is NOT included in the DNI number when returned from Peru's database. - Does NOT include dots or hyphens
 	DocumentNumber string `json:"documentNumber"`
 	// Should always be \"DNI\".
 	DocumentType string `json:"documentType"`

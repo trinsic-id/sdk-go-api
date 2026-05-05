@@ -13,7 +13,6 @@ Name | Type | Description | Notes
 **Sub** | Pointer to **NullableString** | The OpenID Connect (OIDC) subject identifier (sub). | [optional] 
 **AgeVerification** | Pointer to [**NullableConnectIdAgeVerification**](ConnectIdAgeVerification.md) | The age verification claim and whether the individual meets the age requirement. | [optional] 
 **Transaction** | Pointer to **NullableString** | The verification session&#39;s transaction number.              This is a unique identifier assigned to a single ConnectID transaction flow. It can be used for audit purposes or to flag fraudulent activity. | [optional] 
-**BeneficiaryAccount** | Pointer to [**NullableConnectIdBeneficiaryAccount**](ConnectIdBeneficiaryAccount.md) | The beneficiary account that has been designated by the individual. | [optional] 
 **Address** | Pointer to [**NullableConnectIdAddress**](ConnectIdAddress.md) | The address. | [optional] 
 
 ## Methods
@@ -350,41 +349,6 @@ HasTransaction returns a boolean if a field has been set.
 `func (o *ConnectIdProviderOutput) UnsetTransaction()`
 
 UnsetTransaction ensures that no value is present for Transaction, not even an explicit nil
-### GetBeneficiaryAccount
-
-`func (o *ConnectIdProviderOutput) GetBeneficiaryAccount() ConnectIdBeneficiaryAccount`
-
-GetBeneficiaryAccount returns the BeneficiaryAccount field if non-nil, zero value otherwise.
-
-### GetBeneficiaryAccountOk
-
-`func (o *ConnectIdProviderOutput) GetBeneficiaryAccountOk() (*ConnectIdBeneficiaryAccount, bool)`
-
-GetBeneficiaryAccountOk returns a tuple with the BeneficiaryAccount field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetBeneficiaryAccount
-
-`func (o *ConnectIdProviderOutput) SetBeneficiaryAccount(v ConnectIdBeneficiaryAccount)`
-
-SetBeneficiaryAccount sets BeneficiaryAccount field to given value.
-
-### HasBeneficiaryAccount
-
-`func (o *ConnectIdProviderOutput) HasBeneficiaryAccount() bool`
-
-HasBeneficiaryAccount returns a boolean if a field has been set.
-
-### SetBeneficiaryAccountNil
-
-`func (o *ConnectIdProviderOutput) SetBeneficiaryAccountNil(b bool)`
-
- SetBeneficiaryAccountNil sets the value for BeneficiaryAccount to be an explicit nil
-
-### UnsetBeneficiaryAccount
-`func (o *ConnectIdProviderOutput) UnsetBeneficiaryAccount()`
-
-UnsetBeneficiaryAccount ensures that no value is present for BeneficiaryAccount, not even an explicit nil
 ### GetAddress
 
 `func (o *ConnectIdProviderOutput) GetAddress() ConnectIdAddress`

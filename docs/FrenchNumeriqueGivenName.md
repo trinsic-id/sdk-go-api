@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**FullGivenName** | Pointer to **NullableString** | Full given name(s) as recorded on the user&#39;s French identity document. If the user has multiple given names, they are separated by a single space. | [optional] 
+**FullGivenName** | Pointer to **NullableString** | Full given name(s) as recorded on the individual&#39;s French identity document. If the individual has multiple given names, they are separated by a single space. | [optional] 
 **FirstName** | Pointer to **NullableString** | First/primary given name (premier prénom). | [optional] 
 **MiddleName** | Pointer to **NullableString** | Middle name(s) (prénoms secondaires), separated by spaces if multiple. | [optional] 
 

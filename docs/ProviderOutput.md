@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Audkenni** | Pointer to [**NullableAudkenniProviderOutput**](AudkenniProviderOutput.md) | Exposed properties for the &#x60;audkenni&#x60; provider which do not directly map to the normalized IdentityData model. | [optional] 
 **AAtHandySignaturLogin** | Pointer to [**NullableAustriaHandySignaturProviderOutput**](AustriaHandySignaturProviderOutput.md) | Exposed properties for the &#x60;a-at-handy-signatur-login&#x60; Provider which do not directly map to the normalized IdentityData model. | [optional] 
 **ABeIdLogin** | Pointer to [**NullableBelgiumIdCardProviderOutput**](BelgiumIdCardProviderOutput.md) | Exposed properties for the &#x60;a-be-id-login&#x60; Provider which do not directly map to the normalized IdentityData model. | [optional] 
 **AEdoappEidLogin** | Pointer to [**NullablePolandEdoAppProviderOutput**](PolandEdoAppProviderOutput.md) | Exposed properties for the &#x60;a-edoapp-eid-login&#x60; Provider which do not directly map to the normalized IdentityData model. | [optional] 
@@ -16,11 +17,15 @@ Name | Type | Description | Notes
 **ALvEparakstsMobileLogin** | Pointer to [**NullableLatviaEparakstsMobileProviderOutput**](LatviaEparakstsMobileProviderOutput.md) | Exposed properties for the &#x60;a-lv-eparaksts-mobile-login&#x60; Provider which do not directly map to the normalized IdentityData model. | [optional] 
 **AMojeid** | Pointer to [**NullableCzechiaMojeIdProviderOutput**](CzechiaMojeIdProviderOutput.md) | Exposed properties for the &#x60;a-mojeid&#x60; Provider which do not directly map to the normalized IdentityData model. | [optional] 
 **APlMojeidLogin** | Pointer to [**NullablePolandMojeIdProviderOutput**](PolandMojeIdProviderOutput.md) | Exposed properties for the &#x60;a-pl-mojeid-login&#x60; Provider which do not directly map to the normalized IdentityData model. | [optional] 
-**AustraliaConnectId** | Pointer to [**NullableConnectIdProviderOutput**](ConnectIdProviderOutput.md) | Exposed properties for the &#x60;australia-connect-id&#x60; Provider which do not directly map to the normalized IdentityData model. | [optional] 
-**CzechRepublicMojeid** | Pointer to [**NullableCzechMojeIdProviderOutput**](CzechMojeIdProviderOutput.md) | Exposed properties for the &#x60;czech-moje-id&#x60; Provider which do not directly map to the normalized IdentityData model. | [optional] 
 **APtIdLogin** | Pointer to [**NullablePortugalIdCardProviderOutput**](PortugalIdCardProviderOutput.md) | Exposed properties for the &#x60;a-pt-id-login&#x60; Provider which do not directly map to the normalized IdentityData model. | [optional] 
 **ARsIdLogin** | Pointer to [**NullableSerbiaIdCardProviderOutput**](SerbiaIdCardProviderOutput.md) | Exposed properties for the &#x60;a-rs-id-login&#x60; Provider which do not directly map to the normalized IdentityData model. | [optional] 
 **AppleWallet** | Pointer to [**NullableAppleWalletProviderOutput**](AppleWalletProviderOutput.md) | Exposed properties for the &#x60;apple-wallet&#x60; Provider which do not directly map to the normalized IdentityData model. | [optional] 
+**AustraliaConnectId** | Pointer to [**NullableConnectIdProviderOutput**](ConnectIdProviderOutput.md) | Exposed properties for the &#x60;australia-connect-id&#x60; Provider which do not directly map to the normalized IdentityData model. | [optional] 
+**BoliviaCiLookup** | Pointer to [**NullableBoliviaCiProviderOutput**](BoliviaCiProviderOutput.md) | Exposed properties for the &#x60;bolivia-ci-lookup&#x60; Provider which do not directly map to the normalized IdentityData model. | [optional] 
+**ColombiaCcLookup** | Pointer to [**NullableColombiaCcProviderOutput**](ColombiaCcProviderOutput.md) | Exposed properties for the &#x60;colombia-cc-lookup&#x60; Provider which do not directly map to the normalized IdentityData model. | [optional] 
+**CoteDivoireNidLookup2** | Pointer to [**NullableCoteDIvoireNidLookup2ProviderOutput**](CoteDIvoireNidLookup2ProviderOutput.md) | Exposed properties for the &#x60;cote-divoire-nid-lookup-2&#x60; Provider which do not directly map to the normalized IdentityData model. | [optional] 
+**ElSalvadorDuiLookup** | Pointer to [**NullableElSalvadorDuiProviderOutput**](ElSalvadorDuiProviderOutput.md) | Exposed properties for the &#x60;el-salvador-dui-lookup&#x60; Provider which do not directly map to the normalized IdentityData model. | [optional] 
+**CzechRepublicMojeid** | Pointer to [**NullableCzechMojeIdProviderOutput**](CzechMojeIdProviderOutput.md) | Exposed properties for the &#x60;czech-moje-id&#x60; Provider which do not directly map to the normalized IdentityData model. | [optional] 
 **DenmarkMitid** | Pointer to [**NullableMitIdProviderOutput**](MitIdProviderOutput.md) | Exposed properties for the &#x60;denmark-mitid&#x60; Provider which do not directly map to the normalized IdentityData model. | [optional] 
 **EthiopiaFayda** | Pointer to [**NullableFaydaProviderOutput**](FaydaProviderOutput.md) | Exposed properties for the &#x60;ethiopia-fayda&#x60; Provider which do not directly map to the normalized IdentityData model. | [optional] 
 **FinnishTrustNetwork** | Pointer to [**NullableFinnishTrustNetworkProviderOutput**](FinnishTrustNetworkProviderOutput.md) | Exposed properties for the &#x60;finnish-trust-network&#x60; Provider which do not directly map to the normalized IdentityData model. | [optional] 
@@ -28,9 +33,15 @@ Name | Type | Description | Notes
 **FranceIdentiteNumerique** | Pointer to [**NullableFrenchNumeriqueProviderOutput**](FrenchNumeriqueProviderOutput.md) | Exposed properties for the &#x60;france-identite-numerique&#x60; Provider which do not directly map to the normalized IdentityData model. | [optional] 
 **Freja** | Pointer to [**NullableFrejaProviderOutput**](FrejaProviderOutput.md) | Exposed properties for the &#x60;freja&#x60; Provider which do not directly map to the normalized IdentityData model. | [optional] 
 **GoogleWallet** | Pointer to [**NullableGoogleWalletProviderOutput**](GoogleWalletProviderOutput.md) | Exposed properties for the &#x60;google-wallet&#x60; Provider which do not directly map to the normalized IdentityData model. | [optional] 
+**GuatemalaCuiLookup** | Pointer to [**NullableGuatemalaCuiProviderOutput**](GuatemalaCuiProviderOutput.md) | Exposed properties for the &#x60;guatemala-cui-lookup&#x60; Provider which do not directly map to the normalized IdentityData model. | [optional] 
+**PanamaCedulaLookup** | Pointer to [**NullablePanamaCedulaProviderOutput**](PanamaCedulaProviderOutput.md) | Exposed properties for the &#x60;panama-cedula-lookup&#x60; Provider which do not directly map to the normalized IdentityData model. | [optional] 
 **IndiaDigilockerAadhaar** | Pointer to [**NullableDigilockerAadhaarProviderOutput**](DigilockerAadhaarProviderOutput.md) | Exposed properties for the &#x60;india-digilocker-aadhaar&#x60; Provider which do not directly map to the normalized IdentityData model. | [optional] 
+**IndiaDigilockerAadhaarFetch** | Pointer to [**NullableSignzyIndiaAadhaarFetchProviderOutput**](SignzyIndiaAadhaarFetchProviderOutput.md) | Exposed properties for the &#x60;india-digilocker-aadhaar-fetch&#x60; Provider which do not directly map to the normalized IdentityData model. | [optional] 
+**IndiaPanLookup** | Pointer to [**NullableIndiaPanLookupProviderOutput**](IndiaPanLookupProviderOutput.md) | Exposed properties for the &#x60;india-pan-lookup&#x60; Provider which do not directly map to the normalized IdentityData model. | [optional] 
+**ChinaResidentIdMatch** | Pointer to [**NullableChinaResidentIdMatchOutput**](ChinaResidentIdMatchOutput.md) | Exposed properties for the &#x60;china-resident-id-match&#x60; Provider which do not directly map to the normalized IdentityData model. | [optional] 
 **ItalySpid** | Pointer to [**NullableSpidProviderOutput**](SpidProviderOutput.md) | Exposed properties for the &#x60;italy-spid&#x60; Provider which do not directly map to the normalized IdentityData model. | [optional] 
 **KenyaNidLookup2** | Pointer to [**NullableKenyaNidLookup2ProviderOutput**](KenyaNidLookup2ProviderOutput.md) | Exposed properties for the &#x60;kenya-nid-lookup-2&#x60; Provider which do not directly map to the normalized IdentityData model. | [optional] 
+**KoreaTelcoMatch** | Pointer to [**NullableKoreaTelcoMatchProviderOutput**](KoreaTelcoMatchProviderOutput.md) | Exposed properties for the &#x60;korea-telco-match&#x60; Provider which do not directly map to the normalized IdentityData model. | [optional] 
 **LloydsSmartId** | Pointer to [**NullableLloydsSmartIdProviderOutput**](LloydsSmartIdProviderOutput.md) | Exposed properties for the &#x60;lloyds-smart-id&#x60; Provider which do not directly map to the normalized IdentityData model. | [optional] 
 **MexicoCurpLookup** | Pointer to [**NullableMexicoCurpProviderOutput**](MexicoCurpProviderOutput.md) | Exposed properties for the &#x60;mexico-curp-lookup&#x60; Provider which do not directly map to the normalized IdentityData model. | [optional] 
 **MobileId** | Pointer to [**NullableMobileIdProviderOutput**](MobileIdProviderOutput.md) | Exposed properties for the &#x60;mobile-id&#x60; Provider which do not directly map to the normalized IdentityData model. | [optional] 
@@ -40,12 +51,16 @@ Name | Type | Description | Notes
 **NorwayBankid** | Pointer to [**NullableNorwegianBankIdProviderOutput**](NorwegianBankIdProviderOutput.md) | Exposed properties for the &#x60;norway-bankid&#x60; Provider which do not directly map to the normalized IdentityData model. | [optional] 
 **PhilippinesDigitalNationalIdQr** | Pointer to [**NullablePhilippinesDigitalNidProviderOutput**](PhilippinesDigitalNidProviderOutput.md) | Exposed properties for the &#x60;philippines-digital-national-id-qr&#x60; Provider which do not directly map to the normalized IdentityData model. | [optional] 
 **PhilippinesPhysicalNationalIdQr** | Pointer to [**NullablePhilippinesPhysicalNidProviderOutput**](PhilippinesPhysicalNidProviderOutput.md) | Exposed properties for the &#x60;philippines-physical-national-id-qr&#x60; Provider which do not directly map to the normalized IdentityData model. | [optional] 
+**PolandMobywatelMatch** | Pointer to [**NullablePolandMobywatelMatchProviderOutput**](PolandMobywatelMatchProviderOutput.md) | Exposed properties for the &#x60;poland-mobywatel-match&#x60; Provider which do not directly map to the normalized IdentityData model. | [optional] 
 **PostOfficeEasyid** | Pointer to [**NullablePostOfficeEasyIdProviderOutput**](PostOfficeEasyIdProviderOutput.md) | Exposed properties for the &#x60;post-office-easyid&#x60; Provider which do not directly map to the normalized IdentityData model. | [optional] 
 **SamsungWallet** | Pointer to [**NullableSamsungWalletProviderOutput**](SamsungWalletProviderOutput.md) | Exposed properties for the &#x60;samsung-wallet&#x60; Provider which do not directly map to the normalized IdentityData model. | [optional] 
+**SingpassLogin** | Pointer to [**NullableSingpassLoginProviderOutput**](SingpassLoginProviderOutput.md) | Exposed properties for the &#x60;singpass-login&#x60; Provider which do not directly map to the normalized IdentityData model. | [optional] 
+**SingpassMyinfo** | Pointer to [**NullableSingpassMyInfoProviderOutput**](SingpassMyInfoProviderOutput.md) | Exposed properties for the &#x60;singpass-myinfo&#x60; Provider which do not directly map to the normalized IdentityData model. | [optional] 
 **SmartId** | Pointer to [**NullableSmartIdProviderOutput**](SmartIdProviderOutput.md) | Exposed properties for the &#x60;smart-id&#x60; Provider which do not directly map to the normalized IdentityData model. | [optional] 
 **UkEvisaLookup** | Pointer to [**NullableUnitedKingdomEvisaProviderOutput**](UnitedKingdomEvisaProviderOutput.md) | Exposed properties for the &#x60;uk-evisa-lookup&#x60; Provider which do not directly map to the normalized IdentityData model. | [optional] 
 **SwedenBankid** | Pointer to [**NullableSwedenBankIdProviderOutput**](SwedenBankIdProviderOutput.md) | Exposed properties for the &#x60;sweden-bankid&#x60; Provider which do not directly map to the normalized IdentityData model. | [optional] 
 **UsaLouisianaWallet** | Pointer to [**NullableLaWalletProviderOutput**](LaWalletProviderOutput.md) | Exposed properties for the &#x60;usa-louisiana-wallet&#x60; Provider which do not directly map to the normalized IdentityData model. | [optional] 
+**NetherlandsIdin** | Pointer to [**NullableNetherlandsIdinProviderOutput**](NetherlandsIdinProviderOutput.md) | Exposed properties for the &#x60;netherlands-idin&#x60; Provider which do not directly map to the normalized IdentityData model. | [optional] 
 **Yoti** | Pointer to [**NullableYotiProviderOutput**](YotiProviderOutput.md) | Exposed properties for the &#x60;yoti&#x60; Provider which do not directly map to the normalized IdentityData model. | [optional] 
 **YotiDeeplink** | Pointer to [**NullableYotiDeeplinkProviderOutput**](YotiDeeplinkProviderOutput.md) | Exposed properties for the &#x60;yoti-deeplink&#x60; Provider which do not directly map to the normalized IdentityData model. | [optional] 
 
@@ -68,6 +83,41 @@ NewProviderOutputWithDefaults instantiates a new ProviderOutput object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
+### GetAudkenni
+
+`func (o *ProviderOutput) GetAudkenni() AudkenniProviderOutput`
+
+GetAudkenni returns the Audkenni field if non-nil, zero value otherwise.
+
+### GetAudkenniOk
+
+`func (o *ProviderOutput) GetAudkenniOk() (*AudkenniProviderOutput, bool)`
+
+GetAudkenniOk returns a tuple with the Audkenni field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAudkenni
+
+`func (o *ProviderOutput) SetAudkenni(v AudkenniProviderOutput)`
+
+SetAudkenni sets Audkenni field to given value.
+
+### HasAudkenni
+
+`func (o *ProviderOutput) HasAudkenni() bool`
+
+HasAudkenni returns a boolean if a field has been set.
+
+### SetAudkenniNil
+
+`func (o *ProviderOutput) SetAudkenniNil(b bool)`
+
+ SetAudkenniNil sets the value for Audkenni to be an explicit nil
+
+### UnsetAudkenni
+`func (o *ProviderOutput) UnsetAudkenni()`
+
+UnsetAudkenni ensures that no value is present for Audkenni, not even an explicit nil
 ### GetAAtHandySignaturLogin
 
 `func (o *ProviderOutput) GetAAtHandySignaturLogin() AustriaHandySignaturProviderOutput`
@@ -488,76 +538,6 @@ HasAPlMojeidLogin returns a boolean if a field has been set.
 `func (o *ProviderOutput) UnsetAPlMojeidLogin()`
 
 UnsetAPlMojeidLogin ensures that no value is present for APlMojeidLogin, not even an explicit nil
-### GetAustraliaConnectId
-
-`func (o *ProviderOutput) GetAustraliaConnectId() ConnectIdProviderOutput`
-
-GetAustraliaConnectId returns the AustraliaConnectId field if non-nil, zero value otherwise.
-
-### GetAustraliaConnectIdOk
-
-`func (o *ProviderOutput) GetAustraliaConnectIdOk() (*ConnectIdProviderOutput, bool)`
-
-GetAustraliaConnectIdOk returns a tuple with the AustraliaConnectId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAustraliaConnectId
-
-`func (o *ProviderOutput) SetAustraliaConnectId(v ConnectIdProviderOutput)`
-
-SetAustraliaConnectId sets AustraliaConnectId field to given value.
-
-### HasAustraliaConnectId
-
-`func (o *ProviderOutput) HasAustraliaConnectId() bool`
-
-HasAustraliaConnectId returns a boolean if a field has been set.
-
-### SetAustraliaConnectIdNil
-
-`func (o *ProviderOutput) SetAustraliaConnectIdNil(b bool)`
-
- SetAustraliaConnectIdNil sets the value for AustraliaConnectId to be an explicit nil
-
-### UnsetAustraliaConnectId
-`func (o *ProviderOutput) UnsetAustraliaConnectId()`
-
-UnsetAustraliaConnectId ensures that no value is present for AustraliaConnectId, not even an explicit nil
-### GetCzechRepublicMojeid
-
-`func (o *ProviderOutput) GetCzechRepublicMojeid() CzechMojeIdProviderOutput`
-
-GetCzechRepublicMojeid returns the CzechRepublicMojeid field if non-nil, zero value otherwise.
-
-### GetCzechRepublicMojeidOk
-
-`func (o *ProviderOutput) GetCzechRepublicMojeidOk() (*CzechMojeIdProviderOutput, bool)`
-
-GetCzechRepublicMojeidOk returns a tuple with the CzechRepublicMojeid field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCzechRepublicMojeid
-
-`func (o *ProviderOutput) SetCzechRepublicMojeid(v CzechMojeIdProviderOutput)`
-
-SetCzechRepublicMojeid sets CzechRepublicMojeid field to given value.
-
-### HasCzechRepublicMojeid
-
-`func (o *ProviderOutput) HasCzechRepublicMojeid() bool`
-
-HasCzechRepublicMojeid returns a boolean if a field has been set.
-
-### SetCzechRepublicMojeidNil
-
-`func (o *ProviderOutput) SetCzechRepublicMojeidNil(b bool)`
-
- SetCzechRepublicMojeidNil sets the value for CzechRepublicMojeid to be an explicit nil
-
-### UnsetCzechRepublicMojeid
-`func (o *ProviderOutput) UnsetCzechRepublicMojeid()`
-
-UnsetCzechRepublicMojeid ensures that no value is present for CzechRepublicMojeid, not even an explicit nil
 ### GetAPtIdLogin
 
 `func (o *ProviderOutput) GetAPtIdLogin() PortugalIdCardProviderOutput`
@@ -663,6 +643,216 @@ HasAppleWallet returns a boolean if a field has been set.
 `func (o *ProviderOutput) UnsetAppleWallet()`
 
 UnsetAppleWallet ensures that no value is present for AppleWallet, not even an explicit nil
+### GetAustraliaConnectId
+
+`func (o *ProviderOutput) GetAustraliaConnectId() ConnectIdProviderOutput`
+
+GetAustraliaConnectId returns the AustraliaConnectId field if non-nil, zero value otherwise.
+
+### GetAustraliaConnectIdOk
+
+`func (o *ProviderOutput) GetAustraliaConnectIdOk() (*ConnectIdProviderOutput, bool)`
+
+GetAustraliaConnectIdOk returns a tuple with the AustraliaConnectId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAustraliaConnectId
+
+`func (o *ProviderOutput) SetAustraliaConnectId(v ConnectIdProviderOutput)`
+
+SetAustraliaConnectId sets AustraliaConnectId field to given value.
+
+### HasAustraliaConnectId
+
+`func (o *ProviderOutput) HasAustraliaConnectId() bool`
+
+HasAustraliaConnectId returns a boolean if a field has been set.
+
+### SetAustraliaConnectIdNil
+
+`func (o *ProviderOutput) SetAustraliaConnectIdNil(b bool)`
+
+ SetAustraliaConnectIdNil sets the value for AustraliaConnectId to be an explicit nil
+
+### UnsetAustraliaConnectId
+`func (o *ProviderOutput) UnsetAustraliaConnectId()`
+
+UnsetAustraliaConnectId ensures that no value is present for AustraliaConnectId, not even an explicit nil
+### GetBoliviaCiLookup
+
+`func (o *ProviderOutput) GetBoliviaCiLookup() BoliviaCiProviderOutput`
+
+GetBoliviaCiLookup returns the BoliviaCiLookup field if non-nil, zero value otherwise.
+
+### GetBoliviaCiLookupOk
+
+`func (o *ProviderOutput) GetBoliviaCiLookupOk() (*BoliviaCiProviderOutput, bool)`
+
+GetBoliviaCiLookupOk returns a tuple with the BoliviaCiLookup field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBoliviaCiLookup
+
+`func (o *ProviderOutput) SetBoliviaCiLookup(v BoliviaCiProviderOutput)`
+
+SetBoliviaCiLookup sets BoliviaCiLookup field to given value.
+
+### HasBoliviaCiLookup
+
+`func (o *ProviderOutput) HasBoliviaCiLookup() bool`
+
+HasBoliviaCiLookup returns a boolean if a field has been set.
+
+### SetBoliviaCiLookupNil
+
+`func (o *ProviderOutput) SetBoliviaCiLookupNil(b bool)`
+
+ SetBoliviaCiLookupNil sets the value for BoliviaCiLookup to be an explicit nil
+
+### UnsetBoliviaCiLookup
+`func (o *ProviderOutput) UnsetBoliviaCiLookup()`
+
+UnsetBoliviaCiLookup ensures that no value is present for BoliviaCiLookup, not even an explicit nil
+### GetColombiaCcLookup
+
+`func (o *ProviderOutput) GetColombiaCcLookup() ColombiaCcProviderOutput`
+
+GetColombiaCcLookup returns the ColombiaCcLookup field if non-nil, zero value otherwise.
+
+### GetColombiaCcLookupOk
+
+`func (o *ProviderOutput) GetColombiaCcLookupOk() (*ColombiaCcProviderOutput, bool)`
+
+GetColombiaCcLookupOk returns a tuple with the ColombiaCcLookup field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetColombiaCcLookup
+
+`func (o *ProviderOutput) SetColombiaCcLookup(v ColombiaCcProviderOutput)`
+
+SetColombiaCcLookup sets ColombiaCcLookup field to given value.
+
+### HasColombiaCcLookup
+
+`func (o *ProviderOutput) HasColombiaCcLookup() bool`
+
+HasColombiaCcLookup returns a boolean if a field has been set.
+
+### SetColombiaCcLookupNil
+
+`func (o *ProviderOutput) SetColombiaCcLookupNil(b bool)`
+
+ SetColombiaCcLookupNil sets the value for ColombiaCcLookup to be an explicit nil
+
+### UnsetColombiaCcLookup
+`func (o *ProviderOutput) UnsetColombiaCcLookup()`
+
+UnsetColombiaCcLookup ensures that no value is present for ColombiaCcLookup, not even an explicit nil
+### GetCoteDivoireNidLookup2
+
+`func (o *ProviderOutput) GetCoteDivoireNidLookup2() CoteDIvoireNidLookup2ProviderOutput`
+
+GetCoteDivoireNidLookup2 returns the CoteDivoireNidLookup2 field if non-nil, zero value otherwise.
+
+### GetCoteDivoireNidLookup2Ok
+
+`func (o *ProviderOutput) GetCoteDivoireNidLookup2Ok() (*CoteDIvoireNidLookup2ProviderOutput, bool)`
+
+GetCoteDivoireNidLookup2Ok returns a tuple with the CoteDivoireNidLookup2 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCoteDivoireNidLookup2
+
+`func (o *ProviderOutput) SetCoteDivoireNidLookup2(v CoteDIvoireNidLookup2ProviderOutput)`
+
+SetCoteDivoireNidLookup2 sets CoteDivoireNidLookup2 field to given value.
+
+### HasCoteDivoireNidLookup2
+
+`func (o *ProviderOutput) HasCoteDivoireNidLookup2() bool`
+
+HasCoteDivoireNidLookup2 returns a boolean if a field has been set.
+
+### SetCoteDivoireNidLookup2Nil
+
+`func (o *ProviderOutput) SetCoteDivoireNidLookup2Nil(b bool)`
+
+ SetCoteDivoireNidLookup2Nil sets the value for CoteDivoireNidLookup2 to be an explicit nil
+
+### UnsetCoteDivoireNidLookup2
+`func (o *ProviderOutput) UnsetCoteDivoireNidLookup2()`
+
+UnsetCoteDivoireNidLookup2 ensures that no value is present for CoteDivoireNidLookup2, not even an explicit nil
+### GetElSalvadorDuiLookup
+
+`func (o *ProviderOutput) GetElSalvadorDuiLookup() ElSalvadorDuiProviderOutput`
+
+GetElSalvadorDuiLookup returns the ElSalvadorDuiLookup field if non-nil, zero value otherwise.
+
+### GetElSalvadorDuiLookupOk
+
+`func (o *ProviderOutput) GetElSalvadorDuiLookupOk() (*ElSalvadorDuiProviderOutput, bool)`
+
+GetElSalvadorDuiLookupOk returns a tuple with the ElSalvadorDuiLookup field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetElSalvadorDuiLookup
+
+`func (o *ProviderOutput) SetElSalvadorDuiLookup(v ElSalvadorDuiProviderOutput)`
+
+SetElSalvadorDuiLookup sets ElSalvadorDuiLookup field to given value.
+
+### HasElSalvadorDuiLookup
+
+`func (o *ProviderOutput) HasElSalvadorDuiLookup() bool`
+
+HasElSalvadorDuiLookup returns a boolean if a field has been set.
+
+### SetElSalvadorDuiLookupNil
+
+`func (o *ProviderOutput) SetElSalvadorDuiLookupNil(b bool)`
+
+ SetElSalvadorDuiLookupNil sets the value for ElSalvadorDuiLookup to be an explicit nil
+
+### UnsetElSalvadorDuiLookup
+`func (o *ProviderOutput) UnsetElSalvadorDuiLookup()`
+
+UnsetElSalvadorDuiLookup ensures that no value is present for ElSalvadorDuiLookup, not even an explicit nil
+### GetCzechRepublicMojeid
+
+`func (o *ProviderOutput) GetCzechRepublicMojeid() CzechMojeIdProviderOutput`
+
+GetCzechRepublicMojeid returns the CzechRepublicMojeid field if non-nil, zero value otherwise.
+
+### GetCzechRepublicMojeidOk
+
+`func (o *ProviderOutput) GetCzechRepublicMojeidOk() (*CzechMojeIdProviderOutput, bool)`
+
+GetCzechRepublicMojeidOk returns a tuple with the CzechRepublicMojeid field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCzechRepublicMojeid
+
+`func (o *ProviderOutput) SetCzechRepublicMojeid(v CzechMojeIdProviderOutput)`
+
+SetCzechRepublicMojeid sets CzechRepublicMojeid field to given value.
+
+### HasCzechRepublicMojeid
+
+`func (o *ProviderOutput) HasCzechRepublicMojeid() bool`
+
+HasCzechRepublicMojeid returns a boolean if a field has been set.
+
+### SetCzechRepublicMojeidNil
+
+`func (o *ProviderOutput) SetCzechRepublicMojeidNil(b bool)`
+
+ SetCzechRepublicMojeidNil sets the value for CzechRepublicMojeid to be an explicit nil
+
+### UnsetCzechRepublicMojeid
+`func (o *ProviderOutput) UnsetCzechRepublicMojeid()`
+
+UnsetCzechRepublicMojeid ensures that no value is present for CzechRepublicMojeid, not even an explicit nil
 ### GetDenmarkMitid
 
 `func (o *ProviderOutput) GetDenmarkMitid() MitIdProviderOutput`
@@ -908,6 +1098,76 @@ HasGoogleWallet returns a boolean if a field has been set.
 `func (o *ProviderOutput) UnsetGoogleWallet()`
 
 UnsetGoogleWallet ensures that no value is present for GoogleWallet, not even an explicit nil
+### GetGuatemalaCuiLookup
+
+`func (o *ProviderOutput) GetGuatemalaCuiLookup() GuatemalaCuiProviderOutput`
+
+GetGuatemalaCuiLookup returns the GuatemalaCuiLookup field if non-nil, zero value otherwise.
+
+### GetGuatemalaCuiLookupOk
+
+`func (o *ProviderOutput) GetGuatemalaCuiLookupOk() (*GuatemalaCuiProviderOutput, bool)`
+
+GetGuatemalaCuiLookupOk returns a tuple with the GuatemalaCuiLookup field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGuatemalaCuiLookup
+
+`func (o *ProviderOutput) SetGuatemalaCuiLookup(v GuatemalaCuiProviderOutput)`
+
+SetGuatemalaCuiLookup sets GuatemalaCuiLookup field to given value.
+
+### HasGuatemalaCuiLookup
+
+`func (o *ProviderOutput) HasGuatemalaCuiLookup() bool`
+
+HasGuatemalaCuiLookup returns a boolean if a field has been set.
+
+### SetGuatemalaCuiLookupNil
+
+`func (o *ProviderOutput) SetGuatemalaCuiLookupNil(b bool)`
+
+ SetGuatemalaCuiLookupNil sets the value for GuatemalaCuiLookup to be an explicit nil
+
+### UnsetGuatemalaCuiLookup
+`func (o *ProviderOutput) UnsetGuatemalaCuiLookup()`
+
+UnsetGuatemalaCuiLookup ensures that no value is present for GuatemalaCuiLookup, not even an explicit nil
+### GetPanamaCedulaLookup
+
+`func (o *ProviderOutput) GetPanamaCedulaLookup() PanamaCedulaProviderOutput`
+
+GetPanamaCedulaLookup returns the PanamaCedulaLookup field if non-nil, zero value otherwise.
+
+### GetPanamaCedulaLookupOk
+
+`func (o *ProviderOutput) GetPanamaCedulaLookupOk() (*PanamaCedulaProviderOutput, bool)`
+
+GetPanamaCedulaLookupOk returns a tuple with the PanamaCedulaLookup field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPanamaCedulaLookup
+
+`func (o *ProviderOutput) SetPanamaCedulaLookup(v PanamaCedulaProviderOutput)`
+
+SetPanamaCedulaLookup sets PanamaCedulaLookup field to given value.
+
+### HasPanamaCedulaLookup
+
+`func (o *ProviderOutput) HasPanamaCedulaLookup() bool`
+
+HasPanamaCedulaLookup returns a boolean if a field has been set.
+
+### SetPanamaCedulaLookupNil
+
+`func (o *ProviderOutput) SetPanamaCedulaLookupNil(b bool)`
+
+ SetPanamaCedulaLookupNil sets the value for PanamaCedulaLookup to be an explicit nil
+
+### UnsetPanamaCedulaLookup
+`func (o *ProviderOutput) UnsetPanamaCedulaLookup()`
+
+UnsetPanamaCedulaLookup ensures that no value is present for PanamaCedulaLookup, not even an explicit nil
 ### GetIndiaDigilockerAadhaar
 
 `func (o *ProviderOutput) GetIndiaDigilockerAadhaar() DigilockerAadhaarProviderOutput`
@@ -943,6 +1203,111 @@ HasIndiaDigilockerAadhaar returns a boolean if a field has been set.
 `func (o *ProviderOutput) UnsetIndiaDigilockerAadhaar()`
 
 UnsetIndiaDigilockerAadhaar ensures that no value is present for IndiaDigilockerAadhaar, not even an explicit nil
+### GetIndiaDigilockerAadhaarFetch
+
+`func (o *ProviderOutput) GetIndiaDigilockerAadhaarFetch() SignzyIndiaAadhaarFetchProviderOutput`
+
+GetIndiaDigilockerAadhaarFetch returns the IndiaDigilockerAadhaarFetch field if non-nil, zero value otherwise.
+
+### GetIndiaDigilockerAadhaarFetchOk
+
+`func (o *ProviderOutput) GetIndiaDigilockerAadhaarFetchOk() (*SignzyIndiaAadhaarFetchProviderOutput, bool)`
+
+GetIndiaDigilockerAadhaarFetchOk returns a tuple with the IndiaDigilockerAadhaarFetch field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIndiaDigilockerAadhaarFetch
+
+`func (o *ProviderOutput) SetIndiaDigilockerAadhaarFetch(v SignzyIndiaAadhaarFetchProviderOutput)`
+
+SetIndiaDigilockerAadhaarFetch sets IndiaDigilockerAadhaarFetch field to given value.
+
+### HasIndiaDigilockerAadhaarFetch
+
+`func (o *ProviderOutput) HasIndiaDigilockerAadhaarFetch() bool`
+
+HasIndiaDigilockerAadhaarFetch returns a boolean if a field has been set.
+
+### SetIndiaDigilockerAadhaarFetchNil
+
+`func (o *ProviderOutput) SetIndiaDigilockerAadhaarFetchNil(b bool)`
+
+ SetIndiaDigilockerAadhaarFetchNil sets the value for IndiaDigilockerAadhaarFetch to be an explicit nil
+
+### UnsetIndiaDigilockerAadhaarFetch
+`func (o *ProviderOutput) UnsetIndiaDigilockerAadhaarFetch()`
+
+UnsetIndiaDigilockerAadhaarFetch ensures that no value is present for IndiaDigilockerAadhaarFetch, not even an explicit nil
+### GetIndiaPanLookup
+
+`func (o *ProviderOutput) GetIndiaPanLookup() IndiaPanLookupProviderOutput`
+
+GetIndiaPanLookup returns the IndiaPanLookup field if non-nil, zero value otherwise.
+
+### GetIndiaPanLookupOk
+
+`func (o *ProviderOutput) GetIndiaPanLookupOk() (*IndiaPanLookupProviderOutput, bool)`
+
+GetIndiaPanLookupOk returns a tuple with the IndiaPanLookup field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIndiaPanLookup
+
+`func (o *ProviderOutput) SetIndiaPanLookup(v IndiaPanLookupProviderOutput)`
+
+SetIndiaPanLookup sets IndiaPanLookup field to given value.
+
+### HasIndiaPanLookup
+
+`func (o *ProviderOutput) HasIndiaPanLookup() bool`
+
+HasIndiaPanLookup returns a boolean if a field has been set.
+
+### SetIndiaPanLookupNil
+
+`func (o *ProviderOutput) SetIndiaPanLookupNil(b bool)`
+
+ SetIndiaPanLookupNil sets the value for IndiaPanLookup to be an explicit nil
+
+### UnsetIndiaPanLookup
+`func (o *ProviderOutput) UnsetIndiaPanLookup()`
+
+UnsetIndiaPanLookup ensures that no value is present for IndiaPanLookup, not even an explicit nil
+### GetChinaResidentIdMatch
+
+`func (o *ProviderOutput) GetChinaResidentIdMatch() ChinaResidentIdMatchOutput`
+
+GetChinaResidentIdMatch returns the ChinaResidentIdMatch field if non-nil, zero value otherwise.
+
+### GetChinaResidentIdMatchOk
+
+`func (o *ProviderOutput) GetChinaResidentIdMatchOk() (*ChinaResidentIdMatchOutput, bool)`
+
+GetChinaResidentIdMatchOk returns a tuple with the ChinaResidentIdMatch field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetChinaResidentIdMatch
+
+`func (o *ProviderOutput) SetChinaResidentIdMatch(v ChinaResidentIdMatchOutput)`
+
+SetChinaResidentIdMatch sets ChinaResidentIdMatch field to given value.
+
+### HasChinaResidentIdMatch
+
+`func (o *ProviderOutput) HasChinaResidentIdMatch() bool`
+
+HasChinaResidentIdMatch returns a boolean if a field has been set.
+
+### SetChinaResidentIdMatchNil
+
+`func (o *ProviderOutput) SetChinaResidentIdMatchNil(b bool)`
+
+ SetChinaResidentIdMatchNil sets the value for ChinaResidentIdMatch to be an explicit nil
+
+### UnsetChinaResidentIdMatch
+`func (o *ProviderOutput) UnsetChinaResidentIdMatch()`
+
+UnsetChinaResidentIdMatch ensures that no value is present for ChinaResidentIdMatch, not even an explicit nil
 ### GetItalySpid
 
 `func (o *ProviderOutput) GetItalySpid() SpidProviderOutput`
@@ -1013,6 +1378,41 @@ HasKenyaNidLookup2 returns a boolean if a field has been set.
 `func (o *ProviderOutput) UnsetKenyaNidLookup2()`
 
 UnsetKenyaNidLookup2 ensures that no value is present for KenyaNidLookup2, not even an explicit nil
+### GetKoreaTelcoMatch
+
+`func (o *ProviderOutput) GetKoreaTelcoMatch() KoreaTelcoMatchProviderOutput`
+
+GetKoreaTelcoMatch returns the KoreaTelcoMatch field if non-nil, zero value otherwise.
+
+### GetKoreaTelcoMatchOk
+
+`func (o *ProviderOutput) GetKoreaTelcoMatchOk() (*KoreaTelcoMatchProviderOutput, bool)`
+
+GetKoreaTelcoMatchOk returns a tuple with the KoreaTelcoMatch field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKoreaTelcoMatch
+
+`func (o *ProviderOutput) SetKoreaTelcoMatch(v KoreaTelcoMatchProviderOutput)`
+
+SetKoreaTelcoMatch sets KoreaTelcoMatch field to given value.
+
+### HasKoreaTelcoMatch
+
+`func (o *ProviderOutput) HasKoreaTelcoMatch() bool`
+
+HasKoreaTelcoMatch returns a boolean if a field has been set.
+
+### SetKoreaTelcoMatchNil
+
+`func (o *ProviderOutput) SetKoreaTelcoMatchNil(b bool)`
+
+ SetKoreaTelcoMatchNil sets the value for KoreaTelcoMatch to be an explicit nil
+
+### UnsetKoreaTelcoMatch
+`func (o *ProviderOutput) UnsetKoreaTelcoMatch()`
+
+UnsetKoreaTelcoMatch ensures that no value is present for KoreaTelcoMatch, not even an explicit nil
 ### GetLloydsSmartId
 
 `func (o *ProviderOutput) GetLloydsSmartId() LloydsSmartIdProviderOutput`
@@ -1328,6 +1728,41 @@ HasPhilippinesPhysicalNationalIdQr returns a boolean if a field has been set.
 `func (o *ProviderOutput) UnsetPhilippinesPhysicalNationalIdQr()`
 
 UnsetPhilippinesPhysicalNationalIdQr ensures that no value is present for PhilippinesPhysicalNationalIdQr, not even an explicit nil
+### GetPolandMobywatelMatch
+
+`func (o *ProviderOutput) GetPolandMobywatelMatch() PolandMobywatelMatchProviderOutput`
+
+GetPolandMobywatelMatch returns the PolandMobywatelMatch field if non-nil, zero value otherwise.
+
+### GetPolandMobywatelMatchOk
+
+`func (o *ProviderOutput) GetPolandMobywatelMatchOk() (*PolandMobywatelMatchProviderOutput, bool)`
+
+GetPolandMobywatelMatchOk returns a tuple with the PolandMobywatelMatch field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPolandMobywatelMatch
+
+`func (o *ProviderOutput) SetPolandMobywatelMatch(v PolandMobywatelMatchProviderOutput)`
+
+SetPolandMobywatelMatch sets PolandMobywatelMatch field to given value.
+
+### HasPolandMobywatelMatch
+
+`func (o *ProviderOutput) HasPolandMobywatelMatch() bool`
+
+HasPolandMobywatelMatch returns a boolean if a field has been set.
+
+### SetPolandMobywatelMatchNil
+
+`func (o *ProviderOutput) SetPolandMobywatelMatchNil(b bool)`
+
+ SetPolandMobywatelMatchNil sets the value for PolandMobywatelMatch to be an explicit nil
+
+### UnsetPolandMobywatelMatch
+`func (o *ProviderOutput) UnsetPolandMobywatelMatch()`
+
+UnsetPolandMobywatelMatch ensures that no value is present for PolandMobywatelMatch, not even an explicit nil
 ### GetPostOfficeEasyid
 
 `func (o *ProviderOutput) GetPostOfficeEasyid() PostOfficeEasyIdProviderOutput`
@@ -1398,6 +1833,76 @@ HasSamsungWallet returns a boolean if a field has been set.
 `func (o *ProviderOutput) UnsetSamsungWallet()`
 
 UnsetSamsungWallet ensures that no value is present for SamsungWallet, not even an explicit nil
+### GetSingpassLogin
+
+`func (o *ProviderOutput) GetSingpassLogin() SingpassLoginProviderOutput`
+
+GetSingpassLogin returns the SingpassLogin field if non-nil, zero value otherwise.
+
+### GetSingpassLoginOk
+
+`func (o *ProviderOutput) GetSingpassLoginOk() (*SingpassLoginProviderOutput, bool)`
+
+GetSingpassLoginOk returns a tuple with the SingpassLogin field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSingpassLogin
+
+`func (o *ProviderOutput) SetSingpassLogin(v SingpassLoginProviderOutput)`
+
+SetSingpassLogin sets SingpassLogin field to given value.
+
+### HasSingpassLogin
+
+`func (o *ProviderOutput) HasSingpassLogin() bool`
+
+HasSingpassLogin returns a boolean if a field has been set.
+
+### SetSingpassLoginNil
+
+`func (o *ProviderOutput) SetSingpassLoginNil(b bool)`
+
+ SetSingpassLoginNil sets the value for SingpassLogin to be an explicit nil
+
+### UnsetSingpassLogin
+`func (o *ProviderOutput) UnsetSingpassLogin()`
+
+UnsetSingpassLogin ensures that no value is present for SingpassLogin, not even an explicit nil
+### GetSingpassMyinfo
+
+`func (o *ProviderOutput) GetSingpassMyinfo() SingpassMyInfoProviderOutput`
+
+GetSingpassMyinfo returns the SingpassMyinfo field if non-nil, zero value otherwise.
+
+### GetSingpassMyinfoOk
+
+`func (o *ProviderOutput) GetSingpassMyinfoOk() (*SingpassMyInfoProviderOutput, bool)`
+
+GetSingpassMyinfoOk returns a tuple with the SingpassMyinfo field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSingpassMyinfo
+
+`func (o *ProviderOutput) SetSingpassMyinfo(v SingpassMyInfoProviderOutput)`
+
+SetSingpassMyinfo sets SingpassMyinfo field to given value.
+
+### HasSingpassMyinfo
+
+`func (o *ProviderOutput) HasSingpassMyinfo() bool`
+
+HasSingpassMyinfo returns a boolean if a field has been set.
+
+### SetSingpassMyinfoNil
+
+`func (o *ProviderOutput) SetSingpassMyinfoNil(b bool)`
+
+ SetSingpassMyinfoNil sets the value for SingpassMyinfo to be an explicit nil
+
+### UnsetSingpassMyinfo
+`func (o *ProviderOutput) UnsetSingpassMyinfo()`
+
+UnsetSingpassMyinfo ensures that no value is present for SingpassMyinfo, not even an explicit nil
 ### GetSmartId
 
 `func (o *ProviderOutput) GetSmartId() SmartIdProviderOutput`
@@ -1538,6 +2043,41 @@ HasUsaLouisianaWallet returns a boolean if a field has been set.
 `func (o *ProviderOutput) UnsetUsaLouisianaWallet()`
 
 UnsetUsaLouisianaWallet ensures that no value is present for UsaLouisianaWallet, not even an explicit nil
+### GetNetherlandsIdin
+
+`func (o *ProviderOutput) GetNetherlandsIdin() NetherlandsIdinProviderOutput`
+
+GetNetherlandsIdin returns the NetherlandsIdin field if non-nil, zero value otherwise.
+
+### GetNetherlandsIdinOk
+
+`func (o *ProviderOutput) GetNetherlandsIdinOk() (*NetherlandsIdinProviderOutput, bool)`
+
+GetNetherlandsIdinOk returns a tuple with the NetherlandsIdin field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNetherlandsIdin
+
+`func (o *ProviderOutput) SetNetherlandsIdin(v NetherlandsIdinProviderOutput)`
+
+SetNetherlandsIdin sets NetherlandsIdin field to given value.
+
+### HasNetherlandsIdin
+
+`func (o *ProviderOutput) HasNetherlandsIdin() bool`
+
+HasNetherlandsIdin returns a boolean if a field has been set.
+
+### SetNetherlandsIdinNil
+
+`func (o *ProviderOutput) SetNetherlandsIdinNil(b bool)`
+
+ SetNetherlandsIdinNil sets the value for NetherlandsIdin to be an explicit nil
+
+### UnsetNetherlandsIdin
+`func (o *ProviderOutput) UnsetNetherlandsIdin()`
+
+UnsetNetherlandsIdin ensures that no value is present for NetherlandsIdin, not even an explicit nil
 ### GetYoti
 
 `func (o *ProviderOutput) GetYoti() YotiProviderOutput`

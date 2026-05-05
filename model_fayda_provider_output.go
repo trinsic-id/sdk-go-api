@@ -19,7 +19,7 @@ var _ MappedNullable = &FaydaProviderOutput{}
 
 // FaydaProviderOutput Exposed properties for the `ethiopia-fayda` Provider which do not directly map to the normalized IdentityData model.
 type FaydaProviderOutput struct {
-	// A unique eKYC identifying token used to match the original eKYC token received from the provider when the user was initially registered.              Since Fayda does not return identifying data, it is the responsibility of the relying party to keep the unique user token received from Fayda when the user was initially registered to do a comparison of the subs to verify that it is the same person.
+	// A unique eKYC identifying token used to match the original eKYC token received from the provider when the individual was initially registered.              Since Fayda does not return identifying data, it is the responsibility of the relying party to keep the unique individual token received from Fayda when the individual was initially registered to do a comparison of the subs to verify that it is the same person.
 	Sub NullableString `json:"sub,omitempty"`
 	// The full name of the verified individual.              This may be an English or Arabic name if the individual only has it one language, otherwise this will be null and the other names will be populated.
 	Name NullableString `json:"name,omitempty"`
@@ -27,6 +27,18 @@ type FaydaProviderOutput struct {
 	EnglishName NullableString `json:"englishName,omitempty"`
 	// The full Arabic name of the verified individual.
 	ArabicName NullableString `json:"arabicName,omitempty"`
+	// The date of birth of the verified individual.              This attribute is only available if registered directly.
+	Birthdate NullableString `json:"birthdate,omitempty"`
+	// The sex of the verified individual.              Possible values: - Unknown - NotApplicable - Male - Female              This attribute is only available if registered directly.
+	Gender NullableString `json:"gender,omitempty"`
+	// The nationality of the verified individual as an ISO 3166-1 alpha-2 country code.              This attribute is only available if registered directly.
+	Nationality NullableString `json:"nationality,omitempty"`
+	// The phone number of the verified individual.              This attribute is only available if registered directly.
+	PhoneNumber NullableString `json:"phoneNumber,omitempty"`
+	// The email address of the verified individual.              This attribute is only available if registered directly.
+	Email NullableString `json:"email,omitempty"`
+	// The address of the verified individual.              This attribute is only available if registered directly.
+	Address NullableFaydaProviderAddress `json:"address,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -217,6 +229,258 @@ func (o *FaydaProviderOutput) UnsetArabicName() {
 	o.ArabicName.Unset()
 }
 
+// GetBirthdate returns the Birthdate field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *FaydaProviderOutput) GetBirthdate() string {
+	if o == nil || IsNil(o.Birthdate.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Birthdate.Get()
+}
+
+// GetBirthdateOk returns a tuple with the Birthdate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *FaydaProviderOutput) GetBirthdateOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Birthdate.Get(), o.Birthdate.IsSet()
+}
+
+// HasBirthdate returns a boolean if a field has been set.
+func (o *FaydaProviderOutput) HasBirthdate() bool {
+	if o != nil && o.Birthdate.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetBirthdate gets a reference to the given NullableString and assigns it to the Birthdate field.
+func (o *FaydaProviderOutput) SetBirthdate(v string) {
+	o.Birthdate.Set(&v)
+}
+// SetBirthdateNil sets the value for Birthdate to be an explicit nil
+func (o *FaydaProviderOutput) SetBirthdateNil() {
+	o.Birthdate.Set(nil)
+}
+
+// UnsetBirthdate ensures that no value is present for Birthdate, not even an explicit nil
+func (o *FaydaProviderOutput) UnsetBirthdate() {
+	o.Birthdate.Unset()
+}
+
+// GetGender returns the Gender field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *FaydaProviderOutput) GetGender() string {
+	if o == nil || IsNil(o.Gender.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Gender.Get()
+}
+
+// GetGenderOk returns a tuple with the Gender field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *FaydaProviderOutput) GetGenderOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Gender.Get(), o.Gender.IsSet()
+}
+
+// HasGender returns a boolean if a field has been set.
+func (o *FaydaProviderOutput) HasGender() bool {
+	if o != nil && o.Gender.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetGender gets a reference to the given NullableString and assigns it to the Gender field.
+func (o *FaydaProviderOutput) SetGender(v string) {
+	o.Gender.Set(&v)
+}
+// SetGenderNil sets the value for Gender to be an explicit nil
+func (o *FaydaProviderOutput) SetGenderNil() {
+	o.Gender.Set(nil)
+}
+
+// UnsetGender ensures that no value is present for Gender, not even an explicit nil
+func (o *FaydaProviderOutput) UnsetGender() {
+	o.Gender.Unset()
+}
+
+// GetNationality returns the Nationality field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *FaydaProviderOutput) GetNationality() string {
+	if o == nil || IsNil(o.Nationality.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Nationality.Get()
+}
+
+// GetNationalityOk returns a tuple with the Nationality field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *FaydaProviderOutput) GetNationalityOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Nationality.Get(), o.Nationality.IsSet()
+}
+
+// HasNationality returns a boolean if a field has been set.
+func (o *FaydaProviderOutput) HasNationality() bool {
+	if o != nil && o.Nationality.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetNationality gets a reference to the given NullableString and assigns it to the Nationality field.
+func (o *FaydaProviderOutput) SetNationality(v string) {
+	o.Nationality.Set(&v)
+}
+// SetNationalityNil sets the value for Nationality to be an explicit nil
+func (o *FaydaProviderOutput) SetNationalityNil() {
+	o.Nationality.Set(nil)
+}
+
+// UnsetNationality ensures that no value is present for Nationality, not even an explicit nil
+func (o *FaydaProviderOutput) UnsetNationality() {
+	o.Nationality.Unset()
+}
+
+// GetPhoneNumber returns the PhoneNumber field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *FaydaProviderOutput) GetPhoneNumber() string {
+	if o == nil || IsNil(o.PhoneNumber.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.PhoneNumber.Get()
+}
+
+// GetPhoneNumberOk returns a tuple with the PhoneNumber field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *FaydaProviderOutput) GetPhoneNumberOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.PhoneNumber.Get(), o.PhoneNumber.IsSet()
+}
+
+// HasPhoneNumber returns a boolean if a field has been set.
+func (o *FaydaProviderOutput) HasPhoneNumber() bool {
+	if o != nil && o.PhoneNumber.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPhoneNumber gets a reference to the given NullableString and assigns it to the PhoneNumber field.
+func (o *FaydaProviderOutput) SetPhoneNumber(v string) {
+	o.PhoneNumber.Set(&v)
+}
+// SetPhoneNumberNil sets the value for PhoneNumber to be an explicit nil
+func (o *FaydaProviderOutput) SetPhoneNumberNil() {
+	o.PhoneNumber.Set(nil)
+}
+
+// UnsetPhoneNumber ensures that no value is present for PhoneNumber, not even an explicit nil
+func (o *FaydaProviderOutput) UnsetPhoneNumber() {
+	o.PhoneNumber.Unset()
+}
+
+// GetEmail returns the Email field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *FaydaProviderOutput) GetEmail() string {
+	if o == nil || IsNil(o.Email.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Email.Get()
+}
+
+// GetEmailOk returns a tuple with the Email field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *FaydaProviderOutput) GetEmailOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Email.Get(), o.Email.IsSet()
+}
+
+// HasEmail returns a boolean if a field has been set.
+func (o *FaydaProviderOutput) HasEmail() bool {
+	if o != nil && o.Email.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetEmail gets a reference to the given NullableString and assigns it to the Email field.
+func (o *FaydaProviderOutput) SetEmail(v string) {
+	o.Email.Set(&v)
+}
+// SetEmailNil sets the value for Email to be an explicit nil
+func (o *FaydaProviderOutput) SetEmailNil() {
+	o.Email.Set(nil)
+}
+
+// UnsetEmail ensures that no value is present for Email, not even an explicit nil
+func (o *FaydaProviderOutput) UnsetEmail() {
+	o.Email.Unset()
+}
+
+// GetAddress returns the Address field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *FaydaProviderOutput) GetAddress() FaydaProviderAddress {
+	if o == nil || IsNil(o.Address.Get()) {
+		var ret FaydaProviderAddress
+		return ret
+	}
+	return *o.Address.Get()
+}
+
+// GetAddressOk returns a tuple with the Address field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *FaydaProviderOutput) GetAddressOk() (*FaydaProviderAddress, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Address.Get(), o.Address.IsSet()
+}
+
+// HasAddress returns a boolean if a field has been set.
+func (o *FaydaProviderOutput) HasAddress() bool {
+	if o != nil && o.Address.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAddress gets a reference to the given NullableFaydaProviderAddress and assigns it to the Address field.
+func (o *FaydaProviderOutput) SetAddress(v FaydaProviderAddress) {
+	o.Address.Set(&v)
+}
+// SetAddressNil sets the value for Address to be an explicit nil
+func (o *FaydaProviderOutput) SetAddressNil() {
+	o.Address.Set(nil)
+}
+
+// UnsetAddress ensures that no value is present for Address, not even an explicit nil
+func (o *FaydaProviderOutput) UnsetAddress() {
+	o.Address.Unset()
+}
+
 func (o FaydaProviderOutput) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -238,6 +502,24 @@ func (o FaydaProviderOutput) ToMap() (map[string]interface{}, error) {
 	}
 	if o.ArabicName.IsSet() {
 		toSerialize["arabicName"] = o.ArabicName.Get()
+	}
+	if o.Birthdate.IsSet() {
+		toSerialize["birthdate"] = o.Birthdate.Get()
+	}
+	if o.Gender.IsSet() {
+		toSerialize["gender"] = o.Gender.Get()
+	}
+	if o.Nationality.IsSet() {
+		toSerialize["nationality"] = o.Nationality.Get()
+	}
+	if o.PhoneNumber.IsSet() {
+		toSerialize["phoneNumber"] = o.PhoneNumber.Get()
+	}
+	if o.Email.IsSet() {
+		toSerialize["email"] = o.Email.Get()
+	}
+	if o.Address.IsSet() {
+		toSerialize["address"] = o.Address.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -265,6 +547,12 @@ func (o *FaydaProviderOutput) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "englishName")
 		delete(additionalProperties, "arabicName")
+		delete(additionalProperties, "birthdate")
+		delete(additionalProperties, "gender")
+		delete(additionalProperties, "nationality")
+		delete(additionalProperties, "phoneNumber")
+		delete(additionalProperties, "email")
+		delete(additionalProperties, "address")
 		o.AdditionalProperties = additionalProperties
 	}
 

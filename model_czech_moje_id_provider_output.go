@@ -19,7 +19,7 @@ var _ MappedNullable = &CzechMojeIdProviderOutput{}
 
 // CzechMojeIdProviderOutput Exposed properties for the `czech-moje-id` Provider which do not directly map to the normalized IdentityData model.
 type CzechMojeIdProviderOutput struct {
-	// The subject identifier (sub) of the verified individual's MojeID account.              This is a unique identifier that represents the user within the MojeID system.
+	// The subject identifier (sub) of the verified individual's MojeID account.              This is a unique identifier that represents the individual within the MojeID system.
 	SubjectIdentifier NullableString `json:"subjectIdentifier,omitempty"`
 	// The individual's full name.
 	Name NullableString `json:"name,omitempty"`
@@ -51,6 +51,10 @@ type CzechMojeIdProviderOutput struct {
 	IsAdult NullableBool `json:"isAdult,omitempty"`
 	// The MojeID account has been validated.              A validated account indicates the individual's identity has been verified to a higher level of assurance within the MojeID system.
 	AccountValidated NullableBool `json:"accountValidated,omitempty"`
+	// The individual's ISDS identifier (Informační systém datových schránek — Czech data box system), used for official electronic communication with Czech government authorities.
+	IsdsId NullableString `json:"isdsId,omitempty"`
+	// Whether the individual is a student.
+	IsStudent NullableBool `json:"isStudent,omitempty"`
 	// The individual's or organization's Czech Registration ID (ICO), the Czech company registration number.
 	CompanyRegistrationNumber NullableString `json:"companyRegistrationNumber,omitempty"`
 	// The individual's or organization's Danove Identifikacni Cislo (DIC), the Czech tax identification number.
@@ -759,6 +763,90 @@ func (o *CzechMojeIdProviderOutput) UnsetAccountValidated() {
 	o.AccountValidated.Unset()
 }
 
+// GetIsdsId returns the IsdsId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CzechMojeIdProviderOutput) GetIsdsId() string {
+	if o == nil || IsNil(o.IsdsId.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.IsdsId.Get()
+}
+
+// GetIsdsIdOk returns a tuple with the IsdsId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CzechMojeIdProviderOutput) GetIsdsIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.IsdsId.Get(), o.IsdsId.IsSet()
+}
+
+// HasIsdsId returns a boolean if a field has been set.
+func (o *CzechMojeIdProviderOutput) HasIsdsId() bool {
+	if o != nil && o.IsdsId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetIsdsId gets a reference to the given NullableString and assigns it to the IsdsId field.
+func (o *CzechMojeIdProviderOutput) SetIsdsId(v string) {
+	o.IsdsId.Set(&v)
+}
+// SetIsdsIdNil sets the value for IsdsId to be an explicit nil
+func (o *CzechMojeIdProviderOutput) SetIsdsIdNil() {
+	o.IsdsId.Set(nil)
+}
+
+// UnsetIsdsId ensures that no value is present for IsdsId, not even an explicit nil
+func (o *CzechMojeIdProviderOutput) UnsetIsdsId() {
+	o.IsdsId.Unset()
+}
+
+// GetIsStudent returns the IsStudent field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CzechMojeIdProviderOutput) GetIsStudent() bool {
+	if o == nil || IsNil(o.IsStudent.Get()) {
+		var ret bool
+		return ret
+	}
+	return *o.IsStudent.Get()
+}
+
+// GetIsStudentOk returns a tuple with the IsStudent field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CzechMojeIdProviderOutput) GetIsStudentOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.IsStudent.Get(), o.IsStudent.IsSet()
+}
+
+// HasIsStudent returns a boolean if a field has been set.
+func (o *CzechMojeIdProviderOutput) HasIsStudent() bool {
+	if o != nil && o.IsStudent.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetIsStudent gets a reference to the given NullableBool and assigns it to the IsStudent field.
+func (o *CzechMojeIdProviderOutput) SetIsStudent(v bool) {
+	o.IsStudent.Set(&v)
+}
+// SetIsStudentNil sets the value for IsStudent to be an explicit nil
+func (o *CzechMojeIdProviderOutput) SetIsStudentNil() {
+	o.IsStudent.Set(nil)
+}
+
+// UnsetIsStudent ensures that no value is present for IsStudent, not even an explicit nil
+func (o *CzechMojeIdProviderOutput) UnsetIsStudent() {
+	o.IsStudent.Unset()
+}
+
 // GetCompanyRegistrationNumber returns the CompanyRegistrationNumber field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CzechMojeIdProviderOutput) GetCompanyRegistrationNumber() string {
 	if o == nil || IsNil(o.CompanyRegistrationNumber.Get()) {
@@ -1111,6 +1199,12 @@ func (o CzechMojeIdProviderOutput) ToMap() (map[string]interface{}, error) {
 	if o.AccountValidated.IsSet() {
 		toSerialize["accountValidated"] = o.AccountValidated.Get()
 	}
+	if o.IsdsId.IsSet() {
+		toSerialize["isdsId"] = o.IsdsId.Get()
+	}
+	if o.IsStudent.IsSet() {
+		toSerialize["isStudent"] = o.IsStudent.Get()
+	}
 	if o.CompanyRegistrationNumber.IsSet() {
 		toSerialize["companyRegistrationNumber"] = o.CompanyRegistrationNumber.Get()
 	}
@@ -1170,6 +1264,8 @@ func (o *CzechMojeIdProviderOutput) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "socialSecurityNumber")
 		delete(additionalProperties, "isAdult")
 		delete(additionalProperties, "accountValidated")
+		delete(additionalProperties, "isdsId")
+		delete(additionalProperties, "isStudent")
 		delete(additionalProperties, "companyRegistrationNumber")
 		delete(additionalProperties, "taxIdentificationNumber")
 		delete(additionalProperties, "niaVerified")

@@ -56,6 +56,8 @@ type Provider struct {
 	HasTrinsicInterface bool `json:"hasTrinsicInterface"`
 	// Whether this Provider can be fully whitelabeled/OEMed through the Direct Provider Sessions API.              If `false`, the Provider may still be launched through Direct Provider Sessions; however, it will necessarily require a Trinsic-hosted UI to function.
 	SupportsDirectProviderSessions bool `json:"supportsDirectProviderSessions"`
+	// Languages supported by this Provider's Trinsic-hosted UI, as BCP 47 language codes.
+	SupportedLanguages []ProviderSupportedLanguage `json:"supportedLanguages,omitempty"`
 	// Information about the user attributes that this Provider will return in verification results.
 	AvailableAttributes []ContractAttribute `json:"availableAttributes,omitempty"`
 	// Information about the attachments that this Provider will return in verification results.
@@ -521,6 +523,39 @@ func (o *Provider) SetSupportsDirectProviderSessions(v bool) {
 	o.SupportsDirectProviderSessions = v
 }
 
+// GetSupportedLanguages returns the SupportedLanguages field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Provider) GetSupportedLanguages() []ProviderSupportedLanguage {
+	if o == nil {
+		var ret []ProviderSupportedLanguage
+		return ret
+	}
+	return o.SupportedLanguages
+}
+
+// GetSupportedLanguagesOk returns a tuple with the SupportedLanguages field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Provider) GetSupportedLanguagesOk() ([]ProviderSupportedLanguage, bool) {
+	if o == nil || IsNil(o.SupportedLanguages) {
+		return nil, false
+	}
+	return o.SupportedLanguages, true
+}
+
+// HasSupportedLanguages returns a boolean if a field has been set.
+func (o *Provider) HasSupportedLanguages() bool {
+	if o != nil && !IsNil(o.SupportedLanguages) {
+		return true
+	}
+
+	return false
+}
+
+// SetSupportedLanguages gets a reference to the given []ProviderSupportedLanguage and assigns it to the SupportedLanguages field.
+func (o *Provider) SetSupportedLanguages(v []ProviderSupportedLanguage) {
+	o.SupportedLanguages = v
+}
+
 // GetAvailableAttributes returns the AvailableAttributes field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Provider) GetAvailableAttributes() []ContractAttribute {
 	if o == nil {
@@ -695,6 +730,9 @@ func (o Provider) ToMap() (map[string]interface{}, error) {
 	toSerialize["requiresInput"] = o.RequiresInput
 	toSerialize["hasTrinsicInterface"] = o.HasTrinsicInterface
 	toSerialize["supportsDirectProviderSessions"] = o.SupportsDirectProviderSessions
+	if o.SupportedLanguages != nil {
+		toSerialize["supportedLanguages"] = o.SupportedLanguages
+	}
 	if o.AvailableAttributes != nil {
 		toSerialize["availableAttributes"] = o.AvailableAttributes
 	}
@@ -784,6 +822,7 @@ func (o *Provider) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "requiresInput")
 		delete(additionalProperties, "hasTrinsicInterface")
 		delete(additionalProperties, "supportsDirectProviderSessions")
+		delete(additionalProperties, "supportedLanguages")
 		delete(additionalProperties, "availableAttributes")
 		delete(additionalProperties, "availableAttachments")
 		delete(additionalProperties, "subProviders")

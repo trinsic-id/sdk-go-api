@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **FirstName** | **string** | The first name of the verified individual | 
 **LastName** | **string** | The last name of the verified individual | 
 **DateOfBirth** | **string** | The date of birth of the verified individual | 
-**OpenId2Identifier** | **string** | The OpenID 2.0 Identifier (\&quot;openid2_id\&quot;) of the verified individual&#39;s MojeID account.              This is an HTTPS URL which uniquely identifies the user within the MojeID system. | 
+**OpenId2Identifier** | **string** | The OpenID 2.0 Identifier (\&quot;openid2_id\&quot;) of the verified individual&#39;s MojeID account.              This is an HTTPS URL which uniquely identifies the individual within the MojeID system. | 
 
 ## Methods
 

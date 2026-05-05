@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 **Country** | Pointer to **NullableString** | The ISO 3166-1 alpha-2 country code associated with the individual&#39;s country of origin. | [optional] 
 **Document** | Pointer to [**NullableOutputFrejaDocument**](OutputFrejaDocument.md) | The underlying document, such as a passport, used to create the Freja credential. | [optional] 
 **RegistrationLevel** | Pointer to **NullableString** | The Freja registration level associated with this individual. This can be BASIC, EXTENDED, or PLUS. * BASIC: Individual has a registered account with Freja. * EXTENDED: Individual has an official identity document verified by Freja. * PLUS: Individual has undergone in-person verification with Freja. | [optional] 
-**RelyingPartyUserId** | Pointer to **NullableString** | The relying party user identifier for this individual. This is an identifier specific to the individual and the relying party (your service). | [optional] 
+**RelyingPartyUserId** | Pointer to **NullableString** | The relying party identifier for this individual. This is an identifier specific to the individual and the relying party (your service). | [optional] 
 **TransactionReference** | Pointer to **NullableString** | The Freja transaction reference for this verification. This is an identifier specific to the verification transaction. | [optional] 
 
 ## Methods

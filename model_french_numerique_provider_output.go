@@ -21,23 +21,23 @@ var _ MappedNullable = &FrenchNumeriqueProviderOutput{}
 type FrenchNumeriqueProviderOutput struct {
 	// Given name information including the full given name and its structured components (first name and middle name(s)).
 	GivenName NullableFrenchNumeriqueGivenName `json:"givenName,omitempty"`
-	// Birth name (nom de naissance) as recorded on the user's French identity document. In France, this is the family name given at birth and may differ from the usage name.
+	// Birth name (nom de naissance) as recorded on the individual's French identity document. In France, this is the family name given at birth and may differ from the usage name.
 	FamilyName NullableString `json:"familyName,omitempty"`
 	// Usage surname (\"nom d'usage\") - according to French law, this is the surname used in daily life. This is typically a married name or other preferred surname, as opposed to FamilyName which is the birth surname (\"nom de naissance\").
 	PreferredSurname NullableString `json:"preferredSurname,omitempty"`
-	// Date of birth in YYYY-MM-DD format, as recorded on the user's French identity document.
+	// Date of birth in YYYY-MM-DD format, as recorded on the individual's French identity document.
 	Birthdate NullableString `json:"birthdate,omitempty"`
 	// Nationality information with ISO 3166 alpha-3 code and French label. The label is provided in French (e.g., \"Française\" for French nationality).
 	Nationality NullableFrenchNumeriqueNationality `json:"nationality,omitempty"`
 	// Sex - \"Male\" or \"Female\".
 	Sex NullableString `json:"sex,omitempty"`
-	// Majority status (majorité) indicating whether the user has reached the French age of legal majority (18 years old). This value is computed by the provider from the user's birthdate.
+	// Majority status (majorité) indicating whether the individual has reached the French age of legal majority (18 years old). This value is computed by the provider from the individual's birthdate.
 	Majority NullableBool `json:"majority,omitempty"`
 	// Phone number information including the full phone number and its structured components (country prefix and national number).
 	PhoneNumber NullableFrenchNumeriquePhone `json:"phoneNumber,omitempty"`
 	// Whether the phone number has been verified by the provider.
 	PhoneNumberVerified NullableBool `json:"phoneNumberVerified,omitempty"`
-	// Email address registered in the user's digital identity account.
+	// Email address registered in the individual's digital identity account.
 	Email NullableString `json:"email,omitempty"`
 	// Whether the email address has been verified by the provider.
 	EmailVerified NullableBool `json:"emailVerified,omitempty"`
@@ -45,7 +45,7 @@ type FrenchNumeriqueProviderOutput struct {
 	Birthplace NullableString `json:"birthplace,omitempty"`
 	// Name of the birthplace commune (municipality). If applicable, this includes the full name of the arrondissement (borough).
 	BirthplaceLabel NullableString `json:"birthplaceLabel,omitempty"`
-	// National Institute of Statistics and Economic Studies (INSEE) official geographic code (COG) for the user's country of birth.              LaPoste returns this as a 5-character numeric string. This is a country/territory COG, so it always starts with \"99\" (99xxx). France is coded as 99100.              See full list here: https://www.insee.fr/fr/information/2560452
+	// National Institute of Statistics and Economic Studies (INSEE) official geographic code (COG) for the individual's country of birth.              LaPoste returns this as a 5-character numeric string. This is a country/territory COG, so it always starts with \"99\" (99xxx). France is coded as 99100.              See full list here: https://www.insee.fr/fr/information/2560452
 	BirthCountry NullableString `json:"birthCountry,omitempty"`
 	// Birth country as an ISO 3166 alpha-3 code.
 	BirthCountryIso NullableString `json:"birthCountryIso,omitempty"`
@@ -53,9 +53,9 @@ type FrenchNumeriqueProviderOutput struct {
 	BirthCountryLabel NullableString `json:"birthCountryLabel,omitempty"`
 	// Number of the department of birth (e.g., \"75\" for Paris, \"2A\" for Corse-du-Sud).              See full list here: https://en.wikipedia.org/wiki/Departments_of_France
 	BirthDepartment NullableString `json:"birthDepartment,omitempty"`
-	// Date when the user's digital identity was created.
+	// Date when the individual's digital identity was created.
 	DigitalIdentityCreationDate NullableString `json:"digitalIdentityCreationDate,omitempty"`
-	// Date when the digital identity expires. It is valid for 5 years from the date of identity verification. Users are notified ~1 month before and must re-verify identity via the app or in-person at La Poste. After expiration, the identity is deactivated but can be renewed within 1 year; otherwise deleted.
+	// Date when the digital identity expires. It is valid for 5 years from the date of identity verification. Individuals are notified ~1 month before and must re-verify identity via the app or in-person at La Poste. After expiration, the identity is deactivated but can be renewed within 1 year; otherwise deleted.
 	DigitalIdentityExpirationDate NullableString `json:"digitalIdentityExpirationDate,omitempty"`
 	// Type of identity document used for verification. Can be \"ID_CARD\", \"PASSPORT\", or \"RESIDENCE_PERMIT\".
 	IdentityDocumentType NullableString `json:"identityDocumentType,omitempty"`

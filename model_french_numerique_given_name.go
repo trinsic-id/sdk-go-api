@@ -19,7 +19,7 @@ var _ MappedNullable = &FrenchNumeriqueGivenName{}
 
 // FrenchNumeriqueGivenName Given name information including the full given name and its structured components.
 type FrenchNumeriqueGivenName struct {
-	// Full given name(s) as recorded on the user's French identity document. If the user has multiple given names, they are separated by a single space.
+	// Full given name(s) as recorded on the individual's French identity document. If the individual has multiple given names, they are separated by a single space.
 	FullGivenName NullableString `json:"fullGivenName,omitempty"`
 	// First/primary given name (premier prénom).
 	FirstName NullableString `json:"firstName,omitempty"`

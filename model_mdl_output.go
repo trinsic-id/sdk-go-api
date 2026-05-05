@@ -22,9 +22,9 @@ var _ MappedNullable = &MdlOutput{}
 type MdlOutput struct {
 	// Information about the IACA Root Certificate which signed (directly or indirectly) the Document Signer Certificate for this mDL.
 	IacaRootCertificate MdlOutputCertificateData `json:"iacaRootCertificate"`
-	// Information about the Document Signer Certificate which signed the mDL presented by the user.
+	// Information about the Document Signer Certificate which signed the mDL presented by the individual.
 	DocumentSignerCertificate MdlOutputCertificateData `json:"documentSignerCertificate"`
-	// The document type of the mDL presented by the user.              Common values: - \"org.iso.18013.5.1.mDL\" for ISO 18013-5 mDLs - \"com.google.wallet.idcard.1\" for Google Wallet ID Cards
+	// The document type of the mDL presented by the individual.              Common values: - \"org.iso.18013.5.1.mDL\" for ISO 18013-5 mDLs - \"com.google.wallet.idcard.1\" for Google Wallet ID Cards
 	DocumentType string `json:"documentType"`
 	// The namespaces, and fields within those namespaces, which were present in the processed mDL.
 	NameSpaces map[string]map[string]MdlOutputFieldData `json:"nameSpaces"`

@@ -22,6 +22,10 @@ var _ MappedNullable = &BrazilCpfCheckInput{}
 type BrazilCpfCheckInput struct {
 	// The user's 11-digit, numeric CPF Number
 	CpfNumber string `json:"cpfNumber" validate:"regexp=^\\\\d*$"`
+	// The raw bytes of the selfie image collected from the user.
+	SelfieImage NullableString `json:"selfieImage,omitempty"`
+	// The MIME Type of the file contained in `SelfieImage`.              Must be one of `image/jpeg` or `image/png`.
+	SelfieImageContentType NullableString `json:"selfieImageContentType,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -69,6 +73,90 @@ func (o *BrazilCpfCheckInput) SetCpfNumber(v string) {
 	o.CpfNumber = v
 }
 
+// GetSelfieImage returns the SelfieImage field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *BrazilCpfCheckInput) GetSelfieImage() string {
+	if o == nil || IsNil(o.SelfieImage.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.SelfieImage.Get()
+}
+
+// GetSelfieImageOk returns a tuple with the SelfieImage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *BrazilCpfCheckInput) GetSelfieImageOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.SelfieImage.Get(), o.SelfieImage.IsSet()
+}
+
+// HasSelfieImage returns a boolean if a field has been set.
+func (o *BrazilCpfCheckInput) HasSelfieImage() bool {
+	if o != nil && o.SelfieImage.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSelfieImage gets a reference to the given NullableString and assigns it to the SelfieImage field.
+func (o *BrazilCpfCheckInput) SetSelfieImage(v string) {
+	o.SelfieImage.Set(&v)
+}
+// SetSelfieImageNil sets the value for SelfieImage to be an explicit nil
+func (o *BrazilCpfCheckInput) SetSelfieImageNil() {
+	o.SelfieImage.Set(nil)
+}
+
+// UnsetSelfieImage ensures that no value is present for SelfieImage, not even an explicit nil
+func (o *BrazilCpfCheckInput) UnsetSelfieImage() {
+	o.SelfieImage.Unset()
+}
+
+// GetSelfieImageContentType returns the SelfieImageContentType field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *BrazilCpfCheckInput) GetSelfieImageContentType() string {
+	if o == nil || IsNil(o.SelfieImageContentType.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.SelfieImageContentType.Get()
+}
+
+// GetSelfieImageContentTypeOk returns a tuple with the SelfieImageContentType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *BrazilCpfCheckInput) GetSelfieImageContentTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.SelfieImageContentType.Get(), o.SelfieImageContentType.IsSet()
+}
+
+// HasSelfieImageContentType returns a boolean if a field has been set.
+func (o *BrazilCpfCheckInput) HasSelfieImageContentType() bool {
+	if o != nil && o.SelfieImageContentType.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSelfieImageContentType gets a reference to the given NullableString and assigns it to the SelfieImageContentType field.
+func (o *BrazilCpfCheckInput) SetSelfieImageContentType(v string) {
+	o.SelfieImageContentType.Set(&v)
+}
+// SetSelfieImageContentTypeNil sets the value for SelfieImageContentType to be an explicit nil
+func (o *BrazilCpfCheckInput) SetSelfieImageContentTypeNil() {
+	o.SelfieImageContentType.Set(nil)
+}
+
+// UnsetSelfieImageContentType ensures that no value is present for SelfieImageContentType, not even an explicit nil
+func (o *BrazilCpfCheckInput) UnsetSelfieImageContentType() {
+	o.SelfieImageContentType.Unset()
+}
+
 func (o BrazilCpfCheckInput) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -80,6 +168,12 @@ func (o BrazilCpfCheckInput) MarshalJSON() ([]byte, error) {
 func (o BrazilCpfCheckInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["cpfNumber"] = o.CpfNumber
+	if o.SelfieImage.IsSet() {
+		toSerialize["selfieImage"] = o.SelfieImage.Get()
+	}
+	if o.SelfieImageContentType.IsSet() {
+		toSerialize["selfieImageContentType"] = o.SelfieImageContentType.Get()
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -124,6 +218,8 @@ func (o *BrazilCpfCheckInput) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "cpfNumber")
+		delete(additionalProperties, "selfieImage")
+		delete(additionalProperties, "selfieImageContentType")
 		o.AdditionalProperties = additionalProperties
 	}
 

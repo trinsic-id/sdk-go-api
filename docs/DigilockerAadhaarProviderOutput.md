@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**DocumentType** | Pointer to **NullableString** | The document type from which the identity data was retrieved from.              Possible values: - ADHAR - PANCR | [optional] 
-**DocumentSignatureValidated** | **bool** | Whether the downloaded Aadhaar document signature and certificate chain validation succeeded.              In some cases, the document may not be returned, but the data is. When the document is received, a certificate validation is performed. When it is not, the signature can not be validated. | 
-**Timestamp** | Pointer to **NullableTime** | The timestamp when the signed document was generated and verified.              This is parsed as a date-time value. Aadhaar may omit timezone information. | [optional] 
-**TimeToLive** | Pointer to **NullableTime** | The validity expiration timestamp for the verification document.              This is parsed as a date-time value. Aadhaar may omit timezone information. | [optional] 
+**DocumentType** | Pointer to **NullableString** | The document type from which the identity data was retrieved. | [optional] 
+**Timestamp** | Pointer to **NullableTime** | The timestamp when the signed document was generated and verified. | [optional] 
+**TimeToLive** | Pointer to **NullableTime** | The validity expiration timestamp for the verification document. | [optional] 
 **AadhaarNumberLastFour** | Pointer to **NullableString** | The Aadhaar number (UID) value for the individual.              This is only the last four digits of the Aadhaar number. | [optional] 
-**Claims** | Pointer to [**NullableAadhaarClaims**](AadhaarClaims.md) | The claims extracted from the signed Aadhaar document. | [optional] 
-**LocalizedClaims** | Pointer to [**NullableAadhaarLocalizedClaims**](AadhaarLocalizedClaims.md) | The localized claims extracted from the signed Aadhaar document. | [optional] 
+**Claims** | Pointer to [**NullableAadhaarClaims**](AadhaarClaims.md) | The claims extracted from the Aadhaar document. | [optional] 
+**LocalizedClaims** | Pointer to [**NullableAadhaarLocalizedClaims**](AadhaarLocalizedClaims.md) | The localized claims extracted from the Aadhaar document. | [optional] 
+**DocumentSignatureValidated** | **bool** | Whether our own validation of the Aadhaar document signature and certificate chain succeeded.              When the signed document (e.g. Digilocker XML) is available, we validate it using the standard CCA/SafeScrypt chain. When the document is not returned, the signature cannot be validated and this is false. Some providers (e.g. Signzy) also supply a separate DSC validation indicator in the webhook payload; that is independent of this flag, which reflects only our validation. | 
 
 ## Methods
 
@@ -66,26 +66,6 @@ HasDocumentType returns a boolean if a field has been set.
 `func (o *DigilockerAadhaarProviderOutput) UnsetDocumentType()`
 
 UnsetDocumentType ensures that no value is present for DocumentType, not even an explicit nil
-### GetDocumentSignatureValidated
-
-`func (o *DigilockerAadhaarProviderOutput) GetDocumentSignatureValidated() bool`
-
-GetDocumentSignatureValidated returns the DocumentSignatureValidated field if non-nil, zero value otherwise.
-
-### GetDocumentSignatureValidatedOk
-
-`func (o *DigilockerAadhaarProviderOutput) GetDocumentSignatureValidatedOk() (*bool, bool)`
-
-GetDocumentSignatureValidatedOk returns a tuple with the DocumentSignatureValidated field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDocumentSignatureValidated
-
-`func (o *DigilockerAadhaarProviderOutput) SetDocumentSignatureValidated(v bool)`
-
-SetDocumentSignatureValidated sets DocumentSignatureValidated field to given value.
-
-
 ### GetTimestamp
 
 `func (o *DigilockerAadhaarProviderOutput) GetTimestamp() time.Time`
@@ -261,6 +241,26 @@ HasLocalizedClaims returns a boolean if a field has been set.
 `func (o *DigilockerAadhaarProviderOutput) UnsetLocalizedClaims()`
 
 UnsetLocalizedClaims ensures that no value is present for LocalizedClaims, not even an explicit nil
+### GetDocumentSignatureValidated
+
+`func (o *DigilockerAadhaarProviderOutput) GetDocumentSignatureValidated() bool`
+
+GetDocumentSignatureValidated returns the DocumentSignatureValidated field if non-nil, zero value otherwise.
+
+### GetDocumentSignatureValidatedOk
+
+`func (o *DigilockerAadhaarProviderOutput) GetDocumentSignatureValidatedOk() (*bool, bool)`
+
+GetDocumentSignatureValidatedOk returns a tuple with the DocumentSignatureValidated field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDocumentSignatureValidated
+
+`func (o *DigilockerAadhaarProviderOutput) SetDocumentSignatureValidated(v bool)`
+
+SetDocumentSignatureValidated sets DocumentSignatureValidated field to given value.
+
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

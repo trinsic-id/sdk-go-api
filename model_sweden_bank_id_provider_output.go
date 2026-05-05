@@ -30,13 +30,13 @@ type SwedenBankIdProviderOutput struct {
 	GivenName NullableString `json:"givenName,omitempty"`
 	// The family name of the individual
 	FamilyName NullableString `json:"familyName,omitempty"`
-	// The end user's country on the verified certificate. This is ISO 2-character code of the country.
+	// The individual's country on the verified certificate. This is ISO 2-character code of the country.
 	Country NullableString `json:"country,omitempty"`
 	// The object identifier policy of the individual's verified certificate
 	CertificatePolicy NullableString `json:"certificatePolicy,omitempty"`
-	// The common name of the end user's verified certificate
+	// The common name of the individual's verified certificate
 	CommonName NullableString `json:"commonName,omitempty"`
-	// The distinguished name of the end user's verified certificate
+	// The distinguished name of the individual's verified certificate
 	DistinguishedName NullableString `json:"distinguishedName,omitempty"`
 	// The country that issued the Swedish personal number. This is an ISO 2-character code of the country and is extracted from the certificate. This will always be `SE`.
 	PersonalIdentityNumberIssuingCountry NullableString `json:"personalIdentityNumberIssuingCountry,omitempty"`

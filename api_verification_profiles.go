@@ -30,6 +30,7 @@ type ApiCreateVerificationProfileRequest struct {
 	alias *string
 	brandName *string
 	primaryColor *string
+	externalId *string
 	providers *[]string
 	logo *os.File
 	redactionPeriod *string
@@ -52,6 +53,12 @@ func (r ApiCreateVerificationProfileRequest) BrandName(brandName string) ApiCrea
 // The primary color of the verification profile. Must be a 6-character hex string prefixed with a &#39;#&#39; character. Example: #000000
 func (r ApiCreateVerificationProfileRequest) PrimaryColor(primaryColor string) ApiCreateVerificationProfileRequest {
 	r.primaryColor = &primaryColor
+	return r
+}
+
+// A customer-defined external ID for this verification profile. Must be unique within your organization and be at most 255 characters long.
+func (r ApiCreateVerificationProfileRequest) ExternalId(externalId string) ApiCreateVerificationProfileRequest {
+	r.externalId = &externalId
 	return r
 }
 
@@ -165,6 +172,9 @@ func (a *VerificationProfilesAPIService) CreateVerificationProfileExecute(r ApiC
 	if r.primaryColor != nil {
 		parameterAddToHeaderOrQuery(localVarFormParams, "PrimaryColor", r.primaryColor, "form", "")
 	}
+	if r.externalId != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "ExternalId", r.externalId, "form", "")
+	}
 	if r.providers != nil {
 		parameterAddToHeaderOrQuery(localVarFormParams, "Providers", r.providers, "form", "multi")
 	}
@@ -191,6 +201,152 @@ func (a *VerificationProfilesAPIService) CreateVerificationProfileExecute(r ApiC
 	}
 	if r.isProductionUsage != nil {
 		parameterAddToHeaderOrQuery(localVarFormParams, "IsProductionUsage", r.isProductionUsage, "form", "")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetVerificationProfileByExternalIdRequest struct {
+	ctx context.Context
+	ApiService *VerificationProfilesAPIService
+	externalId string
+}
+
+func (r ApiGetVerificationProfileByExternalIdRequest) Execute() (*VerificationProfileResponse, *http.Response, error) {
+	return r.ApiService.GetVerificationProfileByExternalIdExecute(r)
+}
+
+/*
+GetVerificationProfileByExternalId Get Verification Profile by External ID
+
+Gets a specific verification profile by its customer-defined external ID.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param externalId Customer-defined external ID
+ @return ApiGetVerificationProfileByExternalIdRequest
+*/
+func (a *VerificationProfilesAPIService) GetVerificationProfileByExternalId(ctx context.Context, externalId string) ApiGetVerificationProfileByExternalIdRequest {
+	return ApiGetVerificationProfileByExternalIdRequest{
+		ApiService: a,
+		ctx: ctx,
+		externalId: externalId,
+	}
+}
+
+// Execute executes the request
+//  @return VerificationProfileResponse
+func (a *VerificationProfilesAPIService) GetVerificationProfileByExternalIdExecute(r ApiGetVerificationProfileByExternalIdRequest) (*VerificationProfileResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *VerificationProfileResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VerificationProfilesAPIService.GetVerificationProfileByExternalId")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/valpha/verification-profiles/external-ids/{externalId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"externalId"+"}", url.PathEscape(parameterValueToString(r.externalId, "externalId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json", "application/problem+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -481,12 +637,14 @@ func (a *VerificationProfilesAPIService) ListVerificationProfilesExecute(r ApiLi
 		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
 	} else {
 		var defaultValue int32 = 1
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", defaultValue, "form", "")
 		r.page = &defaultValue
 	}
 	if r.pageSize != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pageSize", r.pageSize, "form", "")
 	} else {
 		var defaultValue int32 = 20
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pageSize", defaultValue, "form", "")
 		r.pageSize = &defaultValue
 	}
 	// to determine the Content-Type header

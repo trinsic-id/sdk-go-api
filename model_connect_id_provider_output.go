@@ -37,8 +37,6 @@ type ConnectIdProviderOutput struct {
 	AgeVerification NullableConnectIdAgeVerification `json:"ageVerification,omitempty"`
 	// The verification session's transaction number.              This is a unique identifier assigned to a single ConnectID transaction flow. It can be used for audit purposes or to flag fraudulent activity.
 	Transaction NullableString `json:"transaction,omitempty"`
-	// The beneficiary account that has been designated by the individual.
-	BeneficiaryAccount NullableConnectIdBeneficiaryAccount `json:"beneficiaryAccount,omitempty"`
 	// The address.
 	Address NullableConnectIdAddress `json:"address,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -441,48 +439,6 @@ func (o *ConnectIdProviderOutput) UnsetTransaction() {
 	o.Transaction.Unset()
 }
 
-// GetBeneficiaryAccount returns the BeneficiaryAccount field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ConnectIdProviderOutput) GetBeneficiaryAccount() ConnectIdBeneficiaryAccount {
-	if o == nil || IsNil(o.BeneficiaryAccount.Get()) {
-		var ret ConnectIdBeneficiaryAccount
-		return ret
-	}
-	return *o.BeneficiaryAccount.Get()
-}
-
-// GetBeneficiaryAccountOk returns a tuple with the BeneficiaryAccount field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ConnectIdProviderOutput) GetBeneficiaryAccountOk() (*ConnectIdBeneficiaryAccount, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.BeneficiaryAccount.Get(), o.BeneficiaryAccount.IsSet()
-}
-
-// HasBeneficiaryAccount returns a boolean if a field has been set.
-func (o *ConnectIdProviderOutput) HasBeneficiaryAccount() bool {
-	if o != nil && o.BeneficiaryAccount.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetBeneficiaryAccount gets a reference to the given NullableConnectIdBeneficiaryAccount and assigns it to the BeneficiaryAccount field.
-func (o *ConnectIdProviderOutput) SetBeneficiaryAccount(v ConnectIdBeneficiaryAccount) {
-	o.BeneficiaryAccount.Set(&v)
-}
-// SetBeneficiaryAccountNil sets the value for BeneficiaryAccount to be an explicit nil
-func (o *ConnectIdProviderOutput) SetBeneficiaryAccountNil() {
-	o.BeneficiaryAccount.Set(nil)
-}
-
-// UnsetBeneficiaryAccount ensures that no value is present for BeneficiaryAccount, not even an explicit nil
-func (o *ConnectIdProviderOutput) UnsetBeneficiaryAccount() {
-	o.BeneficiaryAccount.Unset()
-}
-
 // GetAddress returns the Address field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ConnectIdProviderOutput) GetAddress() ConnectIdAddress {
 	if o == nil || IsNil(o.Address.Get()) {
@@ -562,9 +518,6 @@ func (o ConnectIdProviderOutput) ToMap() (map[string]interface{}, error) {
 	if o.Transaction.IsSet() {
 		toSerialize["transaction"] = o.Transaction.Get()
 	}
-	if o.BeneficiaryAccount.IsSet() {
-		toSerialize["beneficiaryAccount"] = o.BeneficiaryAccount.Get()
-	}
 	if o.Address.IsSet() {
 		toSerialize["address"] = o.Address.Get()
 	}
@@ -599,7 +552,6 @@ func (o *ConnectIdProviderOutput) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "sub")
 		delete(additionalProperties, "ageVerification")
 		delete(additionalProperties, "transaction")
-		delete(additionalProperties, "beneficiaryAccount")
 		delete(additionalProperties, "address")
 		o.AdditionalProperties = additionalProperties
 	}

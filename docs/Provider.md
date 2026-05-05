@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **RequiresInput** | **bool** | Relevant to Hosted Provider Sessions and Direct Provider Sessions.              If &#x60;true&#x60;, this Provider requires provider-specific input on Session creation. If this input is not provided, Trinsic&#39;s Hosted UI will be invoked to collect the input from the user. | 
 **HasTrinsicInterface** | **bool** | Whether there exists a Trinsic-hosted UI for this Provider.              This is &#x60;true&#x60; for any Provider which is not a simple, OIDC-like redirect flow. | 
 **SupportsDirectProviderSessions** | **bool** | Whether this Provider can be fully whitelabeled/OEMed through the Direct Provider Sessions API.              If &#x60;false&#x60;, the Provider may still be launched through Direct Provider Sessions; however, it will necessarily require a Trinsic-hosted UI to function. | 
+**SupportedLanguages** | Pointer to [**[]ProviderSupportedLanguage**](ProviderSupportedLanguage.md) | Languages supported by this Provider&#39;s Trinsic-hosted UI, as BCP 47 language codes. | [optional] 
 **AvailableAttributes** | Pointer to [**[]ContractAttribute**](ContractAttribute.md) | Information about the user attributes that this Provider will return in verification results. | [optional] 
 **AvailableAttachments** | Pointer to [**[]ContractAttachment**](ContractAttachment.md) | Information about the attachments that this Provider will return in verification results. | [optional] 
 **SubProviders** | Pointer to [**[]SubProviderMetadata**](SubProviderMetadata.md) | Metadata about the sub-providers which are available for this Provider in the current Environment.              For example, Italy&#39;s SPID is a Provider which aggregates access to multiple sub-providers. | [optional] 
@@ -386,6 +387,41 @@ and a boolean to check if the value has been set.
 SetSupportsDirectProviderSessions sets SupportsDirectProviderSessions field to given value.
 
 
+### GetSupportedLanguages
+
+`func (o *Provider) GetSupportedLanguages() []ProviderSupportedLanguage`
+
+GetSupportedLanguages returns the SupportedLanguages field if non-nil, zero value otherwise.
+
+### GetSupportedLanguagesOk
+
+`func (o *Provider) GetSupportedLanguagesOk() (*[]ProviderSupportedLanguage, bool)`
+
+GetSupportedLanguagesOk returns a tuple with the SupportedLanguages field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSupportedLanguages
+
+`func (o *Provider) SetSupportedLanguages(v []ProviderSupportedLanguage)`
+
+SetSupportedLanguages sets SupportedLanguages field to given value.
+
+### HasSupportedLanguages
+
+`func (o *Provider) HasSupportedLanguages() bool`
+
+HasSupportedLanguages returns a boolean if a field has been set.
+
+### SetSupportedLanguagesNil
+
+`func (o *Provider) SetSupportedLanguagesNil(b bool)`
+
+ SetSupportedLanguagesNil sets the value for SupportedLanguages to be an explicit nil
+
+### UnsetSupportedLanguages
+`func (o *Provider) UnsetSupportedLanguages()`
+
+UnsetSupportedLanguages ensures that no value is present for SupportedLanguages, not even an explicit nil
 ### GetAvailableAttributes
 
 `func (o *Provider) GetAvailableAttributes() []ContractAttribute`

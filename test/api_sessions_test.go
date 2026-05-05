@@ -60,18 +60,6 @@ func Test_trinsic_api_SessionsAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test SessionsAPIService CreateWidgetSession", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		resp, httpRes, err := apiClient.SessionsAPI.CreateWidgetSession(context.Background()).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
 	t.Run("Test SessionsAPIService GetAttachment", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test

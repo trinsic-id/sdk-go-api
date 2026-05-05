@@ -19,7 +19,7 @@ var _ MappedNullable = &KenyaNidMatch2Input{}
 
 // KenyaNidMatch2Input struct for KenyaNidMatch2Input
 type KenyaNidMatch2Input struct {
-	// The user's Kenyan National ID number
+	// The Kenya National ID Number (Nambari ya Kitambulisho) or Unique Personal Identifier (Maisha Namba).              This is the primary unique identifier for Kenyan citizens in all government systems, issued by the National Registration Bureau (NRB). The format is either 8 digits for National ID or 9 digits for Maisha Namba UPI (the new format since 2023).
 	IdNumber NullableString `json:"idNumber,omitempty"`
 	// The user's first name as it appears in their National ID
 	GivenName NullableString `json:"givenName,omitempty"`

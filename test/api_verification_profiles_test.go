@@ -34,6 +34,20 @@ func Test_trinsic_api_VerificationProfilesAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test VerificationProfilesAPIService GetVerificationProfileByExternalId", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var externalId string
+
+		resp, httpRes, err := apiClient.VerificationProfilesAPI.GetVerificationProfileByExternalId(context.Background(), externalId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test VerificationProfilesAPIService GetVerificationProfileById", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test

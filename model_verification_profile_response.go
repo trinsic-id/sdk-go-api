@@ -26,6 +26,8 @@ type VerificationProfileResponse struct {
 	Alias string `json:"alias"`
 	// The brand name of the verification profile shown to end-users.
 	BrandName string `json:"brandName"`
+	// A customer-defined external ID for this verification profile, unique within your organization.
+	ExternalId NullableString `json:"externalId,omitempty"`
 	// The URL of the verification profile's logo.
 	LogoUrl string `json:"logoUrl"`
 	// The primary color of the verification profile.
@@ -136,6 +138,48 @@ func (o *VerificationProfileResponse) GetBrandNameOk() (*string, bool) {
 // SetBrandName sets field value
 func (o *VerificationProfileResponse) SetBrandName(v string) {
 	o.BrandName = v
+}
+
+// GetExternalId returns the ExternalId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *VerificationProfileResponse) GetExternalId() string {
+	if o == nil || IsNil(o.ExternalId.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.ExternalId.Get()
+}
+
+// GetExternalIdOk returns a tuple with the ExternalId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *VerificationProfileResponse) GetExternalIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ExternalId.Get(), o.ExternalId.IsSet()
+}
+
+// HasExternalId returns a boolean if a field has been set.
+func (o *VerificationProfileResponse) HasExternalId() bool {
+	if o != nil && o.ExternalId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetExternalId gets a reference to the given NullableString and assigns it to the ExternalId field.
+func (o *VerificationProfileResponse) SetExternalId(v string) {
+	o.ExternalId.Set(&v)
+}
+// SetExternalIdNil sets the value for ExternalId to be an explicit nil
+func (o *VerificationProfileResponse) SetExternalIdNil() {
+	o.ExternalId.Set(nil)
+}
+
+// UnsetExternalId ensures that no value is present for ExternalId, not even an explicit nil
+func (o *VerificationProfileResponse) UnsetExternalId() {
+	o.ExternalId.Unset()
 }
 
 // GetLogoUrl returns the LogoUrl field value
@@ -271,6 +315,9 @@ func (o VerificationProfileResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["id"] = o.Id
 	toSerialize["alias"] = o.Alias
 	toSerialize["brandName"] = o.BrandName
+	if o.ExternalId.IsSet() {
+		toSerialize["externalId"] = o.ExternalId.Get()
+	}
 	toSerialize["logoUrl"] = o.LogoUrl
 	toSerialize["primaryColor"] = o.PrimaryColor
 	toSerialize["enabledProviders"] = o.EnabledProviders
@@ -329,6 +376,7 @@ func (o *VerificationProfileResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "alias")
 		delete(additionalProperties, "brandName")
+		delete(additionalProperties, "externalId")
 		delete(additionalProperties, "logoUrl")
 		delete(additionalProperties, "primaryColor")
 		delete(additionalProperties, "enabledProviders")

@@ -19,7 +19,7 @@ var _ MappedNullable = &LloydsSmartIdProviderOutput{}
 
 // LloydsSmartIdProviderOutput Exposed properties for the `lloyds-smart-id` Provider which do not directly map to the normalized IdentityData model.
 type LloydsSmartIdProviderOutput struct {
-	// The unique id for your service of the individual. This is not shared between different services so if the user logs into a different service, the user will have a new id for the other service.
+	// A Yoti-generated unique ID for this individual, consistent across repeat shares and different for each Relying Party.
 	RememberMeId NullableString `json:"rememberMeId,omitempty"`
 	// The email address of the individual
 	Email NullableString `json:"email,omitempty"`
@@ -35,7 +35,7 @@ type LloydsSmartIdProviderOutput struct {
 	Gender NullableString `json:"gender,omitempty"`
 	// The nationality of the individual as a ISO alpha-3 code
 	Nationality NullableString `json:"nationality,omitempty"`
-	// The mobile phone number of the individual. This number was verified with a one time password (OTP) during the user's registration with Yoti. In some cases, Yoti may do additional checks against its sources to confirm the user's identity.
+	// The mobile phone number of the individual. This number was verified with a one time password (OTP) during the individual's registration with Yoti. In some cases, Yoti may do additional checks against its sources to confirm the individual's identity.
 	MobileNumber NullableString `json:"mobileNumber,omitempty"`
 	// A structured postal address for the individual that comes from the underlying document or can be manually added. In the case of being manually added, the address is considered \"unverified\". Unverified addresses may be safe to use. For example, Aadhaar card provides an address, but due to certain limitations of verifying Aadhaar, Yoti is unable to verify this property so it is listed as \"unverified\".
 	StructuredPostalAddress NullableYotiStructuredPostalAddress `json:"structuredPostalAddress,omitempty"`

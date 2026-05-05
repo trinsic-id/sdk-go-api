@@ -21,7 +21,7 @@ var _ MappedNullable = &GoogleWalletInput{}
 type GoogleWalletInput struct {
 	// The exchange mechanism to use for this Google Wallet verification.              Use `DigitalCredentialsApi` for Digital Credentials API on web, or `NativeApp` for a native Android app.
 	ExchangeMechanism NullableMdlExchangeMechanism `json:"exchangeMechanism,omitempty"`
-	// **Preview feature: not suitable for production use cases**              The raw 18013-7 exchange request to use for this verification.              If set, this overrides any default configuration on your Verification Profile.
+	// **Preview feature: not suitable for production use cases**              The raw 18013-7 exchange request to use for this verification.              If set, this overrides any default configuration on your Verification Profile.              NOTE: This parameter has no effect in live mode for Google Wallet verifications. Dynamic requests are currently only supported in test mode for Google Wallet.
 	PreviewRaw18013Request NullableRaw18013RequestInput `json:"preview_raw18013Request,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

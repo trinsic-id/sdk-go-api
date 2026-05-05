@@ -26,7 +26,7 @@ type CzechiaMojeIdProviderOutput struct {
 	LastName string `json:"lastName"`
 	// The date of birth of the verified individual
 	DateOfBirth string `json:"dateOfBirth"`
-	// The OpenID 2.0 Identifier (\"openid2_id\") of the verified individual's MojeID account.              This is an HTTPS URL which uniquely identifies the user within the MojeID system.
+	// The OpenID 2.0 Identifier (\"openid2_id\") of the verified individual's MojeID account.              This is an HTTPS URL which uniquely identifies the individual within the MojeID system.
 	OpenId2Identifier string `json:"openId2Identifier"`
 	AdditionalProperties map[string]interface{}
 }

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**SubjectIdentifier** | Pointer to **NullableString** | The subject identifier (sub) of the verified individual&#39;s MojeID account.              This is a unique identifier that represents the user within the MojeID system. | [optional] 
+**SubjectIdentifier** | Pointer to **NullableString** | The subject identifier (sub) of the verified individual&#39;s MojeID account.              This is a unique identifier that represents the individual within the MojeID system. | [optional] 
 **Name** | Pointer to **NullableString** | The individual&#39;s full name. | [optional] 
 **GivenName** | Pointer to **NullableString** | The individual&#39;s given (first) name. | [optional] 
 **FamilyName** | Pointer to **NullableString** | The individual&#39;s family (last) name. | [optional] 
@@ -20,6 +20,8 @@ Name | Type | Description | Notes
 **SocialSecurityNumber** | Pointer to **NullableString** | The individual&#39;s Ministry of Labour and Social Affairs identifier (Czech social security equivalent). | [optional] 
 **IsAdult** | Pointer to **NullableBool** | The individual is an adult (18 years or older). | [optional] 
 **AccountValidated** | Pointer to **NullableBool** | The MojeID account has been validated.              A validated account indicates the individual&#39;s identity has been verified to a higher level of assurance within the MojeID system. | [optional] 
+**IsdsId** | Pointer to **NullableString** | The individual&#39;s ISDS identifier (Informační systém datových schránek — Czech data box system), used for official electronic communication with Czech government authorities. | [optional] 
+**IsStudent** | Pointer to **NullableBool** | Whether the individual is a student. | [optional] 
 **CompanyRegistrationNumber** | Pointer to **NullableString** | The individual&#39;s or organization&#39;s Czech Registration ID (ICO), the Czech company registration number. | [optional] 
 **TaxIdentificationNumber** | Pointer to **NullableString** | The individual&#39;s or organization&#39;s Danove Identifikacni Cislo (DIC), the Czech tax identification number. | [optional] 
 **NiaVerified** | Pointer to **NullableBool** | The individual&#39;s identity has been verified through the Czech National Identity Authority (NIA).              NIA verification indicates a higher level of identity assurance, typically involving government-issued credentials verified through the Czech eGovernment infrastructure. | [optional] 
@@ -607,6 +609,76 @@ HasAccountValidated returns a boolean if a field has been set.
 `func (o *CzechMojeIdProviderOutput) UnsetAccountValidated()`
 
 UnsetAccountValidated ensures that no value is present for AccountValidated, not even an explicit nil
+### GetIsdsId
+
+`func (o *CzechMojeIdProviderOutput) GetIsdsId() string`
+
+GetIsdsId returns the IsdsId field if non-nil, zero value otherwise.
+
+### GetIsdsIdOk
+
+`func (o *CzechMojeIdProviderOutput) GetIsdsIdOk() (*string, bool)`
+
+GetIsdsIdOk returns a tuple with the IsdsId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsdsId
+
+`func (o *CzechMojeIdProviderOutput) SetIsdsId(v string)`
+
+SetIsdsId sets IsdsId field to given value.
+
+### HasIsdsId
+
+`func (o *CzechMojeIdProviderOutput) HasIsdsId() bool`
+
+HasIsdsId returns a boolean if a field has been set.
+
+### SetIsdsIdNil
+
+`func (o *CzechMojeIdProviderOutput) SetIsdsIdNil(b bool)`
+
+ SetIsdsIdNil sets the value for IsdsId to be an explicit nil
+
+### UnsetIsdsId
+`func (o *CzechMojeIdProviderOutput) UnsetIsdsId()`
+
+UnsetIsdsId ensures that no value is present for IsdsId, not even an explicit nil
+### GetIsStudent
+
+`func (o *CzechMojeIdProviderOutput) GetIsStudent() bool`
+
+GetIsStudent returns the IsStudent field if non-nil, zero value otherwise.
+
+### GetIsStudentOk
+
+`func (o *CzechMojeIdProviderOutput) GetIsStudentOk() (*bool, bool)`
+
+GetIsStudentOk returns a tuple with the IsStudent field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsStudent
+
+`func (o *CzechMojeIdProviderOutput) SetIsStudent(v bool)`
+
+SetIsStudent sets IsStudent field to given value.
+
+### HasIsStudent
+
+`func (o *CzechMojeIdProviderOutput) HasIsStudent() bool`
+
+HasIsStudent returns a boolean if a field has been set.
+
+### SetIsStudentNil
+
+`func (o *CzechMojeIdProviderOutput) SetIsStudentNil(b bool)`
+
+ SetIsStudentNil sets the value for IsStudent to be an explicit nil
+
+### UnsetIsStudent
+`func (o *CzechMojeIdProviderOutput) UnsetIsStudent()`
+
+UnsetIsStudent ensures that no value is present for IsStudent, not even an explicit nil
 ### GetCompanyRegistrationNumber
 
 `func (o *CzechMojeIdProviderOutput) GetCompanyRegistrationNumber() string`

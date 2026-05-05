@@ -37,7 +37,7 @@ type UnitedKingdomEvisaProviderOutput struct {
 	Nationality NullableString `json:"nationality,omitempty"`
 	// The immigration status of the individual. Only present for immigration_status verifications. This is a personalized record for each individual, and there is no single definitive list. Some common values: - Settled - Pre-settled - Student - Graduate - Youth Mobility - Global Talent - Skilled Worker - Limited leave
 	ImmigrationStatus NullableString `json:"immigrationStatus,omitempty"`
-	// Overall verification outcome: \"pass\" or \"fail\".
+	// Overall verification outcome: \"pass\", \"fail\", or \"inconclusive\". \"inconclusive\" is returned for indefinite immigration statuses not yet on the provider's official list — identity details are still returned, but date validations cannot be performed.
 	Outcome NullableString `json:"outcome,omitempty"`
 	// Type of verification. List of possible values: - immigration_status - right_to_work - right_to_rent
 	EvidenceType NullableString `json:"evidenceType,omitempty"`

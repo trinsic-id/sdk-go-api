@@ -21,20 +21,20 @@ var _ MappedNullable = &DigilockerAadhaarProviderOutput{}
 
 // DigilockerAadhaarProviderOutput Exposed properties for the `india-digilocker-aadhaar` Provider which do not directly map to the normalized IdentityData model.
 type DigilockerAadhaarProviderOutput struct {
-	// The document type from which the identity data was retrieved from.              Possible values: - ADHAR - PANCR
+	// The document type from which the identity data was retrieved.
 	DocumentType NullableString `json:"documentType,omitempty"`
-	// Whether the downloaded Aadhaar document signature and certificate chain validation succeeded.              In some cases, the document may not be returned, but the data is. When the document is received, a certificate validation is performed. When it is not, the signature can not be validated.
-	DocumentSignatureValidated bool `json:"documentSignatureValidated"`
-	// The timestamp when the signed document was generated and verified.              This is parsed as a date-time value. Aadhaar may omit timezone information.
+	// The timestamp when the signed document was generated and verified.
 	Timestamp NullableTime `json:"timestamp,omitempty"`
-	// The validity expiration timestamp for the verification document.              This is parsed as a date-time value. Aadhaar may omit timezone information.
+	// The validity expiration timestamp for the verification document.
 	TimeToLive NullableTime `json:"timeToLive,omitempty"`
 	// The Aadhaar number (UID) value for the individual.              This is only the last four digits of the Aadhaar number.
 	AadhaarNumberLastFour NullableString `json:"aadhaarNumberLastFour,omitempty"`
-	// The claims extracted from the signed Aadhaar document.
+	// The claims extracted from the Aadhaar document.
 	Claims NullableAadhaarClaims `json:"claims,omitempty"`
-	// The localized claims extracted from the signed Aadhaar document.
+	// The localized claims extracted from the Aadhaar document.
 	LocalizedClaims NullableAadhaarLocalizedClaims `json:"localizedClaims,omitempty"`
+	// Whether our own validation of the Aadhaar document signature and certificate chain succeeded.              When the signed document (e.g. Digilocker XML) is available, we validate it using the standard CCA/SafeScrypt chain. When the document is not returned, the signature cannot be validated and this is false. Some providers (e.g. Signzy) also supply a separate DSC validation indicator in the webhook payload; that is independent of this flag, which reflects only our validation.
+	DocumentSignatureValidated bool `json:"documentSignatureValidated"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -98,30 +98,6 @@ func (o *DigilockerAadhaarProviderOutput) SetDocumentTypeNil() {
 // UnsetDocumentType ensures that no value is present for DocumentType, not even an explicit nil
 func (o *DigilockerAadhaarProviderOutput) UnsetDocumentType() {
 	o.DocumentType.Unset()
-}
-
-// GetDocumentSignatureValidated returns the DocumentSignatureValidated field value
-func (o *DigilockerAadhaarProviderOutput) GetDocumentSignatureValidated() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.DocumentSignatureValidated
-}
-
-// GetDocumentSignatureValidatedOk returns a tuple with the DocumentSignatureValidated field value
-// and a boolean to check if the value has been set.
-func (o *DigilockerAadhaarProviderOutput) GetDocumentSignatureValidatedOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.DocumentSignatureValidated, true
-}
-
-// SetDocumentSignatureValidated sets field value
-func (o *DigilockerAadhaarProviderOutput) SetDocumentSignatureValidated(v bool) {
-	o.DocumentSignatureValidated = v
 }
 
 // GetTimestamp returns the Timestamp field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -334,6 +310,30 @@ func (o *DigilockerAadhaarProviderOutput) UnsetLocalizedClaims() {
 	o.LocalizedClaims.Unset()
 }
 
+// GetDocumentSignatureValidated returns the DocumentSignatureValidated field value
+func (o *DigilockerAadhaarProviderOutput) GetDocumentSignatureValidated() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.DocumentSignatureValidated
+}
+
+// GetDocumentSignatureValidatedOk returns a tuple with the DocumentSignatureValidated field value
+// and a boolean to check if the value has been set.
+func (o *DigilockerAadhaarProviderOutput) GetDocumentSignatureValidatedOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.DocumentSignatureValidated, true
+}
+
+// SetDocumentSignatureValidated sets field value
+func (o *DigilockerAadhaarProviderOutput) SetDocumentSignatureValidated(v bool) {
+	o.DocumentSignatureValidated = v
+}
+
 func (o DigilockerAadhaarProviderOutput) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -347,7 +347,6 @@ func (o DigilockerAadhaarProviderOutput) ToMap() (map[string]interface{}, error)
 	if o.DocumentType.IsSet() {
 		toSerialize["documentType"] = o.DocumentType.Get()
 	}
-	toSerialize["documentSignatureValidated"] = o.DocumentSignatureValidated
 	if o.Timestamp.IsSet() {
 		toSerialize["timestamp"] = o.Timestamp.Get()
 	}
@@ -363,6 +362,7 @@ func (o DigilockerAadhaarProviderOutput) ToMap() (map[string]interface{}, error)
 	if o.LocalizedClaims.IsSet() {
 		toSerialize["localizedClaims"] = o.LocalizedClaims.Get()
 	}
+	toSerialize["documentSignatureValidated"] = o.DocumentSignatureValidated
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -407,12 +407,12 @@ func (o *DigilockerAadhaarProviderOutput) UnmarshalJSON(data []byte) (err error)
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "documentType")
-		delete(additionalProperties, "documentSignatureValidated")
 		delete(additionalProperties, "timestamp")
 		delete(additionalProperties, "timeToLive")
 		delete(additionalProperties, "aadhaarNumberLastFour")
 		delete(additionalProperties, "claims")
 		delete(additionalProperties, "localizedClaims")
+		delete(additionalProperties, "documentSignatureValidated")
 		o.AdditionalProperties = additionalProperties
 	}
 
