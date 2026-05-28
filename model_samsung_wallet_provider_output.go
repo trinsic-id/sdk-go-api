@@ -20,6 +20,8 @@ var _ MappedNullable = &SamsungWalletProviderOutput{}
 
 // SamsungWalletProviderOutput Exposed properties for the `samsung-wallet` Provider which do not directly map to the normalized IdentityData model.
 type SamsungWalletProviderOutput struct {
+	// A standard 18013-5 Mobile Driver's License credential, retrieved from the individual's wallet.
+	MobileDriversLicense NullableIso180135MobileDriversLicenseCredential `json:"mobileDriversLicense,omitempty"`
 	// The raw output of the mDL exchange performed through Samsung Wallet.
 	RawMdlOutput MdlOutput `json:"rawMdlOutput"`
 	AdditionalProperties map[string]interface{}
@@ -43,6 +45,48 @@ func NewSamsungWalletProviderOutput(rawMdlOutput MdlOutput) *SamsungWalletProvid
 func NewSamsungWalletProviderOutputWithDefaults() *SamsungWalletProviderOutput {
 	this := SamsungWalletProviderOutput{}
 	return &this
+}
+
+// GetMobileDriversLicense returns the MobileDriversLicense field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *SamsungWalletProviderOutput) GetMobileDriversLicense() Iso180135MobileDriversLicenseCredential {
+	if o == nil || IsNil(o.MobileDriversLicense.Get()) {
+		var ret Iso180135MobileDriversLicenseCredential
+		return ret
+	}
+	return *o.MobileDriversLicense.Get()
+}
+
+// GetMobileDriversLicenseOk returns a tuple with the MobileDriversLicense field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *SamsungWalletProviderOutput) GetMobileDriversLicenseOk() (*Iso180135MobileDriversLicenseCredential, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.MobileDriversLicense.Get(), o.MobileDriversLicense.IsSet()
+}
+
+// HasMobileDriversLicense returns a boolean if a field has been set.
+func (o *SamsungWalletProviderOutput) HasMobileDriversLicense() bool {
+	if o != nil && o.MobileDriversLicense.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetMobileDriversLicense gets a reference to the given NullableIso180135MobileDriversLicenseCredential and assigns it to the MobileDriversLicense field.
+func (o *SamsungWalletProviderOutput) SetMobileDriversLicense(v Iso180135MobileDriversLicenseCredential) {
+	o.MobileDriversLicense.Set(&v)
+}
+// SetMobileDriversLicenseNil sets the value for MobileDriversLicense to be an explicit nil
+func (o *SamsungWalletProviderOutput) SetMobileDriversLicenseNil() {
+	o.MobileDriversLicense.Set(nil)
+}
+
+// UnsetMobileDriversLicense ensures that no value is present for MobileDriversLicense, not even an explicit nil
+func (o *SamsungWalletProviderOutput) UnsetMobileDriversLicense() {
+	o.MobileDriversLicense.Unset()
 }
 
 // GetRawMdlOutput returns the RawMdlOutput field value
@@ -79,6 +123,9 @@ func (o SamsungWalletProviderOutput) MarshalJSON() ([]byte, error) {
 
 func (o SamsungWalletProviderOutput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if o.MobileDriversLicense.IsSet() {
+		toSerialize["mobileDriversLicense"] = o.MobileDriversLicense.Get()
+	}
 	toSerialize["rawMdlOutput"] = o.RawMdlOutput
 
 	for key, value := range o.AdditionalProperties {
@@ -123,6 +170,7 @@ func (o *SamsungWalletProviderOutput) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "mobileDriversLicense")
 		delete(additionalProperties, "rawMdlOutput")
 		o.AdditionalProperties = additionalProperties
 	}

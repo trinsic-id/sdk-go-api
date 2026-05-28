@@ -20,6 +20,10 @@ var _ MappedNullable = &AppleWalletProviderOutput{}
 
 // AppleWalletProviderOutput Exposed properties for the `apple-wallet` Provider which do not directly map to the normalized IdentityData model.
 type AppleWalletProviderOutput struct {
+	// A standard 18013-5 Mobile Driver's License credential, retrieved from the individual's wallet.
+	MobileDriversLicense NullableIso180135MobileDriversLicenseCredential `json:"mobileDriversLicense,omitempty"`
+	// An Apple Wallet Digital ID credential (`org.iso.23220.photoid.1`), retrieved from the individual's wallet.
+	DigitalId NullableAppleWalletDigitalIdCredential `json:"digitalId,omitempty"`
 	// The raw output of the mDL exchange performed through Apple Wallet.
 	RawMdlOutput MdlOutput `json:"rawMdlOutput"`
 	AdditionalProperties map[string]interface{}
@@ -43,6 +47,90 @@ func NewAppleWalletProviderOutput(rawMdlOutput MdlOutput) *AppleWalletProviderOu
 func NewAppleWalletProviderOutputWithDefaults() *AppleWalletProviderOutput {
 	this := AppleWalletProviderOutput{}
 	return &this
+}
+
+// GetMobileDriversLicense returns the MobileDriversLicense field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AppleWalletProviderOutput) GetMobileDriversLicense() Iso180135MobileDriversLicenseCredential {
+	if o == nil || IsNil(o.MobileDriversLicense.Get()) {
+		var ret Iso180135MobileDriversLicenseCredential
+		return ret
+	}
+	return *o.MobileDriversLicense.Get()
+}
+
+// GetMobileDriversLicenseOk returns a tuple with the MobileDriversLicense field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AppleWalletProviderOutput) GetMobileDriversLicenseOk() (*Iso180135MobileDriversLicenseCredential, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.MobileDriversLicense.Get(), o.MobileDriversLicense.IsSet()
+}
+
+// HasMobileDriversLicense returns a boolean if a field has been set.
+func (o *AppleWalletProviderOutput) HasMobileDriversLicense() bool {
+	if o != nil && o.MobileDriversLicense.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetMobileDriversLicense gets a reference to the given NullableIso180135MobileDriversLicenseCredential and assigns it to the MobileDriversLicense field.
+func (o *AppleWalletProviderOutput) SetMobileDriversLicense(v Iso180135MobileDriversLicenseCredential) {
+	o.MobileDriversLicense.Set(&v)
+}
+// SetMobileDriversLicenseNil sets the value for MobileDriversLicense to be an explicit nil
+func (o *AppleWalletProviderOutput) SetMobileDriversLicenseNil() {
+	o.MobileDriversLicense.Set(nil)
+}
+
+// UnsetMobileDriversLicense ensures that no value is present for MobileDriversLicense, not even an explicit nil
+func (o *AppleWalletProviderOutput) UnsetMobileDriversLicense() {
+	o.MobileDriversLicense.Unset()
+}
+
+// GetDigitalId returns the DigitalId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AppleWalletProviderOutput) GetDigitalId() AppleWalletDigitalIdCredential {
+	if o == nil || IsNil(o.DigitalId.Get()) {
+		var ret AppleWalletDigitalIdCredential
+		return ret
+	}
+	return *o.DigitalId.Get()
+}
+
+// GetDigitalIdOk returns a tuple with the DigitalId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AppleWalletProviderOutput) GetDigitalIdOk() (*AppleWalletDigitalIdCredential, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.DigitalId.Get(), o.DigitalId.IsSet()
+}
+
+// HasDigitalId returns a boolean if a field has been set.
+func (o *AppleWalletProviderOutput) HasDigitalId() bool {
+	if o != nil && o.DigitalId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDigitalId gets a reference to the given NullableAppleWalletDigitalIdCredential and assigns it to the DigitalId field.
+func (o *AppleWalletProviderOutput) SetDigitalId(v AppleWalletDigitalIdCredential) {
+	o.DigitalId.Set(&v)
+}
+// SetDigitalIdNil sets the value for DigitalId to be an explicit nil
+func (o *AppleWalletProviderOutput) SetDigitalIdNil() {
+	o.DigitalId.Set(nil)
+}
+
+// UnsetDigitalId ensures that no value is present for DigitalId, not even an explicit nil
+func (o *AppleWalletProviderOutput) UnsetDigitalId() {
+	o.DigitalId.Unset()
 }
 
 // GetRawMdlOutput returns the RawMdlOutput field value
@@ -79,6 +167,12 @@ func (o AppleWalletProviderOutput) MarshalJSON() ([]byte, error) {
 
 func (o AppleWalletProviderOutput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if o.MobileDriversLicense.IsSet() {
+		toSerialize["mobileDriversLicense"] = o.MobileDriversLicense.Get()
+	}
+	if o.DigitalId.IsSet() {
+		toSerialize["digitalId"] = o.DigitalId.Get()
+	}
 	toSerialize["rawMdlOutput"] = o.RawMdlOutput
 
 	for key, value := range o.AdditionalProperties {
@@ -123,6 +217,8 @@ func (o *AppleWalletProviderOutput) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "mobileDriversLicense")
+		delete(additionalProperties, "digitalId")
 		delete(additionalProperties, "rawMdlOutput")
 		o.AdditionalProperties = additionalProperties
 	}

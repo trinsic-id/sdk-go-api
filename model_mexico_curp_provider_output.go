@@ -19,8 +19,30 @@ var _ MappedNullable = &MexicoCurpProviderOutput{}
 
 // MexicoCurpProviderOutput Exposed properties for the `mexico-curp-lookup` Provider which do not directly map to the normalized IdentityData model.
 type MexicoCurpProviderOutput struct {
+	// First name of the individual.
+	FirstName NullableString `json:"firstName,omitempty"`
+	// The last name of the father of the individual.
+	FatherLastName NullableString `json:"fatherLastName,omitempty"`
+	// The last name of the mother of the individual.
+	MotherLastName NullableString `json:"motherLastName,omitempty"`
+	// The gender of the individual.   List of possible values:   - Male  - Female
+	Gender NullableString `json:"gender,omitempty"`
+	// The date of birth of the individual.
+	DateOfBirth NullableString `json:"dateOfBirth,omitempty"`
+	// The country of birth of the individual.
+	CountryOfBirth NullableString `json:"countryOfBirth,omitempty"`
+	// The state of birth of the individual.
+	StateOfBirth NullableString `json:"stateOfBirth,omitempty"`
+	// The CURP (Clave Única de Registro de Población) that was verified.              A CURP code is a unique identifier assigned to individuals in Mexico. It is 18 alphanumeric characters, with a structured meaning:              ABCD YYMMDD G SS XYZ M C The first 4 letters (ABCD): A: The first letter of the paternal last name. B: First internal vowel of paternal last name. C: First letter of maternal last name. D: First letter of first name.              YYMMDD: 2-digit year, month, day.              G: Gender, H for Hombre (male) and M for Mujer (female).              SS: State code (2 letters), e.g. NL for Nuevo León.              X: First internal consonant of paternal last name. Y: First internal consonant of maternal last name. Z: First internal consonant of given name.              M: Millennium indicator (0-9 for pre-2000 birth date, A-Z for post-2000's birth dates.              C: Checksum character
+	Curp NullableString `json:"curp,omitempty"`
 	// Curp status for the subject.              Possible values: - AN: Alta Normal (Normal registration) - Active - AH: Alta con Homonimia (Registration with homonymy) - Active - RCC: Registro de cambio afectando a CURP (Change affecting CURP) - Active - RCN: Registro de cambio no afectando a CURP (Change not affecting CURP) - Active - BAP: Baja por documento apócrifo (Low due to apocryphal document) - Inactive - BSU: Baja sin uso (Low curp without use) - Inactive - BD: Baja por defunción (Low curp due to death) - Inactive - BDM: Baja administrativa (Low, due to administrative process) - Inactive - BDP: Baja por adopción (Low, due to adoption) - Inactive - BJD: Baja Judicial (Low for judicial reasons) - Inactive
 	CurpStatus NullableString `json:"curpStatus,omitempty"`
+	// The year the CURP number was registered in.
+	RegistrationYear NullableInt32 `json:"registrationYear,omitempty"`
+	// The state the CURP number was registered in.
+	RegistrationState NullableString `json:"registrationState,omitempty"`
+	// The ACT (Número de Acta) number of the individual.              The Act number is a civil registry index number. Various state have various formats of specifying these.
+	ActNumber NullableString `json:"actNumber,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -41,6 +63,342 @@ func NewMexicoCurpProviderOutput() *MexicoCurpProviderOutput {
 func NewMexicoCurpProviderOutputWithDefaults() *MexicoCurpProviderOutput {
 	this := MexicoCurpProviderOutput{}
 	return &this
+}
+
+// GetFirstName returns the FirstName field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MexicoCurpProviderOutput) GetFirstName() string {
+	if o == nil || IsNil(o.FirstName.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.FirstName.Get()
+}
+
+// GetFirstNameOk returns a tuple with the FirstName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MexicoCurpProviderOutput) GetFirstNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.FirstName.Get(), o.FirstName.IsSet()
+}
+
+// HasFirstName returns a boolean if a field has been set.
+func (o *MexicoCurpProviderOutput) HasFirstName() bool {
+	if o != nil && o.FirstName.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetFirstName gets a reference to the given NullableString and assigns it to the FirstName field.
+func (o *MexicoCurpProviderOutput) SetFirstName(v string) {
+	o.FirstName.Set(&v)
+}
+// SetFirstNameNil sets the value for FirstName to be an explicit nil
+func (o *MexicoCurpProviderOutput) SetFirstNameNil() {
+	o.FirstName.Set(nil)
+}
+
+// UnsetFirstName ensures that no value is present for FirstName, not even an explicit nil
+func (o *MexicoCurpProviderOutput) UnsetFirstName() {
+	o.FirstName.Unset()
+}
+
+// GetFatherLastName returns the FatherLastName field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MexicoCurpProviderOutput) GetFatherLastName() string {
+	if o == nil || IsNil(o.FatherLastName.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.FatherLastName.Get()
+}
+
+// GetFatherLastNameOk returns a tuple with the FatherLastName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MexicoCurpProviderOutput) GetFatherLastNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.FatherLastName.Get(), o.FatherLastName.IsSet()
+}
+
+// HasFatherLastName returns a boolean if a field has been set.
+func (o *MexicoCurpProviderOutput) HasFatherLastName() bool {
+	if o != nil && o.FatherLastName.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetFatherLastName gets a reference to the given NullableString and assigns it to the FatherLastName field.
+func (o *MexicoCurpProviderOutput) SetFatherLastName(v string) {
+	o.FatherLastName.Set(&v)
+}
+// SetFatherLastNameNil sets the value for FatherLastName to be an explicit nil
+func (o *MexicoCurpProviderOutput) SetFatherLastNameNil() {
+	o.FatherLastName.Set(nil)
+}
+
+// UnsetFatherLastName ensures that no value is present for FatherLastName, not even an explicit nil
+func (o *MexicoCurpProviderOutput) UnsetFatherLastName() {
+	o.FatherLastName.Unset()
+}
+
+// GetMotherLastName returns the MotherLastName field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MexicoCurpProviderOutput) GetMotherLastName() string {
+	if o == nil || IsNil(o.MotherLastName.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.MotherLastName.Get()
+}
+
+// GetMotherLastNameOk returns a tuple with the MotherLastName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MexicoCurpProviderOutput) GetMotherLastNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.MotherLastName.Get(), o.MotherLastName.IsSet()
+}
+
+// HasMotherLastName returns a boolean if a field has been set.
+func (o *MexicoCurpProviderOutput) HasMotherLastName() bool {
+	if o != nil && o.MotherLastName.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetMotherLastName gets a reference to the given NullableString and assigns it to the MotherLastName field.
+func (o *MexicoCurpProviderOutput) SetMotherLastName(v string) {
+	o.MotherLastName.Set(&v)
+}
+// SetMotherLastNameNil sets the value for MotherLastName to be an explicit nil
+func (o *MexicoCurpProviderOutput) SetMotherLastNameNil() {
+	o.MotherLastName.Set(nil)
+}
+
+// UnsetMotherLastName ensures that no value is present for MotherLastName, not even an explicit nil
+func (o *MexicoCurpProviderOutput) UnsetMotherLastName() {
+	o.MotherLastName.Unset()
+}
+
+// GetGender returns the Gender field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MexicoCurpProviderOutput) GetGender() string {
+	if o == nil || IsNil(o.Gender.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Gender.Get()
+}
+
+// GetGenderOk returns a tuple with the Gender field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MexicoCurpProviderOutput) GetGenderOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Gender.Get(), o.Gender.IsSet()
+}
+
+// HasGender returns a boolean if a field has been set.
+func (o *MexicoCurpProviderOutput) HasGender() bool {
+	if o != nil && o.Gender.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetGender gets a reference to the given NullableString and assigns it to the Gender field.
+func (o *MexicoCurpProviderOutput) SetGender(v string) {
+	o.Gender.Set(&v)
+}
+// SetGenderNil sets the value for Gender to be an explicit nil
+func (o *MexicoCurpProviderOutput) SetGenderNil() {
+	o.Gender.Set(nil)
+}
+
+// UnsetGender ensures that no value is present for Gender, not even an explicit nil
+func (o *MexicoCurpProviderOutput) UnsetGender() {
+	o.Gender.Unset()
+}
+
+// GetDateOfBirth returns the DateOfBirth field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MexicoCurpProviderOutput) GetDateOfBirth() string {
+	if o == nil || IsNil(o.DateOfBirth.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.DateOfBirth.Get()
+}
+
+// GetDateOfBirthOk returns a tuple with the DateOfBirth field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MexicoCurpProviderOutput) GetDateOfBirthOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.DateOfBirth.Get(), o.DateOfBirth.IsSet()
+}
+
+// HasDateOfBirth returns a boolean if a field has been set.
+func (o *MexicoCurpProviderOutput) HasDateOfBirth() bool {
+	if o != nil && o.DateOfBirth.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDateOfBirth gets a reference to the given NullableString and assigns it to the DateOfBirth field.
+func (o *MexicoCurpProviderOutput) SetDateOfBirth(v string) {
+	o.DateOfBirth.Set(&v)
+}
+// SetDateOfBirthNil sets the value for DateOfBirth to be an explicit nil
+func (o *MexicoCurpProviderOutput) SetDateOfBirthNil() {
+	o.DateOfBirth.Set(nil)
+}
+
+// UnsetDateOfBirth ensures that no value is present for DateOfBirth, not even an explicit nil
+func (o *MexicoCurpProviderOutput) UnsetDateOfBirth() {
+	o.DateOfBirth.Unset()
+}
+
+// GetCountryOfBirth returns the CountryOfBirth field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MexicoCurpProviderOutput) GetCountryOfBirth() string {
+	if o == nil || IsNil(o.CountryOfBirth.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.CountryOfBirth.Get()
+}
+
+// GetCountryOfBirthOk returns a tuple with the CountryOfBirth field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MexicoCurpProviderOutput) GetCountryOfBirthOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CountryOfBirth.Get(), o.CountryOfBirth.IsSet()
+}
+
+// HasCountryOfBirth returns a boolean if a field has been set.
+func (o *MexicoCurpProviderOutput) HasCountryOfBirth() bool {
+	if o != nil && o.CountryOfBirth.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCountryOfBirth gets a reference to the given NullableString and assigns it to the CountryOfBirth field.
+func (o *MexicoCurpProviderOutput) SetCountryOfBirth(v string) {
+	o.CountryOfBirth.Set(&v)
+}
+// SetCountryOfBirthNil sets the value for CountryOfBirth to be an explicit nil
+func (o *MexicoCurpProviderOutput) SetCountryOfBirthNil() {
+	o.CountryOfBirth.Set(nil)
+}
+
+// UnsetCountryOfBirth ensures that no value is present for CountryOfBirth, not even an explicit nil
+func (o *MexicoCurpProviderOutput) UnsetCountryOfBirth() {
+	o.CountryOfBirth.Unset()
+}
+
+// GetStateOfBirth returns the StateOfBirth field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MexicoCurpProviderOutput) GetStateOfBirth() string {
+	if o == nil || IsNil(o.StateOfBirth.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.StateOfBirth.Get()
+}
+
+// GetStateOfBirthOk returns a tuple with the StateOfBirth field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MexicoCurpProviderOutput) GetStateOfBirthOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.StateOfBirth.Get(), o.StateOfBirth.IsSet()
+}
+
+// HasStateOfBirth returns a boolean if a field has been set.
+func (o *MexicoCurpProviderOutput) HasStateOfBirth() bool {
+	if o != nil && o.StateOfBirth.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetStateOfBirth gets a reference to the given NullableString and assigns it to the StateOfBirth field.
+func (o *MexicoCurpProviderOutput) SetStateOfBirth(v string) {
+	o.StateOfBirth.Set(&v)
+}
+// SetStateOfBirthNil sets the value for StateOfBirth to be an explicit nil
+func (o *MexicoCurpProviderOutput) SetStateOfBirthNil() {
+	o.StateOfBirth.Set(nil)
+}
+
+// UnsetStateOfBirth ensures that no value is present for StateOfBirth, not even an explicit nil
+func (o *MexicoCurpProviderOutput) UnsetStateOfBirth() {
+	o.StateOfBirth.Unset()
+}
+
+// GetCurp returns the Curp field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MexicoCurpProviderOutput) GetCurp() string {
+	if o == nil || IsNil(o.Curp.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Curp.Get()
+}
+
+// GetCurpOk returns a tuple with the Curp field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MexicoCurpProviderOutput) GetCurpOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Curp.Get(), o.Curp.IsSet()
+}
+
+// HasCurp returns a boolean if a field has been set.
+func (o *MexicoCurpProviderOutput) HasCurp() bool {
+	if o != nil && o.Curp.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCurp gets a reference to the given NullableString and assigns it to the Curp field.
+func (o *MexicoCurpProviderOutput) SetCurp(v string) {
+	o.Curp.Set(&v)
+}
+// SetCurpNil sets the value for Curp to be an explicit nil
+func (o *MexicoCurpProviderOutput) SetCurpNil() {
+	o.Curp.Set(nil)
+}
+
+// UnsetCurp ensures that no value is present for Curp, not even an explicit nil
+func (o *MexicoCurpProviderOutput) UnsetCurp() {
+	o.Curp.Unset()
 }
 
 // GetCurpStatus returns the CurpStatus field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -85,6 +443,132 @@ func (o *MexicoCurpProviderOutput) UnsetCurpStatus() {
 	o.CurpStatus.Unset()
 }
 
+// GetRegistrationYear returns the RegistrationYear field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MexicoCurpProviderOutput) GetRegistrationYear() int32 {
+	if o == nil || IsNil(o.RegistrationYear.Get()) {
+		var ret int32
+		return ret
+	}
+	return *o.RegistrationYear.Get()
+}
+
+// GetRegistrationYearOk returns a tuple with the RegistrationYear field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MexicoCurpProviderOutput) GetRegistrationYearOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.RegistrationYear.Get(), o.RegistrationYear.IsSet()
+}
+
+// HasRegistrationYear returns a boolean if a field has been set.
+func (o *MexicoCurpProviderOutput) HasRegistrationYear() bool {
+	if o != nil && o.RegistrationYear.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRegistrationYear gets a reference to the given NullableInt32 and assigns it to the RegistrationYear field.
+func (o *MexicoCurpProviderOutput) SetRegistrationYear(v int32) {
+	o.RegistrationYear.Set(&v)
+}
+// SetRegistrationYearNil sets the value for RegistrationYear to be an explicit nil
+func (o *MexicoCurpProviderOutput) SetRegistrationYearNil() {
+	o.RegistrationYear.Set(nil)
+}
+
+// UnsetRegistrationYear ensures that no value is present for RegistrationYear, not even an explicit nil
+func (o *MexicoCurpProviderOutput) UnsetRegistrationYear() {
+	o.RegistrationYear.Unset()
+}
+
+// GetRegistrationState returns the RegistrationState field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MexicoCurpProviderOutput) GetRegistrationState() string {
+	if o == nil || IsNil(o.RegistrationState.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.RegistrationState.Get()
+}
+
+// GetRegistrationStateOk returns a tuple with the RegistrationState field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MexicoCurpProviderOutput) GetRegistrationStateOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.RegistrationState.Get(), o.RegistrationState.IsSet()
+}
+
+// HasRegistrationState returns a boolean if a field has been set.
+func (o *MexicoCurpProviderOutput) HasRegistrationState() bool {
+	if o != nil && o.RegistrationState.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRegistrationState gets a reference to the given NullableString and assigns it to the RegistrationState field.
+func (o *MexicoCurpProviderOutput) SetRegistrationState(v string) {
+	o.RegistrationState.Set(&v)
+}
+// SetRegistrationStateNil sets the value for RegistrationState to be an explicit nil
+func (o *MexicoCurpProviderOutput) SetRegistrationStateNil() {
+	o.RegistrationState.Set(nil)
+}
+
+// UnsetRegistrationState ensures that no value is present for RegistrationState, not even an explicit nil
+func (o *MexicoCurpProviderOutput) UnsetRegistrationState() {
+	o.RegistrationState.Unset()
+}
+
+// GetActNumber returns the ActNumber field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MexicoCurpProviderOutput) GetActNumber() string {
+	if o == nil || IsNil(o.ActNumber.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.ActNumber.Get()
+}
+
+// GetActNumberOk returns a tuple with the ActNumber field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MexicoCurpProviderOutput) GetActNumberOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ActNumber.Get(), o.ActNumber.IsSet()
+}
+
+// HasActNumber returns a boolean if a field has been set.
+func (o *MexicoCurpProviderOutput) HasActNumber() bool {
+	if o != nil && o.ActNumber.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetActNumber gets a reference to the given NullableString and assigns it to the ActNumber field.
+func (o *MexicoCurpProviderOutput) SetActNumber(v string) {
+	o.ActNumber.Set(&v)
+}
+// SetActNumberNil sets the value for ActNumber to be an explicit nil
+func (o *MexicoCurpProviderOutput) SetActNumberNil() {
+	o.ActNumber.Set(nil)
+}
+
+// UnsetActNumber ensures that no value is present for ActNumber, not even an explicit nil
+func (o *MexicoCurpProviderOutput) UnsetActNumber() {
+	o.ActNumber.Unset()
+}
+
 func (o MexicoCurpProviderOutput) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -95,8 +579,41 @@ func (o MexicoCurpProviderOutput) MarshalJSON() ([]byte, error) {
 
 func (o MexicoCurpProviderOutput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if o.FirstName.IsSet() {
+		toSerialize["firstName"] = o.FirstName.Get()
+	}
+	if o.FatherLastName.IsSet() {
+		toSerialize["fatherLastName"] = o.FatherLastName.Get()
+	}
+	if o.MotherLastName.IsSet() {
+		toSerialize["motherLastName"] = o.MotherLastName.Get()
+	}
+	if o.Gender.IsSet() {
+		toSerialize["gender"] = o.Gender.Get()
+	}
+	if o.DateOfBirth.IsSet() {
+		toSerialize["dateOfBirth"] = o.DateOfBirth.Get()
+	}
+	if o.CountryOfBirth.IsSet() {
+		toSerialize["countryOfBirth"] = o.CountryOfBirth.Get()
+	}
+	if o.StateOfBirth.IsSet() {
+		toSerialize["stateOfBirth"] = o.StateOfBirth.Get()
+	}
+	if o.Curp.IsSet() {
+		toSerialize["curp"] = o.Curp.Get()
+	}
 	if o.CurpStatus.IsSet() {
 		toSerialize["curpStatus"] = o.CurpStatus.Get()
+	}
+	if o.RegistrationYear.IsSet() {
+		toSerialize["registrationYear"] = o.RegistrationYear.Get()
+	}
+	if o.RegistrationState.IsSet() {
+		toSerialize["registrationState"] = o.RegistrationState.Get()
+	}
+	if o.ActNumber.IsSet() {
+		toSerialize["actNumber"] = o.ActNumber.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -120,7 +637,18 @@ func (o *MexicoCurpProviderOutput) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "firstName")
+		delete(additionalProperties, "fatherLastName")
+		delete(additionalProperties, "motherLastName")
+		delete(additionalProperties, "gender")
+		delete(additionalProperties, "dateOfBirth")
+		delete(additionalProperties, "countryOfBirth")
+		delete(additionalProperties, "stateOfBirth")
+		delete(additionalProperties, "curp")
 		delete(additionalProperties, "curpStatus")
+		delete(additionalProperties, "registrationYear")
+		delete(additionalProperties, "registrationState")
+		delete(additionalProperties, "actNumber")
 		o.AdditionalProperties = additionalProperties
 	}
 

@@ -20,6 +20,10 @@ var _ MappedNullable = &GoogleWalletProviderOutput{}
 
 // GoogleWalletProviderOutput Exposed properties for the `google-wallet` Provider which do not directly map to the normalized IdentityData model.
 type GoogleWalletProviderOutput struct {
+	// A standard 18013-5 Mobile Driver's License credential, retrieved from the individual's wallet.
+	MobileDriversLicense NullableIso180135MobileDriversLicenseCredential `json:"mobileDriversLicense,omitempty"`
+	// A Google Wallet ID Pass credential (`com.google.wallet.idcard.1`), retrieved from the individual's wallet.
+	IdPass NullableGoogleWalletIdPassCredential `json:"idPass,omitempty"`
 	// The raw output of the mDL exchange performed through Google Wallet.
 	RawMdlOutput MdlOutput `json:"rawMdlOutput"`
 	AdditionalProperties map[string]interface{}
@@ -43,6 +47,90 @@ func NewGoogleWalletProviderOutput(rawMdlOutput MdlOutput) *GoogleWalletProvider
 func NewGoogleWalletProviderOutputWithDefaults() *GoogleWalletProviderOutput {
 	this := GoogleWalletProviderOutput{}
 	return &this
+}
+
+// GetMobileDriversLicense returns the MobileDriversLicense field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GoogleWalletProviderOutput) GetMobileDriversLicense() Iso180135MobileDriversLicenseCredential {
+	if o == nil || IsNil(o.MobileDriversLicense.Get()) {
+		var ret Iso180135MobileDriversLicenseCredential
+		return ret
+	}
+	return *o.MobileDriversLicense.Get()
+}
+
+// GetMobileDriversLicenseOk returns a tuple with the MobileDriversLicense field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GoogleWalletProviderOutput) GetMobileDriversLicenseOk() (*Iso180135MobileDriversLicenseCredential, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.MobileDriversLicense.Get(), o.MobileDriversLicense.IsSet()
+}
+
+// HasMobileDriversLicense returns a boolean if a field has been set.
+func (o *GoogleWalletProviderOutput) HasMobileDriversLicense() bool {
+	if o != nil && o.MobileDriversLicense.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetMobileDriversLicense gets a reference to the given NullableIso180135MobileDriversLicenseCredential and assigns it to the MobileDriversLicense field.
+func (o *GoogleWalletProviderOutput) SetMobileDriversLicense(v Iso180135MobileDriversLicenseCredential) {
+	o.MobileDriversLicense.Set(&v)
+}
+// SetMobileDriversLicenseNil sets the value for MobileDriversLicense to be an explicit nil
+func (o *GoogleWalletProviderOutput) SetMobileDriversLicenseNil() {
+	o.MobileDriversLicense.Set(nil)
+}
+
+// UnsetMobileDriversLicense ensures that no value is present for MobileDriversLicense, not even an explicit nil
+func (o *GoogleWalletProviderOutput) UnsetMobileDriversLicense() {
+	o.MobileDriversLicense.Unset()
+}
+
+// GetIdPass returns the IdPass field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GoogleWalletProviderOutput) GetIdPass() GoogleWalletIdPassCredential {
+	if o == nil || IsNil(o.IdPass.Get()) {
+		var ret GoogleWalletIdPassCredential
+		return ret
+	}
+	return *o.IdPass.Get()
+}
+
+// GetIdPassOk returns a tuple with the IdPass field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GoogleWalletProviderOutput) GetIdPassOk() (*GoogleWalletIdPassCredential, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.IdPass.Get(), o.IdPass.IsSet()
+}
+
+// HasIdPass returns a boolean if a field has been set.
+func (o *GoogleWalletProviderOutput) HasIdPass() bool {
+	if o != nil && o.IdPass.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetIdPass gets a reference to the given NullableGoogleWalletIdPassCredential and assigns it to the IdPass field.
+func (o *GoogleWalletProviderOutput) SetIdPass(v GoogleWalletIdPassCredential) {
+	o.IdPass.Set(&v)
+}
+// SetIdPassNil sets the value for IdPass to be an explicit nil
+func (o *GoogleWalletProviderOutput) SetIdPassNil() {
+	o.IdPass.Set(nil)
+}
+
+// UnsetIdPass ensures that no value is present for IdPass, not even an explicit nil
+func (o *GoogleWalletProviderOutput) UnsetIdPass() {
+	o.IdPass.Unset()
 }
 
 // GetRawMdlOutput returns the RawMdlOutput field value
@@ -79,6 +167,12 @@ func (o GoogleWalletProviderOutput) MarshalJSON() ([]byte, error) {
 
 func (o GoogleWalletProviderOutput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if o.MobileDriversLicense.IsSet() {
+		toSerialize["mobileDriversLicense"] = o.MobileDriversLicense.Get()
+	}
+	if o.IdPass.IsSet() {
+		toSerialize["idPass"] = o.IdPass.Get()
+	}
 	toSerialize["rawMdlOutput"] = o.RawMdlOutput
 
 	for key, value := range o.AdditionalProperties {
@@ -123,6 +217,8 @@ func (o *GoogleWalletProviderOutput) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "mobileDriversLicense")
+		delete(additionalProperties, "idPass")
 		delete(additionalProperties, "rawMdlOutput")
 		o.AdditionalProperties = additionalProperties
 	}

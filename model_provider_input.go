@@ -19,8 +19,6 @@ var _ MappedNullable = &ProviderInput{}
 
 // ProviderInput struct for ProviderInput
 type ProviderInput struct {
-	// Input for the `kenya-nid-match-biometric-2` provider
-	KenyaNidMatchBiometric2 NullableKenyaNidBiometric2Input `json:"kenya-nid-match-biometric-2,omitempty"`
 	// Input for the `indonesia-nik-lookup` provider
 	IndonesiaNikLookup NullableIndonesiaNikInput `json:"indonesia-nik-lookup,omitempty"`
 	// Input for the `china-resident-id-match` provider
@@ -41,8 +39,6 @@ type ProviderInput struct {
 	SouthAfricaNidLookup2 NullableSouthAfricaNidLookup2Input `json:"south-africa-nid-lookup-2,omitempty"`
 	// Input for the `south-africa-nid-match-2` provider
 	SouthAfricaNidMatch2 NullableSouthAfricaNidMatch2Input `json:"south-africa-nid-match-2,omitempty"`
-	// Input for the `south-africa-nid-match-biometric-2` provider
-	SouthAfricaNidMatchBiometric2 NullableSouthAfricaNidBiometric2Input `json:"south-africa-nid-match-biometric-2,omitempty"`
 	// Input for the `nigeria-nin-lookup-2` provider
 	NigeriaNinLookup2 NullableNigeriaNinLookup2Input `json:"nigeria-nin-lookup-2,omitempty"`
 	// Input for the `cote-divoire-nid-lookup-2` provider
@@ -53,8 +49,6 @@ type ProviderInput struct {
 	NigeriaNinMatch2 NullableNigeriaNinMatch2Input `json:"nigeria-nin-match-2,omitempty"`
 	// Input for the `uganda-nid-match-2` provider
 	UgandaNidMatch2 NullableUgandaNidMatch2Input `json:"uganda-nid-match-2,omitempty"`
-	// Input for the `nigeria-nin-match-biometric-2` provider
-	NigeriaNinMatchBiometric2 NullableNigeriaNinBiometric2Input `json:"nigeria-nin-match-biometric-2,omitempty"`
 	// Input for the `nigeria-nin-lookup` provider
 	NigeriaNinLookup NullableNigeriaNinInput `json:"nigeria-nin-lookup,omitempty"`
 	// Input for the `india-digilocker-aadhaar-match` provider
@@ -131,48 +125,6 @@ func NewProviderInput() *ProviderInput {
 func NewProviderInputWithDefaults() *ProviderInput {
 	this := ProviderInput{}
 	return &this
-}
-
-// GetKenyaNidMatchBiometric2 returns the KenyaNidMatchBiometric2 field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ProviderInput) GetKenyaNidMatchBiometric2() KenyaNidBiometric2Input {
-	if o == nil || IsNil(o.KenyaNidMatchBiometric2.Get()) {
-		var ret KenyaNidBiometric2Input
-		return ret
-	}
-	return *o.KenyaNidMatchBiometric2.Get()
-}
-
-// GetKenyaNidMatchBiometric2Ok returns a tuple with the KenyaNidMatchBiometric2 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ProviderInput) GetKenyaNidMatchBiometric2Ok() (*KenyaNidBiometric2Input, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.KenyaNidMatchBiometric2.Get(), o.KenyaNidMatchBiometric2.IsSet()
-}
-
-// HasKenyaNidMatchBiometric2 returns a boolean if a field has been set.
-func (o *ProviderInput) HasKenyaNidMatchBiometric2() bool {
-	if o != nil && o.KenyaNidMatchBiometric2.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetKenyaNidMatchBiometric2 gets a reference to the given NullableKenyaNidBiometric2Input and assigns it to the KenyaNidMatchBiometric2 field.
-func (o *ProviderInput) SetKenyaNidMatchBiometric2(v KenyaNidBiometric2Input) {
-	o.KenyaNidMatchBiometric2.Set(&v)
-}
-// SetKenyaNidMatchBiometric2Nil sets the value for KenyaNidMatchBiometric2 to be an explicit nil
-func (o *ProviderInput) SetKenyaNidMatchBiometric2Nil() {
-	o.KenyaNidMatchBiometric2.Set(nil)
-}
-
-// UnsetKenyaNidMatchBiometric2 ensures that no value is present for KenyaNidMatchBiometric2, not even an explicit nil
-func (o *ProviderInput) UnsetKenyaNidMatchBiometric2() {
-	o.KenyaNidMatchBiometric2.Unset()
 }
 
 // GetIndonesiaNikLookup returns the IndonesiaNikLookup field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -595,48 +547,6 @@ func (o *ProviderInput) UnsetSouthAfricaNidMatch2() {
 	o.SouthAfricaNidMatch2.Unset()
 }
 
-// GetSouthAfricaNidMatchBiometric2 returns the SouthAfricaNidMatchBiometric2 field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ProviderInput) GetSouthAfricaNidMatchBiometric2() SouthAfricaNidBiometric2Input {
-	if o == nil || IsNil(o.SouthAfricaNidMatchBiometric2.Get()) {
-		var ret SouthAfricaNidBiometric2Input
-		return ret
-	}
-	return *o.SouthAfricaNidMatchBiometric2.Get()
-}
-
-// GetSouthAfricaNidMatchBiometric2Ok returns a tuple with the SouthAfricaNidMatchBiometric2 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ProviderInput) GetSouthAfricaNidMatchBiometric2Ok() (*SouthAfricaNidBiometric2Input, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.SouthAfricaNidMatchBiometric2.Get(), o.SouthAfricaNidMatchBiometric2.IsSet()
-}
-
-// HasSouthAfricaNidMatchBiometric2 returns a boolean if a field has been set.
-func (o *ProviderInput) HasSouthAfricaNidMatchBiometric2() bool {
-	if o != nil && o.SouthAfricaNidMatchBiometric2.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetSouthAfricaNidMatchBiometric2 gets a reference to the given NullableSouthAfricaNidBiometric2Input and assigns it to the SouthAfricaNidMatchBiometric2 field.
-func (o *ProviderInput) SetSouthAfricaNidMatchBiometric2(v SouthAfricaNidBiometric2Input) {
-	o.SouthAfricaNidMatchBiometric2.Set(&v)
-}
-// SetSouthAfricaNidMatchBiometric2Nil sets the value for SouthAfricaNidMatchBiometric2 to be an explicit nil
-func (o *ProviderInput) SetSouthAfricaNidMatchBiometric2Nil() {
-	o.SouthAfricaNidMatchBiometric2.Set(nil)
-}
-
-// UnsetSouthAfricaNidMatchBiometric2 ensures that no value is present for SouthAfricaNidMatchBiometric2, not even an explicit nil
-func (o *ProviderInput) UnsetSouthAfricaNidMatchBiometric2() {
-	o.SouthAfricaNidMatchBiometric2.Unset()
-}
-
 // GetNigeriaNinLookup2 returns the NigeriaNinLookup2 field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ProviderInput) GetNigeriaNinLookup2() NigeriaNinLookup2Input {
 	if o == nil || IsNil(o.NigeriaNinLookup2.Get()) {
@@ -845,48 +755,6 @@ func (o *ProviderInput) SetUgandaNidMatch2Nil() {
 // UnsetUgandaNidMatch2 ensures that no value is present for UgandaNidMatch2, not even an explicit nil
 func (o *ProviderInput) UnsetUgandaNidMatch2() {
 	o.UgandaNidMatch2.Unset()
-}
-
-// GetNigeriaNinMatchBiometric2 returns the NigeriaNinMatchBiometric2 field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ProviderInput) GetNigeriaNinMatchBiometric2() NigeriaNinBiometric2Input {
-	if o == nil || IsNil(o.NigeriaNinMatchBiometric2.Get()) {
-		var ret NigeriaNinBiometric2Input
-		return ret
-	}
-	return *o.NigeriaNinMatchBiometric2.Get()
-}
-
-// GetNigeriaNinMatchBiometric2Ok returns a tuple with the NigeriaNinMatchBiometric2 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ProviderInput) GetNigeriaNinMatchBiometric2Ok() (*NigeriaNinBiometric2Input, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.NigeriaNinMatchBiometric2.Get(), o.NigeriaNinMatchBiometric2.IsSet()
-}
-
-// HasNigeriaNinMatchBiometric2 returns a boolean if a field has been set.
-func (o *ProviderInput) HasNigeriaNinMatchBiometric2() bool {
-	if o != nil && o.NigeriaNinMatchBiometric2.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetNigeriaNinMatchBiometric2 gets a reference to the given NullableNigeriaNinBiometric2Input and assigns it to the NigeriaNinMatchBiometric2 field.
-func (o *ProviderInput) SetNigeriaNinMatchBiometric2(v NigeriaNinBiometric2Input) {
-	o.NigeriaNinMatchBiometric2.Set(&v)
-}
-// SetNigeriaNinMatchBiometric2Nil sets the value for NigeriaNinMatchBiometric2 to be an explicit nil
-func (o *ProviderInput) SetNigeriaNinMatchBiometric2Nil() {
-	o.NigeriaNinMatchBiometric2.Set(nil)
-}
-
-// UnsetNigeriaNinMatchBiometric2 ensures that no value is present for NigeriaNinMatchBiometric2, not even an explicit nil
-func (o *ProviderInput) UnsetNigeriaNinMatchBiometric2() {
-	o.NigeriaNinMatchBiometric2.Unset()
 }
 
 // GetNigeriaNinLookup returns the NigeriaNinLookup field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -2075,9 +1943,6 @@ func (o ProviderInput) MarshalJSON() ([]byte, error) {
 
 func (o ProviderInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.KenyaNidMatchBiometric2.IsSet() {
-		toSerialize["kenya-nid-match-biometric-2"] = o.KenyaNidMatchBiometric2.Get()
-	}
 	if o.IndonesiaNikLookup.IsSet() {
 		toSerialize["indonesia-nik-lookup"] = o.IndonesiaNikLookup.Get()
 	}
@@ -2108,9 +1973,6 @@ func (o ProviderInput) ToMap() (map[string]interface{}, error) {
 	if o.SouthAfricaNidMatch2.IsSet() {
 		toSerialize["south-africa-nid-match-2"] = o.SouthAfricaNidMatch2.Get()
 	}
-	if o.SouthAfricaNidMatchBiometric2.IsSet() {
-		toSerialize["south-africa-nid-match-biometric-2"] = o.SouthAfricaNidMatchBiometric2.Get()
-	}
 	if o.NigeriaNinLookup2.IsSet() {
 		toSerialize["nigeria-nin-lookup-2"] = o.NigeriaNinLookup2.Get()
 	}
@@ -2125,9 +1987,6 @@ func (o ProviderInput) ToMap() (map[string]interface{}, error) {
 	}
 	if o.UgandaNidMatch2.IsSet() {
 		toSerialize["uganda-nid-match-2"] = o.UgandaNidMatch2.Get()
-	}
-	if o.NigeriaNinMatchBiometric2.IsSet() {
-		toSerialize["nigeria-nin-match-biometric-2"] = o.NigeriaNinMatchBiometric2.Get()
 	}
 	if o.NigeriaNinLookup.IsSet() {
 		toSerialize["nigeria-nin-lookup"] = o.NigeriaNinLookup.Get()
@@ -2235,7 +2094,6 @@ func (o *ProviderInput) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "kenya-nid-match-biometric-2")
 		delete(additionalProperties, "indonesia-nik-lookup")
 		delete(additionalProperties, "china-resident-id-match")
 		delete(additionalProperties, "indonesia-dukcapil-match")
@@ -2246,13 +2104,11 @@ func (o *ProviderInput) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "kenya-nid-lookup-2")
 		delete(additionalProperties, "south-africa-nid-lookup-2")
 		delete(additionalProperties, "south-africa-nid-match-2")
-		delete(additionalProperties, "south-africa-nid-match-biometric-2")
 		delete(additionalProperties, "nigeria-nin-lookup-2")
 		delete(additionalProperties, "cote-divoire-nid-lookup-2")
 		delete(additionalProperties, "zimbabwe-nid-lookup-2")
 		delete(additionalProperties, "nigeria-nin-match-2")
 		delete(additionalProperties, "uganda-nid-match-2")
-		delete(additionalProperties, "nigeria-nin-match-biometric-2")
 		delete(additionalProperties, "nigeria-nin-lookup")
 		delete(additionalProperties, "india-digilocker-aadhaar-match")
 		delete(additionalProperties, "india-pan-lookup")

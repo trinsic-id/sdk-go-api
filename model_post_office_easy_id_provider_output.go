@@ -20,7 +20,7 @@ var _ MappedNullable = &PostOfficeEasyIdProviderOutput{}
 // PostOfficeEasyIdProviderOutput Exposed properties for the `post-office-easyid` Provider which do not directly map to the normalized IdentityData model.
 type PostOfficeEasyIdProviderOutput struct {
 	// A Yoti-generated unique ID for this individual, consistent across repeat shares and different for each Relying Party.
-	RememberMeId NullableString `json:"rememberMeId,omitempty"`
+	YotiRememberMeId NullableString `json:"yotiRememberMeId,omitempty"`
 	// The email address of the individual
 	Email NullableString `json:"email,omitempty"`
 	// The given name of the individual. This can correspond to first and middle names in English.
@@ -65,46 +65,46 @@ func NewPostOfficeEasyIdProviderOutputWithDefaults() *PostOfficeEasyIdProviderOu
 	return &this
 }
 
-// GetRememberMeId returns the RememberMeId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PostOfficeEasyIdProviderOutput) GetRememberMeId() string {
-	if o == nil || IsNil(o.RememberMeId.Get()) {
+// GetYotiRememberMeId returns the YotiRememberMeId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PostOfficeEasyIdProviderOutput) GetYotiRememberMeId() string {
+	if o == nil || IsNil(o.YotiRememberMeId.Get()) {
 		var ret string
 		return ret
 	}
-	return *o.RememberMeId.Get()
+	return *o.YotiRememberMeId.Get()
 }
 
-// GetRememberMeIdOk returns a tuple with the RememberMeId field value if set, nil otherwise
+// GetYotiRememberMeIdOk returns a tuple with the YotiRememberMeId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PostOfficeEasyIdProviderOutput) GetRememberMeIdOk() (*string, bool) {
+func (o *PostOfficeEasyIdProviderOutput) GetYotiRememberMeIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.RememberMeId.Get(), o.RememberMeId.IsSet()
+	return o.YotiRememberMeId.Get(), o.YotiRememberMeId.IsSet()
 }
 
-// HasRememberMeId returns a boolean if a field has been set.
-func (o *PostOfficeEasyIdProviderOutput) HasRememberMeId() bool {
-	if o != nil && o.RememberMeId.IsSet() {
+// HasYotiRememberMeId returns a boolean if a field has been set.
+func (o *PostOfficeEasyIdProviderOutput) HasYotiRememberMeId() bool {
+	if o != nil && o.YotiRememberMeId.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetRememberMeId gets a reference to the given NullableString and assigns it to the RememberMeId field.
-func (o *PostOfficeEasyIdProviderOutput) SetRememberMeId(v string) {
-	o.RememberMeId.Set(&v)
+// SetYotiRememberMeId gets a reference to the given NullableString and assigns it to the YotiRememberMeId field.
+func (o *PostOfficeEasyIdProviderOutput) SetYotiRememberMeId(v string) {
+	o.YotiRememberMeId.Set(&v)
 }
-// SetRememberMeIdNil sets the value for RememberMeId to be an explicit nil
-func (o *PostOfficeEasyIdProviderOutput) SetRememberMeIdNil() {
-	o.RememberMeId.Set(nil)
+// SetYotiRememberMeIdNil sets the value for YotiRememberMeId to be an explicit nil
+func (o *PostOfficeEasyIdProviderOutput) SetYotiRememberMeIdNil() {
+	o.YotiRememberMeId.Set(nil)
 }
 
-// UnsetRememberMeId ensures that no value is present for RememberMeId, not even an explicit nil
-func (o *PostOfficeEasyIdProviderOutput) UnsetRememberMeId() {
-	o.RememberMeId.Unset()
+// UnsetYotiRememberMeId ensures that no value is present for YotiRememberMeId, not even an explicit nil
+func (o *PostOfficeEasyIdProviderOutput) UnsetYotiRememberMeId() {
+	o.YotiRememberMeId.Unset()
 }
 
 // GetEmail returns the Email field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -579,8 +579,8 @@ func (o PostOfficeEasyIdProviderOutput) MarshalJSON() ([]byte, error) {
 
 func (o PostOfficeEasyIdProviderOutput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.RememberMeId.IsSet() {
-		toSerialize["rememberMeId"] = o.RememberMeId.Get()
+	if o.YotiRememberMeId.IsSet() {
+		toSerialize["yotiRememberMeId"] = o.YotiRememberMeId.Get()
 	}
 	if o.Email.IsSet() {
 		toSerialize["email"] = o.Email.Get()
@@ -637,7 +637,7 @@ func (o *PostOfficeEasyIdProviderOutput) UnmarshalJSON(data []byte) (err error) 
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "rememberMeId")
+		delete(additionalProperties, "yotiRememberMeId")
 		delete(additionalProperties, "email")
 		delete(additionalProperties, "givenName")
 		delete(additionalProperties, "familyName")

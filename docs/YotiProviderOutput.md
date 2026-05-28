@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**RememberMeId** | Pointer to **NullableString** | A Yoti-generated unique ID for this individual, consistent across repeat shares and different for each Relying Party. | [optional] 
+**YotiRememberMeId** | Pointer to **NullableString** | A Yoti-generated unique ID for this individual, consistent across repeat shares and different for each Relying Party. | [optional] 
 **Email** | Pointer to **NullableString** | The email address of the individual | [optional] 
 **GivenName** | Pointer to **NullableString** | The given name of the individual. This can correspond to first and middle names in English. | [optional] 
 **FamilyName** | Pointer to **NullableString** | The family name of the individual | [optional] 
@@ -36,41 +36,41 @@ NewYotiProviderOutputWithDefaults instantiates a new YotiProviderOutput object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetRememberMeId
+### GetYotiRememberMeId
 
-`func (o *YotiProviderOutput) GetRememberMeId() string`
+`func (o *YotiProviderOutput) GetYotiRememberMeId() string`
 
-GetRememberMeId returns the RememberMeId field if non-nil, zero value otherwise.
+GetYotiRememberMeId returns the YotiRememberMeId field if non-nil, zero value otherwise.
 
-### GetRememberMeIdOk
+### GetYotiRememberMeIdOk
 
-`func (o *YotiProviderOutput) GetRememberMeIdOk() (*string, bool)`
+`func (o *YotiProviderOutput) GetYotiRememberMeIdOk() (*string, bool)`
 
-GetRememberMeIdOk returns a tuple with the RememberMeId field if it's non-nil, zero value otherwise
+GetYotiRememberMeIdOk returns a tuple with the YotiRememberMeId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetRememberMeId
+### SetYotiRememberMeId
 
-`func (o *YotiProviderOutput) SetRememberMeId(v string)`
+`func (o *YotiProviderOutput) SetYotiRememberMeId(v string)`
 
-SetRememberMeId sets RememberMeId field to given value.
+SetYotiRememberMeId sets YotiRememberMeId field to given value.
 
-### HasRememberMeId
+### HasYotiRememberMeId
 
-`func (o *YotiProviderOutput) HasRememberMeId() bool`
+`func (o *YotiProviderOutput) HasYotiRememberMeId() bool`
 
-HasRememberMeId returns a boolean if a field has been set.
+HasYotiRememberMeId returns a boolean if a field has been set.
 
-### SetRememberMeIdNil
+### SetYotiRememberMeIdNil
 
-`func (o *YotiProviderOutput) SetRememberMeIdNil(b bool)`
+`func (o *YotiProviderOutput) SetYotiRememberMeIdNil(b bool)`
 
- SetRememberMeIdNil sets the value for RememberMeId to be an explicit nil
+ SetYotiRememberMeIdNil sets the value for YotiRememberMeId to be an explicit nil
 
-### UnsetRememberMeId
-`func (o *YotiProviderOutput) UnsetRememberMeId()`
+### UnsetYotiRememberMeId
+`func (o *YotiProviderOutput) UnsetYotiRememberMeId()`
 
-UnsetRememberMeId ensures that no value is present for RememberMeId, not even an explicit nil
+UnsetYotiRememberMeId ensures that no value is present for YotiRememberMeId, not even an explicit nil
 ### GetEmail
 
 `func (o *YotiProviderOutput) GetEmail() string`

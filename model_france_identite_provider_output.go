@@ -20,6 +20,10 @@ var _ MappedNullable = &FranceIdentiteProviderOutput{}
 
 // FranceIdentiteProviderOutput Exposed properties for the `france-identite` Provider which do not directly map to the normalized IdentityData model.
 type FranceIdentiteProviderOutput struct {
+	// An EUDI Person Identification Data (PID) credential, retrieved from the individual's wallet.
+	Pid NullableEudiPidCredential `json:"pid,omitempty"`
+	// An EUDI Age Verification credential, retrieved from the individual's wallet.
+	AgeVerification NullableEudiAgeVerificationCredential `json:"ageVerification,omitempty"`
 	// The raw output of the 18013-7 exchange performed through France Identité.
 	Raw18013Output MdlOutput `json:"raw18013Output"`
 	AdditionalProperties map[string]interface{}
@@ -43,6 +47,90 @@ func NewFranceIdentiteProviderOutput(raw18013Output MdlOutput) *FranceIdentitePr
 func NewFranceIdentiteProviderOutputWithDefaults() *FranceIdentiteProviderOutput {
 	this := FranceIdentiteProviderOutput{}
 	return &this
+}
+
+// GetPid returns the Pid field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *FranceIdentiteProviderOutput) GetPid() EudiPidCredential {
+	if o == nil || IsNil(o.Pid.Get()) {
+		var ret EudiPidCredential
+		return ret
+	}
+	return *o.Pid.Get()
+}
+
+// GetPidOk returns a tuple with the Pid field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *FranceIdentiteProviderOutput) GetPidOk() (*EudiPidCredential, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Pid.Get(), o.Pid.IsSet()
+}
+
+// HasPid returns a boolean if a field has been set.
+func (o *FranceIdentiteProviderOutput) HasPid() bool {
+	if o != nil && o.Pid.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPid gets a reference to the given NullableEudiPidCredential and assigns it to the Pid field.
+func (o *FranceIdentiteProviderOutput) SetPid(v EudiPidCredential) {
+	o.Pid.Set(&v)
+}
+// SetPidNil sets the value for Pid to be an explicit nil
+func (o *FranceIdentiteProviderOutput) SetPidNil() {
+	o.Pid.Set(nil)
+}
+
+// UnsetPid ensures that no value is present for Pid, not even an explicit nil
+func (o *FranceIdentiteProviderOutput) UnsetPid() {
+	o.Pid.Unset()
+}
+
+// GetAgeVerification returns the AgeVerification field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *FranceIdentiteProviderOutput) GetAgeVerification() EudiAgeVerificationCredential {
+	if o == nil || IsNil(o.AgeVerification.Get()) {
+		var ret EudiAgeVerificationCredential
+		return ret
+	}
+	return *o.AgeVerification.Get()
+}
+
+// GetAgeVerificationOk returns a tuple with the AgeVerification field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *FranceIdentiteProviderOutput) GetAgeVerificationOk() (*EudiAgeVerificationCredential, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.AgeVerification.Get(), o.AgeVerification.IsSet()
+}
+
+// HasAgeVerification returns a boolean if a field has been set.
+func (o *FranceIdentiteProviderOutput) HasAgeVerification() bool {
+	if o != nil && o.AgeVerification.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAgeVerification gets a reference to the given NullableEudiAgeVerificationCredential and assigns it to the AgeVerification field.
+func (o *FranceIdentiteProviderOutput) SetAgeVerification(v EudiAgeVerificationCredential) {
+	o.AgeVerification.Set(&v)
+}
+// SetAgeVerificationNil sets the value for AgeVerification to be an explicit nil
+func (o *FranceIdentiteProviderOutput) SetAgeVerificationNil() {
+	o.AgeVerification.Set(nil)
+}
+
+// UnsetAgeVerification ensures that no value is present for AgeVerification, not even an explicit nil
+func (o *FranceIdentiteProviderOutput) UnsetAgeVerification() {
+	o.AgeVerification.Unset()
 }
 
 // GetRaw18013Output returns the Raw18013Output field value
@@ -79,6 +167,12 @@ func (o FranceIdentiteProviderOutput) MarshalJSON() ([]byte, error) {
 
 func (o FranceIdentiteProviderOutput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if o.Pid.IsSet() {
+		toSerialize["pid"] = o.Pid.Get()
+	}
+	if o.AgeVerification.IsSet() {
+		toSerialize["ageVerification"] = o.AgeVerification.Get()
+	}
 	toSerialize["raw18013Output"] = o.Raw18013Output
 
 	for key, value := range o.AdditionalProperties {
@@ -123,6 +217,8 @@ func (o *FranceIdentiteProviderOutput) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "pid")
+		delete(additionalProperties, "ageVerification")
 		delete(additionalProperties, "raw18013Output")
 		o.AdditionalProperties = additionalProperties
 	}

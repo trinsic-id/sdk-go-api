@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**IdNumber** | Pointer to **NullableString** | The user&#39;s Uganda National ID number (NIN) - 14 alphanumeric characters | [optional] 
+**IdNumber** | Pointer to **NullableString** | Uganda National ID number (NID) assigned by the National Identification and Registration Authority (NIRA).              Format: - 14 alphanumeric characters (A-Z, 0-9) - There is no publicly documented encoding scheme for encoding personal information in the NID - No check digit or algorithm has been publicly documented by NIRA | [optional] 
 **SecondaryIdNumber** | Pointer to **NullableString** | The card number on the document (secondary ID number). Required for Uganda Basic KYC instead of first name and last name. | [optional] 
 **DateOfBirth** | Pointer to **NullableString** | The user&#39;s date of birth, in &#x60;YYYY-MM-DD&#x60; format | [optional] 
 

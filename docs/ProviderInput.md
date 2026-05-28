@@ -4,7 +4,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**KenyaNidMatchBiometric2** | Pointer to [**NullableKenyaNidBiometric2Input**](KenyaNidBiometric2Input.md) | Input for the &#x60;kenya-nid-match-biometric-2&#x60; provider | [optional] 
 **IndonesiaNikLookup** | Pointer to [**NullableIndonesiaNikInput**](IndonesiaNikInput.md) | Input for the &#x60;indonesia-nik-lookup&#x60; provider | [optional] 
 **ChinaResidentIdMatch** | Pointer to [**NullableChinaResidentIdMatchInput**](ChinaResidentIdMatchInput.md) | Input for the &#x60;china-resident-id-match&#x60; provider | [optional] 
 **IndonesiaDukcapilMatch** | Pointer to [**NullableIndonesiaDukcapilMatchInput**](IndonesiaDukcapilMatchInput.md) | Input for the &#x60;indonesia-dukcapil-match&#x60; provider | [optional] 
@@ -15,13 +14,11 @@ Name | Type | Description | Notes
 **KenyaNidLookup2** | Pointer to [**NullableKenyaNidLookup2Input**](KenyaNidLookup2Input.md) | Input for the &#x60;kenya-nid-lookup-2&#x60; provider | [optional] 
 **SouthAfricaNidLookup2** | Pointer to [**NullableSouthAfricaNidLookup2Input**](SouthAfricaNidLookup2Input.md) | Input for the &#x60;south-africa-nid-lookup-2&#x60; provider | [optional] 
 **SouthAfricaNidMatch2** | Pointer to [**NullableSouthAfricaNidMatch2Input**](SouthAfricaNidMatch2Input.md) | Input for the &#x60;south-africa-nid-match-2&#x60; provider | [optional] 
-**SouthAfricaNidMatchBiometric2** | Pointer to [**NullableSouthAfricaNidBiometric2Input**](SouthAfricaNidBiometric2Input.md) | Input for the &#x60;south-africa-nid-match-biometric-2&#x60; provider | [optional] 
 **NigeriaNinLookup2** | Pointer to [**NullableNigeriaNinLookup2Input**](NigeriaNinLookup2Input.md) | Input for the &#x60;nigeria-nin-lookup-2&#x60; provider | [optional] 
 **CoteDivoireNidLookup2** | Pointer to [**NullableCoteDIvoireNidLookup2Input**](CoteDIvoireNidLookup2Input.md) | Input for the &#x60;cote-divoire-nid-lookup-2&#x60; provider | [optional] 
 **ZimbabweNidLookup2** | Pointer to [**NullableZimbabweNidLookup2Input**](ZimbabweNidLookup2Input.md) | Input for the &#x60;zimbabwe-nid-lookup-2&#x60; provider | [optional] 
 **NigeriaNinMatch2** | Pointer to [**NullableNigeriaNinMatch2Input**](NigeriaNinMatch2Input.md) | Input for the &#x60;nigeria-nin-match-2&#x60; provider | [optional] 
 **UgandaNidMatch2** | Pointer to [**NullableUgandaNidMatch2Input**](UgandaNidMatch2Input.md) | Input for the &#x60;uganda-nid-match-2&#x60; provider | [optional] 
-**NigeriaNinMatchBiometric2** | Pointer to [**NullableNigeriaNinBiometric2Input**](NigeriaNinBiometric2Input.md) | Input for the &#x60;nigeria-nin-match-biometric-2&#x60; provider | [optional] 
 **NigeriaNinLookup** | Pointer to [**NullableNigeriaNinInput**](NigeriaNinInput.md) | Input for the &#x60;nigeria-nin-lookup&#x60; provider | [optional] 
 **IndiaDigilockerAadhaarMatch** | Pointer to [**NullableAadhaarInput**](AadhaarInput.md) | Input for the &#x60;india-digilocker-aadhaar-match&#x60; provider | [optional] 
 **IndiaPanLookup** | Pointer to [**NullableIndiaPanLookupInput**](IndiaPanLookupInput.md) | Input for the &#x60;india-pan-lookup&#x60; provider | [optional] 
@@ -70,41 +67,6 @@ NewProviderInputWithDefaults instantiates a new ProviderInput object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetKenyaNidMatchBiometric2
-
-`func (o *ProviderInput) GetKenyaNidMatchBiometric2() KenyaNidBiometric2Input`
-
-GetKenyaNidMatchBiometric2 returns the KenyaNidMatchBiometric2 field if non-nil, zero value otherwise.
-
-### GetKenyaNidMatchBiometric2Ok
-
-`func (o *ProviderInput) GetKenyaNidMatchBiometric2Ok() (*KenyaNidBiometric2Input, bool)`
-
-GetKenyaNidMatchBiometric2Ok returns a tuple with the KenyaNidMatchBiometric2 field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetKenyaNidMatchBiometric2
-
-`func (o *ProviderInput) SetKenyaNidMatchBiometric2(v KenyaNidBiometric2Input)`
-
-SetKenyaNidMatchBiometric2 sets KenyaNidMatchBiometric2 field to given value.
-
-### HasKenyaNidMatchBiometric2
-
-`func (o *ProviderInput) HasKenyaNidMatchBiometric2() bool`
-
-HasKenyaNidMatchBiometric2 returns a boolean if a field has been set.
-
-### SetKenyaNidMatchBiometric2Nil
-
-`func (o *ProviderInput) SetKenyaNidMatchBiometric2Nil(b bool)`
-
- SetKenyaNidMatchBiometric2Nil sets the value for KenyaNidMatchBiometric2 to be an explicit nil
-
-### UnsetKenyaNidMatchBiometric2
-`func (o *ProviderInput) UnsetKenyaNidMatchBiometric2()`
-
-UnsetKenyaNidMatchBiometric2 ensures that no value is present for KenyaNidMatchBiometric2, not even an explicit nil
 ### GetIndonesiaNikLookup
 
 `func (o *ProviderInput) GetIndonesiaNikLookup() IndonesiaNikInput`
@@ -455,41 +417,6 @@ HasSouthAfricaNidMatch2 returns a boolean if a field has been set.
 `func (o *ProviderInput) UnsetSouthAfricaNidMatch2()`
 
 UnsetSouthAfricaNidMatch2 ensures that no value is present for SouthAfricaNidMatch2, not even an explicit nil
-### GetSouthAfricaNidMatchBiometric2
-
-`func (o *ProviderInput) GetSouthAfricaNidMatchBiometric2() SouthAfricaNidBiometric2Input`
-
-GetSouthAfricaNidMatchBiometric2 returns the SouthAfricaNidMatchBiometric2 field if non-nil, zero value otherwise.
-
-### GetSouthAfricaNidMatchBiometric2Ok
-
-`func (o *ProviderInput) GetSouthAfricaNidMatchBiometric2Ok() (*SouthAfricaNidBiometric2Input, bool)`
-
-GetSouthAfricaNidMatchBiometric2Ok returns a tuple with the SouthAfricaNidMatchBiometric2 field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSouthAfricaNidMatchBiometric2
-
-`func (o *ProviderInput) SetSouthAfricaNidMatchBiometric2(v SouthAfricaNidBiometric2Input)`
-
-SetSouthAfricaNidMatchBiometric2 sets SouthAfricaNidMatchBiometric2 field to given value.
-
-### HasSouthAfricaNidMatchBiometric2
-
-`func (o *ProviderInput) HasSouthAfricaNidMatchBiometric2() bool`
-
-HasSouthAfricaNidMatchBiometric2 returns a boolean if a field has been set.
-
-### SetSouthAfricaNidMatchBiometric2Nil
-
-`func (o *ProviderInput) SetSouthAfricaNidMatchBiometric2Nil(b bool)`
-
- SetSouthAfricaNidMatchBiometric2Nil sets the value for SouthAfricaNidMatchBiometric2 to be an explicit nil
-
-### UnsetSouthAfricaNidMatchBiometric2
-`func (o *ProviderInput) UnsetSouthAfricaNidMatchBiometric2()`
-
-UnsetSouthAfricaNidMatchBiometric2 ensures that no value is present for SouthAfricaNidMatchBiometric2, not even an explicit nil
 ### GetNigeriaNinLookup2
 
 `func (o *ProviderInput) GetNigeriaNinLookup2() NigeriaNinLookup2Input`
@@ -665,41 +592,6 @@ HasUgandaNidMatch2 returns a boolean if a field has been set.
 `func (o *ProviderInput) UnsetUgandaNidMatch2()`
 
 UnsetUgandaNidMatch2 ensures that no value is present for UgandaNidMatch2, not even an explicit nil
-### GetNigeriaNinMatchBiometric2
-
-`func (o *ProviderInput) GetNigeriaNinMatchBiometric2() NigeriaNinBiometric2Input`
-
-GetNigeriaNinMatchBiometric2 returns the NigeriaNinMatchBiometric2 field if non-nil, zero value otherwise.
-
-### GetNigeriaNinMatchBiometric2Ok
-
-`func (o *ProviderInput) GetNigeriaNinMatchBiometric2Ok() (*NigeriaNinBiometric2Input, bool)`
-
-GetNigeriaNinMatchBiometric2Ok returns a tuple with the NigeriaNinMatchBiometric2 field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetNigeriaNinMatchBiometric2
-
-`func (o *ProviderInput) SetNigeriaNinMatchBiometric2(v NigeriaNinBiometric2Input)`
-
-SetNigeriaNinMatchBiometric2 sets NigeriaNinMatchBiometric2 field to given value.
-
-### HasNigeriaNinMatchBiometric2
-
-`func (o *ProviderInput) HasNigeriaNinMatchBiometric2() bool`
-
-HasNigeriaNinMatchBiometric2 returns a boolean if a field has been set.
-
-### SetNigeriaNinMatchBiometric2Nil
-
-`func (o *ProviderInput) SetNigeriaNinMatchBiometric2Nil(b bool)`
-
- SetNigeriaNinMatchBiometric2Nil sets the value for NigeriaNinMatchBiometric2 to be an explicit nil
-
-### UnsetNigeriaNinMatchBiometric2
-`func (o *ProviderInput) UnsetNigeriaNinMatchBiometric2()`
-
-UnsetNigeriaNinMatchBiometric2 ensures that no value is present for NigeriaNinMatchBiometric2, not even an explicit nil
 ### GetNigeriaNinLookup
 
 `func (o *ProviderInput) GetNigeriaNinLookup() NigeriaNinInput`

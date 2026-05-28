@@ -19,7 +19,7 @@ var _ MappedNullable = &SouthAfricaNidMatch2Input{}
 
 // SouthAfricaNidMatch2Input struct for SouthAfricaNidMatch2Input
 type SouthAfricaNidMatch2Input struct {
-	// The user's South African National ID number
+	// The South African National Identity Number (13 digits).              Issued for life by the Department of Home Affairs (DHA) and stored in the HANIS (Home Affairs National Identification System) database. The same number is mandatory for banking, employment, taxation, and voting, and is printed on both the legacy green ID book and the Smart ID Card (rolled out from 2013 onward).              Format: - YYMMDD G(4) C A Z - YYMMDD is the date of birth - G(4) is the gender code (below 5000 female, 5000 or above male) - C is the citizenship indicator (0 citizen, 1 permanent resident) - A is reserved (it had a politically sensitive meaning in the past, but is currently   semantically meaningless) - Z is a Luhn check digit
 	IdNumber NullableString `json:"idNumber,omitempty"`
 	// The user's first name as it appears in their National ID
 	GivenName NullableString `json:"givenName,omitempty"`
@@ -31,8 +31,6 @@ type SouthAfricaNidMatch2Input struct {
 	DateOfBirth NullableString `json:"dateOfBirth,omitempty"`
 	// The user's sex as it appears in their National ID
 	Sex NullableSouthAfricaNidMatch2InputSex `json:"sex,omitempty"`
-	// The user's phone number as it appears in their National ID (optional). Must be in E.164 international format: \"+27XXXXXXXXX\"
-	PhoneNumber NullableString `json:"phoneNumber,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -307,48 +305,6 @@ func (o *SouthAfricaNidMatch2Input) UnsetSex() {
 	o.Sex.Unset()
 }
 
-// GetPhoneNumber returns the PhoneNumber field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *SouthAfricaNidMatch2Input) GetPhoneNumber() string {
-	if o == nil || IsNil(o.PhoneNumber.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.PhoneNumber.Get()
-}
-
-// GetPhoneNumberOk returns a tuple with the PhoneNumber field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SouthAfricaNidMatch2Input) GetPhoneNumberOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.PhoneNumber.Get(), o.PhoneNumber.IsSet()
-}
-
-// HasPhoneNumber returns a boolean if a field has been set.
-func (o *SouthAfricaNidMatch2Input) HasPhoneNumber() bool {
-	if o != nil && o.PhoneNumber.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetPhoneNumber gets a reference to the given NullableString and assigns it to the PhoneNumber field.
-func (o *SouthAfricaNidMatch2Input) SetPhoneNumber(v string) {
-	o.PhoneNumber.Set(&v)
-}
-// SetPhoneNumberNil sets the value for PhoneNumber to be an explicit nil
-func (o *SouthAfricaNidMatch2Input) SetPhoneNumberNil() {
-	o.PhoneNumber.Set(nil)
-}
-
-// UnsetPhoneNumber ensures that no value is present for PhoneNumber, not even an explicit nil
-func (o *SouthAfricaNidMatch2Input) UnsetPhoneNumber() {
-	o.PhoneNumber.Unset()
-}
-
 func (o SouthAfricaNidMatch2Input) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -376,9 +332,6 @@ func (o SouthAfricaNidMatch2Input) ToMap() (map[string]interface{}, error) {
 	}
 	if o.Sex.IsSet() {
 		toSerialize["sex"] = o.Sex.Get()
-	}
-	if o.PhoneNumber.IsSet() {
-		toSerialize["phoneNumber"] = o.PhoneNumber.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -408,7 +361,6 @@ func (o *SouthAfricaNidMatch2Input) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "middleName")
 		delete(additionalProperties, "dateOfBirth")
 		delete(additionalProperties, "sex")
-		delete(additionalProperties, "phoneNumber")
 		o.AdditionalProperties = additionalProperties
 	}
 

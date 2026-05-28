@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Provider** | **string** | The ID of the provider to launch | 
 **VerificationProfileId** | **string** | The ID of the Verification Profile to use for this session. | 
 **RedirectUrl** | **string** | The Redirect URL to which the user should be sent after the session is complete. | 
-**BrowserLanguages** | Pointer to **[]string** | Preferences for languages to show first in the Hosted UI. If left empty, the Hosted UI defaults to the user&#39;s navigator languages. If no preferred language is available, the Hosted UI falls back to English. | [optional] 
+**BrowserLanguages** | Pointer to **[]string** | Preferences for languages to show first in the Hosted UI and supported provider launch flows. If left empty, the Hosted UI defaults to the user&#39;s navigator languages. If no preferred language is available, the Hosted UI falls back to English. | [optional] 
 **ProviderInput** | Pointer to [**NullableProviderInput**](ProviderInput.md) | Provider-specific input for those providers which require it.   &lt;b&gt;Deprecated:&lt;/b&gt; In the future, Hosted Provider Sessions will not accept input on creation, and will instead always redirect the user to a hosted interface to collect input. If you need to collect input from the user yourself, please use the Create Direct Session endpoint instead. | [optional] 
 
 ## Methods

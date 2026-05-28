@@ -32,7 +32,7 @@ type NigeriaNinLookup2ProviderOutput struct {
 	DateOfBirth NullableString `json:"dateOfBirth,omitempty"`
 	// Country of birth as an ISO 3166-1 alpha-2 code.
 	BirthCountry NullableString `json:"birthCountry,omitempty"`
-	// National Identification Number (NIN).              This is a unique, permanent identifier assigned by the National Identity Management Commission upon enrollment.              Format: 11 numeric digits (regex: /^[0-9]{11}$/). The digits are validated using the Verhoeff algorithm, meaning the last digit serves as a check digit.
+	// National Identification Number (NIN).              This is a unique, permanent identifier assigned by the National Identity Management Commission (NIMC) upon enrollment.              Format: - 11 numeric digits - No publicly known encoding scheme is used to encode personal information in the NIN - Last digit is a checksum using the Verhoeff algorithm
 	NationalIdentityNumber string `json:"nationalIdentityNumber"`
 	// Phone number registered with the National Identity Management Commission.
 	PhoneNumber NullableString `json:"phoneNumber,omitempty"`
