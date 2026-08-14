@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**InputValue** | **string** | The full name string submitted for this check, as provided in the match input. | 
-**Outcome** | **float64** | Full-name similarity score from the DigiLocker match result for this session.              Format: - Between 0.0 to 1.0, where higher values indicate closer agreement with the Aadhaar record. | 
+**InputValue** | Pointer to **NullableString** | The full name string submitted for this check, as provided in the match input. | [optional] 
+**Outcome** | Pointer to **NullableFloat64** | Full-name similarity score from the DigiLocker match result for this session.              Format: - Between 0.0 to 1.0, where higher values indicate closer agreement with the Aadhaar record. | [optional] 
 
 ## Methods
 
 ### NewIndiaDigilockerAadhaarMatchFullNameField
 
-`func NewIndiaDigilockerAadhaarMatchFullNameField(inputValue string, outcome float64, ) *IndiaDigilockerAadhaarMatchFullNameField`
+`func NewIndiaDigilockerAadhaarMatchFullNameField() *IndiaDigilockerAadhaarMatchFullNameField`
 
 NewIndiaDigilockerAadhaarMatchFullNameField instantiates a new IndiaDigilockerAadhaarMatchFullNameField object
 This constructor will assign default values to properties that have it defined,
@@ -45,7 +45,22 @@ and a boolean to check if the value has been set.
 
 SetInputValue sets InputValue field to given value.
 
+### HasInputValue
 
+`func (o *IndiaDigilockerAadhaarMatchFullNameField) HasInputValue() bool`
+
+HasInputValue returns a boolean if a field has been set.
+
+### SetInputValueNil
+
+`func (o *IndiaDigilockerAadhaarMatchFullNameField) SetInputValueNil(b bool)`
+
+ SetInputValueNil sets the value for InputValue to be an explicit nil
+
+### UnsetInputValue
+`func (o *IndiaDigilockerAadhaarMatchFullNameField) UnsetInputValue()`
+
+UnsetInputValue ensures that no value is present for InputValue, not even an explicit nil
 ### GetOutcome
 
 `func (o *IndiaDigilockerAadhaarMatchFullNameField) GetOutcome() float64`
@@ -65,7 +80,22 @@ and a boolean to check if the value has been set.
 
 SetOutcome sets Outcome field to given value.
 
+### HasOutcome
 
+`func (o *IndiaDigilockerAadhaarMatchFullNameField) HasOutcome() bool`
+
+HasOutcome returns a boolean if a field has been set.
+
+### SetOutcomeNil
+
+`func (o *IndiaDigilockerAadhaarMatchFullNameField) SetOutcomeNil(b bool)`
+
+ SetOutcomeNil sets the value for Outcome to be an explicit nil
+
+### UnsetOutcome
+`func (o *IndiaDigilockerAadhaarMatchFullNameField) UnsetOutcome()`
+
+UnsetOutcome ensures that no value is present for Outcome, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

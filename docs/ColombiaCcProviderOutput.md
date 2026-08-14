@@ -4,22 +4,22 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**FullName** | **string** | Full name as it appears on the CC. | 
-**GivenName** | **string** | Given name(s) of the holder as they appear on the CC. | 
-**FamilyName** | **string** | Family name(s) of the holder as they appear on the CC. Space-separated when both paternal and maternal family names are present. | 
-**DateOfBirth** | **string** | Date of birth as recorded in the civil registry (Registraduría Nacional). | 
-**Sex** | **string** | Sex of the holder as recorded in the civil registry (Registraduría Nacional).              Possible values: - Male - Female - Unknown (when the sex is not recorded or cannot be confidently determined) | 
-**IsAlive** | **bool** | Whether the person is reported as alive in Colombia&#39;s official civil registry (Registraduría Nacional).              Used to detect identity fraud when the holder is deceased. | 
-**DocumentNumber** | **string** | The Cédula de Ciudadanía (CC) document number.              This is the unique identifier assigned by the Registraduría Nacional when the person is first issued a CC. It does not change when the person renews or receives a new physical card; it remains the same for the individual for life.              Cédulas issued after 2004 use the NUIP (Número Único de Identificación Personal), which is 10 digits. Older documents may have fewer than 10 digits and are still valid. | 
-**ExpeditionDate** | **string** | Date the CC was issued (fecha de expedición).              Format: - yyyy-MM-dd | 
-**ExpeditionPlace** | [**ColombiaExpeditionPlace**](ColombiaExpeditionPlace.md) | Place where the CC was issued (lugar de expedición): municipality and department as recorded by the Registraduría Nacional. | 
-**ArrayName** | **[]string** | All names as they appear on the CC, as an array of strings.              Format: - Order follows the civil registry: typically family name(s) first, then given name(s). | 
+**FullName** | Pointer to **NullableString** | Full name as it appears on the CC. | [optional] 
+**GivenName** | Pointer to **NullableString** | Given name(s) of the holder as they appear on the CC. | [optional] 
+**FamilyName** | Pointer to **NullableString** | Family name(s) of the holder as they appear on the CC. Space-separated when both paternal and maternal family names are present. | [optional] 
+**DateOfBirth** | Pointer to **NullableString** | Date of birth as recorded in the civil registry (Registraduría Nacional). | [optional] 
+**Sex** | Pointer to **NullableString** | Sex of the holder as recorded in the civil registry (Registraduría Nacional).              Possible values: - Male - Female - Unknown (when the sex is not recorded or cannot be confidently determined) | [optional] 
+**IsAlive** | Pointer to **NullableBool** | Whether the person is reported as alive in Colombia&#39;s official civil registry (Registraduría Nacional).              Used to detect identity fraud when the holder is deceased. | [optional] 
+**DocumentNumber** | Pointer to **NullableString** | The Cédula de Ciudadanía (CC) document number.              This is the unique identifier assigned by the Registraduría Nacional when the person is first issued a CC. It does not change when the person renews or receives a new physical card; it remains the same for the individual for life.              Cédulas issued after 2004 use the NUIP (Número Único de Identificación Personal), which is 10 digits. Older documents may have fewer than 10 digits and are still valid. | [optional] 
+**ExpeditionDate** | Pointer to **NullableString** | Date the CC was issued (fecha de expedición).              Format: - yyyy-MM-dd | [optional] 
+**ExpeditionPlace** | Pointer to [**NullableColombiaExpeditionPlace**](ColombiaExpeditionPlace.md) | Place where the CC was issued (lugar de expedición): municipality and department as recorded by the Registraduría Nacional. | [optional] 
+**ArrayName** | Pointer to **[]string** | All names as they appear on the CC, as an array of strings.              Format: - Order follows the civil registry: typically family name(s) first, then given name(s). | [optional] 
 
 ## Methods
 
 ### NewColombiaCcProviderOutput
 
-`func NewColombiaCcProviderOutput(fullName string, givenName string, familyName string, dateOfBirth string, sex string, isAlive bool, documentNumber string, expeditionDate string, expeditionPlace ColombiaExpeditionPlace, arrayName []string, ) *ColombiaCcProviderOutput`
+`func NewColombiaCcProviderOutput() *ColombiaCcProviderOutput`
 
 NewColombiaCcProviderOutput instantiates a new ColombiaCcProviderOutput object
 This constructor will assign default values to properties that have it defined,
@@ -53,7 +53,22 @@ and a boolean to check if the value has been set.
 
 SetFullName sets FullName field to given value.
 
+### HasFullName
 
+`func (o *ColombiaCcProviderOutput) HasFullName() bool`
+
+HasFullName returns a boolean if a field has been set.
+
+### SetFullNameNil
+
+`func (o *ColombiaCcProviderOutput) SetFullNameNil(b bool)`
+
+ SetFullNameNil sets the value for FullName to be an explicit nil
+
+### UnsetFullName
+`func (o *ColombiaCcProviderOutput) UnsetFullName()`
+
+UnsetFullName ensures that no value is present for FullName, not even an explicit nil
 ### GetGivenName
 
 `func (o *ColombiaCcProviderOutput) GetGivenName() string`
@@ -73,7 +88,22 @@ and a boolean to check if the value has been set.
 
 SetGivenName sets GivenName field to given value.
 
+### HasGivenName
 
+`func (o *ColombiaCcProviderOutput) HasGivenName() bool`
+
+HasGivenName returns a boolean if a field has been set.
+
+### SetGivenNameNil
+
+`func (o *ColombiaCcProviderOutput) SetGivenNameNil(b bool)`
+
+ SetGivenNameNil sets the value for GivenName to be an explicit nil
+
+### UnsetGivenName
+`func (o *ColombiaCcProviderOutput) UnsetGivenName()`
+
+UnsetGivenName ensures that no value is present for GivenName, not even an explicit nil
 ### GetFamilyName
 
 `func (o *ColombiaCcProviderOutput) GetFamilyName() string`
@@ -93,7 +123,22 @@ and a boolean to check if the value has been set.
 
 SetFamilyName sets FamilyName field to given value.
 
+### HasFamilyName
 
+`func (o *ColombiaCcProviderOutput) HasFamilyName() bool`
+
+HasFamilyName returns a boolean if a field has been set.
+
+### SetFamilyNameNil
+
+`func (o *ColombiaCcProviderOutput) SetFamilyNameNil(b bool)`
+
+ SetFamilyNameNil sets the value for FamilyName to be an explicit nil
+
+### UnsetFamilyName
+`func (o *ColombiaCcProviderOutput) UnsetFamilyName()`
+
+UnsetFamilyName ensures that no value is present for FamilyName, not even an explicit nil
 ### GetDateOfBirth
 
 `func (o *ColombiaCcProviderOutput) GetDateOfBirth() string`
@@ -113,7 +158,22 @@ and a boolean to check if the value has been set.
 
 SetDateOfBirth sets DateOfBirth field to given value.
 
+### HasDateOfBirth
 
+`func (o *ColombiaCcProviderOutput) HasDateOfBirth() bool`
+
+HasDateOfBirth returns a boolean if a field has been set.
+
+### SetDateOfBirthNil
+
+`func (o *ColombiaCcProviderOutput) SetDateOfBirthNil(b bool)`
+
+ SetDateOfBirthNil sets the value for DateOfBirth to be an explicit nil
+
+### UnsetDateOfBirth
+`func (o *ColombiaCcProviderOutput) UnsetDateOfBirth()`
+
+UnsetDateOfBirth ensures that no value is present for DateOfBirth, not even an explicit nil
 ### GetSex
 
 `func (o *ColombiaCcProviderOutput) GetSex() string`
@@ -133,7 +193,22 @@ and a boolean to check if the value has been set.
 
 SetSex sets Sex field to given value.
 
+### HasSex
 
+`func (o *ColombiaCcProviderOutput) HasSex() bool`
+
+HasSex returns a boolean if a field has been set.
+
+### SetSexNil
+
+`func (o *ColombiaCcProviderOutput) SetSexNil(b bool)`
+
+ SetSexNil sets the value for Sex to be an explicit nil
+
+### UnsetSex
+`func (o *ColombiaCcProviderOutput) UnsetSex()`
+
+UnsetSex ensures that no value is present for Sex, not even an explicit nil
 ### GetIsAlive
 
 `func (o *ColombiaCcProviderOutput) GetIsAlive() bool`
@@ -153,7 +228,22 @@ and a boolean to check if the value has been set.
 
 SetIsAlive sets IsAlive field to given value.
 
+### HasIsAlive
 
+`func (o *ColombiaCcProviderOutput) HasIsAlive() bool`
+
+HasIsAlive returns a boolean if a field has been set.
+
+### SetIsAliveNil
+
+`func (o *ColombiaCcProviderOutput) SetIsAliveNil(b bool)`
+
+ SetIsAliveNil sets the value for IsAlive to be an explicit nil
+
+### UnsetIsAlive
+`func (o *ColombiaCcProviderOutput) UnsetIsAlive()`
+
+UnsetIsAlive ensures that no value is present for IsAlive, not even an explicit nil
 ### GetDocumentNumber
 
 `func (o *ColombiaCcProviderOutput) GetDocumentNumber() string`
@@ -173,7 +263,22 @@ and a boolean to check if the value has been set.
 
 SetDocumentNumber sets DocumentNumber field to given value.
 
+### HasDocumentNumber
 
+`func (o *ColombiaCcProviderOutput) HasDocumentNumber() bool`
+
+HasDocumentNumber returns a boolean if a field has been set.
+
+### SetDocumentNumberNil
+
+`func (o *ColombiaCcProviderOutput) SetDocumentNumberNil(b bool)`
+
+ SetDocumentNumberNil sets the value for DocumentNumber to be an explicit nil
+
+### UnsetDocumentNumber
+`func (o *ColombiaCcProviderOutput) UnsetDocumentNumber()`
+
+UnsetDocumentNumber ensures that no value is present for DocumentNumber, not even an explicit nil
 ### GetExpeditionDate
 
 `func (o *ColombiaCcProviderOutput) GetExpeditionDate() string`
@@ -193,7 +298,22 @@ and a boolean to check if the value has been set.
 
 SetExpeditionDate sets ExpeditionDate field to given value.
 
+### HasExpeditionDate
 
+`func (o *ColombiaCcProviderOutput) HasExpeditionDate() bool`
+
+HasExpeditionDate returns a boolean if a field has been set.
+
+### SetExpeditionDateNil
+
+`func (o *ColombiaCcProviderOutput) SetExpeditionDateNil(b bool)`
+
+ SetExpeditionDateNil sets the value for ExpeditionDate to be an explicit nil
+
+### UnsetExpeditionDate
+`func (o *ColombiaCcProviderOutput) UnsetExpeditionDate()`
+
+UnsetExpeditionDate ensures that no value is present for ExpeditionDate, not even an explicit nil
 ### GetExpeditionPlace
 
 `func (o *ColombiaCcProviderOutput) GetExpeditionPlace() ColombiaExpeditionPlace`
@@ -213,7 +333,22 @@ and a boolean to check if the value has been set.
 
 SetExpeditionPlace sets ExpeditionPlace field to given value.
 
+### HasExpeditionPlace
 
+`func (o *ColombiaCcProviderOutput) HasExpeditionPlace() bool`
+
+HasExpeditionPlace returns a boolean if a field has been set.
+
+### SetExpeditionPlaceNil
+
+`func (o *ColombiaCcProviderOutput) SetExpeditionPlaceNil(b bool)`
+
+ SetExpeditionPlaceNil sets the value for ExpeditionPlace to be an explicit nil
+
+### UnsetExpeditionPlace
+`func (o *ColombiaCcProviderOutput) UnsetExpeditionPlace()`
+
+UnsetExpeditionPlace ensures that no value is present for ExpeditionPlace, not even an explicit nil
 ### GetArrayName
 
 `func (o *ColombiaCcProviderOutput) GetArrayName() []string`
@@ -233,7 +368,22 @@ and a boolean to check if the value has been set.
 
 SetArrayName sets ArrayName field to given value.
 
+### HasArrayName
 
+`func (o *ColombiaCcProviderOutput) HasArrayName() bool`
+
+HasArrayName returns a boolean if a field has been set.
+
+### SetArrayNameNil
+
+`func (o *ColombiaCcProviderOutput) SetArrayNameNil(b bool)`
+
+ SetArrayNameNil sets the value for ArrayName to be an explicit nil
+
+### UnsetArrayName
+`func (o *ColombiaCcProviderOutput) UnsetArrayName()`
+
+UnsetArrayName ensures that no value is present for ArrayName, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -13,7 +13,6 @@ package trinsic_api
 import (
 	"encoding/json"
 	"time"
-	"fmt"
 )
 
 // checks if the MdlOutputCertificateData type satisfies the MappedNullable interface at compile time
@@ -22,15 +21,17 @@ var _ MappedNullable = &MdlOutputCertificateData{}
 // MdlOutputCertificateData struct for MdlOutputCertificateData
 type MdlOutputCertificateData struct {
 	// The serial number of the certificate
-	SerialNumber string `json:"serialNumber"`
+	SerialNumber NullableString `json:"serialNumber,omitempty"`
 	// The common name (CN) of the certificate
-	CommonName string `json:"commonName"`
-	// The stateOrProvinceName field from the signing certificate.              Per the ISO 18013-5 (mDL) spec, this is an ISO 3166-2:2020 country subdivision code (e.g., \"US-CA\" for California, USA).              May be an empty string for certificates which are not state-specific (e.g., Google Wallet's ID Pass certificates).
-	StateOrProvinceName string `json:"stateOrProvinceName"`
+	CommonName NullableString `json:"commonName,omitempty"`
+	// The stateOrProvinceName field from the certificate
+	StateOrProvinceName NullableString `json:"stateOrProvinceName,omitempty"`
+	// The countryCode field from the certificate
+	CountryCode NullableString `json:"countryCode,omitempty"`
 	// The date before which this certificate is not valid.
-	NotBefore time.Time `json:"notBefore"`
+	NotBefore NullableTime `json:"notBefore,omitempty"`
 	// The date after which this certificate is not valid.
-	NotAfter time.Time `json:"notAfter"`
+	NotAfter NullableTime `json:"notAfter,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -40,13 +41,8 @@ type _MdlOutputCertificateData MdlOutputCertificateData
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMdlOutputCertificateData(serialNumber string, commonName string, stateOrProvinceName string, notBefore time.Time, notAfter time.Time) *MdlOutputCertificateData {
+func NewMdlOutputCertificateData() *MdlOutputCertificateData {
 	this := MdlOutputCertificateData{}
-	this.SerialNumber = serialNumber
-	this.CommonName = commonName
-	this.StateOrProvinceName = stateOrProvinceName
-	this.NotBefore = notBefore
-	this.NotAfter = notAfter
 	return &this
 }
 
@@ -58,124 +54,256 @@ func NewMdlOutputCertificateDataWithDefaults() *MdlOutputCertificateData {
 	return &this
 }
 
-// GetSerialNumber returns the SerialNumber field value
+// GetSerialNumber returns the SerialNumber field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MdlOutputCertificateData) GetSerialNumber() string {
-	if o == nil {
+	if o == nil || IsNil(o.SerialNumber.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.SerialNumber
+	return *o.SerialNumber.Get()
 }
 
-// GetSerialNumberOk returns a tuple with the SerialNumber field value
+// GetSerialNumberOk returns a tuple with the SerialNumber field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *MdlOutputCertificateData) GetSerialNumberOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.SerialNumber, true
+	return o.SerialNumber.Get(), o.SerialNumber.IsSet()
 }
 
-// SetSerialNumber sets field value
+// HasSerialNumber returns a boolean if a field has been set.
+func (o *MdlOutputCertificateData) HasSerialNumber() bool {
+	if o != nil && o.SerialNumber.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSerialNumber gets a reference to the given NullableString and assigns it to the SerialNumber field.
 func (o *MdlOutputCertificateData) SetSerialNumber(v string) {
-	o.SerialNumber = v
+	o.SerialNumber.Set(&v)
+}
+// SetSerialNumberNil sets the value for SerialNumber to be an explicit nil
+func (o *MdlOutputCertificateData) SetSerialNumberNil() {
+	o.SerialNumber.Set(nil)
 }
 
-// GetCommonName returns the CommonName field value
+// UnsetSerialNumber ensures that no value is present for SerialNumber, not even an explicit nil
+func (o *MdlOutputCertificateData) UnsetSerialNumber() {
+	o.SerialNumber.Unset()
+}
+
+// GetCommonName returns the CommonName field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MdlOutputCertificateData) GetCommonName() string {
-	if o == nil {
+	if o == nil || IsNil(o.CommonName.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.CommonName
+	return *o.CommonName.Get()
 }
 
-// GetCommonNameOk returns a tuple with the CommonName field value
+// GetCommonNameOk returns a tuple with the CommonName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *MdlOutputCertificateData) GetCommonNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.CommonName, true
+	return o.CommonName.Get(), o.CommonName.IsSet()
 }
 
-// SetCommonName sets field value
+// HasCommonName returns a boolean if a field has been set.
+func (o *MdlOutputCertificateData) HasCommonName() bool {
+	if o != nil && o.CommonName.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCommonName gets a reference to the given NullableString and assigns it to the CommonName field.
 func (o *MdlOutputCertificateData) SetCommonName(v string) {
-	o.CommonName = v
+	o.CommonName.Set(&v)
+}
+// SetCommonNameNil sets the value for CommonName to be an explicit nil
+func (o *MdlOutputCertificateData) SetCommonNameNil() {
+	o.CommonName.Set(nil)
 }
 
-// GetStateOrProvinceName returns the StateOrProvinceName field value
+// UnsetCommonName ensures that no value is present for CommonName, not even an explicit nil
+func (o *MdlOutputCertificateData) UnsetCommonName() {
+	o.CommonName.Unset()
+}
+
+// GetStateOrProvinceName returns the StateOrProvinceName field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MdlOutputCertificateData) GetStateOrProvinceName() string {
-	if o == nil {
+	if o == nil || IsNil(o.StateOrProvinceName.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.StateOrProvinceName
+	return *o.StateOrProvinceName.Get()
 }
 
-// GetStateOrProvinceNameOk returns a tuple with the StateOrProvinceName field value
+// GetStateOrProvinceNameOk returns a tuple with the StateOrProvinceName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *MdlOutputCertificateData) GetStateOrProvinceNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.StateOrProvinceName, true
+	return o.StateOrProvinceName.Get(), o.StateOrProvinceName.IsSet()
 }
 
-// SetStateOrProvinceName sets field value
+// HasStateOrProvinceName returns a boolean if a field has been set.
+func (o *MdlOutputCertificateData) HasStateOrProvinceName() bool {
+	if o != nil && o.StateOrProvinceName.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetStateOrProvinceName gets a reference to the given NullableString and assigns it to the StateOrProvinceName field.
 func (o *MdlOutputCertificateData) SetStateOrProvinceName(v string) {
-	o.StateOrProvinceName = v
+	o.StateOrProvinceName.Set(&v)
+}
+// SetStateOrProvinceNameNil sets the value for StateOrProvinceName to be an explicit nil
+func (o *MdlOutputCertificateData) SetStateOrProvinceNameNil() {
+	o.StateOrProvinceName.Set(nil)
 }
 
-// GetNotBefore returns the NotBefore field value
-func (o *MdlOutputCertificateData) GetNotBefore() time.Time {
+// UnsetStateOrProvinceName ensures that no value is present for StateOrProvinceName, not even an explicit nil
+func (o *MdlOutputCertificateData) UnsetStateOrProvinceName() {
+	o.StateOrProvinceName.Unset()
+}
+
+// GetCountryCode returns the CountryCode field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MdlOutputCertificateData) GetCountryCode() string {
+	if o == nil || IsNil(o.CountryCode.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.CountryCode.Get()
+}
+
+// GetCountryCodeOk returns a tuple with the CountryCode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MdlOutputCertificateData) GetCountryCodeOk() (*string, bool) {
 	if o == nil {
+		return nil, false
+	}
+	return o.CountryCode.Get(), o.CountryCode.IsSet()
+}
+
+// HasCountryCode returns a boolean if a field has been set.
+func (o *MdlOutputCertificateData) HasCountryCode() bool {
+	if o != nil && o.CountryCode.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCountryCode gets a reference to the given NullableString and assigns it to the CountryCode field.
+func (o *MdlOutputCertificateData) SetCountryCode(v string) {
+	o.CountryCode.Set(&v)
+}
+// SetCountryCodeNil sets the value for CountryCode to be an explicit nil
+func (o *MdlOutputCertificateData) SetCountryCodeNil() {
+	o.CountryCode.Set(nil)
+}
+
+// UnsetCountryCode ensures that no value is present for CountryCode, not even an explicit nil
+func (o *MdlOutputCertificateData) UnsetCountryCode() {
+	o.CountryCode.Unset()
+}
+
+// GetNotBefore returns the NotBefore field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MdlOutputCertificateData) GetNotBefore() time.Time {
+	if o == nil || IsNil(o.NotBefore.Get()) {
 		var ret time.Time
 		return ret
 	}
-
-	return o.NotBefore
+	return *o.NotBefore.Get()
 }
 
-// GetNotBeforeOk returns a tuple with the NotBefore field value
+// GetNotBeforeOk returns a tuple with the NotBefore field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *MdlOutputCertificateData) GetNotBeforeOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.NotBefore, true
+	return o.NotBefore.Get(), o.NotBefore.IsSet()
 }
 
-// SetNotBefore sets field value
+// HasNotBefore returns a boolean if a field has been set.
+func (o *MdlOutputCertificateData) HasNotBefore() bool {
+	if o != nil && o.NotBefore.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetNotBefore gets a reference to the given NullableTime and assigns it to the NotBefore field.
 func (o *MdlOutputCertificateData) SetNotBefore(v time.Time) {
-	o.NotBefore = v
+	o.NotBefore.Set(&v)
+}
+// SetNotBeforeNil sets the value for NotBefore to be an explicit nil
+func (o *MdlOutputCertificateData) SetNotBeforeNil() {
+	o.NotBefore.Set(nil)
 }
 
-// GetNotAfter returns the NotAfter field value
+// UnsetNotBefore ensures that no value is present for NotBefore, not even an explicit nil
+func (o *MdlOutputCertificateData) UnsetNotBefore() {
+	o.NotBefore.Unset()
+}
+
+// GetNotAfter returns the NotAfter field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MdlOutputCertificateData) GetNotAfter() time.Time {
-	if o == nil {
+	if o == nil || IsNil(o.NotAfter.Get()) {
 		var ret time.Time
 		return ret
 	}
-
-	return o.NotAfter
+	return *o.NotAfter.Get()
 }
 
-// GetNotAfterOk returns a tuple with the NotAfter field value
+// GetNotAfterOk returns a tuple with the NotAfter field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *MdlOutputCertificateData) GetNotAfterOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.NotAfter, true
+	return o.NotAfter.Get(), o.NotAfter.IsSet()
 }
 
-// SetNotAfter sets field value
+// HasNotAfter returns a boolean if a field has been set.
+func (o *MdlOutputCertificateData) HasNotAfter() bool {
+	if o != nil && o.NotAfter.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetNotAfter gets a reference to the given NullableTime and assigns it to the NotAfter field.
 func (o *MdlOutputCertificateData) SetNotAfter(v time.Time) {
-	o.NotAfter = v
+	o.NotAfter.Set(&v)
+}
+// SetNotAfterNil sets the value for NotAfter to be an explicit nil
+func (o *MdlOutputCertificateData) SetNotAfterNil() {
+	o.NotAfter.Set(nil)
+}
+
+// UnsetNotAfter ensures that no value is present for NotAfter, not even an explicit nil
+func (o *MdlOutputCertificateData) UnsetNotAfter() {
+	o.NotAfter.Unset()
 }
 
 func (o MdlOutputCertificateData) MarshalJSON() ([]byte, error) {
@@ -188,11 +316,24 @@ func (o MdlOutputCertificateData) MarshalJSON() ([]byte, error) {
 
 func (o MdlOutputCertificateData) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["serialNumber"] = o.SerialNumber
-	toSerialize["commonName"] = o.CommonName
-	toSerialize["stateOrProvinceName"] = o.StateOrProvinceName
-	toSerialize["notBefore"] = o.NotBefore
-	toSerialize["notAfter"] = o.NotAfter
+	if o.SerialNumber.IsSet() {
+		toSerialize["serialNumber"] = o.SerialNumber.Get()
+	}
+	if o.CommonName.IsSet() {
+		toSerialize["commonName"] = o.CommonName.Get()
+	}
+	if o.StateOrProvinceName.IsSet() {
+		toSerialize["stateOrProvinceName"] = o.StateOrProvinceName.Get()
+	}
+	if o.CountryCode.IsSet() {
+		toSerialize["countryCode"] = o.CountryCode.Get()
+	}
+	if o.NotBefore.IsSet() {
+		toSerialize["notBefore"] = o.NotBefore.Get()
+	}
+	if o.NotAfter.IsSet() {
+		toSerialize["notAfter"] = o.NotAfter.Get()
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -202,31 +343,6 @@ func (o MdlOutputCertificateData) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *MdlOutputCertificateData) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"serialNumber",
-		"commonName",
-		"stateOrProvinceName",
-		"notBefore",
-		"notAfter",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varMdlOutputCertificateData := _MdlOutputCertificateData{}
 
 	err = json.Unmarshal(data, &varMdlOutputCertificateData)
@@ -243,6 +359,7 @@ func (o *MdlOutputCertificateData) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "serialNumber")
 		delete(additionalProperties, "commonName")
 		delete(additionalProperties, "stateOrProvinceName")
+		delete(additionalProperties, "countryCode")
 		delete(additionalProperties, "notBefore")
 		delete(additionalProperties, "notAfter")
 		o.AdditionalProperties = additionalProperties

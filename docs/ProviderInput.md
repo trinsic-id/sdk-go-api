@@ -4,8 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**TrinsicMockOutput** | Pointer to [**NullableMockOutputProviderInput**](MockOutputProviderInput.md) | *TEST MODE ONLY.*              Input for the &#x60;trinsic-mock-output&#x60; provider. | [optional] 
 **IndonesiaNikLookup** | Pointer to [**NullableIndonesiaNikInput**](IndonesiaNikInput.md) | Input for the &#x60;indonesia-nik-lookup&#x60; provider | [optional] 
 **ChinaResidentIdMatch** | Pointer to [**NullableChinaResidentIdMatchInput**](ChinaResidentIdMatchInput.md) | Input for the &#x60;china-resident-id-match&#x60; provider | [optional] 
+**Evrotrust** | Pointer to [**NullableEvrotrustInput**](EvrotrustInput.md) | Input for the &#x60;evrotrust&#x60; provider | [optional] 
 **IndonesiaDukcapilMatch** | Pointer to [**NullableIndonesiaDukcapilMatchInput**](IndonesiaDukcapilMatchInput.md) | Input for the &#x60;indonesia-dukcapil-match&#x60; provider | [optional] 
 **MexicoCurpLookup** | Pointer to [**NullableMexicoCurpInput**](MexicoCurpInput.md) | Input for the &#x60;mexico-curp-lookup&#x60; provider | [optional] 
 **SouthAfricaNidLookup** | Pointer to [**NullableSouthAfricaNidInput**](SouthAfricaNidInput.md) | Input for the &#x60;south-africa-nid-lookup&#x60; provider | [optional] 
@@ -15,6 +17,8 @@ Name | Type | Description | Notes
 **SouthAfricaNidLookup2** | Pointer to [**NullableSouthAfricaNidLookup2Input**](SouthAfricaNidLookup2Input.md) | Input for the &#x60;south-africa-nid-lookup-2&#x60; provider | [optional] 
 **SouthAfricaNidMatch2** | Pointer to [**NullableSouthAfricaNidMatch2Input**](SouthAfricaNidMatch2Input.md) | Input for the &#x60;south-africa-nid-match-2&#x60; provider | [optional] 
 **NigeriaNinLookup2** | Pointer to [**NullableNigeriaNinLookup2Input**](NigeriaNinLookup2Input.md) | Input for the &#x60;nigeria-nin-lookup-2&#x60; provider | [optional] 
+**NigeriaNinLookup3** | Pointer to [**NullableNigeriaNinLookup3Input**](NigeriaNinLookup3Input.md) | Input for the &#x60;nigeria-nin-lookup-3&#x60; provider | [optional] 
+**KenyaNidLookup3** | Pointer to [**NullableKenyaNidLookup3Input**](KenyaNidLookup3Input.md) | Input for the &#x60;kenya-nid-lookup-3&#x60; provider | [optional] 
 **CoteDivoireNidLookup2** | Pointer to [**NullableCoteDIvoireNidLookup2Input**](CoteDIvoireNidLookup2Input.md) | Input for the &#x60;cote-divoire-nid-lookup-2&#x60; provider | [optional] 
 **ZimbabweNidLookup2** | Pointer to [**NullableZimbabweNidLookup2Input**](ZimbabweNidLookup2Input.md) | Input for the &#x60;zimbabwe-nid-lookup-2&#x60; provider | [optional] 
 **NigeriaNinMatch2** | Pointer to [**NullableNigeriaNinMatch2Input**](NigeriaNinMatch2Input.md) | Input for the &#x60;nigeria-nin-match-2&#x60; provider | [optional] 
@@ -36,6 +40,11 @@ Name | Type | Description | Notes
 **AppleWallet** | Pointer to [**NullableAppleWalletInput**](AppleWalletInput.md) | Input for the &#x60;apple-wallet&#x60; provider | [optional] 
 **SamsungWallet** | Pointer to [**NullableSamsungWalletInput**](SamsungWalletInput.md) | Input for the &#x60;samsung-wallet&#x60; provider | [optional] 
 **FranceIdentite** | Pointer to [**NullableFranceIdentiteInput**](FranceIdentiteInput.md) | Input for the &#x60;france-identite&#x60; provider | [optional] 
+**MoldovaEvoWallet** | Pointer to [**NullableMoldovaEvoWalletInput**](MoldovaEvoWalletInput.md) | Input for the &#x60;moldova-evo-wallet&#x60; provider | [optional] 
+**GermanyEudiSandbox** | Pointer to [**NullableGermanyEudiSandboxInput**](GermanyEudiSandboxInput.md) |  | [optional] 
+**DenmarkAltid** | Pointer to [**NullableDenmarkAltIdInput**](DenmarkAltIdInput.md) |  | [optional] 
+**AustriaValeraEudiSandbox** | Pointer to [**NullableAustriaValeraEudiSandboxInput**](AustriaValeraEudiSandboxInput.md) |  | [optional] 
+**NetherlandsEudiSandbox** | Pointer to [**NullableNetherlandsEudiSandboxInput**](NetherlandsEudiSandboxInput.md) | Input for the &#x60;netherlands-eudi-sandbox&#x60; provider | [optional] 
 **PolandMobywatelMatch** | Pointer to [**NullablePolandMobywatelMatchInput**](PolandMobywatelMatchInput.md) | Input for the &#x60;poland-mobywatel-match&#x60; provider | [optional] 
 **BoliviaCiLookup** | Pointer to [**NullableBoliviaCiLookupInput**](BoliviaCiLookupInput.md) | Input for the &#x60;bolivia-ci-lookup&#x60; provider | [optional] 
 **ColombiaCcLookup** | Pointer to [**NullableColombiaCcLookupInput**](ColombiaCcLookupInput.md) | Input for the &#x60;colombia-cc-lookup&#x60; provider | [optional] 
@@ -67,6 +76,41 @@ NewProviderInputWithDefaults instantiates a new ProviderInput object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
+### GetTrinsicMockOutput
+
+`func (o *ProviderInput) GetTrinsicMockOutput() MockOutputProviderInput`
+
+GetTrinsicMockOutput returns the TrinsicMockOutput field if non-nil, zero value otherwise.
+
+### GetTrinsicMockOutputOk
+
+`func (o *ProviderInput) GetTrinsicMockOutputOk() (*MockOutputProviderInput, bool)`
+
+GetTrinsicMockOutputOk returns a tuple with the TrinsicMockOutput field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTrinsicMockOutput
+
+`func (o *ProviderInput) SetTrinsicMockOutput(v MockOutputProviderInput)`
+
+SetTrinsicMockOutput sets TrinsicMockOutput field to given value.
+
+### HasTrinsicMockOutput
+
+`func (o *ProviderInput) HasTrinsicMockOutput() bool`
+
+HasTrinsicMockOutput returns a boolean if a field has been set.
+
+### SetTrinsicMockOutputNil
+
+`func (o *ProviderInput) SetTrinsicMockOutputNil(b bool)`
+
+ SetTrinsicMockOutputNil sets the value for TrinsicMockOutput to be an explicit nil
+
+### UnsetTrinsicMockOutput
+`func (o *ProviderInput) UnsetTrinsicMockOutput()`
+
+UnsetTrinsicMockOutput ensures that no value is present for TrinsicMockOutput, not even an explicit nil
 ### GetIndonesiaNikLookup
 
 `func (o *ProviderInput) GetIndonesiaNikLookup() IndonesiaNikInput`
@@ -137,6 +181,41 @@ HasChinaResidentIdMatch returns a boolean if a field has been set.
 `func (o *ProviderInput) UnsetChinaResidentIdMatch()`
 
 UnsetChinaResidentIdMatch ensures that no value is present for ChinaResidentIdMatch, not even an explicit nil
+### GetEvrotrust
+
+`func (o *ProviderInput) GetEvrotrust() EvrotrustInput`
+
+GetEvrotrust returns the Evrotrust field if non-nil, zero value otherwise.
+
+### GetEvrotrustOk
+
+`func (o *ProviderInput) GetEvrotrustOk() (*EvrotrustInput, bool)`
+
+GetEvrotrustOk returns a tuple with the Evrotrust field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEvrotrust
+
+`func (o *ProviderInput) SetEvrotrust(v EvrotrustInput)`
+
+SetEvrotrust sets Evrotrust field to given value.
+
+### HasEvrotrust
+
+`func (o *ProviderInput) HasEvrotrust() bool`
+
+HasEvrotrust returns a boolean if a field has been set.
+
+### SetEvrotrustNil
+
+`func (o *ProviderInput) SetEvrotrustNil(b bool)`
+
+ SetEvrotrustNil sets the value for Evrotrust to be an explicit nil
+
+### UnsetEvrotrust
+`func (o *ProviderInput) UnsetEvrotrust()`
+
+UnsetEvrotrust ensures that no value is present for Evrotrust, not even an explicit nil
 ### GetIndonesiaDukcapilMatch
 
 `func (o *ProviderInput) GetIndonesiaDukcapilMatch() IndonesiaDukcapilMatchInput`
@@ -452,6 +531,76 @@ HasNigeriaNinLookup2 returns a boolean if a field has been set.
 `func (o *ProviderInput) UnsetNigeriaNinLookup2()`
 
 UnsetNigeriaNinLookup2 ensures that no value is present for NigeriaNinLookup2, not even an explicit nil
+### GetNigeriaNinLookup3
+
+`func (o *ProviderInput) GetNigeriaNinLookup3() NigeriaNinLookup3Input`
+
+GetNigeriaNinLookup3 returns the NigeriaNinLookup3 field if non-nil, zero value otherwise.
+
+### GetNigeriaNinLookup3Ok
+
+`func (o *ProviderInput) GetNigeriaNinLookup3Ok() (*NigeriaNinLookup3Input, bool)`
+
+GetNigeriaNinLookup3Ok returns a tuple with the NigeriaNinLookup3 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNigeriaNinLookup3
+
+`func (o *ProviderInput) SetNigeriaNinLookup3(v NigeriaNinLookup3Input)`
+
+SetNigeriaNinLookup3 sets NigeriaNinLookup3 field to given value.
+
+### HasNigeriaNinLookup3
+
+`func (o *ProviderInput) HasNigeriaNinLookup3() bool`
+
+HasNigeriaNinLookup3 returns a boolean if a field has been set.
+
+### SetNigeriaNinLookup3Nil
+
+`func (o *ProviderInput) SetNigeriaNinLookup3Nil(b bool)`
+
+ SetNigeriaNinLookup3Nil sets the value for NigeriaNinLookup3 to be an explicit nil
+
+### UnsetNigeriaNinLookup3
+`func (o *ProviderInput) UnsetNigeriaNinLookup3()`
+
+UnsetNigeriaNinLookup3 ensures that no value is present for NigeriaNinLookup3, not even an explicit nil
+### GetKenyaNidLookup3
+
+`func (o *ProviderInput) GetKenyaNidLookup3() KenyaNidLookup3Input`
+
+GetKenyaNidLookup3 returns the KenyaNidLookup3 field if non-nil, zero value otherwise.
+
+### GetKenyaNidLookup3Ok
+
+`func (o *ProviderInput) GetKenyaNidLookup3Ok() (*KenyaNidLookup3Input, bool)`
+
+GetKenyaNidLookup3Ok returns a tuple with the KenyaNidLookup3 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKenyaNidLookup3
+
+`func (o *ProviderInput) SetKenyaNidLookup3(v KenyaNidLookup3Input)`
+
+SetKenyaNidLookup3 sets KenyaNidLookup3 field to given value.
+
+### HasKenyaNidLookup3
+
+`func (o *ProviderInput) HasKenyaNidLookup3() bool`
+
+HasKenyaNidLookup3 returns a boolean if a field has been set.
+
+### SetKenyaNidLookup3Nil
+
+`func (o *ProviderInput) SetKenyaNidLookup3Nil(b bool)`
+
+ SetKenyaNidLookup3Nil sets the value for KenyaNidLookup3 to be an explicit nil
+
+### UnsetKenyaNidLookup3
+`func (o *ProviderInput) UnsetKenyaNidLookup3()`
+
+UnsetKenyaNidLookup3 ensures that no value is present for KenyaNidLookup3, not even an explicit nil
 ### GetCoteDivoireNidLookup2
 
 `func (o *ProviderInput) GetCoteDivoireNidLookup2() CoteDIvoireNidLookup2Input`
@@ -1187,6 +1336,181 @@ HasFranceIdentite returns a boolean if a field has been set.
 `func (o *ProviderInput) UnsetFranceIdentite()`
 
 UnsetFranceIdentite ensures that no value is present for FranceIdentite, not even an explicit nil
+### GetMoldovaEvoWallet
+
+`func (o *ProviderInput) GetMoldovaEvoWallet() MoldovaEvoWalletInput`
+
+GetMoldovaEvoWallet returns the MoldovaEvoWallet field if non-nil, zero value otherwise.
+
+### GetMoldovaEvoWalletOk
+
+`func (o *ProviderInput) GetMoldovaEvoWalletOk() (*MoldovaEvoWalletInput, bool)`
+
+GetMoldovaEvoWalletOk returns a tuple with the MoldovaEvoWallet field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMoldovaEvoWallet
+
+`func (o *ProviderInput) SetMoldovaEvoWallet(v MoldovaEvoWalletInput)`
+
+SetMoldovaEvoWallet sets MoldovaEvoWallet field to given value.
+
+### HasMoldovaEvoWallet
+
+`func (o *ProviderInput) HasMoldovaEvoWallet() bool`
+
+HasMoldovaEvoWallet returns a boolean if a field has been set.
+
+### SetMoldovaEvoWalletNil
+
+`func (o *ProviderInput) SetMoldovaEvoWalletNil(b bool)`
+
+ SetMoldovaEvoWalletNil sets the value for MoldovaEvoWallet to be an explicit nil
+
+### UnsetMoldovaEvoWallet
+`func (o *ProviderInput) UnsetMoldovaEvoWallet()`
+
+UnsetMoldovaEvoWallet ensures that no value is present for MoldovaEvoWallet, not even an explicit nil
+### GetGermanyEudiSandbox
+
+`func (o *ProviderInput) GetGermanyEudiSandbox() GermanyEudiSandboxInput`
+
+GetGermanyEudiSandbox returns the GermanyEudiSandbox field if non-nil, zero value otherwise.
+
+### GetGermanyEudiSandboxOk
+
+`func (o *ProviderInput) GetGermanyEudiSandboxOk() (*GermanyEudiSandboxInput, bool)`
+
+GetGermanyEudiSandboxOk returns a tuple with the GermanyEudiSandbox field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGermanyEudiSandbox
+
+`func (o *ProviderInput) SetGermanyEudiSandbox(v GermanyEudiSandboxInput)`
+
+SetGermanyEudiSandbox sets GermanyEudiSandbox field to given value.
+
+### HasGermanyEudiSandbox
+
+`func (o *ProviderInput) HasGermanyEudiSandbox() bool`
+
+HasGermanyEudiSandbox returns a boolean if a field has been set.
+
+### SetGermanyEudiSandboxNil
+
+`func (o *ProviderInput) SetGermanyEudiSandboxNil(b bool)`
+
+ SetGermanyEudiSandboxNil sets the value for GermanyEudiSandbox to be an explicit nil
+
+### UnsetGermanyEudiSandbox
+`func (o *ProviderInput) UnsetGermanyEudiSandbox()`
+
+UnsetGermanyEudiSandbox ensures that no value is present for GermanyEudiSandbox, not even an explicit nil
+### GetDenmarkAltid
+
+`func (o *ProviderInput) GetDenmarkAltid() DenmarkAltIdInput`
+
+GetDenmarkAltid returns the DenmarkAltid field if non-nil, zero value otherwise.
+
+### GetDenmarkAltidOk
+
+`func (o *ProviderInput) GetDenmarkAltidOk() (*DenmarkAltIdInput, bool)`
+
+GetDenmarkAltidOk returns a tuple with the DenmarkAltid field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDenmarkAltid
+
+`func (o *ProviderInput) SetDenmarkAltid(v DenmarkAltIdInput)`
+
+SetDenmarkAltid sets DenmarkAltid field to given value.
+
+### HasDenmarkAltid
+
+`func (o *ProviderInput) HasDenmarkAltid() bool`
+
+HasDenmarkAltid returns a boolean if a field has been set.
+
+### SetDenmarkAltidNil
+
+`func (o *ProviderInput) SetDenmarkAltidNil(b bool)`
+
+ SetDenmarkAltidNil sets the value for DenmarkAltid to be an explicit nil
+
+### UnsetDenmarkAltid
+`func (o *ProviderInput) UnsetDenmarkAltid()`
+
+UnsetDenmarkAltid ensures that no value is present for DenmarkAltid, not even an explicit nil
+### GetAustriaValeraEudiSandbox
+
+`func (o *ProviderInput) GetAustriaValeraEudiSandbox() AustriaValeraEudiSandboxInput`
+
+GetAustriaValeraEudiSandbox returns the AustriaValeraEudiSandbox field if non-nil, zero value otherwise.
+
+### GetAustriaValeraEudiSandboxOk
+
+`func (o *ProviderInput) GetAustriaValeraEudiSandboxOk() (*AustriaValeraEudiSandboxInput, bool)`
+
+GetAustriaValeraEudiSandboxOk returns a tuple with the AustriaValeraEudiSandbox field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAustriaValeraEudiSandbox
+
+`func (o *ProviderInput) SetAustriaValeraEudiSandbox(v AustriaValeraEudiSandboxInput)`
+
+SetAustriaValeraEudiSandbox sets AustriaValeraEudiSandbox field to given value.
+
+### HasAustriaValeraEudiSandbox
+
+`func (o *ProviderInput) HasAustriaValeraEudiSandbox() bool`
+
+HasAustriaValeraEudiSandbox returns a boolean if a field has been set.
+
+### SetAustriaValeraEudiSandboxNil
+
+`func (o *ProviderInput) SetAustriaValeraEudiSandboxNil(b bool)`
+
+ SetAustriaValeraEudiSandboxNil sets the value for AustriaValeraEudiSandbox to be an explicit nil
+
+### UnsetAustriaValeraEudiSandbox
+`func (o *ProviderInput) UnsetAustriaValeraEudiSandbox()`
+
+UnsetAustriaValeraEudiSandbox ensures that no value is present for AustriaValeraEudiSandbox, not even an explicit nil
+### GetNetherlandsEudiSandbox
+
+`func (o *ProviderInput) GetNetherlandsEudiSandbox() NetherlandsEudiSandboxInput`
+
+GetNetherlandsEudiSandbox returns the NetherlandsEudiSandbox field if non-nil, zero value otherwise.
+
+### GetNetherlandsEudiSandboxOk
+
+`func (o *ProviderInput) GetNetherlandsEudiSandboxOk() (*NetherlandsEudiSandboxInput, bool)`
+
+GetNetherlandsEudiSandboxOk returns a tuple with the NetherlandsEudiSandbox field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNetherlandsEudiSandbox
+
+`func (o *ProviderInput) SetNetherlandsEudiSandbox(v NetherlandsEudiSandboxInput)`
+
+SetNetherlandsEudiSandbox sets NetherlandsEudiSandbox field to given value.
+
+### HasNetherlandsEudiSandbox
+
+`func (o *ProviderInput) HasNetherlandsEudiSandbox() bool`
+
+HasNetherlandsEudiSandbox returns a boolean if a field has been set.
+
+### SetNetherlandsEudiSandboxNil
+
+`func (o *ProviderInput) SetNetherlandsEudiSandboxNil(b bool)`
+
+ SetNetherlandsEudiSandboxNil sets the value for NetherlandsEudiSandbox to be an explicit nil
+
+### UnsetNetherlandsEudiSandbox
+`func (o *ProviderInput) UnsetNetherlandsEudiSandbox()`
+
+UnsetNetherlandsEudiSandbox ensures that no value is present for NetherlandsEudiSandbox, not even an explicit nil
 ### GetPolandMobywatelMatch
 
 `func (o *ProviderInput) GetPolandMobywatelMatch() PolandMobywatelMatchInput`

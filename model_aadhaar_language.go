@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the AadhaarLanguage type satisfies the MappedNullable interface at compile time
@@ -23,7 +22,7 @@ type AadhaarLanguage struct {
 	// The language code for the localized claims.
 	LanguageCode NullableString `json:"languageCode,omitempty"`
 	// The language name for the localized claims.              This is Trinsic mapping the language from the code. The mapping comes from the spec, however, the code may not always reflect with the actual language used in the localized claims. Use this as a reference. Possible values: - Assamese (01) - Bengali (02) - Gujarati (05) - Hindi (06) - Kannada (07) - Malayalam (11) - Manipuri (12) - Marathi (13) - Oriya (15) - Punjabi (16) - Tamil (20) - Telugu (21) - Urdu (22)
-	LanguageName string `json:"languageName"`
+	LanguageName NullableString `json:"languageName,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -33,9 +32,8 @@ type _AadhaarLanguage AadhaarLanguage
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAadhaarLanguage(languageName string) *AadhaarLanguage {
+func NewAadhaarLanguage() *AadhaarLanguage {
 	this := AadhaarLanguage{}
-	this.LanguageName = languageName
 	return &this
 }
 
@@ -89,28 +87,46 @@ func (o *AadhaarLanguage) UnsetLanguageCode() {
 	o.LanguageCode.Unset()
 }
 
-// GetLanguageName returns the LanguageName field value
+// GetLanguageName returns the LanguageName field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AadhaarLanguage) GetLanguageName() string {
-	if o == nil {
+	if o == nil || IsNil(o.LanguageName.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.LanguageName
+	return *o.LanguageName.Get()
 }
 
-// GetLanguageNameOk returns a tuple with the LanguageName field value
+// GetLanguageNameOk returns a tuple with the LanguageName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AadhaarLanguage) GetLanguageNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.LanguageName, true
+	return o.LanguageName.Get(), o.LanguageName.IsSet()
 }
 
-// SetLanguageName sets field value
+// HasLanguageName returns a boolean if a field has been set.
+func (o *AadhaarLanguage) HasLanguageName() bool {
+	if o != nil && o.LanguageName.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetLanguageName gets a reference to the given NullableString and assigns it to the LanguageName field.
 func (o *AadhaarLanguage) SetLanguageName(v string) {
-	o.LanguageName = v
+	o.LanguageName.Set(&v)
+}
+// SetLanguageNameNil sets the value for LanguageName to be an explicit nil
+func (o *AadhaarLanguage) SetLanguageNameNil() {
+	o.LanguageName.Set(nil)
+}
+
+// UnsetLanguageName ensures that no value is present for LanguageName, not even an explicit nil
+func (o *AadhaarLanguage) UnsetLanguageName() {
+	o.LanguageName.Unset()
 }
 
 func (o AadhaarLanguage) MarshalJSON() ([]byte, error) {
@@ -126,7 +142,9 @@ func (o AadhaarLanguage) ToMap() (map[string]interface{}, error) {
 	if o.LanguageCode.IsSet() {
 		toSerialize["languageCode"] = o.LanguageCode.Get()
 	}
-	toSerialize["languageName"] = o.LanguageName
+	if o.LanguageName.IsSet() {
+		toSerialize["languageName"] = o.LanguageName.Get()
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -136,27 +154,6 @@ func (o AadhaarLanguage) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *AadhaarLanguage) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"languageName",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varAadhaarLanguage := _AadhaarLanguage{}
 
 	err = json.Unmarshal(data, &varAadhaarLanguage)

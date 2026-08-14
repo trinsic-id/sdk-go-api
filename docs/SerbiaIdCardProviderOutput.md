@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**FirstName** | **string** | The first name of the verified individual | 
-**LastName** | **string** | The last name of the verified individual | 
-**DateOfBirth** | **string** | The date of birth of the verified individual | 
-**UniqueMasterCitizenNumber** | **string** | The 13-digit Serbian Unique Master Citizen Number (\&quot;JMBG\&quot; / \&quot;Jedinstveni Matični Broj Građana\&quot;) of the verified individual.              This is in the format DDMMYYYRRSSSC, where: - DDMM is the day and month of birth - YYY is the last three digits of the year of birth - RR is the political region code of the region of birth (if born after 1976) or of first registration (if born before 1976) - SSS is a unique sex-specific serial number for individuals born on the same date in the same region - C is a checksum digit              If YYY is between 000 and 099, the millennium digit of the year is \&quot;2\&quot;; the individual was born after the year 2000. If YYY is between 800 and 999, the millennium digit of the year is \&quot;1\&quot;; the individual was born before the year 2000.              If SSS is between 000 and 499, the individual is male. If SSS is between 500 and 999, the individual is female. | 
+**FirstName** | Pointer to **NullableString** | The first name of the verified individual | [optional] 
+**LastName** | Pointer to **NullableString** | The last name of the verified individual | [optional] 
+**DateOfBirth** | Pointer to **NullableString** | The date of birth of the verified individual | [optional] 
+**UniqueMasterCitizenNumber** | Pointer to **NullableString** | The 13-digit Serbian Unique Master Citizen Number (\&quot;JMBG\&quot; / \&quot;Jedinstveni Matični Broj Građana\&quot;) of the verified individual.              This is in the format DDMMYYYRRSSSC, where: - DDMM is the day and month of birth - YYY is the last three digits of the year of birth - RR is the political region code of the region of birth (if born after 1976) or of first registration (if born before 1976) - SSS is a unique sex-specific serial number for individuals born on the same date in the same region - C is a checksum digit              If YYY is between 000 and 099, the millennium digit of the year is \&quot;2\&quot;; the individual was born after the year 2000. If YYY is between 800 and 999, the millennium digit of the year is \&quot;1\&quot;; the individual was born before the year 2000.              If SSS is between 000 and 499, the individual is male. If SSS is between 500 and 999, the individual is female. | [optional] 
 
 ## Methods
 
 ### NewSerbiaIdCardProviderOutput
 
-`func NewSerbiaIdCardProviderOutput(firstName string, lastName string, dateOfBirth string, uniqueMasterCitizenNumber string, ) *SerbiaIdCardProviderOutput`
+`func NewSerbiaIdCardProviderOutput() *SerbiaIdCardProviderOutput`
 
 NewSerbiaIdCardProviderOutput instantiates a new SerbiaIdCardProviderOutput object
 This constructor will assign default values to properties that have it defined,
@@ -47,7 +47,22 @@ and a boolean to check if the value has been set.
 
 SetFirstName sets FirstName field to given value.
 
+### HasFirstName
 
+`func (o *SerbiaIdCardProviderOutput) HasFirstName() bool`
+
+HasFirstName returns a boolean if a field has been set.
+
+### SetFirstNameNil
+
+`func (o *SerbiaIdCardProviderOutput) SetFirstNameNil(b bool)`
+
+ SetFirstNameNil sets the value for FirstName to be an explicit nil
+
+### UnsetFirstName
+`func (o *SerbiaIdCardProviderOutput) UnsetFirstName()`
+
+UnsetFirstName ensures that no value is present for FirstName, not even an explicit nil
 ### GetLastName
 
 `func (o *SerbiaIdCardProviderOutput) GetLastName() string`
@@ -67,7 +82,22 @@ and a boolean to check if the value has been set.
 
 SetLastName sets LastName field to given value.
 
+### HasLastName
 
+`func (o *SerbiaIdCardProviderOutput) HasLastName() bool`
+
+HasLastName returns a boolean if a field has been set.
+
+### SetLastNameNil
+
+`func (o *SerbiaIdCardProviderOutput) SetLastNameNil(b bool)`
+
+ SetLastNameNil sets the value for LastName to be an explicit nil
+
+### UnsetLastName
+`func (o *SerbiaIdCardProviderOutput) UnsetLastName()`
+
+UnsetLastName ensures that no value is present for LastName, not even an explicit nil
 ### GetDateOfBirth
 
 `func (o *SerbiaIdCardProviderOutput) GetDateOfBirth() string`
@@ -87,7 +117,22 @@ and a boolean to check if the value has been set.
 
 SetDateOfBirth sets DateOfBirth field to given value.
 
+### HasDateOfBirth
 
+`func (o *SerbiaIdCardProviderOutput) HasDateOfBirth() bool`
+
+HasDateOfBirth returns a boolean if a field has been set.
+
+### SetDateOfBirthNil
+
+`func (o *SerbiaIdCardProviderOutput) SetDateOfBirthNil(b bool)`
+
+ SetDateOfBirthNil sets the value for DateOfBirth to be an explicit nil
+
+### UnsetDateOfBirth
+`func (o *SerbiaIdCardProviderOutput) UnsetDateOfBirth()`
+
+UnsetDateOfBirth ensures that no value is present for DateOfBirth, not even an explicit nil
 ### GetUniqueMasterCitizenNumber
 
 `func (o *SerbiaIdCardProviderOutput) GetUniqueMasterCitizenNumber() string`
@@ -107,7 +152,22 @@ and a boolean to check if the value has been set.
 
 SetUniqueMasterCitizenNumber sets UniqueMasterCitizenNumber field to given value.
 
+### HasUniqueMasterCitizenNumber
 
+`func (o *SerbiaIdCardProviderOutput) HasUniqueMasterCitizenNumber() bool`
+
+HasUniqueMasterCitizenNumber returns a boolean if a field has been set.
+
+### SetUniqueMasterCitizenNumberNil
+
+`func (o *SerbiaIdCardProviderOutput) SetUniqueMasterCitizenNumberNil(b bool)`
+
+ SetUniqueMasterCitizenNumberNil sets the value for UniqueMasterCitizenNumber to be an explicit nil
+
+### UnsetUniqueMasterCitizenNumber
+`func (o *SerbiaIdCardProviderOutput) UnsetUniqueMasterCitizenNumber()`
+
+UnsetUniqueMasterCitizenNumber ensures that no value is present for UniqueMasterCitizenNumber, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

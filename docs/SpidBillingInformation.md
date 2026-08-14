@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**IsBillable** | **bool** | Whether this SPID verification has resulted in a billable event. | 
-**VerificationType** | **string** | The billable verification type for this SPID verification.              Possible values: \&quot;Authentication\&quot; | \&quot;Registration\&quot; | 
-**VerificationLevel** | **int32** | The billable verification level for this SPID verification.              Possible values: 1 | 2 | 3 | 
+**IsBillable** | Pointer to **NullableBool** | Whether this SPID verification has resulted in a billable event. | [optional] 
+**VerificationType** | Pointer to **NullableString** | The billable verification type for this SPID verification.              Possible values: \&quot;Authentication\&quot; | \&quot;Registration\&quot; | [optional] 
+**VerificationLevel** | Pointer to **NullableInt32** | The billable verification level for this SPID verification.              Possible values: 1 | 2 | 3 | [optional] 
 
 ## Methods
 
 ### NewSpidBillingInformation
 
-`func NewSpidBillingInformation(isBillable bool, verificationType string, verificationLevel int32, ) *SpidBillingInformation`
+`func NewSpidBillingInformation() *SpidBillingInformation`
 
 NewSpidBillingInformation instantiates a new SpidBillingInformation object
 This constructor will assign default values to properties that have it defined,
@@ -46,7 +46,22 @@ and a boolean to check if the value has been set.
 
 SetIsBillable sets IsBillable field to given value.
 
+### HasIsBillable
 
+`func (o *SpidBillingInformation) HasIsBillable() bool`
+
+HasIsBillable returns a boolean if a field has been set.
+
+### SetIsBillableNil
+
+`func (o *SpidBillingInformation) SetIsBillableNil(b bool)`
+
+ SetIsBillableNil sets the value for IsBillable to be an explicit nil
+
+### UnsetIsBillable
+`func (o *SpidBillingInformation) UnsetIsBillable()`
+
+UnsetIsBillable ensures that no value is present for IsBillable, not even an explicit nil
 ### GetVerificationType
 
 `func (o *SpidBillingInformation) GetVerificationType() string`
@@ -66,7 +81,22 @@ and a boolean to check if the value has been set.
 
 SetVerificationType sets VerificationType field to given value.
 
+### HasVerificationType
 
+`func (o *SpidBillingInformation) HasVerificationType() bool`
+
+HasVerificationType returns a boolean if a field has been set.
+
+### SetVerificationTypeNil
+
+`func (o *SpidBillingInformation) SetVerificationTypeNil(b bool)`
+
+ SetVerificationTypeNil sets the value for VerificationType to be an explicit nil
+
+### UnsetVerificationType
+`func (o *SpidBillingInformation) UnsetVerificationType()`
+
+UnsetVerificationType ensures that no value is present for VerificationType, not even an explicit nil
 ### GetVerificationLevel
 
 `func (o *SpidBillingInformation) GetVerificationLevel() int32`
@@ -86,7 +116,22 @@ and a boolean to check if the value has been set.
 
 SetVerificationLevel sets VerificationLevel field to given value.
 
+### HasVerificationLevel
 
+`func (o *SpidBillingInformation) HasVerificationLevel() bool`
+
+HasVerificationLevel returns a boolean if a field has been set.
+
+### SetVerificationLevelNil
+
+`func (o *SpidBillingInformation) SetVerificationLevelNil(b bool)`
+
+ SetVerificationLevelNil sets the value for VerificationLevel to be an explicit nil
+
+### UnsetVerificationLevel
+`func (o *SpidBillingInformation) UnsetVerificationLevel()`
+
+UnsetVerificationLevel ensures that no value is present for VerificationLevel, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

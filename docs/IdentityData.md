@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**OriginatingProviderId** | Pointer to **NullableString** | The ID of the provider from which this data originated (eg \&quot;yoti\&quot;, \&quot;clear\&quot;) | [optional] 
+**OriginatingProviderId** | **string** | The ID of the provider from which this data originated (eg \&quot;yoti\&quot;, \&quot;clear\&quot;) | 
 **OriginatingSubProviderId** | Pointer to **NullableString** | The sub-provider ID of the provider from which this data originated (eg \&quot;rabo\&quot;, \&quot;poste-italiane\&quot;)              This is applicable only to federated Identity Providers such as SPID and IDIN. | [optional] 
 **Person** | Pointer to [**NullablePersonData**](PersonData.md) | Identity data of the individual who was verified | [optional] 
 **Document** | Pointer to [**NullableDocumentData**](DocumentData.md) | Identity data of the document involved in verification, if relevant | [optional] 
@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 
 ### NewIdentityData
 
-`func NewIdentityData(attachments []AttachmentInfo, ) *IdentityData`
+`func NewIdentityData(originatingProviderId string, attachments []AttachmentInfo, ) *IdentityData`
 
 NewIdentityData instantiates a new IdentityData object
 This constructor will assign default values to properties that have it defined,
@@ -50,22 +50,7 @@ and a boolean to check if the value has been set.
 
 SetOriginatingProviderId sets OriginatingProviderId field to given value.
 
-### HasOriginatingProviderId
 
-`func (o *IdentityData) HasOriginatingProviderId() bool`
-
-HasOriginatingProviderId returns a boolean if a field has been set.
-
-### SetOriginatingProviderIdNil
-
-`func (o *IdentityData) SetOriginatingProviderIdNil(b bool)`
-
- SetOriginatingProviderIdNil sets the value for OriginatingProviderId to be an explicit nil
-
-### UnsetOriginatingProviderId
-`func (o *IdentityData) UnsetOriginatingProviderId()`
-
-UnsetOriginatingProviderId ensures that no value is present for OriginatingProviderId, not even an explicit nil
 ### GetOriginatingSubProviderId
 
 `func (o *IdentityData) GetOriginatingSubProviderId() string`

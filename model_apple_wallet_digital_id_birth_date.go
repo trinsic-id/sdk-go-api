@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the AppleWalletDigitalIdBirthDate type satisfies the MappedNullable interface at compile time
@@ -21,7 +20,7 @@ var _ MappedNullable = &AppleWalletDigitalIdBirthDate{}
 // AppleWalletDigitalIdBirthDate A date of birth field as encoded in an Apple Wallet Digital ID credential, possibly with an \"approximate mask\" indicating uncertain digits.
 type AppleWalletDigitalIdBirthDate struct {
 	// The encoded date of birth.
-	DateOfBirth string `json:"dateOfBirth"`
+	DateOfBirth NullableString `json:"dateOfBirth,omitempty"`
 	// An 8-character mask of `1`s and `0`s, where a `1` indicates that the corresponding digit in the birth date (formatted as YYYYMMDD) is uncertain or unknown.              For example, a mask of \"00000011\" indicates that the day-of-month on which the individual was born is not certain.
 	ApproximateMask NullableString `json:"approximateMask,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -33,9 +32,8 @@ type _AppleWalletDigitalIdBirthDate AppleWalletDigitalIdBirthDate
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAppleWalletDigitalIdBirthDate(dateOfBirth string) *AppleWalletDigitalIdBirthDate {
+func NewAppleWalletDigitalIdBirthDate() *AppleWalletDigitalIdBirthDate {
 	this := AppleWalletDigitalIdBirthDate{}
-	this.DateOfBirth = dateOfBirth
 	return &this
 }
 
@@ -47,28 +45,46 @@ func NewAppleWalletDigitalIdBirthDateWithDefaults() *AppleWalletDigitalIdBirthDa
 	return &this
 }
 
-// GetDateOfBirth returns the DateOfBirth field value
+// GetDateOfBirth returns the DateOfBirth field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AppleWalletDigitalIdBirthDate) GetDateOfBirth() string {
-	if o == nil {
+	if o == nil || IsNil(o.DateOfBirth.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.DateOfBirth
+	return *o.DateOfBirth.Get()
 }
 
-// GetDateOfBirthOk returns a tuple with the DateOfBirth field value
+// GetDateOfBirthOk returns a tuple with the DateOfBirth field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AppleWalletDigitalIdBirthDate) GetDateOfBirthOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.DateOfBirth, true
+	return o.DateOfBirth.Get(), o.DateOfBirth.IsSet()
 }
 
-// SetDateOfBirth sets field value
+// HasDateOfBirth returns a boolean if a field has been set.
+func (o *AppleWalletDigitalIdBirthDate) HasDateOfBirth() bool {
+	if o != nil && o.DateOfBirth.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDateOfBirth gets a reference to the given NullableString and assigns it to the DateOfBirth field.
 func (o *AppleWalletDigitalIdBirthDate) SetDateOfBirth(v string) {
-	o.DateOfBirth = v
+	o.DateOfBirth.Set(&v)
+}
+// SetDateOfBirthNil sets the value for DateOfBirth to be an explicit nil
+func (o *AppleWalletDigitalIdBirthDate) SetDateOfBirthNil() {
+	o.DateOfBirth.Set(nil)
+}
+
+// UnsetDateOfBirth ensures that no value is present for DateOfBirth, not even an explicit nil
+func (o *AppleWalletDigitalIdBirthDate) UnsetDateOfBirth() {
+	o.DateOfBirth.Unset()
 }
 
 // GetApproximateMask returns the ApproximateMask field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -123,7 +139,9 @@ func (o AppleWalletDigitalIdBirthDate) MarshalJSON() ([]byte, error) {
 
 func (o AppleWalletDigitalIdBirthDate) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["dateOfBirth"] = o.DateOfBirth
+	if o.DateOfBirth.IsSet() {
+		toSerialize["dateOfBirth"] = o.DateOfBirth.Get()
+	}
 	if o.ApproximateMask.IsSet() {
 		toSerialize["approximateMask"] = o.ApproximateMask.Get()
 	}
@@ -136,27 +154,6 @@ func (o AppleWalletDigitalIdBirthDate) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *AppleWalletDigitalIdBirthDate) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"dateOfBirth",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varAppleWalletDigitalIdBirthDate := _AppleWalletDigitalIdBirthDate{}
 
 	err = json.Unmarshal(data, &varAppleWalletDigitalIdBirthDate)

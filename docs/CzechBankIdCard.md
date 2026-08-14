@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **string** | The identity document type code.              Possible values are:              - ID - Identity card - P - Passport - DL - Driving license - IR - Residence permit - VS - Visa permit label - PS - Residential label - IX - Book with residence permit - IE - Form with temporary residence - OP - Identity card – without machine readable zone - CA - Passport of the Czech Republic resident – without machine readable zone - UNKNOWN - Unknown id card type | 
+**Type** | Pointer to **NullableString** | The identity document type code.              Possible values are:              - ID - Identity card - P - Passport - DL - Driving license - IR - Residence permit - VS - Visa permit label - PS - Residential label - IX - Book with residence permit - IE - Form with temporary residence - OP - Identity card – without machine readable zone - CA - Passport of the Czech Republic resident – without machine readable zone - UNKNOWN - Unknown id card type | [optional] 
 **Description** | Pointer to **NullableString** | The localized identity document type description. | [optional] 
-**Country** | **string** | The country for which the identity document is valid. | 
-**Number** | **string** | The identity document number. | 
-**ValidTo** | **string** | The identity document expiration date. | 
+**Country** | Pointer to **NullableString** | The country for which the identity document is valid. | [optional] 
+**Number** | Pointer to **NullableString** | The identity document number. | [optional] 
+**ValidTo** | Pointer to **NullableString** | The identity document expiration date. | [optional] 
 **Issuer** | Pointer to **NullableString** | The office that issued the identity document. | [optional] 
 **IssueDate** | Pointer to **NullableString** | The identity document issue date. | [optional] 
 
@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 
 ### NewCzechBankIdCard
 
-`func NewCzechBankIdCard(type_ string, country string, number string, validTo string, ) *CzechBankIdCard`
+`func NewCzechBankIdCard() *CzechBankIdCard`
 
 NewCzechBankIdCard instantiates a new CzechBankIdCard object
 This constructor will assign default values to properties that have it defined,
@@ -50,7 +50,22 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
+### HasType
 
+`func (o *CzechBankIdCard) HasType() bool`
+
+HasType returns a boolean if a field has been set.
+
+### SetTypeNil
+
+`func (o *CzechBankIdCard) SetTypeNil(b bool)`
+
+ SetTypeNil sets the value for Type to be an explicit nil
+
+### UnsetType
+`func (o *CzechBankIdCard) UnsetType()`
+
+UnsetType ensures that no value is present for Type, not even an explicit nil
 ### GetDescription
 
 `func (o *CzechBankIdCard) GetDescription() string`
@@ -105,7 +120,22 @@ and a boolean to check if the value has been set.
 
 SetCountry sets Country field to given value.
 
+### HasCountry
 
+`func (o *CzechBankIdCard) HasCountry() bool`
+
+HasCountry returns a boolean if a field has been set.
+
+### SetCountryNil
+
+`func (o *CzechBankIdCard) SetCountryNil(b bool)`
+
+ SetCountryNil sets the value for Country to be an explicit nil
+
+### UnsetCountry
+`func (o *CzechBankIdCard) UnsetCountry()`
+
+UnsetCountry ensures that no value is present for Country, not even an explicit nil
 ### GetNumber
 
 `func (o *CzechBankIdCard) GetNumber() string`
@@ -125,7 +155,22 @@ and a boolean to check if the value has been set.
 
 SetNumber sets Number field to given value.
 
+### HasNumber
 
+`func (o *CzechBankIdCard) HasNumber() bool`
+
+HasNumber returns a boolean if a field has been set.
+
+### SetNumberNil
+
+`func (o *CzechBankIdCard) SetNumberNil(b bool)`
+
+ SetNumberNil sets the value for Number to be an explicit nil
+
+### UnsetNumber
+`func (o *CzechBankIdCard) UnsetNumber()`
+
+UnsetNumber ensures that no value is present for Number, not even an explicit nil
 ### GetValidTo
 
 `func (o *CzechBankIdCard) GetValidTo() string`
@@ -145,7 +190,22 @@ and a boolean to check if the value has been set.
 
 SetValidTo sets ValidTo field to given value.
 
+### HasValidTo
 
+`func (o *CzechBankIdCard) HasValidTo() bool`
+
+HasValidTo returns a boolean if a field has been set.
+
+### SetValidToNil
+
+`func (o *CzechBankIdCard) SetValidToNil(b bool)`
+
+ SetValidToNil sets the value for ValidTo to be an explicit nil
+
+### UnsetValidTo
+`func (o *CzechBankIdCard) UnsetValidTo()`
+
+UnsetValidTo ensures that no value is present for ValidTo, not even an explicit nil
 ### GetIssuer
 
 `func (o *CzechBankIdCard) GetIssuer() string`

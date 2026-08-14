@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**FirstName** | **string** | The individual&#39;s given name. | 
-**LastName** | **string** | The individual&#39;s family name. | 
+**FirstName** | Pointer to **NullableString** | The individual&#39;s given name. | [optional] 
+**LastName** | Pointer to **NullableString** | The individual&#39;s family name. | [optional] 
 **MiddleName** | Pointer to **NullableString** | The individual&#39;s middle name, if provided. | [optional] 
 **Suffix** | Pointer to **NullableString** | The individual&#39;s name suffix, if provided. | [optional] 
 **BirthDate** | Pointer to **NullableString** | The individual&#39;s birth date. | [optional] 
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 
 ### NewPhilippinesPhilsysMatchProviderOutput
 
-`func NewPhilippinesPhilsysMatchProviderOutput(firstName string, lastName string, ) *PhilippinesPhilsysMatchProviderOutput`
+`func NewPhilippinesPhilsysMatchProviderOutput() *PhilippinesPhilsysMatchProviderOutput`
 
 NewPhilippinesPhilsysMatchProviderOutput instantiates a new PhilippinesPhilsysMatchProviderOutput object
 This constructor will assign default values to properties that have it defined,
@@ -48,7 +48,22 @@ and a boolean to check if the value has been set.
 
 SetFirstName sets FirstName field to given value.
 
+### HasFirstName
 
+`func (o *PhilippinesPhilsysMatchProviderOutput) HasFirstName() bool`
+
+HasFirstName returns a boolean if a field has been set.
+
+### SetFirstNameNil
+
+`func (o *PhilippinesPhilsysMatchProviderOutput) SetFirstNameNil(b bool)`
+
+ SetFirstNameNil sets the value for FirstName to be an explicit nil
+
+### UnsetFirstName
+`func (o *PhilippinesPhilsysMatchProviderOutput) UnsetFirstName()`
+
+UnsetFirstName ensures that no value is present for FirstName, not even an explicit nil
 ### GetLastName
 
 `func (o *PhilippinesPhilsysMatchProviderOutput) GetLastName() string`
@@ -68,7 +83,22 @@ and a boolean to check if the value has been set.
 
 SetLastName sets LastName field to given value.
 
+### HasLastName
 
+`func (o *PhilippinesPhilsysMatchProviderOutput) HasLastName() bool`
+
+HasLastName returns a boolean if a field has been set.
+
+### SetLastNameNil
+
+`func (o *PhilippinesPhilsysMatchProviderOutput) SetLastNameNil(b bool)`
+
+ SetLastNameNil sets the value for LastName to be an explicit nil
+
+### UnsetLastName
+`func (o *PhilippinesPhilsysMatchProviderOutput) UnsetLastName()`
+
+UnsetLastName ensures that no value is present for LastName, not even an explicit nil
 ### GetMiddleName
 
 `func (o *PhilippinesPhilsysMatchProviderOutput) GetMiddleName() string`

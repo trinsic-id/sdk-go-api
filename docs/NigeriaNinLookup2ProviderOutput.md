@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**FirstName** | **string** | The first name (given name) of the ID holder. | 
+**FirstName** | Pointer to **NullableString** | The first name (given name) of the ID holder. | [optional] 
 **MiddleName** | Pointer to **NullableString** | The middle name of the ID holder. | [optional] 
-**Surname** | **string** | The surname (family name) of the ID holder. | 
+**Surname** | Pointer to **NullableString** | The surname (family name) of the ID holder. | [optional] 
 **Sex** | Pointer to **NullableString** | The sex of the ID holder.              Possible values: - Male - Female | [optional] 
 **DateOfBirth** | Pointer to **NullableString** | The date of birth of the ID holder. | [optional] 
 **BirthCountry** | Pointer to **NullableString** | Country of birth as an ISO 3166-1 alpha-2 code. | [optional] 
-**NationalIdentityNumber** | **string** | National Identification Number (NIN).              This is a unique, permanent identifier assigned by the National Identity Management Commission (NIMC) upon enrollment.              Format: - 11 numeric digits - No publicly known encoding scheme is used to encode personal information in the NIN - Last digit is a checksum using the Verhoeff algorithm | 
-**PhoneNumber** | Pointer to **NullableString** | Phone number registered with the National Identity Management Commission. | [optional] 
+**NationalIdentityNumber** | Pointer to **NullableString** | National Identification Number (NIN).              This is a unique, permanent identifier assigned by the National Identity Management Commission (NIMC) upon enrollment.              Format: - 11 numeric digits - No publicly known encoding scheme is used to encode personal information in the NIN - Last digit is a checksum using the Verhoeff algorithm | [optional] 
+**PhoneNumber** | Pointer to **NullableString** | Phone number registered with the National Identity Management Commission.              Format: - Valid Nigerian numbers are returned in international E.164 format   (for example, +2348031234567). - Otherwise, the value is returned in trunk notation (leading zero included)   as provided by the authority (for example, 0123456789). | [optional] 
 **Email** | Pointer to **NullableString** | Email address registered with the National Identity Management Commission. | [optional] 
 **Address** | Pointer to **NullableString** | Full residential address as a single string, normalized to lowercase without delimiters. | [optional] 
 **LocalGovernmentArea** | Pointer to **NullableString** | Local Government Area of residence.              Nigeria is divided into 774 Local Government Areas (LGAs), which are the third-tier administrative divisions below states and the Federal Capital Territory. LGAs are roughly equivalent to counties or municipalities in other countries. | [optional] 
@@ -21,7 +21,7 @@ Name | Type | Description | Notes
 
 ### NewNigeriaNinLookup2ProviderOutput
 
-`func NewNigeriaNinLookup2ProviderOutput(firstName string, surname string, nationalIdentityNumber string, ) *NigeriaNinLookup2ProviderOutput`
+`func NewNigeriaNinLookup2ProviderOutput() *NigeriaNinLookup2ProviderOutput`
 
 NewNigeriaNinLookup2ProviderOutput instantiates a new NigeriaNinLookup2ProviderOutput object
 This constructor will assign default values to properties that have it defined,
@@ -55,7 +55,22 @@ and a boolean to check if the value has been set.
 
 SetFirstName sets FirstName field to given value.
 
+### HasFirstName
 
+`func (o *NigeriaNinLookup2ProviderOutput) HasFirstName() bool`
+
+HasFirstName returns a boolean if a field has been set.
+
+### SetFirstNameNil
+
+`func (o *NigeriaNinLookup2ProviderOutput) SetFirstNameNil(b bool)`
+
+ SetFirstNameNil sets the value for FirstName to be an explicit nil
+
+### UnsetFirstName
+`func (o *NigeriaNinLookup2ProviderOutput) UnsetFirstName()`
+
+UnsetFirstName ensures that no value is present for FirstName, not even an explicit nil
 ### GetMiddleName
 
 `func (o *NigeriaNinLookup2ProviderOutput) GetMiddleName() string`
@@ -110,7 +125,22 @@ and a boolean to check if the value has been set.
 
 SetSurname sets Surname field to given value.
 
+### HasSurname
 
+`func (o *NigeriaNinLookup2ProviderOutput) HasSurname() bool`
+
+HasSurname returns a boolean if a field has been set.
+
+### SetSurnameNil
+
+`func (o *NigeriaNinLookup2ProviderOutput) SetSurnameNil(b bool)`
+
+ SetSurnameNil sets the value for Surname to be an explicit nil
+
+### UnsetSurname
+`func (o *NigeriaNinLookup2ProviderOutput) UnsetSurname()`
+
+UnsetSurname ensures that no value is present for Surname, not even an explicit nil
 ### GetSex
 
 `func (o *NigeriaNinLookup2ProviderOutput) GetSex() string`
@@ -235,7 +265,22 @@ and a boolean to check if the value has been set.
 
 SetNationalIdentityNumber sets NationalIdentityNumber field to given value.
 
+### HasNationalIdentityNumber
 
+`func (o *NigeriaNinLookup2ProviderOutput) HasNationalIdentityNumber() bool`
+
+HasNationalIdentityNumber returns a boolean if a field has been set.
+
+### SetNationalIdentityNumberNil
+
+`func (o *NigeriaNinLookup2ProviderOutput) SetNationalIdentityNumberNil(b bool)`
+
+ SetNationalIdentityNumberNil sets the value for NationalIdentityNumber to be an explicit nil
+
+### UnsetNationalIdentityNumber
+`func (o *NigeriaNinLookup2ProviderOutput) UnsetNationalIdentityNumber()`
+
+UnsetNationalIdentityNumber ensures that no value is present for NationalIdentityNumber, not even an explicit nil
 ### GetPhoneNumber
 
 `func (o *NigeriaNinLookup2ProviderOutput) GetPhoneNumber() string`

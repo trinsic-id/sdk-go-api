@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the KenyaNidLookup2ProviderOutput type satisfies the MappedNullable interface at compile time
@@ -21,21 +20,21 @@ var _ MappedNullable = &KenyaNidLookup2ProviderOutput{}
 // KenyaNidLookup2ProviderOutput Exposed properties for the `kenya-nid-lookup-2` Provider which do not directly map to the normalized IdentityData model.
 type KenyaNidLookup2ProviderOutput struct {
 	// The first name (given name) of the ID holder as recorded in IPRS.
-	FirstName string `json:"firstName"`
+	FirstName NullableString `json:"firstName,omitempty"`
 	// The surname (family name) of the ID holder as recorded in IPRS.
-	Surname string `json:"surname"`
+	Surname NullableString `json:"surname,omitempty"`
 	// The other name (middle name) of the ID holder as recorded in IPRS.
 	OtherName NullableString `json:"otherName,omitempty"`
 	// The sex of the ID holder as recorded on the National ID.              Possible values: - Male - Female
-	Sex string `json:"sex"`
+	Sex NullableString `json:"sex,omitempty"`
 	// The date of birth of the ID holder as recorded in IPRS.
 	DateOfBirth NullableString `json:"dateOfBirth,omitempty"`
 	// Citizenship status as recorded in the IPRS civil registry database.              For the Kenya National ID lookup, this value will always be \"Kenyan\" as the National ID is only issued to Kenyan citizens. Non-citizens residing in Kenya are issued different identification documents (Alien ID cards, refugee documentation, etc.) which are not supported by this provider.
-	Citizenship string `json:"citizenship"`
+	Citizenship NullableString `json:"citizenship,omitempty"`
 	// The Kenya National ID Number (Nambari ya Kitambulisho) or Unique Personal Identifier (Maisha Namba).              This is the primary unique identifier for Kenyan citizens in all government systems, issued by the National Registration Bureau (NRB). The format is either 8 digits for National ID or 9 digits for Maisha Namba UPI (the new format since 2023).
-	IdNumber string `json:"idNumber"`
+	IdNumber NullableString `json:"idNumber,omitempty"`
 	// The physical card serial number printed on the Kenya National ID card.              This is distinct from the ID Number and serves as a card issuance tracking identifier maintained by IPRS. This value changes each time a new physical card is issued (loss, damage, renewal).
-	SerialNumber string `json:"serialNumber"`
+	SerialNumber NullableString `json:"serialNumber,omitempty"`
 	// The date the National ID was issued by the National Registration Bureau (NRB).
 	DateOfIssue NullableString `json:"dateOfIssue,omitempty"`
 	// Place of birth as recorded in Kenya's civil registry (IPRS).              This is structured according to Kenya's pre-2010 administrative hierarchy (District > Division > Location).
@@ -51,14 +50,8 @@ type _KenyaNidLookup2ProviderOutput KenyaNidLookup2ProviderOutput
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewKenyaNidLookup2ProviderOutput(firstName string, surname string, sex string, citizenship string, idNumber string, serialNumber string) *KenyaNidLookup2ProviderOutput {
+func NewKenyaNidLookup2ProviderOutput() *KenyaNidLookup2ProviderOutput {
 	this := KenyaNidLookup2ProviderOutput{}
-	this.FirstName = firstName
-	this.Surname = surname
-	this.Sex = sex
-	this.Citizenship = citizenship
-	this.IdNumber = idNumber
-	this.SerialNumber = serialNumber
 	return &this
 }
 
@@ -70,52 +63,88 @@ func NewKenyaNidLookup2ProviderOutputWithDefaults() *KenyaNidLookup2ProviderOutp
 	return &this
 }
 
-// GetFirstName returns the FirstName field value
+// GetFirstName returns the FirstName field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *KenyaNidLookup2ProviderOutput) GetFirstName() string {
-	if o == nil {
+	if o == nil || IsNil(o.FirstName.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.FirstName
+	return *o.FirstName.Get()
 }
 
-// GetFirstNameOk returns a tuple with the FirstName field value
+// GetFirstNameOk returns a tuple with the FirstName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *KenyaNidLookup2ProviderOutput) GetFirstNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.FirstName, true
+	return o.FirstName.Get(), o.FirstName.IsSet()
 }
 
-// SetFirstName sets field value
+// HasFirstName returns a boolean if a field has been set.
+func (o *KenyaNidLookup2ProviderOutput) HasFirstName() bool {
+	if o != nil && o.FirstName.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetFirstName gets a reference to the given NullableString and assigns it to the FirstName field.
 func (o *KenyaNidLookup2ProviderOutput) SetFirstName(v string) {
-	o.FirstName = v
+	o.FirstName.Set(&v)
+}
+// SetFirstNameNil sets the value for FirstName to be an explicit nil
+func (o *KenyaNidLookup2ProviderOutput) SetFirstNameNil() {
+	o.FirstName.Set(nil)
 }
 
-// GetSurname returns the Surname field value
+// UnsetFirstName ensures that no value is present for FirstName, not even an explicit nil
+func (o *KenyaNidLookup2ProviderOutput) UnsetFirstName() {
+	o.FirstName.Unset()
+}
+
+// GetSurname returns the Surname field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *KenyaNidLookup2ProviderOutput) GetSurname() string {
-	if o == nil {
+	if o == nil || IsNil(o.Surname.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.Surname
+	return *o.Surname.Get()
 }
 
-// GetSurnameOk returns a tuple with the Surname field value
+// GetSurnameOk returns a tuple with the Surname field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *KenyaNidLookup2ProviderOutput) GetSurnameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Surname, true
+	return o.Surname.Get(), o.Surname.IsSet()
 }
 
-// SetSurname sets field value
+// HasSurname returns a boolean if a field has been set.
+func (o *KenyaNidLookup2ProviderOutput) HasSurname() bool {
+	if o != nil && o.Surname.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSurname gets a reference to the given NullableString and assigns it to the Surname field.
 func (o *KenyaNidLookup2ProviderOutput) SetSurname(v string) {
-	o.Surname = v
+	o.Surname.Set(&v)
+}
+// SetSurnameNil sets the value for Surname to be an explicit nil
+func (o *KenyaNidLookup2ProviderOutput) SetSurnameNil() {
+	o.Surname.Set(nil)
+}
+
+// UnsetSurname ensures that no value is present for Surname, not even an explicit nil
+func (o *KenyaNidLookup2ProviderOutput) UnsetSurname() {
+	o.Surname.Unset()
 }
 
 // GetOtherName returns the OtherName field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -160,28 +189,46 @@ func (o *KenyaNidLookup2ProviderOutput) UnsetOtherName() {
 	o.OtherName.Unset()
 }
 
-// GetSex returns the Sex field value
+// GetSex returns the Sex field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *KenyaNidLookup2ProviderOutput) GetSex() string {
-	if o == nil {
+	if o == nil || IsNil(o.Sex.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.Sex
+	return *o.Sex.Get()
 }
 
-// GetSexOk returns a tuple with the Sex field value
+// GetSexOk returns a tuple with the Sex field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *KenyaNidLookup2ProviderOutput) GetSexOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Sex, true
+	return o.Sex.Get(), o.Sex.IsSet()
 }
 
-// SetSex sets field value
+// HasSex returns a boolean if a field has been set.
+func (o *KenyaNidLookup2ProviderOutput) HasSex() bool {
+	if o != nil && o.Sex.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSex gets a reference to the given NullableString and assigns it to the Sex field.
 func (o *KenyaNidLookup2ProviderOutput) SetSex(v string) {
-	o.Sex = v
+	o.Sex.Set(&v)
+}
+// SetSexNil sets the value for Sex to be an explicit nil
+func (o *KenyaNidLookup2ProviderOutput) SetSexNil() {
+	o.Sex.Set(nil)
+}
+
+// UnsetSex ensures that no value is present for Sex, not even an explicit nil
+func (o *KenyaNidLookup2ProviderOutput) UnsetSex() {
+	o.Sex.Unset()
 }
 
 // GetDateOfBirth returns the DateOfBirth field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -226,76 +273,130 @@ func (o *KenyaNidLookup2ProviderOutput) UnsetDateOfBirth() {
 	o.DateOfBirth.Unset()
 }
 
-// GetCitizenship returns the Citizenship field value
+// GetCitizenship returns the Citizenship field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *KenyaNidLookup2ProviderOutput) GetCitizenship() string {
-	if o == nil {
+	if o == nil || IsNil(o.Citizenship.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.Citizenship
+	return *o.Citizenship.Get()
 }
 
-// GetCitizenshipOk returns a tuple with the Citizenship field value
+// GetCitizenshipOk returns a tuple with the Citizenship field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *KenyaNidLookup2ProviderOutput) GetCitizenshipOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Citizenship, true
+	return o.Citizenship.Get(), o.Citizenship.IsSet()
 }
 
-// SetCitizenship sets field value
+// HasCitizenship returns a boolean if a field has been set.
+func (o *KenyaNidLookup2ProviderOutput) HasCitizenship() bool {
+	if o != nil && o.Citizenship.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCitizenship gets a reference to the given NullableString and assigns it to the Citizenship field.
 func (o *KenyaNidLookup2ProviderOutput) SetCitizenship(v string) {
-	o.Citizenship = v
+	o.Citizenship.Set(&v)
+}
+// SetCitizenshipNil sets the value for Citizenship to be an explicit nil
+func (o *KenyaNidLookup2ProviderOutput) SetCitizenshipNil() {
+	o.Citizenship.Set(nil)
 }
 
-// GetIdNumber returns the IdNumber field value
+// UnsetCitizenship ensures that no value is present for Citizenship, not even an explicit nil
+func (o *KenyaNidLookup2ProviderOutput) UnsetCitizenship() {
+	o.Citizenship.Unset()
+}
+
+// GetIdNumber returns the IdNumber field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *KenyaNidLookup2ProviderOutput) GetIdNumber() string {
-	if o == nil {
+	if o == nil || IsNil(o.IdNumber.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.IdNumber
+	return *o.IdNumber.Get()
 }
 
-// GetIdNumberOk returns a tuple with the IdNumber field value
+// GetIdNumberOk returns a tuple with the IdNumber field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *KenyaNidLookup2ProviderOutput) GetIdNumberOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.IdNumber, true
+	return o.IdNumber.Get(), o.IdNumber.IsSet()
 }
 
-// SetIdNumber sets field value
+// HasIdNumber returns a boolean if a field has been set.
+func (o *KenyaNidLookup2ProviderOutput) HasIdNumber() bool {
+	if o != nil && o.IdNumber.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetIdNumber gets a reference to the given NullableString and assigns it to the IdNumber field.
 func (o *KenyaNidLookup2ProviderOutput) SetIdNumber(v string) {
-	o.IdNumber = v
+	o.IdNumber.Set(&v)
+}
+// SetIdNumberNil sets the value for IdNumber to be an explicit nil
+func (o *KenyaNidLookup2ProviderOutput) SetIdNumberNil() {
+	o.IdNumber.Set(nil)
 }
 
-// GetSerialNumber returns the SerialNumber field value
+// UnsetIdNumber ensures that no value is present for IdNumber, not even an explicit nil
+func (o *KenyaNidLookup2ProviderOutput) UnsetIdNumber() {
+	o.IdNumber.Unset()
+}
+
+// GetSerialNumber returns the SerialNumber field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *KenyaNidLookup2ProviderOutput) GetSerialNumber() string {
-	if o == nil {
+	if o == nil || IsNil(o.SerialNumber.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.SerialNumber
+	return *o.SerialNumber.Get()
 }
 
-// GetSerialNumberOk returns a tuple with the SerialNumber field value
+// GetSerialNumberOk returns a tuple with the SerialNumber field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *KenyaNidLookup2ProviderOutput) GetSerialNumberOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.SerialNumber, true
+	return o.SerialNumber.Get(), o.SerialNumber.IsSet()
 }
 
-// SetSerialNumber sets field value
+// HasSerialNumber returns a boolean if a field has been set.
+func (o *KenyaNidLookup2ProviderOutput) HasSerialNumber() bool {
+	if o != nil && o.SerialNumber.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSerialNumber gets a reference to the given NullableString and assigns it to the SerialNumber field.
 func (o *KenyaNidLookup2ProviderOutput) SetSerialNumber(v string) {
-	o.SerialNumber = v
+	o.SerialNumber.Set(&v)
+}
+// SetSerialNumberNil sets the value for SerialNumber to be an explicit nil
+func (o *KenyaNidLookup2ProviderOutput) SetSerialNumberNil() {
+	o.SerialNumber.Set(nil)
+}
+
+// UnsetSerialNumber ensures that no value is present for SerialNumber, not even an explicit nil
+func (o *KenyaNidLookup2ProviderOutput) UnsetSerialNumber() {
+	o.SerialNumber.Unset()
 }
 
 // GetDateOfIssue returns the DateOfIssue field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -434,18 +535,30 @@ func (o KenyaNidLookup2ProviderOutput) MarshalJSON() ([]byte, error) {
 
 func (o KenyaNidLookup2ProviderOutput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["firstName"] = o.FirstName
-	toSerialize["surname"] = o.Surname
+	if o.FirstName.IsSet() {
+		toSerialize["firstName"] = o.FirstName.Get()
+	}
+	if o.Surname.IsSet() {
+		toSerialize["surname"] = o.Surname.Get()
+	}
 	if o.OtherName.IsSet() {
 		toSerialize["otherName"] = o.OtherName.Get()
 	}
-	toSerialize["sex"] = o.Sex
+	if o.Sex.IsSet() {
+		toSerialize["sex"] = o.Sex.Get()
+	}
 	if o.DateOfBirth.IsSet() {
 		toSerialize["dateOfBirth"] = o.DateOfBirth.Get()
 	}
-	toSerialize["citizenship"] = o.Citizenship
-	toSerialize["idNumber"] = o.IdNumber
-	toSerialize["serialNumber"] = o.SerialNumber
+	if o.Citizenship.IsSet() {
+		toSerialize["citizenship"] = o.Citizenship.Get()
+	}
+	if o.IdNumber.IsSet() {
+		toSerialize["idNumber"] = o.IdNumber.Get()
+	}
+	if o.SerialNumber.IsSet() {
+		toSerialize["serialNumber"] = o.SerialNumber.Get()
+	}
 	if o.DateOfIssue.IsSet() {
 		toSerialize["dateOfIssue"] = o.DateOfIssue.Get()
 	}
@@ -464,32 +577,6 @@ func (o KenyaNidLookup2ProviderOutput) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *KenyaNidLookup2ProviderOutput) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"firstName",
-		"surname",
-		"sex",
-		"citizenship",
-		"idNumber",
-		"serialNumber",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varKenyaNidLookup2ProviderOutput := _KenyaNidLookup2ProviderOutput{}
 
 	err = json.Unmarshal(data, &varKenyaNidLookup2ProviderOutput)

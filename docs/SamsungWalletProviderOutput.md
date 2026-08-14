@@ -5,13 +5,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **MobileDriversLicense** | Pointer to [**NullableIso180135MobileDriversLicenseCredential**](Iso180135MobileDriversLicenseCredential.md) | A standard 18013-5 Mobile Driver&#39;s License credential, retrieved from the individual&#39;s wallet. | [optional] 
-**RawMdlOutput** | [**MdlOutput**](MdlOutput.md) | The raw output of the mDL exchange performed through Samsung Wallet. | 
+**SamsungIdWithClear** | Pointer to [**NullableSamsungIdWithClearCredential**](SamsungIdWithClearCredential.md) | A Samsung ID with CLEAR credential, retrieved from the individual&#39;s Samsung Wallet. | [optional] 
+**RawMdlOutput** | Pointer to [**NullableMdlOutput**](MdlOutput.md) | The raw output of the mDL exchange performed through Samsung Wallet. | [optional] 
 
 ## Methods
 
 ### NewSamsungWalletProviderOutput
 
-`func NewSamsungWalletProviderOutput(rawMdlOutput MdlOutput, ) *SamsungWalletProviderOutput`
+`func NewSamsungWalletProviderOutput() *SamsungWalletProviderOutput`
 
 NewSamsungWalletProviderOutput instantiates a new SamsungWalletProviderOutput object
 This constructor will assign default values to properties that have it defined,
@@ -61,6 +62,41 @@ HasMobileDriversLicense returns a boolean if a field has been set.
 `func (o *SamsungWalletProviderOutput) UnsetMobileDriversLicense()`
 
 UnsetMobileDriversLicense ensures that no value is present for MobileDriversLicense, not even an explicit nil
+### GetSamsungIdWithClear
+
+`func (o *SamsungWalletProviderOutput) GetSamsungIdWithClear() SamsungIdWithClearCredential`
+
+GetSamsungIdWithClear returns the SamsungIdWithClear field if non-nil, zero value otherwise.
+
+### GetSamsungIdWithClearOk
+
+`func (o *SamsungWalletProviderOutput) GetSamsungIdWithClearOk() (*SamsungIdWithClearCredential, bool)`
+
+GetSamsungIdWithClearOk returns a tuple with the SamsungIdWithClear field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSamsungIdWithClear
+
+`func (o *SamsungWalletProviderOutput) SetSamsungIdWithClear(v SamsungIdWithClearCredential)`
+
+SetSamsungIdWithClear sets SamsungIdWithClear field to given value.
+
+### HasSamsungIdWithClear
+
+`func (o *SamsungWalletProviderOutput) HasSamsungIdWithClear() bool`
+
+HasSamsungIdWithClear returns a boolean if a field has been set.
+
+### SetSamsungIdWithClearNil
+
+`func (o *SamsungWalletProviderOutput) SetSamsungIdWithClearNil(b bool)`
+
+ SetSamsungIdWithClearNil sets the value for SamsungIdWithClear to be an explicit nil
+
+### UnsetSamsungIdWithClear
+`func (o *SamsungWalletProviderOutput) UnsetSamsungIdWithClear()`
+
+UnsetSamsungIdWithClear ensures that no value is present for SamsungIdWithClear, not even an explicit nil
 ### GetRawMdlOutput
 
 `func (o *SamsungWalletProviderOutput) GetRawMdlOutput() MdlOutput`
@@ -80,7 +116,22 @@ and a boolean to check if the value has been set.
 
 SetRawMdlOutput sets RawMdlOutput field to given value.
 
+### HasRawMdlOutput
 
+`func (o *SamsungWalletProviderOutput) HasRawMdlOutput() bool`
+
+HasRawMdlOutput returns a boolean if a field has been set.
+
+### SetRawMdlOutputNil
+
+`func (o *SamsungWalletProviderOutput) SetRawMdlOutputNil(b bool)`
+
+ SetRawMdlOutputNil sets the value for RawMdlOutput to be an explicit nil
+
+### UnsetRawMdlOutput
+`func (o *SamsungWalletProviderOutput) UnsetRawMdlOutput()`
+
+UnsetRawMdlOutput ensures that no value is present for RawMdlOutput, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

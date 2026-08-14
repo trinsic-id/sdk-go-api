@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the PhilippinesPhilsysMatchProviderOutput type satisfies the MappedNullable interface at compile time
@@ -21,9 +20,9 @@ var _ MappedNullable = &PhilippinesPhilsysMatchProviderOutput{}
 // PhilippinesPhilsysMatchProviderOutput Exposed properties for the `philippines-philsys-match` Provider which do not directly map to the normalized IdentityData model.
 type PhilippinesPhilsysMatchProviderOutput struct {
 	// The individual's given name.
-	FirstName string `json:"firstName"`
+	FirstName NullableString `json:"firstName,omitempty"`
 	// The individual's family name.
-	LastName string `json:"lastName"`
+	LastName NullableString `json:"lastName,omitempty"`
 	// The individual's middle name, if provided.
 	MiddleName NullableString `json:"middleName,omitempty"`
 	// The individual's name suffix, if provided.
@@ -39,10 +38,8 @@ type _PhilippinesPhilsysMatchProviderOutput PhilippinesPhilsysMatchProviderOutpu
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPhilippinesPhilsysMatchProviderOutput(firstName string, lastName string) *PhilippinesPhilsysMatchProviderOutput {
+func NewPhilippinesPhilsysMatchProviderOutput() *PhilippinesPhilsysMatchProviderOutput {
 	this := PhilippinesPhilsysMatchProviderOutput{}
-	this.FirstName = firstName
-	this.LastName = lastName
 	return &this
 }
 
@@ -54,52 +51,88 @@ func NewPhilippinesPhilsysMatchProviderOutputWithDefaults() *PhilippinesPhilsysM
 	return &this
 }
 
-// GetFirstName returns the FirstName field value
+// GetFirstName returns the FirstName field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *PhilippinesPhilsysMatchProviderOutput) GetFirstName() string {
-	if o == nil {
+	if o == nil || IsNil(o.FirstName.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.FirstName
+	return *o.FirstName.Get()
 }
 
-// GetFirstNameOk returns a tuple with the FirstName field value
+// GetFirstNameOk returns a tuple with the FirstName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *PhilippinesPhilsysMatchProviderOutput) GetFirstNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.FirstName, true
+	return o.FirstName.Get(), o.FirstName.IsSet()
 }
 
-// SetFirstName sets field value
+// HasFirstName returns a boolean if a field has been set.
+func (o *PhilippinesPhilsysMatchProviderOutput) HasFirstName() bool {
+	if o != nil && o.FirstName.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetFirstName gets a reference to the given NullableString and assigns it to the FirstName field.
 func (o *PhilippinesPhilsysMatchProviderOutput) SetFirstName(v string) {
-	o.FirstName = v
+	o.FirstName.Set(&v)
+}
+// SetFirstNameNil sets the value for FirstName to be an explicit nil
+func (o *PhilippinesPhilsysMatchProviderOutput) SetFirstNameNil() {
+	o.FirstName.Set(nil)
 }
 
-// GetLastName returns the LastName field value
+// UnsetFirstName ensures that no value is present for FirstName, not even an explicit nil
+func (o *PhilippinesPhilsysMatchProviderOutput) UnsetFirstName() {
+	o.FirstName.Unset()
+}
+
+// GetLastName returns the LastName field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *PhilippinesPhilsysMatchProviderOutput) GetLastName() string {
-	if o == nil {
+	if o == nil || IsNil(o.LastName.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.LastName
+	return *o.LastName.Get()
 }
 
-// GetLastNameOk returns a tuple with the LastName field value
+// GetLastNameOk returns a tuple with the LastName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *PhilippinesPhilsysMatchProviderOutput) GetLastNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.LastName, true
+	return o.LastName.Get(), o.LastName.IsSet()
 }
 
-// SetLastName sets field value
+// HasLastName returns a boolean if a field has been set.
+func (o *PhilippinesPhilsysMatchProviderOutput) HasLastName() bool {
+	if o != nil && o.LastName.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetLastName gets a reference to the given NullableString and assigns it to the LastName field.
 func (o *PhilippinesPhilsysMatchProviderOutput) SetLastName(v string) {
-	o.LastName = v
+	o.LastName.Set(&v)
+}
+// SetLastNameNil sets the value for LastName to be an explicit nil
+func (o *PhilippinesPhilsysMatchProviderOutput) SetLastNameNil() {
+	o.LastName.Set(nil)
+}
+
+// UnsetLastName ensures that no value is present for LastName, not even an explicit nil
+func (o *PhilippinesPhilsysMatchProviderOutput) UnsetLastName() {
+	o.LastName.Unset()
 }
 
 // GetMiddleName returns the MiddleName field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -238,8 +271,12 @@ func (o PhilippinesPhilsysMatchProviderOutput) MarshalJSON() ([]byte, error) {
 
 func (o PhilippinesPhilsysMatchProviderOutput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["firstName"] = o.FirstName
-	toSerialize["lastName"] = o.LastName
+	if o.FirstName.IsSet() {
+		toSerialize["firstName"] = o.FirstName.Get()
+	}
+	if o.LastName.IsSet() {
+		toSerialize["lastName"] = o.LastName.Get()
+	}
 	if o.MiddleName.IsSet() {
 		toSerialize["middleName"] = o.MiddleName.Get()
 	}
@@ -258,28 +295,6 @@ func (o PhilippinesPhilsysMatchProviderOutput) ToMap() (map[string]interface{}, 
 }
 
 func (o *PhilippinesPhilsysMatchProviderOutput) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"firstName",
-		"lastName",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varPhilippinesPhilsysMatchProviderOutput := _PhilippinesPhilsysMatchProviderOutput{}
 
 	err = json.Unmarshal(data, &varPhilippinesPhilsysMatchProviderOutput)

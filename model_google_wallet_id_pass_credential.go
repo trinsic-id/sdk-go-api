@@ -17,7 +17,7 @@ import (
 // checks if the GoogleWalletIdPassCredential type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &GoogleWalletIdPassCredential{}
 
-// GoogleWalletIdPassCredential A Google Wallet ID Pass credential, with document type `com.google.wallet.idcard.1`.              This is a passport-derived digital credential issued by Google.
+// GoogleWalletIdPassCredential A Google Wallet ID Pass credential, retrieved from Google Wallet.              This is a passport-derived digital credential issued by Google.
 type GoogleWalletIdPassCredential struct {
 	// First name(s), other name(s), or secondary identifier of the individual.
 	GivenName NullableString `json:"givenName,omitempty"`

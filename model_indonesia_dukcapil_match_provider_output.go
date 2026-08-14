@@ -13,7 +13,6 @@ package trinsic_api
 import (
 	"encoding/json"
 	"time"
-	"fmt"
 )
 
 // checks if the IndonesiaDukcapilMatchProviderOutput type satisfies the MappedNullable interface at compile time
@@ -22,25 +21,25 @@ var _ MappedNullable = &IndonesiaDukcapilMatchProviderOutput{}
 // IndonesiaDukcapilMatchProviderOutput Exposed properties for the `indonesia-dukcapil-match` Provider which do not directly map to the normalized IdentityData model.
 type IndonesiaDukcapilMatchProviderOutput struct {
 	// NIK submitted for this Dukcapil match and the assessment result returned for that value.
-	NationalIdNumber IndonesiaDukcapilMatchNationalIdNumberField `json:"nationalIdNumber"`
+	NationalIdNumber NullableIndonesiaDukcapilMatchNationalIdNumberField `json:"nationalIdNumber,omitempty"`
 	// Full name submitted for this Dukcapil match and the assessment result returned for that value.
-	FullName IndonesiaDukcapilMatchFullNameField `json:"fullName"`
+	FullName NullableIndonesiaDukcapilMatchFullNameField `json:"fullName,omitempty"`
 	// Date of birth submitted for this Dukcapil match and the assessment result returned for that value.
-	DateOfBirth IndonesiaDukcapilMatchDateOfBirthField `json:"dateOfBirth"`
+	DateOfBirth NullableIndonesiaDukcapilMatchDateOfBirthField `json:"dateOfBirth,omitempty"`
 	// Two-digit Indonesian government administrative region code for the province, extracted from digits 1-2 of the submitted NIK number.              Source system: Kode Wilayah Administrasi Pemerintahan, maintained by Indonesia's Ministry of Home Affairs. The first digit indicates the island group: 1-2 Sumatra, 3-4 Java, 5 Bali and Nusa Tenggara, 6 Kalimantan, 7 Sulawesi, 8 Maluku, and 9 Papua. The second digit follows the province creation order.
-	ProvinceCode string `json:"provinceCode"`
+	ProvinceCode NullableString `json:"provinceCode,omitempty"`
 	// Four-digit Indonesian government administrative region code for the regency or city, extracted from digits 1-4 of the submitted NIK number.              Source system: Kode Wilayah Administrasi Pemerintahan, maintained by Indonesia's Ministry of Home Affairs. Format: two-digit province code followed by a two-digit regency or city sequence; suffixes 01-69 identify regencies and suffixes 71-99 identify cities. The NIK stores this value without dot separators.
-	RegencyOrCityCode string `json:"regencyOrCityCode"`
+	RegencyOrCityCode NullableString `json:"regencyOrCityCode,omitempty"`
 	// Six-digit Indonesian government administrative region code for the district (kecamatan), extracted from digits 1-6 of the submitted NIK number.              Source system: Kode Wilayah Administrasi Pemerintahan, maintained by Indonesia's Ministry of Home Affairs. Format: two-digit province code, two-digit regency or city code, and two-digit district sequence. The NIK stores this value without dot separators.
-	DistrictCode string `json:"districtCode"`
+	DistrictCode NullableString `json:"districtCode,omitempty"`
 	// Sex extracted from the birth-day portion of the submitted NIK number.              Known values: - Male: The encoded day value is 40 or lower. - Female: The encoded day value is greater than 40.
-	SexNationalIdNumber string `json:"sexNationalIdNumber"`
+	SexNationalIdNumber NullableString `json:"sexNationalIdNumber,omitempty"`
 	// Four-digit issuance serial number extracted from digits 13-16 of the submitted NIK number.
-	SerialNumber string `json:"serialNumber"`
+	SerialNumber NullableString `json:"serialNumber,omitempty"`
 	// The phone number submitted for this verification, if provided.              Format: international E.164 phone number.
 	PhoneNumber NullableString `json:"phoneNumber,omitempty"`
 	// The consent timestamp submitted for this verification.
-	ConsentGivenAt time.Time `json:"consentGivenAt"`
+	ConsentGivenAt NullableTime `json:"consentGivenAt,omitempty"`
 	// The email address submitted for this verification, if provided.
 	Email NullableString `json:"email,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -52,17 +51,8 @@ type _IndonesiaDukcapilMatchProviderOutput IndonesiaDukcapilMatchProviderOutput
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewIndonesiaDukcapilMatchProviderOutput(nationalIdNumber IndonesiaDukcapilMatchNationalIdNumberField, fullName IndonesiaDukcapilMatchFullNameField, dateOfBirth IndonesiaDukcapilMatchDateOfBirthField, provinceCode string, regencyOrCityCode string, districtCode string, sexNationalIdNumber string, serialNumber string, consentGivenAt time.Time) *IndonesiaDukcapilMatchProviderOutput {
+func NewIndonesiaDukcapilMatchProviderOutput() *IndonesiaDukcapilMatchProviderOutput {
 	this := IndonesiaDukcapilMatchProviderOutput{}
-	this.NationalIdNumber = nationalIdNumber
-	this.FullName = fullName
-	this.DateOfBirth = dateOfBirth
-	this.ProvinceCode = provinceCode
-	this.RegencyOrCityCode = regencyOrCityCode
-	this.DistrictCode = districtCode
-	this.SexNationalIdNumber = sexNationalIdNumber
-	this.SerialNumber = serialNumber
-	this.ConsentGivenAt = consentGivenAt
 	return &this
 }
 
@@ -74,196 +64,340 @@ func NewIndonesiaDukcapilMatchProviderOutputWithDefaults() *IndonesiaDukcapilMat
 	return &this
 }
 
-// GetNationalIdNumber returns the NationalIdNumber field value
+// GetNationalIdNumber returns the NationalIdNumber field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IndonesiaDukcapilMatchProviderOutput) GetNationalIdNumber() IndonesiaDukcapilMatchNationalIdNumberField {
-	if o == nil {
+	if o == nil || IsNil(o.NationalIdNumber.Get()) {
 		var ret IndonesiaDukcapilMatchNationalIdNumberField
 		return ret
 	}
-
-	return o.NationalIdNumber
+	return *o.NationalIdNumber.Get()
 }
 
-// GetNationalIdNumberOk returns a tuple with the NationalIdNumber field value
+// GetNationalIdNumberOk returns a tuple with the NationalIdNumber field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *IndonesiaDukcapilMatchProviderOutput) GetNationalIdNumberOk() (*IndonesiaDukcapilMatchNationalIdNumberField, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.NationalIdNumber, true
+	return o.NationalIdNumber.Get(), o.NationalIdNumber.IsSet()
 }
 
-// SetNationalIdNumber sets field value
+// HasNationalIdNumber returns a boolean if a field has been set.
+func (o *IndonesiaDukcapilMatchProviderOutput) HasNationalIdNumber() bool {
+	if o != nil && o.NationalIdNumber.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetNationalIdNumber gets a reference to the given NullableIndonesiaDukcapilMatchNationalIdNumberField and assigns it to the NationalIdNumber field.
 func (o *IndonesiaDukcapilMatchProviderOutput) SetNationalIdNumber(v IndonesiaDukcapilMatchNationalIdNumberField) {
-	o.NationalIdNumber = v
+	o.NationalIdNumber.Set(&v)
+}
+// SetNationalIdNumberNil sets the value for NationalIdNumber to be an explicit nil
+func (o *IndonesiaDukcapilMatchProviderOutput) SetNationalIdNumberNil() {
+	o.NationalIdNumber.Set(nil)
 }
 
-// GetFullName returns the FullName field value
+// UnsetNationalIdNumber ensures that no value is present for NationalIdNumber, not even an explicit nil
+func (o *IndonesiaDukcapilMatchProviderOutput) UnsetNationalIdNumber() {
+	o.NationalIdNumber.Unset()
+}
+
+// GetFullName returns the FullName field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IndonesiaDukcapilMatchProviderOutput) GetFullName() IndonesiaDukcapilMatchFullNameField {
-	if o == nil {
+	if o == nil || IsNil(o.FullName.Get()) {
 		var ret IndonesiaDukcapilMatchFullNameField
 		return ret
 	}
-
-	return o.FullName
+	return *o.FullName.Get()
 }
 
-// GetFullNameOk returns a tuple with the FullName field value
+// GetFullNameOk returns a tuple with the FullName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *IndonesiaDukcapilMatchProviderOutput) GetFullNameOk() (*IndonesiaDukcapilMatchFullNameField, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.FullName, true
+	return o.FullName.Get(), o.FullName.IsSet()
 }
 
-// SetFullName sets field value
+// HasFullName returns a boolean if a field has been set.
+func (o *IndonesiaDukcapilMatchProviderOutput) HasFullName() bool {
+	if o != nil && o.FullName.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetFullName gets a reference to the given NullableIndonesiaDukcapilMatchFullNameField and assigns it to the FullName field.
 func (o *IndonesiaDukcapilMatchProviderOutput) SetFullName(v IndonesiaDukcapilMatchFullNameField) {
-	o.FullName = v
+	o.FullName.Set(&v)
+}
+// SetFullNameNil sets the value for FullName to be an explicit nil
+func (o *IndonesiaDukcapilMatchProviderOutput) SetFullNameNil() {
+	o.FullName.Set(nil)
 }
 
-// GetDateOfBirth returns the DateOfBirth field value
+// UnsetFullName ensures that no value is present for FullName, not even an explicit nil
+func (o *IndonesiaDukcapilMatchProviderOutput) UnsetFullName() {
+	o.FullName.Unset()
+}
+
+// GetDateOfBirth returns the DateOfBirth field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IndonesiaDukcapilMatchProviderOutput) GetDateOfBirth() IndonesiaDukcapilMatchDateOfBirthField {
-	if o == nil {
+	if o == nil || IsNil(o.DateOfBirth.Get()) {
 		var ret IndonesiaDukcapilMatchDateOfBirthField
 		return ret
 	}
-
-	return o.DateOfBirth
+	return *o.DateOfBirth.Get()
 }
 
-// GetDateOfBirthOk returns a tuple with the DateOfBirth field value
+// GetDateOfBirthOk returns a tuple with the DateOfBirth field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *IndonesiaDukcapilMatchProviderOutput) GetDateOfBirthOk() (*IndonesiaDukcapilMatchDateOfBirthField, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.DateOfBirth, true
+	return o.DateOfBirth.Get(), o.DateOfBirth.IsSet()
 }
 
-// SetDateOfBirth sets field value
+// HasDateOfBirth returns a boolean if a field has been set.
+func (o *IndonesiaDukcapilMatchProviderOutput) HasDateOfBirth() bool {
+	if o != nil && o.DateOfBirth.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDateOfBirth gets a reference to the given NullableIndonesiaDukcapilMatchDateOfBirthField and assigns it to the DateOfBirth field.
 func (o *IndonesiaDukcapilMatchProviderOutput) SetDateOfBirth(v IndonesiaDukcapilMatchDateOfBirthField) {
-	o.DateOfBirth = v
+	o.DateOfBirth.Set(&v)
+}
+// SetDateOfBirthNil sets the value for DateOfBirth to be an explicit nil
+func (o *IndonesiaDukcapilMatchProviderOutput) SetDateOfBirthNil() {
+	o.DateOfBirth.Set(nil)
 }
 
-// GetProvinceCode returns the ProvinceCode field value
+// UnsetDateOfBirth ensures that no value is present for DateOfBirth, not even an explicit nil
+func (o *IndonesiaDukcapilMatchProviderOutput) UnsetDateOfBirth() {
+	o.DateOfBirth.Unset()
+}
+
+// GetProvinceCode returns the ProvinceCode field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IndonesiaDukcapilMatchProviderOutput) GetProvinceCode() string {
-	if o == nil {
+	if o == nil || IsNil(o.ProvinceCode.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.ProvinceCode
+	return *o.ProvinceCode.Get()
 }
 
-// GetProvinceCodeOk returns a tuple with the ProvinceCode field value
+// GetProvinceCodeOk returns a tuple with the ProvinceCode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *IndonesiaDukcapilMatchProviderOutput) GetProvinceCodeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.ProvinceCode, true
+	return o.ProvinceCode.Get(), o.ProvinceCode.IsSet()
 }
 
-// SetProvinceCode sets field value
+// HasProvinceCode returns a boolean if a field has been set.
+func (o *IndonesiaDukcapilMatchProviderOutput) HasProvinceCode() bool {
+	if o != nil && o.ProvinceCode.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetProvinceCode gets a reference to the given NullableString and assigns it to the ProvinceCode field.
 func (o *IndonesiaDukcapilMatchProviderOutput) SetProvinceCode(v string) {
-	o.ProvinceCode = v
+	o.ProvinceCode.Set(&v)
+}
+// SetProvinceCodeNil sets the value for ProvinceCode to be an explicit nil
+func (o *IndonesiaDukcapilMatchProviderOutput) SetProvinceCodeNil() {
+	o.ProvinceCode.Set(nil)
 }
 
-// GetRegencyOrCityCode returns the RegencyOrCityCode field value
+// UnsetProvinceCode ensures that no value is present for ProvinceCode, not even an explicit nil
+func (o *IndonesiaDukcapilMatchProviderOutput) UnsetProvinceCode() {
+	o.ProvinceCode.Unset()
+}
+
+// GetRegencyOrCityCode returns the RegencyOrCityCode field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IndonesiaDukcapilMatchProviderOutput) GetRegencyOrCityCode() string {
-	if o == nil {
+	if o == nil || IsNil(o.RegencyOrCityCode.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.RegencyOrCityCode
+	return *o.RegencyOrCityCode.Get()
 }
 
-// GetRegencyOrCityCodeOk returns a tuple with the RegencyOrCityCode field value
+// GetRegencyOrCityCodeOk returns a tuple with the RegencyOrCityCode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *IndonesiaDukcapilMatchProviderOutput) GetRegencyOrCityCodeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.RegencyOrCityCode, true
+	return o.RegencyOrCityCode.Get(), o.RegencyOrCityCode.IsSet()
 }
 
-// SetRegencyOrCityCode sets field value
+// HasRegencyOrCityCode returns a boolean if a field has been set.
+func (o *IndonesiaDukcapilMatchProviderOutput) HasRegencyOrCityCode() bool {
+	if o != nil && o.RegencyOrCityCode.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRegencyOrCityCode gets a reference to the given NullableString and assigns it to the RegencyOrCityCode field.
 func (o *IndonesiaDukcapilMatchProviderOutput) SetRegencyOrCityCode(v string) {
-	o.RegencyOrCityCode = v
+	o.RegencyOrCityCode.Set(&v)
+}
+// SetRegencyOrCityCodeNil sets the value for RegencyOrCityCode to be an explicit nil
+func (o *IndonesiaDukcapilMatchProviderOutput) SetRegencyOrCityCodeNil() {
+	o.RegencyOrCityCode.Set(nil)
 }
 
-// GetDistrictCode returns the DistrictCode field value
+// UnsetRegencyOrCityCode ensures that no value is present for RegencyOrCityCode, not even an explicit nil
+func (o *IndonesiaDukcapilMatchProviderOutput) UnsetRegencyOrCityCode() {
+	o.RegencyOrCityCode.Unset()
+}
+
+// GetDistrictCode returns the DistrictCode field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IndonesiaDukcapilMatchProviderOutput) GetDistrictCode() string {
-	if o == nil {
+	if o == nil || IsNil(o.DistrictCode.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.DistrictCode
+	return *o.DistrictCode.Get()
 }
 
-// GetDistrictCodeOk returns a tuple with the DistrictCode field value
+// GetDistrictCodeOk returns a tuple with the DistrictCode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *IndonesiaDukcapilMatchProviderOutput) GetDistrictCodeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.DistrictCode, true
+	return o.DistrictCode.Get(), o.DistrictCode.IsSet()
 }
 
-// SetDistrictCode sets field value
+// HasDistrictCode returns a boolean if a field has been set.
+func (o *IndonesiaDukcapilMatchProviderOutput) HasDistrictCode() bool {
+	if o != nil && o.DistrictCode.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDistrictCode gets a reference to the given NullableString and assigns it to the DistrictCode field.
 func (o *IndonesiaDukcapilMatchProviderOutput) SetDistrictCode(v string) {
-	o.DistrictCode = v
+	o.DistrictCode.Set(&v)
+}
+// SetDistrictCodeNil sets the value for DistrictCode to be an explicit nil
+func (o *IndonesiaDukcapilMatchProviderOutput) SetDistrictCodeNil() {
+	o.DistrictCode.Set(nil)
 }
 
-// GetSexNationalIdNumber returns the SexNationalIdNumber field value
+// UnsetDistrictCode ensures that no value is present for DistrictCode, not even an explicit nil
+func (o *IndonesiaDukcapilMatchProviderOutput) UnsetDistrictCode() {
+	o.DistrictCode.Unset()
+}
+
+// GetSexNationalIdNumber returns the SexNationalIdNumber field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IndonesiaDukcapilMatchProviderOutput) GetSexNationalIdNumber() string {
-	if o == nil {
+	if o == nil || IsNil(o.SexNationalIdNumber.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.SexNationalIdNumber
+	return *o.SexNationalIdNumber.Get()
 }
 
-// GetSexNationalIdNumberOk returns a tuple with the SexNationalIdNumber field value
+// GetSexNationalIdNumberOk returns a tuple with the SexNationalIdNumber field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *IndonesiaDukcapilMatchProviderOutput) GetSexNationalIdNumberOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.SexNationalIdNumber, true
+	return o.SexNationalIdNumber.Get(), o.SexNationalIdNumber.IsSet()
 }
 
-// SetSexNationalIdNumber sets field value
+// HasSexNationalIdNumber returns a boolean if a field has been set.
+func (o *IndonesiaDukcapilMatchProviderOutput) HasSexNationalIdNumber() bool {
+	if o != nil && o.SexNationalIdNumber.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSexNationalIdNumber gets a reference to the given NullableString and assigns it to the SexNationalIdNumber field.
 func (o *IndonesiaDukcapilMatchProviderOutput) SetSexNationalIdNumber(v string) {
-	o.SexNationalIdNumber = v
+	o.SexNationalIdNumber.Set(&v)
+}
+// SetSexNationalIdNumberNil sets the value for SexNationalIdNumber to be an explicit nil
+func (o *IndonesiaDukcapilMatchProviderOutput) SetSexNationalIdNumberNil() {
+	o.SexNationalIdNumber.Set(nil)
 }
 
-// GetSerialNumber returns the SerialNumber field value
+// UnsetSexNationalIdNumber ensures that no value is present for SexNationalIdNumber, not even an explicit nil
+func (o *IndonesiaDukcapilMatchProviderOutput) UnsetSexNationalIdNumber() {
+	o.SexNationalIdNumber.Unset()
+}
+
+// GetSerialNumber returns the SerialNumber field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IndonesiaDukcapilMatchProviderOutput) GetSerialNumber() string {
-	if o == nil {
+	if o == nil || IsNil(o.SerialNumber.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.SerialNumber
+	return *o.SerialNumber.Get()
 }
 
-// GetSerialNumberOk returns a tuple with the SerialNumber field value
+// GetSerialNumberOk returns a tuple with the SerialNumber field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *IndonesiaDukcapilMatchProviderOutput) GetSerialNumberOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.SerialNumber, true
+	return o.SerialNumber.Get(), o.SerialNumber.IsSet()
 }
 
-// SetSerialNumber sets field value
+// HasSerialNumber returns a boolean if a field has been set.
+func (o *IndonesiaDukcapilMatchProviderOutput) HasSerialNumber() bool {
+	if o != nil && o.SerialNumber.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSerialNumber gets a reference to the given NullableString and assigns it to the SerialNumber field.
 func (o *IndonesiaDukcapilMatchProviderOutput) SetSerialNumber(v string) {
-	o.SerialNumber = v
+	o.SerialNumber.Set(&v)
+}
+// SetSerialNumberNil sets the value for SerialNumber to be an explicit nil
+func (o *IndonesiaDukcapilMatchProviderOutput) SetSerialNumberNil() {
+	o.SerialNumber.Set(nil)
+}
+
+// UnsetSerialNumber ensures that no value is present for SerialNumber, not even an explicit nil
+func (o *IndonesiaDukcapilMatchProviderOutput) UnsetSerialNumber() {
+	o.SerialNumber.Unset()
 }
 
 // GetPhoneNumber returns the PhoneNumber field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -308,28 +442,46 @@ func (o *IndonesiaDukcapilMatchProviderOutput) UnsetPhoneNumber() {
 	o.PhoneNumber.Unset()
 }
 
-// GetConsentGivenAt returns the ConsentGivenAt field value
+// GetConsentGivenAt returns the ConsentGivenAt field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IndonesiaDukcapilMatchProviderOutput) GetConsentGivenAt() time.Time {
-	if o == nil {
+	if o == nil || IsNil(o.ConsentGivenAt.Get()) {
 		var ret time.Time
 		return ret
 	}
-
-	return o.ConsentGivenAt
+	return *o.ConsentGivenAt.Get()
 }
 
-// GetConsentGivenAtOk returns a tuple with the ConsentGivenAt field value
+// GetConsentGivenAtOk returns a tuple with the ConsentGivenAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *IndonesiaDukcapilMatchProviderOutput) GetConsentGivenAtOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.ConsentGivenAt, true
+	return o.ConsentGivenAt.Get(), o.ConsentGivenAt.IsSet()
 }
 
-// SetConsentGivenAt sets field value
+// HasConsentGivenAt returns a boolean if a field has been set.
+func (o *IndonesiaDukcapilMatchProviderOutput) HasConsentGivenAt() bool {
+	if o != nil && o.ConsentGivenAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetConsentGivenAt gets a reference to the given NullableTime and assigns it to the ConsentGivenAt field.
 func (o *IndonesiaDukcapilMatchProviderOutput) SetConsentGivenAt(v time.Time) {
-	o.ConsentGivenAt = v
+	o.ConsentGivenAt.Set(&v)
+}
+// SetConsentGivenAtNil sets the value for ConsentGivenAt to be an explicit nil
+func (o *IndonesiaDukcapilMatchProviderOutput) SetConsentGivenAtNil() {
+	o.ConsentGivenAt.Set(nil)
+}
+
+// UnsetConsentGivenAt ensures that no value is present for ConsentGivenAt, not even an explicit nil
+func (o *IndonesiaDukcapilMatchProviderOutput) UnsetConsentGivenAt() {
+	o.ConsentGivenAt.Unset()
 }
 
 // GetEmail returns the Email field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -384,18 +536,36 @@ func (o IndonesiaDukcapilMatchProviderOutput) MarshalJSON() ([]byte, error) {
 
 func (o IndonesiaDukcapilMatchProviderOutput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["nationalIdNumber"] = o.NationalIdNumber
-	toSerialize["fullName"] = o.FullName
-	toSerialize["dateOfBirth"] = o.DateOfBirth
-	toSerialize["provinceCode"] = o.ProvinceCode
-	toSerialize["regencyOrCityCode"] = o.RegencyOrCityCode
-	toSerialize["districtCode"] = o.DistrictCode
-	toSerialize["sexNationalIdNumber"] = o.SexNationalIdNumber
-	toSerialize["serialNumber"] = o.SerialNumber
+	if o.NationalIdNumber.IsSet() {
+		toSerialize["nationalIdNumber"] = o.NationalIdNumber.Get()
+	}
+	if o.FullName.IsSet() {
+		toSerialize["fullName"] = o.FullName.Get()
+	}
+	if o.DateOfBirth.IsSet() {
+		toSerialize["dateOfBirth"] = o.DateOfBirth.Get()
+	}
+	if o.ProvinceCode.IsSet() {
+		toSerialize["provinceCode"] = o.ProvinceCode.Get()
+	}
+	if o.RegencyOrCityCode.IsSet() {
+		toSerialize["regencyOrCityCode"] = o.RegencyOrCityCode.Get()
+	}
+	if o.DistrictCode.IsSet() {
+		toSerialize["districtCode"] = o.DistrictCode.Get()
+	}
+	if o.SexNationalIdNumber.IsSet() {
+		toSerialize["sexNationalIdNumber"] = o.SexNationalIdNumber.Get()
+	}
+	if o.SerialNumber.IsSet() {
+		toSerialize["serialNumber"] = o.SerialNumber.Get()
+	}
 	if o.PhoneNumber.IsSet() {
 		toSerialize["phoneNumber"] = o.PhoneNumber.Get()
 	}
-	toSerialize["consentGivenAt"] = o.ConsentGivenAt
+	if o.ConsentGivenAt.IsSet() {
+		toSerialize["consentGivenAt"] = o.ConsentGivenAt.Get()
+	}
 	if o.Email.IsSet() {
 		toSerialize["email"] = o.Email.Get()
 	}
@@ -408,35 +578,6 @@ func (o IndonesiaDukcapilMatchProviderOutput) ToMap() (map[string]interface{}, e
 }
 
 func (o *IndonesiaDukcapilMatchProviderOutput) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"nationalIdNumber",
-		"fullName",
-		"dateOfBirth",
-		"provinceCode",
-		"regencyOrCityCode",
-		"districtCode",
-		"sexNationalIdNumber",
-		"serialNumber",
-		"consentGivenAt",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varIndonesiaDukcapilMatchProviderOutput := _IndonesiaDukcapilMatchProviderOutput{}
 
 	err = json.Unmarshal(data, &varIndonesiaDukcapilMatchProviderOutput)

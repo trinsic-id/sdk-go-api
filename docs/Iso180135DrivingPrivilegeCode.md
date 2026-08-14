@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Code** | **string** | The code identifier. | 
+**Code** | Pointer to **NullableString** | The code identifier. | [optional] 
 **Sign** | Pointer to **NullableString** | Optional comparison sign applied to the code&#39;s value. | [optional] 
 **Value** | Pointer to **NullableString** | Optional value applied to the code. | [optional] 
 
@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 
 ### NewIso180135DrivingPrivilegeCode
 
-`func NewIso180135DrivingPrivilegeCode(code string, ) *Iso180135DrivingPrivilegeCode`
+`func NewIso180135DrivingPrivilegeCode() *Iso180135DrivingPrivilegeCode`
 
 NewIso180135DrivingPrivilegeCode instantiates a new Iso180135DrivingPrivilegeCode object
 This constructor will assign default values to properties that have it defined,
@@ -46,7 +46,22 @@ and a boolean to check if the value has been set.
 
 SetCode sets Code field to given value.
 
+### HasCode
 
+`func (o *Iso180135DrivingPrivilegeCode) HasCode() bool`
+
+HasCode returns a boolean if a field has been set.
+
+### SetCodeNil
+
+`func (o *Iso180135DrivingPrivilegeCode) SetCodeNil(b bool)`
+
+ SetCodeNil sets the value for Code to be an explicit nil
+
+### UnsetCode
+`func (o *Iso180135DrivingPrivilegeCode) UnsetCode()`
+
+UnsetCode ensures that no value is present for Code, not even an explicit nil
 ### GetSign
 
 `func (o *Iso180135DrivingPrivilegeCode) GetSign() string`

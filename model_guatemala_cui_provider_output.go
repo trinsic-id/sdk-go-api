@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the GuatemalaCuiProviderOutput type satisfies the MappedNullable interface at compile time
@@ -21,25 +20,25 @@ var _ MappedNullable = &GuatemalaCuiProviderOutput{}
 // GuatemalaCuiProviderOutput Exposed properties for the `guatemala-cui-lookup` Provider which do not directly map to the normalized IdentityData model.
 type GuatemalaCuiProviderOutput struct {
 	// Full name, including given and family names of the CUI holder.
-	FullName string `json:"fullName"`
+	FullName NullableString `json:"fullName,omitempty"`
 	// Given name(s) of the CUI holder.
-	GivenName string `json:"givenName"`
+	GivenName NullableString `json:"givenName,omitempty"`
 	// Family name(s) of the CUI holder, including maternal and paternal names.
-	FamilyName string `json:"familyName"`
+	FamilyName NullableString `json:"familyName,omitempty"`
 	// Date of birth of the CUI holder.
 	DateOfBirth NullableString `json:"dateOfBirth,omitempty"`
 	// The Guatemalan Código Único de Identificación (CUI) number.              Assigned and maintained by RENAP (Registro Nacional de las Personas). Official format: exactly 13 numeric digits. 8 RENAP-assigned serial digits, 1 verifier digit (dígito verificador), and 4 geographic digits for department and municipality of birth. The CUI is printed on the Documento Personal de Identificación (DPI) in three groups (4–5–4) separated by spaces.              Trinsic normalizes to digits-only when returning the result, automatically removing spaces, dots, hyphens, and other non-alphanumeric characters.              No verifier algorithm appears in publicly accessible RENAP resources. Community-maintained validators often use modulus-11 (non-official).
-	DocumentNumber string `json:"documentNumber"`
+	DocumentNumber NullableString `json:"documentNumber,omitempty"`
 	// The first 8 digits of the CUI: the portion RENAP assigns from its registration system, before the verifier digit and the four-place geographic codes. Called the “serial” numbers in community-maintained validators.
-	SerialDigits string `json:"serialDigits"`
+	SerialDigits NullableString `json:"serialDigits,omitempty"`
 	// The 9th digit of the CUI (verifier digit / dígito verificador). No verifier algorithm appears in publicly accessible RENAP resources.              However, community-maintained validators often use modulus-11 (non-official).
-	VerifierDigit string `json:"verifierDigit"`
+	VerifierDigit NullableString `json:"verifierDigit,omitempty"`
 	// The last four digits encode birthplace department and municipality. There is not a publicly accessible dataset from RENAP for geographic codes. The INE (Instituto Nacional de Estadística y Censos) provides a dictionary of variables (Educación Formal 2024) that includes statistical codes for decoding departments and municipalities. Be careful using these resources, as these codes are not official RENAP codes. They may not always map to the correct department and municipality for consular registrations, naturalizations, foreign residents, and other edge cases.              For the dataset, see: https://datos.ine.gob.gt/dataset/educacion-formal-2024 under \"Diccionario de Variables (Educación Formal 2024)\"
-	GeographicDigits string `json:"geographicDigits"`
+	GeographicDigits NullableString `json:"geographicDigits,omitempty"`
 	// Sex of the CUI holder.              Possible values: - Male - Female - Unknown
-	Sex string `json:"sex"`
+	Sex NullableString `json:"sex,omitempty"`
 	// All names of the CUI holder, as an array of strings (e.g. given and family name parts).
-	ArrayName []string `json:"arrayName"`
+	ArrayName []string `json:"arrayName,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -49,17 +48,8 @@ type _GuatemalaCuiProviderOutput GuatemalaCuiProviderOutput
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGuatemalaCuiProviderOutput(fullName string, givenName string, familyName string, documentNumber string, serialDigits string, verifierDigit string, geographicDigits string, sex string, arrayName []string) *GuatemalaCuiProviderOutput {
+func NewGuatemalaCuiProviderOutput() *GuatemalaCuiProviderOutput {
 	this := GuatemalaCuiProviderOutput{}
-	this.FullName = fullName
-	this.GivenName = givenName
-	this.FamilyName = familyName
-	this.DocumentNumber = documentNumber
-	this.SerialDigits = serialDigits
-	this.VerifierDigit = verifierDigit
-	this.GeographicDigits = geographicDigits
-	this.Sex = sex
-	this.ArrayName = arrayName
 	return &this
 }
 
@@ -71,76 +61,130 @@ func NewGuatemalaCuiProviderOutputWithDefaults() *GuatemalaCuiProviderOutput {
 	return &this
 }
 
-// GetFullName returns the FullName field value
+// GetFullName returns the FullName field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GuatemalaCuiProviderOutput) GetFullName() string {
-	if o == nil {
+	if o == nil || IsNil(o.FullName.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.FullName
+	return *o.FullName.Get()
 }
 
-// GetFullNameOk returns a tuple with the FullName field value
+// GetFullNameOk returns a tuple with the FullName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *GuatemalaCuiProviderOutput) GetFullNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.FullName, true
+	return o.FullName.Get(), o.FullName.IsSet()
 }
 
-// SetFullName sets field value
+// HasFullName returns a boolean if a field has been set.
+func (o *GuatemalaCuiProviderOutput) HasFullName() bool {
+	if o != nil && o.FullName.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetFullName gets a reference to the given NullableString and assigns it to the FullName field.
 func (o *GuatemalaCuiProviderOutput) SetFullName(v string) {
-	o.FullName = v
+	o.FullName.Set(&v)
+}
+// SetFullNameNil sets the value for FullName to be an explicit nil
+func (o *GuatemalaCuiProviderOutput) SetFullNameNil() {
+	o.FullName.Set(nil)
 }
 
-// GetGivenName returns the GivenName field value
+// UnsetFullName ensures that no value is present for FullName, not even an explicit nil
+func (o *GuatemalaCuiProviderOutput) UnsetFullName() {
+	o.FullName.Unset()
+}
+
+// GetGivenName returns the GivenName field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GuatemalaCuiProviderOutput) GetGivenName() string {
-	if o == nil {
+	if o == nil || IsNil(o.GivenName.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.GivenName
+	return *o.GivenName.Get()
 }
 
-// GetGivenNameOk returns a tuple with the GivenName field value
+// GetGivenNameOk returns a tuple with the GivenName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *GuatemalaCuiProviderOutput) GetGivenNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.GivenName, true
+	return o.GivenName.Get(), o.GivenName.IsSet()
 }
 
-// SetGivenName sets field value
+// HasGivenName returns a boolean if a field has been set.
+func (o *GuatemalaCuiProviderOutput) HasGivenName() bool {
+	if o != nil && o.GivenName.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetGivenName gets a reference to the given NullableString and assigns it to the GivenName field.
 func (o *GuatemalaCuiProviderOutput) SetGivenName(v string) {
-	o.GivenName = v
+	o.GivenName.Set(&v)
+}
+// SetGivenNameNil sets the value for GivenName to be an explicit nil
+func (o *GuatemalaCuiProviderOutput) SetGivenNameNil() {
+	o.GivenName.Set(nil)
 }
 
-// GetFamilyName returns the FamilyName field value
+// UnsetGivenName ensures that no value is present for GivenName, not even an explicit nil
+func (o *GuatemalaCuiProviderOutput) UnsetGivenName() {
+	o.GivenName.Unset()
+}
+
+// GetFamilyName returns the FamilyName field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GuatemalaCuiProviderOutput) GetFamilyName() string {
-	if o == nil {
+	if o == nil || IsNil(o.FamilyName.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.FamilyName
+	return *o.FamilyName.Get()
 }
 
-// GetFamilyNameOk returns a tuple with the FamilyName field value
+// GetFamilyNameOk returns a tuple with the FamilyName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *GuatemalaCuiProviderOutput) GetFamilyNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.FamilyName, true
+	return o.FamilyName.Get(), o.FamilyName.IsSet()
 }
 
-// SetFamilyName sets field value
+// HasFamilyName returns a boolean if a field has been set.
+func (o *GuatemalaCuiProviderOutput) HasFamilyName() bool {
+	if o != nil && o.FamilyName.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetFamilyName gets a reference to the given NullableString and assigns it to the FamilyName field.
 func (o *GuatemalaCuiProviderOutput) SetFamilyName(v string) {
-	o.FamilyName = v
+	o.FamilyName.Set(&v)
+}
+// SetFamilyNameNil sets the value for FamilyName to be an explicit nil
+func (o *GuatemalaCuiProviderOutput) SetFamilyNameNil() {
+	o.FamilyName.Set(nil)
+}
+
+// UnsetFamilyName ensures that no value is present for FamilyName, not even an explicit nil
+func (o *GuatemalaCuiProviderOutput) UnsetFamilyName() {
+	o.FamilyName.Unset()
 }
 
 // GetDateOfBirth returns the DateOfBirth field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -185,146 +229,245 @@ func (o *GuatemalaCuiProviderOutput) UnsetDateOfBirth() {
 	o.DateOfBirth.Unset()
 }
 
-// GetDocumentNumber returns the DocumentNumber field value
+// GetDocumentNumber returns the DocumentNumber field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GuatemalaCuiProviderOutput) GetDocumentNumber() string {
-	if o == nil {
+	if o == nil || IsNil(o.DocumentNumber.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.DocumentNumber
+	return *o.DocumentNumber.Get()
 }
 
-// GetDocumentNumberOk returns a tuple with the DocumentNumber field value
+// GetDocumentNumberOk returns a tuple with the DocumentNumber field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *GuatemalaCuiProviderOutput) GetDocumentNumberOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.DocumentNumber, true
+	return o.DocumentNumber.Get(), o.DocumentNumber.IsSet()
 }
 
-// SetDocumentNumber sets field value
+// HasDocumentNumber returns a boolean if a field has been set.
+func (o *GuatemalaCuiProviderOutput) HasDocumentNumber() bool {
+	if o != nil && o.DocumentNumber.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDocumentNumber gets a reference to the given NullableString and assigns it to the DocumentNumber field.
 func (o *GuatemalaCuiProviderOutput) SetDocumentNumber(v string) {
-	o.DocumentNumber = v
+	o.DocumentNumber.Set(&v)
+}
+// SetDocumentNumberNil sets the value for DocumentNumber to be an explicit nil
+func (o *GuatemalaCuiProviderOutput) SetDocumentNumberNil() {
+	o.DocumentNumber.Set(nil)
 }
 
-// GetSerialDigits returns the SerialDigits field value
+// UnsetDocumentNumber ensures that no value is present for DocumentNumber, not even an explicit nil
+func (o *GuatemalaCuiProviderOutput) UnsetDocumentNumber() {
+	o.DocumentNumber.Unset()
+}
+
+// GetSerialDigits returns the SerialDigits field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GuatemalaCuiProviderOutput) GetSerialDigits() string {
-	if o == nil {
+	if o == nil || IsNil(o.SerialDigits.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.SerialDigits
+	return *o.SerialDigits.Get()
 }
 
-// GetSerialDigitsOk returns a tuple with the SerialDigits field value
+// GetSerialDigitsOk returns a tuple with the SerialDigits field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *GuatemalaCuiProviderOutput) GetSerialDigitsOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.SerialDigits, true
+	return o.SerialDigits.Get(), o.SerialDigits.IsSet()
 }
 
-// SetSerialDigits sets field value
+// HasSerialDigits returns a boolean if a field has been set.
+func (o *GuatemalaCuiProviderOutput) HasSerialDigits() bool {
+	if o != nil && o.SerialDigits.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSerialDigits gets a reference to the given NullableString and assigns it to the SerialDigits field.
 func (o *GuatemalaCuiProviderOutput) SetSerialDigits(v string) {
-	o.SerialDigits = v
+	o.SerialDigits.Set(&v)
+}
+// SetSerialDigitsNil sets the value for SerialDigits to be an explicit nil
+func (o *GuatemalaCuiProviderOutput) SetSerialDigitsNil() {
+	o.SerialDigits.Set(nil)
 }
 
-// GetVerifierDigit returns the VerifierDigit field value
+// UnsetSerialDigits ensures that no value is present for SerialDigits, not even an explicit nil
+func (o *GuatemalaCuiProviderOutput) UnsetSerialDigits() {
+	o.SerialDigits.Unset()
+}
+
+// GetVerifierDigit returns the VerifierDigit field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GuatemalaCuiProviderOutput) GetVerifierDigit() string {
-	if o == nil {
+	if o == nil || IsNil(o.VerifierDigit.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.VerifierDigit
+	return *o.VerifierDigit.Get()
 }
 
-// GetVerifierDigitOk returns a tuple with the VerifierDigit field value
+// GetVerifierDigitOk returns a tuple with the VerifierDigit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *GuatemalaCuiProviderOutput) GetVerifierDigitOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.VerifierDigit, true
+	return o.VerifierDigit.Get(), o.VerifierDigit.IsSet()
 }
 
-// SetVerifierDigit sets field value
+// HasVerifierDigit returns a boolean if a field has been set.
+func (o *GuatemalaCuiProviderOutput) HasVerifierDigit() bool {
+	if o != nil && o.VerifierDigit.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetVerifierDigit gets a reference to the given NullableString and assigns it to the VerifierDigit field.
 func (o *GuatemalaCuiProviderOutput) SetVerifierDigit(v string) {
-	o.VerifierDigit = v
+	o.VerifierDigit.Set(&v)
+}
+// SetVerifierDigitNil sets the value for VerifierDigit to be an explicit nil
+func (o *GuatemalaCuiProviderOutput) SetVerifierDigitNil() {
+	o.VerifierDigit.Set(nil)
 }
 
-// GetGeographicDigits returns the GeographicDigits field value
+// UnsetVerifierDigit ensures that no value is present for VerifierDigit, not even an explicit nil
+func (o *GuatemalaCuiProviderOutput) UnsetVerifierDigit() {
+	o.VerifierDigit.Unset()
+}
+
+// GetGeographicDigits returns the GeographicDigits field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GuatemalaCuiProviderOutput) GetGeographicDigits() string {
-	if o == nil {
+	if o == nil || IsNil(o.GeographicDigits.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.GeographicDigits
+	return *o.GeographicDigits.Get()
 }
 
-// GetGeographicDigitsOk returns a tuple with the GeographicDigits field value
+// GetGeographicDigitsOk returns a tuple with the GeographicDigits field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *GuatemalaCuiProviderOutput) GetGeographicDigitsOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.GeographicDigits, true
+	return o.GeographicDigits.Get(), o.GeographicDigits.IsSet()
 }
 
-// SetGeographicDigits sets field value
+// HasGeographicDigits returns a boolean if a field has been set.
+func (o *GuatemalaCuiProviderOutput) HasGeographicDigits() bool {
+	if o != nil && o.GeographicDigits.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetGeographicDigits gets a reference to the given NullableString and assigns it to the GeographicDigits field.
 func (o *GuatemalaCuiProviderOutput) SetGeographicDigits(v string) {
-	o.GeographicDigits = v
+	o.GeographicDigits.Set(&v)
+}
+// SetGeographicDigitsNil sets the value for GeographicDigits to be an explicit nil
+func (o *GuatemalaCuiProviderOutput) SetGeographicDigitsNil() {
+	o.GeographicDigits.Set(nil)
 }
 
-// GetSex returns the Sex field value
+// UnsetGeographicDigits ensures that no value is present for GeographicDigits, not even an explicit nil
+func (o *GuatemalaCuiProviderOutput) UnsetGeographicDigits() {
+	o.GeographicDigits.Unset()
+}
+
+// GetSex returns the Sex field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GuatemalaCuiProviderOutput) GetSex() string {
-	if o == nil {
+	if o == nil || IsNil(o.Sex.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.Sex
+	return *o.Sex.Get()
 }
 
-// GetSexOk returns a tuple with the Sex field value
+// GetSexOk returns a tuple with the Sex field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *GuatemalaCuiProviderOutput) GetSexOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Sex, true
+	return o.Sex.Get(), o.Sex.IsSet()
 }
 
-// SetSex sets field value
+// HasSex returns a boolean if a field has been set.
+func (o *GuatemalaCuiProviderOutput) HasSex() bool {
+	if o != nil && o.Sex.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSex gets a reference to the given NullableString and assigns it to the Sex field.
 func (o *GuatemalaCuiProviderOutput) SetSex(v string) {
-	o.Sex = v
+	o.Sex.Set(&v)
+}
+// SetSexNil sets the value for Sex to be an explicit nil
+func (o *GuatemalaCuiProviderOutput) SetSexNil() {
+	o.Sex.Set(nil)
 }
 
-// GetArrayName returns the ArrayName field value
+// UnsetSex ensures that no value is present for Sex, not even an explicit nil
+func (o *GuatemalaCuiProviderOutput) UnsetSex() {
+	o.Sex.Unset()
+}
+
+// GetArrayName returns the ArrayName field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GuatemalaCuiProviderOutput) GetArrayName() []string {
 	if o == nil {
 		var ret []string
 		return ret
 	}
-
 	return o.ArrayName
 }
 
-// GetArrayNameOk returns a tuple with the ArrayName field value
+// GetArrayNameOk returns a tuple with the ArrayName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *GuatemalaCuiProviderOutput) GetArrayNameOk() ([]string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ArrayName) {
 		return nil, false
 	}
 	return o.ArrayName, true
 }
 
-// SetArrayName sets field value
+// HasArrayName returns a boolean if a field has been set.
+func (o *GuatemalaCuiProviderOutput) HasArrayName() bool {
+	if o != nil && !IsNil(o.ArrayName) {
+		return true
+	}
+
+	return false
+}
+
+// SetArrayName gets a reference to the given []string and assigns it to the ArrayName field.
 func (o *GuatemalaCuiProviderOutput) SetArrayName(v []string) {
 	o.ArrayName = v
 }
@@ -339,18 +482,36 @@ func (o GuatemalaCuiProviderOutput) MarshalJSON() ([]byte, error) {
 
 func (o GuatemalaCuiProviderOutput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["fullName"] = o.FullName
-	toSerialize["givenName"] = o.GivenName
-	toSerialize["familyName"] = o.FamilyName
+	if o.FullName.IsSet() {
+		toSerialize["fullName"] = o.FullName.Get()
+	}
+	if o.GivenName.IsSet() {
+		toSerialize["givenName"] = o.GivenName.Get()
+	}
+	if o.FamilyName.IsSet() {
+		toSerialize["familyName"] = o.FamilyName.Get()
+	}
 	if o.DateOfBirth.IsSet() {
 		toSerialize["dateOfBirth"] = o.DateOfBirth.Get()
 	}
-	toSerialize["documentNumber"] = o.DocumentNumber
-	toSerialize["serialDigits"] = o.SerialDigits
-	toSerialize["verifierDigit"] = o.VerifierDigit
-	toSerialize["geographicDigits"] = o.GeographicDigits
-	toSerialize["sex"] = o.Sex
-	toSerialize["arrayName"] = o.ArrayName
+	if o.DocumentNumber.IsSet() {
+		toSerialize["documentNumber"] = o.DocumentNumber.Get()
+	}
+	if o.SerialDigits.IsSet() {
+		toSerialize["serialDigits"] = o.SerialDigits.Get()
+	}
+	if o.VerifierDigit.IsSet() {
+		toSerialize["verifierDigit"] = o.VerifierDigit.Get()
+	}
+	if o.GeographicDigits.IsSet() {
+		toSerialize["geographicDigits"] = o.GeographicDigits.Get()
+	}
+	if o.Sex.IsSet() {
+		toSerialize["sex"] = o.Sex.Get()
+	}
+	if o.ArrayName != nil {
+		toSerialize["arrayName"] = o.ArrayName
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -360,35 +521,6 @@ func (o GuatemalaCuiProviderOutput) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *GuatemalaCuiProviderOutput) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"fullName",
-		"givenName",
-		"familyName",
-		"documentNumber",
-		"serialDigits",
-		"verifierDigit",
-		"geographicDigits",
-		"sex",
-		"arrayName",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varGuatemalaCuiProviderOutput := _GuatemalaCuiProviderOutput{}
 
 	err = json.Unmarshal(data, &varGuatemalaCuiProviderOutput)

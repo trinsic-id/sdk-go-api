@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**TrustFramework** | **string** | The trust framework used for the verification.              This identifies the anti-money-laundering framework used for identity verification. | 
+**TrustFramework** | Pointer to **NullableString** | The trust framework used for the verification.              This identifies the anti-money-laundering framework used for identity verification. | [optional] 
 **Time** | Pointer to **NullableTime** | The UTC date and time when the verification happened.              This value is normalized to UTC. | [optional] 
-**VerificationProcess** | **string** | The verification process identifier.              This identifies the bank that completed the physical identity verification process. | 
+**VerificationProcess** | Pointer to **NullableString** | The verification process identifier.              This identifies the bank that completed the physical identity verification process. | [optional] 
 
 ## Methods
 
 ### NewCzechBankIdVerification
 
-`func NewCzechBankIdVerification(trustFramework string, verificationProcess string, ) *CzechBankIdVerification`
+`func NewCzechBankIdVerification() *CzechBankIdVerification`
 
 NewCzechBankIdVerification instantiates a new CzechBankIdVerification object
 This constructor will assign default values to properties that have it defined,
@@ -46,7 +46,22 @@ and a boolean to check if the value has been set.
 
 SetTrustFramework sets TrustFramework field to given value.
 
+### HasTrustFramework
 
+`func (o *CzechBankIdVerification) HasTrustFramework() bool`
+
+HasTrustFramework returns a boolean if a field has been set.
+
+### SetTrustFrameworkNil
+
+`func (o *CzechBankIdVerification) SetTrustFrameworkNil(b bool)`
+
+ SetTrustFrameworkNil sets the value for TrustFramework to be an explicit nil
+
+### UnsetTrustFramework
+`func (o *CzechBankIdVerification) UnsetTrustFramework()`
+
+UnsetTrustFramework ensures that no value is present for TrustFramework, not even an explicit nil
 ### GetTime
 
 `func (o *CzechBankIdVerification) GetTime() time.Time`
@@ -101,7 +116,22 @@ and a boolean to check if the value has been set.
 
 SetVerificationProcess sets VerificationProcess field to given value.
 
+### HasVerificationProcess
 
+`func (o *CzechBankIdVerification) HasVerificationProcess() bool`
+
+HasVerificationProcess returns a boolean if a field has been set.
+
+### SetVerificationProcessNil
+
+`func (o *CzechBankIdVerification) SetVerificationProcessNil(b bool)`
+
+ SetVerificationProcessNil sets the value for VerificationProcess to be an explicit nil
+
+### UnsetVerificationProcess
+`func (o *CzechBankIdVerification) UnsetVerificationProcess()`
+
+UnsetVerificationProcess ensures that no value is present for VerificationProcess, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

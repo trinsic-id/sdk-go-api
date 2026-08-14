@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the PeruDniProviderOutput type satisfies the MappedNullable interface at compile time
@@ -23,29 +22,29 @@ type PeruDniProviderOutput struct {
 	// Information about the general area in which the DNI holder resides.              This field is not always available.
 	Address NullablePeruDniAddress `json:"address,omitempty"`
 	// All names that appear on DNI, as an array of strings.              Format: - All uppercase - Ordered by paternal family name, then maternal family name, then given names.
-	ArrayName []string `json:"arrayName"`
+	ArrayName []string `json:"arrayName,omitempty"`
 	// Marital status as it appears on the DNI.              This field is not always available.              Valid values: - \"Single\" - \"Married\" - \"Divorced\" - \"Widowed\"
 	CivilStatus NullableString `json:"civilStatus,omitempty"`
 	// Date of birth as it appears on the DNI.              This field is not always available.
 	DateOfBirth NullableString `json:"dateOfBirth,omitempty"`
 	// The individual's National Identity Document number (Documento Nacional de Identidad or DNI).              Format: - 8 digits - Does NOT include verification digit. On the DNI card, a ninth digit appears next to the first eight. It is   0-9 or A-K. This is NOT included in the DNI number when returned from Peru's database. - Does NOT include dots or hyphens
-	DocumentNumber string `json:"documentNumber"`
+	DocumentNumber NullableString `json:"documentNumber,omitempty"`
 	// Should always be \"DNI\".
-	DocumentType string `json:"documentType"`
+	DocumentType NullableString `json:"documentType,omitempty"`
 	// Date that the DNI was issued.              This field is not always available.              Format: - yyyy-MM-dd
 	ExpeditionDate NullableString `json:"expeditionDate,omitempty"`
 	// Date that the DNI will expire. DNI expires every 8 years, unless the citizen is >= 60 years old, in which case it never expires.              This field is not always available.              Format: - yyyy-MM-dd
 	ExpirationDate NullableString `json:"expirationDate,omitempty"`
 	// Given names as they appear on DNI.              Format: - All uppercase - Space-separated - Will include all given names
-	FirstName string `json:"firstName"`
+	FirstName NullableString `json:"firstName,omitempty"`
 	// All names as they appear on DNI.              Format: - All uppercase - Space-separated - Will include all names, given and family - Ordered by given names first, then paternal family name, then maternal family name
-	FullName string `json:"fullName"`
+	FullName NullableString `json:"fullName,omitempty"`
 	// Family names as they appear on DNI.              Format: - All uppercase - Will include all family names - Ordered by paternal family name first, then maternal family name
-	LastName string `json:"lastName"`
+	LastName NullableString `json:"lastName,omitempty"`
 	// Maternal last name as it appears on DNI.              Format: - All uppercase
-	MaternalLastName string `json:"maternalLastName"`
+	MaternalLastName NullableString `json:"maternalLastName,omitempty"`
 	// Paternal last name as it appears on DNI.              Format: - All uppercase
-	PaternalLastName string `json:"paternalLastName"`
+	PaternalLastName NullableString `json:"paternalLastName,omitempty"`
 	// Sex as it appears on DNI.              This field is not always available.              Values: - \"Male\" - \"Female\"
 	Sex NullableString `json:"sex,omitempty"`
 	// In Peru, geographical locations have an official geographical code called UBIGEO, from the spanish \"UBIcación GEOgráfica\" (Geographic Location). This is an administrative geocode, is different from a postal code (which Peru also has) and is used to specifically delineate the administrative region, province and district hierarchy.              There are two coding systems for UBIGEO: one from INEI (National Institute of Statistics and Informatics) and another from RENIEC (National Registry of Identification and Civil Status). The two coding systems are similar but are not 100% the same (some numbers will map to different geographic locations). This field follows the coding system from RENIEC.              This field is not always available.              Format: - Always 6 digits - First two digits represent region - Middle two are province - Last two are district              Given the example 081304, that would correspond to: - 08 - Cusco Region - 0813 - Urubamba Province - 081304 - Machupicchu District
@@ -61,16 +60,8 @@ type _PeruDniProviderOutput PeruDniProviderOutput
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPeruDniProviderOutput(arrayName []string, documentNumber string, documentType string, firstName string, fullName string, lastName string, maternalLastName string, paternalLastName string) *PeruDniProviderOutput {
+func NewPeruDniProviderOutput() *PeruDniProviderOutput {
 	this := PeruDniProviderOutput{}
-	this.ArrayName = arrayName
-	this.DocumentNumber = documentNumber
-	this.DocumentType = documentType
-	this.FirstName = firstName
-	this.FullName = fullName
-	this.LastName = lastName
-	this.MaternalLastName = maternalLastName
-	this.PaternalLastName = paternalLastName
 	return &this
 }
 
@@ -124,26 +115,35 @@ func (o *PeruDniProviderOutput) UnsetAddress() {
 	o.Address.Unset()
 }
 
-// GetArrayName returns the ArrayName field value
+// GetArrayName returns the ArrayName field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *PeruDniProviderOutput) GetArrayName() []string {
 	if o == nil {
 		var ret []string
 		return ret
 	}
-
 	return o.ArrayName
 }
 
-// GetArrayNameOk returns a tuple with the ArrayName field value
+// GetArrayNameOk returns a tuple with the ArrayName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *PeruDniProviderOutput) GetArrayNameOk() ([]string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ArrayName) {
 		return nil, false
 	}
 	return o.ArrayName, true
 }
 
-// SetArrayName sets field value
+// HasArrayName returns a boolean if a field has been set.
+func (o *PeruDniProviderOutput) HasArrayName() bool {
+	if o != nil && !IsNil(o.ArrayName) {
+		return true
+	}
+
+	return false
+}
+
+// SetArrayName gets a reference to the given []string and assigns it to the ArrayName field.
 func (o *PeruDniProviderOutput) SetArrayName(v []string) {
 	o.ArrayName = v
 }
@@ -232,52 +232,88 @@ func (o *PeruDniProviderOutput) UnsetDateOfBirth() {
 	o.DateOfBirth.Unset()
 }
 
-// GetDocumentNumber returns the DocumentNumber field value
+// GetDocumentNumber returns the DocumentNumber field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *PeruDniProviderOutput) GetDocumentNumber() string {
-	if o == nil {
+	if o == nil || IsNil(o.DocumentNumber.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.DocumentNumber
+	return *o.DocumentNumber.Get()
 }
 
-// GetDocumentNumberOk returns a tuple with the DocumentNumber field value
+// GetDocumentNumberOk returns a tuple with the DocumentNumber field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *PeruDniProviderOutput) GetDocumentNumberOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.DocumentNumber, true
+	return o.DocumentNumber.Get(), o.DocumentNumber.IsSet()
 }
 
-// SetDocumentNumber sets field value
+// HasDocumentNumber returns a boolean if a field has been set.
+func (o *PeruDniProviderOutput) HasDocumentNumber() bool {
+	if o != nil && o.DocumentNumber.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDocumentNumber gets a reference to the given NullableString and assigns it to the DocumentNumber field.
 func (o *PeruDniProviderOutput) SetDocumentNumber(v string) {
-	o.DocumentNumber = v
+	o.DocumentNumber.Set(&v)
+}
+// SetDocumentNumberNil sets the value for DocumentNumber to be an explicit nil
+func (o *PeruDniProviderOutput) SetDocumentNumberNil() {
+	o.DocumentNumber.Set(nil)
 }
 
-// GetDocumentType returns the DocumentType field value
+// UnsetDocumentNumber ensures that no value is present for DocumentNumber, not even an explicit nil
+func (o *PeruDniProviderOutput) UnsetDocumentNumber() {
+	o.DocumentNumber.Unset()
+}
+
+// GetDocumentType returns the DocumentType field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *PeruDniProviderOutput) GetDocumentType() string {
-	if o == nil {
+	if o == nil || IsNil(o.DocumentType.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.DocumentType
+	return *o.DocumentType.Get()
 }
 
-// GetDocumentTypeOk returns a tuple with the DocumentType field value
+// GetDocumentTypeOk returns a tuple with the DocumentType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *PeruDniProviderOutput) GetDocumentTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.DocumentType, true
+	return o.DocumentType.Get(), o.DocumentType.IsSet()
 }
 
-// SetDocumentType sets field value
+// HasDocumentType returns a boolean if a field has been set.
+func (o *PeruDniProviderOutput) HasDocumentType() bool {
+	if o != nil && o.DocumentType.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDocumentType gets a reference to the given NullableString and assigns it to the DocumentType field.
 func (o *PeruDniProviderOutput) SetDocumentType(v string) {
-	o.DocumentType = v
+	o.DocumentType.Set(&v)
+}
+// SetDocumentTypeNil sets the value for DocumentType to be an explicit nil
+func (o *PeruDniProviderOutput) SetDocumentTypeNil() {
+	o.DocumentType.Set(nil)
+}
+
+// UnsetDocumentType ensures that no value is present for DocumentType, not even an explicit nil
+func (o *PeruDniProviderOutput) UnsetDocumentType() {
+	o.DocumentType.Unset()
 }
 
 // GetExpeditionDate returns the ExpeditionDate field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -364,124 +400,214 @@ func (o *PeruDniProviderOutput) UnsetExpirationDate() {
 	o.ExpirationDate.Unset()
 }
 
-// GetFirstName returns the FirstName field value
+// GetFirstName returns the FirstName field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *PeruDniProviderOutput) GetFirstName() string {
-	if o == nil {
+	if o == nil || IsNil(o.FirstName.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.FirstName
+	return *o.FirstName.Get()
 }
 
-// GetFirstNameOk returns a tuple with the FirstName field value
+// GetFirstNameOk returns a tuple with the FirstName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *PeruDniProviderOutput) GetFirstNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.FirstName, true
+	return o.FirstName.Get(), o.FirstName.IsSet()
 }
 
-// SetFirstName sets field value
+// HasFirstName returns a boolean if a field has been set.
+func (o *PeruDniProviderOutput) HasFirstName() bool {
+	if o != nil && o.FirstName.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetFirstName gets a reference to the given NullableString and assigns it to the FirstName field.
 func (o *PeruDniProviderOutput) SetFirstName(v string) {
-	o.FirstName = v
+	o.FirstName.Set(&v)
+}
+// SetFirstNameNil sets the value for FirstName to be an explicit nil
+func (o *PeruDniProviderOutput) SetFirstNameNil() {
+	o.FirstName.Set(nil)
 }
 
-// GetFullName returns the FullName field value
+// UnsetFirstName ensures that no value is present for FirstName, not even an explicit nil
+func (o *PeruDniProviderOutput) UnsetFirstName() {
+	o.FirstName.Unset()
+}
+
+// GetFullName returns the FullName field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *PeruDniProviderOutput) GetFullName() string {
-	if o == nil {
+	if o == nil || IsNil(o.FullName.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.FullName
+	return *o.FullName.Get()
 }
 
-// GetFullNameOk returns a tuple with the FullName field value
+// GetFullNameOk returns a tuple with the FullName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *PeruDniProviderOutput) GetFullNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.FullName, true
+	return o.FullName.Get(), o.FullName.IsSet()
 }
 
-// SetFullName sets field value
+// HasFullName returns a boolean if a field has been set.
+func (o *PeruDniProviderOutput) HasFullName() bool {
+	if o != nil && o.FullName.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetFullName gets a reference to the given NullableString and assigns it to the FullName field.
 func (o *PeruDniProviderOutput) SetFullName(v string) {
-	o.FullName = v
+	o.FullName.Set(&v)
+}
+// SetFullNameNil sets the value for FullName to be an explicit nil
+func (o *PeruDniProviderOutput) SetFullNameNil() {
+	o.FullName.Set(nil)
 }
 
-// GetLastName returns the LastName field value
+// UnsetFullName ensures that no value is present for FullName, not even an explicit nil
+func (o *PeruDniProviderOutput) UnsetFullName() {
+	o.FullName.Unset()
+}
+
+// GetLastName returns the LastName field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *PeruDniProviderOutput) GetLastName() string {
-	if o == nil {
+	if o == nil || IsNil(o.LastName.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.LastName
+	return *o.LastName.Get()
 }
 
-// GetLastNameOk returns a tuple with the LastName field value
+// GetLastNameOk returns a tuple with the LastName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *PeruDniProviderOutput) GetLastNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.LastName, true
+	return o.LastName.Get(), o.LastName.IsSet()
 }
 
-// SetLastName sets field value
+// HasLastName returns a boolean if a field has been set.
+func (o *PeruDniProviderOutput) HasLastName() bool {
+	if o != nil && o.LastName.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetLastName gets a reference to the given NullableString and assigns it to the LastName field.
 func (o *PeruDniProviderOutput) SetLastName(v string) {
-	o.LastName = v
+	o.LastName.Set(&v)
+}
+// SetLastNameNil sets the value for LastName to be an explicit nil
+func (o *PeruDniProviderOutput) SetLastNameNil() {
+	o.LastName.Set(nil)
 }
 
-// GetMaternalLastName returns the MaternalLastName field value
+// UnsetLastName ensures that no value is present for LastName, not even an explicit nil
+func (o *PeruDniProviderOutput) UnsetLastName() {
+	o.LastName.Unset()
+}
+
+// GetMaternalLastName returns the MaternalLastName field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *PeruDniProviderOutput) GetMaternalLastName() string {
-	if o == nil {
+	if o == nil || IsNil(o.MaternalLastName.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.MaternalLastName
+	return *o.MaternalLastName.Get()
 }
 
-// GetMaternalLastNameOk returns a tuple with the MaternalLastName field value
+// GetMaternalLastNameOk returns a tuple with the MaternalLastName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *PeruDniProviderOutput) GetMaternalLastNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.MaternalLastName, true
+	return o.MaternalLastName.Get(), o.MaternalLastName.IsSet()
 }
 
-// SetMaternalLastName sets field value
+// HasMaternalLastName returns a boolean if a field has been set.
+func (o *PeruDniProviderOutput) HasMaternalLastName() bool {
+	if o != nil && o.MaternalLastName.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetMaternalLastName gets a reference to the given NullableString and assigns it to the MaternalLastName field.
 func (o *PeruDniProviderOutput) SetMaternalLastName(v string) {
-	o.MaternalLastName = v
+	o.MaternalLastName.Set(&v)
+}
+// SetMaternalLastNameNil sets the value for MaternalLastName to be an explicit nil
+func (o *PeruDniProviderOutput) SetMaternalLastNameNil() {
+	o.MaternalLastName.Set(nil)
 }
 
-// GetPaternalLastName returns the PaternalLastName field value
+// UnsetMaternalLastName ensures that no value is present for MaternalLastName, not even an explicit nil
+func (o *PeruDniProviderOutput) UnsetMaternalLastName() {
+	o.MaternalLastName.Unset()
+}
+
+// GetPaternalLastName returns the PaternalLastName field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *PeruDniProviderOutput) GetPaternalLastName() string {
-	if o == nil {
+	if o == nil || IsNil(o.PaternalLastName.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.PaternalLastName
+	return *o.PaternalLastName.Get()
 }
 
-// GetPaternalLastNameOk returns a tuple with the PaternalLastName field value
+// GetPaternalLastNameOk returns a tuple with the PaternalLastName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *PeruDniProviderOutput) GetPaternalLastNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.PaternalLastName, true
+	return o.PaternalLastName.Get(), o.PaternalLastName.IsSet()
 }
 
-// SetPaternalLastName sets field value
+// HasPaternalLastName returns a boolean if a field has been set.
+func (o *PeruDniProviderOutput) HasPaternalLastName() bool {
+	if o != nil && o.PaternalLastName.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPaternalLastName gets a reference to the given NullableString and assigns it to the PaternalLastName field.
 func (o *PeruDniProviderOutput) SetPaternalLastName(v string) {
-	o.PaternalLastName = v
+	o.PaternalLastName.Set(&v)
+}
+// SetPaternalLastNameNil sets the value for PaternalLastName to be an explicit nil
+func (o *PeruDniProviderOutput) SetPaternalLastNameNil() {
+	o.PaternalLastName.Set(nil)
+}
+
+// UnsetPaternalLastName ensures that no value is present for PaternalLastName, not even an explicit nil
+func (o *PeruDniProviderOutput) UnsetPaternalLastName() {
+	o.PaternalLastName.Unset()
 }
 
 // GetSex returns the Sex field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -623,26 +749,42 @@ func (o PeruDniProviderOutput) ToMap() (map[string]interface{}, error) {
 	if o.Address.IsSet() {
 		toSerialize["address"] = o.Address.Get()
 	}
-	toSerialize["arrayName"] = o.ArrayName
+	if o.ArrayName != nil {
+		toSerialize["arrayName"] = o.ArrayName
+	}
 	if o.CivilStatus.IsSet() {
 		toSerialize["civilStatus"] = o.CivilStatus.Get()
 	}
 	if o.DateOfBirth.IsSet() {
 		toSerialize["dateOfBirth"] = o.DateOfBirth.Get()
 	}
-	toSerialize["documentNumber"] = o.DocumentNumber
-	toSerialize["documentType"] = o.DocumentType
+	if o.DocumentNumber.IsSet() {
+		toSerialize["documentNumber"] = o.DocumentNumber.Get()
+	}
+	if o.DocumentType.IsSet() {
+		toSerialize["documentType"] = o.DocumentType.Get()
+	}
 	if o.ExpeditionDate.IsSet() {
 		toSerialize["expeditionDate"] = o.ExpeditionDate.Get()
 	}
 	if o.ExpirationDate.IsSet() {
 		toSerialize["expirationDate"] = o.ExpirationDate.Get()
 	}
-	toSerialize["firstName"] = o.FirstName
-	toSerialize["fullName"] = o.FullName
-	toSerialize["lastName"] = o.LastName
-	toSerialize["maternalLastName"] = o.MaternalLastName
-	toSerialize["paternalLastName"] = o.PaternalLastName
+	if o.FirstName.IsSet() {
+		toSerialize["firstName"] = o.FirstName.Get()
+	}
+	if o.FullName.IsSet() {
+		toSerialize["fullName"] = o.FullName.Get()
+	}
+	if o.LastName.IsSet() {
+		toSerialize["lastName"] = o.LastName.Get()
+	}
+	if o.MaternalLastName.IsSet() {
+		toSerialize["maternalLastName"] = o.MaternalLastName.Get()
+	}
+	if o.PaternalLastName.IsSet() {
+		toSerialize["paternalLastName"] = o.PaternalLastName.Get()
+	}
 	if o.Sex.IsSet() {
 		toSerialize["sex"] = o.Sex.Get()
 	}
@@ -661,34 +803,6 @@ func (o PeruDniProviderOutput) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *PeruDniProviderOutput) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"arrayName",
-		"documentNumber",
-		"documentType",
-		"firstName",
-		"fullName",
-		"lastName",
-		"maternalLastName",
-		"paternalLastName",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varPeruDniProviderOutput := _PeruDniProviderOutput{}
 
 	err = json.Unmarshal(data, &varPeruDniProviderOutput)

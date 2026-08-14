@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**NationalIdNumber** | [**NigeriaNinMatch2NationalIdNumberField**](NigeriaNinMatch2NationalIdNumberField.md) | Outcome of the verification of the NIN. | 
-**FullName** | [**NigeriaNinMatch2FullNameField**](NigeriaNinMatch2FullNameField.md) | Outcome of the verification of the full name. | 
+**NationalIdNumber** | Pointer to [**NullableNigeriaNinMatch2NationalIdNumberField**](NigeriaNinMatch2NationalIdNumberField.md) | Outcome of the verification of the NIN. | [optional] 
+**FullName** | Pointer to [**NullableNigeriaNinMatch2FullNameField**](NigeriaNinMatch2FullNameField.md) | Outcome of the verification of the full name. | [optional] 
 **DateOfBirth** | Pointer to [**NullableNigeriaNinMatch2DateOfBirthField**](NigeriaNinMatch2DateOfBirthField.md) | Outcome of the verification of the date of birth. | [optional] 
 **Sex** | Pointer to [**NullableNigeriaNinMatch2SexField**](NigeriaNinMatch2SexField.md) | Outcome of the verification of the sex. | [optional] 
 **PhoneNumber** | Pointer to [**NullableNigeriaNinMatch2PhoneNumberField**](NigeriaNinMatch2PhoneNumberField.md) | Outcome of the verification of the phone number. | [optional] 
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 
 ### NewNigeriaNinMatch2ProviderOutput
 
-`func NewNigeriaNinMatch2ProviderOutput(nationalIdNumber NigeriaNinMatch2NationalIdNumberField, fullName NigeriaNinMatch2FullNameField, ) *NigeriaNinMatch2ProviderOutput`
+`func NewNigeriaNinMatch2ProviderOutput() *NigeriaNinMatch2ProviderOutput`
 
 NewNigeriaNinMatch2ProviderOutput instantiates a new NigeriaNinMatch2ProviderOutput object
 This constructor will assign default values to properties that have it defined,
@@ -48,7 +48,22 @@ and a boolean to check if the value has been set.
 
 SetNationalIdNumber sets NationalIdNumber field to given value.
 
+### HasNationalIdNumber
 
+`func (o *NigeriaNinMatch2ProviderOutput) HasNationalIdNumber() bool`
+
+HasNationalIdNumber returns a boolean if a field has been set.
+
+### SetNationalIdNumberNil
+
+`func (o *NigeriaNinMatch2ProviderOutput) SetNationalIdNumberNil(b bool)`
+
+ SetNationalIdNumberNil sets the value for NationalIdNumber to be an explicit nil
+
+### UnsetNationalIdNumber
+`func (o *NigeriaNinMatch2ProviderOutput) UnsetNationalIdNumber()`
+
+UnsetNationalIdNumber ensures that no value is present for NationalIdNumber, not even an explicit nil
 ### GetFullName
 
 `func (o *NigeriaNinMatch2ProviderOutput) GetFullName() NigeriaNinMatch2FullNameField`
@@ -68,7 +83,22 @@ and a boolean to check if the value has been set.
 
 SetFullName sets FullName field to given value.
 
+### HasFullName
 
+`func (o *NigeriaNinMatch2ProviderOutput) HasFullName() bool`
+
+HasFullName returns a boolean if a field has been set.
+
+### SetFullNameNil
+
+`func (o *NigeriaNinMatch2ProviderOutput) SetFullNameNil(b bool)`
+
+ SetFullNameNil sets the value for FullName to be an explicit nil
+
+### UnsetFullName
+`func (o *NigeriaNinMatch2ProviderOutput) UnsetFullName()`
+
+UnsetFullName ensures that no value is present for FullName, not even an explicit nil
 ### GetDateOfBirth
 
 `func (o *NigeriaNinMatch2ProviderOutput) GetDateOfBirth() NigeriaNinMatch2DateOfBirthField`

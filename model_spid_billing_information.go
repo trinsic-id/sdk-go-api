@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the SpidBillingInformation type satisfies the MappedNullable interface at compile time
@@ -21,11 +20,11 @@ var _ MappedNullable = &SpidBillingInformation{}
 // SpidBillingInformation Billing information for a SPID Verification.
 type SpidBillingInformation struct {
 	// Whether this SPID verification has resulted in a billable event.
-	IsBillable bool `json:"isBillable"`
+	IsBillable NullableBool `json:"isBillable,omitempty"`
 	// The billable verification type for this SPID verification.              Possible values: \"Authentication\" | \"Registration\"
-	VerificationType string `json:"verificationType"`
+	VerificationType NullableString `json:"verificationType,omitempty"`
 	// The billable verification level for this SPID verification.              Possible values: 1 | 2 | 3
-	VerificationLevel int32 `json:"verificationLevel"`
+	VerificationLevel NullableInt32 `json:"verificationLevel,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -35,11 +34,8 @@ type _SpidBillingInformation SpidBillingInformation
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSpidBillingInformation(isBillable bool, verificationType string, verificationLevel int32) *SpidBillingInformation {
+func NewSpidBillingInformation() *SpidBillingInformation {
 	this := SpidBillingInformation{}
-	this.IsBillable = isBillable
-	this.VerificationType = verificationType
-	this.VerificationLevel = verificationLevel
 	return &this
 }
 
@@ -51,76 +47,130 @@ func NewSpidBillingInformationWithDefaults() *SpidBillingInformation {
 	return &this
 }
 
-// GetIsBillable returns the IsBillable field value
+// GetIsBillable returns the IsBillable field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SpidBillingInformation) GetIsBillable() bool {
-	if o == nil {
+	if o == nil || IsNil(o.IsBillable.Get()) {
 		var ret bool
 		return ret
 	}
-
-	return o.IsBillable
+	return *o.IsBillable.Get()
 }
 
-// GetIsBillableOk returns a tuple with the IsBillable field value
+// GetIsBillableOk returns a tuple with the IsBillable field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SpidBillingInformation) GetIsBillableOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.IsBillable, true
+	return o.IsBillable.Get(), o.IsBillable.IsSet()
 }
 
-// SetIsBillable sets field value
+// HasIsBillable returns a boolean if a field has been set.
+func (o *SpidBillingInformation) HasIsBillable() bool {
+	if o != nil && o.IsBillable.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetIsBillable gets a reference to the given NullableBool and assigns it to the IsBillable field.
 func (o *SpidBillingInformation) SetIsBillable(v bool) {
-	o.IsBillable = v
+	o.IsBillable.Set(&v)
+}
+// SetIsBillableNil sets the value for IsBillable to be an explicit nil
+func (o *SpidBillingInformation) SetIsBillableNil() {
+	o.IsBillable.Set(nil)
 }
 
-// GetVerificationType returns the VerificationType field value
+// UnsetIsBillable ensures that no value is present for IsBillable, not even an explicit nil
+func (o *SpidBillingInformation) UnsetIsBillable() {
+	o.IsBillable.Unset()
+}
+
+// GetVerificationType returns the VerificationType field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SpidBillingInformation) GetVerificationType() string {
-	if o == nil {
+	if o == nil || IsNil(o.VerificationType.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.VerificationType
+	return *o.VerificationType.Get()
 }
 
-// GetVerificationTypeOk returns a tuple with the VerificationType field value
+// GetVerificationTypeOk returns a tuple with the VerificationType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SpidBillingInformation) GetVerificationTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.VerificationType, true
+	return o.VerificationType.Get(), o.VerificationType.IsSet()
 }
 
-// SetVerificationType sets field value
+// HasVerificationType returns a boolean if a field has been set.
+func (o *SpidBillingInformation) HasVerificationType() bool {
+	if o != nil && o.VerificationType.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetVerificationType gets a reference to the given NullableString and assigns it to the VerificationType field.
 func (o *SpidBillingInformation) SetVerificationType(v string) {
-	o.VerificationType = v
+	o.VerificationType.Set(&v)
+}
+// SetVerificationTypeNil sets the value for VerificationType to be an explicit nil
+func (o *SpidBillingInformation) SetVerificationTypeNil() {
+	o.VerificationType.Set(nil)
 }
 
-// GetVerificationLevel returns the VerificationLevel field value
+// UnsetVerificationType ensures that no value is present for VerificationType, not even an explicit nil
+func (o *SpidBillingInformation) UnsetVerificationType() {
+	o.VerificationType.Unset()
+}
+
+// GetVerificationLevel returns the VerificationLevel field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SpidBillingInformation) GetVerificationLevel() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.VerificationLevel.Get()) {
 		var ret int32
 		return ret
 	}
-
-	return o.VerificationLevel
+	return *o.VerificationLevel.Get()
 }
 
-// GetVerificationLevelOk returns a tuple with the VerificationLevel field value
+// GetVerificationLevelOk returns a tuple with the VerificationLevel field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SpidBillingInformation) GetVerificationLevelOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.VerificationLevel, true
+	return o.VerificationLevel.Get(), o.VerificationLevel.IsSet()
 }
 
-// SetVerificationLevel sets field value
+// HasVerificationLevel returns a boolean if a field has been set.
+func (o *SpidBillingInformation) HasVerificationLevel() bool {
+	if o != nil && o.VerificationLevel.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetVerificationLevel gets a reference to the given NullableInt32 and assigns it to the VerificationLevel field.
 func (o *SpidBillingInformation) SetVerificationLevel(v int32) {
-	o.VerificationLevel = v
+	o.VerificationLevel.Set(&v)
+}
+// SetVerificationLevelNil sets the value for VerificationLevel to be an explicit nil
+func (o *SpidBillingInformation) SetVerificationLevelNil() {
+	o.VerificationLevel.Set(nil)
+}
+
+// UnsetVerificationLevel ensures that no value is present for VerificationLevel, not even an explicit nil
+func (o *SpidBillingInformation) UnsetVerificationLevel() {
+	o.VerificationLevel.Unset()
 }
 
 func (o SpidBillingInformation) MarshalJSON() ([]byte, error) {
@@ -133,9 +183,15 @@ func (o SpidBillingInformation) MarshalJSON() ([]byte, error) {
 
 func (o SpidBillingInformation) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["isBillable"] = o.IsBillable
-	toSerialize["verificationType"] = o.VerificationType
-	toSerialize["verificationLevel"] = o.VerificationLevel
+	if o.IsBillable.IsSet() {
+		toSerialize["isBillable"] = o.IsBillable.Get()
+	}
+	if o.VerificationType.IsSet() {
+		toSerialize["verificationType"] = o.VerificationType.Get()
+	}
+	if o.VerificationLevel.IsSet() {
+		toSerialize["verificationLevel"] = o.VerificationLevel.Get()
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -145,29 +201,6 @@ func (o SpidBillingInformation) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *SpidBillingInformation) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"isBillable",
-		"verificationType",
-		"verificationLevel",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varSpidBillingInformation := _SpidBillingInformation{}
 
 	err = json.Unmarshal(data, &varSpidBillingInformation)

@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the ElSalvadorDuiProviderOutput type satisfies the MappedNullable interface at compile time
@@ -21,11 +20,11 @@ var _ MappedNullable = &ElSalvadorDuiProviderOutput{}
 // ElSalvadorDuiProviderOutput Exposed properties for the `el-salvador-dui-lookup` Provider which do not directly map to the normalized IdentityData model.
 type ElSalvadorDuiProviderOutput struct {
 	// Full name as it appears on the DUI (Documento Único de Identidad), as returned by Verifik from official records administered by the Registro Nacional de las Personas Naturales (RNPN).
-	FullName string `json:"fullName"`
+	FullName NullableString `json:"fullName,omitempty"`
 	// The DUI (Documento Único de Identidad) document number as returned by Verifik for the matched record.              Nine numeric digits after sanitization. Commonly printed as ########-# (hyphen before the final digit). The output will be stripped of the hyphen and will preserve leading zeros.              The ninth digit is a check digit. This is not publicly documented by the Salvadoran government, but the algorithm is available in the public domain for those who seek it.
-	DocumentNumber string `json:"documentNumber"`
+	DocumentNumber NullableString `json:"documentNumber,omitempty"`
 	// The date of birth that was supplied for the lookup and confirmed as matching the DUI record.
-	DateOfBirth string `json:"dateOfBirth"`
+	DateOfBirth NullableString `json:"dateOfBirth,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -35,11 +34,8 @@ type _ElSalvadorDuiProviderOutput ElSalvadorDuiProviderOutput
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewElSalvadorDuiProviderOutput(fullName string, documentNumber string, dateOfBirth string) *ElSalvadorDuiProviderOutput {
+func NewElSalvadorDuiProviderOutput() *ElSalvadorDuiProviderOutput {
 	this := ElSalvadorDuiProviderOutput{}
-	this.FullName = fullName
-	this.DocumentNumber = documentNumber
-	this.DateOfBirth = dateOfBirth
 	return &this
 }
 
@@ -51,76 +47,130 @@ func NewElSalvadorDuiProviderOutputWithDefaults() *ElSalvadorDuiProviderOutput {
 	return &this
 }
 
-// GetFullName returns the FullName field value
+// GetFullName returns the FullName field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ElSalvadorDuiProviderOutput) GetFullName() string {
-	if o == nil {
+	if o == nil || IsNil(o.FullName.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.FullName
+	return *o.FullName.Get()
 }
 
-// GetFullNameOk returns a tuple with the FullName field value
+// GetFullNameOk returns a tuple with the FullName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ElSalvadorDuiProviderOutput) GetFullNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.FullName, true
+	return o.FullName.Get(), o.FullName.IsSet()
 }
 
-// SetFullName sets field value
+// HasFullName returns a boolean if a field has been set.
+func (o *ElSalvadorDuiProviderOutput) HasFullName() bool {
+	if o != nil && o.FullName.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetFullName gets a reference to the given NullableString and assigns it to the FullName field.
 func (o *ElSalvadorDuiProviderOutput) SetFullName(v string) {
-	o.FullName = v
+	o.FullName.Set(&v)
+}
+// SetFullNameNil sets the value for FullName to be an explicit nil
+func (o *ElSalvadorDuiProviderOutput) SetFullNameNil() {
+	o.FullName.Set(nil)
 }
 
-// GetDocumentNumber returns the DocumentNumber field value
+// UnsetFullName ensures that no value is present for FullName, not even an explicit nil
+func (o *ElSalvadorDuiProviderOutput) UnsetFullName() {
+	o.FullName.Unset()
+}
+
+// GetDocumentNumber returns the DocumentNumber field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ElSalvadorDuiProviderOutput) GetDocumentNumber() string {
-	if o == nil {
+	if o == nil || IsNil(o.DocumentNumber.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.DocumentNumber
+	return *o.DocumentNumber.Get()
 }
 
-// GetDocumentNumberOk returns a tuple with the DocumentNumber field value
+// GetDocumentNumberOk returns a tuple with the DocumentNumber field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ElSalvadorDuiProviderOutput) GetDocumentNumberOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.DocumentNumber, true
+	return o.DocumentNumber.Get(), o.DocumentNumber.IsSet()
 }
 
-// SetDocumentNumber sets field value
+// HasDocumentNumber returns a boolean if a field has been set.
+func (o *ElSalvadorDuiProviderOutput) HasDocumentNumber() bool {
+	if o != nil && o.DocumentNumber.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDocumentNumber gets a reference to the given NullableString and assigns it to the DocumentNumber field.
 func (o *ElSalvadorDuiProviderOutput) SetDocumentNumber(v string) {
-	o.DocumentNumber = v
+	o.DocumentNumber.Set(&v)
+}
+// SetDocumentNumberNil sets the value for DocumentNumber to be an explicit nil
+func (o *ElSalvadorDuiProviderOutput) SetDocumentNumberNil() {
+	o.DocumentNumber.Set(nil)
 }
 
-// GetDateOfBirth returns the DateOfBirth field value
+// UnsetDocumentNumber ensures that no value is present for DocumentNumber, not even an explicit nil
+func (o *ElSalvadorDuiProviderOutput) UnsetDocumentNumber() {
+	o.DocumentNumber.Unset()
+}
+
+// GetDateOfBirth returns the DateOfBirth field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ElSalvadorDuiProviderOutput) GetDateOfBirth() string {
-	if o == nil {
+	if o == nil || IsNil(o.DateOfBirth.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.DateOfBirth
+	return *o.DateOfBirth.Get()
 }
 
-// GetDateOfBirthOk returns a tuple with the DateOfBirth field value
+// GetDateOfBirthOk returns a tuple with the DateOfBirth field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ElSalvadorDuiProviderOutput) GetDateOfBirthOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.DateOfBirth, true
+	return o.DateOfBirth.Get(), o.DateOfBirth.IsSet()
 }
 
-// SetDateOfBirth sets field value
+// HasDateOfBirth returns a boolean if a field has been set.
+func (o *ElSalvadorDuiProviderOutput) HasDateOfBirth() bool {
+	if o != nil && o.DateOfBirth.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDateOfBirth gets a reference to the given NullableString and assigns it to the DateOfBirth field.
 func (o *ElSalvadorDuiProviderOutput) SetDateOfBirth(v string) {
-	o.DateOfBirth = v
+	o.DateOfBirth.Set(&v)
+}
+// SetDateOfBirthNil sets the value for DateOfBirth to be an explicit nil
+func (o *ElSalvadorDuiProviderOutput) SetDateOfBirthNil() {
+	o.DateOfBirth.Set(nil)
+}
+
+// UnsetDateOfBirth ensures that no value is present for DateOfBirth, not even an explicit nil
+func (o *ElSalvadorDuiProviderOutput) UnsetDateOfBirth() {
+	o.DateOfBirth.Unset()
 }
 
 func (o ElSalvadorDuiProviderOutput) MarshalJSON() ([]byte, error) {
@@ -133,9 +183,15 @@ func (o ElSalvadorDuiProviderOutput) MarshalJSON() ([]byte, error) {
 
 func (o ElSalvadorDuiProviderOutput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["fullName"] = o.FullName
-	toSerialize["documentNumber"] = o.DocumentNumber
-	toSerialize["dateOfBirth"] = o.DateOfBirth
+	if o.FullName.IsSet() {
+		toSerialize["fullName"] = o.FullName.Get()
+	}
+	if o.DocumentNumber.IsSet() {
+		toSerialize["documentNumber"] = o.DocumentNumber.Get()
+	}
+	if o.DateOfBirth.IsSet() {
+		toSerialize["dateOfBirth"] = o.DateOfBirth.Get()
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -145,29 +201,6 @@ func (o ElSalvadorDuiProviderOutput) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *ElSalvadorDuiProviderOutput) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"fullName",
-		"documentNumber",
-		"dateOfBirth",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varElSalvadorDuiProviderOutput := _ElSalvadorDuiProviderOutput{}
 
 	err = json.Unmarshal(data, &varElSalvadorDuiProviderOutput)

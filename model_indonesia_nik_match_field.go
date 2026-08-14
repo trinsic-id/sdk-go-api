@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the IndonesiaNikMatchField type satisfies the MappedNullable interface at compile time
@@ -21,9 +20,9 @@ var _ MappedNullable = &IndonesiaNikMatchField{}
 // IndonesiaNikMatchField struct for IndonesiaNikMatchField
 type IndonesiaNikMatchField struct {
 	// Raw value used for this match field.
-	Content string `json:"content"`
+	Content NullableString `json:"content,omitempty"`
 	// Whether the value matched.
-	MatchValue bool `json:"matchValue"`
+	MatchValue NullableBool `json:"matchValue,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -33,10 +32,8 @@ type _IndonesiaNikMatchField IndonesiaNikMatchField
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewIndonesiaNikMatchField(content string, matchValue bool) *IndonesiaNikMatchField {
+func NewIndonesiaNikMatchField() *IndonesiaNikMatchField {
 	this := IndonesiaNikMatchField{}
-	this.Content = content
-	this.MatchValue = matchValue
 	return &this
 }
 
@@ -48,52 +45,88 @@ func NewIndonesiaNikMatchFieldWithDefaults() *IndonesiaNikMatchField {
 	return &this
 }
 
-// GetContent returns the Content field value
+// GetContent returns the Content field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IndonesiaNikMatchField) GetContent() string {
-	if o == nil {
+	if o == nil || IsNil(o.Content.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.Content
+	return *o.Content.Get()
 }
 
-// GetContentOk returns a tuple with the Content field value
+// GetContentOk returns a tuple with the Content field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *IndonesiaNikMatchField) GetContentOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Content, true
+	return o.Content.Get(), o.Content.IsSet()
 }
 
-// SetContent sets field value
+// HasContent returns a boolean if a field has been set.
+func (o *IndonesiaNikMatchField) HasContent() bool {
+	if o != nil && o.Content.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetContent gets a reference to the given NullableString and assigns it to the Content field.
 func (o *IndonesiaNikMatchField) SetContent(v string) {
-	o.Content = v
+	o.Content.Set(&v)
+}
+// SetContentNil sets the value for Content to be an explicit nil
+func (o *IndonesiaNikMatchField) SetContentNil() {
+	o.Content.Set(nil)
 }
 
-// GetMatchValue returns the MatchValue field value
+// UnsetContent ensures that no value is present for Content, not even an explicit nil
+func (o *IndonesiaNikMatchField) UnsetContent() {
+	o.Content.Unset()
+}
+
+// GetMatchValue returns the MatchValue field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IndonesiaNikMatchField) GetMatchValue() bool {
-	if o == nil {
+	if o == nil || IsNil(o.MatchValue.Get()) {
 		var ret bool
 		return ret
 	}
-
-	return o.MatchValue
+	return *o.MatchValue.Get()
 }
 
-// GetMatchValueOk returns a tuple with the MatchValue field value
+// GetMatchValueOk returns a tuple with the MatchValue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *IndonesiaNikMatchField) GetMatchValueOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.MatchValue, true
+	return o.MatchValue.Get(), o.MatchValue.IsSet()
 }
 
-// SetMatchValue sets field value
+// HasMatchValue returns a boolean if a field has been set.
+func (o *IndonesiaNikMatchField) HasMatchValue() bool {
+	if o != nil && o.MatchValue.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetMatchValue gets a reference to the given NullableBool and assigns it to the MatchValue field.
 func (o *IndonesiaNikMatchField) SetMatchValue(v bool) {
-	o.MatchValue = v
+	o.MatchValue.Set(&v)
+}
+// SetMatchValueNil sets the value for MatchValue to be an explicit nil
+func (o *IndonesiaNikMatchField) SetMatchValueNil() {
+	o.MatchValue.Set(nil)
+}
+
+// UnsetMatchValue ensures that no value is present for MatchValue, not even an explicit nil
+func (o *IndonesiaNikMatchField) UnsetMatchValue() {
+	o.MatchValue.Unset()
 }
 
 func (o IndonesiaNikMatchField) MarshalJSON() ([]byte, error) {
@@ -106,8 +139,12 @@ func (o IndonesiaNikMatchField) MarshalJSON() ([]byte, error) {
 
 func (o IndonesiaNikMatchField) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["content"] = o.Content
-	toSerialize["matchValue"] = o.MatchValue
+	if o.Content.IsSet() {
+		toSerialize["content"] = o.Content.Get()
+	}
+	if o.MatchValue.IsSet() {
+		toSerialize["matchValue"] = o.MatchValue.Get()
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -117,28 +154,6 @@ func (o IndonesiaNikMatchField) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *IndonesiaNikMatchField) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"content",
-		"matchValue",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varIndonesiaNikMatchField := _IndonesiaNikMatchField{}
 
 	err = json.Unmarshal(data, &varIndonesiaNikMatchField)

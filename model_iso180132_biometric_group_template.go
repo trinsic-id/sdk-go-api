@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the Iso180132BiometricGroupTemplate type satisfies the MappedNullable interface at compile time
@@ -21,7 +20,7 @@ var _ MappedNullable = &Iso180132BiometricGroupTemplate{}
 // Iso180132BiometricGroupTemplate A group of biometric templates returned for a single biometric category, per ISO 18013-2 Table C.11.
 type Iso180132BiometricGroupTemplate struct {
 	// Individual biometric templates contained in this group.
-	Templates []Iso180132BiometricTemplate `json:"templates"`
+	Templates []Iso180132BiometricTemplate `json:"templates,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -31,9 +30,8 @@ type _Iso180132BiometricGroupTemplate Iso180132BiometricGroupTemplate
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewIso180132BiometricGroupTemplate(templates []Iso180132BiometricTemplate) *Iso180132BiometricGroupTemplate {
+func NewIso180132BiometricGroupTemplate() *Iso180132BiometricGroupTemplate {
 	this := Iso180132BiometricGroupTemplate{}
-	this.Templates = templates
 	return &this
 }
 
@@ -45,26 +43,35 @@ func NewIso180132BiometricGroupTemplateWithDefaults() *Iso180132BiometricGroupTe
 	return &this
 }
 
-// GetTemplates returns the Templates field value
+// GetTemplates returns the Templates field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Iso180132BiometricGroupTemplate) GetTemplates() []Iso180132BiometricTemplate {
 	if o == nil {
 		var ret []Iso180132BiometricTemplate
 		return ret
 	}
-
 	return o.Templates
 }
 
-// GetTemplatesOk returns a tuple with the Templates field value
+// GetTemplatesOk returns a tuple with the Templates field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Iso180132BiometricGroupTemplate) GetTemplatesOk() ([]Iso180132BiometricTemplate, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Templates) {
 		return nil, false
 	}
 	return o.Templates, true
 }
 
-// SetTemplates sets field value
+// HasTemplates returns a boolean if a field has been set.
+func (o *Iso180132BiometricGroupTemplate) HasTemplates() bool {
+	if o != nil && !IsNil(o.Templates) {
+		return true
+	}
+
+	return false
+}
+
+// SetTemplates gets a reference to the given []Iso180132BiometricTemplate and assigns it to the Templates field.
 func (o *Iso180132BiometricGroupTemplate) SetTemplates(v []Iso180132BiometricTemplate) {
 	o.Templates = v
 }
@@ -79,7 +86,9 @@ func (o Iso180132BiometricGroupTemplate) MarshalJSON() ([]byte, error) {
 
 func (o Iso180132BiometricGroupTemplate) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["templates"] = o.Templates
+	if o.Templates != nil {
+		toSerialize["templates"] = o.Templates
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -89,27 +98,6 @@ func (o Iso180132BiometricGroupTemplate) ToMap() (map[string]interface{}, error)
 }
 
 func (o *Iso180132BiometricGroupTemplate) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"templates",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varIso180132BiometricGroupTemplate := _Iso180132BiometricGroupTemplate{}
 
 	err = json.Unmarshal(data, &varIso180132BiometricGroupTemplate)

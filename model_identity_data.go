@@ -21,7 +21,7 @@ var _ MappedNullable = &IdentityData{}
 // IdentityData struct for IdentityData
 type IdentityData struct {
 	// The ID of the provider from which this data originated (eg \"yoti\", \"clear\")
-	OriginatingProviderId NullableString `json:"originatingProviderId,omitempty"`
+	OriginatingProviderId string `json:"originatingProviderId"`
 	// The sub-provider ID of the provider from which this data originated (eg \"rabo\", \"poste-italiane\")              This is applicable only to federated Identity Providers such as SPID and IDIN.
 	OriginatingSubProviderId NullableString `json:"originatingSubProviderId,omitempty"`
 	// Identity data of the individual who was verified
@@ -43,8 +43,9 @@ type _IdentityData IdentityData
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewIdentityData(attachments []AttachmentInfo) *IdentityData {
+func NewIdentityData(originatingProviderId string, attachments []AttachmentInfo) *IdentityData {
 	this := IdentityData{}
+	this.OriginatingProviderId = originatingProviderId
 	this.Attachments = attachments
 	return &this
 }
@@ -57,46 +58,28 @@ func NewIdentityDataWithDefaults() *IdentityData {
 	return &this
 }
 
-// GetOriginatingProviderId returns the OriginatingProviderId field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetOriginatingProviderId returns the OriginatingProviderId field value
 func (o *IdentityData) GetOriginatingProviderId() string {
-	if o == nil || IsNil(o.OriginatingProviderId.Get()) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.OriginatingProviderId.Get()
+
+	return o.OriginatingProviderId
 }
 
-// GetOriginatingProviderIdOk returns a tuple with the OriginatingProviderId field value if set, nil otherwise
+// GetOriginatingProviderIdOk returns a tuple with the OriginatingProviderId field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *IdentityData) GetOriginatingProviderIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.OriginatingProviderId.Get(), o.OriginatingProviderId.IsSet()
+	return &o.OriginatingProviderId, true
 }
 
-// HasOriginatingProviderId returns a boolean if a field has been set.
-func (o *IdentityData) HasOriginatingProviderId() bool {
-	if o != nil && o.OriginatingProviderId.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetOriginatingProviderId gets a reference to the given NullableString and assigns it to the OriginatingProviderId field.
+// SetOriginatingProviderId sets field value
 func (o *IdentityData) SetOriginatingProviderId(v string) {
-	o.OriginatingProviderId.Set(&v)
-}
-// SetOriginatingProviderIdNil sets the value for OriginatingProviderId to be an explicit nil
-func (o *IdentityData) SetOriginatingProviderIdNil() {
-	o.OriginatingProviderId.Set(nil)
-}
-
-// UnsetOriginatingProviderId ensures that no value is present for OriginatingProviderId, not even an explicit nil
-func (o *IdentityData) UnsetOriginatingProviderId() {
-	o.OriginatingProviderId.Unset()
+	o.OriginatingProviderId = v
 }
 
 // GetOriginatingSubProviderId returns the OriginatingSubProviderId field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -343,9 +326,7 @@ func (o IdentityData) MarshalJSON() ([]byte, error) {
 
 func (o IdentityData) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.OriginatingProviderId.IsSet() {
-		toSerialize["originatingProviderId"] = o.OriginatingProviderId.Get()
-	}
+	toSerialize["originatingProviderId"] = o.OriginatingProviderId
 	if o.OriginatingSubProviderId.IsSet() {
 		toSerialize["originatingSubProviderId"] = o.OriginatingSubProviderId.Get()
 	}
@@ -375,6 +356,7 @@ func (o *IdentityData) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
+		"originatingProviderId",
 		"attachments",
 	}
 

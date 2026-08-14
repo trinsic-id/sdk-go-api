@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the Iso180132BiometricValidityPeriod type satisfies the MappedNullable interface at compile time
@@ -21,9 +20,9 @@ var _ MappedNullable = &Iso180132BiometricValidityPeriod{}
 // Iso180132BiometricValidityPeriod Validity period of a biometric data block.
 type Iso180132BiometricValidityPeriod struct {
 	// Date the biometric data block becomes valid.
-	NotBefore string `json:"notBefore"`
+	NotBefore NullableString `json:"notBefore,omitempty"`
 	// Date the biometric data block expires.
-	NotAfter string `json:"notAfter"`
+	NotAfter NullableString `json:"notAfter,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -33,10 +32,8 @@ type _Iso180132BiometricValidityPeriod Iso180132BiometricValidityPeriod
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewIso180132BiometricValidityPeriod(notBefore string, notAfter string) *Iso180132BiometricValidityPeriod {
+func NewIso180132BiometricValidityPeriod() *Iso180132BiometricValidityPeriod {
 	this := Iso180132BiometricValidityPeriod{}
-	this.NotBefore = notBefore
-	this.NotAfter = notAfter
 	return &this
 }
 
@@ -48,52 +45,88 @@ func NewIso180132BiometricValidityPeriodWithDefaults() *Iso180132BiometricValidi
 	return &this
 }
 
-// GetNotBefore returns the NotBefore field value
+// GetNotBefore returns the NotBefore field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Iso180132BiometricValidityPeriod) GetNotBefore() string {
-	if o == nil {
+	if o == nil || IsNil(o.NotBefore.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.NotBefore
+	return *o.NotBefore.Get()
 }
 
-// GetNotBeforeOk returns a tuple with the NotBefore field value
+// GetNotBeforeOk returns a tuple with the NotBefore field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Iso180132BiometricValidityPeriod) GetNotBeforeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.NotBefore, true
+	return o.NotBefore.Get(), o.NotBefore.IsSet()
 }
 
-// SetNotBefore sets field value
+// HasNotBefore returns a boolean if a field has been set.
+func (o *Iso180132BiometricValidityPeriod) HasNotBefore() bool {
+	if o != nil && o.NotBefore.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetNotBefore gets a reference to the given NullableString and assigns it to the NotBefore field.
 func (o *Iso180132BiometricValidityPeriod) SetNotBefore(v string) {
-	o.NotBefore = v
+	o.NotBefore.Set(&v)
+}
+// SetNotBeforeNil sets the value for NotBefore to be an explicit nil
+func (o *Iso180132BiometricValidityPeriod) SetNotBeforeNil() {
+	o.NotBefore.Set(nil)
 }
 
-// GetNotAfter returns the NotAfter field value
+// UnsetNotBefore ensures that no value is present for NotBefore, not even an explicit nil
+func (o *Iso180132BiometricValidityPeriod) UnsetNotBefore() {
+	o.NotBefore.Unset()
+}
+
+// GetNotAfter returns the NotAfter field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Iso180132BiometricValidityPeriod) GetNotAfter() string {
-	if o == nil {
+	if o == nil || IsNil(o.NotAfter.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.NotAfter
+	return *o.NotAfter.Get()
 }
 
-// GetNotAfterOk returns a tuple with the NotAfter field value
+// GetNotAfterOk returns a tuple with the NotAfter field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Iso180132BiometricValidityPeriod) GetNotAfterOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.NotAfter, true
+	return o.NotAfter.Get(), o.NotAfter.IsSet()
 }
 
-// SetNotAfter sets field value
+// HasNotAfter returns a boolean if a field has been set.
+func (o *Iso180132BiometricValidityPeriod) HasNotAfter() bool {
+	if o != nil && o.NotAfter.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetNotAfter gets a reference to the given NullableString and assigns it to the NotAfter field.
 func (o *Iso180132BiometricValidityPeriod) SetNotAfter(v string) {
-	o.NotAfter = v
+	o.NotAfter.Set(&v)
+}
+// SetNotAfterNil sets the value for NotAfter to be an explicit nil
+func (o *Iso180132BiometricValidityPeriod) SetNotAfterNil() {
+	o.NotAfter.Set(nil)
+}
+
+// UnsetNotAfter ensures that no value is present for NotAfter, not even an explicit nil
+func (o *Iso180132BiometricValidityPeriod) UnsetNotAfter() {
+	o.NotAfter.Unset()
 }
 
 func (o Iso180132BiometricValidityPeriod) MarshalJSON() ([]byte, error) {
@@ -106,8 +139,12 @@ func (o Iso180132BiometricValidityPeriod) MarshalJSON() ([]byte, error) {
 
 func (o Iso180132BiometricValidityPeriod) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["notBefore"] = o.NotBefore
-	toSerialize["notAfter"] = o.NotAfter
+	if o.NotBefore.IsSet() {
+		toSerialize["notBefore"] = o.NotBefore.Get()
+	}
+	if o.NotAfter.IsSet() {
+		toSerialize["notAfter"] = o.NotAfter.Get()
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -117,28 +154,6 @@ func (o Iso180132BiometricValidityPeriod) ToMap() (map[string]interface{}, error
 }
 
 func (o *Iso180132BiometricValidityPeriod) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"notBefore",
-		"notAfter",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varIso180132BiometricValidityPeriod := _Iso180132BiometricValidityPeriod{}
 
 	err = json.Unmarshal(data, &varIso180132BiometricValidityPeriod)

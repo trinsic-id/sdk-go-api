@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the SouthAfricaNidMatch2SexField type satisfies the MappedNullable interface at compile time
@@ -21,9 +20,9 @@ var _ MappedNullable = &SouthAfricaNidMatch2SexField{}
 // SouthAfricaNidMatch2SexField struct for SouthAfricaNidMatch2SexField
 type SouthAfricaNidMatch2SexField struct {
 	// The sex value submitted for this check.              Possible input values: - Male - Female
-	InputValue string `json:"inputValue"`
+	InputValue NullableString `json:"inputValue,omitempty"`
 	// The outcome of comparing the submitted sex to the issuer record.              Possible values: - Exact Match - No Match - Not Provided - Not Returned
-	Outcome string `json:"outcome"`
+	Outcome NullableString `json:"outcome,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -33,10 +32,8 @@ type _SouthAfricaNidMatch2SexField SouthAfricaNidMatch2SexField
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSouthAfricaNidMatch2SexField(inputValue string, outcome string) *SouthAfricaNidMatch2SexField {
+func NewSouthAfricaNidMatch2SexField() *SouthAfricaNidMatch2SexField {
 	this := SouthAfricaNidMatch2SexField{}
-	this.InputValue = inputValue
-	this.Outcome = outcome
 	return &this
 }
 
@@ -48,52 +45,88 @@ func NewSouthAfricaNidMatch2SexFieldWithDefaults() *SouthAfricaNidMatch2SexField
 	return &this
 }
 
-// GetInputValue returns the InputValue field value
+// GetInputValue returns the InputValue field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SouthAfricaNidMatch2SexField) GetInputValue() string {
-	if o == nil {
+	if o == nil || IsNil(o.InputValue.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.InputValue
+	return *o.InputValue.Get()
 }
 
-// GetInputValueOk returns a tuple with the InputValue field value
+// GetInputValueOk returns a tuple with the InputValue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SouthAfricaNidMatch2SexField) GetInputValueOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.InputValue, true
+	return o.InputValue.Get(), o.InputValue.IsSet()
 }
 
-// SetInputValue sets field value
+// HasInputValue returns a boolean if a field has been set.
+func (o *SouthAfricaNidMatch2SexField) HasInputValue() bool {
+	if o != nil && o.InputValue.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetInputValue gets a reference to the given NullableString and assigns it to the InputValue field.
 func (o *SouthAfricaNidMatch2SexField) SetInputValue(v string) {
-	o.InputValue = v
+	o.InputValue.Set(&v)
+}
+// SetInputValueNil sets the value for InputValue to be an explicit nil
+func (o *SouthAfricaNidMatch2SexField) SetInputValueNil() {
+	o.InputValue.Set(nil)
 }
 
-// GetOutcome returns the Outcome field value
+// UnsetInputValue ensures that no value is present for InputValue, not even an explicit nil
+func (o *SouthAfricaNidMatch2SexField) UnsetInputValue() {
+	o.InputValue.Unset()
+}
+
+// GetOutcome returns the Outcome field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SouthAfricaNidMatch2SexField) GetOutcome() string {
-	if o == nil {
+	if o == nil || IsNil(o.Outcome.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.Outcome
+	return *o.Outcome.Get()
 }
 
-// GetOutcomeOk returns a tuple with the Outcome field value
+// GetOutcomeOk returns a tuple with the Outcome field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SouthAfricaNidMatch2SexField) GetOutcomeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Outcome, true
+	return o.Outcome.Get(), o.Outcome.IsSet()
 }
 
-// SetOutcome sets field value
+// HasOutcome returns a boolean if a field has been set.
+func (o *SouthAfricaNidMatch2SexField) HasOutcome() bool {
+	if o != nil && o.Outcome.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetOutcome gets a reference to the given NullableString and assigns it to the Outcome field.
 func (o *SouthAfricaNidMatch2SexField) SetOutcome(v string) {
-	o.Outcome = v
+	o.Outcome.Set(&v)
+}
+// SetOutcomeNil sets the value for Outcome to be an explicit nil
+func (o *SouthAfricaNidMatch2SexField) SetOutcomeNil() {
+	o.Outcome.Set(nil)
+}
+
+// UnsetOutcome ensures that no value is present for Outcome, not even an explicit nil
+func (o *SouthAfricaNidMatch2SexField) UnsetOutcome() {
+	o.Outcome.Unset()
 }
 
 func (o SouthAfricaNidMatch2SexField) MarshalJSON() ([]byte, error) {
@@ -106,8 +139,12 @@ func (o SouthAfricaNidMatch2SexField) MarshalJSON() ([]byte, error) {
 
 func (o SouthAfricaNidMatch2SexField) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["inputValue"] = o.InputValue
-	toSerialize["outcome"] = o.Outcome
+	if o.InputValue.IsSet() {
+		toSerialize["inputValue"] = o.InputValue.Get()
+	}
+	if o.Outcome.IsSet() {
+		toSerialize["outcome"] = o.Outcome.Get()
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -117,28 +154,6 @@ func (o SouthAfricaNidMatch2SexField) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *SouthAfricaNidMatch2SexField) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"inputValue",
-		"outcome",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varSouthAfricaNidMatch2SexField := _SouthAfricaNidMatch2SexField{}
 
 	err = json.Unmarshal(data, &varSouthAfricaNidMatch2SexField)

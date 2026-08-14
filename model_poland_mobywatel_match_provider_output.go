@@ -23,7 +23,7 @@ type PolandMobywatelMatchProviderOutput struct {
 	GivenName NullableString `json:"givenName,omitempty"`
 	// Current legal family name (nazwisko) as provided by the individual.              In Poland the current legal family name (nazwisko) is a separate concept from your birth family name (nazwisko rodowe). They often match, but they can differ after marriage, adoption, or a court-ordered change.
 	FamilyName NullableString `json:"familyName,omitempty"`
-	// Nationality as provided by the individual.
+	// Nationality as provided by the individual.              This is not necessarily the same as the raw input that was provided. This is the normalized value, which was used to match against the individual's mObywatel wallet.              Format: - 3-letter ISO 3166-1 alpha-3 code (e.g. POL)
 	Nationality NullableString `json:"nationality,omitempty"`
 	// Date of birth as provided by the individual.
 	DateOfBirth NullableString `json:"dateOfBirth,omitempty"`

@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**NationalIdNumber** | **string** | Zimbabwe National ID number (NID) issued by the Zimbabwean government.              Format: - 8-9 digits followed by 1 letter and 2 digits - Regex: /^[0-9]{8,9}[A-Za-z]\\d{2}$/ - There is no publicly documented encoding scheme for encoding personal information in the NID - No check digit or algorithm has been publicly documented by the Zimbabwean government | 
-**GivenName** | **string** | Given name(s) of the individual. | 
-**FamilyName** | **string** | Family name of the individual. | 
-**FullName** | **string** | Full name of the individual. | 
-**Sex** | **string** | Sex of the individual.              Possible values: - Male - Female - Not Applicable - Unknown | 
-**DateOfBirth** | **string** | Date of birth of the individual. | 
+**NationalIdNumber** | Pointer to **NullableString** | Zimbabwe National ID number (NID) issued by the Zimbabwean government.              Format: - 8-9 digits followed by 1 letter and 2 digits - Regex: /^[0-9]{8,9}[A-Za-z]\\d{2}$/ - There is no publicly documented encoding scheme for encoding personal information in the NID - No check digit or algorithm has been publicly documented by the Zimbabwean government | [optional] 
+**GivenName** | Pointer to **NullableString** | Given name(s) of the individual. | [optional] 
+**FamilyName** | Pointer to **NullableString** | Family name of the individual. | [optional] 
+**FullName** | Pointer to **NullableString** | Full name of the individual. | [optional] 
+**Sex** | Pointer to **NullableString** | Sex of the individual.              Possible values: - Male - Female - Not Applicable - Unknown | [optional] 
+**DateOfBirth** | Pointer to **NullableString** | Date of birth of the individual. | [optional] 
 **PlaceOfBirth** | Pointer to **NullableString** | Place of birth, typically a municipality or city within Zimbabwe. | [optional] 
 **IsAlive** | Pointer to **NullableBool** | Whether individual is reported as alive by the Zimbabwean government. | [optional] 
 **DateOfDeath** | Pointer to **NullableString** | Date of death of the individual, when available. | [optional] 
@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 
 ### NewZimbabweNidLookup2ProviderOutput
 
-`func NewZimbabweNidLookup2ProviderOutput(nationalIdNumber string, givenName string, familyName string, fullName string, sex string, dateOfBirth string, ) *ZimbabweNidLookup2ProviderOutput`
+`func NewZimbabweNidLookup2ProviderOutput() *ZimbabweNidLookup2ProviderOutput`
 
 NewZimbabweNidLookup2ProviderOutput instantiates a new ZimbabweNidLookup2ProviderOutput object
 This constructor will assign default values to properties that have it defined,
@@ -52,7 +52,22 @@ and a boolean to check if the value has been set.
 
 SetNationalIdNumber sets NationalIdNumber field to given value.
 
+### HasNationalIdNumber
 
+`func (o *ZimbabweNidLookup2ProviderOutput) HasNationalIdNumber() bool`
+
+HasNationalIdNumber returns a boolean if a field has been set.
+
+### SetNationalIdNumberNil
+
+`func (o *ZimbabweNidLookup2ProviderOutput) SetNationalIdNumberNil(b bool)`
+
+ SetNationalIdNumberNil sets the value for NationalIdNumber to be an explicit nil
+
+### UnsetNationalIdNumber
+`func (o *ZimbabweNidLookup2ProviderOutput) UnsetNationalIdNumber()`
+
+UnsetNationalIdNumber ensures that no value is present for NationalIdNumber, not even an explicit nil
 ### GetGivenName
 
 `func (o *ZimbabweNidLookup2ProviderOutput) GetGivenName() string`
@@ -72,7 +87,22 @@ and a boolean to check if the value has been set.
 
 SetGivenName sets GivenName field to given value.
 
+### HasGivenName
 
+`func (o *ZimbabweNidLookup2ProviderOutput) HasGivenName() bool`
+
+HasGivenName returns a boolean if a field has been set.
+
+### SetGivenNameNil
+
+`func (o *ZimbabweNidLookup2ProviderOutput) SetGivenNameNil(b bool)`
+
+ SetGivenNameNil sets the value for GivenName to be an explicit nil
+
+### UnsetGivenName
+`func (o *ZimbabweNidLookup2ProviderOutput) UnsetGivenName()`
+
+UnsetGivenName ensures that no value is present for GivenName, not even an explicit nil
 ### GetFamilyName
 
 `func (o *ZimbabweNidLookup2ProviderOutput) GetFamilyName() string`
@@ -92,7 +122,22 @@ and a boolean to check if the value has been set.
 
 SetFamilyName sets FamilyName field to given value.
 
+### HasFamilyName
 
+`func (o *ZimbabweNidLookup2ProviderOutput) HasFamilyName() bool`
+
+HasFamilyName returns a boolean if a field has been set.
+
+### SetFamilyNameNil
+
+`func (o *ZimbabweNidLookup2ProviderOutput) SetFamilyNameNil(b bool)`
+
+ SetFamilyNameNil sets the value for FamilyName to be an explicit nil
+
+### UnsetFamilyName
+`func (o *ZimbabweNidLookup2ProviderOutput) UnsetFamilyName()`
+
+UnsetFamilyName ensures that no value is present for FamilyName, not even an explicit nil
 ### GetFullName
 
 `func (o *ZimbabweNidLookup2ProviderOutput) GetFullName() string`
@@ -112,7 +157,22 @@ and a boolean to check if the value has been set.
 
 SetFullName sets FullName field to given value.
 
+### HasFullName
 
+`func (o *ZimbabweNidLookup2ProviderOutput) HasFullName() bool`
+
+HasFullName returns a boolean if a field has been set.
+
+### SetFullNameNil
+
+`func (o *ZimbabweNidLookup2ProviderOutput) SetFullNameNil(b bool)`
+
+ SetFullNameNil sets the value for FullName to be an explicit nil
+
+### UnsetFullName
+`func (o *ZimbabweNidLookup2ProviderOutput) UnsetFullName()`
+
+UnsetFullName ensures that no value is present for FullName, not even an explicit nil
 ### GetSex
 
 `func (o *ZimbabweNidLookup2ProviderOutput) GetSex() string`
@@ -132,7 +192,22 @@ and a boolean to check if the value has been set.
 
 SetSex sets Sex field to given value.
 
+### HasSex
 
+`func (o *ZimbabweNidLookup2ProviderOutput) HasSex() bool`
+
+HasSex returns a boolean if a field has been set.
+
+### SetSexNil
+
+`func (o *ZimbabweNidLookup2ProviderOutput) SetSexNil(b bool)`
+
+ SetSexNil sets the value for Sex to be an explicit nil
+
+### UnsetSex
+`func (o *ZimbabweNidLookup2ProviderOutput) UnsetSex()`
+
+UnsetSex ensures that no value is present for Sex, not even an explicit nil
 ### GetDateOfBirth
 
 `func (o *ZimbabweNidLookup2ProviderOutput) GetDateOfBirth() string`
@@ -152,7 +227,22 @@ and a boolean to check if the value has been set.
 
 SetDateOfBirth sets DateOfBirth field to given value.
 
+### HasDateOfBirth
 
+`func (o *ZimbabweNidLookup2ProviderOutput) HasDateOfBirth() bool`
+
+HasDateOfBirth returns a boolean if a field has been set.
+
+### SetDateOfBirthNil
+
+`func (o *ZimbabweNidLookup2ProviderOutput) SetDateOfBirthNil(b bool)`
+
+ SetDateOfBirthNil sets the value for DateOfBirth to be an explicit nil
+
+### UnsetDateOfBirth
+`func (o *ZimbabweNidLookup2ProviderOutput) UnsetDateOfBirth()`
+
+UnsetDateOfBirth ensures that no value is present for DateOfBirth, not even an explicit nil
 ### GetPlaceOfBirth
 
 `func (o *ZimbabweNidLookup2ProviderOutput) GetPlaceOfBirth() string`

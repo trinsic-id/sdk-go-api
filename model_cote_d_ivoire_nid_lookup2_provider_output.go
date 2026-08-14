@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the CoteDIvoireNidLookup2ProviderOutput type satisfies the MappedNullable interface at compile time
@@ -21,17 +20,17 @@ var _ MappedNullable = &CoteDIvoireNidLookup2ProviderOutput{}
 // CoteDIvoireNidLookup2ProviderOutput Exposed properties for the `cote-divoire-nid-lookup-2` Provider which do not directly map to the normalized IdentityData model.
 type CoteDIvoireNidLookup2ProviderOutput struct {
 	// Full name as returned by ONECI (National Civil Registry and Identification Office).
-	FullName string `json:"fullName"`
+	FullName NullableString `json:"fullName,omitempty"`
 	// Given name of the ID holder as returned by ONECI (National Civil Registry and Identification Office).
-	GivenName string `json:"givenName"`
+	GivenName NullableString `json:"givenName,omitempty"`
 	// Family name of the ID holder as returned by ONECI (National Civil Registry and Identification Office).
-	FamilyName string `json:"familyName"`
+	FamilyName NullableString `json:"familyName,omitempty"`
 	// Date of birth as returned by ONECI (National Civil Registry and Identification Office).
-	DateOfBirth string `json:"dateOfBirth"`
+	DateOfBirth NullableString `json:"dateOfBirth,omitempty"`
 	// Sex of the ID holder as returned by ONECI (National Civil Registry and Identification Office). Possible values: - Male - Female
-	Sex string `json:"sex"`
+	Sex NullableString `json:"sex,omitempty"`
 	// Nationality as ISO 3166-1 alpha-2 country code (e.g. \"CI\" for Côte d'Ivoire).
-	Nationality string `json:"nationality"`
+	Nationality NullableString `json:"nationality,omitempty"`
 	// Address as returned from ONECI (National Civil Registry and Identification Office). Format is LOCALITY,COMMUNE: the locality (village, neighborhood, or sous-quartier) followed by the commune. Not a full street address.
 	Address NullableString `json:"address,omitempty"`
 	// The document's own identifier (printed on the card; often labeled \"Immatriculation\" on older cards or \"Numéro CNI\" in post-2020 cards). On older cards this is usually one letter followed by 10 digits. On new cards it appears as 1 or 2 leading letters plus 9 digits.
@@ -47,14 +46,8 @@ type _CoteDIvoireNidLookup2ProviderOutput CoteDIvoireNidLookup2ProviderOutput
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCoteDIvoireNidLookup2ProviderOutput(fullName string, givenName string, familyName string, dateOfBirth string, sex string, nationality string) *CoteDIvoireNidLookup2ProviderOutput {
+func NewCoteDIvoireNidLookup2ProviderOutput() *CoteDIvoireNidLookup2ProviderOutput {
 	this := CoteDIvoireNidLookup2ProviderOutput{}
-	this.FullName = fullName
-	this.GivenName = givenName
-	this.FamilyName = familyName
-	this.DateOfBirth = dateOfBirth
-	this.Sex = sex
-	this.Nationality = nationality
 	return &this
 }
 
@@ -66,148 +59,256 @@ func NewCoteDIvoireNidLookup2ProviderOutputWithDefaults() *CoteDIvoireNidLookup2
 	return &this
 }
 
-// GetFullName returns the FullName field value
+// GetFullName returns the FullName field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CoteDIvoireNidLookup2ProviderOutput) GetFullName() string {
-	if o == nil {
+	if o == nil || IsNil(o.FullName.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.FullName
+	return *o.FullName.Get()
 }
 
-// GetFullNameOk returns a tuple with the FullName field value
+// GetFullNameOk returns a tuple with the FullName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CoteDIvoireNidLookup2ProviderOutput) GetFullNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.FullName, true
+	return o.FullName.Get(), o.FullName.IsSet()
 }
 
-// SetFullName sets field value
+// HasFullName returns a boolean if a field has been set.
+func (o *CoteDIvoireNidLookup2ProviderOutput) HasFullName() bool {
+	if o != nil && o.FullName.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetFullName gets a reference to the given NullableString and assigns it to the FullName field.
 func (o *CoteDIvoireNidLookup2ProviderOutput) SetFullName(v string) {
-	o.FullName = v
+	o.FullName.Set(&v)
+}
+// SetFullNameNil sets the value for FullName to be an explicit nil
+func (o *CoteDIvoireNidLookup2ProviderOutput) SetFullNameNil() {
+	o.FullName.Set(nil)
 }
 
-// GetGivenName returns the GivenName field value
+// UnsetFullName ensures that no value is present for FullName, not even an explicit nil
+func (o *CoteDIvoireNidLookup2ProviderOutput) UnsetFullName() {
+	o.FullName.Unset()
+}
+
+// GetGivenName returns the GivenName field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CoteDIvoireNidLookup2ProviderOutput) GetGivenName() string {
-	if o == nil {
+	if o == nil || IsNil(o.GivenName.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.GivenName
+	return *o.GivenName.Get()
 }
 
-// GetGivenNameOk returns a tuple with the GivenName field value
+// GetGivenNameOk returns a tuple with the GivenName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CoteDIvoireNidLookup2ProviderOutput) GetGivenNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.GivenName, true
+	return o.GivenName.Get(), o.GivenName.IsSet()
 }
 
-// SetGivenName sets field value
+// HasGivenName returns a boolean if a field has been set.
+func (o *CoteDIvoireNidLookup2ProviderOutput) HasGivenName() bool {
+	if o != nil && o.GivenName.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetGivenName gets a reference to the given NullableString and assigns it to the GivenName field.
 func (o *CoteDIvoireNidLookup2ProviderOutput) SetGivenName(v string) {
-	o.GivenName = v
+	o.GivenName.Set(&v)
+}
+// SetGivenNameNil sets the value for GivenName to be an explicit nil
+func (o *CoteDIvoireNidLookup2ProviderOutput) SetGivenNameNil() {
+	o.GivenName.Set(nil)
 }
 
-// GetFamilyName returns the FamilyName field value
+// UnsetGivenName ensures that no value is present for GivenName, not even an explicit nil
+func (o *CoteDIvoireNidLookup2ProviderOutput) UnsetGivenName() {
+	o.GivenName.Unset()
+}
+
+// GetFamilyName returns the FamilyName field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CoteDIvoireNidLookup2ProviderOutput) GetFamilyName() string {
-	if o == nil {
+	if o == nil || IsNil(o.FamilyName.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.FamilyName
+	return *o.FamilyName.Get()
 }
 
-// GetFamilyNameOk returns a tuple with the FamilyName field value
+// GetFamilyNameOk returns a tuple with the FamilyName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CoteDIvoireNidLookup2ProviderOutput) GetFamilyNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.FamilyName, true
+	return o.FamilyName.Get(), o.FamilyName.IsSet()
 }
 
-// SetFamilyName sets field value
+// HasFamilyName returns a boolean if a field has been set.
+func (o *CoteDIvoireNidLookup2ProviderOutput) HasFamilyName() bool {
+	if o != nil && o.FamilyName.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetFamilyName gets a reference to the given NullableString and assigns it to the FamilyName field.
 func (o *CoteDIvoireNidLookup2ProviderOutput) SetFamilyName(v string) {
-	o.FamilyName = v
+	o.FamilyName.Set(&v)
+}
+// SetFamilyNameNil sets the value for FamilyName to be an explicit nil
+func (o *CoteDIvoireNidLookup2ProviderOutput) SetFamilyNameNil() {
+	o.FamilyName.Set(nil)
 }
 
-// GetDateOfBirth returns the DateOfBirth field value
+// UnsetFamilyName ensures that no value is present for FamilyName, not even an explicit nil
+func (o *CoteDIvoireNidLookup2ProviderOutput) UnsetFamilyName() {
+	o.FamilyName.Unset()
+}
+
+// GetDateOfBirth returns the DateOfBirth field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CoteDIvoireNidLookup2ProviderOutput) GetDateOfBirth() string {
-	if o == nil {
+	if o == nil || IsNil(o.DateOfBirth.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.DateOfBirth
+	return *o.DateOfBirth.Get()
 }
 
-// GetDateOfBirthOk returns a tuple with the DateOfBirth field value
+// GetDateOfBirthOk returns a tuple with the DateOfBirth field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CoteDIvoireNidLookup2ProviderOutput) GetDateOfBirthOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.DateOfBirth, true
+	return o.DateOfBirth.Get(), o.DateOfBirth.IsSet()
 }
 
-// SetDateOfBirth sets field value
+// HasDateOfBirth returns a boolean if a field has been set.
+func (o *CoteDIvoireNidLookup2ProviderOutput) HasDateOfBirth() bool {
+	if o != nil && o.DateOfBirth.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDateOfBirth gets a reference to the given NullableString and assigns it to the DateOfBirth field.
 func (o *CoteDIvoireNidLookup2ProviderOutput) SetDateOfBirth(v string) {
-	o.DateOfBirth = v
+	o.DateOfBirth.Set(&v)
+}
+// SetDateOfBirthNil sets the value for DateOfBirth to be an explicit nil
+func (o *CoteDIvoireNidLookup2ProviderOutput) SetDateOfBirthNil() {
+	o.DateOfBirth.Set(nil)
 }
 
-// GetSex returns the Sex field value
+// UnsetDateOfBirth ensures that no value is present for DateOfBirth, not even an explicit nil
+func (o *CoteDIvoireNidLookup2ProviderOutput) UnsetDateOfBirth() {
+	o.DateOfBirth.Unset()
+}
+
+// GetSex returns the Sex field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CoteDIvoireNidLookup2ProviderOutput) GetSex() string {
-	if o == nil {
+	if o == nil || IsNil(o.Sex.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.Sex
+	return *o.Sex.Get()
 }
 
-// GetSexOk returns a tuple with the Sex field value
+// GetSexOk returns a tuple with the Sex field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CoteDIvoireNidLookup2ProviderOutput) GetSexOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Sex, true
+	return o.Sex.Get(), o.Sex.IsSet()
 }
 
-// SetSex sets field value
+// HasSex returns a boolean if a field has been set.
+func (o *CoteDIvoireNidLookup2ProviderOutput) HasSex() bool {
+	if o != nil && o.Sex.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSex gets a reference to the given NullableString and assigns it to the Sex field.
 func (o *CoteDIvoireNidLookup2ProviderOutput) SetSex(v string) {
-	o.Sex = v
+	o.Sex.Set(&v)
+}
+// SetSexNil sets the value for Sex to be an explicit nil
+func (o *CoteDIvoireNidLookup2ProviderOutput) SetSexNil() {
+	o.Sex.Set(nil)
 }
 
-// GetNationality returns the Nationality field value
+// UnsetSex ensures that no value is present for Sex, not even an explicit nil
+func (o *CoteDIvoireNidLookup2ProviderOutput) UnsetSex() {
+	o.Sex.Unset()
+}
+
+// GetNationality returns the Nationality field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CoteDIvoireNidLookup2ProviderOutput) GetNationality() string {
-	if o == nil {
+	if o == nil || IsNil(o.Nationality.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.Nationality
+	return *o.Nationality.Get()
 }
 
-// GetNationalityOk returns a tuple with the Nationality field value
+// GetNationalityOk returns a tuple with the Nationality field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CoteDIvoireNidLookup2ProviderOutput) GetNationalityOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Nationality, true
+	return o.Nationality.Get(), o.Nationality.IsSet()
 }
 
-// SetNationality sets field value
+// HasNationality returns a boolean if a field has been set.
+func (o *CoteDIvoireNidLookup2ProviderOutput) HasNationality() bool {
+	if o != nil && o.Nationality.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetNationality gets a reference to the given NullableString and assigns it to the Nationality field.
 func (o *CoteDIvoireNidLookup2ProviderOutput) SetNationality(v string) {
-	o.Nationality = v
+	o.Nationality.Set(&v)
+}
+// SetNationalityNil sets the value for Nationality to be an explicit nil
+func (o *CoteDIvoireNidLookup2ProviderOutput) SetNationalityNil() {
+	o.Nationality.Set(nil)
+}
+
+// UnsetNationality ensures that no value is present for Nationality, not even an explicit nil
+func (o *CoteDIvoireNidLookup2ProviderOutput) UnsetNationality() {
+	o.Nationality.Unset()
 }
 
 // GetAddress returns the Address field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -346,12 +447,24 @@ func (o CoteDIvoireNidLookup2ProviderOutput) MarshalJSON() ([]byte, error) {
 
 func (o CoteDIvoireNidLookup2ProviderOutput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["fullName"] = o.FullName
-	toSerialize["givenName"] = o.GivenName
-	toSerialize["familyName"] = o.FamilyName
-	toSerialize["dateOfBirth"] = o.DateOfBirth
-	toSerialize["sex"] = o.Sex
-	toSerialize["nationality"] = o.Nationality
+	if o.FullName.IsSet() {
+		toSerialize["fullName"] = o.FullName.Get()
+	}
+	if o.GivenName.IsSet() {
+		toSerialize["givenName"] = o.GivenName.Get()
+	}
+	if o.FamilyName.IsSet() {
+		toSerialize["familyName"] = o.FamilyName.Get()
+	}
+	if o.DateOfBirth.IsSet() {
+		toSerialize["dateOfBirth"] = o.DateOfBirth.Get()
+	}
+	if o.Sex.IsSet() {
+		toSerialize["sex"] = o.Sex.Get()
+	}
+	if o.Nationality.IsSet() {
+		toSerialize["nationality"] = o.Nationality.Get()
+	}
 	if o.Address.IsSet() {
 		toSerialize["address"] = o.Address.Get()
 	}
@@ -370,32 +483,6 @@ func (o CoteDIvoireNidLookup2ProviderOutput) ToMap() (map[string]interface{}, er
 }
 
 func (o *CoteDIvoireNidLookup2ProviderOutput) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"fullName",
-		"givenName",
-		"familyName",
-		"dateOfBirth",
-		"sex",
-		"nationality",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varCoteDIvoireNidLookup2ProviderOutput := _CoteDIvoireNidLookup2ProviderOutput{}
 
 	err = json.Unmarshal(data, &varCoteDIvoireNidLookup2ProviderOutput)

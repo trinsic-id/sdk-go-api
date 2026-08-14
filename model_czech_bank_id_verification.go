@@ -13,7 +13,6 @@ package trinsic_api
 import (
 	"encoding/json"
 	"time"
-	"fmt"
 )
 
 // checks if the CzechBankIdVerification type satisfies the MappedNullable interface at compile time
@@ -22,11 +21,11 @@ var _ MappedNullable = &CzechBankIdVerification{}
 // CzechBankIdVerification struct for CzechBankIdVerification
 type CzechBankIdVerification struct {
 	// The trust framework used for the verification.              This identifies the anti-money-laundering framework used for identity verification.
-	TrustFramework string `json:"trustFramework"`
+	TrustFramework NullableString `json:"trustFramework,omitempty"`
 	// The UTC date and time when the verification happened.              This value is normalized to UTC.
 	Time NullableTime `json:"time,omitempty"`
 	// The verification process identifier.              This identifies the bank that completed the physical identity verification process.
-	VerificationProcess string `json:"verificationProcess"`
+	VerificationProcess NullableString `json:"verificationProcess,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -36,10 +35,8 @@ type _CzechBankIdVerification CzechBankIdVerification
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCzechBankIdVerification(trustFramework string, verificationProcess string) *CzechBankIdVerification {
+func NewCzechBankIdVerification() *CzechBankIdVerification {
 	this := CzechBankIdVerification{}
-	this.TrustFramework = trustFramework
-	this.VerificationProcess = verificationProcess
 	return &this
 }
 
@@ -51,28 +48,46 @@ func NewCzechBankIdVerificationWithDefaults() *CzechBankIdVerification {
 	return &this
 }
 
-// GetTrustFramework returns the TrustFramework field value
+// GetTrustFramework returns the TrustFramework field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CzechBankIdVerification) GetTrustFramework() string {
-	if o == nil {
+	if o == nil || IsNil(o.TrustFramework.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.TrustFramework
+	return *o.TrustFramework.Get()
 }
 
-// GetTrustFrameworkOk returns a tuple with the TrustFramework field value
+// GetTrustFrameworkOk returns a tuple with the TrustFramework field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CzechBankIdVerification) GetTrustFrameworkOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.TrustFramework, true
+	return o.TrustFramework.Get(), o.TrustFramework.IsSet()
 }
 
-// SetTrustFramework sets field value
+// HasTrustFramework returns a boolean if a field has been set.
+func (o *CzechBankIdVerification) HasTrustFramework() bool {
+	if o != nil && o.TrustFramework.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTrustFramework gets a reference to the given NullableString and assigns it to the TrustFramework field.
 func (o *CzechBankIdVerification) SetTrustFramework(v string) {
-	o.TrustFramework = v
+	o.TrustFramework.Set(&v)
+}
+// SetTrustFrameworkNil sets the value for TrustFramework to be an explicit nil
+func (o *CzechBankIdVerification) SetTrustFrameworkNil() {
+	o.TrustFramework.Set(nil)
+}
+
+// UnsetTrustFramework ensures that no value is present for TrustFramework, not even an explicit nil
+func (o *CzechBankIdVerification) UnsetTrustFramework() {
+	o.TrustFramework.Unset()
 }
 
 // GetTime returns the Time field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -117,28 +132,46 @@ func (o *CzechBankIdVerification) UnsetTime() {
 	o.Time.Unset()
 }
 
-// GetVerificationProcess returns the VerificationProcess field value
+// GetVerificationProcess returns the VerificationProcess field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CzechBankIdVerification) GetVerificationProcess() string {
-	if o == nil {
+	if o == nil || IsNil(o.VerificationProcess.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.VerificationProcess
+	return *o.VerificationProcess.Get()
 }
 
-// GetVerificationProcessOk returns a tuple with the VerificationProcess field value
+// GetVerificationProcessOk returns a tuple with the VerificationProcess field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CzechBankIdVerification) GetVerificationProcessOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.VerificationProcess, true
+	return o.VerificationProcess.Get(), o.VerificationProcess.IsSet()
 }
 
-// SetVerificationProcess sets field value
+// HasVerificationProcess returns a boolean if a field has been set.
+func (o *CzechBankIdVerification) HasVerificationProcess() bool {
+	if o != nil && o.VerificationProcess.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetVerificationProcess gets a reference to the given NullableString and assigns it to the VerificationProcess field.
 func (o *CzechBankIdVerification) SetVerificationProcess(v string) {
-	o.VerificationProcess = v
+	o.VerificationProcess.Set(&v)
+}
+// SetVerificationProcessNil sets the value for VerificationProcess to be an explicit nil
+func (o *CzechBankIdVerification) SetVerificationProcessNil() {
+	o.VerificationProcess.Set(nil)
+}
+
+// UnsetVerificationProcess ensures that no value is present for VerificationProcess, not even an explicit nil
+func (o *CzechBankIdVerification) UnsetVerificationProcess() {
+	o.VerificationProcess.Unset()
 }
 
 func (o CzechBankIdVerification) MarshalJSON() ([]byte, error) {
@@ -151,11 +184,15 @@ func (o CzechBankIdVerification) MarshalJSON() ([]byte, error) {
 
 func (o CzechBankIdVerification) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["trustFramework"] = o.TrustFramework
+	if o.TrustFramework.IsSet() {
+		toSerialize["trustFramework"] = o.TrustFramework.Get()
+	}
 	if o.Time.IsSet() {
 		toSerialize["time"] = o.Time.Get()
 	}
-	toSerialize["verificationProcess"] = o.VerificationProcess
+	if o.VerificationProcess.IsSet() {
+		toSerialize["verificationProcess"] = o.VerificationProcess.Get()
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -165,28 +202,6 @@ func (o CzechBankIdVerification) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *CzechBankIdVerification) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"trustFramework",
-		"verificationProcess",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varCzechBankIdVerification := _CzechBankIdVerification{}
 
 	err = json.Unmarshal(data, &varCzechBankIdVerification)

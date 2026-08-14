@@ -5,18 +5,18 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Address** | Pointer to [**NullablePeruDniAddress**](PeruDniAddress.md) | Information about the general area in which the DNI holder resides.              This field is not always available. | [optional] 
-**ArrayName** | **[]string** | All names that appear on DNI, as an array of strings.              Format: - All uppercase - Ordered by paternal family name, then maternal family name, then given names. | 
+**ArrayName** | Pointer to **[]string** | All names that appear on DNI, as an array of strings.              Format: - All uppercase - Ordered by paternal family name, then maternal family name, then given names. | [optional] 
 **CivilStatus** | Pointer to **NullableString** | Marital status as it appears on the DNI.              This field is not always available.              Valid values: - \&quot;Single\&quot; - \&quot;Married\&quot; - \&quot;Divorced\&quot; - \&quot;Widowed\&quot; | [optional] 
 **DateOfBirth** | Pointer to **NullableString** | Date of birth as it appears on the DNI.              This field is not always available. | [optional] 
-**DocumentNumber** | **string** | The individual&#39;s National Identity Document number (Documento Nacional de Identidad or DNI).              Format: - 8 digits - Does NOT include verification digit. On the DNI card, a ninth digit appears next to the first eight. It is   0-9 or A-K. This is NOT included in the DNI number when returned from Peru&#39;s database. - Does NOT include dots or hyphens | 
-**DocumentType** | **string** | Should always be \&quot;DNI\&quot;. | 
+**DocumentNumber** | Pointer to **NullableString** | The individual&#39;s National Identity Document number (Documento Nacional de Identidad or DNI).              Format: - 8 digits - Does NOT include verification digit. On the DNI card, a ninth digit appears next to the first eight. It is   0-9 or A-K. This is NOT included in the DNI number when returned from Peru&#39;s database. - Does NOT include dots or hyphens | [optional] 
+**DocumentType** | Pointer to **NullableString** | Should always be \&quot;DNI\&quot;. | [optional] 
 **ExpeditionDate** | Pointer to **NullableString** | Date that the DNI was issued.              This field is not always available.              Format: - yyyy-MM-dd | [optional] 
 **ExpirationDate** | Pointer to **NullableString** | Date that the DNI will expire. DNI expires every 8 years, unless the citizen is &gt;&#x3D; 60 years old, in which case it never expires.              This field is not always available.              Format: - yyyy-MM-dd | [optional] 
-**FirstName** | **string** | Given names as they appear on DNI.              Format: - All uppercase - Space-separated - Will include all given names | 
-**FullName** | **string** | All names as they appear on DNI.              Format: - All uppercase - Space-separated - Will include all names, given and family - Ordered by given names first, then paternal family name, then maternal family name | 
-**LastName** | **string** | Family names as they appear on DNI.              Format: - All uppercase - Will include all family names - Ordered by paternal family name first, then maternal family name | 
-**MaternalLastName** | **string** | Maternal last name as it appears on DNI.              Format: - All uppercase | 
-**PaternalLastName** | **string** | Paternal last name as it appears on DNI.              Format: - All uppercase | 
+**FirstName** | Pointer to **NullableString** | Given names as they appear on DNI.              Format: - All uppercase - Space-separated - Will include all given names | [optional] 
+**FullName** | Pointer to **NullableString** | All names as they appear on DNI.              Format: - All uppercase - Space-separated - Will include all names, given and family - Ordered by given names first, then paternal family name, then maternal family name | [optional] 
+**LastName** | Pointer to **NullableString** | Family names as they appear on DNI.              Format: - All uppercase - Will include all family names - Ordered by paternal family name first, then maternal family name | [optional] 
+**MaternalLastName** | Pointer to **NullableString** | Maternal last name as it appears on DNI.              Format: - All uppercase | [optional] 
+**PaternalLastName** | Pointer to **NullableString** | Paternal last name as it appears on DNI.              Format: - All uppercase | [optional] 
 **Sex** | Pointer to **NullableString** | Sex as it appears on DNI.              This field is not always available.              Values: - \&quot;Male\&quot; - \&quot;Female\&quot; | [optional] 
 **UbigeoReniec** | Pointer to **NullableString** | In Peru, geographical locations have an official geographical code called UBIGEO, from the spanish \&quot;UBIcación GEOgráfica\&quot; (Geographic Location). This is an administrative geocode, is different from a postal code (which Peru also has) and is used to specifically delineate the administrative region, province and district hierarchy.              There are two coding systems for UBIGEO: one from INEI (National Institute of Statistics and Informatics) and another from RENIEC (National Registry of Identification and Civil Status). The two coding systems are similar but are not 100% the same (some numbers will map to different geographic locations). This field follows the coding system from RENIEC.              This field is not always available.              Format: - Always 6 digits - First two digits represent region - Middle two are province - Last two are district              Given the example 081304, that would correspond to: - 08 - Cusco Region - 0813 - Urubamba Province - 081304 - Machupicchu District | [optional] 
 **VerificationDigit** | Pointer to **NullableString** | The final (ninth) digit of the DNI, which serves as a checksum over the first eight digits.              This field is not always available.              Format: - Single character - Either 0-9 or A-K              Read more here:   https://elcomercio.pe/mag/respuestas/cual-es-el-digito-verificador-de-mi-dni-documento-nacional-de-identidad-reniec-peru-nnda-nnlt-noticia/ | [optional] 
@@ -25,7 +25,7 @@ Name | Type | Description | Notes
 
 ### NewPeruDniProviderOutput
 
-`func NewPeruDniProviderOutput(arrayName []string, documentNumber string, documentType string, firstName string, fullName string, lastName string, maternalLastName string, paternalLastName string, ) *PeruDniProviderOutput`
+`func NewPeruDniProviderOutput() *PeruDniProviderOutput`
 
 NewPeruDniProviderOutput instantiates a new PeruDniProviderOutput object
 This constructor will assign default values to properties that have it defined,
@@ -94,7 +94,22 @@ and a boolean to check if the value has been set.
 
 SetArrayName sets ArrayName field to given value.
 
+### HasArrayName
 
+`func (o *PeruDniProviderOutput) HasArrayName() bool`
+
+HasArrayName returns a boolean if a field has been set.
+
+### SetArrayNameNil
+
+`func (o *PeruDniProviderOutput) SetArrayNameNil(b bool)`
+
+ SetArrayNameNil sets the value for ArrayName to be an explicit nil
+
+### UnsetArrayName
+`func (o *PeruDniProviderOutput) UnsetArrayName()`
+
+UnsetArrayName ensures that no value is present for ArrayName, not even an explicit nil
 ### GetCivilStatus
 
 `func (o *PeruDniProviderOutput) GetCivilStatus() string`
@@ -184,7 +199,22 @@ and a boolean to check if the value has been set.
 
 SetDocumentNumber sets DocumentNumber field to given value.
 
+### HasDocumentNumber
 
+`func (o *PeruDniProviderOutput) HasDocumentNumber() bool`
+
+HasDocumentNumber returns a boolean if a field has been set.
+
+### SetDocumentNumberNil
+
+`func (o *PeruDniProviderOutput) SetDocumentNumberNil(b bool)`
+
+ SetDocumentNumberNil sets the value for DocumentNumber to be an explicit nil
+
+### UnsetDocumentNumber
+`func (o *PeruDniProviderOutput) UnsetDocumentNumber()`
+
+UnsetDocumentNumber ensures that no value is present for DocumentNumber, not even an explicit nil
 ### GetDocumentType
 
 `func (o *PeruDniProviderOutput) GetDocumentType() string`
@@ -204,7 +234,22 @@ and a boolean to check if the value has been set.
 
 SetDocumentType sets DocumentType field to given value.
 
+### HasDocumentType
 
+`func (o *PeruDniProviderOutput) HasDocumentType() bool`
+
+HasDocumentType returns a boolean if a field has been set.
+
+### SetDocumentTypeNil
+
+`func (o *PeruDniProviderOutput) SetDocumentTypeNil(b bool)`
+
+ SetDocumentTypeNil sets the value for DocumentType to be an explicit nil
+
+### UnsetDocumentType
+`func (o *PeruDniProviderOutput) UnsetDocumentType()`
+
+UnsetDocumentType ensures that no value is present for DocumentType, not even an explicit nil
 ### GetExpeditionDate
 
 `func (o *PeruDniProviderOutput) GetExpeditionDate() string`
@@ -294,7 +339,22 @@ and a boolean to check if the value has been set.
 
 SetFirstName sets FirstName field to given value.
 
+### HasFirstName
 
+`func (o *PeruDniProviderOutput) HasFirstName() bool`
+
+HasFirstName returns a boolean if a field has been set.
+
+### SetFirstNameNil
+
+`func (o *PeruDniProviderOutput) SetFirstNameNil(b bool)`
+
+ SetFirstNameNil sets the value for FirstName to be an explicit nil
+
+### UnsetFirstName
+`func (o *PeruDniProviderOutput) UnsetFirstName()`
+
+UnsetFirstName ensures that no value is present for FirstName, not even an explicit nil
 ### GetFullName
 
 `func (o *PeruDniProviderOutput) GetFullName() string`
@@ -314,7 +374,22 @@ and a boolean to check if the value has been set.
 
 SetFullName sets FullName field to given value.
 
+### HasFullName
 
+`func (o *PeruDniProviderOutput) HasFullName() bool`
+
+HasFullName returns a boolean if a field has been set.
+
+### SetFullNameNil
+
+`func (o *PeruDniProviderOutput) SetFullNameNil(b bool)`
+
+ SetFullNameNil sets the value for FullName to be an explicit nil
+
+### UnsetFullName
+`func (o *PeruDniProviderOutput) UnsetFullName()`
+
+UnsetFullName ensures that no value is present for FullName, not even an explicit nil
 ### GetLastName
 
 `func (o *PeruDniProviderOutput) GetLastName() string`
@@ -334,7 +409,22 @@ and a boolean to check if the value has been set.
 
 SetLastName sets LastName field to given value.
 
+### HasLastName
 
+`func (o *PeruDniProviderOutput) HasLastName() bool`
+
+HasLastName returns a boolean if a field has been set.
+
+### SetLastNameNil
+
+`func (o *PeruDniProviderOutput) SetLastNameNil(b bool)`
+
+ SetLastNameNil sets the value for LastName to be an explicit nil
+
+### UnsetLastName
+`func (o *PeruDniProviderOutput) UnsetLastName()`
+
+UnsetLastName ensures that no value is present for LastName, not even an explicit nil
 ### GetMaternalLastName
 
 `func (o *PeruDniProviderOutput) GetMaternalLastName() string`
@@ -354,7 +444,22 @@ and a boolean to check if the value has been set.
 
 SetMaternalLastName sets MaternalLastName field to given value.
 
+### HasMaternalLastName
 
+`func (o *PeruDniProviderOutput) HasMaternalLastName() bool`
+
+HasMaternalLastName returns a boolean if a field has been set.
+
+### SetMaternalLastNameNil
+
+`func (o *PeruDniProviderOutput) SetMaternalLastNameNil(b bool)`
+
+ SetMaternalLastNameNil sets the value for MaternalLastName to be an explicit nil
+
+### UnsetMaternalLastName
+`func (o *PeruDniProviderOutput) UnsetMaternalLastName()`
+
+UnsetMaternalLastName ensures that no value is present for MaternalLastName, not even an explicit nil
 ### GetPaternalLastName
 
 `func (o *PeruDniProviderOutput) GetPaternalLastName() string`
@@ -374,7 +479,22 @@ and a boolean to check if the value has been set.
 
 SetPaternalLastName sets PaternalLastName field to given value.
 
+### HasPaternalLastName
 
+`func (o *PeruDniProviderOutput) HasPaternalLastName() bool`
+
+HasPaternalLastName returns a boolean if a field has been set.
+
+### SetPaternalLastNameNil
+
+`func (o *PeruDniProviderOutput) SetPaternalLastNameNil(b bool)`
+
+ SetPaternalLastNameNil sets the value for PaternalLastName to be an explicit nil
+
+### UnsetPaternalLastName
+`func (o *PeruDniProviderOutput) UnsetPaternalLastName()`
+
+UnsetPaternalLastName ensures that no value is present for PaternalLastName, not even an explicit nil
 ### GetSex
 
 `func (o *PeruDniProviderOutput) GetSex() string`

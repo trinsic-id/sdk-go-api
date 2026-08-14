@@ -17,14 +17,10 @@ import (
 // checks if the EudiAgeVerificationCredential type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &EudiAgeVerificationCredential{}
 
-// EudiAgeVerificationCredential An EUDI Age Verification credential, with document type `eu.europa.ec.eudi.av.1`.              This is the age verification credential type defined in the EUDI Wallet framework.
+// EudiAgeVerificationCredential An EUDI Age Verification credential, with document type `eu.europa.ec.av.1`.
 type EudiAgeVerificationCredential struct {
 	// Processed age-over claims returned by the credential.
 	AgeOver []AgeOverOutput `json:"ageOver,omitempty"`
-	// Date when the age verification data expires.
-	ExpiryDate NullableString `json:"expiryDate,omitempty"`
-	// ISO 3166-1 alpha-2 country code of the country or territory of the issuer of the credential.
-	IssuingCountry NullableString `json:"issuingCountry,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -80,90 +76,6 @@ func (o *EudiAgeVerificationCredential) SetAgeOver(v []AgeOverOutput) {
 	o.AgeOver = v
 }
 
-// GetExpiryDate returns the ExpiryDate field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *EudiAgeVerificationCredential) GetExpiryDate() string {
-	if o == nil || IsNil(o.ExpiryDate.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.ExpiryDate.Get()
-}
-
-// GetExpiryDateOk returns a tuple with the ExpiryDate field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *EudiAgeVerificationCredential) GetExpiryDateOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ExpiryDate.Get(), o.ExpiryDate.IsSet()
-}
-
-// HasExpiryDate returns a boolean if a field has been set.
-func (o *EudiAgeVerificationCredential) HasExpiryDate() bool {
-	if o != nil && o.ExpiryDate.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetExpiryDate gets a reference to the given NullableString and assigns it to the ExpiryDate field.
-func (o *EudiAgeVerificationCredential) SetExpiryDate(v string) {
-	o.ExpiryDate.Set(&v)
-}
-// SetExpiryDateNil sets the value for ExpiryDate to be an explicit nil
-func (o *EudiAgeVerificationCredential) SetExpiryDateNil() {
-	o.ExpiryDate.Set(nil)
-}
-
-// UnsetExpiryDate ensures that no value is present for ExpiryDate, not even an explicit nil
-func (o *EudiAgeVerificationCredential) UnsetExpiryDate() {
-	o.ExpiryDate.Unset()
-}
-
-// GetIssuingCountry returns the IssuingCountry field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *EudiAgeVerificationCredential) GetIssuingCountry() string {
-	if o == nil || IsNil(o.IssuingCountry.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.IssuingCountry.Get()
-}
-
-// GetIssuingCountryOk returns a tuple with the IssuingCountry field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *EudiAgeVerificationCredential) GetIssuingCountryOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.IssuingCountry.Get(), o.IssuingCountry.IsSet()
-}
-
-// HasIssuingCountry returns a boolean if a field has been set.
-func (o *EudiAgeVerificationCredential) HasIssuingCountry() bool {
-	if o != nil && o.IssuingCountry.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetIssuingCountry gets a reference to the given NullableString and assigns it to the IssuingCountry field.
-func (o *EudiAgeVerificationCredential) SetIssuingCountry(v string) {
-	o.IssuingCountry.Set(&v)
-}
-// SetIssuingCountryNil sets the value for IssuingCountry to be an explicit nil
-func (o *EudiAgeVerificationCredential) SetIssuingCountryNil() {
-	o.IssuingCountry.Set(nil)
-}
-
-// UnsetIssuingCountry ensures that no value is present for IssuingCountry, not even an explicit nil
-func (o *EudiAgeVerificationCredential) UnsetIssuingCountry() {
-	o.IssuingCountry.Unset()
-}
-
 func (o EudiAgeVerificationCredential) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -176,12 +88,6 @@ func (o EudiAgeVerificationCredential) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if o.AgeOver != nil {
 		toSerialize["ageOver"] = o.AgeOver
-	}
-	if o.ExpiryDate.IsSet() {
-		toSerialize["expiryDate"] = o.ExpiryDate.Get()
-	}
-	if o.IssuingCountry.IsSet() {
-		toSerialize["issuingCountry"] = o.IssuingCountry.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -206,8 +112,6 @@ func (o *EudiAgeVerificationCredential) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "ageOver")
-		delete(additionalProperties, "expiryDate")
-		delete(additionalProperties, "issuingCountry")
 		o.AdditionalProperties = additionalProperties
 	}
 

@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the NetherlandsIdinAddress type satisfies the MappedNullable interface at compile time
@@ -20,16 +19,26 @@ var _ MappedNullable = &NetherlandsIdinAddress{}
 
 // NetherlandsIdinAddress struct for NetherlandsIdinAddress
 type NetherlandsIdinAddress struct {
-	// Street name of the individual's address.
-	Street string `json:"street"`
-	// House number of the individual's address.
-	HouseNumber string `json:"houseNumber"`
-	// Postal code of the individual's address.              A postal code in The Netherlands is a 4-digit number and two letters.
-	PostalCode string `json:"postalCode"`
-	// City of the individual's address.
-	City string `json:"city"`
+	// Street name of the individual's domestic address.
+	Street NullableString `json:"street,omitempty"`
+	// House number of the individual's domestic address.
+	HouseNumber NullableString `json:"houseNumber,omitempty"`
+	// House number suffix of the individual's domestic address.
+	HouseNumberSuffix NullableString `json:"houseNumberSuffix,omitempty"`
+	// Additional domestic address information returned by iDIN.
+	AddressExtra NullableString `json:"addressExtra,omitempty"`
+	// Postal code of the individual's domestic address.              A postal code in The Netherlands is a 4-digit number and two letters.
+	PostalCode NullableString `json:"postalCode,omitempty"`
+	// City of the individual's domestic address.
+	City NullableString `json:"city,omitempty"`
 	// Country code of the individual's address in ISO 3166-1 alpha-2 format.
-	CountryCode string `json:"countryCode"`
+	CountryCode NullableString `json:"countryCode,omitempty"`
+	// First line of the individual's international address.
+	InternationalAddressLine1 NullableString `json:"internationalAddressLine1,omitempty"`
+	// Second line of the individual's international address.
+	InternationalAddressLine2 NullableString `json:"internationalAddressLine2,omitempty"`
+	// Third line of the individual's international address.
+	InternationalAddressLine3 NullableString `json:"internationalAddressLine3,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -39,13 +48,8 @@ type _NetherlandsIdinAddress NetherlandsIdinAddress
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNetherlandsIdinAddress(street string, houseNumber string, postalCode string, city string, countryCode string) *NetherlandsIdinAddress {
+func NewNetherlandsIdinAddress() *NetherlandsIdinAddress {
 	this := NetherlandsIdinAddress{}
-	this.Street = street
-	this.HouseNumber = houseNumber
-	this.PostalCode = postalCode
-	this.City = city
-	this.CountryCode = countryCode
 	return &this
 }
 
@@ -57,124 +61,424 @@ func NewNetherlandsIdinAddressWithDefaults() *NetherlandsIdinAddress {
 	return &this
 }
 
-// GetStreet returns the Street field value
+// GetStreet returns the Street field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *NetherlandsIdinAddress) GetStreet() string {
-	if o == nil {
+	if o == nil || IsNil(o.Street.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.Street
+	return *o.Street.Get()
 }
 
-// GetStreetOk returns a tuple with the Street field value
+// GetStreetOk returns a tuple with the Street field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *NetherlandsIdinAddress) GetStreetOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Street, true
+	return o.Street.Get(), o.Street.IsSet()
 }
 
-// SetStreet sets field value
+// HasStreet returns a boolean if a field has been set.
+func (o *NetherlandsIdinAddress) HasStreet() bool {
+	if o != nil && o.Street.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetStreet gets a reference to the given NullableString and assigns it to the Street field.
 func (o *NetherlandsIdinAddress) SetStreet(v string) {
-	o.Street = v
+	o.Street.Set(&v)
+}
+// SetStreetNil sets the value for Street to be an explicit nil
+func (o *NetherlandsIdinAddress) SetStreetNil() {
+	o.Street.Set(nil)
 }
 
-// GetHouseNumber returns the HouseNumber field value
+// UnsetStreet ensures that no value is present for Street, not even an explicit nil
+func (o *NetherlandsIdinAddress) UnsetStreet() {
+	o.Street.Unset()
+}
+
+// GetHouseNumber returns the HouseNumber field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *NetherlandsIdinAddress) GetHouseNumber() string {
-	if o == nil {
+	if o == nil || IsNil(o.HouseNumber.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.HouseNumber
+	return *o.HouseNumber.Get()
 }
 
-// GetHouseNumberOk returns a tuple with the HouseNumber field value
+// GetHouseNumberOk returns a tuple with the HouseNumber field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *NetherlandsIdinAddress) GetHouseNumberOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.HouseNumber, true
+	return o.HouseNumber.Get(), o.HouseNumber.IsSet()
 }
 
-// SetHouseNumber sets field value
+// HasHouseNumber returns a boolean if a field has been set.
+func (o *NetherlandsIdinAddress) HasHouseNumber() bool {
+	if o != nil && o.HouseNumber.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetHouseNumber gets a reference to the given NullableString and assigns it to the HouseNumber field.
 func (o *NetherlandsIdinAddress) SetHouseNumber(v string) {
-	o.HouseNumber = v
+	o.HouseNumber.Set(&v)
+}
+// SetHouseNumberNil sets the value for HouseNumber to be an explicit nil
+func (o *NetherlandsIdinAddress) SetHouseNumberNil() {
+	o.HouseNumber.Set(nil)
 }
 
-// GetPostalCode returns the PostalCode field value
-func (o *NetherlandsIdinAddress) GetPostalCode() string {
-	if o == nil {
+// UnsetHouseNumber ensures that no value is present for HouseNumber, not even an explicit nil
+func (o *NetherlandsIdinAddress) UnsetHouseNumber() {
+	o.HouseNumber.Unset()
+}
+
+// GetHouseNumberSuffix returns the HouseNumberSuffix field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *NetherlandsIdinAddress) GetHouseNumberSuffix() string {
+	if o == nil || IsNil(o.HouseNumberSuffix.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.PostalCode
+	return *o.HouseNumberSuffix.Get()
 }
 
-// GetPostalCodeOk returns a tuple with the PostalCode field value
+// GetHouseNumberSuffixOk returns a tuple with the HouseNumberSuffix field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *NetherlandsIdinAddress) GetHouseNumberSuffixOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.HouseNumberSuffix.Get(), o.HouseNumberSuffix.IsSet()
+}
+
+// HasHouseNumberSuffix returns a boolean if a field has been set.
+func (o *NetherlandsIdinAddress) HasHouseNumberSuffix() bool {
+	if o != nil && o.HouseNumberSuffix.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetHouseNumberSuffix gets a reference to the given NullableString and assigns it to the HouseNumberSuffix field.
+func (o *NetherlandsIdinAddress) SetHouseNumberSuffix(v string) {
+	o.HouseNumberSuffix.Set(&v)
+}
+// SetHouseNumberSuffixNil sets the value for HouseNumberSuffix to be an explicit nil
+func (o *NetherlandsIdinAddress) SetHouseNumberSuffixNil() {
+	o.HouseNumberSuffix.Set(nil)
+}
+
+// UnsetHouseNumberSuffix ensures that no value is present for HouseNumberSuffix, not even an explicit nil
+func (o *NetherlandsIdinAddress) UnsetHouseNumberSuffix() {
+	o.HouseNumberSuffix.Unset()
+}
+
+// GetAddressExtra returns the AddressExtra field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *NetherlandsIdinAddress) GetAddressExtra() string {
+	if o == nil || IsNil(o.AddressExtra.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.AddressExtra.Get()
+}
+
+// GetAddressExtraOk returns a tuple with the AddressExtra field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *NetherlandsIdinAddress) GetAddressExtraOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.AddressExtra.Get(), o.AddressExtra.IsSet()
+}
+
+// HasAddressExtra returns a boolean if a field has been set.
+func (o *NetherlandsIdinAddress) HasAddressExtra() bool {
+	if o != nil && o.AddressExtra.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAddressExtra gets a reference to the given NullableString and assigns it to the AddressExtra field.
+func (o *NetherlandsIdinAddress) SetAddressExtra(v string) {
+	o.AddressExtra.Set(&v)
+}
+// SetAddressExtraNil sets the value for AddressExtra to be an explicit nil
+func (o *NetherlandsIdinAddress) SetAddressExtraNil() {
+	o.AddressExtra.Set(nil)
+}
+
+// UnsetAddressExtra ensures that no value is present for AddressExtra, not even an explicit nil
+func (o *NetherlandsIdinAddress) UnsetAddressExtra() {
+	o.AddressExtra.Unset()
+}
+
+// GetPostalCode returns the PostalCode field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *NetherlandsIdinAddress) GetPostalCode() string {
+	if o == nil || IsNil(o.PostalCode.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.PostalCode.Get()
+}
+
+// GetPostalCodeOk returns a tuple with the PostalCode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *NetherlandsIdinAddress) GetPostalCodeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.PostalCode, true
+	return o.PostalCode.Get(), o.PostalCode.IsSet()
 }
 
-// SetPostalCode sets field value
+// HasPostalCode returns a boolean if a field has been set.
+func (o *NetherlandsIdinAddress) HasPostalCode() bool {
+	if o != nil && o.PostalCode.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPostalCode gets a reference to the given NullableString and assigns it to the PostalCode field.
 func (o *NetherlandsIdinAddress) SetPostalCode(v string) {
-	o.PostalCode = v
+	o.PostalCode.Set(&v)
+}
+// SetPostalCodeNil sets the value for PostalCode to be an explicit nil
+func (o *NetherlandsIdinAddress) SetPostalCodeNil() {
+	o.PostalCode.Set(nil)
 }
 
-// GetCity returns the City field value
+// UnsetPostalCode ensures that no value is present for PostalCode, not even an explicit nil
+func (o *NetherlandsIdinAddress) UnsetPostalCode() {
+	o.PostalCode.Unset()
+}
+
+// GetCity returns the City field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *NetherlandsIdinAddress) GetCity() string {
-	if o == nil {
+	if o == nil || IsNil(o.City.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.City
+	return *o.City.Get()
 }
 
-// GetCityOk returns a tuple with the City field value
+// GetCityOk returns a tuple with the City field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *NetherlandsIdinAddress) GetCityOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.City, true
+	return o.City.Get(), o.City.IsSet()
 }
 
-// SetCity sets field value
+// HasCity returns a boolean if a field has been set.
+func (o *NetherlandsIdinAddress) HasCity() bool {
+	if o != nil && o.City.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCity gets a reference to the given NullableString and assigns it to the City field.
 func (o *NetherlandsIdinAddress) SetCity(v string) {
-	o.City = v
+	o.City.Set(&v)
+}
+// SetCityNil sets the value for City to be an explicit nil
+func (o *NetherlandsIdinAddress) SetCityNil() {
+	o.City.Set(nil)
 }
 
-// GetCountryCode returns the CountryCode field value
+// UnsetCity ensures that no value is present for City, not even an explicit nil
+func (o *NetherlandsIdinAddress) UnsetCity() {
+	o.City.Unset()
+}
+
+// GetCountryCode returns the CountryCode field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *NetherlandsIdinAddress) GetCountryCode() string {
-	if o == nil {
+	if o == nil || IsNil(o.CountryCode.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.CountryCode
+	return *o.CountryCode.Get()
 }
 
-// GetCountryCodeOk returns a tuple with the CountryCode field value
+// GetCountryCodeOk returns a tuple with the CountryCode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *NetherlandsIdinAddress) GetCountryCodeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.CountryCode, true
+	return o.CountryCode.Get(), o.CountryCode.IsSet()
 }
 
-// SetCountryCode sets field value
+// HasCountryCode returns a boolean if a field has been set.
+func (o *NetherlandsIdinAddress) HasCountryCode() bool {
+	if o != nil && o.CountryCode.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCountryCode gets a reference to the given NullableString and assigns it to the CountryCode field.
 func (o *NetherlandsIdinAddress) SetCountryCode(v string) {
-	o.CountryCode = v
+	o.CountryCode.Set(&v)
+}
+// SetCountryCodeNil sets the value for CountryCode to be an explicit nil
+func (o *NetherlandsIdinAddress) SetCountryCodeNil() {
+	o.CountryCode.Set(nil)
+}
+
+// UnsetCountryCode ensures that no value is present for CountryCode, not even an explicit nil
+func (o *NetherlandsIdinAddress) UnsetCountryCode() {
+	o.CountryCode.Unset()
+}
+
+// GetInternationalAddressLine1 returns the InternationalAddressLine1 field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *NetherlandsIdinAddress) GetInternationalAddressLine1() string {
+	if o == nil || IsNil(o.InternationalAddressLine1.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.InternationalAddressLine1.Get()
+}
+
+// GetInternationalAddressLine1Ok returns a tuple with the InternationalAddressLine1 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *NetherlandsIdinAddress) GetInternationalAddressLine1Ok() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.InternationalAddressLine1.Get(), o.InternationalAddressLine1.IsSet()
+}
+
+// HasInternationalAddressLine1 returns a boolean if a field has been set.
+func (o *NetherlandsIdinAddress) HasInternationalAddressLine1() bool {
+	if o != nil && o.InternationalAddressLine1.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetInternationalAddressLine1 gets a reference to the given NullableString and assigns it to the InternationalAddressLine1 field.
+func (o *NetherlandsIdinAddress) SetInternationalAddressLine1(v string) {
+	o.InternationalAddressLine1.Set(&v)
+}
+// SetInternationalAddressLine1Nil sets the value for InternationalAddressLine1 to be an explicit nil
+func (o *NetherlandsIdinAddress) SetInternationalAddressLine1Nil() {
+	o.InternationalAddressLine1.Set(nil)
+}
+
+// UnsetInternationalAddressLine1 ensures that no value is present for InternationalAddressLine1, not even an explicit nil
+func (o *NetherlandsIdinAddress) UnsetInternationalAddressLine1() {
+	o.InternationalAddressLine1.Unset()
+}
+
+// GetInternationalAddressLine2 returns the InternationalAddressLine2 field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *NetherlandsIdinAddress) GetInternationalAddressLine2() string {
+	if o == nil || IsNil(o.InternationalAddressLine2.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.InternationalAddressLine2.Get()
+}
+
+// GetInternationalAddressLine2Ok returns a tuple with the InternationalAddressLine2 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *NetherlandsIdinAddress) GetInternationalAddressLine2Ok() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.InternationalAddressLine2.Get(), o.InternationalAddressLine2.IsSet()
+}
+
+// HasInternationalAddressLine2 returns a boolean if a field has been set.
+func (o *NetherlandsIdinAddress) HasInternationalAddressLine2() bool {
+	if o != nil && o.InternationalAddressLine2.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetInternationalAddressLine2 gets a reference to the given NullableString and assigns it to the InternationalAddressLine2 field.
+func (o *NetherlandsIdinAddress) SetInternationalAddressLine2(v string) {
+	o.InternationalAddressLine2.Set(&v)
+}
+// SetInternationalAddressLine2Nil sets the value for InternationalAddressLine2 to be an explicit nil
+func (o *NetherlandsIdinAddress) SetInternationalAddressLine2Nil() {
+	o.InternationalAddressLine2.Set(nil)
+}
+
+// UnsetInternationalAddressLine2 ensures that no value is present for InternationalAddressLine2, not even an explicit nil
+func (o *NetherlandsIdinAddress) UnsetInternationalAddressLine2() {
+	o.InternationalAddressLine2.Unset()
+}
+
+// GetInternationalAddressLine3 returns the InternationalAddressLine3 field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *NetherlandsIdinAddress) GetInternationalAddressLine3() string {
+	if o == nil || IsNil(o.InternationalAddressLine3.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.InternationalAddressLine3.Get()
+}
+
+// GetInternationalAddressLine3Ok returns a tuple with the InternationalAddressLine3 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *NetherlandsIdinAddress) GetInternationalAddressLine3Ok() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.InternationalAddressLine3.Get(), o.InternationalAddressLine3.IsSet()
+}
+
+// HasInternationalAddressLine3 returns a boolean if a field has been set.
+func (o *NetherlandsIdinAddress) HasInternationalAddressLine3() bool {
+	if o != nil && o.InternationalAddressLine3.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetInternationalAddressLine3 gets a reference to the given NullableString and assigns it to the InternationalAddressLine3 field.
+func (o *NetherlandsIdinAddress) SetInternationalAddressLine3(v string) {
+	o.InternationalAddressLine3.Set(&v)
+}
+// SetInternationalAddressLine3Nil sets the value for InternationalAddressLine3 to be an explicit nil
+func (o *NetherlandsIdinAddress) SetInternationalAddressLine3Nil() {
+	o.InternationalAddressLine3.Set(nil)
+}
+
+// UnsetInternationalAddressLine3 ensures that no value is present for InternationalAddressLine3, not even an explicit nil
+func (o *NetherlandsIdinAddress) UnsetInternationalAddressLine3() {
+	o.InternationalAddressLine3.Unset()
 }
 
 func (o NetherlandsIdinAddress) MarshalJSON() ([]byte, error) {
@@ -187,11 +491,36 @@ func (o NetherlandsIdinAddress) MarshalJSON() ([]byte, error) {
 
 func (o NetherlandsIdinAddress) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["street"] = o.Street
-	toSerialize["houseNumber"] = o.HouseNumber
-	toSerialize["postalCode"] = o.PostalCode
-	toSerialize["city"] = o.City
-	toSerialize["countryCode"] = o.CountryCode
+	if o.Street.IsSet() {
+		toSerialize["street"] = o.Street.Get()
+	}
+	if o.HouseNumber.IsSet() {
+		toSerialize["houseNumber"] = o.HouseNumber.Get()
+	}
+	if o.HouseNumberSuffix.IsSet() {
+		toSerialize["houseNumberSuffix"] = o.HouseNumberSuffix.Get()
+	}
+	if o.AddressExtra.IsSet() {
+		toSerialize["addressExtra"] = o.AddressExtra.Get()
+	}
+	if o.PostalCode.IsSet() {
+		toSerialize["postalCode"] = o.PostalCode.Get()
+	}
+	if o.City.IsSet() {
+		toSerialize["city"] = o.City.Get()
+	}
+	if o.CountryCode.IsSet() {
+		toSerialize["countryCode"] = o.CountryCode.Get()
+	}
+	if o.InternationalAddressLine1.IsSet() {
+		toSerialize["internationalAddressLine1"] = o.InternationalAddressLine1.Get()
+	}
+	if o.InternationalAddressLine2.IsSet() {
+		toSerialize["internationalAddressLine2"] = o.InternationalAddressLine2.Get()
+	}
+	if o.InternationalAddressLine3.IsSet() {
+		toSerialize["internationalAddressLine3"] = o.InternationalAddressLine3.Get()
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -201,31 +530,6 @@ func (o NetherlandsIdinAddress) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *NetherlandsIdinAddress) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"street",
-		"houseNumber",
-		"postalCode",
-		"city",
-		"countryCode",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varNetherlandsIdinAddress := _NetherlandsIdinAddress{}
 
 	err = json.Unmarshal(data, &varNetherlandsIdinAddress)
@@ -241,9 +545,14 @@ func (o *NetherlandsIdinAddress) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "street")
 		delete(additionalProperties, "houseNumber")
+		delete(additionalProperties, "houseNumberSuffix")
+		delete(additionalProperties, "addressExtra")
 		delete(additionalProperties, "postalCode")
 		delete(additionalProperties, "city")
 		delete(additionalProperties, "countryCode")
+		delete(additionalProperties, "internationalAddressLine1")
+		delete(additionalProperties, "internationalAddressLine2")
+		delete(additionalProperties, "internationalAddressLine3")
 		o.AdditionalProperties = additionalProperties
 	}
 

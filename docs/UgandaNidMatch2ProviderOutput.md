@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**NationalIdNumber** | [**UgandaNidMatch2NationalIdNumberField**](UgandaNidMatch2NationalIdNumberField.md) | Outcome of verifying the national identification number in the NIRA database. | 
-**SecondaryIdNumber** | [**UgandaNidMatch2SecondaryIdNumberField**](UgandaNidMatch2SecondaryIdNumberField.md) | Outcome of comparing the submitted card number with the NIRA database. | 
-**DateOfBirth** | [**UgandaNidMatch2DateOfBirthField**](UgandaNidMatch2DateOfBirthField.md) | Outcome of comparing the submitted date of birth with the NIRA database. | 
+**NationalIdNumber** | Pointer to [**NullableUgandaNidMatch2NationalIdNumberField**](UgandaNidMatch2NationalIdNumberField.md) | Outcome of verifying the national identification number in the NIRA database. | [optional] 
+**SecondaryIdNumber** | Pointer to [**NullableUgandaNidMatch2SecondaryIdNumberField**](UgandaNidMatch2SecondaryIdNumberField.md) | Outcome of comparing the submitted card number with the NIRA database. | [optional] 
+**DateOfBirth** | Pointer to [**NullableUgandaNidMatch2DateOfBirthField**](UgandaNidMatch2DateOfBirthField.md) | Outcome of comparing the submitted date of birth with the NIRA database. | [optional] 
 
 ## Methods
 
 ### NewUgandaNidMatch2ProviderOutput
 
-`func NewUgandaNidMatch2ProviderOutput(nationalIdNumber UgandaNidMatch2NationalIdNumberField, secondaryIdNumber UgandaNidMatch2SecondaryIdNumberField, dateOfBirth UgandaNidMatch2DateOfBirthField, ) *UgandaNidMatch2ProviderOutput`
+`func NewUgandaNidMatch2ProviderOutput() *UgandaNidMatch2ProviderOutput`
 
 NewUgandaNidMatch2ProviderOutput instantiates a new UgandaNidMatch2ProviderOutput object
 This constructor will assign default values to properties that have it defined,
@@ -46,7 +46,22 @@ and a boolean to check if the value has been set.
 
 SetNationalIdNumber sets NationalIdNumber field to given value.
 
+### HasNationalIdNumber
 
+`func (o *UgandaNidMatch2ProviderOutput) HasNationalIdNumber() bool`
+
+HasNationalIdNumber returns a boolean if a field has been set.
+
+### SetNationalIdNumberNil
+
+`func (o *UgandaNidMatch2ProviderOutput) SetNationalIdNumberNil(b bool)`
+
+ SetNationalIdNumberNil sets the value for NationalIdNumber to be an explicit nil
+
+### UnsetNationalIdNumber
+`func (o *UgandaNidMatch2ProviderOutput) UnsetNationalIdNumber()`
+
+UnsetNationalIdNumber ensures that no value is present for NationalIdNumber, not even an explicit nil
 ### GetSecondaryIdNumber
 
 `func (o *UgandaNidMatch2ProviderOutput) GetSecondaryIdNumber() UgandaNidMatch2SecondaryIdNumberField`
@@ -66,7 +81,22 @@ and a boolean to check if the value has been set.
 
 SetSecondaryIdNumber sets SecondaryIdNumber field to given value.
 
+### HasSecondaryIdNumber
 
+`func (o *UgandaNidMatch2ProviderOutput) HasSecondaryIdNumber() bool`
+
+HasSecondaryIdNumber returns a boolean if a field has been set.
+
+### SetSecondaryIdNumberNil
+
+`func (o *UgandaNidMatch2ProviderOutput) SetSecondaryIdNumberNil(b bool)`
+
+ SetSecondaryIdNumberNil sets the value for SecondaryIdNumber to be an explicit nil
+
+### UnsetSecondaryIdNumber
+`func (o *UgandaNidMatch2ProviderOutput) UnsetSecondaryIdNumber()`
+
+UnsetSecondaryIdNumber ensures that no value is present for SecondaryIdNumber, not even an explicit nil
 ### GetDateOfBirth
 
 `func (o *UgandaNidMatch2ProviderOutput) GetDateOfBirth() UgandaNidMatch2DateOfBirthField`
@@ -86,7 +116,22 @@ and a boolean to check if the value has been set.
 
 SetDateOfBirth sets DateOfBirth field to given value.
 
+### HasDateOfBirth
 
+`func (o *UgandaNidMatch2ProviderOutput) HasDateOfBirth() bool`
+
+HasDateOfBirth returns a boolean if a field has been set.
+
+### SetDateOfBirthNil
+
+`func (o *UgandaNidMatch2ProviderOutput) SetDateOfBirthNil(b bool)`
+
+ SetDateOfBirthNil sets the value for DateOfBirth to be an explicit nil
+
+### UnsetDateOfBirth
+`func (o *UgandaNidMatch2ProviderOutput) UnsetDateOfBirth()`
+
+UnsetDateOfBirth ensures that no value is present for DateOfBirth, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

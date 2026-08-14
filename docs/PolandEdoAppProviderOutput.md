@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**FirstName** | **string** | The first name of the verified individual | 
-**LastName** | **string** | The last name of the verified individual | 
-**DateOfBirth** | **string** | The date of birth of the verified individual | 
-**NationalIdentificationNumber** | **string** | The 11-digit Polish national identification number (PESEL) of the verified individual.              This is in the format YYMMDDZZZGQ, where: - YYMMDD is the date of birth - ZZZ is a unique identifier - G is sex (even for females, odd for males) - Q is a checksum digit              The year of birth encoded in this identifier assumes a default year of birth in the 20th century. If the year of birth is in the range [1800, 1899], the month portion is incremented by 80. If the year of birth is in the range [2000, 2099] the month portion is incremented by 20. If the year of birth is in the range [2100, 2199], the month portion is incremented by 40. If the year of birth is in the range [2200, 2299], the month portion is incremented by 60. | 
+**FirstName** | Pointer to **NullableString** | The first name of the verified individual | [optional] 
+**LastName** | Pointer to **NullableString** | The last name of the verified individual | [optional] 
+**DateOfBirth** | Pointer to **NullableString** | The date of birth of the verified individual | [optional] 
+**NationalIdentificationNumber** | Pointer to **NullableString** | The 11-digit Polish national identification number (PESEL) of the verified individual.              This is in the format YYMMDDZZZGQ, where: - YYMMDD is the date of birth - ZZZ is a unique identifier - G is sex (even for females, odd for males) - Q is a checksum digit              The year of birth encoded in this identifier assumes a default year of birth in the 20th century. If the year of birth is in the range [1800, 1899], the month portion is incremented by 80. If the year of birth is in the range [2000, 2099] the month portion is incremented by 20. If the year of birth is in the range [2100, 2199], the month portion is incremented by 40. If the year of birth is in the range [2200, 2299], the month portion is incremented by 60. | [optional] 
 
 ## Methods
 
 ### NewPolandEdoAppProviderOutput
 
-`func NewPolandEdoAppProviderOutput(firstName string, lastName string, dateOfBirth string, nationalIdentificationNumber string, ) *PolandEdoAppProviderOutput`
+`func NewPolandEdoAppProviderOutput() *PolandEdoAppProviderOutput`
 
 NewPolandEdoAppProviderOutput instantiates a new PolandEdoAppProviderOutput object
 This constructor will assign default values to properties that have it defined,
@@ -47,7 +47,22 @@ and a boolean to check if the value has been set.
 
 SetFirstName sets FirstName field to given value.
 
+### HasFirstName
 
+`func (o *PolandEdoAppProviderOutput) HasFirstName() bool`
+
+HasFirstName returns a boolean if a field has been set.
+
+### SetFirstNameNil
+
+`func (o *PolandEdoAppProviderOutput) SetFirstNameNil(b bool)`
+
+ SetFirstNameNil sets the value for FirstName to be an explicit nil
+
+### UnsetFirstName
+`func (o *PolandEdoAppProviderOutput) UnsetFirstName()`
+
+UnsetFirstName ensures that no value is present for FirstName, not even an explicit nil
 ### GetLastName
 
 `func (o *PolandEdoAppProviderOutput) GetLastName() string`
@@ -67,7 +82,22 @@ and a boolean to check if the value has been set.
 
 SetLastName sets LastName field to given value.
 
+### HasLastName
 
+`func (o *PolandEdoAppProviderOutput) HasLastName() bool`
+
+HasLastName returns a boolean if a field has been set.
+
+### SetLastNameNil
+
+`func (o *PolandEdoAppProviderOutput) SetLastNameNil(b bool)`
+
+ SetLastNameNil sets the value for LastName to be an explicit nil
+
+### UnsetLastName
+`func (o *PolandEdoAppProviderOutput) UnsetLastName()`
+
+UnsetLastName ensures that no value is present for LastName, not even an explicit nil
 ### GetDateOfBirth
 
 `func (o *PolandEdoAppProviderOutput) GetDateOfBirth() string`
@@ -87,7 +117,22 @@ and a boolean to check if the value has been set.
 
 SetDateOfBirth sets DateOfBirth field to given value.
 
+### HasDateOfBirth
 
+`func (o *PolandEdoAppProviderOutput) HasDateOfBirth() bool`
+
+HasDateOfBirth returns a boolean if a field has been set.
+
+### SetDateOfBirthNil
+
+`func (o *PolandEdoAppProviderOutput) SetDateOfBirthNil(b bool)`
+
+ SetDateOfBirthNil sets the value for DateOfBirth to be an explicit nil
+
+### UnsetDateOfBirth
+`func (o *PolandEdoAppProviderOutput) UnsetDateOfBirth()`
+
+UnsetDateOfBirth ensures that no value is present for DateOfBirth, not even an explicit nil
 ### GetNationalIdentificationNumber
 
 `func (o *PolandEdoAppProviderOutput) GetNationalIdentificationNumber() string`
@@ -107,7 +152,22 @@ and a boolean to check if the value has been set.
 
 SetNationalIdentificationNumber sets NationalIdentificationNumber field to given value.
 
+### HasNationalIdentificationNumber
 
+`func (o *PolandEdoAppProviderOutput) HasNationalIdentificationNumber() bool`
+
+HasNationalIdentificationNumber returns a boolean if a field has been set.
+
+### SetNationalIdentificationNumberNil
+
+`func (o *PolandEdoAppProviderOutput) SetNationalIdentificationNumberNil(b bool)`
+
+ SetNationalIdentificationNumberNil sets the value for NationalIdentificationNumber to be an explicit nil
+
+### UnsetNationalIdentificationNumber
+`func (o *PolandEdoAppProviderOutput) UnsetNationalIdentificationNumber()`
+
+UnsetNationalIdentificationNumber ensures that no value is present for NationalIdentificationNumber, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

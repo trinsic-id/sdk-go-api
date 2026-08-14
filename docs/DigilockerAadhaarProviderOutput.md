@@ -10,13 +10,13 @@ Name | Type | Description | Notes
 **AadhaarNumberLastFour** | Pointer to **NullableString** | The Aadhaar number (UID) value for the individual.              This is only the last four digits of the Aadhaar number. | [optional] 
 **Claims** | Pointer to [**NullableAadhaarClaims**](AadhaarClaims.md) | The claims extracted from the Aadhaar document. | [optional] 
 **LocalizedClaims** | Pointer to [**NullableAadhaarLocalizedClaims**](AadhaarLocalizedClaims.md) | The localized claims extracted from the Aadhaar document. | [optional] 
-**DocumentSignatureValidated** | **bool** | Whether our own validation of the Aadhaar document signature and certificate chain succeeded.              When the signed document (e.g. Digilocker XML) is available, we validate it using the standard CCA/SafeScrypt chain. When the document is not returned, the signature cannot be validated and this is false. Some providers (e.g. Signzy) also supply a separate DSC validation indicator in the webhook payload; that is independent of this flag, which reflects only our validation. | 
+**DocumentSignatureValidated** | Pointer to **NullableBool** | Whether our own validation of the Aadhaar document signature and certificate chain succeeded.              When the signed document (e.g. Digilocker XML) is available, we validate it using the standard CCA/SafeScrypt chain. When the document is not returned, the signature cannot be validated and this is false. Some providers (e.g. Signzy) also supply a separate DSC validation indicator in the webhook payload; that is independent of this flag, which reflects only our validation. | [optional] 
 
 ## Methods
 
 ### NewDigilockerAadhaarProviderOutput
 
-`func NewDigilockerAadhaarProviderOutput(documentSignatureValidated bool, ) *DigilockerAadhaarProviderOutput`
+`func NewDigilockerAadhaarProviderOutput() *DigilockerAadhaarProviderOutput`
 
 NewDigilockerAadhaarProviderOutput instantiates a new DigilockerAadhaarProviderOutput object
 This constructor will assign default values to properties that have it defined,
@@ -260,7 +260,22 @@ and a boolean to check if the value has been set.
 
 SetDocumentSignatureValidated sets DocumentSignatureValidated field to given value.
 
+### HasDocumentSignatureValidated
 
+`func (o *DigilockerAadhaarProviderOutput) HasDocumentSignatureValidated() bool`
+
+HasDocumentSignatureValidated returns a boolean if a field has been set.
+
+### SetDocumentSignatureValidatedNil
+
+`func (o *DigilockerAadhaarProviderOutput) SetDocumentSignatureValidatedNil(b bool)`
+
+ SetDocumentSignatureValidatedNil sets the value for DocumentSignatureValidated to be an explicit nil
+
+### UnsetDocumentSignatureValidated
+`func (o *DigilockerAadhaarProviderOutput) UnsetDocumentSignatureValidated()`
+
+UnsetDocumentSignatureValidated ensures that no value is present for DocumentSignatureValidated, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**FirstName** | **string** | The first name of the verified individual | 
-**LastName** | **string** | The last name of the verified individual | 
-**DateOfBirth** | **string** | The date of birth of the verified individual | 
-**CivilIdentificationNumber** | **string** | The 8-digit Portuguese Civil Identification Number (número de identificação civil) of the verified individual. | 
+**FirstName** | Pointer to **NullableString** | The first name of the verified individual | [optional] 
+**LastName** | Pointer to **NullableString** | The last name of the verified individual | [optional] 
+**DateOfBirth** | Pointer to **NullableString** | The date of birth of the verified individual | [optional] 
+**CivilIdentificationNumber** | Pointer to **NullableString** | The 8-digit Portuguese Civil Identification Number (número de identificação civil) of the verified individual. | [optional] 
 
 ## Methods
 
 ### NewPortugalIdCardProviderOutput
 
-`func NewPortugalIdCardProviderOutput(firstName string, lastName string, dateOfBirth string, civilIdentificationNumber string, ) *PortugalIdCardProviderOutput`
+`func NewPortugalIdCardProviderOutput() *PortugalIdCardProviderOutput`
 
 NewPortugalIdCardProviderOutput instantiates a new PortugalIdCardProviderOutput object
 This constructor will assign default values to properties that have it defined,
@@ -47,7 +47,22 @@ and a boolean to check if the value has been set.
 
 SetFirstName sets FirstName field to given value.
 
+### HasFirstName
 
+`func (o *PortugalIdCardProviderOutput) HasFirstName() bool`
+
+HasFirstName returns a boolean if a field has been set.
+
+### SetFirstNameNil
+
+`func (o *PortugalIdCardProviderOutput) SetFirstNameNil(b bool)`
+
+ SetFirstNameNil sets the value for FirstName to be an explicit nil
+
+### UnsetFirstName
+`func (o *PortugalIdCardProviderOutput) UnsetFirstName()`
+
+UnsetFirstName ensures that no value is present for FirstName, not even an explicit nil
 ### GetLastName
 
 `func (o *PortugalIdCardProviderOutput) GetLastName() string`
@@ -67,7 +82,22 @@ and a boolean to check if the value has been set.
 
 SetLastName sets LastName field to given value.
 
+### HasLastName
 
+`func (o *PortugalIdCardProviderOutput) HasLastName() bool`
+
+HasLastName returns a boolean if a field has been set.
+
+### SetLastNameNil
+
+`func (o *PortugalIdCardProviderOutput) SetLastNameNil(b bool)`
+
+ SetLastNameNil sets the value for LastName to be an explicit nil
+
+### UnsetLastName
+`func (o *PortugalIdCardProviderOutput) UnsetLastName()`
+
+UnsetLastName ensures that no value is present for LastName, not even an explicit nil
 ### GetDateOfBirth
 
 `func (o *PortugalIdCardProviderOutput) GetDateOfBirth() string`
@@ -87,7 +117,22 @@ and a boolean to check if the value has been set.
 
 SetDateOfBirth sets DateOfBirth field to given value.
 
+### HasDateOfBirth
 
+`func (o *PortugalIdCardProviderOutput) HasDateOfBirth() bool`
+
+HasDateOfBirth returns a boolean if a field has been set.
+
+### SetDateOfBirthNil
+
+`func (o *PortugalIdCardProviderOutput) SetDateOfBirthNil(b bool)`
+
+ SetDateOfBirthNil sets the value for DateOfBirth to be an explicit nil
+
+### UnsetDateOfBirth
+`func (o *PortugalIdCardProviderOutput) UnsetDateOfBirth()`
+
+UnsetDateOfBirth ensures that no value is present for DateOfBirth, not even an explicit nil
 ### GetCivilIdentificationNumber
 
 `func (o *PortugalIdCardProviderOutput) GetCivilIdentificationNumber() string`
@@ -107,7 +152,22 @@ and a boolean to check if the value has been set.
 
 SetCivilIdentificationNumber sets CivilIdentificationNumber field to given value.
 
+### HasCivilIdentificationNumber
 
+`func (o *PortugalIdCardProviderOutput) HasCivilIdentificationNumber() bool`
+
+HasCivilIdentificationNumber returns a boolean if a field has been set.
+
+### SetCivilIdentificationNumberNil
+
+`func (o *PortugalIdCardProviderOutput) SetCivilIdentificationNumberNil(b bool)`
+
+ SetCivilIdentificationNumberNil sets the value for CivilIdentificationNumber to be an explicit nil
+
+### UnsetCivilIdentificationNumber
+`func (o *PortugalIdCardProviderOutput) UnsetCivilIdentificationNumber()`
+
+UnsetCivilIdentificationNumber ensures that no value is present for CivilIdentificationNumber, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

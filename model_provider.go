@@ -28,12 +28,6 @@ type Provider struct {
 	LogoUrl string `json:"logoUrl"`
 	// The Provider's subtext recommended to be shown next to the name.              This is flavor text, not a full, human-readable description of the provider.
 	Subtext string `json:"subtext"`
-	// A description of the provider's capabilities
-	// Deprecated
-	Description string `json:"description"`
-	// Geographic regions where this provider operates
-	// Deprecated
-	Geography []string `json:"geography"`
 	// Specific regions supported by this provider
 	Regions []string `json:"regions"`
 	// The countries where this Provider is available (as alpha-2 ISO codes).
@@ -77,14 +71,12 @@ type _Provider Provider
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewProvider(id string, name string, logoUrl string, subtext string, description string, geography []string, regions []string, countries []string, subdivisions []string, licensed bool, launchMethod IntegrationLaunchMethod, collectionMethod ResultCollectionMethod, resultsMayBeDelayedAfterRedirect bool, hasRefreshableContent bool, requiresInput bool, hasTrinsicInterface bool, supportsDirectProviderSessions bool, liveHealth ProviderHealth, testHealth ProviderHealth) *Provider {
+func NewProvider(id string, name string, logoUrl string, subtext string, regions []string, countries []string, subdivisions []string, licensed bool, launchMethod IntegrationLaunchMethod, collectionMethod ResultCollectionMethod, resultsMayBeDelayedAfterRedirect bool, hasRefreshableContent bool, requiresInput bool, hasTrinsicInterface bool, supportsDirectProviderSessions bool, liveHealth ProviderHealth, testHealth ProviderHealth) *Provider {
 	this := Provider{}
 	this.Id = id
 	this.Name = name
 	this.LogoUrl = logoUrl
 	this.Subtext = subtext
-	this.Description = description
-	this.Geography = geography
 	this.Regions = regions
 	this.Countries = countries
 	this.Subdivisions = subdivisions
@@ -203,60 +195,6 @@ func (o *Provider) GetSubtextOk() (*string, bool) {
 // SetSubtext sets field value
 func (o *Provider) SetSubtext(v string) {
 	o.Subtext = v
-}
-
-// GetDescription returns the Description field value
-// Deprecated
-func (o *Provider) GetDescription() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Description
-}
-
-// GetDescriptionOk returns a tuple with the Description field value
-// and a boolean to check if the value has been set.
-// Deprecated
-func (o *Provider) GetDescriptionOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Description, true
-}
-
-// SetDescription sets field value
-// Deprecated
-func (o *Provider) SetDescription(v string) {
-	o.Description = v
-}
-
-// GetGeography returns the Geography field value
-// Deprecated
-func (o *Provider) GetGeography() []string {
-	if o == nil {
-		var ret []string
-		return ret
-	}
-
-	return o.Geography
-}
-
-// GetGeographyOk returns a tuple with the Geography field value
-// and a boolean to check if the value has been set.
-// Deprecated
-func (o *Provider) GetGeographyOk() ([]string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Geography, true
-}
-
-// SetGeography sets field value
-// Deprecated
-func (o *Provider) SetGeography(v []string) {
-	o.Geography = v
 }
 
 // GetRegions returns the Regions field value
@@ -717,8 +655,6 @@ func (o Provider) ToMap() (map[string]interface{}, error) {
 	toSerialize["name"] = o.Name
 	toSerialize["logoUrl"] = o.LogoUrl
 	toSerialize["subtext"] = o.Subtext
-	toSerialize["description"] = o.Description
-	toSerialize["geography"] = o.Geography
 	toSerialize["regions"] = o.Regions
 	toSerialize["countries"] = o.Countries
 	toSerialize["subdivisions"] = o.Subdivisions
@@ -761,8 +697,6 @@ func (o *Provider) UnmarshalJSON(data []byte) (err error) {
 		"name",
 		"logoUrl",
 		"subtext",
-		"description",
-		"geography",
 		"regions",
 		"countries",
 		"subdivisions",
@@ -809,8 +743,6 @@ func (o *Provider) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "logoUrl")
 		delete(additionalProperties, "subtext")
-		delete(additionalProperties, "description")
-		delete(additionalProperties, "geography")
 		delete(additionalProperties, "regions")
 		delete(additionalProperties, "countries")
 		delete(additionalProperties, "subdivisions")

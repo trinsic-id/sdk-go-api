@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Type** | **string** | The type of the Attachment.              Possible values: - \&quot;selfie\&quot; - \&quot;document_front\&quot; - \&quot;document_back\&quot; - \&quot;document_portrait\&quot; - \&quot;document_signature\&quot; - \&quot;document_scan_report\&quot;              Additional attachment types may be defined for specific Providers. | 
 **ContentType** | **string** | The MIME type of the attachment&#39;s contents; eg, \&quot;image/jpeg\&quot; or \&quot;application/pdf\&quot;. | 
 **SizeBytes** | **int32** | The size in bytes of the attachment. | 
+**HpkeEncrypted** | Pointer to **NullableBool** | Whether the attachment contents are encrypted via HPKE and must be decrypted using your private key. | [optional] 
 
 ## Methods
 
@@ -108,6 +109,41 @@ and a boolean to check if the value has been set.
 SetSizeBytes sets SizeBytes field to given value.
 
 
+### GetHpkeEncrypted
+
+`func (o *AttachmentInfo) GetHpkeEncrypted() bool`
+
+GetHpkeEncrypted returns the HpkeEncrypted field if non-nil, zero value otherwise.
+
+### GetHpkeEncryptedOk
+
+`func (o *AttachmentInfo) GetHpkeEncryptedOk() (*bool, bool)`
+
+GetHpkeEncryptedOk returns a tuple with the HpkeEncrypted field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHpkeEncrypted
+
+`func (o *AttachmentInfo) SetHpkeEncrypted(v bool)`
+
+SetHpkeEncrypted sets HpkeEncrypted field to given value.
+
+### HasHpkeEncrypted
+
+`func (o *AttachmentInfo) HasHpkeEncrypted() bool`
+
+HasHpkeEncrypted returns a boolean if a field has been set.
+
+### SetHpkeEncryptedNil
+
+`func (o *AttachmentInfo) SetHpkeEncryptedNil(b bool)`
+
+ SetHpkeEncryptedNil sets the value for HpkeEncrypted to be an explicit nil
+
+### UnsetHpkeEncrypted
+`func (o *AttachmentInfo) UnsetHpkeEncrypted()`
+
+UnsetHpkeEncrypted ensures that no value is present for HpkeEncrypted, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

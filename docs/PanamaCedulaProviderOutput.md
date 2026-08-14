@@ -4,12 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**FullName** | **string** | Full name from Tribunal Electoral records. | 
-**GivenName** | **string** | Given name(s) from Tribunal Electoral records. | 
-**FamilyName** | **string** | Family name(s) from Tribunal Electoral records. | 
-**DateOfBirth** | Pointer to **NullableString** | Verified date of birth from Tribunal Electoral records. | [optional] 
-**DocumentNumber** | **string** | The matched personal identity cédula (Cédula de Identidad Personal) number from Tribunal Electoral records.              On output, Trinsic applies the same normalization as for lookup input. Structure is always {firstSegment}-{libro}-{tomo}: libro is one to four digits and tomo is one to six digits, separated by hyphens.              Citizen category and format: - Born in Panama format: {province}-{libro}-{tomo} ({province} is official code 1 through 13). Examples   8-1234-12345, 4-56-789, 12-12-12345. - Panamanian born abroad format: PE-{libro}-{tomo}. Example PE-1234-12345. - Foreign national with cédula format: E-{libro}-{tomo}. Examples E-1234-12345, E-8-102017. - Naturalized citizen format: N-{libro}-{tomo}. Example N-1234-12345. - Pre-2006 civil registry (AV) format: {province}AV-{libro}-{tomo}. Example 10AV-1234-12345. - Indigenous (PI) format: {province}PI-{libro}-{tomo}. Example 1PI-1234-12345. | 
-**NationalityOrResidenceType** | **string** | Inferred from DocumentNumber. Values are nationality or residence category.              Possible values: - BornInPanama - ForeignNational - BornAbroad - Naturalized - LegacyNumber - Indigenous - Unknown (we were unable to determine the category) | 
+**FullName** | Pointer to **NullableString** | Full name from Tribunal Electoral records. | [optional] 
+**GivenName** | Pointer to **NullableString** | Given name(s) from Tribunal Electoral records. | [optional] 
+**FamilyName** | Pointer to **NullableString** | Family name(s) from Tribunal Electoral records. | [optional] 
+**DocumentNumber** | Pointer to **NullableString** | The matched personal identity cédula (Cédula de Identidad Personal) number from Tribunal Electoral records.              On output, Trinsic applies the same normalization as for lookup input. Structure is always {firstSegment}-{libro}-{tomo}: libro is one to four digits and tomo is one to six digits, separated by hyphens.              Citizen category and format: - Born in Panama format: {province}-{libro}-{tomo} ({province} is official code 1 through 13). Examples   8-1234-12345, 4-56-789, 12-12-12345. - Panamanian born abroad format: PE-{libro}-{tomo}. Example PE-1234-12345. - Foreign national with cédula format: E-{libro}-{tomo}. Examples E-1234-12345, E-8-102017. - Naturalized citizen format: N-{libro}-{tomo}. Example N-1234-12345. - Pre-2006 civil registry (AV) format: {province}AV-{libro}-{tomo}. Example 10AV-1234-12345. - Indigenous (PI) format: {province}PI-{libro}-{tomo}. Example 1PI-1234-12345. | [optional] 
+**NationalityOrResidenceType** | Pointer to **NullableString** | Inferred from DocumentNumber. Values are nationality or residence category.              Possible values: - BornInPanama - ForeignNational - BornAbroad - Naturalized - LegacyNumber - Indigenous - Unknown (we were unable to determine the category) | [optional] 
 **SubdivisionOfOrigin** | Pointer to **NullableString** | ISO 3166-2 principal subdivision code. Only available for BornInPanama, LegacyNumber, and Indigenous.              Possible values, matching cédula province digits 1–13: 1. PA-1 - Bocas del Toro 2. PA-2 - Coclé 3. PA-3 - Colón 4. PA-4 - Chiriquí 5. PA-5 - Darién 6. PA-6 - Herrera 7. PA-7 - Los Santos 8. PA-8 - Panamá 9. PA-9 - Veraguas 10. PA-KY - Guna Yala 11. PA-EM - Emberá 12. PA-NB - Ngäbe-Buglé 13. PA-10 - Panamá Oeste | [optional] 
 **SubdivisionOfOriginName** | Pointer to **NullableString** | Subdivision display name from the ISO 3166-2 registry, when available. | [optional] 
 
@@ -17,7 +16,7 @@ Name | Type | Description | Notes
 
 ### NewPanamaCedulaProviderOutput
 
-`func NewPanamaCedulaProviderOutput(fullName string, givenName string, familyName string, documentNumber string, nationalityOrResidenceType string, ) *PanamaCedulaProviderOutput`
+`func NewPanamaCedulaProviderOutput() *PanamaCedulaProviderOutput`
 
 NewPanamaCedulaProviderOutput instantiates a new PanamaCedulaProviderOutput object
 This constructor will assign default values to properties that have it defined,
@@ -51,7 +50,22 @@ and a boolean to check if the value has been set.
 
 SetFullName sets FullName field to given value.
 
+### HasFullName
 
+`func (o *PanamaCedulaProviderOutput) HasFullName() bool`
+
+HasFullName returns a boolean if a field has been set.
+
+### SetFullNameNil
+
+`func (o *PanamaCedulaProviderOutput) SetFullNameNil(b bool)`
+
+ SetFullNameNil sets the value for FullName to be an explicit nil
+
+### UnsetFullName
+`func (o *PanamaCedulaProviderOutput) UnsetFullName()`
+
+UnsetFullName ensures that no value is present for FullName, not even an explicit nil
 ### GetGivenName
 
 `func (o *PanamaCedulaProviderOutput) GetGivenName() string`
@@ -71,7 +85,22 @@ and a boolean to check if the value has been set.
 
 SetGivenName sets GivenName field to given value.
 
+### HasGivenName
 
+`func (o *PanamaCedulaProviderOutput) HasGivenName() bool`
+
+HasGivenName returns a boolean if a field has been set.
+
+### SetGivenNameNil
+
+`func (o *PanamaCedulaProviderOutput) SetGivenNameNil(b bool)`
+
+ SetGivenNameNil sets the value for GivenName to be an explicit nil
+
+### UnsetGivenName
+`func (o *PanamaCedulaProviderOutput) UnsetGivenName()`
+
+UnsetGivenName ensures that no value is present for GivenName, not even an explicit nil
 ### GetFamilyName
 
 `func (o *PanamaCedulaProviderOutput) GetFamilyName() string`
@@ -91,42 +120,22 @@ and a boolean to check if the value has been set.
 
 SetFamilyName sets FamilyName field to given value.
 
+### HasFamilyName
 
-### GetDateOfBirth
+`func (o *PanamaCedulaProviderOutput) HasFamilyName() bool`
 
-`func (o *PanamaCedulaProviderOutput) GetDateOfBirth() string`
+HasFamilyName returns a boolean if a field has been set.
 
-GetDateOfBirth returns the DateOfBirth field if non-nil, zero value otherwise.
+### SetFamilyNameNil
 
-### GetDateOfBirthOk
+`func (o *PanamaCedulaProviderOutput) SetFamilyNameNil(b bool)`
 
-`func (o *PanamaCedulaProviderOutput) GetDateOfBirthOk() (*string, bool)`
+ SetFamilyNameNil sets the value for FamilyName to be an explicit nil
 
-GetDateOfBirthOk returns a tuple with the DateOfBirth field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
+### UnsetFamilyName
+`func (o *PanamaCedulaProviderOutput) UnsetFamilyName()`
 
-### SetDateOfBirth
-
-`func (o *PanamaCedulaProviderOutput) SetDateOfBirth(v string)`
-
-SetDateOfBirth sets DateOfBirth field to given value.
-
-### HasDateOfBirth
-
-`func (o *PanamaCedulaProviderOutput) HasDateOfBirth() bool`
-
-HasDateOfBirth returns a boolean if a field has been set.
-
-### SetDateOfBirthNil
-
-`func (o *PanamaCedulaProviderOutput) SetDateOfBirthNil(b bool)`
-
- SetDateOfBirthNil sets the value for DateOfBirth to be an explicit nil
-
-### UnsetDateOfBirth
-`func (o *PanamaCedulaProviderOutput) UnsetDateOfBirth()`
-
-UnsetDateOfBirth ensures that no value is present for DateOfBirth, not even an explicit nil
+UnsetFamilyName ensures that no value is present for FamilyName, not even an explicit nil
 ### GetDocumentNumber
 
 `func (o *PanamaCedulaProviderOutput) GetDocumentNumber() string`
@@ -146,7 +155,22 @@ and a boolean to check if the value has been set.
 
 SetDocumentNumber sets DocumentNumber field to given value.
 
+### HasDocumentNumber
 
+`func (o *PanamaCedulaProviderOutput) HasDocumentNumber() bool`
+
+HasDocumentNumber returns a boolean if a field has been set.
+
+### SetDocumentNumberNil
+
+`func (o *PanamaCedulaProviderOutput) SetDocumentNumberNil(b bool)`
+
+ SetDocumentNumberNil sets the value for DocumentNumber to be an explicit nil
+
+### UnsetDocumentNumber
+`func (o *PanamaCedulaProviderOutput) UnsetDocumentNumber()`
+
+UnsetDocumentNumber ensures that no value is present for DocumentNumber, not even an explicit nil
 ### GetNationalityOrResidenceType
 
 `func (o *PanamaCedulaProviderOutput) GetNationalityOrResidenceType() string`
@@ -166,7 +190,22 @@ and a boolean to check if the value has been set.
 
 SetNationalityOrResidenceType sets NationalityOrResidenceType field to given value.
 
+### HasNationalityOrResidenceType
 
+`func (o *PanamaCedulaProviderOutput) HasNationalityOrResidenceType() bool`
+
+HasNationalityOrResidenceType returns a boolean if a field has been set.
+
+### SetNationalityOrResidenceTypeNil
+
+`func (o *PanamaCedulaProviderOutput) SetNationalityOrResidenceTypeNil(b bool)`
+
+ SetNationalityOrResidenceTypeNil sets the value for NationalityOrResidenceType to be an explicit nil
+
+### UnsetNationalityOrResidenceType
+`func (o *PanamaCedulaProviderOutput) UnsetNationalityOrResidenceType()`
+
+UnsetNationalityOrResidenceType ensures that no value is present for NationalityOrResidenceType, not even an explicit nil
 ### GetSubdivisionOfOrigin
 
 `func (o *PanamaCedulaProviderOutput) GetSubdivisionOfOrigin() string`

@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the Iso180135AamvaWeightRange type satisfies the MappedNullable interface at compile time
@@ -21,7 +20,7 @@ var _ MappedNullable = &Iso180135AamvaWeightRange{}
 // Iso180135AamvaWeightRange AAMVA approximate weight range, expressed in kilograms.
 type Iso180135AamvaWeightRange struct {
 	// Minimum weight in the range, in kilograms.
-	MinKilograms int32 `json:"minKilograms"`
+	MinKilograms NullableInt32 `json:"minKilograms,omitempty"`
 	// Maximum weight in the range, in kilograms.              If null, the maximum weight has no limit.
 	MaxKilograms NullableInt32 `json:"maxKilograms,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -33,9 +32,8 @@ type _Iso180135AamvaWeightRange Iso180135AamvaWeightRange
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewIso180135AamvaWeightRange(minKilograms int32) *Iso180135AamvaWeightRange {
+func NewIso180135AamvaWeightRange() *Iso180135AamvaWeightRange {
 	this := Iso180135AamvaWeightRange{}
-	this.MinKilograms = minKilograms
 	return &this
 }
 
@@ -47,28 +45,46 @@ func NewIso180135AamvaWeightRangeWithDefaults() *Iso180135AamvaWeightRange {
 	return &this
 }
 
-// GetMinKilograms returns the MinKilograms field value
+// GetMinKilograms returns the MinKilograms field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Iso180135AamvaWeightRange) GetMinKilograms() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.MinKilograms.Get()) {
 		var ret int32
 		return ret
 	}
-
-	return o.MinKilograms
+	return *o.MinKilograms.Get()
 }
 
-// GetMinKilogramsOk returns a tuple with the MinKilograms field value
+// GetMinKilogramsOk returns a tuple with the MinKilograms field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Iso180135AamvaWeightRange) GetMinKilogramsOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.MinKilograms, true
+	return o.MinKilograms.Get(), o.MinKilograms.IsSet()
 }
 
-// SetMinKilograms sets field value
+// HasMinKilograms returns a boolean if a field has been set.
+func (o *Iso180135AamvaWeightRange) HasMinKilograms() bool {
+	if o != nil && o.MinKilograms.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetMinKilograms gets a reference to the given NullableInt32 and assigns it to the MinKilograms field.
 func (o *Iso180135AamvaWeightRange) SetMinKilograms(v int32) {
-	o.MinKilograms = v
+	o.MinKilograms.Set(&v)
+}
+// SetMinKilogramsNil sets the value for MinKilograms to be an explicit nil
+func (o *Iso180135AamvaWeightRange) SetMinKilogramsNil() {
+	o.MinKilograms.Set(nil)
+}
+
+// UnsetMinKilograms ensures that no value is present for MinKilograms, not even an explicit nil
+func (o *Iso180135AamvaWeightRange) UnsetMinKilograms() {
+	o.MinKilograms.Unset()
 }
 
 // GetMaxKilograms returns the MaxKilograms field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -123,7 +139,9 @@ func (o Iso180135AamvaWeightRange) MarshalJSON() ([]byte, error) {
 
 func (o Iso180135AamvaWeightRange) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["minKilograms"] = o.MinKilograms
+	if o.MinKilograms.IsSet() {
+		toSerialize["minKilograms"] = o.MinKilograms.Get()
+	}
 	if o.MaxKilograms.IsSet() {
 		toSerialize["maxKilograms"] = o.MaxKilograms.Get()
 	}
@@ -136,27 +154,6 @@ func (o Iso180135AamvaWeightRange) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *Iso180135AamvaWeightRange) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"minKilograms",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varIso180135AamvaWeightRange := _Iso180135AamvaWeightRange{}
 
 	err = json.Unmarshal(data, &varIso180135AamvaWeightRange)

@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Subject** | [**DiiaSubjectOutput**](DiiaSubjectOutput.md) | Diia.Signature user data. | 
-**Issuer** | [**DiiaIssuerOutput**](DiiaIssuerOutput.md) | Diia.Signature issuer data. | 
+**Subject** | Pointer to [**NullableDiiaSubjectOutput**](DiiaSubjectOutput.md) | Diia.Signature user data. | [optional] 
+**Issuer** | Pointer to [**NullableDiiaIssuerOutput**](DiiaIssuerOutput.md) | Diia.Signature issuer data. | [optional] 
 
 ## Methods
 
 ### NewDiiaProviderOutput
 
-`func NewDiiaProviderOutput(subject DiiaSubjectOutput, issuer DiiaIssuerOutput, ) *DiiaProviderOutput`
+`func NewDiiaProviderOutput() *DiiaProviderOutput`
 
 NewDiiaProviderOutput instantiates a new DiiaProviderOutput object
 This constructor will assign default values to properties that have it defined,
@@ -45,7 +45,22 @@ and a boolean to check if the value has been set.
 
 SetSubject sets Subject field to given value.
 
+### HasSubject
 
+`func (o *DiiaProviderOutput) HasSubject() bool`
+
+HasSubject returns a boolean if a field has been set.
+
+### SetSubjectNil
+
+`func (o *DiiaProviderOutput) SetSubjectNil(b bool)`
+
+ SetSubjectNil sets the value for Subject to be an explicit nil
+
+### UnsetSubject
+`func (o *DiiaProviderOutput) UnsetSubject()`
+
+UnsetSubject ensures that no value is present for Subject, not even an explicit nil
 ### GetIssuer
 
 `func (o *DiiaProviderOutput) GetIssuer() DiiaIssuerOutput`
@@ -65,7 +80,22 @@ and a boolean to check if the value has been set.
 
 SetIssuer sets Issuer field to given value.
 
+### HasIssuer
 
+`func (o *DiiaProviderOutput) HasIssuer() bool`
+
+HasIssuer returns a boolean if a field has been set.
+
+### SetIssuerNil
+
+`func (o *DiiaProviderOutput) SetIssuerNil(b bool)`
+
+ SetIssuerNil sets the value for Issuer to be an explicit nil
+
+### UnsetIssuer
+`func (o *DiiaProviderOutput) UnsetIssuer()`
+
+UnsetIssuer ensures that no value is present for Issuer, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

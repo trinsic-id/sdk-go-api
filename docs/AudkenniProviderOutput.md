@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**NationalRegisterId** | **string** | National Register ID number (kennitala) of the individual.              Often written with a hyphen following the 6th digit (123456-1234). ID numbers are composed of ten digits. The first six of these are the individual’s date of birth in the format DDMMYY. The seventh and eighth digits are randomly chosen when the ID number is allocated, the ninth digit used to be a check digit (modulus (11) but this has been removed. The tenth indicates the century of the individual’s birth: ‘9’ for 1900–1999, ‘0’ for 2000 and beyond. | 
-**SubjectId** | **string** | Unique identifier for the individual across Audkenni.              It is recommended to use this identifier instead of using the national register ID directly. | 
-**Name** | **string** | The full name of the individual. | 
+**NationalRegisterId** | Pointer to **NullableString** | National Register ID number (kennitala) of the individual.              Often written with a hyphen following the 6th digit (123456-1234). ID numbers are composed of ten digits. The first six of these are the individual’s date of birth in the format DDMMYY. The seventh and eighth digits are randomly chosen when the ID number is allocated, the ninth digit used to be a check digit (modulus (11) but this has been removed. The tenth indicates the century of the individual’s birth: ‘9’ for 1900–1999, ‘0’ for 2000 and beyond. | [optional] 
+**SubjectId** | Pointer to **NullableString** | Unique identifier for the individual across Audkenni.              It is recommended to use this identifier instead of using the national register ID directly. | [optional] 
+**Name** | Pointer to **NullableString** | The full name of the individual. | [optional] 
 **DateOfBirth** | Pointer to **NullableString** | The date of birth of the individual as parsed from the National Register ID number. Is null if the date of birth could not be parsed, but should always be present | [optional] 
 
 ## Methods
 
 ### NewAudkenniProviderOutput
 
-`func NewAudkenniProviderOutput(nationalRegisterId string, subjectId string, name string, ) *AudkenniProviderOutput`
+`func NewAudkenniProviderOutput() *AudkenniProviderOutput`
 
 NewAudkenniProviderOutput instantiates a new AudkenniProviderOutput object
 This constructor will assign default values to properties that have it defined,
@@ -47,7 +47,22 @@ and a boolean to check if the value has been set.
 
 SetNationalRegisterId sets NationalRegisterId field to given value.
 
+### HasNationalRegisterId
 
+`func (o *AudkenniProviderOutput) HasNationalRegisterId() bool`
+
+HasNationalRegisterId returns a boolean if a field has been set.
+
+### SetNationalRegisterIdNil
+
+`func (o *AudkenniProviderOutput) SetNationalRegisterIdNil(b bool)`
+
+ SetNationalRegisterIdNil sets the value for NationalRegisterId to be an explicit nil
+
+### UnsetNationalRegisterId
+`func (o *AudkenniProviderOutput) UnsetNationalRegisterId()`
+
+UnsetNationalRegisterId ensures that no value is present for NationalRegisterId, not even an explicit nil
 ### GetSubjectId
 
 `func (o *AudkenniProviderOutput) GetSubjectId() string`
@@ -67,7 +82,22 @@ and a boolean to check if the value has been set.
 
 SetSubjectId sets SubjectId field to given value.
 
+### HasSubjectId
 
+`func (o *AudkenniProviderOutput) HasSubjectId() bool`
+
+HasSubjectId returns a boolean if a field has been set.
+
+### SetSubjectIdNil
+
+`func (o *AudkenniProviderOutput) SetSubjectIdNil(b bool)`
+
+ SetSubjectIdNil sets the value for SubjectId to be an explicit nil
+
+### UnsetSubjectId
+`func (o *AudkenniProviderOutput) UnsetSubjectId()`
+
+UnsetSubjectId ensures that no value is present for SubjectId, not even an explicit nil
 ### GetName
 
 `func (o *AudkenniProviderOutput) GetName() string`
@@ -87,7 +117,22 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
+### HasName
 
+`func (o *AudkenniProviderOutput) HasName() bool`
+
+HasName returns a boolean if a field has been set.
+
+### SetNameNil
+
+`func (o *AudkenniProviderOutput) SetNameNil(b bool)`
+
+ SetNameNil sets the value for Name to be an explicit nil
+
+### UnsetName
+`func (o *AudkenniProviderOutput) UnsetName()`
+
+UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetDateOfBirth
 
 `func (o *AudkenniProviderOutput) GetDateOfBirth() string`

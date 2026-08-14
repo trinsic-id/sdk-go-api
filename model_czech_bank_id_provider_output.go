@@ -13,7 +13,6 @@ package trinsic_api
 import (
 	"encoding/json"
 	"time"
-	"fmt"
 )
 
 // checks if the CzechBankIdProviderOutput type satisfies the MappedNullable interface at compile time
@@ -22,7 +21,7 @@ var _ MappedNullable = &CzechBankIdProviderOutput{}
 // CzechBankIdProviderOutput Exposed properties for the `czech-bank-id` Provider which do not directly map to the normalized IdentityData model.
 type CzechBankIdProviderOutput struct {
 	// The subject identifier for the verified individual.
-	SubjectIdentifier string `json:"subjectIdentifier"`
+	SubjectIdentifier NullableString `json:"subjectIdentifier,omitempty"`
 	// The individual's full name.
 	FullName NullableString `json:"fullName,omitempty"`
 	// The individual's given or first name.
@@ -92,9 +91,8 @@ type _CzechBankIdProviderOutput CzechBankIdProviderOutput
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCzechBankIdProviderOutput(subjectIdentifier string) *CzechBankIdProviderOutput {
+func NewCzechBankIdProviderOutput() *CzechBankIdProviderOutput {
 	this := CzechBankIdProviderOutput{}
-	this.SubjectIdentifier = subjectIdentifier
 	return &this
 }
 
@@ -106,28 +104,46 @@ func NewCzechBankIdProviderOutputWithDefaults() *CzechBankIdProviderOutput {
 	return &this
 }
 
-// GetSubjectIdentifier returns the SubjectIdentifier field value
+// GetSubjectIdentifier returns the SubjectIdentifier field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CzechBankIdProviderOutput) GetSubjectIdentifier() string {
-	if o == nil {
+	if o == nil || IsNil(o.SubjectIdentifier.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.SubjectIdentifier
+	return *o.SubjectIdentifier.Get()
 }
 
-// GetSubjectIdentifierOk returns a tuple with the SubjectIdentifier field value
+// GetSubjectIdentifierOk returns a tuple with the SubjectIdentifier field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CzechBankIdProviderOutput) GetSubjectIdentifierOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.SubjectIdentifier, true
+	return o.SubjectIdentifier.Get(), o.SubjectIdentifier.IsSet()
 }
 
-// SetSubjectIdentifier sets field value
+// HasSubjectIdentifier returns a boolean if a field has been set.
+func (o *CzechBankIdProviderOutput) HasSubjectIdentifier() bool {
+	if o != nil && o.SubjectIdentifier.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSubjectIdentifier gets a reference to the given NullableString and assigns it to the SubjectIdentifier field.
 func (o *CzechBankIdProviderOutput) SetSubjectIdentifier(v string) {
-	o.SubjectIdentifier = v
+	o.SubjectIdentifier.Set(&v)
+}
+// SetSubjectIdentifierNil sets the value for SubjectIdentifier to be an explicit nil
+func (o *CzechBankIdProviderOutput) SetSubjectIdentifierNil() {
+	o.SubjectIdentifier.Set(nil)
+}
+
+// UnsetSubjectIdentifier ensures that no value is present for SubjectIdentifier, not even an explicit nil
+func (o *CzechBankIdProviderOutput) UnsetSubjectIdentifier() {
+	o.SubjectIdentifier.Unset()
 }
 
 // GetFullName returns the FullName field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -1364,7 +1380,9 @@ func (o CzechBankIdProviderOutput) MarshalJSON() ([]byte, error) {
 
 func (o CzechBankIdProviderOutput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["subjectIdentifier"] = o.SubjectIdentifier
+	if o.SubjectIdentifier.IsSet() {
+		toSerialize["subjectIdentifier"] = o.SubjectIdentifier.Get()
+	}
 	if o.FullName.IsSet() {
 		toSerialize["fullName"] = o.FullName.Get()
 	}
@@ -1464,27 +1482,6 @@ func (o CzechBankIdProviderOutput) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *CzechBankIdProviderOutput) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"subjectIdentifier",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varCzechBankIdProviderOutput := _CzechBankIdProviderOutput{}
 
 	err = json.Unmarshal(data, &varCzechBankIdProviderOutput)

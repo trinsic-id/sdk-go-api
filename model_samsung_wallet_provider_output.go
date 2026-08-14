@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the SamsungWalletProviderOutput type satisfies the MappedNullable interface at compile time
@@ -22,8 +21,10 @@ var _ MappedNullable = &SamsungWalletProviderOutput{}
 type SamsungWalletProviderOutput struct {
 	// A standard 18013-5 Mobile Driver's License credential, retrieved from the individual's wallet.
 	MobileDriversLicense NullableIso180135MobileDriversLicenseCredential `json:"mobileDriversLicense,omitempty"`
+	// A Samsung ID with CLEAR credential, retrieved from the individual's Samsung Wallet.
+	SamsungIdWithClear NullableSamsungIdWithClearCredential `json:"samsungIdWithClear,omitempty"`
 	// The raw output of the mDL exchange performed through Samsung Wallet.
-	RawMdlOutput MdlOutput `json:"rawMdlOutput"`
+	RawMdlOutput NullableMdlOutput `json:"rawMdlOutput,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -33,9 +34,8 @@ type _SamsungWalletProviderOutput SamsungWalletProviderOutput
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSamsungWalletProviderOutput(rawMdlOutput MdlOutput) *SamsungWalletProviderOutput {
+func NewSamsungWalletProviderOutput() *SamsungWalletProviderOutput {
 	this := SamsungWalletProviderOutput{}
-	this.RawMdlOutput = rawMdlOutput
 	return &this
 }
 
@@ -89,28 +89,88 @@ func (o *SamsungWalletProviderOutput) UnsetMobileDriversLicense() {
 	o.MobileDriversLicense.Unset()
 }
 
-// GetRawMdlOutput returns the RawMdlOutput field value
-func (o *SamsungWalletProviderOutput) GetRawMdlOutput() MdlOutput {
+// GetSamsungIdWithClear returns the SamsungIdWithClear field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *SamsungWalletProviderOutput) GetSamsungIdWithClear() SamsungIdWithClearCredential {
+	if o == nil || IsNil(o.SamsungIdWithClear.Get()) {
+		var ret SamsungIdWithClearCredential
+		return ret
+	}
+	return *o.SamsungIdWithClear.Get()
+}
+
+// GetSamsungIdWithClearOk returns a tuple with the SamsungIdWithClear field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *SamsungWalletProviderOutput) GetSamsungIdWithClearOk() (*SamsungIdWithClearCredential, bool) {
 	if o == nil {
+		return nil, false
+	}
+	return o.SamsungIdWithClear.Get(), o.SamsungIdWithClear.IsSet()
+}
+
+// HasSamsungIdWithClear returns a boolean if a field has been set.
+func (o *SamsungWalletProviderOutput) HasSamsungIdWithClear() bool {
+	if o != nil && o.SamsungIdWithClear.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSamsungIdWithClear gets a reference to the given NullableSamsungIdWithClearCredential and assigns it to the SamsungIdWithClear field.
+func (o *SamsungWalletProviderOutput) SetSamsungIdWithClear(v SamsungIdWithClearCredential) {
+	o.SamsungIdWithClear.Set(&v)
+}
+// SetSamsungIdWithClearNil sets the value for SamsungIdWithClear to be an explicit nil
+func (o *SamsungWalletProviderOutput) SetSamsungIdWithClearNil() {
+	o.SamsungIdWithClear.Set(nil)
+}
+
+// UnsetSamsungIdWithClear ensures that no value is present for SamsungIdWithClear, not even an explicit nil
+func (o *SamsungWalletProviderOutput) UnsetSamsungIdWithClear() {
+	o.SamsungIdWithClear.Unset()
+}
+
+// GetRawMdlOutput returns the RawMdlOutput field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *SamsungWalletProviderOutput) GetRawMdlOutput() MdlOutput {
+	if o == nil || IsNil(o.RawMdlOutput.Get()) {
 		var ret MdlOutput
 		return ret
 	}
-
-	return o.RawMdlOutput
+	return *o.RawMdlOutput.Get()
 }
 
-// GetRawMdlOutputOk returns a tuple with the RawMdlOutput field value
+// GetRawMdlOutputOk returns a tuple with the RawMdlOutput field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SamsungWalletProviderOutput) GetRawMdlOutputOk() (*MdlOutput, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.RawMdlOutput, true
+	return o.RawMdlOutput.Get(), o.RawMdlOutput.IsSet()
 }
 
-// SetRawMdlOutput sets field value
+// HasRawMdlOutput returns a boolean if a field has been set.
+func (o *SamsungWalletProviderOutput) HasRawMdlOutput() bool {
+	if o != nil && o.RawMdlOutput.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRawMdlOutput gets a reference to the given NullableMdlOutput and assigns it to the RawMdlOutput field.
 func (o *SamsungWalletProviderOutput) SetRawMdlOutput(v MdlOutput) {
-	o.RawMdlOutput = v
+	o.RawMdlOutput.Set(&v)
+}
+// SetRawMdlOutputNil sets the value for RawMdlOutput to be an explicit nil
+func (o *SamsungWalletProviderOutput) SetRawMdlOutputNil() {
+	o.RawMdlOutput.Set(nil)
+}
+
+// UnsetRawMdlOutput ensures that no value is present for RawMdlOutput, not even an explicit nil
+func (o *SamsungWalletProviderOutput) UnsetRawMdlOutput() {
+	o.RawMdlOutput.Unset()
 }
 
 func (o SamsungWalletProviderOutput) MarshalJSON() ([]byte, error) {
@@ -126,7 +186,12 @@ func (o SamsungWalletProviderOutput) ToMap() (map[string]interface{}, error) {
 	if o.MobileDriversLicense.IsSet() {
 		toSerialize["mobileDriversLicense"] = o.MobileDriversLicense.Get()
 	}
-	toSerialize["rawMdlOutput"] = o.RawMdlOutput
+	if o.SamsungIdWithClear.IsSet() {
+		toSerialize["samsungIdWithClear"] = o.SamsungIdWithClear.Get()
+	}
+	if o.RawMdlOutput.IsSet() {
+		toSerialize["rawMdlOutput"] = o.RawMdlOutput.Get()
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -136,27 +201,6 @@ func (o SamsungWalletProviderOutput) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *SamsungWalletProviderOutput) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"rawMdlOutput",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varSamsungWalletProviderOutput := _SamsungWalletProviderOutput{}
 
 	err = json.Unmarshal(data, &varSamsungWalletProviderOutput)
@@ -171,6 +215,7 @@ func (o *SamsungWalletProviderOutput) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "mobileDriversLicense")
+		delete(additionalProperties, "samsungIdWithClear")
 		delete(additionalProperties, "rawMdlOutput")
 		o.AdditionalProperties = additionalProperties
 	}

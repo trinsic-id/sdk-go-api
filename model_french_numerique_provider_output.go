@@ -19,8 +19,12 @@ var _ MappedNullable = &FrenchNumeriqueProviderOutput{}
 
 // FrenchNumeriqueProviderOutput Exposed properties for the `france-identite-numerique` Provider which do not directly map to the normalized IdentityData model.
 type FrenchNumeriqueProviderOutput struct {
-	// Given name information including the full given name and its structured components (first name and middle name(s)).
-	GivenName NullableFrenchNumeriqueGivenName `json:"givenName,omitempty"`
+	// OpenID Connect subject identifier (sub) for the verified individual.
+	Sub NullableString `json:"sub,omitempty"`
+	// Full given name(s) as recorded on the individual's French identity document.              If the individual has multiple given names, they are separated by a single space.
+	GivenName NullableString `json:"givenName,omitempty"`
+	// Given name split into first name and middle name(s).
+	SplittedGivenName NullableFrenchNumeriqueSplittedGivenName `json:"splittedGivenName,omitempty"`
 	// Birth name (nom de naissance) as recorded on the individual's French identity document. In France, this is the family name given at birth and may differ from the usage name.
 	FamilyName NullableString `json:"familyName,omitempty"`
 	// Usage surname (\"nom d'usage\") - according to French law, this is the surname used in daily life. This is typically a married name or other preferred surname, as opposed to FamilyName which is the birth surname (\"nom de naissance\").
@@ -33,8 +37,10 @@ type FrenchNumeriqueProviderOutput struct {
 	Sex NullableString `json:"sex,omitempty"`
 	// Majority status (majorité) indicating whether the individual has reached the French age of legal majority (18 years old). This value is computed by the provider from the individual's birthdate.
 	Majority NullableBool `json:"majority,omitempty"`
-	// Phone number information including the full phone number and its structured components (country prefix and national number).
-	PhoneNumber NullableFrenchNumeriquePhone `json:"phoneNumber,omitempty"`
+	// Full phone number including country prefix.
+	PhoneNumber NullableString `json:"phoneNumber,omitempty"`
+	// Phone number split into country prefix and national number.
+	SplittedPhone NullableFrenchNumeriqueSplittedPhone `json:"splittedPhone,omitempty"`
 	// Whether the phone number has been verified by the provider.
 	PhoneNumberVerified NullableBool `json:"phoneNumberVerified,omitempty"`
 	// Email address registered in the individual's digital identity account.
@@ -91,10 +97,52 @@ func NewFrenchNumeriqueProviderOutputWithDefaults() *FrenchNumeriqueProviderOutp
 	return &this
 }
 
+// GetSub returns the Sub field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *FrenchNumeriqueProviderOutput) GetSub() string {
+	if o == nil || IsNil(o.Sub.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Sub.Get()
+}
+
+// GetSubOk returns a tuple with the Sub field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *FrenchNumeriqueProviderOutput) GetSubOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Sub.Get(), o.Sub.IsSet()
+}
+
+// HasSub returns a boolean if a field has been set.
+func (o *FrenchNumeriqueProviderOutput) HasSub() bool {
+	if o != nil && o.Sub.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSub gets a reference to the given NullableString and assigns it to the Sub field.
+func (o *FrenchNumeriqueProviderOutput) SetSub(v string) {
+	o.Sub.Set(&v)
+}
+// SetSubNil sets the value for Sub to be an explicit nil
+func (o *FrenchNumeriqueProviderOutput) SetSubNil() {
+	o.Sub.Set(nil)
+}
+
+// UnsetSub ensures that no value is present for Sub, not even an explicit nil
+func (o *FrenchNumeriqueProviderOutput) UnsetSub() {
+	o.Sub.Unset()
+}
+
 // GetGivenName returns the GivenName field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *FrenchNumeriqueProviderOutput) GetGivenName() FrenchNumeriqueGivenName {
+func (o *FrenchNumeriqueProviderOutput) GetGivenName() string {
 	if o == nil || IsNil(o.GivenName.Get()) {
-		var ret FrenchNumeriqueGivenName
+		var ret string
 		return ret
 	}
 	return *o.GivenName.Get()
@@ -103,7 +151,7 @@ func (o *FrenchNumeriqueProviderOutput) GetGivenName() FrenchNumeriqueGivenName 
 // GetGivenNameOk returns a tuple with the GivenName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *FrenchNumeriqueProviderOutput) GetGivenNameOk() (*FrenchNumeriqueGivenName, bool) {
+func (o *FrenchNumeriqueProviderOutput) GetGivenNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -119,8 +167,8 @@ func (o *FrenchNumeriqueProviderOutput) HasGivenName() bool {
 	return false
 }
 
-// SetGivenName gets a reference to the given NullableFrenchNumeriqueGivenName and assigns it to the GivenName field.
-func (o *FrenchNumeriqueProviderOutput) SetGivenName(v FrenchNumeriqueGivenName) {
+// SetGivenName gets a reference to the given NullableString and assigns it to the GivenName field.
+func (o *FrenchNumeriqueProviderOutput) SetGivenName(v string) {
 	o.GivenName.Set(&v)
 }
 // SetGivenNameNil sets the value for GivenName to be an explicit nil
@@ -131,6 +179,48 @@ func (o *FrenchNumeriqueProviderOutput) SetGivenNameNil() {
 // UnsetGivenName ensures that no value is present for GivenName, not even an explicit nil
 func (o *FrenchNumeriqueProviderOutput) UnsetGivenName() {
 	o.GivenName.Unset()
+}
+
+// GetSplittedGivenName returns the SplittedGivenName field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *FrenchNumeriqueProviderOutput) GetSplittedGivenName() FrenchNumeriqueSplittedGivenName {
+	if o == nil || IsNil(o.SplittedGivenName.Get()) {
+		var ret FrenchNumeriqueSplittedGivenName
+		return ret
+	}
+	return *o.SplittedGivenName.Get()
+}
+
+// GetSplittedGivenNameOk returns a tuple with the SplittedGivenName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *FrenchNumeriqueProviderOutput) GetSplittedGivenNameOk() (*FrenchNumeriqueSplittedGivenName, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.SplittedGivenName.Get(), o.SplittedGivenName.IsSet()
+}
+
+// HasSplittedGivenName returns a boolean if a field has been set.
+func (o *FrenchNumeriqueProviderOutput) HasSplittedGivenName() bool {
+	if o != nil && o.SplittedGivenName.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSplittedGivenName gets a reference to the given NullableFrenchNumeriqueSplittedGivenName and assigns it to the SplittedGivenName field.
+func (o *FrenchNumeriqueProviderOutput) SetSplittedGivenName(v FrenchNumeriqueSplittedGivenName) {
+	o.SplittedGivenName.Set(&v)
+}
+// SetSplittedGivenNameNil sets the value for SplittedGivenName to be an explicit nil
+func (o *FrenchNumeriqueProviderOutput) SetSplittedGivenNameNil() {
+	o.SplittedGivenName.Set(nil)
+}
+
+// UnsetSplittedGivenName ensures that no value is present for SplittedGivenName, not even an explicit nil
+func (o *FrenchNumeriqueProviderOutput) UnsetSplittedGivenName() {
+	o.SplittedGivenName.Unset()
 }
 
 // GetFamilyName returns the FamilyName field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -386,9 +476,9 @@ func (o *FrenchNumeriqueProviderOutput) UnsetMajority() {
 }
 
 // GetPhoneNumber returns the PhoneNumber field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *FrenchNumeriqueProviderOutput) GetPhoneNumber() FrenchNumeriquePhone {
+func (o *FrenchNumeriqueProviderOutput) GetPhoneNumber() string {
 	if o == nil || IsNil(o.PhoneNumber.Get()) {
-		var ret FrenchNumeriquePhone
+		var ret string
 		return ret
 	}
 	return *o.PhoneNumber.Get()
@@ -397,7 +487,7 @@ func (o *FrenchNumeriqueProviderOutput) GetPhoneNumber() FrenchNumeriquePhone {
 // GetPhoneNumberOk returns a tuple with the PhoneNumber field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *FrenchNumeriqueProviderOutput) GetPhoneNumberOk() (*FrenchNumeriquePhone, bool) {
+func (o *FrenchNumeriqueProviderOutput) GetPhoneNumberOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -413,8 +503,8 @@ func (o *FrenchNumeriqueProviderOutput) HasPhoneNumber() bool {
 	return false
 }
 
-// SetPhoneNumber gets a reference to the given NullableFrenchNumeriquePhone and assigns it to the PhoneNumber field.
-func (o *FrenchNumeriqueProviderOutput) SetPhoneNumber(v FrenchNumeriquePhone) {
+// SetPhoneNumber gets a reference to the given NullableString and assigns it to the PhoneNumber field.
+func (o *FrenchNumeriqueProviderOutput) SetPhoneNumber(v string) {
 	o.PhoneNumber.Set(&v)
 }
 // SetPhoneNumberNil sets the value for PhoneNumber to be an explicit nil
@@ -425,6 +515,48 @@ func (o *FrenchNumeriqueProviderOutput) SetPhoneNumberNil() {
 // UnsetPhoneNumber ensures that no value is present for PhoneNumber, not even an explicit nil
 func (o *FrenchNumeriqueProviderOutput) UnsetPhoneNumber() {
 	o.PhoneNumber.Unset()
+}
+
+// GetSplittedPhone returns the SplittedPhone field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *FrenchNumeriqueProviderOutput) GetSplittedPhone() FrenchNumeriqueSplittedPhone {
+	if o == nil || IsNil(o.SplittedPhone.Get()) {
+		var ret FrenchNumeriqueSplittedPhone
+		return ret
+	}
+	return *o.SplittedPhone.Get()
+}
+
+// GetSplittedPhoneOk returns a tuple with the SplittedPhone field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *FrenchNumeriqueProviderOutput) GetSplittedPhoneOk() (*FrenchNumeriqueSplittedPhone, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.SplittedPhone.Get(), o.SplittedPhone.IsSet()
+}
+
+// HasSplittedPhone returns a boolean if a field has been set.
+func (o *FrenchNumeriqueProviderOutput) HasSplittedPhone() bool {
+	if o != nil && o.SplittedPhone.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSplittedPhone gets a reference to the given NullableFrenchNumeriqueSplittedPhone and assigns it to the SplittedPhone field.
+func (o *FrenchNumeriqueProviderOutput) SetSplittedPhone(v FrenchNumeriqueSplittedPhone) {
+	o.SplittedPhone.Set(&v)
+}
+// SetSplittedPhoneNil sets the value for SplittedPhone to be an explicit nil
+func (o *FrenchNumeriqueProviderOutput) SetSplittedPhoneNil() {
+	o.SplittedPhone.Set(nil)
+}
+
+// UnsetSplittedPhone ensures that no value is present for SplittedPhone, not even an explicit nil
+func (o *FrenchNumeriqueProviderOutput) UnsetSplittedPhone() {
+	o.SplittedPhone.Unset()
 }
 
 // GetPhoneNumberVerified returns the PhoneNumberVerified field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -1151,8 +1283,14 @@ func (o FrenchNumeriqueProviderOutput) MarshalJSON() ([]byte, error) {
 
 func (o FrenchNumeriqueProviderOutput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if o.Sub.IsSet() {
+		toSerialize["sub"] = o.Sub.Get()
+	}
 	if o.GivenName.IsSet() {
 		toSerialize["givenName"] = o.GivenName.Get()
+	}
+	if o.SplittedGivenName.IsSet() {
+		toSerialize["splittedGivenName"] = o.SplittedGivenName.Get()
 	}
 	if o.FamilyName.IsSet() {
 		toSerialize["familyName"] = o.FamilyName.Get()
@@ -1174,6 +1312,9 @@ func (o FrenchNumeriqueProviderOutput) ToMap() (map[string]interface{}, error) {
 	}
 	if o.PhoneNumber.IsSet() {
 		toSerialize["phoneNumber"] = o.PhoneNumber.Get()
+	}
+	if o.SplittedPhone.IsSet() {
+		toSerialize["splittedPhone"] = o.SplittedPhone.Get()
 	}
 	if o.PhoneNumberVerified.IsSet() {
 		toSerialize["phoneNumberVerified"] = o.PhoneNumberVerified.Get()
@@ -1248,7 +1389,9 @@ func (o *FrenchNumeriqueProviderOutput) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "sub")
 		delete(additionalProperties, "givenName")
+		delete(additionalProperties, "splittedGivenName")
 		delete(additionalProperties, "familyName")
 		delete(additionalProperties, "preferredSurname")
 		delete(additionalProperties, "birthdate")
@@ -1256,6 +1399,7 @@ func (o *FrenchNumeriqueProviderOutput) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "sex")
 		delete(additionalProperties, "majority")
 		delete(additionalProperties, "phoneNumber")
+		delete(additionalProperties, "splittedPhone")
 		delete(additionalProperties, "phoneNumberVerified")
 		delete(additionalProperties, "email")
 		delete(additionalProperties, "emailVerified")

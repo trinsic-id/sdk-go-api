@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the ColombiaCcProviderOutput type satisfies the MappedNullable interface at compile time
@@ -21,25 +20,25 @@ var _ MappedNullable = &ColombiaCcProviderOutput{}
 // ColombiaCcProviderOutput Exposed properties for the `colombia-cc-lookup` Provider which do not directly map to the normalized IdentityData model.
 type ColombiaCcProviderOutput struct {
 	// Full name as it appears on the CC.
-	FullName string `json:"fullName"`
+	FullName NullableString `json:"fullName,omitempty"`
 	// Given name(s) of the holder as they appear on the CC.
-	GivenName string `json:"givenName"`
+	GivenName NullableString `json:"givenName,omitempty"`
 	// Family name(s) of the holder as they appear on the CC. Space-separated when both paternal and maternal family names are present.
-	FamilyName string `json:"familyName"`
+	FamilyName NullableString `json:"familyName,omitempty"`
 	// Date of birth as recorded in the civil registry (Registraduría Nacional).
-	DateOfBirth string `json:"dateOfBirth"`
+	DateOfBirth NullableString `json:"dateOfBirth,omitempty"`
 	// Sex of the holder as recorded in the civil registry (Registraduría Nacional).              Possible values: - Male - Female - Unknown (when the sex is not recorded or cannot be confidently determined)
-	Sex string `json:"sex"`
+	Sex NullableString `json:"sex,omitempty"`
 	// Whether the person is reported as alive in Colombia's official civil registry (Registraduría Nacional).              Used to detect identity fraud when the holder is deceased.
-	IsAlive bool `json:"isAlive"`
+	IsAlive NullableBool `json:"isAlive,omitempty"`
 	// The Cédula de Ciudadanía (CC) document number.              This is the unique identifier assigned by the Registraduría Nacional when the person is first issued a CC. It does not change when the person renews or receives a new physical card; it remains the same for the individual for life.              Cédulas issued after 2004 use the NUIP (Número Único de Identificación Personal), which is 10 digits. Older documents may have fewer than 10 digits and are still valid.
-	DocumentNumber string `json:"documentNumber"`
+	DocumentNumber NullableString `json:"documentNumber,omitempty"`
 	// Date the CC was issued (fecha de expedición).              Format: - yyyy-MM-dd
-	ExpeditionDate string `json:"expeditionDate"`
+	ExpeditionDate NullableString `json:"expeditionDate,omitempty"`
 	// Place where the CC was issued (lugar de expedición): municipality and department as recorded by the Registraduría Nacional.
-	ExpeditionPlace ColombiaExpeditionPlace `json:"expeditionPlace"`
+	ExpeditionPlace NullableColombiaExpeditionPlace `json:"expeditionPlace,omitempty"`
 	// All names as they appear on the CC, as an array of strings.              Format: - Order follows the civil registry: typically family name(s) first, then given name(s).
-	ArrayName []string `json:"arrayName"`
+	ArrayName []string `json:"arrayName,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -49,18 +48,8 @@ type _ColombiaCcProviderOutput ColombiaCcProviderOutput
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewColombiaCcProviderOutput(fullName string, givenName string, familyName string, dateOfBirth string, sex string, isAlive bool, documentNumber string, expeditionDate string, expeditionPlace ColombiaExpeditionPlace, arrayName []string) *ColombiaCcProviderOutput {
+func NewColombiaCcProviderOutput() *ColombiaCcProviderOutput {
 	this := ColombiaCcProviderOutput{}
-	this.FullName = fullName
-	this.GivenName = givenName
-	this.FamilyName = familyName
-	this.DateOfBirth = dateOfBirth
-	this.Sex = sex
-	this.IsAlive = isAlive
-	this.DocumentNumber = documentNumber
-	this.ExpeditionDate = expeditionDate
-	this.ExpeditionPlace = expeditionPlace
-	this.ArrayName = arrayName
 	return &this
 }
 
@@ -72,242 +61,413 @@ func NewColombiaCcProviderOutputWithDefaults() *ColombiaCcProviderOutput {
 	return &this
 }
 
-// GetFullName returns the FullName field value
+// GetFullName returns the FullName field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ColombiaCcProviderOutput) GetFullName() string {
-	if o == nil {
+	if o == nil || IsNil(o.FullName.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.FullName
+	return *o.FullName.Get()
 }
 
-// GetFullNameOk returns a tuple with the FullName field value
+// GetFullNameOk returns a tuple with the FullName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ColombiaCcProviderOutput) GetFullNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.FullName, true
+	return o.FullName.Get(), o.FullName.IsSet()
 }
 
-// SetFullName sets field value
+// HasFullName returns a boolean if a field has been set.
+func (o *ColombiaCcProviderOutput) HasFullName() bool {
+	if o != nil && o.FullName.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetFullName gets a reference to the given NullableString and assigns it to the FullName field.
 func (o *ColombiaCcProviderOutput) SetFullName(v string) {
-	o.FullName = v
+	o.FullName.Set(&v)
+}
+// SetFullNameNil sets the value for FullName to be an explicit nil
+func (o *ColombiaCcProviderOutput) SetFullNameNil() {
+	o.FullName.Set(nil)
 }
 
-// GetGivenName returns the GivenName field value
+// UnsetFullName ensures that no value is present for FullName, not even an explicit nil
+func (o *ColombiaCcProviderOutput) UnsetFullName() {
+	o.FullName.Unset()
+}
+
+// GetGivenName returns the GivenName field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ColombiaCcProviderOutput) GetGivenName() string {
-	if o == nil {
+	if o == nil || IsNil(o.GivenName.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.GivenName
+	return *o.GivenName.Get()
 }
 
-// GetGivenNameOk returns a tuple with the GivenName field value
+// GetGivenNameOk returns a tuple with the GivenName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ColombiaCcProviderOutput) GetGivenNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.GivenName, true
+	return o.GivenName.Get(), o.GivenName.IsSet()
 }
 
-// SetGivenName sets field value
+// HasGivenName returns a boolean if a field has been set.
+func (o *ColombiaCcProviderOutput) HasGivenName() bool {
+	if o != nil && o.GivenName.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetGivenName gets a reference to the given NullableString and assigns it to the GivenName field.
 func (o *ColombiaCcProviderOutput) SetGivenName(v string) {
-	o.GivenName = v
+	o.GivenName.Set(&v)
+}
+// SetGivenNameNil sets the value for GivenName to be an explicit nil
+func (o *ColombiaCcProviderOutput) SetGivenNameNil() {
+	o.GivenName.Set(nil)
 }
 
-// GetFamilyName returns the FamilyName field value
+// UnsetGivenName ensures that no value is present for GivenName, not even an explicit nil
+func (o *ColombiaCcProviderOutput) UnsetGivenName() {
+	o.GivenName.Unset()
+}
+
+// GetFamilyName returns the FamilyName field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ColombiaCcProviderOutput) GetFamilyName() string {
-	if o == nil {
+	if o == nil || IsNil(o.FamilyName.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.FamilyName
+	return *o.FamilyName.Get()
 }
 
-// GetFamilyNameOk returns a tuple with the FamilyName field value
+// GetFamilyNameOk returns a tuple with the FamilyName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ColombiaCcProviderOutput) GetFamilyNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.FamilyName, true
+	return o.FamilyName.Get(), o.FamilyName.IsSet()
 }
 
-// SetFamilyName sets field value
+// HasFamilyName returns a boolean if a field has been set.
+func (o *ColombiaCcProviderOutput) HasFamilyName() bool {
+	if o != nil && o.FamilyName.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetFamilyName gets a reference to the given NullableString and assigns it to the FamilyName field.
 func (o *ColombiaCcProviderOutput) SetFamilyName(v string) {
-	o.FamilyName = v
+	o.FamilyName.Set(&v)
+}
+// SetFamilyNameNil sets the value for FamilyName to be an explicit nil
+func (o *ColombiaCcProviderOutput) SetFamilyNameNil() {
+	o.FamilyName.Set(nil)
 }
 
-// GetDateOfBirth returns the DateOfBirth field value
+// UnsetFamilyName ensures that no value is present for FamilyName, not even an explicit nil
+func (o *ColombiaCcProviderOutput) UnsetFamilyName() {
+	o.FamilyName.Unset()
+}
+
+// GetDateOfBirth returns the DateOfBirth field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ColombiaCcProviderOutput) GetDateOfBirth() string {
-	if o == nil {
+	if o == nil || IsNil(o.DateOfBirth.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.DateOfBirth
+	return *o.DateOfBirth.Get()
 }
 
-// GetDateOfBirthOk returns a tuple with the DateOfBirth field value
+// GetDateOfBirthOk returns a tuple with the DateOfBirth field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ColombiaCcProviderOutput) GetDateOfBirthOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.DateOfBirth, true
+	return o.DateOfBirth.Get(), o.DateOfBirth.IsSet()
 }
 
-// SetDateOfBirth sets field value
+// HasDateOfBirth returns a boolean if a field has been set.
+func (o *ColombiaCcProviderOutput) HasDateOfBirth() bool {
+	if o != nil && o.DateOfBirth.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDateOfBirth gets a reference to the given NullableString and assigns it to the DateOfBirth field.
 func (o *ColombiaCcProviderOutput) SetDateOfBirth(v string) {
-	o.DateOfBirth = v
+	o.DateOfBirth.Set(&v)
+}
+// SetDateOfBirthNil sets the value for DateOfBirth to be an explicit nil
+func (o *ColombiaCcProviderOutput) SetDateOfBirthNil() {
+	o.DateOfBirth.Set(nil)
 }
 
-// GetSex returns the Sex field value
+// UnsetDateOfBirth ensures that no value is present for DateOfBirth, not even an explicit nil
+func (o *ColombiaCcProviderOutput) UnsetDateOfBirth() {
+	o.DateOfBirth.Unset()
+}
+
+// GetSex returns the Sex field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ColombiaCcProviderOutput) GetSex() string {
-	if o == nil {
+	if o == nil || IsNil(o.Sex.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.Sex
+	return *o.Sex.Get()
 }
 
-// GetSexOk returns a tuple with the Sex field value
+// GetSexOk returns a tuple with the Sex field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ColombiaCcProviderOutput) GetSexOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Sex, true
+	return o.Sex.Get(), o.Sex.IsSet()
 }
 
-// SetSex sets field value
+// HasSex returns a boolean if a field has been set.
+func (o *ColombiaCcProviderOutput) HasSex() bool {
+	if o != nil && o.Sex.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSex gets a reference to the given NullableString and assigns it to the Sex field.
 func (o *ColombiaCcProviderOutput) SetSex(v string) {
-	o.Sex = v
+	o.Sex.Set(&v)
+}
+// SetSexNil sets the value for Sex to be an explicit nil
+func (o *ColombiaCcProviderOutput) SetSexNil() {
+	o.Sex.Set(nil)
 }
 
-// GetIsAlive returns the IsAlive field value
+// UnsetSex ensures that no value is present for Sex, not even an explicit nil
+func (o *ColombiaCcProviderOutput) UnsetSex() {
+	o.Sex.Unset()
+}
+
+// GetIsAlive returns the IsAlive field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ColombiaCcProviderOutput) GetIsAlive() bool {
-	if o == nil {
+	if o == nil || IsNil(o.IsAlive.Get()) {
 		var ret bool
 		return ret
 	}
-
-	return o.IsAlive
+	return *o.IsAlive.Get()
 }
 
-// GetIsAliveOk returns a tuple with the IsAlive field value
+// GetIsAliveOk returns a tuple with the IsAlive field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ColombiaCcProviderOutput) GetIsAliveOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.IsAlive, true
+	return o.IsAlive.Get(), o.IsAlive.IsSet()
 }
 
-// SetIsAlive sets field value
+// HasIsAlive returns a boolean if a field has been set.
+func (o *ColombiaCcProviderOutput) HasIsAlive() bool {
+	if o != nil && o.IsAlive.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetIsAlive gets a reference to the given NullableBool and assigns it to the IsAlive field.
 func (o *ColombiaCcProviderOutput) SetIsAlive(v bool) {
-	o.IsAlive = v
+	o.IsAlive.Set(&v)
+}
+// SetIsAliveNil sets the value for IsAlive to be an explicit nil
+func (o *ColombiaCcProviderOutput) SetIsAliveNil() {
+	o.IsAlive.Set(nil)
 }
 
-// GetDocumentNumber returns the DocumentNumber field value
+// UnsetIsAlive ensures that no value is present for IsAlive, not even an explicit nil
+func (o *ColombiaCcProviderOutput) UnsetIsAlive() {
+	o.IsAlive.Unset()
+}
+
+// GetDocumentNumber returns the DocumentNumber field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ColombiaCcProviderOutput) GetDocumentNumber() string {
-	if o == nil {
+	if o == nil || IsNil(o.DocumentNumber.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.DocumentNumber
+	return *o.DocumentNumber.Get()
 }
 
-// GetDocumentNumberOk returns a tuple with the DocumentNumber field value
+// GetDocumentNumberOk returns a tuple with the DocumentNumber field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ColombiaCcProviderOutput) GetDocumentNumberOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.DocumentNumber, true
+	return o.DocumentNumber.Get(), o.DocumentNumber.IsSet()
 }
 
-// SetDocumentNumber sets field value
+// HasDocumentNumber returns a boolean if a field has been set.
+func (o *ColombiaCcProviderOutput) HasDocumentNumber() bool {
+	if o != nil && o.DocumentNumber.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDocumentNumber gets a reference to the given NullableString and assigns it to the DocumentNumber field.
 func (o *ColombiaCcProviderOutput) SetDocumentNumber(v string) {
-	o.DocumentNumber = v
+	o.DocumentNumber.Set(&v)
+}
+// SetDocumentNumberNil sets the value for DocumentNumber to be an explicit nil
+func (o *ColombiaCcProviderOutput) SetDocumentNumberNil() {
+	o.DocumentNumber.Set(nil)
 }
 
-// GetExpeditionDate returns the ExpeditionDate field value
+// UnsetDocumentNumber ensures that no value is present for DocumentNumber, not even an explicit nil
+func (o *ColombiaCcProviderOutput) UnsetDocumentNumber() {
+	o.DocumentNumber.Unset()
+}
+
+// GetExpeditionDate returns the ExpeditionDate field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ColombiaCcProviderOutput) GetExpeditionDate() string {
-	if o == nil {
+	if o == nil || IsNil(o.ExpeditionDate.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.ExpeditionDate
+	return *o.ExpeditionDate.Get()
 }
 
-// GetExpeditionDateOk returns a tuple with the ExpeditionDate field value
+// GetExpeditionDateOk returns a tuple with the ExpeditionDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ColombiaCcProviderOutput) GetExpeditionDateOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.ExpeditionDate, true
+	return o.ExpeditionDate.Get(), o.ExpeditionDate.IsSet()
 }
 
-// SetExpeditionDate sets field value
+// HasExpeditionDate returns a boolean if a field has been set.
+func (o *ColombiaCcProviderOutput) HasExpeditionDate() bool {
+	if o != nil && o.ExpeditionDate.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetExpeditionDate gets a reference to the given NullableString and assigns it to the ExpeditionDate field.
 func (o *ColombiaCcProviderOutput) SetExpeditionDate(v string) {
-	o.ExpeditionDate = v
+	o.ExpeditionDate.Set(&v)
+}
+// SetExpeditionDateNil sets the value for ExpeditionDate to be an explicit nil
+func (o *ColombiaCcProviderOutput) SetExpeditionDateNil() {
+	o.ExpeditionDate.Set(nil)
 }
 
-// GetExpeditionPlace returns the ExpeditionPlace field value
+// UnsetExpeditionDate ensures that no value is present for ExpeditionDate, not even an explicit nil
+func (o *ColombiaCcProviderOutput) UnsetExpeditionDate() {
+	o.ExpeditionDate.Unset()
+}
+
+// GetExpeditionPlace returns the ExpeditionPlace field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ColombiaCcProviderOutput) GetExpeditionPlace() ColombiaExpeditionPlace {
-	if o == nil {
+	if o == nil || IsNil(o.ExpeditionPlace.Get()) {
 		var ret ColombiaExpeditionPlace
 		return ret
 	}
-
-	return o.ExpeditionPlace
+	return *o.ExpeditionPlace.Get()
 }
 
-// GetExpeditionPlaceOk returns a tuple with the ExpeditionPlace field value
+// GetExpeditionPlaceOk returns a tuple with the ExpeditionPlace field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ColombiaCcProviderOutput) GetExpeditionPlaceOk() (*ColombiaExpeditionPlace, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.ExpeditionPlace, true
+	return o.ExpeditionPlace.Get(), o.ExpeditionPlace.IsSet()
 }
 
-// SetExpeditionPlace sets field value
+// HasExpeditionPlace returns a boolean if a field has been set.
+func (o *ColombiaCcProviderOutput) HasExpeditionPlace() bool {
+	if o != nil && o.ExpeditionPlace.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetExpeditionPlace gets a reference to the given NullableColombiaExpeditionPlace and assigns it to the ExpeditionPlace field.
 func (o *ColombiaCcProviderOutput) SetExpeditionPlace(v ColombiaExpeditionPlace) {
-	o.ExpeditionPlace = v
+	o.ExpeditionPlace.Set(&v)
+}
+// SetExpeditionPlaceNil sets the value for ExpeditionPlace to be an explicit nil
+func (o *ColombiaCcProviderOutput) SetExpeditionPlaceNil() {
+	o.ExpeditionPlace.Set(nil)
 }
 
-// GetArrayName returns the ArrayName field value
+// UnsetExpeditionPlace ensures that no value is present for ExpeditionPlace, not even an explicit nil
+func (o *ColombiaCcProviderOutput) UnsetExpeditionPlace() {
+	o.ExpeditionPlace.Unset()
+}
+
+// GetArrayName returns the ArrayName field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ColombiaCcProviderOutput) GetArrayName() []string {
 	if o == nil {
 		var ret []string
 		return ret
 	}
-
 	return o.ArrayName
 }
 
-// GetArrayNameOk returns a tuple with the ArrayName field value
+// GetArrayNameOk returns a tuple with the ArrayName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ColombiaCcProviderOutput) GetArrayNameOk() ([]string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ArrayName) {
 		return nil, false
 	}
 	return o.ArrayName, true
 }
 
-// SetArrayName sets field value
+// HasArrayName returns a boolean if a field has been set.
+func (o *ColombiaCcProviderOutput) HasArrayName() bool {
+	if o != nil && !IsNil(o.ArrayName) {
+		return true
+	}
+
+	return false
+}
+
+// SetArrayName gets a reference to the given []string and assigns it to the ArrayName field.
 func (o *ColombiaCcProviderOutput) SetArrayName(v []string) {
 	o.ArrayName = v
 }
@@ -322,16 +482,36 @@ func (o ColombiaCcProviderOutput) MarshalJSON() ([]byte, error) {
 
 func (o ColombiaCcProviderOutput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["fullName"] = o.FullName
-	toSerialize["givenName"] = o.GivenName
-	toSerialize["familyName"] = o.FamilyName
-	toSerialize["dateOfBirth"] = o.DateOfBirth
-	toSerialize["sex"] = o.Sex
-	toSerialize["isAlive"] = o.IsAlive
-	toSerialize["documentNumber"] = o.DocumentNumber
-	toSerialize["expeditionDate"] = o.ExpeditionDate
-	toSerialize["expeditionPlace"] = o.ExpeditionPlace
-	toSerialize["arrayName"] = o.ArrayName
+	if o.FullName.IsSet() {
+		toSerialize["fullName"] = o.FullName.Get()
+	}
+	if o.GivenName.IsSet() {
+		toSerialize["givenName"] = o.GivenName.Get()
+	}
+	if o.FamilyName.IsSet() {
+		toSerialize["familyName"] = o.FamilyName.Get()
+	}
+	if o.DateOfBirth.IsSet() {
+		toSerialize["dateOfBirth"] = o.DateOfBirth.Get()
+	}
+	if o.Sex.IsSet() {
+		toSerialize["sex"] = o.Sex.Get()
+	}
+	if o.IsAlive.IsSet() {
+		toSerialize["isAlive"] = o.IsAlive.Get()
+	}
+	if o.DocumentNumber.IsSet() {
+		toSerialize["documentNumber"] = o.DocumentNumber.Get()
+	}
+	if o.ExpeditionDate.IsSet() {
+		toSerialize["expeditionDate"] = o.ExpeditionDate.Get()
+	}
+	if o.ExpeditionPlace.IsSet() {
+		toSerialize["expeditionPlace"] = o.ExpeditionPlace.Get()
+	}
+	if o.ArrayName != nil {
+		toSerialize["arrayName"] = o.ArrayName
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -341,36 +521,6 @@ func (o ColombiaCcProviderOutput) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *ColombiaCcProviderOutput) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"fullName",
-		"givenName",
-		"familyName",
-		"dateOfBirth",
-		"sex",
-		"isAlive",
-		"documentNumber",
-		"expeditionDate",
-		"expeditionPlace",
-		"arrayName",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varColombiaCcProviderOutput := _ColombiaCcProviderOutput{}
 
 	err = json.Unmarshal(data, &varColombiaCcProviderOutput)

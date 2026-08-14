@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Header** | [**Iso180132BiometricTemplateHeader**](Iso180132BiometricTemplateHeader.md) | Header describing the biometric template. | 
-**DataBlock** | **string** | The raw data block, in a biometric type- and format-specific encoding.              For &#x60;face&#x60; and &#x60;signature_usual_mark&#x60;, this is a raw JPEG or JPEG2000 image.              See ISO 18013-2 and 18013-5. | 
-**DataIsEncrypted** | **bool** | Whether the data block is encrypted. | 
+**Header** | Pointer to [**NullableIso180132BiometricTemplateHeader**](Iso180132BiometricTemplateHeader.md) | Header describing the biometric template. | [optional] 
+**DataBlock** | Pointer to **NullableString** | The raw data block, in a biometric type- and format-specific encoding.              For &#x60;face&#x60; and &#x60;signature_usual_mark&#x60;, this is a raw JPEG or JPEG2000 image.              See ISO 18013-2 and 18013-5. | [optional] 
+**DataIsEncrypted** | Pointer to **NullableBool** | Whether the data block is encrypted. | [optional] 
 **BiometricInformationRecordPayload** | Pointer to **NullableString** | Optional Biometric Information Record payload, containing arbitrary domestic data. | [optional] 
 
 ## Methods
 
 ### NewIso180132BiometricTemplate
 
-`func NewIso180132BiometricTemplate(header Iso180132BiometricTemplateHeader, dataBlock string, dataIsEncrypted bool, ) *Iso180132BiometricTemplate`
+`func NewIso180132BiometricTemplate() *Iso180132BiometricTemplate`
 
 NewIso180132BiometricTemplate instantiates a new Iso180132BiometricTemplate object
 This constructor will assign default values to properties that have it defined,
@@ -47,7 +47,22 @@ and a boolean to check if the value has been set.
 
 SetHeader sets Header field to given value.
 
+### HasHeader
 
+`func (o *Iso180132BiometricTemplate) HasHeader() bool`
+
+HasHeader returns a boolean if a field has been set.
+
+### SetHeaderNil
+
+`func (o *Iso180132BiometricTemplate) SetHeaderNil(b bool)`
+
+ SetHeaderNil sets the value for Header to be an explicit nil
+
+### UnsetHeader
+`func (o *Iso180132BiometricTemplate) UnsetHeader()`
+
+UnsetHeader ensures that no value is present for Header, not even an explicit nil
 ### GetDataBlock
 
 `func (o *Iso180132BiometricTemplate) GetDataBlock() string`
@@ -67,7 +82,22 @@ and a boolean to check if the value has been set.
 
 SetDataBlock sets DataBlock field to given value.
 
+### HasDataBlock
 
+`func (o *Iso180132BiometricTemplate) HasDataBlock() bool`
+
+HasDataBlock returns a boolean if a field has been set.
+
+### SetDataBlockNil
+
+`func (o *Iso180132BiometricTemplate) SetDataBlockNil(b bool)`
+
+ SetDataBlockNil sets the value for DataBlock to be an explicit nil
+
+### UnsetDataBlock
+`func (o *Iso180132BiometricTemplate) UnsetDataBlock()`
+
+UnsetDataBlock ensures that no value is present for DataBlock, not even an explicit nil
 ### GetDataIsEncrypted
 
 `func (o *Iso180132BiometricTemplate) GetDataIsEncrypted() bool`
@@ -87,7 +117,22 @@ and a boolean to check if the value has been set.
 
 SetDataIsEncrypted sets DataIsEncrypted field to given value.
 
+### HasDataIsEncrypted
 
+`func (o *Iso180132BiometricTemplate) HasDataIsEncrypted() bool`
+
+HasDataIsEncrypted returns a boolean if a field has been set.
+
+### SetDataIsEncryptedNil
+
+`func (o *Iso180132BiometricTemplate) SetDataIsEncryptedNil(b bool)`
+
+ SetDataIsEncryptedNil sets the value for DataIsEncrypted to be an explicit nil
+
+### UnsetDataIsEncrypted
+`func (o *Iso180132BiometricTemplate) UnsetDataIsEncrypted()`
+
+UnsetDataIsEncrypted ensures that no value is present for DataIsEncrypted, not even an explicit nil
 ### GetBiometricInformationRecordPayload
 
 `func (o *Iso180132BiometricTemplate) GetBiometricInformationRecordPayload() string`

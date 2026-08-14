@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the CzechBankIdAddress type satisfies the MappedNullable interface at compile time
@@ -31,13 +30,13 @@ type CzechBankIdAddress struct {
 	// The house evidence number.              This is rarely used in suburbs. An evidence number is used for addresses that are residential, temporary or non-residential buildings, e.g. cabins, garages etc.
 	EvidenceNumber NullableString `json:"evidenceNumber,omitempty"`
 	// The city name.
-	City string `json:"city"`
+	City NullableString `json:"city,omitempty"`
 	// The city area name.              This is usually present.
 	CityArea NullableString `json:"cityArea,omitempty"`
 	// The zip of the address.
-	Zipcode string `json:"zipcode"`
+	Zipcode NullableString `json:"zipcode,omitempty"`
 	// The country code in ISO 3166-1 alpha-2 format.
-	Country string `json:"country"`
+	Country NullableString `json:"country,omitempty"`
 	// The address identifier in the Czech RUIAN address register.              RUIAN is the Czech Register of Territorial Identification, Addresses, and Real Estate. This value identifies the address record in that register and can be used to reconcile the address against Czech government address data.
 	RuianReference NullableString `json:"ruianReference,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -49,11 +48,8 @@ type _CzechBankIdAddress CzechBankIdAddress
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCzechBankIdAddress(city string, zipcode string, country string) *CzechBankIdAddress {
+func NewCzechBankIdAddress() *CzechBankIdAddress {
 	this := CzechBankIdAddress{}
-	this.City = city
-	this.Zipcode = zipcode
-	this.Country = country
 	return &this
 }
 
@@ -275,28 +271,46 @@ func (o *CzechBankIdAddress) UnsetEvidenceNumber() {
 	o.EvidenceNumber.Unset()
 }
 
-// GetCity returns the City field value
+// GetCity returns the City field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CzechBankIdAddress) GetCity() string {
-	if o == nil {
+	if o == nil || IsNil(o.City.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.City
+	return *o.City.Get()
 }
 
-// GetCityOk returns a tuple with the City field value
+// GetCityOk returns a tuple with the City field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CzechBankIdAddress) GetCityOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.City, true
+	return o.City.Get(), o.City.IsSet()
 }
 
-// SetCity sets field value
+// HasCity returns a boolean if a field has been set.
+func (o *CzechBankIdAddress) HasCity() bool {
+	if o != nil && o.City.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCity gets a reference to the given NullableString and assigns it to the City field.
 func (o *CzechBankIdAddress) SetCity(v string) {
-	o.City = v
+	o.City.Set(&v)
+}
+// SetCityNil sets the value for City to be an explicit nil
+func (o *CzechBankIdAddress) SetCityNil() {
+	o.City.Set(nil)
+}
+
+// UnsetCity ensures that no value is present for City, not even an explicit nil
+func (o *CzechBankIdAddress) UnsetCity() {
+	o.City.Unset()
 }
 
 // GetCityArea returns the CityArea field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -341,52 +355,88 @@ func (o *CzechBankIdAddress) UnsetCityArea() {
 	o.CityArea.Unset()
 }
 
-// GetZipcode returns the Zipcode field value
+// GetZipcode returns the Zipcode field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CzechBankIdAddress) GetZipcode() string {
-	if o == nil {
+	if o == nil || IsNil(o.Zipcode.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.Zipcode
+	return *o.Zipcode.Get()
 }
 
-// GetZipcodeOk returns a tuple with the Zipcode field value
+// GetZipcodeOk returns a tuple with the Zipcode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CzechBankIdAddress) GetZipcodeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Zipcode, true
+	return o.Zipcode.Get(), o.Zipcode.IsSet()
 }
 
-// SetZipcode sets field value
+// HasZipcode returns a boolean if a field has been set.
+func (o *CzechBankIdAddress) HasZipcode() bool {
+	if o != nil && o.Zipcode.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetZipcode gets a reference to the given NullableString and assigns it to the Zipcode field.
 func (o *CzechBankIdAddress) SetZipcode(v string) {
-	o.Zipcode = v
+	o.Zipcode.Set(&v)
+}
+// SetZipcodeNil sets the value for Zipcode to be an explicit nil
+func (o *CzechBankIdAddress) SetZipcodeNil() {
+	o.Zipcode.Set(nil)
 }
 
-// GetCountry returns the Country field value
+// UnsetZipcode ensures that no value is present for Zipcode, not even an explicit nil
+func (o *CzechBankIdAddress) UnsetZipcode() {
+	o.Zipcode.Unset()
+}
+
+// GetCountry returns the Country field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CzechBankIdAddress) GetCountry() string {
-	if o == nil {
+	if o == nil || IsNil(o.Country.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.Country
+	return *o.Country.Get()
 }
 
-// GetCountryOk returns a tuple with the Country field value
+// GetCountryOk returns a tuple with the Country field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CzechBankIdAddress) GetCountryOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Country, true
+	return o.Country.Get(), o.Country.IsSet()
 }
 
-// SetCountry sets field value
+// HasCountry returns a boolean if a field has been set.
+func (o *CzechBankIdAddress) HasCountry() bool {
+	if o != nil && o.Country.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCountry gets a reference to the given NullableString and assigns it to the Country field.
 func (o *CzechBankIdAddress) SetCountry(v string) {
-	o.Country = v
+	o.Country.Set(&v)
+}
+// SetCountryNil sets the value for Country to be an explicit nil
+func (o *CzechBankIdAddress) SetCountryNil() {
+	o.Country.Set(nil)
+}
+
+// UnsetCountry ensures that no value is present for Country, not even an explicit nil
+func (o *CzechBankIdAddress) UnsetCountry() {
+	o.Country.Unset()
 }
 
 // GetRuianReference returns the RuianReference field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -456,12 +506,18 @@ func (o CzechBankIdAddress) ToMap() (map[string]interface{}, error) {
 	if o.EvidenceNumber.IsSet() {
 		toSerialize["evidenceNumber"] = o.EvidenceNumber.Get()
 	}
-	toSerialize["city"] = o.City
+	if o.City.IsSet() {
+		toSerialize["city"] = o.City.Get()
+	}
 	if o.CityArea.IsSet() {
 		toSerialize["cityArea"] = o.CityArea.Get()
 	}
-	toSerialize["zipcode"] = o.Zipcode
-	toSerialize["country"] = o.Country
+	if o.Zipcode.IsSet() {
+		toSerialize["zipcode"] = o.Zipcode.Get()
+	}
+	if o.Country.IsSet() {
+		toSerialize["country"] = o.Country.Get()
+	}
 	if o.RuianReference.IsSet() {
 		toSerialize["ruianReference"] = o.RuianReference.Get()
 	}
@@ -474,29 +530,6 @@ func (o CzechBankIdAddress) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *CzechBankIdAddress) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"city",
-		"zipcode",
-		"country",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varCzechBankIdAddress := _CzechBankIdAddress{}
 
 	err = json.Unmarshal(data, &varCzechBankIdAddress)

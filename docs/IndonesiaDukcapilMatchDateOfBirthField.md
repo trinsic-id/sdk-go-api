@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**InputValue** | **string** | The date of birth submitted for this check. | 
-**Outcome** | **float64** | The provider assessment result for the submitted date of birth.              Local integration code expects the provider to return 0 or 1 for this assessment. | 
+**InputValue** | Pointer to **NullableString** | The date of birth submitted for this check. | [optional] 
+**Outcome** | Pointer to **NullableFloat64** | The provider assessment result for the submitted date of birth.              Local integration code expects the provider to return 0 or 1 for this assessment. | [optional] 
 
 ## Methods
 
 ### NewIndonesiaDukcapilMatchDateOfBirthField
 
-`func NewIndonesiaDukcapilMatchDateOfBirthField(inputValue string, outcome float64, ) *IndonesiaDukcapilMatchDateOfBirthField`
+`func NewIndonesiaDukcapilMatchDateOfBirthField() *IndonesiaDukcapilMatchDateOfBirthField`
 
 NewIndonesiaDukcapilMatchDateOfBirthField instantiates a new IndonesiaDukcapilMatchDateOfBirthField object
 This constructor will assign default values to properties that have it defined,
@@ -45,7 +45,22 @@ and a boolean to check if the value has been set.
 
 SetInputValue sets InputValue field to given value.
 
+### HasInputValue
 
+`func (o *IndonesiaDukcapilMatchDateOfBirthField) HasInputValue() bool`
+
+HasInputValue returns a boolean if a field has been set.
+
+### SetInputValueNil
+
+`func (o *IndonesiaDukcapilMatchDateOfBirthField) SetInputValueNil(b bool)`
+
+ SetInputValueNil sets the value for InputValue to be an explicit nil
+
+### UnsetInputValue
+`func (o *IndonesiaDukcapilMatchDateOfBirthField) UnsetInputValue()`
+
+UnsetInputValue ensures that no value is present for InputValue, not even an explicit nil
 ### GetOutcome
 
 `func (o *IndonesiaDukcapilMatchDateOfBirthField) GetOutcome() float64`
@@ -65,7 +80,22 @@ and a boolean to check if the value has been set.
 
 SetOutcome sets Outcome field to given value.
 
+### HasOutcome
 
+`func (o *IndonesiaDukcapilMatchDateOfBirthField) HasOutcome() bool`
+
+HasOutcome returns a boolean if a field has been set.
+
+### SetOutcomeNil
+
+`func (o *IndonesiaDukcapilMatchDateOfBirthField) SetOutcomeNil(b bool)`
+
+ SetOutcomeNil sets the value for Outcome to be an explicit nil
+
+### UnsetOutcome
+`func (o *IndonesiaDukcapilMatchDateOfBirthField) UnsetOutcome()`
+
+UnsetOutcome ensures that no value is present for Outcome, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

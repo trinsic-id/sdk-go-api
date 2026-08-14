@@ -13,7 +13,6 @@ package trinsic_api
 import (
 	"encoding/json"
 	"time"
-	"fmt"
 )
 
 // checks if the Iso180132BiometricTemplateHeader type satisfies the MappedNullable interface at compile time
@@ -22,7 +21,7 @@ var _ MappedNullable = &Iso180132BiometricTemplateHeader{}
 // Iso180132BiometricTemplateHeader Header fields of a biometric template per ISO 18013-2 Table C.12.
 type Iso180132BiometricTemplateHeader struct {
 	// Patron header version (defaults to 0x0101).
-	PatronHeaderVersion int32 `json:"patronHeaderVersion"`
+	PatronHeaderVersion NullableInt32 `json:"patronHeaderVersion,omitempty"`
 	// Biometric type code per ISO 18013-2.
 	BiometricType NullableInt32 `json:"biometricType,omitempty"`
 	// Biometric sub-type code per ISO 18013-2.
@@ -36,9 +35,9 @@ type Iso180132BiometricTemplateHeader struct {
 	// Owner and type identifying the product that produced the biometric data block.
 	BiometricDataBlockProduct NullableIso180132BiometricDataBlockProduct `json:"biometricDataBlockProduct,omitempty"`
 	// Format owner of the biometric data block.
-	BiometricDataBlockFormatOwner int32 `json:"biometricDataBlockFormatOwner"`
+	BiometricDataBlockFormatOwner NullableInt32 `json:"biometricDataBlockFormatOwner,omitempty"`
 	// Format type of the biometric data block.
-	BiometricDataBlockFormatType int32 `json:"biometricDataBlockFormatType"`
+	BiometricDataBlockFormatType NullableInt32 `json:"biometricDataBlockFormatType,omitempty"`
 	// Index identifier of the Biometric Information Record, when present.
 	BiometricInformationRecordIndex NullableString `json:"biometricInformationRecordIndex,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -50,11 +49,8 @@ type _Iso180132BiometricTemplateHeader Iso180132BiometricTemplateHeader
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewIso180132BiometricTemplateHeader(patronHeaderVersion int32, biometricDataBlockFormatOwner int32, biometricDataBlockFormatType int32) *Iso180132BiometricTemplateHeader {
+func NewIso180132BiometricTemplateHeader() *Iso180132BiometricTemplateHeader {
 	this := Iso180132BiometricTemplateHeader{}
-	this.PatronHeaderVersion = patronHeaderVersion
-	this.BiometricDataBlockFormatOwner = biometricDataBlockFormatOwner
-	this.BiometricDataBlockFormatType = biometricDataBlockFormatType
 	return &this
 }
 
@@ -66,28 +62,46 @@ func NewIso180132BiometricTemplateHeaderWithDefaults() *Iso180132BiometricTempla
 	return &this
 }
 
-// GetPatronHeaderVersion returns the PatronHeaderVersion field value
+// GetPatronHeaderVersion returns the PatronHeaderVersion field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Iso180132BiometricTemplateHeader) GetPatronHeaderVersion() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.PatronHeaderVersion.Get()) {
 		var ret int32
 		return ret
 	}
-
-	return o.PatronHeaderVersion
+	return *o.PatronHeaderVersion.Get()
 }
 
-// GetPatronHeaderVersionOk returns a tuple with the PatronHeaderVersion field value
+// GetPatronHeaderVersionOk returns a tuple with the PatronHeaderVersion field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Iso180132BiometricTemplateHeader) GetPatronHeaderVersionOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.PatronHeaderVersion, true
+	return o.PatronHeaderVersion.Get(), o.PatronHeaderVersion.IsSet()
 }
 
-// SetPatronHeaderVersion sets field value
+// HasPatronHeaderVersion returns a boolean if a field has been set.
+func (o *Iso180132BiometricTemplateHeader) HasPatronHeaderVersion() bool {
+	if o != nil && o.PatronHeaderVersion.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPatronHeaderVersion gets a reference to the given NullableInt32 and assigns it to the PatronHeaderVersion field.
 func (o *Iso180132BiometricTemplateHeader) SetPatronHeaderVersion(v int32) {
-	o.PatronHeaderVersion = v
+	o.PatronHeaderVersion.Set(&v)
+}
+// SetPatronHeaderVersionNil sets the value for PatronHeaderVersion to be an explicit nil
+func (o *Iso180132BiometricTemplateHeader) SetPatronHeaderVersionNil() {
+	o.PatronHeaderVersion.Set(nil)
+}
+
+// UnsetPatronHeaderVersion ensures that no value is present for PatronHeaderVersion, not even an explicit nil
+func (o *Iso180132BiometricTemplateHeader) UnsetPatronHeaderVersion() {
+	o.PatronHeaderVersion.Unset()
 }
 
 // GetBiometricType returns the BiometricType field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -342,52 +356,88 @@ func (o *Iso180132BiometricTemplateHeader) UnsetBiometricDataBlockProduct() {
 	o.BiometricDataBlockProduct.Unset()
 }
 
-// GetBiometricDataBlockFormatOwner returns the BiometricDataBlockFormatOwner field value
+// GetBiometricDataBlockFormatOwner returns the BiometricDataBlockFormatOwner field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Iso180132BiometricTemplateHeader) GetBiometricDataBlockFormatOwner() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.BiometricDataBlockFormatOwner.Get()) {
 		var ret int32
 		return ret
 	}
-
-	return o.BiometricDataBlockFormatOwner
+	return *o.BiometricDataBlockFormatOwner.Get()
 }
 
-// GetBiometricDataBlockFormatOwnerOk returns a tuple with the BiometricDataBlockFormatOwner field value
+// GetBiometricDataBlockFormatOwnerOk returns a tuple with the BiometricDataBlockFormatOwner field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Iso180132BiometricTemplateHeader) GetBiometricDataBlockFormatOwnerOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.BiometricDataBlockFormatOwner, true
+	return o.BiometricDataBlockFormatOwner.Get(), o.BiometricDataBlockFormatOwner.IsSet()
 }
 
-// SetBiometricDataBlockFormatOwner sets field value
+// HasBiometricDataBlockFormatOwner returns a boolean if a field has been set.
+func (o *Iso180132BiometricTemplateHeader) HasBiometricDataBlockFormatOwner() bool {
+	if o != nil && o.BiometricDataBlockFormatOwner.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetBiometricDataBlockFormatOwner gets a reference to the given NullableInt32 and assigns it to the BiometricDataBlockFormatOwner field.
 func (o *Iso180132BiometricTemplateHeader) SetBiometricDataBlockFormatOwner(v int32) {
-	o.BiometricDataBlockFormatOwner = v
+	o.BiometricDataBlockFormatOwner.Set(&v)
+}
+// SetBiometricDataBlockFormatOwnerNil sets the value for BiometricDataBlockFormatOwner to be an explicit nil
+func (o *Iso180132BiometricTemplateHeader) SetBiometricDataBlockFormatOwnerNil() {
+	o.BiometricDataBlockFormatOwner.Set(nil)
 }
 
-// GetBiometricDataBlockFormatType returns the BiometricDataBlockFormatType field value
+// UnsetBiometricDataBlockFormatOwner ensures that no value is present for BiometricDataBlockFormatOwner, not even an explicit nil
+func (o *Iso180132BiometricTemplateHeader) UnsetBiometricDataBlockFormatOwner() {
+	o.BiometricDataBlockFormatOwner.Unset()
+}
+
+// GetBiometricDataBlockFormatType returns the BiometricDataBlockFormatType field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Iso180132BiometricTemplateHeader) GetBiometricDataBlockFormatType() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.BiometricDataBlockFormatType.Get()) {
 		var ret int32
 		return ret
 	}
-
-	return o.BiometricDataBlockFormatType
+	return *o.BiometricDataBlockFormatType.Get()
 }
 
-// GetBiometricDataBlockFormatTypeOk returns a tuple with the BiometricDataBlockFormatType field value
+// GetBiometricDataBlockFormatTypeOk returns a tuple with the BiometricDataBlockFormatType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Iso180132BiometricTemplateHeader) GetBiometricDataBlockFormatTypeOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.BiometricDataBlockFormatType, true
+	return o.BiometricDataBlockFormatType.Get(), o.BiometricDataBlockFormatType.IsSet()
 }
 
-// SetBiometricDataBlockFormatType sets field value
+// HasBiometricDataBlockFormatType returns a boolean if a field has been set.
+func (o *Iso180132BiometricTemplateHeader) HasBiometricDataBlockFormatType() bool {
+	if o != nil && o.BiometricDataBlockFormatType.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetBiometricDataBlockFormatType gets a reference to the given NullableInt32 and assigns it to the BiometricDataBlockFormatType field.
 func (o *Iso180132BiometricTemplateHeader) SetBiometricDataBlockFormatType(v int32) {
-	o.BiometricDataBlockFormatType = v
+	o.BiometricDataBlockFormatType.Set(&v)
+}
+// SetBiometricDataBlockFormatTypeNil sets the value for BiometricDataBlockFormatType to be an explicit nil
+func (o *Iso180132BiometricTemplateHeader) SetBiometricDataBlockFormatTypeNil() {
+	o.BiometricDataBlockFormatType.Set(nil)
+}
+
+// UnsetBiometricDataBlockFormatType ensures that no value is present for BiometricDataBlockFormatType, not even an explicit nil
+func (o *Iso180132BiometricTemplateHeader) UnsetBiometricDataBlockFormatType() {
+	o.BiometricDataBlockFormatType.Unset()
 }
 
 // GetBiometricInformationRecordIndex returns the BiometricInformationRecordIndex field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -442,7 +492,9 @@ func (o Iso180132BiometricTemplateHeader) MarshalJSON() ([]byte, error) {
 
 func (o Iso180132BiometricTemplateHeader) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["patronHeaderVersion"] = o.PatronHeaderVersion
+	if o.PatronHeaderVersion.IsSet() {
+		toSerialize["patronHeaderVersion"] = o.PatronHeaderVersion.Get()
+	}
 	if o.BiometricType.IsSet() {
 		toSerialize["biometricType"] = o.BiometricType.Get()
 	}
@@ -461,8 +513,12 @@ func (o Iso180132BiometricTemplateHeader) ToMap() (map[string]interface{}, error
 	if o.BiometricDataBlockProduct.IsSet() {
 		toSerialize["biometricDataBlockProduct"] = o.BiometricDataBlockProduct.Get()
 	}
-	toSerialize["biometricDataBlockFormatOwner"] = o.BiometricDataBlockFormatOwner
-	toSerialize["biometricDataBlockFormatType"] = o.BiometricDataBlockFormatType
+	if o.BiometricDataBlockFormatOwner.IsSet() {
+		toSerialize["biometricDataBlockFormatOwner"] = o.BiometricDataBlockFormatOwner.Get()
+	}
+	if o.BiometricDataBlockFormatType.IsSet() {
+		toSerialize["biometricDataBlockFormatType"] = o.BiometricDataBlockFormatType.Get()
+	}
 	if o.BiometricInformationRecordIndex.IsSet() {
 		toSerialize["biometricInformationRecordIndex"] = o.BiometricInformationRecordIndex.Get()
 	}
@@ -475,29 +531,6 @@ func (o Iso180132BiometricTemplateHeader) ToMap() (map[string]interface{}, error
 }
 
 func (o *Iso180132BiometricTemplateHeader) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"patronHeaderVersion",
-		"biometricDataBlockFormatOwner",
-		"biometricDataBlockFormatType",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varIso180132BiometricTemplateHeader := _Iso180132BiometricTemplateHeader{}
 
 	err = json.Unmarshal(data, &varIso180132BiometricTemplateHeader)

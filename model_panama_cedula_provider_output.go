@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the PanamaCedulaProviderOutput type satisfies the MappedNullable interface at compile time
@@ -21,17 +20,15 @@ var _ MappedNullable = &PanamaCedulaProviderOutput{}
 // PanamaCedulaProviderOutput Exposed properties for the `panama-cedula-lookup` Provider which do not directly map to the normalized IdentityData model.
 type PanamaCedulaProviderOutput struct {
 	// Full name from Tribunal Electoral records.
-	FullName string `json:"fullName"`
+	FullName NullableString `json:"fullName,omitempty"`
 	// Given name(s) from Tribunal Electoral records.
-	GivenName string `json:"givenName"`
+	GivenName NullableString `json:"givenName,omitempty"`
 	// Family name(s) from Tribunal Electoral records.
-	FamilyName string `json:"familyName"`
-	// Verified date of birth from Tribunal Electoral records.
-	DateOfBirth NullableString `json:"dateOfBirth,omitempty"`
+	FamilyName NullableString `json:"familyName,omitempty"`
 	// The matched personal identity cédula (Cédula de Identidad Personal) number from Tribunal Electoral records.              On output, Trinsic applies the same normalization as for lookup input. Structure is always {firstSegment}-{libro}-{tomo}: libro is one to four digits and tomo is one to six digits, separated by hyphens.              Citizen category and format: - Born in Panama format: {province}-{libro}-{tomo} ({province} is official code 1 through 13). Examples   8-1234-12345, 4-56-789, 12-12-12345. - Panamanian born abroad format: PE-{libro}-{tomo}. Example PE-1234-12345. - Foreign national with cédula format: E-{libro}-{tomo}. Examples E-1234-12345, E-8-102017. - Naturalized citizen format: N-{libro}-{tomo}. Example N-1234-12345. - Pre-2006 civil registry (AV) format: {province}AV-{libro}-{tomo}. Example 10AV-1234-12345. - Indigenous (PI) format: {province}PI-{libro}-{tomo}. Example 1PI-1234-12345.
-	DocumentNumber string `json:"documentNumber"`
+	DocumentNumber NullableString `json:"documentNumber,omitempty"`
 	// Inferred from DocumentNumber. Values are nationality or residence category.              Possible values: - BornInPanama - ForeignNational - BornAbroad - Naturalized - LegacyNumber - Indigenous - Unknown (we were unable to determine the category)
-	NationalityOrResidenceType string `json:"nationalityOrResidenceType"`
+	NationalityOrResidenceType NullableString `json:"nationalityOrResidenceType,omitempty"`
 	// ISO 3166-2 principal subdivision code. Only available for BornInPanama, LegacyNumber, and Indigenous.              Possible values, matching cédula province digits 1–13: 1. PA-1 - Bocas del Toro 2. PA-2 - Coclé 3. PA-3 - Colón 4. PA-4 - Chiriquí 5. PA-5 - Darién 6. PA-6 - Herrera 7. PA-7 - Los Santos 8. PA-8 - Panamá 9. PA-9 - Veraguas 10. PA-KY - Guna Yala 11. PA-EM - Emberá 12. PA-NB - Ngäbe-Buglé 13. PA-10 - Panamá Oeste
 	SubdivisionOfOrigin NullableString `json:"subdivisionOfOrigin,omitempty"`
 	// Subdivision display name from the ISO 3166-2 registry, when available.
@@ -45,13 +42,8 @@ type _PanamaCedulaProviderOutput PanamaCedulaProviderOutput
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPanamaCedulaProviderOutput(fullName string, givenName string, familyName string, documentNumber string, nationalityOrResidenceType string) *PanamaCedulaProviderOutput {
+func NewPanamaCedulaProviderOutput() *PanamaCedulaProviderOutput {
 	this := PanamaCedulaProviderOutput{}
-	this.FullName = fullName
-	this.GivenName = givenName
-	this.FamilyName = familyName
-	this.DocumentNumber = documentNumber
-	this.NationalityOrResidenceType = nationalityOrResidenceType
 	return &this
 }
 
@@ -63,166 +55,214 @@ func NewPanamaCedulaProviderOutputWithDefaults() *PanamaCedulaProviderOutput {
 	return &this
 }
 
-// GetFullName returns the FullName field value
+// GetFullName returns the FullName field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *PanamaCedulaProviderOutput) GetFullName() string {
-	if o == nil {
+	if o == nil || IsNil(o.FullName.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.FullName
+	return *o.FullName.Get()
 }
 
-// GetFullNameOk returns a tuple with the FullName field value
+// GetFullNameOk returns a tuple with the FullName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *PanamaCedulaProviderOutput) GetFullNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.FullName, true
+	return o.FullName.Get(), o.FullName.IsSet()
 }
 
-// SetFullName sets field value
-func (o *PanamaCedulaProviderOutput) SetFullName(v string) {
-	o.FullName = v
-}
-
-// GetGivenName returns the GivenName field value
-func (o *PanamaCedulaProviderOutput) GetGivenName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.GivenName
-}
-
-// GetGivenNameOk returns a tuple with the GivenName field value
-// and a boolean to check if the value has been set.
-func (o *PanamaCedulaProviderOutput) GetGivenNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.GivenName, true
-}
-
-// SetGivenName sets field value
-func (o *PanamaCedulaProviderOutput) SetGivenName(v string) {
-	o.GivenName = v
-}
-
-// GetFamilyName returns the FamilyName field value
-func (o *PanamaCedulaProviderOutput) GetFamilyName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.FamilyName
-}
-
-// GetFamilyNameOk returns a tuple with the FamilyName field value
-// and a boolean to check if the value has been set.
-func (o *PanamaCedulaProviderOutput) GetFamilyNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.FamilyName, true
-}
-
-// SetFamilyName sets field value
-func (o *PanamaCedulaProviderOutput) SetFamilyName(v string) {
-	o.FamilyName = v
-}
-
-// GetDateOfBirth returns the DateOfBirth field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PanamaCedulaProviderOutput) GetDateOfBirth() string {
-	if o == nil || IsNil(o.DateOfBirth.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.DateOfBirth.Get()
-}
-
-// GetDateOfBirthOk returns a tuple with the DateOfBirth field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PanamaCedulaProviderOutput) GetDateOfBirthOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.DateOfBirth.Get(), o.DateOfBirth.IsSet()
-}
-
-// HasDateOfBirth returns a boolean if a field has been set.
-func (o *PanamaCedulaProviderOutput) HasDateOfBirth() bool {
-	if o != nil && o.DateOfBirth.IsSet() {
+// HasFullName returns a boolean if a field has been set.
+func (o *PanamaCedulaProviderOutput) HasFullName() bool {
+	if o != nil && o.FullName.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetDateOfBirth gets a reference to the given NullableString and assigns it to the DateOfBirth field.
-func (o *PanamaCedulaProviderOutput) SetDateOfBirth(v string) {
-	o.DateOfBirth.Set(&v)
+// SetFullName gets a reference to the given NullableString and assigns it to the FullName field.
+func (o *PanamaCedulaProviderOutput) SetFullName(v string) {
+	o.FullName.Set(&v)
 }
-// SetDateOfBirthNil sets the value for DateOfBirth to be an explicit nil
-func (o *PanamaCedulaProviderOutput) SetDateOfBirthNil() {
-	o.DateOfBirth.Set(nil)
-}
-
-// UnsetDateOfBirth ensures that no value is present for DateOfBirth, not even an explicit nil
-func (o *PanamaCedulaProviderOutput) UnsetDateOfBirth() {
-	o.DateOfBirth.Unset()
+// SetFullNameNil sets the value for FullName to be an explicit nil
+func (o *PanamaCedulaProviderOutput) SetFullNameNil() {
+	o.FullName.Set(nil)
 }
 
-// GetDocumentNumber returns the DocumentNumber field value
-func (o *PanamaCedulaProviderOutput) GetDocumentNumber() string {
-	if o == nil {
+// UnsetFullName ensures that no value is present for FullName, not even an explicit nil
+func (o *PanamaCedulaProviderOutput) UnsetFullName() {
+	o.FullName.Unset()
+}
+
+// GetGivenName returns the GivenName field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PanamaCedulaProviderOutput) GetGivenName() string {
+	if o == nil || IsNil(o.GivenName.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.DocumentNumber
+	return *o.GivenName.Get()
 }
 
-// GetDocumentNumberOk returns a tuple with the DocumentNumber field value
+// GetGivenNameOk returns a tuple with the GivenName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PanamaCedulaProviderOutput) GetGivenNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.GivenName.Get(), o.GivenName.IsSet()
+}
+
+// HasGivenName returns a boolean if a field has been set.
+func (o *PanamaCedulaProviderOutput) HasGivenName() bool {
+	if o != nil && o.GivenName.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetGivenName gets a reference to the given NullableString and assigns it to the GivenName field.
+func (o *PanamaCedulaProviderOutput) SetGivenName(v string) {
+	o.GivenName.Set(&v)
+}
+// SetGivenNameNil sets the value for GivenName to be an explicit nil
+func (o *PanamaCedulaProviderOutput) SetGivenNameNil() {
+	o.GivenName.Set(nil)
+}
+
+// UnsetGivenName ensures that no value is present for GivenName, not even an explicit nil
+func (o *PanamaCedulaProviderOutput) UnsetGivenName() {
+	o.GivenName.Unset()
+}
+
+// GetFamilyName returns the FamilyName field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PanamaCedulaProviderOutput) GetFamilyName() string {
+	if o == nil || IsNil(o.FamilyName.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.FamilyName.Get()
+}
+
+// GetFamilyNameOk returns a tuple with the FamilyName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PanamaCedulaProviderOutput) GetFamilyNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.FamilyName.Get(), o.FamilyName.IsSet()
+}
+
+// HasFamilyName returns a boolean if a field has been set.
+func (o *PanamaCedulaProviderOutput) HasFamilyName() bool {
+	if o != nil && o.FamilyName.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetFamilyName gets a reference to the given NullableString and assigns it to the FamilyName field.
+func (o *PanamaCedulaProviderOutput) SetFamilyName(v string) {
+	o.FamilyName.Set(&v)
+}
+// SetFamilyNameNil sets the value for FamilyName to be an explicit nil
+func (o *PanamaCedulaProviderOutput) SetFamilyNameNil() {
+	o.FamilyName.Set(nil)
+}
+
+// UnsetFamilyName ensures that no value is present for FamilyName, not even an explicit nil
+func (o *PanamaCedulaProviderOutput) UnsetFamilyName() {
+	o.FamilyName.Unset()
+}
+
+// GetDocumentNumber returns the DocumentNumber field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PanamaCedulaProviderOutput) GetDocumentNumber() string {
+	if o == nil || IsNil(o.DocumentNumber.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.DocumentNumber.Get()
+}
+
+// GetDocumentNumberOk returns a tuple with the DocumentNumber field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *PanamaCedulaProviderOutput) GetDocumentNumberOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.DocumentNumber, true
+	return o.DocumentNumber.Get(), o.DocumentNumber.IsSet()
 }
 
-// SetDocumentNumber sets field value
+// HasDocumentNumber returns a boolean if a field has been set.
+func (o *PanamaCedulaProviderOutput) HasDocumentNumber() bool {
+	if o != nil && o.DocumentNumber.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDocumentNumber gets a reference to the given NullableString and assigns it to the DocumentNumber field.
 func (o *PanamaCedulaProviderOutput) SetDocumentNumber(v string) {
-	o.DocumentNumber = v
+	o.DocumentNumber.Set(&v)
+}
+// SetDocumentNumberNil sets the value for DocumentNumber to be an explicit nil
+func (o *PanamaCedulaProviderOutput) SetDocumentNumberNil() {
+	o.DocumentNumber.Set(nil)
 }
 
-// GetNationalityOrResidenceType returns the NationalityOrResidenceType field value
+// UnsetDocumentNumber ensures that no value is present for DocumentNumber, not even an explicit nil
+func (o *PanamaCedulaProviderOutput) UnsetDocumentNumber() {
+	o.DocumentNumber.Unset()
+}
+
+// GetNationalityOrResidenceType returns the NationalityOrResidenceType field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *PanamaCedulaProviderOutput) GetNationalityOrResidenceType() string {
-	if o == nil {
+	if o == nil || IsNil(o.NationalityOrResidenceType.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.NationalityOrResidenceType
+	return *o.NationalityOrResidenceType.Get()
 }
 
-// GetNationalityOrResidenceTypeOk returns a tuple with the NationalityOrResidenceType field value
+// GetNationalityOrResidenceTypeOk returns a tuple with the NationalityOrResidenceType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *PanamaCedulaProviderOutput) GetNationalityOrResidenceTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.NationalityOrResidenceType, true
+	return o.NationalityOrResidenceType.Get(), o.NationalityOrResidenceType.IsSet()
 }
 
-// SetNationalityOrResidenceType sets field value
+// HasNationalityOrResidenceType returns a boolean if a field has been set.
+func (o *PanamaCedulaProviderOutput) HasNationalityOrResidenceType() bool {
+	if o != nil && o.NationalityOrResidenceType.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetNationalityOrResidenceType gets a reference to the given NullableString and assigns it to the NationalityOrResidenceType field.
 func (o *PanamaCedulaProviderOutput) SetNationalityOrResidenceType(v string) {
-	o.NationalityOrResidenceType = v
+	o.NationalityOrResidenceType.Set(&v)
+}
+// SetNationalityOrResidenceTypeNil sets the value for NationalityOrResidenceType to be an explicit nil
+func (o *PanamaCedulaProviderOutput) SetNationalityOrResidenceTypeNil() {
+	o.NationalityOrResidenceType.Set(nil)
+}
+
+// UnsetNationalityOrResidenceType ensures that no value is present for NationalityOrResidenceType, not even an explicit nil
+func (o *PanamaCedulaProviderOutput) UnsetNationalityOrResidenceType() {
+	o.NationalityOrResidenceType.Unset()
 }
 
 // GetSubdivisionOfOrigin returns the SubdivisionOfOrigin field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -319,14 +359,21 @@ func (o PanamaCedulaProviderOutput) MarshalJSON() ([]byte, error) {
 
 func (o PanamaCedulaProviderOutput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["fullName"] = o.FullName
-	toSerialize["givenName"] = o.GivenName
-	toSerialize["familyName"] = o.FamilyName
-	if o.DateOfBirth.IsSet() {
-		toSerialize["dateOfBirth"] = o.DateOfBirth.Get()
+	if o.FullName.IsSet() {
+		toSerialize["fullName"] = o.FullName.Get()
 	}
-	toSerialize["documentNumber"] = o.DocumentNumber
-	toSerialize["nationalityOrResidenceType"] = o.NationalityOrResidenceType
+	if o.GivenName.IsSet() {
+		toSerialize["givenName"] = o.GivenName.Get()
+	}
+	if o.FamilyName.IsSet() {
+		toSerialize["familyName"] = o.FamilyName.Get()
+	}
+	if o.DocumentNumber.IsSet() {
+		toSerialize["documentNumber"] = o.DocumentNumber.Get()
+	}
+	if o.NationalityOrResidenceType.IsSet() {
+		toSerialize["nationalityOrResidenceType"] = o.NationalityOrResidenceType.Get()
+	}
 	if o.SubdivisionOfOrigin.IsSet() {
 		toSerialize["subdivisionOfOrigin"] = o.SubdivisionOfOrigin.Get()
 	}
@@ -342,31 +389,6 @@ func (o PanamaCedulaProviderOutput) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *PanamaCedulaProviderOutput) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"fullName",
-		"givenName",
-		"familyName",
-		"documentNumber",
-		"nationalityOrResidenceType",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varPanamaCedulaProviderOutput := _PanamaCedulaProviderOutput{}
 
 	err = json.Unmarshal(data, &varPanamaCedulaProviderOutput)
@@ -383,7 +405,6 @@ func (o *PanamaCedulaProviderOutput) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "fullName")
 		delete(additionalProperties, "givenName")
 		delete(additionalProperties, "familyName")
-		delete(additionalProperties, "dateOfBirth")
 		delete(additionalProperties, "documentNumber")
 		delete(additionalProperties, "nationalityOrResidenceType")
 		delete(additionalProperties, "subdivisionOfOrigin")

@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the Iso180132BiometricTemplate type satisfies the MappedNullable interface at compile time
@@ -21,11 +20,11 @@ var _ MappedNullable = &Iso180132BiometricTemplate{}
 // Iso180132BiometricTemplate A single biometric template per ISO 18013-2 Table C.12.
 type Iso180132BiometricTemplate struct {
 	// Header describing the biometric template.
-	Header Iso180132BiometricTemplateHeader `json:"header"`
+	Header NullableIso180132BiometricTemplateHeader `json:"header,omitempty"`
 	// The raw data block, in a biometric type- and format-specific encoding.              For `face` and `signature_usual_mark`, this is a raw JPEG or JPEG2000 image.              See ISO 18013-2 and 18013-5.
-	DataBlock string `json:"dataBlock"`
+	DataBlock NullableString `json:"dataBlock,omitempty"`
 	// Whether the data block is encrypted.
-	DataIsEncrypted bool `json:"dataIsEncrypted"`
+	DataIsEncrypted NullableBool `json:"dataIsEncrypted,omitempty"`
 	// Optional Biometric Information Record payload, containing arbitrary domestic data.
 	BiometricInformationRecordPayload NullableString `json:"biometricInformationRecordPayload,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -37,11 +36,8 @@ type _Iso180132BiometricTemplate Iso180132BiometricTemplate
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewIso180132BiometricTemplate(header Iso180132BiometricTemplateHeader, dataBlock string, dataIsEncrypted bool) *Iso180132BiometricTemplate {
+func NewIso180132BiometricTemplate() *Iso180132BiometricTemplate {
 	this := Iso180132BiometricTemplate{}
-	this.Header = header
-	this.DataBlock = dataBlock
-	this.DataIsEncrypted = dataIsEncrypted
 	return &this
 }
 
@@ -53,76 +49,130 @@ func NewIso180132BiometricTemplateWithDefaults() *Iso180132BiometricTemplate {
 	return &this
 }
 
-// GetHeader returns the Header field value
+// GetHeader returns the Header field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Iso180132BiometricTemplate) GetHeader() Iso180132BiometricTemplateHeader {
-	if o == nil {
+	if o == nil || IsNil(o.Header.Get()) {
 		var ret Iso180132BiometricTemplateHeader
 		return ret
 	}
-
-	return o.Header
+	return *o.Header.Get()
 }
 
-// GetHeaderOk returns a tuple with the Header field value
+// GetHeaderOk returns a tuple with the Header field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Iso180132BiometricTemplate) GetHeaderOk() (*Iso180132BiometricTemplateHeader, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Header, true
+	return o.Header.Get(), o.Header.IsSet()
 }
 
-// SetHeader sets field value
+// HasHeader returns a boolean if a field has been set.
+func (o *Iso180132BiometricTemplate) HasHeader() bool {
+	if o != nil && o.Header.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetHeader gets a reference to the given NullableIso180132BiometricTemplateHeader and assigns it to the Header field.
 func (o *Iso180132BiometricTemplate) SetHeader(v Iso180132BiometricTemplateHeader) {
-	o.Header = v
+	o.Header.Set(&v)
+}
+// SetHeaderNil sets the value for Header to be an explicit nil
+func (o *Iso180132BiometricTemplate) SetHeaderNil() {
+	o.Header.Set(nil)
 }
 
-// GetDataBlock returns the DataBlock field value
+// UnsetHeader ensures that no value is present for Header, not even an explicit nil
+func (o *Iso180132BiometricTemplate) UnsetHeader() {
+	o.Header.Unset()
+}
+
+// GetDataBlock returns the DataBlock field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Iso180132BiometricTemplate) GetDataBlock() string {
-	if o == nil {
+	if o == nil || IsNil(o.DataBlock.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.DataBlock
+	return *o.DataBlock.Get()
 }
 
-// GetDataBlockOk returns a tuple with the DataBlock field value
+// GetDataBlockOk returns a tuple with the DataBlock field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Iso180132BiometricTemplate) GetDataBlockOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.DataBlock, true
+	return o.DataBlock.Get(), o.DataBlock.IsSet()
 }
 
-// SetDataBlock sets field value
+// HasDataBlock returns a boolean if a field has been set.
+func (o *Iso180132BiometricTemplate) HasDataBlock() bool {
+	if o != nil && o.DataBlock.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDataBlock gets a reference to the given NullableString and assigns it to the DataBlock field.
 func (o *Iso180132BiometricTemplate) SetDataBlock(v string) {
-	o.DataBlock = v
+	o.DataBlock.Set(&v)
+}
+// SetDataBlockNil sets the value for DataBlock to be an explicit nil
+func (o *Iso180132BiometricTemplate) SetDataBlockNil() {
+	o.DataBlock.Set(nil)
 }
 
-// GetDataIsEncrypted returns the DataIsEncrypted field value
+// UnsetDataBlock ensures that no value is present for DataBlock, not even an explicit nil
+func (o *Iso180132BiometricTemplate) UnsetDataBlock() {
+	o.DataBlock.Unset()
+}
+
+// GetDataIsEncrypted returns the DataIsEncrypted field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Iso180132BiometricTemplate) GetDataIsEncrypted() bool {
-	if o == nil {
+	if o == nil || IsNil(o.DataIsEncrypted.Get()) {
 		var ret bool
 		return ret
 	}
-
-	return o.DataIsEncrypted
+	return *o.DataIsEncrypted.Get()
 }
 
-// GetDataIsEncryptedOk returns a tuple with the DataIsEncrypted field value
+// GetDataIsEncryptedOk returns a tuple with the DataIsEncrypted field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Iso180132BiometricTemplate) GetDataIsEncryptedOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.DataIsEncrypted, true
+	return o.DataIsEncrypted.Get(), o.DataIsEncrypted.IsSet()
 }
 
-// SetDataIsEncrypted sets field value
+// HasDataIsEncrypted returns a boolean if a field has been set.
+func (o *Iso180132BiometricTemplate) HasDataIsEncrypted() bool {
+	if o != nil && o.DataIsEncrypted.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDataIsEncrypted gets a reference to the given NullableBool and assigns it to the DataIsEncrypted field.
 func (o *Iso180132BiometricTemplate) SetDataIsEncrypted(v bool) {
-	o.DataIsEncrypted = v
+	o.DataIsEncrypted.Set(&v)
+}
+// SetDataIsEncryptedNil sets the value for DataIsEncrypted to be an explicit nil
+func (o *Iso180132BiometricTemplate) SetDataIsEncryptedNil() {
+	o.DataIsEncrypted.Set(nil)
+}
+
+// UnsetDataIsEncrypted ensures that no value is present for DataIsEncrypted, not even an explicit nil
+func (o *Iso180132BiometricTemplate) UnsetDataIsEncrypted() {
+	o.DataIsEncrypted.Unset()
 }
 
 // GetBiometricInformationRecordPayload returns the BiometricInformationRecordPayload field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -177,9 +227,15 @@ func (o Iso180132BiometricTemplate) MarshalJSON() ([]byte, error) {
 
 func (o Iso180132BiometricTemplate) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["header"] = o.Header
-	toSerialize["dataBlock"] = o.DataBlock
-	toSerialize["dataIsEncrypted"] = o.DataIsEncrypted
+	if o.Header.IsSet() {
+		toSerialize["header"] = o.Header.Get()
+	}
+	if o.DataBlock.IsSet() {
+		toSerialize["dataBlock"] = o.DataBlock.Get()
+	}
+	if o.DataIsEncrypted.IsSet() {
+		toSerialize["dataIsEncrypted"] = o.DataIsEncrypted.Get()
+	}
 	if o.BiometricInformationRecordPayload.IsSet() {
 		toSerialize["biometricInformationRecordPayload"] = o.BiometricInformationRecordPayload.Get()
 	}
@@ -192,29 +248,6 @@ func (o Iso180132BiometricTemplate) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *Iso180132BiometricTemplate) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"header",
-		"dataBlock",
-		"dataIsEncrypted",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varIso180132BiometricTemplate := _Iso180132BiometricTemplate{}
 
 	err = json.Unmarshal(data, &varIso180132BiometricTemplate)

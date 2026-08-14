@@ -10,18 +10,18 @@ Name | Type | Description | Notes
 **AadhaarNumberLastFour** | Pointer to **NullableString** | The Aadhaar number (UID) value for the individual.              This is only the last four digits of the Aadhaar number. | [optional] 
 **Claims** | Pointer to [**NullableAadhaarClaims**](AadhaarClaims.md) | The claims extracted from the Aadhaar document. | [optional] 
 **LocalizedClaims** | Pointer to [**NullableAadhaarLocalizedClaims**](AadhaarLocalizedClaims.md) | The localized claims extracted from the Aadhaar document. | [optional] 
-**DocumentSignatureValidated** | **bool** | Whether our own validation of the Aadhaar document signature and certificate chain succeeded.              When the signed document (e.g. Digilocker XML) is available, we validate it using the standard CCA/SafeScrypt chain. When the document is not returned, the signature cannot be validated and this is false. Some providers (e.g. Signzy) also supply a separate DSC validation indicator in the webhook payload; that is independent of this flag, which reflects only our validation. | 
+**DocumentSignatureValidated** | Pointer to **NullableBool** | Whether our own validation of the Aadhaar document signature and certificate chain succeeded.              When the signed document (e.g. Digilocker XML) is available, we validate it using the standard CCA/SafeScrypt chain. When the document is not returned, the signature cannot be validated and this is false. Some providers (e.g. Signzy) also supply a separate DSC validation indicator in the webhook payload; that is independent of this flag, which reflects only our validation. | [optional] 
 **DigilockerId** | Pointer to **NullableString** | DigiLocker&#39;s 36-character stable account identifier.              This identifier is deemed safe to use to reference the individual. *Note, the format is not guaranteed to be a UUID. | [optional] 
 **IssuerId** | Pointer to **NullableString** | The identifier for the issuer of the DigiLocker document. | [optional] 
 **Issuer** | Pointer to **NullableString** | Issuer name for the DigiLocker document. | [optional] 
 **MobilePhone** | Pointer to **NullableString** | The individual&#39;s mobile phone number from DigiLocker&#39;s account details. | [optional] 
-**Scope** | **[]string** | DigiLocker consent scopes that the individual actually consented to for this session. Included in provider output so customers can verify what was granted: the customer does not control these—the individual chooses scopes in the DigiLocker consent UI, and there is no way to pre-select or enforce them. This is a common source of error (e.g. the individual skips a scope), so surfacing the granted scopes lets customers confirm the session had the expected consent. | 
+**Scope** | Pointer to **[]string** | DigiLocker consent scopes that the individual actually consented to for this session. Included in provider output so customers can verify what was granted: the customer does not control these—the individual chooses scopes in the DigiLocker consent UI, and there is no way to pre-select or enforce them. This is a common source of error (e.g. the individual skips a scope), so surfacing the granted scopes lets customers confirm the session had the expected consent. | [optional] 
 
 ## Methods
 
 ### NewSignzyIndiaAadhaarFetchProviderOutput
 
-`func NewSignzyIndiaAadhaarFetchProviderOutput(documentSignatureValidated bool, scope []string, ) *SignzyIndiaAadhaarFetchProviderOutput`
+`func NewSignzyIndiaAadhaarFetchProviderOutput() *SignzyIndiaAadhaarFetchProviderOutput`
 
 NewSignzyIndiaAadhaarFetchProviderOutput instantiates a new SignzyIndiaAadhaarFetchProviderOutput object
 This constructor will assign default values to properties that have it defined,
@@ -265,7 +265,22 @@ and a boolean to check if the value has been set.
 
 SetDocumentSignatureValidated sets DocumentSignatureValidated field to given value.
 
+### HasDocumentSignatureValidated
 
+`func (o *SignzyIndiaAadhaarFetchProviderOutput) HasDocumentSignatureValidated() bool`
+
+HasDocumentSignatureValidated returns a boolean if a field has been set.
+
+### SetDocumentSignatureValidatedNil
+
+`func (o *SignzyIndiaAadhaarFetchProviderOutput) SetDocumentSignatureValidatedNil(b bool)`
+
+ SetDocumentSignatureValidatedNil sets the value for DocumentSignatureValidated to be an explicit nil
+
+### UnsetDocumentSignatureValidated
+`func (o *SignzyIndiaAadhaarFetchProviderOutput) UnsetDocumentSignatureValidated()`
+
+UnsetDocumentSignatureValidated ensures that no value is present for DocumentSignatureValidated, not even an explicit nil
 ### GetDigilockerId
 
 `func (o *SignzyIndiaAadhaarFetchProviderOutput) GetDigilockerId() string`
@@ -425,7 +440,22 @@ and a boolean to check if the value has been set.
 
 SetScope sets Scope field to given value.
 
+### HasScope
 
+`func (o *SignzyIndiaAadhaarFetchProviderOutput) HasScope() bool`
+
+HasScope returns a boolean if a field has been set.
+
+### SetScopeNil
+
+`func (o *SignzyIndiaAadhaarFetchProviderOutput) SetScopeNil(b bool)`
+
+ SetScopeNil sets the value for Scope to be an explicit nil
+
+### UnsetScope
+`func (o *SignzyIndiaAadhaarFetchProviderOutput) UnsetScope()`
+
+UnsetScope ensures that no value is present for Scope, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

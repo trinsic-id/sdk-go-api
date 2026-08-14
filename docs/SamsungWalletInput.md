@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**PreviewRaw18013Request** | Pointer to [**NullableRaw18013RequestInput**](Raw18013RequestInput.md) | **Preview feature: not suitable for production use cases**              The raw 18013-7 exchange request to use for this verification.              If set, this overrides any default configuration on your Verification Profile. | [optional] 
+**PreviewRaw18013Request** | Pointer to [**NullableRaw18013RequestInput**](Raw18013RequestInput.md) | The raw 18013-7 exchange request to use for this verification.              If set, this overrides any default configuration on your Verification Profile. | [optional] 
 
 ## Methods
 

@@ -26,8 +26,10 @@ type SubProviderMetadata struct {
 	Name string `json:"name"`
 	// The Provider's subtext recommended to be shown next to the name.              This is flavor text, not a full, human-readable description of the provider.
 	Subtext string `json:"subtext"`
-	// A URL pointing to the logo on Trinsic's CDN.              May be a PNG, JPG, or SVG image.
+	// A URL pointing to the logo on Trinsic's CDN.              It may be a PNG, JPG, or SVG image.
 	LogoUrl string `json:"logoUrl"`
+	// An optional URL pointing to a dark mode logo on Trinsic's CDN.              It may be a PNG, JPG, or SVG image. If omitted, use LogoUrl in dark mode.
+	DarkModeLogoUrl NullableString `json:"darkModeLogoUrl,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -150,6 +152,48 @@ func (o *SubProviderMetadata) SetLogoUrl(v string) {
 	o.LogoUrl = v
 }
 
+// GetDarkModeLogoUrl returns the DarkModeLogoUrl field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *SubProviderMetadata) GetDarkModeLogoUrl() string {
+	if o == nil || IsNil(o.DarkModeLogoUrl.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.DarkModeLogoUrl.Get()
+}
+
+// GetDarkModeLogoUrlOk returns a tuple with the DarkModeLogoUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *SubProviderMetadata) GetDarkModeLogoUrlOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.DarkModeLogoUrl.Get(), o.DarkModeLogoUrl.IsSet()
+}
+
+// HasDarkModeLogoUrl returns a boolean if a field has been set.
+func (o *SubProviderMetadata) HasDarkModeLogoUrl() bool {
+	if o != nil && o.DarkModeLogoUrl.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDarkModeLogoUrl gets a reference to the given NullableString and assigns it to the DarkModeLogoUrl field.
+func (o *SubProviderMetadata) SetDarkModeLogoUrl(v string) {
+	o.DarkModeLogoUrl.Set(&v)
+}
+// SetDarkModeLogoUrlNil sets the value for DarkModeLogoUrl to be an explicit nil
+func (o *SubProviderMetadata) SetDarkModeLogoUrlNil() {
+	o.DarkModeLogoUrl.Set(nil)
+}
+
+// UnsetDarkModeLogoUrl ensures that no value is present for DarkModeLogoUrl, not even an explicit nil
+func (o *SubProviderMetadata) UnsetDarkModeLogoUrl() {
+	o.DarkModeLogoUrl.Unset()
+}
+
 func (o SubProviderMetadata) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -164,6 +208,9 @@ func (o SubProviderMetadata) ToMap() (map[string]interface{}, error) {
 	toSerialize["name"] = o.Name
 	toSerialize["subtext"] = o.Subtext
 	toSerialize["logoUrl"] = o.LogoUrl
+	if o.DarkModeLogoUrl.IsSet() {
+		toSerialize["darkModeLogoUrl"] = o.DarkModeLogoUrl.Get()
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -214,6 +261,7 @@ func (o *SubProviderMetadata) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "subtext")
 		delete(additionalProperties, "logoUrl")
+		delete(additionalProperties, "darkModeLogoUrl")
 		o.AdditionalProperties = additionalProperties
 	}
 

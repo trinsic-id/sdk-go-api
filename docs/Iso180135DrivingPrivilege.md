@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**VehicleCategoryCode** | **string** | Vehicle category code that the holder is authorized to operate. | 
+**VehicleCategoryCode** | Pointer to **NullableString** | Vehicle category code that the holder is authorized to operate. | [optional] 
 **IssueDate** | Pointer to **NullableString** | Date when this driving privilege was issued. | [optional] 
 **ExpiryDate** | Pointer to **NullableString** | Date when this driving privilege expires. | [optional] 
 **Codes** | Pointer to [**[]Iso180135DrivingPrivilegeCode**](Iso180135DrivingPrivilegeCode.md) | Restriction, condition, or special privilege codes attached to this entry. | [optional] 
@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 
 ### NewIso180135DrivingPrivilege
 
-`func NewIso180135DrivingPrivilege(vehicleCategoryCode string, ) *Iso180135DrivingPrivilege`
+`func NewIso180135DrivingPrivilege() *Iso180135DrivingPrivilege`
 
 NewIso180135DrivingPrivilege instantiates a new Iso180135DrivingPrivilege object
 This constructor will assign default values to properties that have it defined,
@@ -47,7 +47,22 @@ and a boolean to check if the value has been set.
 
 SetVehicleCategoryCode sets VehicleCategoryCode field to given value.
 
+### HasVehicleCategoryCode
 
+`func (o *Iso180135DrivingPrivilege) HasVehicleCategoryCode() bool`
+
+HasVehicleCategoryCode returns a boolean if a field has been set.
+
+### SetVehicleCategoryCodeNil
+
+`func (o *Iso180135DrivingPrivilege) SetVehicleCategoryCodeNil(b bool)`
+
+ SetVehicleCategoryCodeNil sets the value for VehicleCategoryCode to be an explicit nil
+
+### UnsetVehicleCategoryCode
+`func (o *Iso180135DrivingPrivilege) UnsetVehicleCategoryCode()`
+
+UnsetVehicleCategoryCode ensures that no value is present for VehicleCategoryCode, not even an explicit nil
 ### GetIssueDate
 
 `func (o *Iso180135DrivingPrivilege) GetIssueDate() string`

@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Templates** | [**[]Iso180132BiometricTemplate**](Iso180132BiometricTemplate.md) | Individual biometric templates contained in this group. | 
+**Templates** | Pointer to [**[]Iso180132BiometricTemplate**](Iso180132BiometricTemplate.md) | Individual biometric templates contained in this group. | [optional] 
 
 ## Methods
 
 ### NewIso180132BiometricGroupTemplate
 
-`func NewIso180132BiometricGroupTemplate(templates []Iso180132BiometricTemplate, ) *Iso180132BiometricGroupTemplate`
+`func NewIso180132BiometricGroupTemplate() *Iso180132BiometricGroupTemplate`
 
 NewIso180132BiometricGroupTemplate instantiates a new Iso180132BiometricGroupTemplate object
 This constructor will assign default values to properties that have it defined,
@@ -44,7 +44,22 @@ and a boolean to check if the value has been set.
 
 SetTemplates sets Templates field to given value.
 
+### HasTemplates
 
+`func (o *Iso180132BiometricGroupTemplate) HasTemplates() bool`
+
+HasTemplates returns a boolean if a field has been set.
+
+### SetTemplatesNil
+
+`func (o *Iso180132BiometricGroupTemplate) SetTemplatesNil(b bool)`
+
+ SetTemplatesNil sets the value for Templates to be an explicit nil
+
+### UnsetTemplates
+`func (o *Iso180132BiometricGroupTemplate) UnsetTemplates()`
+
+UnsetTemplates ensures that no value is present for Templates, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

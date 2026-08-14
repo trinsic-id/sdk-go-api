@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the UgandaNidMatch2SecondaryIdNumberField type satisfies the MappedNullable interface at compile time
@@ -21,9 +20,9 @@ var _ MappedNullable = &UgandaNidMatch2SecondaryIdNumberField{}
 // UgandaNidMatch2SecondaryIdNumberField struct for UgandaNidMatch2SecondaryIdNumberField
 type UgandaNidMatch2SecondaryIdNumberField struct {
 	// The card number on the national ID document, distinct from the National ID number.              Format: - 9 numeric digits - There is no publicly documented encoding scheme for encoding personal information in the card number - No check digit or algorithm has been publicly documented by NIRA
-	InputValue string `json:"inputValue"`
+	InputValue NullableString `json:"inputValue,omitempty"`
 	// The outcome of comparing the submitted card number with NIRA database.              Possible values: - Exact Match - No Match - Not Returned
-	Outcome string `json:"outcome"`
+	Outcome NullableString `json:"outcome,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -33,10 +32,8 @@ type _UgandaNidMatch2SecondaryIdNumberField UgandaNidMatch2SecondaryIdNumberFiel
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUgandaNidMatch2SecondaryIdNumberField(inputValue string, outcome string) *UgandaNidMatch2SecondaryIdNumberField {
+func NewUgandaNidMatch2SecondaryIdNumberField() *UgandaNidMatch2SecondaryIdNumberField {
 	this := UgandaNidMatch2SecondaryIdNumberField{}
-	this.InputValue = inputValue
-	this.Outcome = outcome
 	return &this
 }
 
@@ -48,52 +45,88 @@ func NewUgandaNidMatch2SecondaryIdNumberFieldWithDefaults() *UgandaNidMatch2Seco
 	return &this
 }
 
-// GetInputValue returns the InputValue field value
+// GetInputValue returns the InputValue field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UgandaNidMatch2SecondaryIdNumberField) GetInputValue() string {
-	if o == nil {
+	if o == nil || IsNil(o.InputValue.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.InputValue
+	return *o.InputValue.Get()
 }
 
-// GetInputValueOk returns a tuple with the InputValue field value
+// GetInputValueOk returns a tuple with the InputValue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UgandaNidMatch2SecondaryIdNumberField) GetInputValueOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.InputValue, true
+	return o.InputValue.Get(), o.InputValue.IsSet()
 }
 
-// SetInputValue sets field value
+// HasInputValue returns a boolean if a field has been set.
+func (o *UgandaNidMatch2SecondaryIdNumberField) HasInputValue() bool {
+	if o != nil && o.InputValue.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetInputValue gets a reference to the given NullableString and assigns it to the InputValue field.
 func (o *UgandaNidMatch2SecondaryIdNumberField) SetInputValue(v string) {
-	o.InputValue = v
+	o.InputValue.Set(&v)
+}
+// SetInputValueNil sets the value for InputValue to be an explicit nil
+func (o *UgandaNidMatch2SecondaryIdNumberField) SetInputValueNil() {
+	o.InputValue.Set(nil)
 }
 
-// GetOutcome returns the Outcome field value
+// UnsetInputValue ensures that no value is present for InputValue, not even an explicit nil
+func (o *UgandaNidMatch2SecondaryIdNumberField) UnsetInputValue() {
+	o.InputValue.Unset()
+}
+
+// GetOutcome returns the Outcome field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UgandaNidMatch2SecondaryIdNumberField) GetOutcome() string {
-	if o == nil {
+	if o == nil || IsNil(o.Outcome.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.Outcome
+	return *o.Outcome.Get()
 }
 
-// GetOutcomeOk returns a tuple with the Outcome field value
+// GetOutcomeOk returns a tuple with the Outcome field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UgandaNidMatch2SecondaryIdNumberField) GetOutcomeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Outcome, true
+	return o.Outcome.Get(), o.Outcome.IsSet()
 }
 
-// SetOutcome sets field value
+// HasOutcome returns a boolean if a field has been set.
+func (o *UgandaNidMatch2SecondaryIdNumberField) HasOutcome() bool {
+	if o != nil && o.Outcome.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetOutcome gets a reference to the given NullableString and assigns it to the Outcome field.
 func (o *UgandaNidMatch2SecondaryIdNumberField) SetOutcome(v string) {
-	o.Outcome = v
+	o.Outcome.Set(&v)
+}
+// SetOutcomeNil sets the value for Outcome to be an explicit nil
+func (o *UgandaNidMatch2SecondaryIdNumberField) SetOutcomeNil() {
+	o.Outcome.Set(nil)
+}
+
+// UnsetOutcome ensures that no value is present for Outcome, not even an explicit nil
+func (o *UgandaNidMatch2SecondaryIdNumberField) UnsetOutcome() {
+	o.Outcome.Unset()
 }
 
 func (o UgandaNidMatch2SecondaryIdNumberField) MarshalJSON() ([]byte, error) {
@@ -106,8 +139,12 @@ func (o UgandaNidMatch2SecondaryIdNumberField) MarshalJSON() ([]byte, error) {
 
 func (o UgandaNidMatch2SecondaryIdNumberField) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["inputValue"] = o.InputValue
-	toSerialize["outcome"] = o.Outcome
+	if o.InputValue.IsSet() {
+		toSerialize["inputValue"] = o.InputValue.Get()
+	}
+	if o.Outcome.IsSet() {
+		toSerialize["outcome"] = o.Outcome.Get()
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -117,28 +154,6 @@ func (o UgandaNidMatch2SecondaryIdNumberField) ToMap() (map[string]interface{}, 
 }
 
 func (o *UgandaNidMatch2SecondaryIdNumberField) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"inputValue",
-		"outcome",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varUgandaNidMatch2SecondaryIdNumberField := _UgandaNidMatch2SecondaryIdNumberField{}
 
 	err = json.Unmarshal(data, &varUgandaNidMatch2SecondaryIdNumberField)

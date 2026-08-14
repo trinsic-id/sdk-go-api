@@ -12,42 +12,53 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the ItsmeProviderOutput type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ItsmeProviderOutput{}
 
-// ItsmeProviderOutput Exposed properties for the `a-itsme-login` Provider which do not directly map to the normalized IdentityData model.
+// ItsmeProviderOutput Exposed properties for the `itsme` Provider which do not directly map to the normalized IdentityData model.
 type ItsmeProviderOutput struct {
-	// The first name of the verified individual
-	FirstName string `json:"firstName"`
-	// The last name of the verified individual
-	LastName string `json:"lastName"`
-	// The date of birth of the verified individual
-	DateOfBirth string `json:"dateOfBirth"`
-	// The hashed version of the Belgian National Register Number of the verified individual.              By default, itsme does not return the raw National Register Number of the individual; instead, only a hashed version is returned.              Your account must be approved by itsme to receive the raw, unhashed National Register Number.
-	HashedNationalRegisterNumber NullableString `json:"hashedNationalRegisterNumber,omitempty"`
-	// The raw (not hashed) Belgian National Register Number (\"Rijksregisternummer\") of the verified individual.              Only returned if your account has been explicitly authorized to receive it by itsme; by law, this data is considered sensitive personal data.              This is an 11-digit number in the format YYMMDDXXXCC, where: - YYMMDD represents the individual's date of birth (year, month, day). - XXX is a sequential birth number, odd for females and even for males. - CC is a checksum, calculated with the equation: 97 - (YYMMDDXXX mod 97)              For births in the year 2000 or later, the digit '2' is prepended to the first 9 digits during checksum calculation.
-	NationalRegisterNumber NullableString `json:"nationalRegisterNumber,omitempty"`
-	// The individual's email address.
+	// The date of birth of the verified individual.              Availability by ID document issuing country: always returned for supported issuing countries except Belgium, where it is best effort.
+	DateOfBirth NullableString `json:"dateOfBirth,omitempty"`
+	// The email address of the verified individual.              Availability by ID document issuing country: best effort for all supported issuing countries.
 	Email NullableString `json:"email,omitempty"`
-	// The individual's phone number in international format.
+	// The phone number of the verified individual, with a leading + country calling code.              Availability by ID document issuing country: always returned for all supported issuing countries.
 	PhoneNumber NullableString `json:"phoneNumber,omitempty"`
-	// The individual's gender.              Possible values: - Male - Female - Unknown - Not Applicable
+	// The stable OpenID Connect (OIDC) subject (sub) identifier.              This should be a stable identifier, however, if a user deletes and recreates an account, this identifier will change.
+	Sub NullableString `json:"sub,omitempty"`
+	// The full name of the verified individual.              Availability by ID document issuing country: always returned for all supported issuing countries.
+	FullName NullableString `json:"fullName,omitempty"`
+	// The given name of the verified individual.              Availability by ID document issuing country: best effort for all supported issuing countries.
+	GivenName NullableString `json:"givenName,omitempty"`
+	// The family name of the verified individual.              Availability by ID document issuing country: always returned for all supported issuing countries.
+	FamilyName NullableString `json:"familyName,omitempty"`
+	// The date of birth of the verified individual in itsme's document-facing string format.              Availability by ID document issuing country: best effort for Belgian-issued ID documents; not returned for other supported issuing countries.
+	DateOfBirthAsString NullableString `json:"dateOfBirthAsString,omitempty"`
+	// The gender claim for the verified individual.              Availability by ID document issuing country: always returned for supported issuing countries except Netherlands, where it is best effort.              Known values: - Female - Male - Unknown
 	Gender NullableString `json:"gender,omitempty"`
-	// The individual's nationality as an ISO 3166-1 alpha-3 code.
-	Nationality NullableString `json:"nationality,omitempty"`
-	// The individual's place of birth.
-	BirthPlace NullableString `json:"birthPlace,omitempty"`
-	// The document number
-	DocumentNumber NullableString `json:"documentNumber,omitempty"`
-	// The expiration date of the identity document.
-	IdentityDocumentExpirationDate NullableString `json:"identityDocumentExpirationDate,omitempty"`
-	// The individual's language as an ISO 639-1 code. Expected values: NL, FR, DE, EN.
-	Language NullableString `json:"language,omitempty"`
-	// The individual's address
-	Address NullableItsmeAddress `json:"address,omitempty"`
+	// The itsme app language as an uppercase language code.              Availability by ID document issuing country: best effort for all supported issuing countries.              Known values: - NL - FR - DE - EN
+	Locale NullableString `json:"locale,omitempty"`
+	// The URL of the profile picture resource.              Availability by ID document issuing country: always returned for supported issuing countries except Belgium, where it is best effort.
+	PictureUrl NullableString `json:"pictureUrl,omitempty"`
+	// Whether itsme reports the email address as verified.              Availability by ID document issuing country: returned only if `email` is available.              Note: itsme currently documents that this value is usually false because email verification is not implemented in its systems.
+	EmailVerified NullableBool `json:"emailVerified,omitempty"`
+	// Whether itsme reports the phone number as verified.              Availability by ID document issuing country: always returned for all supported issuing countries.
+	PhoneNumberVerified NullableBool `json:"phoneNumberVerified,omitempty"`
+	// The address of the verified individual.              Availability by ID document issuing country: always returned for Belgian-issued ID documents, best effort for Netherlands-issued ID documents, and not returned for other supported issuing countries.
+	Address NullableItsmeProviderAddress `json:"address,omitempty"`
+	// The citizenship of the verified individual as an ISO 3166-1 alpha-2 country code.              Availability by ID document issuing country: always returned for supported issuing countries except Belgium, where it is best effort.
+	Citizenship NullableString `json:"citizenship,omitempty"`
+	// The Belgian National Register Number and related metadata.              Availability by ID document issuing country: returned only for Belgian-issued ID documents.
+	BelgianNationalNumber NullableItsmeBelgianNationalNumber `json:"belgianNationalNumber,omitempty"`
+	// The Belgian eID card document number and related metadata.              Availability by ID document issuing country: returned only for Belgian-issued ID documents.
+	BelgianIdentityCard NullableItsmeBelgianIdentityCard `json:"belgianIdentityCard,omitempty"`
+	// The identity document and related metadata.              Availability by ID document issuing country: always returned for all supported issuing countries.
+	IdentityDocument NullableItsmeIdentityDocument `json:"identityDocument,omitempty"`
+	// The place of birth.              Availability by ID document issuing country: best effort for Belgian-issued ID documents; not returned for other supported issuing countries.
+	PlaceOfBirth NullableItsmePlaceOfBirth `json:"placeOfBirth,omitempty"`
+	// The device metadata for the verification.              Availability by ID document issuing country: best effort for all supported issuing countries.
+	Device NullableItsmeDirectDevice `json:"device,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -57,11 +68,8 @@ type _ItsmeProviderOutput ItsmeProviderOutput
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewItsmeProviderOutput(firstName string, lastName string, dateOfBirth string) *ItsmeProviderOutput {
+func NewItsmeProviderOutput() *ItsmeProviderOutput {
 	this := ItsmeProviderOutput{}
-	this.FirstName = firstName
-	this.LastName = lastName
-	this.DateOfBirth = dateOfBirth
 	return &this
 }
 
@@ -73,160 +81,46 @@ func NewItsmeProviderOutputWithDefaults() *ItsmeProviderOutput {
 	return &this
 }
 
-// GetFirstName returns the FirstName field value
-func (o *ItsmeProviderOutput) GetFirstName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.FirstName
-}
-
-// GetFirstNameOk returns a tuple with the FirstName field value
-// and a boolean to check if the value has been set.
-func (o *ItsmeProviderOutput) GetFirstNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.FirstName, true
-}
-
-// SetFirstName sets field value
-func (o *ItsmeProviderOutput) SetFirstName(v string) {
-	o.FirstName = v
-}
-
-// GetLastName returns the LastName field value
-func (o *ItsmeProviderOutput) GetLastName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.LastName
-}
-
-// GetLastNameOk returns a tuple with the LastName field value
-// and a boolean to check if the value has been set.
-func (o *ItsmeProviderOutput) GetLastNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.LastName, true
-}
-
-// SetLastName sets field value
-func (o *ItsmeProviderOutput) SetLastName(v string) {
-	o.LastName = v
-}
-
-// GetDateOfBirth returns the DateOfBirth field value
+// GetDateOfBirth returns the DateOfBirth field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ItsmeProviderOutput) GetDateOfBirth() string {
-	if o == nil {
+	if o == nil || IsNil(o.DateOfBirth.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.DateOfBirth
+	return *o.DateOfBirth.Get()
 }
 
-// GetDateOfBirthOk returns a tuple with the DateOfBirth field value
+// GetDateOfBirthOk returns a tuple with the DateOfBirth field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ItsmeProviderOutput) GetDateOfBirthOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.DateOfBirth, true
+	return o.DateOfBirth.Get(), o.DateOfBirth.IsSet()
 }
 
-// SetDateOfBirth sets field value
+// HasDateOfBirth returns a boolean if a field has been set.
+func (o *ItsmeProviderOutput) HasDateOfBirth() bool {
+	if o != nil && o.DateOfBirth.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDateOfBirth gets a reference to the given NullableString and assigns it to the DateOfBirth field.
 func (o *ItsmeProviderOutput) SetDateOfBirth(v string) {
-	o.DateOfBirth = v
+	o.DateOfBirth.Set(&v)
+}
+// SetDateOfBirthNil sets the value for DateOfBirth to be an explicit nil
+func (o *ItsmeProviderOutput) SetDateOfBirthNil() {
+	o.DateOfBirth.Set(nil)
 }
 
-// GetHashedNationalRegisterNumber returns the HashedNationalRegisterNumber field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ItsmeProviderOutput) GetHashedNationalRegisterNumber() string {
-	if o == nil || IsNil(o.HashedNationalRegisterNumber.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.HashedNationalRegisterNumber.Get()
-}
-
-// GetHashedNationalRegisterNumberOk returns a tuple with the HashedNationalRegisterNumber field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ItsmeProviderOutput) GetHashedNationalRegisterNumberOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.HashedNationalRegisterNumber.Get(), o.HashedNationalRegisterNumber.IsSet()
-}
-
-// HasHashedNationalRegisterNumber returns a boolean if a field has been set.
-func (o *ItsmeProviderOutput) HasHashedNationalRegisterNumber() bool {
-	if o != nil && o.HashedNationalRegisterNumber.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetHashedNationalRegisterNumber gets a reference to the given NullableString and assigns it to the HashedNationalRegisterNumber field.
-func (o *ItsmeProviderOutput) SetHashedNationalRegisterNumber(v string) {
-	o.HashedNationalRegisterNumber.Set(&v)
-}
-// SetHashedNationalRegisterNumberNil sets the value for HashedNationalRegisterNumber to be an explicit nil
-func (o *ItsmeProviderOutput) SetHashedNationalRegisterNumberNil() {
-	o.HashedNationalRegisterNumber.Set(nil)
-}
-
-// UnsetHashedNationalRegisterNumber ensures that no value is present for HashedNationalRegisterNumber, not even an explicit nil
-func (o *ItsmeProviderOutput) UnsetHashedNationalRegisterNumber() {
-	o.HashedNationalRegisterNumber.Unset()
-}
-
-// GetNationalRegisterNumber returns the NationalRegisterNumber field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ItsmeProviderOutput) GetNationalRegisterNumber() string {
-	if o == nil || IsNil(o.NationalRegisterNumber.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.NationalRegisterNumber.Get()
-}
-
-// GetNationalRegisterNumberOk returns a tuple with the NationalRegisterNumber field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ItsmeProviderOutput) GetNationalRegisterNumberOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.NationalRegisterNumber.Get(), o.NationalRegisterNumber.IsSet()
-}
-
-// HasNationalRegisterNumber returns a boolean if a field has been set.
-func (o *ItsmeProviderOutput) HasNationalRegisterNumber() bool {
-	if o != nil && o.NationalRegisterNumber.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetNationalRegisterNumber gets a reference to the given NullableString and assigns it to the NationalRegisterNumber field.
-func (o *ItsmeProviderOutput) SetNationalRegisterNumber(v string) {
-	o.NationalRegisterNumber.Set(&v)
-}
-// SetNationalRegisterNumberNil sets the value for NationalRegisterNumber to be an explicit nil
-func (o *ItsmeProviderOutput) SetNationalRegisterNumberNil() {
-	o.NationalRegisterNumber.Set(nil)
-}
-
-// UnsetNationalRegisterNumber ensures that no value is present for NationalRegisterNumber, not even an explicit nil
-func (o *ItsmeProviderOutput) UnsetNationalRegisterNumber() {
-	o.NationalRegisterNumber.Unset()
+// UnsetDateOfBirth ensures that no value is present for DateOfBirth, not even an explicit nil
+func (o *ItsmeProviderOutput) UnsetDateOfBirth() {
+	o.DateOfBirth.Unset()
 }
 
 // GetEmail returns the Email field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -313,6 +207,216 @@ func (o *ItsmeProviderOutput) UnsetPhoneNumber() {
 	o.PhoneNumber.Unset()
 }
 
+// GetSub returns the Sub field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ItsmeProviderOutput) GetSub() string {
+	if o == nil || IsNil(o.Sub.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Sub.Get()
+}
+
+// GetSubOk returns a tuple with the Sub field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ItsmeProviderOutput) GetSubOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Sub.Get(), o.Sub.IsSet()
+}
+
+// HasSub returns a boolean if a field has been set.
+func (o *ItsmeProviderOutput) HasSub() bool {
+	if o != nil && o.Sub.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSub gets a reference to the given NullableString and assigns it to the Sub field.
+func (o *ItsmeProviderOutput) SetSub(v string) {
+	o.Sub.Set(&v)
+}
+// SetSubNil sets the value for Sub to be an explicit nil
+func (o *ItsmeProviderOutput) SetSubNil() {
+	o.Sub.Set(nil)
+}
+
+// UnsetSub ensures that no value is present for Sub, not even an explicit nil
+func (o *ItsmeProviderOutput) UnsetSub() {
+	o.Sub.Unset()
+}
+
+// GetFullName returns the FullName field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ItsmeProviderOutput) GetFullName() string {
+	if o == nil || IsNil(o.FullName.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.FullName.Get()
+}
+
+// GetFullNameOk returns a tuple with the FullName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ItsmeProviderOutput) GetFullNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.FullName.Get(), o.FullName.IsSet()
+}
+
+// HasFullName returns a boolean if a field has been set.
+func (o *ItsmeProviderOutput) HasFullName() bool {
+	if o != nil && o.FullName.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetFullName gets a reference to the given NullableString and assigns it to the FullName field.
+func (o *ItsmeProviderOutput) SetFullName(v string) {
+	o.FullName.Set(&v)
+}
+// SetFullNameNil sets the value for FullName to be an explicit nil
+func (o *ItsmeProviderOutput) SetFullNameNil() {
+	o.FullName.Set(nil)
+}
+
+// UnsetFullName ensures that no value is present for FullName, not even an explicit nil
+func (o *ItsmeProviderOutput) UnsetFullName() {
+	o.FullName.Unset()
+}
+
+// GetGivenName returns the GivenName field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ItsmeProviderOutput) GetGivenName() string {
+	if o == nil || IsNil(o.GivenName.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.GivenName.Get()
+}
+
+// GetGivenNameOk returns a tuple with the GivenName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ItsmeProviderOutput) GetGivenNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.GivenName.Get(), o.GivenName.IsSet()
+}
+
+// HasGivenName returns a boolean if a field has been set.
+func (o *ItsmeProviderOutput) HasGivenName() bool {
+	if o != nil && o.GivenName.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetGivenName gets a reference to the given NullableString and assigns it to the GivenName field.
+func (o *ItsmeProviderOutput) SetGivenName(v string) {
+	o.GivenName.Set(&v)
+}
+// SetGivenNameNil sets the value for GivenName to be an explicit nil
+func (o *ItsmeProviderOutput) SetGivenNameNil() {
+	o.GivenName.Set(nil)
+}
+
+// UnsetGivenName ensures that no value is present for GivenName, not even an explicit nil
+func (o *ItsmeProviderOutput) UnsetGivenName() {
+	o.GivenName.Unset()
+}
+
+// GetFamilyName returns the FamilyName field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ItsmeProviderOutput) GetFamilyName() string {
+	if o == nil || IsNil(o.FamilyName.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.FamilyName.Get()
+}
+
+// GetFamilyNameOk returns a tuple with the FamilyName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ItsmeProviderOutput) GetFamilyNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.FamilyName.Get(), o.FamilyName.IsSet()
+}
+
+// HasFamilyName returns a boolean if a field has been set.
+func (o *ItsmeProviderOutput) HasFamilyName() bool {
+	if o != nil && o.FamilyName.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetFamilyName gets a reference to the given NullableString and assigns it to the FamilyName field.
+func (o *ItsmeProviderOutput) SetFamilyName(v string) {
+	o.FamilyName.Set(&v)
+}
+// SetFamilyNameNil sets the value for FamilyName to be an explicit nil
+func (o *ItsmeProviderOutput) SetFamilyNameNil() {
+	o.FamilyName.Set(nil)
+}
+
+// UnsetFamilyName ensures that no value is present for FamilyName, not even an explicit nil
+func (o *ItsmeProviderOutput) UnsetFamilyName() {
+	o.FamilyName.Unset()
+}
+
+// GetDateOfBirthAsString returns the DateOfBirthAsString field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ItsmeProviderOutput) GetDateOfBirthAsString() string {
+	if o == nil || IsNil(o.DateOfBirthAsString.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.DateOfBirthAsString.Get()
+}
+
+// GetDateOfBirthAsStringOk returns a tuple with the DateOfBirthAsString field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ItsmeProviderOutput) GetDateOfBirthAsStringOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.DateOfBirthAsString.Get(), o.DateOfBirthAsString.IsSet()
+}
+
+// HasDateOfBirthAsString returns a boolean if a field has been set.
+func (o *ItsmeProviderOutput) HasDateOfBirthAsString() bool {
+	if o != nil && o.DateOfBirthAsString.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDateOfBirthAsString gets a reference to the given NullableString and assigns it to the DateOfBirthAsString field.
+func (o *ItsmeProviderOutput) SetDateOfBirthAsString(v string) {
+	o.DateOfBirthAsString.Set(&v)
+}
+// SetDateOfBirthAsStringNil sets the value for DateOfBirthAsString to be an explicit nil
+func (o *ItsmeProviderOutput) SetDateOfBirthAsStringNil() {
+	o.DateOfBirthAsString.Set(nil)
+}
+
+// UnsetDateOfBirthAsString ensures that no value is present for DateOfBirthAsString, not even an explicit nil
+func (o *ItsmeProviderOutput) UnsetDateOfBirthAsString() {
+	o.DateOfBirthAsString.Unset()
+}
+
 // GetGender returns the Gender field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ItsmeProviderOutput) GetGender() string {
 	if o == nil || IsNil(o.Gender.Get()) {
@@ -355,220 +459,178 @@ func (o *ItsmeProviderOutput) UnsetGender() {
 	o.Gender.Unset()
 }
 
-// GetNationality returns the Nationality field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ItsmeProviderOutput) GetNationality() string {
-	if o == nil || IsNil(o.Nationality.Get()) {
+// GetLocale returns the Locale field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ItsmeProviderOutput) GetLocale() string {
+	if o == nil || IsNil(o.Locale.Get()) {
 		var ret string
 		return ret
 	}
-	return *o.Nationality.Get()
+	return *o.Locale.Get()
 }
 
-// GetNationalityOk returns a tuple with the Nationality field value if set, nil otherwise
+// GetLocaleOk returns a tuple with the Locale field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ItsmeProviderOutput) GetNationalityOk() (*string, bool) {
+func (o *ItsmeProviderOutput) GetLocaleOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Nationality.Get(), o.Nationality.IsSet()
+	return o.Locale.Get(), o.Locale.IsSet()
 }
 
-// HasNationality returns a boolean if a field has been set.
-func (o *ItsmeProviderOutput) HasNationality() bool {
-	if o != nil && o.Nationality.IsSet() {
+// HasLocale returns a boolean if a field has been set.
+func (o *ItsmeProviderOutput) HasLocale() bool {
+	if o != nil && o.Locale.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetNationality gets a reference to the given NullableString and assigns it to the Nationality field.
-func (o *ItsmeProviderOutput) SetNationality(v string) {
-	o.Nationality.Set(&v)
+// SetLocale gets a reference to the given NullableString and assigns it to the Locale field.
+func (o *ItsmeProviderOutput) SetLocale(v string) {
+	o.Locale.Set(&v)
 }
-// SetNationalityNil sets the value for Nationality to be an explicit nil
-func (o *ItsmeProviderOutput) SetNationalityNil() {
-	o.Nationality.Set(nil)
-}
-
-// UnsetNationality ensures that no value is present for Nationality, not even an explicit nil
-func (o *ItsmeProviderOutput) UnsetNationality() {
-	o.Nationality.Unset()
+// SetLocaleNil sets the value for Locale to be an explicit nil
+func (o *ItsmeProviderOutput) SetLocaleNil() {
+	o.Locale.Set(nil)
 }
 
-// GetBirthPlace returns the BirthPlace field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ItsmeProviderOutput) GetBirthPlace() string {
-	if o == nil || IsNil(o.BirthPlace.Get()) {
+// UnsetLocale ensures that no value is present for Locale, not even an explicit nil
+func (o *ItsmeProviderOutput) UnsetLocale() {
+	o.Locale.Unset()
+}
+
+// GetPictureUrl returns the PictureUrl field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ItsmeProviderOutput) GetPictureUrl() string {
+	if o == nil || IsNil(o.PictureUrl.Get()) {
 		var ret string
 		return ret
 	}
-	return *o.BirthPlace.Get()
+	return *o.PictureUrl.Get()
 }
 
-// GetBirthPlaceOk returns a tuple with the BirthPlace field value if set, nil otherwise
+// GetPictureUrlOk returns a tuple with the PictureUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ItsmeProviderOutput) GetBirthPlaceOk() (*string, bool) {
+func (o *ItsmeProviderOutput) GetPictureUrlOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.BirthPlace.Get(), o.BirthPlace.IsSet()
+	return o.PictureUrl.Get(), o.PictureUrl.IsSet()
 }
 
-// HasBirthPlace returns a boolean if a field has been set.
-func (o *ItsmeProviderOutput) HasBirthPlace() bool {
-	if o != nil && o.BirthPlace.IsSet() {
+// HasPictureUrl returns a boolean if a field has been set.
+func (o *ItsmeProviderOutput) HasPictureUrl() bool {
+	if o != nil && o.PictureUrl.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetBirthPlace gets a reference to the given NullableString and assigns it to the BirthPlace field.
-func (o *ItsmeProviderOutput) SetBirthPlace(v string) {
-	o.BirthPlace.Set(&v)
+// SetPictureUrl gets a reference to the given NullableString and assigns it to the PictureUrl field.
+func (o *ItsmeProviderOutput) SetPictureUrl(v string) {
+	o.PictureUrl.Set(&v)
 }
-// SetBirthPlaceNil sets the value for BirthPlace to be an explicit nil
-func (o *ItsmeProviderOutput) SetBirthPlaceNil() {
-	o.BirthPlace.Set(nil)
-}
-
-// UnsetBirthPlace ensures that no value is present for BirthPlace, not even an explicit nil
-func (o *ItsmeProviderOutput) UnsetBirthPlace() {
-	o.BirthPlace.Unset()
+// SetPictureUrlNil sets the value for PictureUrl to be an explicit nil
+func (o *ItsmeProviderOutput) SetPictureUrlNil() {
+	o.PictureUrl.Set(nil)
 }
 
-// GetDocumentNumber returns the DocumentNumber field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ItsmeProviderOutput) GetDocumentNumber() string {
-	if o == nil || IsNil(o.DocumentNumber.Get()) {
-		var ret string
+// UnsetPictureUrl ensures that no value is present for PictureUrl, not even an explicit nil
+func (o *ItsmeProviderOutput) UnsetPictureUrl() {
+	o.PictureUrl.Unset()
+}
+
+// GetEmailVerified returns the EmailVerified field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ItsmeProviderOutput) GetEmailVerified() bool {
+	if o == nil || IsNil(o.EmailVerified.Get()) {
+		var ret bool
 		return ret
 	}
-	return *o.DocumentNumber.Get()
+	return *o.EmailVerified.Get()
 }
 
-// GetDocumentNumberOk returns a tuple with the DocumentNumber field value if set, nil otherwise
+// GetEmailVerifiedOk returns a tuple with the EmailVerified field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ItsmeProviderOutput) GetDocumentNumberOk() (*string, bool) {
+func (o *ItsmeProviderOutput) GetEmailVerifiedOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.DocumentNumber.Get(), o.DocumentNumber.IsSet()
+	return o.EmailVerified.Get(), o.EmailVerified.IsSet()
 }
 
-// HasDocumentNumber returns a boolean if a field has been set.
-func (o *ItsmeProviderOutput) HasDocumentNumber() bool {
-	if o != nil && o.DocumentNumber.IsSet() {
+// HasEmailVerified returns a boolean if a field has been set.
+func (o *ItsmeProviderOutput) HasEmailVerified() bool {
+	if o != nil && o.EmailVerified.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetDocumentNumber gets a reference to the given NullableString and assigns it to the DocumentNumber field.
-func (o *ItsmeProviderOutput) SetDocumentNumber(v string) {
-	o.DocumentNumber.Set(&v)
+// SetEmailVerified gets a reference to the given NullableBool and assigns it to the EmailVerified field.
+func (o *ItsmeProviderOutput) SetEmailVerified(v bool) {
+	o.EmailVerified.Set(&v)
 }
-// SetDocumentNumberNil sets the value for DocumentNumber to be an explicit nil
-func (o *ItsmeProviderOutput) SetDocumentNumberNil() {
-	o.DocumentNumber.Set(nil)
-}
-
-// UnsetDocumentNumber ensures that no value is present for DocumentNumber, not even an explicit nil
-func (o *ItsmeProviderOutput) UnsetDocumentNumber() {
-	o.DocumentNumber.Unset()
+// SetEmailVerifiedNil sets the value for EmailVerified to be an explicit nil
+func (o *ItsmeProviderOutput) SetEmailVerifiedNil() {
+	o.EmailVerified.Set(nil)
 }
 
-// GetIdentityDocumentExpirationDate returns the IdentityDocumentExpirationDate field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ItsmeProviderOutput) GetIdentityDocumentExpirationDate() string {
-	if o == nil || IsNil(o.IdentityDocumentExpirationDate.Get()) {
-		var ret string
+// UnsetEmailVerified ensures that no value is present for EmailVerified, not even an explicit nil
+func (o *ItsmeProviderOutput) UnsetEmailVerified() {
+	o.EmailVerified.Unset()
+}
+
+// GetPhoneNumberVerified returns the PhoneNumberVerified field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ItsmeProviderOutput) GetPhoneNumberVerified() bool {
+	if o == nil || IsNil(o.PhoneNumberVerified.Get()) {
+		var ret bool
 		return ret
 	}
-	return *o.IdentityDocumentExpirationDate.Get()
+	return *o.PhoneNumberVerified.Get()
 }
 
-// GetIdentityDocumentExpirationDateOk returns a tuple with the IdentityDocumentExpirationDate field value if set, nil otherwise
+// GetPhoneNumberVerifiedOk returns a tuple with the PhoneNumberVerified field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ItsmeProviderOutput) GetIdentityDocumentExpirationDateOk() (*string, bool) {
+func (o *ItsmeProviderOutput) GetPhoneNumberVerifiedOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.IdentityDocumentExpirationDate.Get(), o.IdentityDocumentExpirationDate.IsSet()
+	return o.PhoneNumberVerified.Get(), o.PhoneNumberVerified.IsSet()
 }
 
-// HasIdentityDocumentExpirationDate returns a boolean if a field has been set.
-func (o *ItsmeProviderOutput) HasIdentityDocumentExpirationDate() bool {
-	if o != nil && o.IdentityDocumentExpirationDate.IsSet() {
+// HasPhoneNumberVerified returns a boolean if a field has been set.
+func (o *ItsmeProviderOutput) HasPhoneNumberVerified() bool {
+	if o != nil && o.PhoneNumberVerified.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetIdentityDocumentExpirationDate gets a reference to the given NullableString and assigns it to the IdentityDocumentExpirationDate field.
-func (o *ItsmeProviderOutput) SetIdentityDocumentExpirationDate(v string) {
-	o.IdentityDocumentExpirationDate.Set(&v)
+// SetPhoneNumberVerified gets a reference to the given NullableBool and assigns it to the PhoneNumberVerified field.
+func (o *ItsmeProviderOutput) SetPhoneNumberVerified(v bool) {
+	o.PhoneNumberVerified.Set(&v)
 }
-// SetIdentityDocumentExpirationDateNil sets the value for IdentityDocumentExpirationDate to be an explicit nil
-func (o *ItsmeProviderOutput) SetIdentityDocumentExpirationDateNil() {
-	o.IdentityDocumentExpirationDate.Set(nil)
-}
-
-// UnsetIdentityDocumentExpirationDate ensures that no value is present for IdentityDocumentExpirationDate, not even an explicit nil
-func (o *ItsmeProviderOutput) UnsetIdentityDocumentExpirationDate() {
-	o.IdentityDocumentExpirationDate.Unset()
+// SetPhoneNumberVerifiedNil sets the value for PhoneNumberVerified to be an explicit nil
+func (o *ItsmeProviderOutput) SetPhoneNumberVerifiedNil() {
+	o.PhoneNumberVerified.Set(nil)
 }
 
-// GetLanguage returns the Language field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ItsmeProviderOutput) GetLanguage() string {
-	if o == nil || IsNil(o.Language.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Language.Get()
-}
-
-// GetLanguageOk returns a tuple with the Language field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ItsmeProviderOutput) GetLanguageOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Language.Get(), o.Language.IsSet()
-}
-
-// HasLanguage returns a boolean if a field has been set.
-func (o *ItsmeProviderOutput) HasLanguage() bool {
-	if o != nil && o.Language.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetLanguage gets a reference to the given NullableString and assigns it to the Language field.
-func (o *ItsmeProviderOutput) SetLanguage(v string) {
-	o.Language.Set(&v)
-}
-// SetLanguageNil sets the value for Language to be an explicit nil
-func (o *ItsmeProviderOutput) SetLanguageNil() {
-	o.Language.Set(nil)
-}
-
-// UnsetLanguage ensures that no value is present for Language, not even an explicit nil
-func (o *ItsmeProviderOutput) UnsetLanguage() {
-	o.Language.Unset()
+// UnsetPhoneNumberVerified ensures that no value is present for PhoneNumberVerified, not even an explicit nil
+func (o *ItsmeProviderOutput) UnsetPhoneNumberVerified() {
+	o.PhoneNumberVerified.Unset()
 }
 
 // GetAddress returns the Address field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ItsmeProviderOutput) GetAddress() ItsmeAddress {
+func (o *ItsmeProviderOutput) GetAddress() ItsmeProviderAddress {
 	if o == nil || IsNil(o.Address.Get()) {
-		var ret ItsmeAddress
+		var ret ItsmeProviderAddress
 		return ret
 	}
 	return *o.Address.Get()
@@ -577,7 +639,7 @@ func (o *ItsmeProviderOutput) GetAddress() ItsmeAddress {
 // GetAddressOk returns a tuple with the Address field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ItsmeProviderOutput) GetAddressOk() (*ItsmeAddress, bool) {
+func (o *ItsmeProviderOutput) GetAddressOk() (*ItsmeProviderAddress, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -593,8 +655,8 @@ func (o *ItsmeProviderOutput) HasAddress() bool {
 	return false
 }
 
-// SetAddress gets a reference to the given NullableItsmeAddress and assigns it to the Address field.
-func (o *ItsmeProviderOutput) SetAddress(v ItsmeAddress) {
+// SetAddress gets a reference to the given NullableItsmeProviderAddress and assigns it to the Address field.
+func (o *ItsmeProviderOutput) SetAddress(v ItsmeProviderAddress) {
 	o.Address.Set(&v)
 }
 // SetAddressNil sets the value for Address to be an explicit nil
@@ -607,6 +669,258 @@ func (o *ItsmeProviderOutput) UnsetAddress() {
 	o.Address.Unset()
 }
 
+// GetCitizenship returns the Citizenship field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ItsmeProviderOutput) GetCitizenship() string {
+	if o == nil || IsNil(o.Citizenship.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Citizenship.Get()
+}
+
+// GetCitizenshipOk returns a tuple with the Citizenship field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ItsmeProviderOutput) GetCitizenshipOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Citizenship.Get(), o.Citizenship.IsSet()
+}
+
+// HasCitizenship returns a boolean if a field has been set.
+func (o *ItsmeProviderOutput) HasCitizenship() bool {
+	if o != nil && o.Citizenship.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCitizenship gets a reference to the given NullableString and assigns it to the Citizenship field.
+func (o *ItsmeProviderOutput) SetCitizenship(v string) {
+	o.Citizenship.Set(&v)
+}
+// SetCitizenshipNil sets the value for Citizenship to be an explicit nil
+func (o *ItsmeProviderOutput) SetCitizenshipNil() {
+	o.Citizenship.Set(nil)
+}
+
+// UnsetCitizenship ensures that no value is present for Citizenship, not even an explicit nil
+func (o *ItsmeProviderOutput) UnsetCitizenship() {
+	o.Citizenship.Unset()
+}
+
+// GetBelgianNationalNumber returns the BelgianNationalNumber field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ItsmeProviderOutput) GetBelgianNationalNumber() ItsmeBelgianNationalNumber {
+	if o == nil || IsNil(o.BelgianNationalNumber.Get()) {
+		var ret ItsmeBelgianNationalNumber
+		return ret
+	}
+	return *o.BelgianNationalNumber.Get()
+}
+
+// GetBelgianNationalNumberOk returns a tuple with the BelgianNationalNumber field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ItsmeProviderOutput) GetBelgianNationalNumberOk() (*ItsmeBelgianNationalNumber, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.BelgianNationalNumber.Get(), o.BelgianNationalNumber.IsSet()
+}
+
+// HasBelgianNationalNumber returns a boolean if a field has been set.
+func (o *ItsmeProviderOutput) HasBelgianNationalNumber() bool {
+	if o != nil && o.BelgianNationalNumber.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetBelgianNationalNumber gets a reference to the given NullableItsmeBelgianNationalNumber and assigns it to the BelgianNationalNumber field.
+func (o *ItsmeProviderOutput) SetBelgianNationalNumber(v ItsmeBelgianNationalNumber) {
+	o.BelgianNationalNumber.Set(&v)
+}
+// SetBelgianNationalNumberNil sets the value for BelgianNationalNumber to be an explicit nil
+func (o *ItsmeProviderOutput) SetBelgianNationalNumberNil() {
+	o.BelgianNationalNumber.Set(nil)
+}
+
+// UnsetBelgianNationalNumber ensures that no value is present for BelgianNationalNumber, not even an explicit nil
+func (o *ItsmeProviderOutput) UnsetBelgianNationalNumber() {
+	o.BelgianNationalNumber.Unset()
+}
+
+// GetBelgianIdentityCard returns the BelgianIdentityCard field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ItsmeProviderOutput) GetBelgianIdentityCard() ItsmeBelgianIdentityCard {
+	if o == nil || IsNil(o.BelgianIdentityCard.Get()) {
+		var ret ItsmeBelgianIdentityCard
+		return ret
+	}
+	return *o.BelgianIdentityCard.Get()
+}
+
+// GetBelgianIdentityCardOk returns a tuple with the BelgianIdentityCard field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ItsmeProviderOutput) GetBelgianIdentityCardOk() (*ItsmeBelgianIdentityCard, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.BelgianIdentityCard.Get(), o.BelgianIdentityCard.IsSet()
+}
+
+// HasBelgianIdentityCard returns a boolean if a field has been set.
+func (o *ItsmeProviderOutput) HasBelgianIdentityCard() bool {
+	if o != nil && o.BelgianIdentityCard.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetBelgianIdentityCard gets a reference to the given NullableItsmeBelgianIdentityCard and assigns it to the BelgianIdentityCard field.
+func (o *ItsmeProviderOutput) SetBelgianIdentityCard(v ItsmeBelgianIdentityCard) {
+	o.BelgianIdentityCard.Set(&v)
+}
+// SetBelgianIdentityCardNil sets the value for BelgianIdentityCard to be an explicit nil
+func (o *ItsmeProviderOutput) SetBelgianIdentityCardNil() {
+	o.BelgianIdentityCard.Set(nil)
+}
+
+// UnsetBelgianIdentityCard ensures that no value is present for BelgianIdentityCard, not even an explicit nil
+func (o *ItsmeProviderOutput) UnsetBelgianIdentityCard() {
+	o.BelgianIdentityCard.Unset()
+}
+
+// GetIdentityDocument returns the IdentityDocument field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ItsmeProviderOutput) GetIdentityDocument() ItsmeIdentityDocument {
+	if o == nil || IsNil(o.IdentityDocument.Get()) {
+		var ret ItsmeIdentityDocument
+		return ret
+	}
+	return *o.IdentityDocument.Get()
+}
+
+// GetIdentityDocumentOk returns a tuple with the IdentityDocument field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ItsmeProviderOutput) GetIdentityDocumentOk() (*ItsmeIdentityDocument, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.IdentityDocument.Get(), o.IdentityDocument.IsSet()
+}
+
+// HasIdentityDocument returns a boolean if a field has been set.
+func (o *ItsmeProviderOutput) HasIdentityDocument() bool {
+	if o != nil && o.IdentityDocument.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetIdentityDocument gets a reference to the given NullableItsmeIdentityDocument and assigns it to the IdentityDocument field.
+func (o *ItsmeProviderOutput) SetIdentityDocument(v ItsmeIdentityDocument) {
+	o.IdentityDocument.Set(&v)
+}
+// SetIdentityDocumentNil sets the value for IdentityDocument to be an explicit nil
+func (o *ItsmeProviderOutput) SetIdentityDocumentNil() {
+	o.IdentityDocument.Set(nil)
+}
+
+// UnsetIdentityDocument ensures that no value is present for IdentityDocument, not even an explicit nil
+func (o *ItsmeProviderOutput) UnsetIdentityDocument() {
+	o.IdentityDocument.Unset()
+}
+
+// GetPlaceOfBirth returns the PlaceOfBirth field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ItsmeProviderOutput) GetPlaceOfBirth() ItsmePlaceOfBirth {
+	if o == nil || IsNil(o.PlaceOfBirth.Get()) {
+		var ret ItsmePlaceOfBirth
+		return ret
+	}
+	return *o.PlaceOfBirth.Get()
+}
+
+// GetPlaceOfBirthOk returns a tuple with the PlaceOfBirth field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ItsmeProviderOutput) GetPlaceOfBirthOk() (*ItsmePlaceOfBirth, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.PlaceOfBirth.Get(), o.PlaceOfBirth.IsSet()
+}
+
+// HasPlaceOfBirth returns a boolean if a field has been set.
+func (o *ItsmeProviderOutput) HasPlaceOfBirth() bool {
+	if o != nil && o.PlaceOfBirth.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPlaceOfBirth gets a reference to the given NullableItsmePlaceOfBirth and assigns it to the PlaceOfBirth field.
+func (o *ItsmeProviderOutput) SetPlaceOfBirth(v ItsmePlaceOfBirth) {
+	o.PlaceOfBirth.Set(&v)
+}
+// SetPlaceOfBirthNil sets the value for PlaceOfBirth to be an explicit nil
+func (o *ItsmeProviderOutput) SetPlaceOfBirthNil() {
+	o.PlaceOfBirth.Set(nil)
+}
+
+// UnsetPlaceOfBirth ensures that no value is present for PlaceOfBirth, not even an explicit nil
+func (o *ItsmeProviderOutput) UnsetPlaceOfBirth() {
+	o.PlaceOfBirth.Unset()
+}
+
+// GetDevice returns the Device field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ItsmeProviderOutput) GetDevice() ItsmeDirectDevice {
+	if o == nil || IsNil(o.Device.Get()) {
+		var ret ItsmeDirectDevice
+		return ret
+	}
+	return *o.Device.Get()
+}
+
+// GetDeviceOk returns a tuple with the Device field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ItsmeProviderOutput) GetDeviceOk() (*ItsmeDirectDevice, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Device.Get(), o.Device.IsSet()
+}
+
+// HasDevice returns a boolean if a field has been set.
+func (o *ItsmeProviderOutput) HasDevice() bool {
+	if o != nil && o.Device.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDevice gets a reference to the given NullableItsmeDirectDevice and assigns it to the Device field.
+func (o *ItsmeProviderOutput) SetDevice(v ItsmeDirectDevice) {
+	o.Device.Set(&v)
+}
+// SetDeviceNil sets the value for Device to be an explicit nil
+func (o *ItsmeProviderOutput) SetDeviceNil() {
+	o.Device.Set(nil)
+}
+
+// UnsetDevice ensures that no value is present for Device, not even an explicit nil
+func (o *ItsmeProviderOutput) UnsetDevice() {
+	o.Device.Unset()
+}
+
 func (o ItsmeProviderOutput) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -617,14 +931,8 @@ func (o ItsmeProviderOutput) MarshalJSON() ([]byte, error) {
 
 func (o ItsmeProviderOutput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["firstName"] = o.FirstName
-	toSerialize["lastName"] = o.LastName
-	toSerialize["dateOfBirth"] = o.DateOfBirth
-	if o.HashedNationalRegisterNumber.IsSet() {
-		toSerialize["hashedNationalRegisterNumber"] = o.HashedNationalRegisterNumber.Get()
-	}
-	if o.NationalRegisterNumber.IsSet() {
-		toSerialize["nationalRegisterNumber"] = o.NationalRegisterNumber.Get()
+	if o.DateOfBirth.IsSet() {
+		toSerialize["dateOfBirth"] = o.DateOfBirth.Get()
 	}
 	if o.Email.IsSet() {
 		toSerialize["email"] = o.Email.Get()
@@ -632,26 +940,56 @@ func (o ItsmeProviderOutput) ToMap() (map[string]interface{}, error) {
 	if o.PhoneNumber.IsSet() {
 		toSerialize["phoneNumber"] = o.PhoneNumber.Get()
 	}
+	if o.Sub.IsSet() {
+		toSerialize["sub"] = o.Sub.Get()
+	}
+	if o.FullName.IsSet() {
+		toSerialize["fullName"] = o.FullName.Get()
+	}
+	if o.GivenName.IsSet() {
+		toSerialize["givenName"] = o.GivenName.Get()
+	}
+	if o.FamilyName.IsSet() {
+		toSerialize["familyName"] = o.FamilyName.Get()
+	}
+	if o.DateOfBirthAsString.IsSet() {
+		toSerialize["dateOfBirthAsString"] = o.DateOfBirthAsString.Get()
+	}
 	if o.Gender.IsSet() {
 		toSerialize["gender"] = o.Gender.Get()
 	}
-	if o.Nationality.IsSet() {
-		toSerialize["nationality"] = o.Nationality.Get()
+	if o.Locale.IsSet() {
+		toSerialize["locale"] = o.Locale.Get()
 	}
-	if o.BirthPlace.IsSet() {
-		toSerialize["birthPlace"] = o.BirthPlace.Get()
+	if o.PictureUrl.IsSet() {
+		toSerialize["pictureUrl"] = o.PictureUrl.Get()
 	}
-	if o.DocumentNumber.IsSet() {
-		toSerialize["documentNumber"] = o.DocumentNumber.Get()
+	if o.EmailVerified.IsSet() {
+		toSerialize["emailVerified"] = o.EmailVerified.Get()
 	}
-	if o.IdentityDocumentExpirationDate.IsSet() {
-		toSerialize["identityDocumentExpirationDate"] = o.IdentityDocumentExpirationDate.Get()
-	}
-	if o.Language.IsSet() {
-		toSerialize["language"] = o.Language.Get()
+	if o.PhoneNumberVerified.IsSet() {
+		toSerialize["phoneNumberVerified"] = o.PhoneNumberVerified.Get()
 	}
 	if o.Address.IsSet() {
 		toSerialize["address"] = o.Address.Get()
+	}
+	if o.Citizenship.IsSet() {
+		toSerialize["citizenship"] = o.Citizenship.Get()
+	}
+	if o.BelgianNationalNumber.IsSet() {
+		toSerialize["belgianNationalNumber"] = o.BelgianNationalNumber.Get()
+	}
+	if o.BelgianIdentityCard.IsSet() {
+		toSerialize["belgianIdentityCard"] = o.BelgianIdentityCard.Get()
+	}
+	if o.IdentityDocument.IsSet() {
+		toSerialize["identityDocument"] = o.IdentityDocument.Get()
+	}
+	if o.PlaceOfBirth.IsSet() {
+		toSerialize["placeOfBirth"] = o.PlaceOfBirth.Get()
+	}
+	if o.Device.IsSet() {
+		toSerialize["device"] = o.Device.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -662,29 +1000,6 @@ func (o ItsmeProviderOutput) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *ItsmeProviderOutput) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"firstName",
-		"lastName",
-		"dateOfBirth",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varItsmeProviderOutput := _ItsmeProviderOutput{}
 
 	err = json.Unmarshal(data, &varItsmeProviderOutput)
@@ -698,20 +1013,26 @@ func (o *ItsmeProviderOutput) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "firstName")
-		delete(additionalProperties, "lastName")
 		delete(additionalProperties, "dateOfBirth")
-		delete(additionalProperties, "hashedNationalRegisterNumber")
-		delete(additionalProperties, "nationalRegisterNumber")
 		delete(additionalProperties, "email")
 		delete(additionalProperties, "phoneNumber")
+		delete(additionalProperties, "sub")
+		delete(additionalProperties, "fullName")
+		delete(additionalProperties, "givenName")
+		delete(additionalProperties, "familyName")
+		delete(additionalProperties, "dateOfBirthAsString")
 		delete(additionalProperties, "gender")
-		delete(additionalProperties, "nationality")
-		delete(additionalProperties, "birthPlace")
-		delete(additionalProperties, "documentNumber")
-		delete(additionalProperties, "identityDocumentExpirationDate")
-		delete(additionalProperties, "language")
+		delete(additionalProperties, "locale")
+		delete(additionalProperties, "pictureUrl")
+		delete(additionalProperties, "emailVerified")
+		delete(additionalProperties, "phoneNumberVerified")
 		delete(additionalProperties, "address")
+		delete(additionalProperties, "citizenship")
+		delete(additionalProperties, "belgianNationalNumber")
+		delete(additionalProperties, "belgianIdentityCard")
+		delete(additionalProperties, "identityDocument")
+		delete(additionalProperties, "placeOfBirth")
+		delete(additionalProperties, "device")
 		o.AdditionalProperties = additionalProperties
 	}
 

@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the Iso180135DrivingPrivilegeCode type satisfies the MappedNullable interface at compile time
@@ -21,7 +20,7 @@ var _ MappedNullable = &Iso180135DrivingPrivilegeCode{}
 // Iso180135DrivingPrivilegeCode A single restriction, condition, or special privilege code attached to a driving privilege.
 type Iso180135DrivingPrivilegeCode struct {
 	// The code identifier.
-	Code string `json:"code"`
+	Code NullableString `json:"code,omitempty"`
 	// Optional comparison sign applied to the code's value.
 	Sign NullableString `json:"sign,omitempty"`
 	// Optional value applied to the code.
@@ -35,9 +34,8 @@ type _Iso180135DrivingPrivilegeCode Iso180135DrivingPrivilegeCode
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewIso180135DrivingPrivilegeCode(code string) *Iso180135DrivingPrivilegeCode {
+func NewIso180135DrivingPrivilegeCode() *Iso180135DrivingPrivilegeCode {
 	this := Iso180135DrivingPrivilegeCode{}
-	this.Code = code
 	return &this
 }
 
@@ -49,28 +47,46 @@ func NewIso180135DrivingPrivilegeCodeWithDefaults() *Iso180135DrivingPrivilegeCo
 	return &this
 }
 
-// GetCode returns the Code field value
+// GetCode returns the Code field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Iso180135DrivingPrivilegeCode) GetCode() string {
-	if o == nil {
+	if o == nil || IsNil(o.Code.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.Code
+	return *o.Code.Get()
 }
 
-// GetCodeOk returns a tuple with the Code field value
+// GetCodeOk returns a tuple with the Code field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Iso180135DrivingPrivilegeCode) GetCodeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Code, true
+	return o.Code.Get(), o.Code.IsSet()
 }
 
-// SetCode sets field value
+// HasCode returns a boolean if a field has been set.
+func (o *Iso180135DrivingPrivilegeCode) HasCode() bool {
+	if o != nil && o.Code.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCode gets a reference to the given NullableString and assigns it to the Code field.
 func (o *Iso180135DrivingPrivilegeCode) SetCode(v string) {
-	o.Code = v
+	o.Code.Set(&v)
+}
+// SetCodeNil sets the value for Code to be an explicit nil
+func (o *Iso180135DrivingPrivilegeCode) SetCodeNil() {
+	o.Code.Set(nil)
+}
+
+// UnsetCode ensures that no value is present for Code, not even an explicit nil
+func (o *Iso180135DrivingPrivilegeCode) UnsetCode() {
+	o.Code.Unset()
 }
 
 // GetSign returns the Sign field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -167,7 +183,9 @@ func (o Iso180135DrivingPrivilegeCode) MarshalJSON() ([]byte, error) {
 
 func (o Iso180135DrivingPrivilegeCode) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["code"] = o.Code
+	if o.Code.IsSet() {
+		toSerialize["code"] = o.Code.Get()
+	}
 	if o.Sign.IsSet() {
 		toSerialize["sign"] = o.Sign.Get()
 	}
@@ -183,27 +201,6 @@ func (o Iso180135DrivingPrivilegeCode) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *Iso180135DrivingPrivilegeCode) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"code",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varIso180135DrivingPrivilegeCode := _Iso180135DrivingPrivilegeCode{}
 
 	err = json.Unmarshal(data, &varIso180135DrivingPrivilegeCode)

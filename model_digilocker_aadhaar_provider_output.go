@@ -13,7 +13,6 @@ package trinsic_api
 import (
 	"encoding/json"
 	"time"
-	"fmt"
 )
 
 // checks if the DigilockerAadhaarProviderOutput type satisfies the MappedNullable interface at compile time
@@ -34,7 +33,7 @@ type DigilockerAadhaarProviderOutput struct {
 	// The localized claims extracted from the Aadhaar document.
 	LocalizedClaims NullableAadhaarLocalizedClaims `json:"localizedClaims,omitempty"`
 	// Whether our own validation of the Aadhaar document signature and certificate chain succeeded.              When the signed document (e.g. Digilocker XML) is available, we validate it using the standard CCA/SafeScrypt chain. When the document is not returned, the signature cannot be validated and this is false. Some providers (e.g. Signzy) also supply a separate DSC validation indicator in the webhook payload; that is independent of this flag, which reflects only our validation.
-	DocumentSignatureValidated bool `json:"documentSignatureValidated"`
+	DocumentSignatureValidated NullableBool `json:"documentSignatureValidated,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -44,9 +43,8 @@ type _DigilockerAadhaarProviderOutput DigilockerAadhaarProviderOutput
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDigilockerAadhaarProviderOutput(documentSignatureValidated bool) *DigilockerAadhaarProviderOutput {
+func NewDigilockerAadhaarProviderOutput() *DigilockerAadhaarProviderOutput {
 	this := DigilockerAadhaarProviderOutput{}
-	this.DocumentSignatureValidated = documentSignatureValidated
 	return &this
 }
 
@@ -310,28 +308,46 @@ func (o *DigilockerAadhaarProviderOutput) UnsetLocalizedClaims() {
 	o.LocalizedClaims.Unset()
 }
 
-// GetDocumentSignatureValidated returns the DocumentSignatureValidated field value
+// GetDocumentSignatureValidated returns the DocumentSignatureValidated field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DigilockerAadhaarProviderOutput) GetDocumentSignatureValidated() bool {
-	if o == nil {
+	if o == nil || IsNil(o.DocumentSignatureValidated.Get()) {
 		var ret bool
 		return ret
 	}
-
-	return o.DocumentSignatureValidated
+	return *o.DocumentSignatureValidated.Get()
 }
 
-// GetDocumentSignatureValidatedOk returns a tuple with the DocumentSignatureValidated field value
+// GetDocumentSignatureValidatedOk returns a tuple with the DocumentSignatureValidated field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *DigilockerAadhaarProviderOutput) GetDocumentSignatureValidatedOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.DocumentSignatureValidated, true
+	return o.DocumentSignatureValidated.Get(), o.DocumentSignatureValidated.IsSet()
 }
 
-// SetDocumentSignatureValidated sets field value
+// HasDocumentSignatureValidated returns a boolean if a field has been set.
+func (o *DigilockerAadhaarProviderOutput) HasDocumentSignatureValidated() bool {
+	if o != nil && o.DocumentSignatureValidated.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDocumentSignatureValidated gets a reference to the given NullableBool and assigns it to the DocumentSignatureValidated field.
 func (o *DigilockerAadhaarProviderOutput) SetDocumentSignatureValidated(v bool) {
-	o.DocumentSignatureValidated = v
+	o.DocumentSignatureValidated.Set(&v)
+}
+// SetDocumentSignatureValidatedNil sets the value for DocumentSignatureValidated to be an explicit nil
+func (o *DigilockerAadhaarProviderOutput) SetDocumentSignatureValidatedNil() {
+	o.DocumentSignatureValidated.Set(nil)
+}
+
+// UnsetDocumentSignatureValidated ensures that no value is present for DocumentSignatureValidated, not even an explicit nil
+func (o *DigilockerAadhaarProviderOutput) UnsetDocumentSignatureValidated() {
+	o.DocumentSignatureValidated.Unset()
 }
 
 func (o DigilockerAadhaarProviderOutput) MarshalJSON() ([]byte, error) {
@@ -362,7 +378,9 @@ func (o DigilockerAadhaarProviderOutput) ToMap() (map[string]interface{}, error)
 	if o.LocalizedClaims.IsSet() {
 		toSerialize["localizedClaims"] = o.LocalizedClaims.Get()
 	}
-	toSerialize["documentSignatureValidated"] = o.DocumentSignatureValidated
+	if o.DocumentSignatureValidated.IsSet() {
+		toSerialize["documentSignatureValidated"] = o.DocumentSignatureValidated.Get()
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -372,27 +390,6 @@ func (o DigilockerAadhaarProviderOutput) ToMap() (map[string]interface{}, error)
 }
 
 func (o *DigilockerAadhaarProviderOutput) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"documentSignatureValidated",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varDigilockerAadhaarProviderOutput := _DigilockerAadhaarProviderOutput{}
 
 	err = json.Unmarshal(data, &varDigilockerAadhaarProviderOutput)

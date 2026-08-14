@@ -8,8 +8,6 @@ Name | Type | Description | Notes
 **Name** | **string** | The display name of the provider | 
 **LogoUrl** | **string** | The URL of the provider&#39;s logo | 
 **Subtext** | **string** | The Provider&#39;s subtext recommended to be shown next to the name.              This is flavor text, not a full, human-readable description of the provider. | 
-**Description** | **string** | A description of the provider&#39;s capabilities | [readonly] 
-**Geography** | **[]string** | Geographic regions where this provider operates | 
 **Regions** | **[]string** | Specific regions supported by this provider | 
 **Countries** | **[]string** | The countries where this Provider is available (as alpha-2 ISO codes). | 
 **Subdivisions** | **[]string** | The subdivisions (states, provinces, etc.) where this Provider is available (as alpha-2 ISO codes). | 
@@ -32,7 +30,7 @@ Name | Type | Description | Notes
 
 ### NewProvider
 
-`func NewProvider(id string, name string, logoUrl string, subtext string, description string, geography []string, regions []string, countries []string, subdivisions []string, licensed bool, launchMethod IntegrationLaunchMethod, collectionMethod ResultCollectionMethod, resultsMayBeDelayedAfterRedirect bool, hasRefreshableContent bool, requiresInput bool, hasTrinsicInterface bool, supportsDirectProviderSessions bool, liveHealth ProviderHealth, testHealth ProviderHealth, ) *Provider`
+`func NewProvider(id string, name string, logoUrl string, subtext string, regions []string, countries []string, subdivisions []string, licensed bool, launchMethod IntegrationLaunchMethod, collectionMethod ResultCollectionMethod, resultsMayBeDelayedAfterRedirect bool, hasRefreshableContent bool, requiresInput bool, hasTrinsicInterface bool, supportsDirectProviderSessions bool, liveHealth ProviderHealth, testHealth ProviderHealth, ) *Provider`
 
 NewProvider instantiates a new Provider object
 This constructor will assign default values to properties that have it defined,
@@ -125,46 +123,6 @@ and a boolean to check if the value has been set.
 `func (o *Provider) SetSubtext(v string)`
 
 SetSubtext sets Subtext field to given value.
-
-
-### GetDescription
-
-`func (o *Provider) GetDescription() string`
-
-GetDescription returns the Description field if non-nil, zero value otherwise.
-
-### GetDescriptionOk
-
-`func (o *Provider) GetDescriptionOk() (*string, bool)`
-
-GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDescription
-
-`func (o *Provider) SetDescription(v string)`
-
-SetDescription sets Description field to given value.
-
-
-### GetGeography
-
-`func (o *Provider) GetGeography() []string`
-
-GetGeography returns the Geography field if non-nil, zero value otherwise.
-
-### GetGeographyOk
-
-`func (o *Provider) GetGeographyOk() (*[]string, bool)`
-
-GetGeographyOk returns a tuple with the Geography field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetGeography
-
-`func (o *Provider) SetGeography(v []string)`
-
-SetGeography sets Geography field to given value.
 
 
 ### GetRegions

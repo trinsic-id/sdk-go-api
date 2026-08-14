@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Age** | **int32** | The age threshold from the &#x60;age over X&#x60; claim. | 
-**IsOver** | **bool** | Whether the individual is at least the given age. | 
+**Age** | Pointer to **NullableInt32** | The age threshold from the &#x60;age over X&#x60; claim. | [optional] 
+**IsOver** | Pointer to **NullableBool** | Whether the individual is at least the given age. | [optional] 
 
 ## Methods
 
 ### NewAgeOverOutput
 
-`func NewAgeOverOutput(age int32, isOver bool, ) *AgeOverOutput`
+`func NewAgeOverOutput() *AgeOverOutput`
 
 NewAgeOverOutput instantiates a new AgeOverOutput object
 This constructor will assign default values to properties that have it defined,
@@ -45,7 +45,22 @@ and a boolean to check if the value has been set.
 
 SetAge sets Age field to given value.
 
+### HasAge
 
+`func (o *AgeOverOutput) HasAge() bool`
+
+HasAge returns a boolean if a field has been set.
+
+### SetAgeNil
+
+`func (o *AgeOverOutput) SetAgeNil(b bool)`
+
+ SetAgeNil sets the value for Age to be an explicit nil
+
+### UnsetAge
+`func (o *AgeOverOutput) UnsetAge()`
+
+UnsetAge ensures that no value is present for Age, not even an explicit nil
 ### GetIsOver
 
 `func (o *AgeOverOutput) GetIsOver() bool`
@@ -65,7 +80,22 @@ and a boolean to check if the value has been set.
 
 SetIsOver sets IsOver field to given value.
 
+### HasIsOver
 
+`func (o *AgeOverOutput) HasIsOver() bool`
+
+HasIsOver returns a boolean if a field has been set.
+
+### SetIsOverNil
+
+`func (o *AgeOverOutput) SetIsOverNil(b bool)`
+
+ SetIsOverNil sets the value for IsOver to be an explicit nil
+
+### UnsetIsOver
+`func (o *AgeOverOutput) UnsetIsOver()`
+
+UnsetIsOver ensures that no value is present for IsOver, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

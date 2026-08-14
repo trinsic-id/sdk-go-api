@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the BoliviaCiProviderOutput type satisfies the MappedNullable interface at compile time
@@ -21,15 +20,15 @@ var _ MappedNullable = &BoliviaCiProviderOutput{}
 // BoliviaCiProviderOutput Exposed properties for the `bolivia-ci-lookup` Provider which do not directly map to the normalized IdentityData model.
 type BoliviaCiProviderOutput struct {
 	// Full name as it appears on the CI (Cédula de Identidad).
-	FullName string `json:"fullName"`
+	FullName NullableString `json:"fullName,omitempty"`
 	// Given name(s) of the holder as they appear on the CI (Cédula de Identidad).
-	GivenName string `json:"givenName"`
+	GivenName NullableString `json:"givenName,omitempty"`
 	// Family name(s) of the holder (paternal and maternal) as they appear on the CI (Cédula de Identidad).
-	FamilyName string `json:"familyName"`
+	FamilyName NullableString `json:"familyName,omitempty"`
 	// Date of birth as recorded in official Bolivian identity records (RUI — Registro Único de Identificación).
 	DateOfBirth NullableString `json:"dateOfBirth,omitempty"`
 	// The CI (Cédula de Identidad) document number for the matched record.              The document is officially called the Cédula de Identidad and is commonly called carnet or carnet de identidad in Bolivia. This is the identifier assigned by the Servicio General de Identificación Personal (SEGIP) in the Registro Único de Identificación (RUI). The value is entirely numeric. There is no verification digit or other data encoded in the number.              Published regulations do not define a fixed length; digit count may vary.
-	DocumentNumber string `json:"documentNumber"`
+	DocumentNumber NullableString `json:"documentNumber,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -39,12 +38,8 @@ type _BoliviaCiProviderOutput BoliviaCiProviderOutput
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBoliviaCiProviderOutput(fullName string, givenName string, familyName string, documentNumber string) *BoliviaCiProviderOutput {
+func NewBoliviaCiProviderOutput() *BoliviaCiProviderOutput {
 	this := BoliviaCiProviderOutput{}
-	this.FullName = fullName
-	this.GivenName = givenName
-	this.FamilyName = familyName
-	this.DocumentNumber = documentNumber
 	return &this
 }
 
@@ -56,76 +51,130 @@ func NewBoliviaCiProviderOutputWithDefaults() *BoliviaCiProviderOutput {
 	return &this
 }
 
-// GetFullName returns the FullName field value
+// GetFullName returns the FullName field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *BoliviaCiProviderOutput) GetFullName() string {
-	if o == nil {
+	if o == nil || IsNil(o.FullName.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.FullName
+	return *o.FullName.Get()
 }
 
-// GetFullNameOk returns a tuple with the FullName field value
+// GetFullNameOk returns a tuple with the FullName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *BoliviaCiProviderOutput) GetFullNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.FullName, true
+	return o.FullName.Get(), o.FullName.IsSet()
 }
 
-// SetFullName sets field value
+// HasFullName returns a boolean if a field has been set.
+func (o *BoliviaCiProviderOutput) HasFullName() bool {
+	if o != nil && o.FullName.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetFullName gets a reference to the given NullableString and assigns it to the FullName field.
 func (o *BoliviaCiProviderOutput) SetFullName(v string) {
-	o.FullName = v
+	o.FullName.Set(&v)
+}
+// SetFullNameNil sets the value for FullName to be an explicit nil
+func (o *BoliviaCiProviderOutput) SetFullNameNil() {
+	o.FullName.Set(nil)
 }
 
-// GetGivenName returns the GivenName field value
+// UnsetFullName ensures that no value is present for FullName, not even an explicit nil
+func (o *BoliviaCiProviderOutput) UnsetFullName() {
+	o.FullName.Unset()
+}
+
+// GetGivenName returns the GivenName field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *BoliviaCiProviderOutput) GetGivenName() string {
-	if o == nil {
+	if o == nil || IsNil(o.GivenName.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.GivenName
+	return *o.GivenName.Get()
 }
 
-// GetGivenNameOk returns a tuple with the GivenName field value
+// GetGivenNameOk returns a tuple with the GivenName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *BoliviaCiProviderOutput) GetGivenNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.GivenName, true
+	return o.GivenName.Get(), o.GivenName.IsSet()
 }
 
-// SetGivenName sets field value
+// HasGivenName returns a boolean if a field has been set.
+func (o *BoliviaCiProviderOutput) HasGivenName() bool {
+	if o != nil && o.GivenName.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetGivenName gets a reference to the given NullableString and assigns it to the GivenName field.
 func (o *BoliviaCiProviderOutput) SetGivenName(v string) {
-	o.GivenName = v
+	o.GivenName.Set(&v)
+}
+// SetGivenNameNil sets the value for GivenName to be an explicit nil
+func (o *BoliviaCiProviderOutput) SetGivenNameNil() {
+	o.GivenName.Set(nil)
 }
 
-// GetFamilyName returns the FamilyName field value
+// UnsetGivenName ensures that no value is present for GivenName, not even an explicit nil
+func (o *BoliviaCiProviderOutput) UnsetGivenName() {
+	o.GivenName.Unset()
+}
+
+// GetFamilyName returns the FamilyName field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *BoliviaCiProviderOutput) GetFamilyName() string {
-	if o == nil {
+	if o == nil || IsNil(o.FamilyName.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.FamilyName
+	return *o.FamilyName.Get()
 }
 
-// GetFamilyNameOk returns a tuple with the FamilyName field value
+// GetFamilyNameOk returns a tuple with the FamilyName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *BoliviaCiProviderOutput) GetFamilyNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.FamilyName, true
+	return o.FamilyName.Get(), o.FamilyName.IsSet()
 }
 
-// SetFamilyName sets field value
+// HasFamilyName returns a boolean if a field has been set.
+func (o *BoliviaCiProviderOutput) HasFamilyName() bool {
+	if o != nil && o.FamilyName.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetFamilyName gets a reference to the given NullableString and assigns it to the FamilyName field.
 func (o *BoliviaCiProviderOutput) SetFamilyName(v string) {
-	o.FamilyName = v
+	o.FamilyName.Set(&v)
+}
+// SetFamilyNameNil sets the value for FamilyName to be an explicit nil
+func (o *BoliviaCiProviderOutput) SetFamilyNameNil() {
+	o.FamilyName.Set(nil)
+}
+
+// UnsetFamilyName ensures that no value is present for FamilyName, not even an explicit nil
+func (o *BoliviaCiProviderOutput) UnsetFamilyName() {
+	o.FamilyName.Unset()
 }
 
 // GetDateOfBirth returns the DateOfBirth field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -170,28 +219,46 @@ func (o *BoliviaCiProviderOutput) UnsetDateOfBirth() {
 	o.DateOfBirth.Unset()
 }
 
-// GetDocumentNumber returns the DocumentNumber field value
+// GetDocumentNumber returns the DocumentNumber field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *BoliviaCiProviderOutput) GetDocumentNumber() string {
-	if o == nil {
+	if o == nil || IsNil(o.DocumentNumber.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.DocumentNumber
+	return *o.DocumentNumber.Get()
 }
 
-// GetDocumentNumberOk returns a tuple with the DocumentNumber field value
+// GetDocumentNumberOk returns a tuple with the DocumentNumber field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *BoliviaCiProviderOutput) GetDocumentNumberOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.DocumentNumber, true
+	return o.DocumentNumber.Get(), o.DocumentNumber.IsSet()
 }
 
-// SetDocumentNumber sets field value
+// HasDocumentNumber returns a boolean if a field has been set.
+func (o *BoliviaCiProviderOutput) HasDocumentNumber() bool {
+	if o != nil && o.DocumentNumber.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDocumentNumber gets a reference to the given NullableString and assigns it to the DocumentNumber field.
 func (o *BoliviaCiProviderOutput) SetDocumentNumber(v string) {
-	o.DocumentNumber = v
+	o.DocumentNumber.Set(&v)
+}
+// SetDocumentNumberNil sets the value for DocumentNumber to be an explicit nil
+func (o *BoliviaCiProviderOutput) SetDocumentNumberNil() {
+	o.DocumentNumber.Set(nil)
+}
+
+// UnsetDocumentNumber ensures that no value is present for DocumentNumber, not even an explicit nil
+func (o *BoliviaCiProviderOutput) UnsetDocumentNumber() {
+	o.DocumentNumber.Unset()
 }
 
 func (o BoliviaCiProviderOutput) MarshalJSON() ([]byte, error) {
@@ -204,13 +271,21 @@ func (o BoliviaCiProviderOutput) MarshalJSON() ([]byte, error) {
 
 func (o BoliviaCiProviderOutput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["fullName"] = o.FullName
-	toSerialize["givenName"] = o.GivenName
-	toSerialize["familyName"] = o.FamilyName
+	if o.FullName.IsSet() {
+		toSerialize["fullName"] = o.FullName.Get()
+	}
+	if o.GivenName.IsSet() {
+		toSerialize["givenName"] = o.GivenName.Get()
+	}
+	if o.FamilyName.IsSet() {
+		toSerialize["familyName"] = o.FamilyName.Get()
+	}
 	if o.DateOfBirth.IsSet() {
 		toSerialize["dateOfBirth"] = o.DateOfBirth.Get()
 	}
-	toSerialize["documentNumber"] = o.DocumentNumber
+	if o.DocumentNumber.IsSet() {
+		toSerialize["documentNumber"] = o.DocumentNumber.Get()
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -220,30 +295,6 @@ func (o BoliviaCiProviderOutput) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *BoliviaCiProviderOutput) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"fullName",
-		"givenName",
-		"familyName",
-		"documentNumber",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varBoliviaCiProviderOutput := _BoliviaCiProviderOutput{}
 
 	err = json.Unmarshal(data, &varBoliviaCiProviderOutput)

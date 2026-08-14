@@ -19,10 +19,14 @@ var _ MappedNullable = &ProviderInput{}
 
 // ProviderInput struct for ProviderInput
 type ProviderInput struct {
+	// *TEST MODE ONLY.*              Input for the `trinsic-mock-output` provider.
+	TrinsicMockOutput NullableMockOutputProviderInput `json:"trinsic-mock-output,omitempty"`
 	// Input for the `indonesia-nik-lookup` provider
 	IndonesiaNikLookup NullableIndonesiaNikInput `json:"indonesia-nik-lookup,omitempty"`
 	// Input for the `china-resident-id-match` provider
 	ChinaResidentIdMatch NullableChinaResidentIdMatchInput `json:"china-resident-id-match,omitempty"`
+	// Input for the `evrotrust` provider
+	Evrotrust NullableEvrotrustInput `json:"evrotrust,omitempty"`
 	// Input for the `indonesia-dukcapil-match` provider
 	IndonesiaDukcapilMatch NullableIndonesiaDukcapilMatchInput `json:"indonesia-dukcapil-match,omitempty"`
 	// Input for the `mexico-curp-lookup` provider
@@ -41,6 +45,10 @@ type ProviderInput struct {
 	SouthAfricaNidMatch2 NullableSouthAfricaNidMatch2Input `json:"south-africa-nid-match-2,omitempty"`
 	// Input for the `nigeria-nin-lookup-2` provider
 	NigeriaNinLookup2 NullableNigeriaNinLookup2Input `json:"nigeria-nin-lookup-2,omitempty"`
+	// Input for the `nigeria-nin-lookup-3` provider
+	NigeriaNinLookup3 NullableNigeriaNinLookup3Input `json:"nigeria-nin-lookup-3,omitempty"`
+	// Input for the `kenya-nid-lookup-3` provider
+	KenyaNidLookup3 NullableKenyaNidLookup3Input `json:"kenya-nid-lookup-3,omitempty"`
 	// Input for the `cote-divoire-nid-lookup-2` provider
 	CoteDivoireNidLookup2 NullableCoteDIvoireNidLookup2Input `json:"cote-divoire-nid-lookup-2,omitempty"`
 	// Input for the `zimbabwe-nid-lookup-2` provider
@@ -83,6 +91,13 @@ type ProviderInput struct {
 	SamsungWallet NullableSamsungWalletInput `json:"samsung-wallet,omitempty"`
 	// Input for the `france-identite` provider
 	FranceIdentite NullableFranceIdentiteInput `json:"france-identite,omitempty"`
+	// Input for the `moldova-evo-wallet` provider
+	MoldovaEvoWallet NullableMoldovaEvoWalletInput `json:"moldova-evo-wallet,omitempty"`
+	GermanyEudiSandbox NullableGermanyEudiSandboxInput `json:"germany-eudi-sandbox,omitempty"`
+	DenmarkAltid NullableDenmarkAltIdInput `json:"denmark-altid,omitempty"`
+	AustriaValeraEudiSandbox NullableAustriaValeraEudiSandboxInput `json:"austria-valera-eudi-sandbox,omitempty"`
+	// Input for the `netherlands-eudi-sandbox` provider
+	NetherlandsEudiSandbox NullableNetherlandsEudiSandboxInput `json:"netherlands-eudi-sandbox,omitempty"`
 	// Input for the `poland-mobywatel-match` provider
 	PolandMobywatelMatch NullablePolandMobywatelMatchInput `json:"poland-mobywatel-match,omitempty"`
 	// Input for the `bolivia-ci-lookup` provider
@@ -125,6 +140,48 @@ func NewProviderInput() *ProviderInput {
 func NewProviderInputWithDefaults() *ProviderInput {
 	this := ProviderInput{}
 	return &this
+}
+
+// GetTrinsicMockOutput returns the TrinsicMockOutput field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderInput) GetTrinsicMockOutput() MockOutputProviderInput {
+	if o == nil || IsNil(o.TrinsicMockOutput.Get()) {
+		var ret MockOutputProviderInput
+		return ret
+	}
+	return *o.TrinsicMockOutput.Get()
+}
+
+// GetTrinsicMockOutputOk returns a tuple with the TrinsicMockOutput field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderInput) GetTrinsicMockOutputOk() (*MockOutputProviderInput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.TrinsicMockOutput.Get(), o.TrinsicMockOutput.IsSet()
+}
+
+// HasTrinsicMockOutput returns a boolean if a field has been set.
+func (o *ProviderInput) HasTrinsicMockOutput() bool {
+	if o != nil && o.TrinsicMockOutput.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTrinsicMockOutput gets a reference to the given NullableMockOutputProviderInput and assigns it to the TrinsicMockOutput field.
+func (o *ProviderInput) SetTrinsicMockOutput(v MockOutputProviderInput) {
+	o.TrinsicMockOutput.Set(&v)
+}
+// SetTrinsicMockOutputNil sets the value for TrinsicMockOutput to be an explicit nil
+func (o *ProviderInput) SetTrinsicMockOutputNil() {
+	o.TrinsicMockOutput.Set(nil)
+}
+
+// UnsetTrinsicMockOutput ensures that no value is present for TrinsicMockOutput, not even an explicit nil
+func (o *ProviderInput) UnsetTrinsicMockOutput() {
+	o.TrinsicMockOutput.Unset()
 }
 
 // GetIndonesiaNikLookup returns the IndonesiaNikLookup field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -209,6 +266,48 @@ func (o *ProviderInput) SetChinaResidentIdMatchNil() {
 // UnsetChinaResidentIdMatch ensures that no value is present for ChinaResidentIdMatch, not even an explicit nil
 func (o *ProviderInput) UnsetChinaResidentIdMatch() {
 	o.ChinaResidentIdMatch.Unset()
+}
+
+// GetEvrotrust returns the Evrotrust field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderInput) GetEvrotrust() EvrotrustInput {
+	if o == nil || IsNil(o.Evrotrust.Get()) {
+		var ret EvrotrustInput
+		return ret
+	}
+	return *o.Evrotrust.Get()
+}
+
+// GetEvrotrustOk returns a tuple with the Evrotrust field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderInput) GetEvrotrustOk() (*EvrotrustInput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Evrotrust.Get(), o.Evrotrust.IsSet()
+}
+
+// HasEvrotrust returns a boolean if a field has been set.
+func (o *ProviderInput) HasEvrotrust() bool {
+	if o != nil && o.Evrotrust.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetEvrotrust gets a reference to the given NullableEvrotrustInput and assigns it to the Evrotrust field.
+func (o *ProviderInput) SetEvrotrust(v EvrotrustInput) {
+	o.Evrotrust.Set(&v)
+}
+// SetEvrotrustNil sets the value for Evrotrust to be an explicit nil
+func (o *ProviderInput) SetEvrotrustNil() {
+	o.Evrotrust.Set(nil)
+}
+
+// UnsetEvrotrust ensures that no value is present for Evrotrust, not even an explicit nil
+func (o *ProviderInput) UnsetEvrotrust() {
+	o.Evrotrust.Unset()
 }
 
 // GetIndonesiaDukcapilMatch returns the IndonesiaDukcapilMatch field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -587,6 +686,90 @@ func (o *ProviderInput) SetNigeriaNinLookup2Nil() {
 // UnsetNigeriaNinLookup2 ensures that no value is present for NigeriaNinLookup2, not even an explicit nil
 func (o *ProviderInput) UnsetNigeriaNinLookup2() {
 	o.NigeriaNinLookup2.Unset()
+}
+
+// GetNigeriaNinLookup3 returns the NigeriaNinLookup3 field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderInput) GetNigeriaNinLookup3() NigeriaNinLookup3Input {
+	if o == nil || IsNil(o.NigeriaNinLookup3.Get()) {
+		var ret NigeriaNinLookup3Input
+		return ret
+	}
+	return *o.NigeriaNinLookup3.Get()
+}
+
+// GetNigeriaNinLookup3Ok returns a tuple with the NigeriaNinLookup3 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderInput) GetNigeriaNinLookup3Ok() (*NigeriaNinLookup3Input, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.NigeriaNinLookup3.Get(), o.NigeriaNinLookup3.IsSet()
+}
+
+// HasNigeriaNinLookup3 returns a boolean if a field has been set.
+func (o *ProviderInput) HasNigeriaNinLookup3() bool {
+	if o != nil && o.NigeriaNinLookup3.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetNigeriaNinLookup3 gets a reference to the given NullableNigeriaNinLookup3Input and assigns it to the NigeriaNinLookup3 field.
+func (o *ProviderInput) SetNigeriaNinLookup3(v NigeriaNinLookup3Input) {
+	o.NigeriaNinLookup3.Set(&v)
+}
+// SetNigeriaNinLookup3Nil sets the value for NigeriaNinLookup3 to be an explicit nil
+func (o *ProviderInput) SetNigeriaNinLookup3Nil() {
+	o.NigeriaNinLookup3.Set(nil)
+}
+
+// UnsetNigeriaNinLookup3 ensures that no value is present for NigeriaNinLookup3, not even an explicit nil
+func (o *ProviderInput) UnsetNigeriaNinLookup3() {
+	o.NigeriaNinLookup3.Unset()
+}
+
+// GetKenyaNidLookup3 returns the KenyaNidLookup3 field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderInput) GetKenyaNidLookup3() KenyaNidLookup3Input {
+	if o == nil || IsNil(o.KenyaNidLookup3.Get()) {
+		var ret KenyaNidLookup3Input
+		return ret
+	}
+	return *o.KenyaNidLookup3.Get()
+}
+
+// GetKenyaNidLookup3Ok returns a tuple with the KenyaNidLookup3 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderInput) GetKenyaNidLookup3Ok() (*KenyaNidLookup3Input, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.KenyaNidLookup3.Get(), o.KenyaNidLookup3.IsSet()
+}
+
+// HasKenyaNidLookup3 returns a boolean if a field has been set.
+func (o *ProviderInput) HasKenyaNidLookup3() bool {
+	if o != nil && o.KenyaNidLookup3.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetKenyaNidLookup3 gets a reference to the given NullableKenyaNidLookup3Input and assigns it to the KenyaNidLookup3 field.
+func (o *ProviderInput) SetKenyaNidLookup3(v KenyaNidLookup3Input) {
+	o.KenyaNidLookup3.Set(&v)
+}
+// SetKenyaNidLookup3Nil sets the value for KenyaNidLookup3 to be an explicit nil
+func (o *ProviderInput) SetKenyaNidLookup3Nil() {
+	o.KenyaNidLookup3.Set(nil)
+}
+
+// UnsetKenyaNidLookup3 ensures that no value is present for KenyaNidLookup3, not even an explicit nil
+func (o *ProviderInput) UnsetKenyaNidLookup3() {
+	o.KenyaNidLookup3.Unset()
 }
 
 // GetCoteDivoireNidLookup2 returns the CoteDivoireNidLookup2 field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -1471,6 +1654,216 @@ func (o *ProviderInput) UnsetFranceIdentite() {
 	o.FranceIdentite.Unset()
 }
 
+// GetMoldovaEvoWallet returns the MoldovaEvoWallet field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderInput) GetMoldovaEvoWallet() MoldovaEvoWalletInput {
+	if o == nil || IsNil(o.MoldovaEvoWallet.Get()) {
+		var ret MoldovaEvoWalletInput
+		return ret
+	}
+	return *o.MoldovaEvoWallet.Get()
+}
+
+// GetMoldovaEvoWalletOk returns a tuple with the MoldovaEvoWallet field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderInput) GetMoldovaEvoWalletOk() (*MoldovaEvoWalletInput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.MoldovaEvoWallet.Get(), o.MoldovaEvoWallet.IsSet()
+}
+
+// HasMoldovaEvoWallet returns a boolean if a field has been set.
+func (o *ProviderInput) HasMoldovaEvoWallet() bool {
+	if o != nil && o.MoldovaEvoWallet.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetMoldovaEvoWallet gets a reference to the given NullableMoldovaEvoWalletInput and assigns it to the MoldovaEvoWallet field.
+func (o *ProviderInput) SetMoldovaEvoWallet(v MoldovaEvoWalletInput) {
+	o.MoldovaEvoWallet.Set(&v)
+}
+// SetMoldovaEvoWalletNil sets the value for MoldovaEvoWallet to be an explicit nil
+func (o *ProviderInput) SetMoldovaEvoWalletNil() {
+	o.MoldovaEvoWallet.Set(nil)
+}
+
+// UnsetMoldovaEvoWallet ensures that no value is present for MoldovaEvoWallet, not even an explicit nil
+func (o *ProviderInput) UnsetMoldovaEvoWallet() {
+	o.MoldovaEvoWallet.Unset()
+}
+
+// GetGermanyEudiSandbox returns the GermanyEudiSandbox field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderInput) GetGermanyEudiSandbox() GermanyEudiSandboxInput {
+	if o == nil || IsNil(o.GermanyEudiSandbox.Get()) {
+		var ret GermanyEudiSandboxInput
+		return ret
+	}
+	return *o.GermanyEudiSandbox.Get()
+}
+
+// GetGermanyEudiSandboxOk returns a tuple with the GermanyEudiSandbox field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderInput) GetGermanyEudiSandboxOk() (*GermanyEudiSandboxInput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.GermanyEudiSandbox.Get(), o.GermanyEudiSandbox.IsSet()
+}
+
+// HasGermanyEudiSandbox returns a boolean if a field has been set.
+func (o *ProviderInput) HasGermanyEudiSandbox() bool {
+	if o != nil && o.GermanyEudiSandbox.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetGermanyEudiSandbox gets a reference to the given NullableGermanyEudiSandboxInput and assigns it to the GermanyEudiSandbox field.
+func (o *ProviderInput) SetGermanyEudiSandbox(v GermanyEudiSandboxInput) {
+	o.GermanyEudiSandbox.Set(&v)
+}
+// SetGermanyEudiSandboxNil sets the value for GermanyEudiSandbox to be an explicit nil
+func (o *ProviderInput) SetGermanyEudiSandboxNil() {
+	o.GermanyEudiSandbox.Set(nil)
+}
+
+// UnsetGermanyEudiSandbox ensures that no value is present for GermanyEudiSandbox, not even an explicit nil
+func (o *ProviderInput) UnsetGermanyEudiSandbox() {
+	o.GermanyEudiSandbox.Unset()
+}
+
+// GetDenmarkAltid returns the DenmarkAltid field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderInput) GetDenmarkAltid() DenmarkAltIdInput {
+	if o == nil || IsNil(o.DenmarkAltid.Get()) {
+		var ret DenmarkAltIdInput
+		return ret
+	}
+	return *o.DenmarkAltid.Get()
+}
+
+// GetDenmarkAltidOk returns a tuple with the DenmarkAltid field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderInput) GetDenmarkAltidOk() (*DenmarkAltIdInput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.DenmarkAltid.Get(), o.DenmarkAltid.IsSet()
+}
+
+// HasDenmarkAltid returns a boolean if a field has been set.
+func (o *ProviderInput) HasDenmarkAltid() bool {
+	if o != nil && o.DenmarkAltid.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDenmarkAltid gets a reference to the given NullableDenmarkAltIdInput and assigns it to the DenmarkAltid field.
+func (o *ProviderInput) SetDenmarkAltid(v DenmarkAltIdInput) {
+	o.DenmarkAltid.Set(&v)
+}
+// SetDenmarkAltidNil sets the value for DenmarkAltid to be an explicit nil
+func (o *ProviderInput) SetDenmarkAltidNil() {
+	o.DenmarkAltid.Set(nil)
+}
+
+// UnsetDenmarkAltid ensures that no value is present for DenmarkAltid, not even an explicit nil
+func (o *ProviderInput) UnsetDenmarkAltid() {
+	o.DenmarkAltid.Unset()
+}
+
+// GetAustriaValeraEudiSandbox returns the AustriaValeraEudiSandbox field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderInput) GetAustriaValeraEudiSandbox() AustriaValeraEudiSandboxInput {
+	if o == nil || IsNil(o.AustriaValeraEudiSandbox.Get()) {
+		var ret AustriaValeraEudiSandboxInput
+		return ret
+	}
+	return *o.AustriaValeraEudiSandbox.Get()
+}
+
+// GetAustriaValeraEudiSandboxOk returns a tuple with the AustriaValeraEudiSandbox field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderInput) GetAustriaValeraEudiSandboxOk() (*AustriaValeraEudiSandboxInput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.AustriaValeraEudiSandbox.Get(), o.AustriaValeraEudiSandbox.IsSet()
+}
+
+// HasAustriaValeraEudiSandbox returns a boolean if a field has been set.
+func (o *ProviderInput) HasAustriaValeraEudiSandbox() bool {
+	if o != nil && o.AustriaValeraEudiSandbox.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAustriaValeraEudiSandbox gets a reference to the given NullableAustriaValeraEudiSandboxInput and assigns it to the AustriaValeraEudiSandbox field.
+func (o *ProviderInput) SetAustriaValeraEudiSandbox(v AustriaValeraEudiSandboxInput) {
+	o.AustriaValeraEudiSandbox.Set(&v)
+}
+// SetAustriaValeraEudiSandboxNil sets the value for AustriaValeraEudiSandbox to be an explicit nil
+func (o *ProviderInput) SetAustriaValeraEudiSandboxNil() {
+	o.AustriaValeraEudiSandbox.Set(nil)
+}
+
+// UnsetAustriaValeraEudiSandbox ensures that no value is present for AustriaValeraEudiSandbox, not even an explicit nil
+func (o *ProviderInput) UnsetAustriaValeraEudiSandbox() {
+	o.AustriaValeraEudiSandbox.Unset()
+}
+
+// GetNetherlandsEudiSandbox returns the NetherlandsEudiSandbox field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderInput) GetNetherlandsEudiSandbox() NetherlandsEudiSandboxInput {
+	if o == nil || IsNil(o.NetherlandsEudiSandbox.Get()) {
+		var ret NetherlandsEudiSandboxInput
+		return ret
+	}
+	return *o.NetherlandsEudiSandbox.Get()
+}
+
+// GetNetherlandsEudiSandboxOk returns a tuple with the NetherlandsEudiSandbox field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderInput) GetNetherlandsEudiSandboxOk() (*NetherlandsEudiSandboxInput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.NetherlandsEudiSandbox.Get(), o.NetherlandsEudiSandbox.IsSet()
+}
+
+// HasNetherlandsEudiSandbox returns a boolean if a field has been set.
+func (o *ProviderInput) HasNetherlandsEudiSandbox() bool {
+	if o != nil && o.NetherlandsEudiSandbox.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetNetherlandsEudiSandbox gets a reference to the given NullableNetherlandsEudiSandboxInput and assigns it to the NetherlandsEudiSandbox field.
+func (o *ProviderInput) SetNetherlandsEudiSandbox(v NetherlandsEudiSandboxInput) {
+	o.NetherlandsEudiSandbox.Set(&v)
+}
+// SetNetherlandsEudiSandboxNil sets the value for NetherlandsEudiSandbox to be an explicit nil
+func (o *ProviderInput) SetNetherlandsEudiSandboxNil() {
+	o.NetherlandsEudiSandbox.Set(nil)
+}
+
+// UnsetNetherlandsEudiSandbox ensures that no value is present for NetherlandsEudiSandbox, not even an explicit nil
+func (o *ProviderInput) UnsetNetherlandsEudiSandbox() {
+	o.NetherlandsEudiSandbox.Unset()
+}
+
 // GetPolandMobywatelMatch returns the PolandMobywatelMatch field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ProviderInput) GetPolandMobywatelMatch() PolandMobywatelMatchInput {
 	if o == nil || IsNil(o.PolandMobywatelMatch.Get()) {
@@ -1943,11 +2336,17 @@ func (o ProviderInput) MarshalJSON() ([]byte, error) {
 
 func (o ProviderInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if o.TrinsicMockOutput.IsSet() {
+		toSerialize["trinsic-mock-output"] = o.TrinsicMockOutput.Get()
+	}
 	if o.IndonesiaNikLookup.IsSet() {
 		toSerialize["indonesia-nik-lookup"] = o.IndonesiaNikLookup.Get()
 	}
 	if o.ChinaResidentIdMatch.IsSet() {
 		toSerialize["china-resident-id-match"] = o.ChinaResidentIdMatch.Get()
+	}
+	if o.Evrotrust.IsSet() {
+		toSerialize["evrotrust"] = o.Evrotrust.Get()
 	}
 	if o.IndonesiaDukcapilMatch.IsSet() {
 		toSerialize["indonesia-dukcapil-match"] = o.IndonesiaDukcapilMatch.Get()
@@ -1975,6 +2374,12 @@ func (o ProviderInput) ToMap() (map[string]interface{}, error) {
 	}
 	if o.NigeriaNinLookup2.IsSet() {
 		toSerialize["nigeria-nin-lookup-2"] = o.NigeriaNinLookup2.Get()
+	}
+	if o.NigeriaNinLookup3.IsSet() {
+		toSerialize["nigeria-nin-lookup-3"] = o.NigeriaNinLookup3.Get()
+	}
+	if o.KenyaNidLookup3.IsSet() {
+		toSerialize["kenya-nid-lookup-3"] = o.KenyaNidLookup3.Get()
 	}
 	if o.CoteDivoireNidLookup2.IsSet() {
 		toSerialize["cote-divoire-nid-lookup-2"] = o.CoteDivoireNidLookup2.Get()
@@ -2039,6 +2444,21 @@ func (o ProviderInput) ToMap() (map[string]interface{}, error) {
 	if o.FranceIdentite.IsSet() {
 		toSerialize["france-identite"] = o.FranceIdentite.Get()
 	}
+	if o.MoldovaEvoWallet.IsSet() {
+		toSerialize["moldova-evo-wallet"] = o.MoldovaEvoWallet.Get()
+	}
+	if o.GermanyEudiSandbox.IsSet() {
+		toSerialize["germany-eudi-sandbox"] = o.GermanyEudiSandbox.Get()
+	}
+	if o.DenmarkAltid.IsSet() {
+		toSerialize["denmark-altid"] = o.DenmarkAltid.Get()
+	}
+	if o.AustriaValeraEudiSandbox.IsSet() {
+		toSerialize["austria-valera-eudi-sandbox"] = o.AustriaValeraEudiSandbox.Get()
+	}
+	if o.NetherlandsEudiSandbox.IsSet() {
+		toSerialize["netherlands-eudi-sandbox"] = o.NetherlandsEudiSandbox.Get()
+	}
 	if o.PolandMobywatelMatch.IsSet() {
 		toSerialize["poland-mobywatel-match"] = o.PolandMobywatelMatch.Get()
 	}
@@ -2094,8 +2514,10 @@ func (o *ProviderInput) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "trinsic-mock-output")
 		delete(additionalProperties, "indonesia-nik-lookup")
 		delete(additionalProperties, "china-resident-id-match")
+		delete(additionalProperties, "evrotrust")
 		delete(additionalProperties, "indonesia-dukcapil-match")
 		delete(additionalProperties, "mexico-curp-lookup")
 		delete(additionalProperties, "south-africa-nid-lookup")
@@ -2105,6 +2527,8 @@ func (o *ProviderInput) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "south-africa-nid-lookup-2")
 		delete(additionalProperties, "south-africa-nid-match-2")
 		delete(additionalProperties, "nigeria-nin-lookup-2")
+		delete(additionalProperties, "nigeria-nin-lookup-3")
+		delete(additionalProperties, "kenya-nid-lookup-3")
 		delete(additionalProperties, "cote-divoire-nid-lookup-2")
 		delete(additionalProperties, "zimbabwe-nid-lookup-2")
 		delete(additionalProperties, "nigeria-nin-match-2")
@@ -2126,6 +2550,11 @@ func (o *ProviderInput) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "apple-wallet")
 		delete(additionalProperties, "samsung-wallet")
 		delete(additionalProperties, "france-identite")
+		delete(additionalProperties, "moldova-evo-wallet")
+		delete(additionalProperties, "germany-eudi-sandbox")
+		delete(additionalProperties, "denmark-altid")
+		delete(additionalProperties, "austria-valera-eudi-sandbox")
+		delete(additionalProperties, "netherlands-eudi-sandbox")
 		delete(additionalProperties, "poland-mobywatel-match")
 		delete(additionalProperties, "bolivia-ci-lookup")
 		delete(additionalProperties, "colombia-cc-lookup")

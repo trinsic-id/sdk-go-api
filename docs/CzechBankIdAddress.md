@@ -9,17 +9,17 @@ Name | Type | Description | Notes
 **BuildingApartment** | Pointer to **NullableString** | The address land registry number.              This is usually present, but unused for small houses. | [optional] 
 **StreetNumber** | Pointer to **NullableString** | The additional address house number.              This is usually present, but unused for small villages. | [optional] 
 **EvidenceNumber** | Pointer to **NullableString** | The house evidence number.              This is rarely used in suburbs. An evidence number is used for addresses that are residential, temporary or non-residential buildings, e.g. cabins, garages etc. | [optional] 
-**City** | **string** | The city name. | 
+**City** | Pointer to **NullableString** | The city name. | [optional] 
 **CityArea** | Pointer to **NullableString** | The city area name.              This is usually present. | [optional] 
-**Zipcode** | **string** | The zip of the address. | 
-**Country** | **string** | The country code in ISO 3166-1 alpha-2 format. | 
+**Zipcode** | Pointer to **NullableString** | The zip of the address. | [optional] 
+**Country** | Pointer to **NullableString** | The country code in ISO 3166-1 alpha-2 format. | [optional] 
 **RuianReference** | Pointer to **NullableString** | The address identifier in the Czech RUIAN address register.              RUIAN is the Czech Register of Territorial Identification, Addresses, and Real Estate. This value identifies the address record in that register and can be used to reconcile the address against Czech government address data. | [optional] 
 
 ## Methods
 
 ### NewCzechBankIdAddress
 
-`func NewCzechBankIdAddress(city string, zipcode string, country string, ) *CzechBankIdAddress`
+`func NewCzechBankIdAddress() *CzechBankIdAddress`
 
 NewCzechBankIdAddress instantiates a new CzechBankIdAddress object
 This constructor will assign default values to properties that have it defined,
@@ -228,7 +228,22 @@ and a boolean to check if the value has been set.
 
 SetCity sets City field to given value.
 
+### HasCity
 
+`func (o *CzechBankIdAddress) HasCity() bool`
+
+HasCity returns a boolean if a field has been set.
+
+### SetCityNil
+
+`func (o *CzechBankIdAddress) SetCityNil(b bool)`
+
+ SetCityNil sets the value for City to be an explicit nil
+
+### UnsetCity
+`func (o *CzechBankIdAddress) UnsetCity()`
+
+UnsetCity ensures that no value is present for City, not even an explicit nil
 ### GetCityArea
 
 `func (o *CzechBankIdAddress) GetCityArea() string`
@@ -283,7 +298,22 @@ and a boolean to check if the value has been set.
 
 SetZipcode sets Zipcode field to given value.
 
+### HasZipcode
 
+`func (o *CzechBankIdAddress) HasZipcode() bool`
+
+HasZipcode returns a boolean if a field has been set.
+
+### SetZipcodeNil
+
+`func (o *CzechBankIdAddress) SetZipcodeNil(b bool)`
+
+ SetZipcodeNil sets the value for Zipcode to be an explicit nil
+
+### UnsetZipcode
+`func (o *CzechBankIdAddress) UnsetZipcode()`
+
+UnsetZipcode ensures that no value is present for Zipcode, not even an explicit nil
 ### GetCountry
 
 `func (o *CzechBankIdAddress) GetCountry() string`
@@ -303,7 +333,22 @@ and a boolean to check if the value has been set.
 
 SetCountry sets Country field to given value.
 
+### HasCountry
 
+`func (o *CzechBankIdAddress) HasCountry() bool`
+
+HasCountry returns a boolean if a field has been set.
+
+### SetCountryNil
+
+`func (o *CzechBankIdAddress) SetCountryNil(b bool)`
+
+ SetCountryNil sets the value for Country to be an explicit nil
+
+### UnsetCountry
+`func (o *CzechBankIdAddress) UnsetCountry()`
+
+UnsetCountry ensures that no value is present for Country, not even an explicit nil
 ### GetRuianReference
 
 `func (o *CzechBankIdAddress) GetRuianReference() string`

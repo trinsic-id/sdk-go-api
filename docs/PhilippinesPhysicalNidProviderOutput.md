@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**PhilsysCardNumber** | **string** | The PhilSys Card Number (PCN). Every citizen or resident alien registered in PhilSys has a PhilSys Number (PSN). This number is tokenized into a card number to protect the PSN. The PhilSys Card Number is 12 characters long, and often is written in octets with dashes in between. | 
+**PhilsysCardNumber** | Pointer to **NullableString** | The PhilSys Card Number (PCN). Every citizen or resident alien registered in PhilSys has a PhilSys Number (PSN). This number is tokenized into a card number to protect the PSN. The PhilSys Card Number is 12 characters long, and often is written in octets with dashes in between. | [optional] 
 **GivenName** | Pointer to **NullableString** | The given (first) name of the individual. | [optional] 
 **MiddleName** | Pointer to **NullableString** | The middle name of the individual. | [optional] 
 **FamilyName** | Pointer to **NullableString** | The family (last) name of the individual. | [optional] 
@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 
 ### NewPhilippinesPhysicalNidProviderOutput
 
-`func NewPhilippinesPhysicalNidProviderOutput(philsysCardNumber string, ) *PhilippinesPhysicalNidProviderOutput`
+`func NewPhilippinesPhysicalNidProviderOutput() *PhilippinesPhysicalNidProviderOutput`
 
 NewPhilippinesPhysicalNidProviderOutput instantiates a new PhilippinesPhysicalNidProviderOutput object
 This constructor will assign default values to properties that have it defined,
@@ -52,7 +52,22 @@ and a boolean to check if the value has been set.
 
 SetPhilsysCardNumber sets PhilsysCardNumber field to given value.
 
+### HasPhilsysCardNumber
 
+`func (o *PhilippinesPhysicalNidProviderOutput) HasPhilsysCardNumber() bool`
+
+HasPhilsysCardNumber returns a boolean if a field has been set.
+
+### SetPhilsysCardNumberNil
+
+`func (o *PhilippinesPhysicalNidProviderOutput) SetPhilsysCardNumberNil(b bool)`
+
+ SetPhilsysCardNumberNil sets the value for PhilsysCardNumber to be an explicit nil
+
+### UnsetPhilsysCardNumber
+`func (o *PhilippinesPhysicalNidProviderOutput) UnsetPhilsysCardNumber()`
+
+UnsetPhilsysCardNumber ensures that no value is present for PhilsysCardNumber, not even an explicit nil
 ### GetGivenName
 
 `func (o *PhilippinesPhysicalNidProviderOutput) GetGivenName() string`

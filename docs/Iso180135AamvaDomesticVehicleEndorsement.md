@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Code** | Pointer to **NullableString** | Endorsement code, when present. | [optional] 
-**Description** | **string** | Human-readable description of the endorsement. | 
+**Description** | Pointer to **NullableString** | Human-readable description of the endorsement. | [optional] 
 
 ## Methods
 
 ### NewIso180135AamvaDomesticVehicleEndorsement
 
-`func NewIso180135AamvaDomesticVehicleEndorsement(description string, ) *Iso180135AamvaDomesticVehicleEndorsement`
+`func NewIso180135AamvaDomesticVehicleEndorsement() *Iso180135AamvaDomesticVehicleEndorsement`
 
 NewIso180135AamvaDomesticVehicleEndorsement instantiates a new Iso180135AamvaDomesticVehicleEndorsement object
 This constructor will assign default values to properties that have it defined,
@@ -80,7 +80,22 @@ and a boolean to check if the value has been set.
 
 SetDescription sets Description field to given value.
 
+### HasDescription
 
+`func (o *Iso180135AamvaDomesticVehicleEndorsement) HasDescription() bool`
+
+HasDescription returns a boolean if a field has been set.
+
+### SetDescriptionNil
+
+`func (o *Iso180135AamvaDomesticVehicleEndorsement) SetDescriptionNil(b bool)`
+
+ SetDescriptionNil sets the value for Description to be an explicit nil
+
+### UnsetDescription
+`func (o *Iso180135AamvaDomesticVehicleEndorsement) UnsetDescription()`
+
+UnsetDescription ensures that no value is present for Description, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the Iso180132BiometricDataBlockProduct type satisfies the MappedNullable interface at compile time
@@ -21,9 +20,9 @@ var _ MappedNullable = &Iso180132BiometricDataBlockProduct{}
 // Iso180132BiometricDataBlockProduct Owner and type identifying the product that produced a biometric data block.
 type Iso180132BiometricDataBlockProduct struct {
 	// Identifier of the product owner.
-	ProductOwner int32 `json:"productOwner"`
+	ProductOwner NullableInt32 `json:"productOwner,omitempty"`
 	// Identifier of the product type.
-	ProductType int32 `json:"productType"`
+	ProductType NullableInt32 `json:"productType,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -33,10 +32,8 @@ type _Iso180132BiometricDataBlockProduct Iso180132BiometricDataBlockProduct
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewIso180132BiometricDataBlockProduct(productOwner int32, productType int32) *Iso180132BiometricDataBlockProduct {
+func NewIso180132BiometricDataBlockProduct() *Iso180132BiometricDataBlockProduct {
 	this := Iso180132BiometricDataBlockProduct{}
-	this.ProductOwner = productOwner
-	this.ProductType = productType
 	return &this
 }
 
@@ -48,52 +45,88 @@ func NewIso180132BiometricDataBlockProductWithDefaults() *Iso180132BiometricData
 	return &this
 }
 
-// GetProductOwner returns the ProductOwner field value
+// GetProductOwner returns the ProductOwner field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Iso180132BiometricDataBlockProduct) GetProductOwner() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.ProductOwner.Get()) {
 		var ret int32
 		return ret
 	}
-
-	return o.ProductOwner
+	return *o.ProductOwner.Get()
 }
 
-// GetProductOwnerOk returns a tuple with the ProductOwner field value
+// GetProductOwnerOk returns a tuple with the ProductOwner field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Iso180132BiometricDataBlockProduct) GetProductOwnerOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.ProductOwner, true
+	return o.ProductOwner.Get(), o.ProductOwner.IsSet()
 }
 
-// SetProductOwner sets field value
+// HasProductOwner returns a boolean if a field has been set.
+func (o *Iso180132BiometricDataBlockProduct) HasProductOwner() bool {
+	if o != nil && o.ProductOwner.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetProductOwner gets a reference to the given NullableInt32 and assigns it to the ProductOwner field.
 func (o *Iso180132BiometricDataBlockProduct) SetProductOwner(v int32) {
-	o.ProductOwner = v
+	o.ProductOwner.Set(&v)
+}
+// SetProductOwnerNil sets the value for ProductOwner to be an explicit nil
+func (o *Iso180132BiometricDataBlockProduct) SetProductOwnerNil() {
+	o.ProductOwner.Set(nil)
 }
 
-// GetProductType returns the ProductType field value
+// UnsetProductOwner ensures that no value is present for ProductOwner, not even an explicit nil
+func (o *Iso180132BiometricDataBlockProduct) UnsetProductOwner() {
+	o.ProductOwner.Unset()
+}
+
+// GetProductType returns the ProductType field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Iso180132BiometricDataBlockProduct) GetProductType() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.ProductType.Get()) {
 		var ret int32
 		return ret
 	}
-
-	return o.ProductType
+	return *o.ProductType.Get()
 }
 
-// GetProductTypeOk returns a tuple with the ProductType field value
+// GetProductTypeOk returns a tuple with the ProductType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Iso180132BiometricDataBlockProduct) GetProductTypeOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.ProductType, true
+	return o.ProductType.Get(), o.ProductType.IsSet()
 }
 
-// SetProductType sets field value
+// HasProductType returns a boolean if a field has been set.
+func (o *Iso180132BiometricDataBlockProduct) HasProductType() bool {
+	if o != nil && o.ProductType.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetProductType gets a reference to the given NullableInt32 and assigns it to the ProductType field.
 func (o *Iso180132BiometricDataBlockProduct) SetProductType(v int32) {
-	o.ProductType = v
+	o.ProductType.Set(&v)
+}
+// SetProductTypeNil sets the value for ProductType to be an explicit nil
+func (o *Iso180132BiometricDataBlockProduct) SetProductTypeNil() {
+	o.ProductType.Set(nil)
+}
+
+// UnsetProductType ensures that no value is present for ProductType, not even an explicit nil
+func (o *Iso180132BiometricDataBlockProduct) UnsetProductType() {
+	o.ProductType.Unset()
 }
 
 func (o Iso180132BiometricDataBlockProduct) MarshalJSON() ([]byte, error) {
@@ -106,8 +139,12 @@ func (o Iso180132BiometricDataBlockProduct) MarshalJSON() ([]byte, error) {
 
 func (o Iso180132BiometricDataBlockProduct) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["productOwner"] = o.ProductOwner
-	toSerialize["productType"] = o.ProductType
+	if o.ProductOwner.IsSet() {
+		toSerialize["productOwner"] = o.ProductOwner.Get()
+	}
+	if o.ProductType.IsSet() {
+		toSerialize["productType"] = o.ProductType.Get()
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -117,28 +154,6 @@ func (o Iso180132BiometricDataBlockProduct) ToMap() (map[string]interface{}, err
 }
 
 func (o *Iso180132BiometricDataBlockProduct) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"productOwner",
-		"productType",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varIso180132BiometricDataBlockProduct := _Iso180132BiometricDataBlockProduct{}
 
 	err = json.Unmarshal(data, &varIso180132BiometricDataBlockProduct)

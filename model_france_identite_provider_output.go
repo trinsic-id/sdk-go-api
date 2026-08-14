@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the FranceIdentiteProviderOutput type satisfies the MappedNullable interface at compile time
@@ -25,7 +24,7 @@ type FranceIdentiteProviderOutput struct {
 	// An EUDI Age Verification credential, retrieved from the individual's wallet.
 	AgeVerification NullableEudiAgeVerificationCredential `json:"ageVerification,omitempty"`
 	// The raw output of the 18013-7 exchange performed through France Identité.
-	Raw18013Output MdlOutput `json:"raw18013Output"`
+	Raw18013Output NullableMdlOutput `json:"raw18013Output,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -35,9 +34,8 @@ type _FranceIdentiteProviderOutput FranceIdentiteProviderOutput
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFranceIdentiteProviderOutput(raw18013Output MdlOutput) *FranceIdentiteProviderOutput {
+func NewFranceIdentiteProviderOutput() *FranceIdentiteProviderOutput {
 	this := FranceIdentiteProviderOutput{}
-	this.Raw18013Output = raw18013Output
 	return &this
 }
 
@@ -133,28 +131,46 @@ func (o *FranceIdentiteProviderOutput) UnsetAgeVerification() {
 	o.AgeVerification.Unset()
 }
 
-// GetRaw18013Output returns the Raw18013Output field value
+// GetRaw18013Output returns the Raw18013Output field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *FranceIdentiteProviderOutput) GetRaw18013Output() MdlOutput {
-	if o == nil {
+	if o == nil || IsNil(o.Raw18013Output.Get()) {
 		var ret MdlOutput
 		return ret
 	}
-
-	return o.Raw18013Output
+	return *o.Raw18013Output.Get()
 }
 
-// GetRaw18013OutputOk returns a tuple with the Raw18013Output field value
+// GetRaw18013OutputOk returns a tuple with the Raw18013Output field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *FranceIdentiteProviderOutput) GetRaw18013OutputOk() (*MdlOutput, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Raw18013Output, true
+	return o.Raw18013Output.Get(), o.Raw18013Output.IsSet()
 }
 
-// SetRaw18013Output sets field value
+// HasRaw18013Output returns a boolean if a field has been set.
+func (o *FranceIdentiteProviderOutput) HasRaw18013Output() bool {
+	if o != nil && o.Raw18013Output.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRaw18013Output gets a reference to the given NullableMdlOutput and assigns it to the Raw18013Output field.
 func (o *FranceIdentiteProviderOutput) SetRaw18013Output(v MdlOutput) {
-	o.Raw18013Output = v
+	o.Raw18013Output.Set(&v)
+}
+// SetRaw18013OutputNil sets the value for Raw18013Output to be an explicit nil
+func (o *FranceIdentiteProviderOutput) SetRaw18013OutputNil() {
+	o.Raw18013Output.Set(nil)
+}
+
+// UnsetRaw18013Output ensures that no value is present for Raw18013Output, not even an explicit nil
+func (o *FranceIdentiteProviderOutput) UnsetRaw18013Output() {
+	o.Raw18013Output.Unset()
 }
 
 func (o FranceIdentiteProviderOutput) MarshalJSON() ([]byte, error) {
@@ -173,7 +189,9 @@ func (o FranceIdentiteProviderOutput) ToMap() (map[string]interface{}, error) {
 	if o.AgeVerification.IsSet() {
 		toSerialize["ageVerification"] = o.AgeVerification.Get()
 	}
-	toSerialize["raw18013Output"] = o.Raw18013Output
+	if o.Raw18013Output.IsSet() {
+		toSerialize["raw18013Output"] = o.Raw18013Output.Get()
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -183,27 +201,6 @@ func (o FranceIdentiteProviderOutput) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *FranceIdentiteProviderOutput) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"raw18013Output",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varFranceIdentiteProviderOutput := _FranceIdentiteProviderOutput{}
 
 	err = json.Unmarshal(data, &varFranceIdentiteProviderOutput)

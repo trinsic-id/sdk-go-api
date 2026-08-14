@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the DiiaProviderOutput type satisfies the MappedNullable interface at compile time
@@ -21,9 +20,9 @@ var _ MappedNullable = &DiiaProviderOutput{}
 // DiiaProviderOutput Exposed properties for the `ukraine-diia` Provider which do not directly map to the normalized IdentityData model.
 type DiiaProviderOutput struct {
 	// Diia.Signature user data.
-	Subject DiiaSubjectOutput `json:"subject"`
+	Subject NullableDiiaSubjectOutput `json:"subject,omitempty"`
 	// Diia.Signature issuer data.
-	Issuer DiiaIssuerOutput `json:"issuer"`
+	Issuer NullableDiiaIssuerOutput `json:"issuer,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -33,10 +32,8 @@ type _DiiaProviderOutput DiiaProviderOutput
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDiiaProviderOutput(subject DiiaSubjectOutput, issuer DiiaIssuerOutput) *DiiaProviderOutput {
+func NewDiiaProviderOutput() *DiiaProviderOutput {
 	this := DiiaProviderOutput{}
-	this.Subject = subject
-	this.Issuer = issuer
 	return &this
 }
 
@@ -48,52 +45,88 @@ func NewDiiaProviderOutputWithDefaults() *DiiaProviderOutput {
 	return &this
 }
 
-// GetSubject returns the Subject field value
+// GetSubject returns the Subject field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DiiaProviderOutput) GetSubject() DiiaSubjectOutput {
-	if o == nil {
+	if o == nil || IsNil(o.Subject.Get()) {
 		var ret DiiaSubjectOutput
 		return ret
 	}
-
-	return o.Subject
+	return *o.Subject.Get()
 }
 
-// GetSubjectOk returns a tuple with the Subject field value
+// GetSubjectOk returns a tuple with the Subject field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *DiiaProviderOutput) GetSubjectOk() (*DiiaSubjectOutput, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Subject, true
+	return o.Subject.Get(), o.Subject.IsSet()
 }
 
-// SetSubject sets field value
+// HasSubject returns a boolean if a field has been set.
+func (o *DiiaProviderOutput) HasSubject() bool {
+	if o != nil && o.Subject.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSubject gets a reference to the given NullableDiiaSubjectOutput and assigns it to the Subject field.
 func (o *DiiaProviderOutput) SetSubject(v DiiaSubjectOutput) {
-	o.Subject = v
+	o.Subject.Set(&v)
+}
+// SetSubjectNil sets the value for Subject to be an explicit nil
+func (o *DiiaProviderOutput) SetSubjectNil() {
+	o.Subject.Set(nil)
 }
 
-// GetIssuer returns the Issuer field value
+// UnsetSubject ensures that no value is present for Subject, not even an explicit nil
+func (o *DiiaProviderOutput) UnsetSubject() {
+	o.Subject.Unset()
+}
+
+// GetIssuer returns the Issuer field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DiiaProviderOutput) GetIssuer() DiiaIssuerOutput {
-	if o == nil {
+	if o == nil || IsNil(o.Issuer.Get()) {
 		var ret DiiaIssuerOutput
 		return ret
 	}
-
-	return o.Issuer
+	return *o.Issuer.Get()
 }
 
-// GetIssuerOk returns a tuple with the Issuer field value
+// GetIssuerOk returns a tuple with the Issuer field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *DiiaProviderOutput) GetIssuerOk() (*DiiaIssuerOutput, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Issuer, true
+	return o.Issuer.Get(), o.Issuer.IsSet()
 }
 
-// SetIssuer sets field value
+// HasIssuer returns a boolean if a field has been set.
+func (o *DiiaProviderOutput) HasIssuer() bool {
+	if o != nil && o.Issuer.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetIssuer gets a reference to the given NullableDiiaIssuerOutput and assigns it to the Issuer field.
 func (o *DiiaProviderOutput) SetIssuer(v DiiaIssuerOutput) {
-	o.Issuer = v
+	o.Issuer.Set(&v)
+}
+// SetIssuerNil sets the value for Issuer to be an explicit nil
+func (o *DiiaProviderOutput) SetIssuerNil() {
+	o.Issuer.Set(nil)
+}
+
+// UnsetIssuer ensures that no value is present for Issuer, not even an explicit nil
+func (o *DiiaProviderOutput) UnsetIssuer() {
+	o.Issuer.Unset()
 }
 
 func (o DiiaProviderOutput) MarshalJSON() ([]byte, error) {
@@ -106,8 +139,12 @@ func (o DiiaProviderOutput) MarshalJSON() ([]byte, error) {
 
 func (o DiiaProviderOutput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["subject"] = o.Subject
-	toSerialize["issuer"] = o.Issuer
+	if o.Subject.IsSet() {
+		toSerialize["subject"] = o.Subject.Get()
+	}
+	if o.Issuer.IsSet() {
+		toSerialize["issuer"] = o.Issuer.Get()
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -117,28 +154,6 @@ func (o DiiaProviderOutput) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *DiiaProviderOutput) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"subject",
-		"issuer",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varDiiaProviderOutput := _DiiaProviderOutput{}
 
 	err = json.Unmarshal(data, &varDiiaProviderOutput)

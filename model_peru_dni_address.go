@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the PeruDniAddress type satisfies the MappedNullable interface at compile time
@@ -21,11 +20,11 @@ var _ MappedNullable = &PeruDniAddress{}
 // PeruDniAddress Not a typical address. Does not include street or city. Instead, includes region, province and district.
 type PeruDniAddress struct {
 	// Region in Peru (also known as department). This is the first level subdivision in the country.              Format: - All uppercase.
-	Region string `json:"region"`
+	Region NullableString `json:"region,omitempty"`
 	// Province within the region. This is the second level subdivision in the country.              Format: - All uppercase.
-	Province string `json:"province"`
+	Province NullableString `json:"province,omitempty"`
 	// District within the province. This is the third level subdivision in the country.              Format: - All uppercase.
-	District string `json:"district"`
+	District NullableString `json:"district,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -35,11 +34,8 @@ type _PeruDniAddress PeruDniAddress
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPeruDniAddress(region string, province string, district string) *PeruDniAddress {
+func NewPeruDniAddress() *PeruDniAddress {
 	this := PeruDniAddress{}
-	this.Region = region
-	this.Province = province
-	this.District = district
 	return &this
 }
 
@@ -51,76 +47,130 @@ func NewPeruDniAddressWithDefaults() *PeruDniAddress {
 	return &this
 }
 
-// GetRegion returns the Region field value
+// GetRegion returns the Region field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *PeruDniAddress) GetRegion() string {
-	if o == nil {
+	if o == nil || IsNil(o.Region.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.Region
+	return *o.Region.Get()
 }
 
-// GetRegionOk returns a tuple with the Region field value
+// GetRegionOk returns a tuple with the Region field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *PeruDniAddress) GetRegionOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Region, true
+	return o.Region.Get(), o.Region.IsSet()
 }
 
-// SetRegion sets field value
+// HasRegion returns a boolean if a field has been set.
+func (o *PeruDniAddress) HasRegion() bool {
+	if o != nil && o.Region.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRegion gets a reference to the given NullableString and assigns it to the Region field.
 func (o *PeruDniAddress) SetRegion(v string) {
-	o.Region = v
+	o.Region.Set(&v)
+}
+// SetRegionNil sets the value for Region to be an explicit nil
+func (o *PeruDniAddress) SetRegionNil() {
+	o.Region.Set(nil)
 }
 
-// GetProvince returns the Province field value
+// UnsetRegion ensures that no value is present for Region, not even an explicit nil
+func (o *PeruDniAddress) UnsetRegion() {
+	o.Region.Unset()
+}
+
+// GetProvince returns the Province field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *PeruDniAddress) GetProvince() string {
-	if o == nil {
+	if o == nil || IsNil(o.Province.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.Province
+	return *o.Province.Get()
 }
 
-// GetProvinceOk returns a tuple with the Province field value
+// GetProvinceOk returns a tuple with the Province field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *PeruDniAddress) GetProvinceOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Province, true
+	return o.Province.Get(), o.Province.IsSet()
 }
 
-// SetProvince sets field value
+// HasProvince returns a boolean if a field has been set.
+func (o *PeruDniAddress) HasProvince() bool {
+	if o != nil && o.Province.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetProvince gets a reference to the given NullableString and assigns it to the Province field.
 func (o *PeruDniAddress) SetProvince(v string) {
-	o.Province = v
+	o.Province.Set(&v)
+}
+// SetProvinceNil sets the value for Province to be an explicit nil
+func (o *PeruDniAddress) SetProvinceNil() {
+	o.Province.Set(nil)
 }
 
-// GetDistrict returns the District field value
+// UnsetProvince ensures that no value is present for Province, not even an explicit nil
+func (o *PeruDniAddress) UnsetProvince() {
+	o.Province.Unset()
+}
+
+// GetDistrict returns the District field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *PeruDniAddress) GetDistrict() string {
-	if o == nil {
+	if o == nil || IsNil(o.District.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.District
+	return *o.District.Get()
 }
 
-// GetDistrictOk returns a tuple with the District field value
+// GetDistrictOk returns a tuple with the District field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *PeruDniAddress) GetDistrictOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.District, true
+	return o.District.Get(), o.District.IsSet()
 }
 
-// SetDistrict sets field value
+// HasDistrict returns a boolean if a field has been set.
+func (o *PeruDniAddress) HasDistrict() bool {
+	if o != nil && o.District.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDistrict gets a reference to the given NullableString and assigns it to the District field.
 func (o *PeruDniAddress) SetDistrict(v string) {
-	o.District = v
+	o.District.Set(&v)
+}
+// SetDistrictNil sets the value for District to be an explicit nil
+func (o *PeruDniAddress) SetDistrictNil() {
+	o.District.Set(nil)
+}
+
+// UnsetDistrict ensures that no value is present for District, not even an explicit nil
+func (o *PeruDniAddress) UnsetDistrict() {
+	o.District.Unset()
 }
 
 func (o PeruDniAddress) MarshalJSON() ([]byte, error) {
@@ -133,9 +183,15 @@ func (o PeruDniAddress) MarshalJSON() ([]byte, error) {
 
 func (o PeruDniAddress) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["region"] = o.Region
-	toSerialize["province"] = o.Province
-	toSerialize["district"] = o.District
+	if o.Region.IsSet() {
+		toSerialize["region"] = o.Region.Get()
+	}
+	if o.Province.IsSet() {
+		toSerialize["province"] = o.Province.Get()
+	}
+	if o.District.IsSet() {
+		toSerialize["district"] = o.District.Get()
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -145,29 +201,6 @@ func (o PeruDniAddress) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *PeruDniAddress) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"region",
-		"province",
-		"district",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varPeruDniAddress := _PeruDniAddress{}
 
 	err = json.Unmarshal(data, &varPeruDniAddress)

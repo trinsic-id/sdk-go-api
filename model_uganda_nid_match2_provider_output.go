@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the UgandaNidMatch2ProviderOutput type satisfies the MappedNullable interface at compile time
@@ -21,11 +20,11 @@ var _ MappedNullable = &UgandaNidMatch2ProviderOutput{}
 // UgandaNidMatch2ProviderOutput Exposed properties for the `uganda-nid-match-2` Provider which do not directly map to the normalized IdentityData model.
 type UgandaNidMatch2ProviderOutput struct {
 	// Outcome of verifying the national identification number in the NIRA database.
-	NationalIdNumber UgandaNidMatch2NationalIdNumberField `json:"nationalIdNumber"`
+	NationalIdNumber NullableUgandaNidMatch2NationalIdNumberField `json:"nationalIdNumber,omitempty"`
 	// Outcome of comparing the submitted card number with the NIRA database.
-	SecondaryIdNumber UgandaNidMatch2SecondaryIdNumberField `json:"secondaryIdNumber"`
+	SecondaryIdNumber NullableUgandaNidMatch2SecondaryIdNumberField `json:"secondaryIdNumber,omitempty"`
 	// Outcome of comparing the submitted date of birth with the NIRA database.
-	DateOfBirth UgandaNidMatch2DateOfBirthField `json:"dateOfBirth"`
+	DateOfBirth NullableUgandaNidMatch2DateOfBirthField `json:"dateOfBirth,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -35,11 +34,8 @@ type _UgandaNidMatch2ProviderOutput UgandaNidMatch2ProviderOutput
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUgandaNidMatch2ProviderOutput(nationalIdNumber UgandaNidMatch2NationalIdNumberField, secondaryIdNumber UgandaNidMatch2SecondaryIdNumberField, dateOfBirth UgandaNidMatch2DateOfBirthField) *UgandaNidMatch2ProviderOutput {
+func NewUgandaNidMatch2ProviderOutput() *UgandaNidMatch2ProviderOutput {
 	this := UgandaNidMatch2ProviderOutput{}
-	this.NationalIdNumber = nationalIdNumber
-	this.SecondaryIdNumber = secondaryIdNumber
-	this.DateOfBirth = dateOfBirth
 	return &this
 }
 
@@ -51,76 +47,130 @@ func NewUgandaNidMatch2ProviderOutputWithDefaults() *UgandaNidMatch2ProviderOutp
 	return &this
 }
 
-// GetNationalIdNumber returns the NationalIdNumber field value
+// GetNationalIdNumber returns the NationalIdNumber field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UgandaNidMatch2ProviderOutput) GetNationalIdNumber() UgandaNidMatch2NationalIdNumberField {
-	if o == nil {
+	if o == nil || IsNil(o.NationalIdNumber.Get()) {
 		var ret UgandaNidMatch2NationalIdNumberField
 		return ret
 	}
-
-	return o.NationalIdNumber
+	return *o.NationalIdNumber.Get()
 }
 
-// GetNationalIdNumberOk returns a tuple with the NationalIdNumber field value
+// GetNationalIdNumberOk returns a tuple with the NationalIdNumber field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UgandaNidMatch2ProviderOutput) GetNationalIdNumberOk() (*UgandaNidMatch2NationalIdNumberField, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.NationalIdNumber, true
+	return o.NationalIdNumber.Get(), o.NationalIdNumber.IsSet()
 }
 
-// SetNationalIdNumber sets field value
+// HasNationalIdNumber returns a boolean if a field has been set.
+func (o *UgandaNidMatch2ProviderOutput) HasNationalIdNumber() bool {
+	if o != nil && o.NationalIdNumber.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetNationalIdNumber gets a reference to the given NullableUgandaNidMatch2NationalIdNumberField and assigns it to the NationalIdNumber field.
 func (o *UgandaNidMatch2ProviderOutput) SetNationalIdNumber(v UgandaNidMatch2NationalIdNumberField) {
-	o.NationalIdNumber = v
+	o.NationalIdNumber.Set(&v)
+}
+// SetNationalIdNumberNil sets the value for NationalIdNumber to be an explicit nil
+func (o *UgandaNidMatch2ProviderOutput) SetNationalIdNumberNil() {
+	o.NationalIdNumber.Set(nil)
 }
 
-// GetSecondaryIdNumber returns the SecondaryIdNumber field value
+// UnsetNationalIdNumber ensures that no value is present for NationalIdNumber, not even an explicit nil
+func (o *UgandaNidMatch2ProviderOutput) UnsetNationalIdNumber() {
+	o.NationalIdNumber.Unset()
+}
+
+// GetSecondaryIdNumber returns the SecondaryIdNumber field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UgandaNidMatch2ProviderOutput) GetSecondaryIdNumber() UgandaNidMatch2SecondaryIdNumberField {
-	if o == nil {
+	if o == nil || IsNil(o.SecondaryIdNumber.Get()) {
 		var ret UgandaNidMatch2SecondaryIdNumberField
 		return ret
 	}
-
-	return o.SecondaryIdNumber
+	return *o.SecondaryIdNumber.Get()
 }
 
-// GetSecondaryIdNumberOk returns a tuple with the SecondaryIdNumber field value
+// GetSecondaryIdNumberOk returns a tuple with the SecondaryIdNumber field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UgandaNidMatch2ProviderOutput) GetSecondaryIdNumberOk() (*UgandaNidMatch2SecondaryIdNumberField, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.SecondaryIdNumber, true
+	return o.SecondaryIdNumber.Get(), o.SecondaryIdNumber.IsSet()
 }
 
-// SetSecondaryIdNumber sets field value
+// HasSecondaryIdNumber returns a boolean if a field has been set.
+func (o *UgandaNidMatch2ProviderOutput) HasSecondaryIdNumber() bool {
+	if o != nil && o.SecondaryIdNumber.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSecondaryIdNumber gets a reference to the given NullableUgandaNidMatch2SecondaryIdNumberField and assigns it to the SecondaryIdNumber field.
 func (o *UgandaNidMatch2ProviderOutput) SetSecondaryIdNumber(v UgandaNidMatch2SecondaryIdNumberField) {
-	o.SecondaryIdNumber = v
+	o.SecondaryIdNumber.Set(&v)
+}
+// SetSecondaryIdNumberNil sets the value for SecondaryIdNumber to be an explicit nil
+func (o *UgandaNidMatch2ProviderOutput) SetSecondaryIdNumberNil() {
+	o.SecondaryIdNumber.Set(nil)
 }
 
-// GetDateOfBirth returns the DateOfBirth field value
+// UnsetSecondaryIdNumber ensures that no value is present for SecondaryIdNumber, not even an explicit nil
+func (o *UgandaNidMatch2ProviderOutput) UnsetSecondaryIdNumber() {
+	o.SecondaryIdNumber.Unset()
+}
+
+// GetDateOfBirth returns the DateOfBirth field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UgandaNidMatch2ProviderOutput) GetDateOfBirth() UgandaNidMatch2DateOfBirthField {
-	if o == nil {
+	if o == nil || IsNil(o.DateOfBirth.Get()) {
 		var ret UgandaNidMatch2DateOfBirthField
 		return ret
 	}
-
-	return o.DateOfBirth
+	return *o.DateOfBirth.Get()
 }
 
-// GetDateOfBirthOk returns a tuple with the DateOfBirth field value
+// GetDateOfBirthOk returns a tuple with the DateOfBirth field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UgandaNidMatch2ProviderOutput) GetDateOfBirthOk() (*UgandaNidMatch2DateOfBirthField, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.DateOfBirth, true
+	return o.DateOfBirth.Get(), o.DateOfBirth.IsSet()
 }
 
-// SetDateOfBirth sets field value
+// HasDateOfBirth returns a boolean if a field has been set.
+func (o *UgandaNidMatch2ProviderOutput) HasDateOfBirth() bool {
+	if o != nil && o.DateOfBirth.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDateOfBirth gets a reference to the given NullableUgandaNidMatch2DateOfBirthField and assigns it to the DateOfBirth field.
 func (o *UgandaNidMatch2ProviderOutput) SetDateOfBirth(v UgandaNidMatch2DateOfBirthField) {
-	o.DateOfBirth = v
+	o.DateOfBirth.Set(&v)
+}
+// SetDateOfBirthNil sets the value for DateOfBirth to be an explicit nil
+func (o *UgandaNidMatch2ProviderOutput) SetDateOfBirthNil() {
+	o.DateOfBirth.Set(nil)
+}
+
+// UnsetDateOfBirth ensures that no value is present for DateOfBirth, not even an explicit nil
+func (o *UgandaNidMatch2ProviderOutput) UnsetDateOfBirth() {
+	o.DateOfBirth.Unset()
 }
 
 func (o UgandaNidMatch2ProviderOutput) MarshalJSON() ([]byte, error) {
@@ -133,9 +183,15 @@ func (o UgandaNidMatch2ProviderOutput) MarshalJSON() ([]byte, error) {
 
 func (o UgandaNidMatch2ProviderOutput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["nationalIdNumber"] = o.NationalIdNumber
-	toSerialize["secondaryIdNumber"] = o.SecondaryIdNumber
-	toSerialize["dateOfBirth"] = o.DateOfBirth
+	if o.NationalIdNumber.IsSet() {
+		toSerialize["nationalIdNumber"] = o.NationalIdNumber.Get()
+	}
+	if o.SecondaryIdNumber.IsSet() {
+		toSerialize["secondaryIdNumber"] = o.SecondaryIdNumber.Get()
+	}
+	if o.DateOfBirth.IsSet() {
+		toSerialize["dateOfBirth"] = o.DateOfBirth.Get()
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -145,29 +201,6 @@ func (o UgandaNidMatch2ProviderOutput) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *UgandaNidMatch2ProviderOutput) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"nationalIdNumber",
-		"secondaryIdNumber",
-		"dateOfBirth",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varUgandaNidMatch2ProviderOutput := _UgandaNidMatch2ProviderOutput{}
 
 	err = json.Unmarshal(data, &varUgandaNidMatch2ProviderOutput)

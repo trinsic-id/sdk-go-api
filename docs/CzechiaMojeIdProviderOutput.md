@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**FirstName** | **string** | The first name of the verified individual | 
-**LastName** | **string** | The last name of the verified individual | 
-**DateOfBirth** | **string** | The date of birth of the verified individual | 
-**OpenId2Identifier** | **string** | The OpenID 2.0 Identifier (\&quot;openid2_id\&quot;) of the verified individual&#39;s MojeID account.              This is an HTTPS URL which uniquely identifies the individual within the MojeID system. | 
+**FirstName** | Pointer to **NullableString** | The first name of the verified individual | [optional] 
+**LastName** | Pointer to **NullableString** | The last name of the verified individual | [optional] 
+**DateOfBirth** | Pointer to **NullableString** | The date of birth of the verified individual | [optional] 
+**OpenId2Identifier** | Pointer to **NullableString** | The OpenID 2.0 Identifier (\&quot;openid2_id\&quot;) of the verified individual&#39;s MojeID account.              This is an HTTPS URL which uniquely identifies the individual within the MojeID system. | [optional] 
 
 ## Methods
 
 ### NewCzechiaMojeIdProviderOutput
 
-`func NewCzechiaMojeIdProviderOutput(firstName string, lastName string, dateOfBirth string, openId2Identifier string, ) *CzechiaMojeIdProviderOutput`
+`func NewCzechiaMojeIdProviderOutput() *CzechiaMojeIdProviderOutput`
 
 NewCzechiaMojeIdProviderOutput instantiates a new CzechiaMojeIdProviderOutput object
 This constructor will assign default values to properties that have it defined,
@@ -47,7 +47,22 @@ and a boolean to check if the value has been set.
 
 SetFirstName sets FirstName field to given value.
 
+### HasFirstName
 
+`func (o *CzechiaMojeIdProviderOutput) HasFirstName() bool`
+
+HasFirstName returns a boolean if a field has been set.
+
+### SetFirstNameNil
+
+`func (o *CzechiaMojeIdProviderOutput) SetFirstNameNil(b bool)`
+
+ SetFirstNameNil sets the value for FirstName to be an explicit nil
+
+### UnsetFirstName
+`func (o *CzechiaMojeIdProviderOutput) UnsetFirstName()`
+
+UnsetFirstName ensures that no value is present for FirstName, not even an explicit nil
 ### GetLastName
 
 `func (o *CzechiaMojeIdProviderOutput) GetLastName() string`
@@ -67,7 +82,22 @@ and a boolean to check if the value has been set.
 
 SetLastName sets LastName field to given value.
 
+### HasLastName
 
+`func (o *CzechiaMojeIdProviderOutput) HasLastName() bool`
+
+HasLastName returns a boolean if a field has been set.
+
+### SetLastNameNil
+
+`func (o *CzechiaMojeIdProviderOutput) SetLastNameNil(b bool)`
+
+ SetLastNameNil sets the value for LastName to be an explicit nil
+
+### UnsetLastName
+`func (o *CzechiaMojeIdProviderOutput) UnsetLastName()`
+
+UnsetLastName ensures that no value is present for LastName, not even an explicit nil
 ### GetDateOfBirth
 
 `func (o *CzechiaMojeIdProviderOutput) GetDateOfBirth() string`
@@ -87,7 +117,22 @@ and a boolean to check if the value has been set.
 
 SetDateOfBirth sets DateOfBirth field to given value.
 
+### HasDateOfBirth
 
+`func (o *CzechiaMojeIdProviderOutput) HasDateOfBirth() bool`
+
+HasDateOfBirth returns a boolean if a field has been set.
+
+### SetDateOfBirthNil
+
+`func (o *CzechiaMojeIdProviderOutput) SetDateOfBirthNil(b bool)`
+
+ SetDateOfBirthNil sets the value for DateOfBirth to be an explicit nil
+
+### UnsetDateOfBirth
+`func (o *CzechiaMojeIdProviderOutput) UnsetDateOfBirth()`
+
+UnsetDateOfBirth ensures that no value is present for DateOfBirth, not even an explicit nil
 ### GetOpenId2Identifier
 
 `func (o *CzechiaMojeIdProviderOutput) GetOpenId2Identifier() string`
@@ -107,7 +152,22 @@ and a boolean to check if the value has been set.
 
 SetOpenId2Identifier sets OpenId2Identifier field to given value.
 
+### HasOpenId2Identifier
 
+`func (o *CzechiaMojeIdProviderOutput) HasOpenId2Identifier() bool`
+
+HasOpenId2Identifier returns a boolean if a field has been set.
+
+### SetOpenId2IdentifierNil
+
+`func (o *CzechiaMojeIdProviderOutput) SetOpenId2IdentifierNil(b bool)`
+
+ SetOpenId2IdentifierNil sets the value for OpenId2Identifier to be an explicit nil
+
+### UnsetOpenId2Identifier
+`func (o *CzechiaMojeIdProviderOutput) UnsetOpenId2Identifier()`
+
+UnsetOpenId2Identifier ensures that no value is present for OpenId2Identifier, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -20,7 +20,7 @@ var _ MappedNullable = &GetAttachmentResponse{}
 
 // GetAttachmentResponse struct for GetAttachmentResponse
 type GetAttachmentResponse struct {
-	// The raw file contents of the Attachment
+	// The file contents of the Attachment. When using an SDK, this can be a raw byte array. In raw JSON form this is Base64. Combine this with the Content type to reconstruct the file.              This is empty when `encryptedContent` is present.
 	Content string `json:"content"`
 	// The MIME type of the Attachment data
 	ContentType string `json:"contentType"`

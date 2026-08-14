@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the AgeOverOutput type satisfies the MappedNullable interface at compile time
@@ -21,9 +20,9 @@ var _ MappedNullable = &AgeOverOutput{}
 // AgeOverOutput Processed result of an \"age over X\" claim present in a credential.
 type AgeOverOutput struct {
 	// The age threshold from the `age over X` claim.
-	Age int32 `json:"age"`
+	Age NullableInt32 `json:"age,omitempty"`
 	// Whether the individual is at least the given age.
-	IsOver bool `json:"isOver"`
+	IsOver NullableBool `json:"isOver,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -33,10 +32,8 @@ type _AgeOverOutput AgeOverOutput
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAgeOverOutput(age int32, isOver bool) *AgeOverOutput {
+func NewAgeOverOutput() *AgeOverOutput {
 	this := AgeOverOutput{}
-	this.Age = age
-	this.IsOver = isOver
 	return &this
 }
 
@@ -48,52 +45,88 @@ func NewAgeOverOutputWithDefaults() *AgeOverOutput {
 	return &this
 }
 
-// GetAge returns the Age field value
+// GetAge returns the Age field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AgeOverOutput) GetAge() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Age.Get()) {
 		var ret int32
 		return ret
 	}
-
-	return o.Age
+	return *o.Age.Get()
 }
 
-// GetAgeOk returns a tuple with the Age field value
+// GetAgeOk returns a tuple with the Age field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AgeOverOutput) GetAgeOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Age, true
+	return o.Age.Get(), o.Age.IsSet()
 }
 
-// SetAge sets field value
+// HasAge returns a boolean if a field has been set.
+func (o *AgeOverOutput) HasAge() bool {
+	if o != nil && o.Age.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAge gets a reference to the given NullableInt32 and assigns it to the Age field.
 func (o *AgeOverOutput) SetAge(v int32) {
-	o.Age = v
+	o.Age.Set(&v)
+}
+// SetAgeNil sets the value for Age to be an explicit nil
+func (o *AgeOverOutput) SetAgeNil() {
+	o.Age.Set(nil)
 }
 
-// GetIsOver returns the IsOver field value
+// UnsetAge ensures that no value is present for Age, not even an explicit nil
+func (o *AgeOverOutput) UnsetAge() {
+	o.Age.Unset()
+}
+
+// GetIsOver returns the IsOver field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AgeOverOutput) GetIsOver() bool {
-	if o == nil {
+	if o == nil || IsNil(o.IsOver.Get()) {
 		var ret bool
 		return ret
 	}
-
-	return o.IsOver
+	return *o.IsOver.Get()
 }
 
-// GetIsOverOk returns a tuple with the IsOver field value
+// GetIsOverOk returns a tuple with the IsOver field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AgeOverOutput) GetIsOverOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.IsOver, true
+	return o.IsOver.Get(), o.IsOver.IsSet()
 }
 
-// SetIsOver sets field value
+// HasIsOver returns a boolean if a field has been set.
+func (o *AgeOverOutput) HasIsOver() bool {
+	if o != nil && o.IsOver.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetIsOver gets a reference to the given NullableBool and assigns it to the IsOver field.
 func (o *AgeOverOutput) SetIsOver(v bool) {
-	o.IsOver = v
+	o.IsOver.Set(&v)
+}
+// SetIsOverNil sets the value for IsOver to be an explicit nil
+func (o *AgeOverOutput) SetIsOverNil() {
+	o.IsOver.Set(nil)
+}
+
+// UnsetIsOver ensures that no value is present for IsOver, not even an explicit nil
+func (o *AgeOverOutput) UnsetIsOver() {
+	o.IsOver.Unset()
 }
 
 func (o AgeOverOutput) MarshalJSON() ([]byte, error) {
@@ -106,8 +139,12 @@ func (o AgeOverOutput) MarshalJSON() ([]byte, error) {
 
 func (o AgeOverOutput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["age"] = o.Age
-	toSerialize["isOver"] = o.IsOver
+	if o.Age.IsSet() {
+		toSerialize["age"] = o.Age.Get()
+	}
+	if o.IsOver.IsSet() {
+		toSerialize["isOver"] = o.IsOver.Get()
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -117,28 +154,6 @@ func (o AgeOverOutput) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *AgeOverOutput) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"age",
-		"isOver",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varAgeOverOutput := _AgeOverOutput{}
 
 	err = json.Unmarshal(data, &varAgeOverOutput)

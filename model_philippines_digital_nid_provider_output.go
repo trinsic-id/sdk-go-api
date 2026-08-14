@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the PhilippinesDigitalNidProviderOutput type satisfies the MappedNullable interface at compile time
@@ -21,7 +20,7 @@ var _ MappedNullable = &PhilippinesDigitalNidProviderOutput{}
 // PhilippinesDigitalNidProviderOutput Exposed properties for the `philippines-digital-national-id-qr` Provider which do not directly map to the normalized IdentityData model.
 type PhilippinesDigitalNidProviderOutput struct {
 	// The PhilSys Card Number (PCN). Every citizen or resident alien registered in PhilSys has a PhilSys Number (PSN). This number is tokenized into a card number to protect the PSN. The PhilSys Card Number is 12 characters long, and often is written in octets with dashes in between.
-	PhilsysCardNumber string `json:"philsysCardNumber"`
+	PhilsysCardNumber NullableString `json:"philsysCardNumber,omitempty"`
 	// The given (first) name of the individual.
 	GivenName NullableString `json:"givenName,omitempty"`
 	// The middle name of the individual.
@@ -51,9 +50,8 @@ type _PhilippinesDigitalNidProviderOutput PhilippinesDigitalNidProviderOutput
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPhilippinesDigitalNidProviderOutput(philsysCardNumber string) *PhilippinesDigitalNidProviderOutput {
+func NewPhilippinesDigitalNidProviderOutput() *PhilippinesDigitalNidProviderOutput {
 	this := PhilippinesDigitalNidProviderOutput{}
-	this.PhilsysCardNumber = philsysCardNumber
 	return &this
 }
 
@@ -65,28 +63,46 @@ func NewPhilippinesDigitalNidProviderOutputWithDefaults() *PhilippinesDigitalNid
 	return &this
 }
 
-// GetPhilsysCardNumber returns the PhilsysCardNumber field value
+// GetPhilsysCardNumber returns the PhilsysCardNumber field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *PhilippinesDigitalNidProviderOutput) GetPhilsysCardNumber() string {
-	if o == nil {
+	if o == nil || IsNil(o.PhilsysCardNumber.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.PhilsysCardNumber
+	return *o.PhilsysCardNumber.Get()
 }
 
-// GetPhilsysCardNumberOk returns a tuple with the PhilsysCardNumber field value
+// GetPhilsysCardNumberOk returns a tuple with the PhilsysCardNumber field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *PhilippinesDigitalNidProviderOutput) GetPhilsysCardNumberOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.PhilsysCardNumber, true
+	return o.PhilsysCardNumber.Get(), o.PhilsysCardNumber.IsSet()
 }
 
-// SetPhilsysCardNumber sets field value
+// HasPhilsysCardNumber returns a boolean if a field has been set.
+func (o *PhilippinesDigitalNidProviderOutput) HasPhilsysCardNumber() bool {
+	if o != nil && o.PhilsysCardNumber.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPhilsysCardNumber gets a reference to the given NullableString and assigns it to the PhilsysCardNumber field.
 func (o *PhilippinesDigitalNidProviderOutput) SetPhilsysCardNumber(v string) {
-	o.PhilsysCardNumber = v
+	o.PhilsysCardNumber.Set(&v)
+}
+// SetPhilsysCardNumberNil sets the value for PhilsysCardNumber to be an explicit nil
+func (o *PhilippinesDigitalNidProviderOutput) SetPhilsysCardNumberNil() {
+	o.PhilsysCardNumber.Set(nil)
+}
+
+// UnsetPhilsysCardNumber ensures that no value is present for PhilsysCardNumber, not even an explicit nil
+func (o *PhilippinesDigitalNidProviderOutput) UnsetPhilsysCardNumber() {
+	o.PhilsysCardNumber.Unset()
 }
 
 // GetGivenName returns the GivenName field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -519,7 +535,9 @@ func (o PhilippinesDigitalNidProviderOutput) MarshalJSON() ([]byte, error) {
 
 func (o PhilippinesDigitalNidProviderOutput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["philsysCardNumber"] = o.PhilsysCardNumber
+	if o.PhilsysCardNumber.IsSet() {
+		toSerialize["philsysCardNumber"] = o.PhilsysCardNumber.Get()
+	}
 	if o.GivenName.IsSet() {
 		toSerialize["givenName"] = o.GivenName.Get()
 	}
@@ -559,27 +577,6 @@ func (o PhilippinesDigitalNidProviderOutput) ToMap() (map[string]interface{}, er
 }
 
 func (o *PhilippinesDigitalNidProviderOutput) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"philsysCardNumber",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varPhilippinesDigitalNidProviderOutput := _PhilippinesDigitalNidProviderOutput{}
 
 	err = json.Unmarshal(data, &varPhilippinesDigitalNidProviderOutput)

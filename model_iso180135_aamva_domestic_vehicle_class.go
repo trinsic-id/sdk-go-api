@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the Iso180135AamvaDomesticVehicleClass type satisfies the MappedNullable interface at compile time
@@ -21,9 +20,9 @@ var _ MappedNullable = &Iso180135AamvaDomesticVehicleClass{}
 // Iso180135AamvaDomesticVehicleClass Vehicle class for a domestic driving privilege.
 type Iso180135AamvaDomesticVehicleClass struct {
 	// Vehicle class code.
-	Code string `json:"code"`
+	Code NullableString `json:"code,omitempty"`
 	// Human-readable description of the vehicle class.
-	Description string `json:"description"`
+	Description NullableString `json:"description,omitempty"`
 	// Date when this vehicle class privilege was issued.
 	IssueDate NullableString `json:"issueDate,omitempty"`
 	// Date when this vehicle class privilege expires.
@@ -37,10 +36,8 @@ type _Iso180135AamvaDomesticVehicleClass Iso180135AamvaDomesticVehicleClass
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewIso180135AamvaDomesticVehicleClass(code string, description string) *Iso180135AamvaDomesticVehicleClass {
+func NewIso180135AamvaDomesticVehicleClass() *Iso180135AamvaDomesticVehicleClass {
 	this := Iso180135AamvaDomesticVehicleClass{}
-	this.Code = code
-	this.Description = description
 	return &this
 }
 
@@ -52,52 +49,88 @@ func NewIso180135AamvaDomesticVehicleClassWithDefaults() *Iso180135AamvaDomestic
 	return &this
 }
 
-// GetCode returns the Code field value
+// GetCode returns the Code field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Iso180135AamvaDomesticVehicleClass) GetCode() string {
-	if o == nil {
+	if o == nil || IsNil(o.Code.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.Code
+	return *o.Code.Get()
 }
 
-// GetCodeOk returns a tuple with the Code field value
+// GetCodeOk returns a tuple with the Code field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Iso180135AamvaDomesticVehicleClass) GetCodeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Code, true
+	return o.Code.Get(), o.Code.IsSet()
 }
 
-// SetCode sets field value
+// HasCode returns a boolean if a field has been set.
+func (o *Iso180135AamvaDomesticVehicleClass) HasCode() bool {
+	if o != nil && o.Code.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCode gets a reference to the given NullableString and assigns it to the Code field.
 func (o *Iso180135AamvaDomesticVehicleClass) SetCode(v string) {
-	o.Code = v
+	o.Code.Set(&v)
+}
+// SetCodeNil sets the value for Code to be an explicit nil
+func (o *Iso180135AamvaDomesticVehicleClass) SetCodeNil() {
+	o.Code.Set(nil)
 }
 
-// GetDescription returns the Description field value
+// UnsetCode ensures that no value is present for Code, not even an explicit nil
+func (o *Iso180135AamvaDomesticVehicleClass) UnsetCode() {
+	o.Code.Unset()
+}
+
+// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Iso180135AamvaDomesticVehicleClass) GetDescription() string {
-	if o == nil {
+	if o == nil || IsNil(o.Description.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.Description
+	return *o.Description.Get()
 }
 
-// GetDescriptionOk returns a tuple with the Description field value
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Iso180135AamvaDomesticVehicleClass) GetDescriptionOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Description, true
+	return o.Description.Get(), o.Description.IsSet()
 }
 
-// SetDescription sets field value
+// HasDescription returns a boolean if a field has been set.
+func (o *Iso180135AamvaDomesticVehicleClass) HasDescription() bool {
+	if o != nil && o.Description.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDescription gets a reference to the given NullableString and assigns it to the Description field.
 func (o *Iso180135AamvaDomesticVehicleClass) SetDescription(v string) {
-	o.Description = v
+	o.Description.Set(&v)
+}
+// SetDescriptionNil sets the value for Description to be an explicit nil
+func (o *Iso180135AamvaDomesticVehicleClass) SetDescriptionNil() {
+	o.Description.Set(nil)
+}
+
+// UnsetDescription ensures that no value is present for Description, not even an explicit nil
+func (o *Iso180135AamvaDomesticVehicleClass) UnsetDescription() {
+	o.Description.Unset()
 }
 
 // GetIssueDate returns the IssueDate field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -194,8 +227,12 @@ func (o Iso180135AamvaDomesticVehicleClass) MarshalJSON() ([]byte, error) {
 
 func (o Iso180135AamvaDomesticVehicleClass) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["code"] = o.Code
-	toSerialize["description"] = o.Description
+	if o.Code.IsSet() {
+		toSerialize["code"] = o.Code.Get()
+	}
+	if o.Description.IsSet() {
+		toSerialize["description"] = o.Description.Get()
+	}
 	if o.IssueDate.IsSet() {
 		toSerialize["issueDate"] = o.IssueDate.Get()
 	}
@@ -211,28 +248,6 @@ func (o Iso180135AamvaDomesticVehicleClass) ToMap() (map[string]interface{}, err
 }
 
 func (o *Iso180135AamvaDomesticVehicleClass) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"code",
-		"description",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varIso180135AamvaDomesticVehicleClass := _Iso180135AamvaDomesticVehicleClass{}
 
 	err = json.Unmarshal(data, &varIso180135AamvaDomesticVehicleClass)

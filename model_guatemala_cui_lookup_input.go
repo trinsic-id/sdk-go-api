@@ -21,6 +21,8 @@ var _ MappedNullable = &GuatemalaCuiLookupInput{}
 type GuatemalaCuiLookupInput struct {
 	// The Guatemalan Código Único de Identificación (CUI) number.              Assigned and maintained by RENAP (Registro Nacional de las Personas). Official format: exactly 13 numeric digits. 8 RENAP-assigned serial digits, 1 verifier digit (dígito verificador), and 4 geographic digits for department and municipality of birth. The CUI is printed on the Documento Personal de Identificación (DPI) in three groups (4–5–4) separated by spaces.              Trinsic normalizes to digits-only before lookup, automatically removing spaces, dots, hyphens, and other non-alphanumeric characters.              No verifier algorithm appears in publicly accessible RENAP resources. Community-maintained validators often use modulus-11 (non-official).
 	DocumentNumber NullableString `json:"documentNumber,omitempty"`
+	// The individual's date of birth.              Must match the record in order to retrieve the individual's details.
+	DateOfBirth NullableString `json:"dateOfBirth,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -85,6 +87,48 @@ func (o *GuatemalaCuiLookupInput) UnsetDocumentNumber() {
 	o.DocumentNumber.Unset()
 }
 
+// GetDateOfBirth returns the DateOfBirth field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GuatemalaCuiLookupInput) GetDateOfBirth() string {
+	if o == nil || IsNil(o.DateOfBirth.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.DateOfBirth.Get()
+}
+
+// GetDateOfBirthOk returns a tuple with the DateOfBirth field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GuatemalaCuiLookupInput) GetDateOfBirthOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.DateOfBirth.Get(), o.DateOfBirth.IsSet()
+}
+
+// HasDateOfBirth returns a boolean if a field has been set.
+func (o *GuatemalaCuiLookupInput) HasDateOfBirth() bool {
+	if o != nil && o.DateOfBirth.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDateOfBirth gets a reference to the given NullableString and assigns it to the DateOfBirth field.
+func (o *GuatemalaCuiLookupInput) SetDateOfBirth(v string) {
+	o.DateOfBirth.Set(&v)
+}
+// SetDateOfBirthNil sets the value for DateOfBirth to be an explicit nil
+func (o *GuatemalaCuiLookupInput) SetDateOfBirthNil() {
+	o.DateOfBirth.Set(nil)
+}
+
+// UnsetDateOfBirth ensures that no value is present for DateOfBirth, not even an explicit nil
+func (o *GuatemalaCuiLookupInput) UnsetDateOfBirth() {
+	o.DateOfBirth.Unset()
+}
+
 func (o GuatemalaCuiLookupInput) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -97,6 +141,9 @@ func (o GuatemalaCuiLookupInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if o.DocumentNumber.IsSet() {
 		toSerialize["documentNumber"] = o.DocumentNumber.Get()
+	}
+	if o.DateOfBirth.IsSet() {
+		toSerialize["dateOfBirth"] = o.DateOfBirth.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -121,6 +168,7 @@ func (o *GuatemalaCuiLookupInput) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "documentNumber")
+		delete(additionalProperties, "dateOfBirth")
 		o.AdditionalProperties = additionalProperties
 	}
 

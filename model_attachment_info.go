@@ -28,6 +28,8 @@ type AttachmentInfo struct {
 	ContentType string `json:"contentType"`
 	// The size in bytes of the attachment.
 	SizeBytes int32 `json:"sizeBytes"`
+	// Whether the attachment contents are encrypted via HPKE and must be decrypted using your private key.
+	HpkeEncrypted NullableBool `json:"hpkeEncrypted,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -150,6 +152,48 @@ func (o *AttachmentInfo) SetSizeBytes(v int32) {
 	o.SizeBytes = v
 }
 
+// GetHpkeEncrypted returns the HpkeEncrypted field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AttachmentInfo) GetHpkeEncrypted() bool {
+	if o == nil || IsNil(o.HpkeEncrypted.Get()) {
+		var ret bool
+		return ret
+	}
+	return *o.HpkeEncrypted.Get()
+}
+
+// GetHpkeEncryptedOk returns a tuple with the HpkeEncrypted field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AttachmentInfo) GetHpkeEncryptedOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.HpkeEncrypted.Get(), o.HpkeEncrypted.IsSet()
+}
+
+// HasHpkeEncrypted returns a boolean if a field has been set.
+func (o *AttachmentInfo) HasHpkeEncrypted() bool {
+	if o != nil && o.HpkeEncrypted.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetHpkeEncrypted gets a reference to the given NullableBool and assigns it to the HpkeEncrypted field.
+func (o *AttachmentInfo) SetHpkeEncrypted(v bool) {
+	o.HpkeEncrypted.Set(&v)
+}
+// SetHpkeEncryptedNil sets the value for HpkeEncrypted to be an explicit nil
+func (o *AttachmentInfo) SetHpkeEncryptedNil() {
+	o.HpkeEncrypted.Set(nil)
+}
+
+// UnsetHpkeEncrypted ensures that no value is present for HpkeEncrypted, not even an explicit nil
+func (o *AttachmentInfo) UnsetHpkeEncrypted() {
+	o.HpkeEncrypted.Unset()
+}
+
 func (o AttachmentInfo) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -164,6 +208,9 @@ func (o AttachmentInfo) ToMap() (map[string]interface{}, error) {
 	toSerialize["type"] = o.Type
 	toSerialize["contentType"] = o.ContentType
 	toSerialize["sizeBytes"] = o.SizeBytes
+	if o.HpkeEncrypted.IsSet() {
+		toSerialize["hpkeEncrypted"] = o.HpkeEncrypted.Get()
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -214,6 +261,7 @@ func (o *AttachmentInfo) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "type")
 		delete(additionalProperties, "contentType")
 		delete(additionalProperties, "sizeBytes")
+		delete(additionalProperties, "hpkeEncrypted")
 		o.AdditionalProperties = additionalProperties
 	}
 

@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**FirstName** | **string** | The first name of the verified individual | 
-**LastName** | **string** | The last name of the verified individual | 
+**FirstName** | Pointer to **NullableString** | The first name of the verified individual | [optional] 
+**LastName** | Pointer to **NullableString** | The last name of the verified individual | [optional] 
 
 ## Methods
 
 ### NewAustriaHandySignaturProviderOutput
 
-`func NewAustriaHandySignaturProviderOutput(firstName string, lastName string, ) *AustriaHandySignaturProviderOutput`
+`func NewAustriaHandySignaturProviderOutput() *AustriaHandySignaturProviderOutput`
 
 NewAustriaHandySignaturProviderOutput instantiates a new AustriaHandySignaturProviderOutput object
 This constructor will assign default values to properties that have it defined,
@@ -45,7 +45,22 @@ and a boolean to check if the value has been set.
 
 SetFirstName sets FirstName field to given value.
 
+### HasFirstName
 
+`func (o *AustriaHandySignaturProviderOutput) HasFirstName() bool`
+
+HasFirstName returns a boolean if a field has been set.
+
+### SetFirstNameNil
+
+`func (o *AustriaHandySignaturProviderOutput) SetFirstNameNil(b bool)`
+
+ SetFirstNameNil sets the value for FirstName to be an explicit nil
+
+### UnsetFirstName
+`func (o *AustriaHandySignaturProviderOutput) UnsetFirstName()`
+
+UnsetFirstName ensures that no value is present for FirstName, not even an explicit nil
 ### GetLastName
 
 `func (o *AustriaHandySignaturProviderOutput) GetLastName() string`
@@ -65,7 +80,22 @@ and a boolean to check if the value has been set.
 
 SetLastName sets LastName field to given value.
 
+### HasLastName
 
+`func (o *AustriaHandySignaturProviderOutput) HasLastName() bool`
+
+HasLastName returns a boolean if a field has been set.
+
+### SetLastNameNil
+
+`func (o *AustriaHandySignaturProviderOutput) SetLastNameNil(b bool)`
+
+ SetLastNameNil sets the value for LastName to be an explicit nil
+
+### UnsetLastName
+`func (o *AustriaHandySignaturProviderOutput) UnsetLastName()`
+
+UnsetLastName ensures that no value is present for LastName, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

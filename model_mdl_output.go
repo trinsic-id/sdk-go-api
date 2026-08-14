@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the MdlOutput type satisfies the MappedNullable interface at compile time
@@ -20,14 +19,14 @@ var _ MappedNullable = &MdlOutput{}
 
 // MdlOutput struct for MdlOutput
 type MdlOutput struct {
-	// Information about the IACA Root Certificate which signed (directly or indirectly) the Document Signer Certificate for this mDL.
-	IacaRootCertificate MdlOutputCertificateData `json:"iacaRootCertificate"`
-	// Information about the Document Signer Certificate which signed the mDL presented by the individual.
-	DocumentSignerCertificate MdlOutputCertificateData `json:"documentSignerCertificate"`
-	// The document type of the mDL presented by the individual.              Common values: - \"org.iso.18013.5.1.mDL\" for ISO 18013-5 mDLs - \"com.google.wallet.idcard.1\" for Google Wallet ID Cards
-	DocumentType string `json:"documentType"`
+	// Information about the IACA Root Certificate which signed (directly or indirectly) the Document Signer Certificate for this mDoc.
+	IacaRootCertificate NullableMdlOutputCertificateData `json:"iacaRootCertificate,omitempty"`
+	// Information about the Document Signer Certificate which signed the mDoc presented by the individual.
+	DocumentSignerCertificate NullableMdlOutputCertificateData `json:"documentSignerCertificate,omitempty"`
+	// The document type of the mDoc presented by the individual.              Common values: - \"org.iso.18013.5.1.mDL\" for ISO 18013-5 mDLs - \"com.google.wallet.idcard.1\" for Google Wallet ID Cards
+	DocumentType NullableString `json:"documentType,omitempty"`
 	// The namespaces, and fields within those namespaces, which were present in the processed mDL.
-	NameSpaces map[string]map[string]MdlOutputFieldData `json:"nameSpaces"`
+	NameSpaces map[string]map[string]MdlOutputFieldData `json:"nameSpaces,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -37,12 +36,8 @@ type _MdlOutput MdlOutput
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMdlOutput(iacaRootCertificate MdlOutputCertificateData, documentSignerCertificate MdlOutputCertificateData, documentType string, nameSpaces map[string]map[string]MdlOutputFieldData) *MdlOutput {
+func NewMdlOutput() *MdlOutput {
 	this := MdlOutput{}
-	this.IacaRootCertificate = iacaRootCertificate
-	this.DocumentSignerCertificate = documentSignerCertificate
-	this.DocumentType = documentType
-	this.NameSpaces = nameSpaces
 	return &this
 }
 
@@ -54,98 +49,161 @@ func NewMdlOutputWithDefaults() *MdlOutput {
 	return &this
 }
 
-// GetIacaRootCertificate returns the IacaRootCertificate field value
+// GetIacaRootCertificate returns the IacaRootCertificate field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MdlOutput) GetIacaRootCertificate() MdlOutputCertificateData {
-	if o == nil {
+	if o == nil || IsNil(o.IacaRootCertificate.Get()) {
 		var ret MdlOutputCertificateData
 		return ret
 	}
-
-	return o.IacaRootCertificate
+	return *o.IacaRootCertificate.Get()
 }
 
-// GetIacaRootCertificateOk returns a tuple with the IacaRootCertificate field value
+// GetIacaRootCertificateOk returns a tuple with the IacaRootCertificate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *MdlOutput) GetIacaRootCertificateOk() (*MdlOutputCertificateData, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.IacaRootCertificate, true
+	return o.IacaRootCertificate.Get(), o.IacaRootCertificate.IsSet()
 }
 
-// SetIacaRootCertificate sets field value
+// HasIacaRootCertificate returns a boolean if a field has been set.
+func (o *MdlOutput) HasIacaRootCertificate() bool {
+	if o != nil && o.IacaRootCertificate.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetIacaRootCertificate gets a reference to the given NullableMdlOutputCertificateData and assigns it to the IacaRootCertificate field.
 func (o *MdlOutput) SetIacaRootCertificate(v MdlOutputCertificateData) {
-	o.IacaRootCertificate = v
+	o.IacaRootCertificate.Set(&v)
+}
+// SetIacaRootCertificateNil sets the value for IacaRootCertificate to be an explicit nil
+func (o *MdlOutput) SetIacaRootCertificateNil() {
+	o.IacaRootCertificate.Set(nil)
 }
 
-// GetDocumentSignerCertificate returns the DocumentSignerCertificate field value
+// UnsetIacaRootCertificate ensures that no value is present for IacaRootCertificate, not even an explicit nil
+func (o *MdlOutput) UnsetIacaRootCertificate() {
+	o.IacaRootCertificate.Unset()
+}
+
+// GetDocumentSignerCertificate returns the DocumentSignerCertificate field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MdlOutput) GetDocumentSignerCertificate() MdlOutputCertificateData {
-	if o == nil {
+	if o == nil || IsNil(o.DocumentSignerCertificate.Get()) {
 		var ret MdlOutputCertificateData
 		return ret
 	}
-
-	return o.DocumentSignerCertificate
+	return *o.DocumentSignerCertificate.Get()
 }
 
-// GetDocumentSignerCertificateOk returns a tuple with the DocumentSignerCertificate field value
+// GetDocumentSignerCertificateOk returns a tuple with the DocumentSignerCertificate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *MdlOutput) GetDocumentSignerCertificateOk() (*MdlOutputCertificateData, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.DocumentSignerCertificate, true
+	return o.DocumentSignerCertificate.Get(), o.DocumentSignerCertificate.IsSet()
 }
 
-// SetDocumentSignerCertificate sets field value
+// HasDocumentSignerCertificate returns a boolean if a field has been set.
+func (o *MdlOutput) HasDocumentSignerCertificate() bool {
+	if o != nil && o.DocumentSignerCertificate.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDocumentSignerCertificate gets a reference to the given NullableMdlOutputCertificateData and assigns it to the DocumentSignerCertificate field.
 func (o *MdlOutput) SetDocumentSignerCertificate(v MdlOutputCertificateData) {
-	o.DocumentSignerCertificate = v
+	o.DocumentSignerCertificate.Set(&v)
+}
+// SetDocumentSignerCertificateNil sets the value for DocumentSignerCertificate to be an explicit nil
+func (o *MdlOutput) SetDocumentSignerCertificateNil() {
+	o.DocumentSignerCertificate.Set(nil)
 }
 
-// GetDocumentType returns the DocumentType field value
+// UnsetDocumentSignerCertificate ensures that no value is present for DocumentSignerCertificate, not even an explicit nil
+func (o *MdlOutput) UnsetDocumentSignerCertificate() {
+	o.DocumentSignerCertificate.Unset()
+}
+
+// GetDocumentType returns the DocumentType field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MdlOutput) GetDocumentType() string {
-	if o == nil {
+	if o == nil || IsNil(o.DocumentType.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.DocumentType
+	return *o.DocumentType.Get()
 }
 
-// GetDocumentTypeOk returns a tuple with the DocumentType field value
+// GetDocumentTypeOk returns a tuple with the DocumentType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *MdlOutput) GetDocumentTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.DocumentType, true
+	return o.DocumentType.Get(), o.DocumentType.IsSet()
 }
 
-// SetDocumentType sets field value
+// HasDocumentType returns a boolean if a field has been set.
+func (o *MdlOutput) HasDocumentType() bool {
+	if o != nil && o.DocumentType.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDocumentType gets a reference to the given NullableString and assigns it to the DocumentType field.
 func (o *MdlOutput) SetDocumentType(v string) {
-	o.DocumentType = v
+	o.DocumentType.Set(&v)
+}
+// SetDocumentTypeNil sets the value for DocumentType to be an explicit nil
+func (o *MdlOutput) SetDocumentTypeNil() {
+	o.DocumentType.Set(nil)
 }
 
-// GetNameSpaces returns the NameSpaces field value
+// UnsetDocumentType ensures that no value is present for DocumentType, not even an explicit nil
+func (o *MdlOutput) UnsetDocumentType() {
+	o.DocumentType.Unset()
+}
+
+// GetNameSpaces returns the NameSpaces field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MdlOutput) GetNameSpaces() map[string]map[string]MdlOutputFieldData {
 	if o == nil {
 		var ret map[string]map[string]MdlOutputFieldData
 		return ret
 	}
-
 	return o.NameSpaces
 }
 
-// GetNameSpacesOk returns a tuple with the NameSpaces field value
+// GetNameSpacesOk returns a tuple with the NameSpaces field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *MdlOutput) GetNameSpacesOk() (*map[string]map[string]MdlOutputFieldData, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.NameSpaces) {
 		return nil, false
 	}
 	return &o.NameSpaces, true
 }
 
-// SetNameSpaces sets field value
+// HasNameSpaces returns a boolean if a field has been set.
+func (o *MdlOutput) HasNameSpaces() bool {
+	if o != nil && !IsNil(o.NameSpaces) {
+		return true
+	}
+
+	return false
+}
+
+// SetNameSpaces gets a reference to the given map[string]map[string]MdlOutputFieldData and assigns it to the NameSpaces field.
 func (o *MdlOutput) SetNameSpaces(v map[string]map[string]MdlOutputFieldData) {
 	o.NameSpaces = v
 }
@@ -160,10 +218,18 @@ func (o MdlOutput) MarshalJSON() ([]byte, error) {
 
 func (o MdlOutput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["iacaRootCertificate"] = o.IacaRootCertificate
-	toSerialize["documentSignerCertificate"] = o.DocumentSignerCertificate
-	toSerialize["documentType"] = o.DocumentType
-	toSerialize["nameSpaces"] = o.NameSpaces
+	if o.IacaRootCertificate.IsSet() {
+		toSerialize["iacaRootCertificate"] = o.IacaRootCertificate.Get()
+	}
+	if o.DocumentSignerCertificate.IsSet() {
+		toSerialize["documentSignerCertificate"] = o.DocumentSignerCertificate.Get()
+	}
+	if o.DocumentType.IsSet() {
+		toSerialize["documentType"] = o.DocumentType.Get()
+	}
+	if o.NameSpaces != nil {
+		toSerialize["nameSpaces"] = o.NameSpaces
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -173,30 +239,6 @@ func (o MdlOutput) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *MdlOutput) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"iacaRootCertificate",
-		"documentSignerCertificate",
-		"documentType",
-		"nameSpaces",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varMdlOutput := _MdlOutput{}
 
 	err = json.Unmarshal(data, &varMdlOutput)

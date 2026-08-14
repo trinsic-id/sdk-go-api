@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the CzechiaMojeIdProviderOutput type satisfies the MappedNullable interface at compile time
@@ -21,13 +20,13 @@ var _ MappedNullable = &CzechiaMojeIdProviderOutput{}
 // CzechiaMojeIdProviderOutput Exposed properties for the `a-mojeid` Provider which do not directly map to the normalized IdentityData model.
 type CzechiaMojeIdProviderOutput struct {
 	// The first name of the verified individual
-	FirstName string `json:"firstName"`
+	FirstName NullableString `json:"firstName,omitempty"`
 	// The last name of the verified individual
-	LastName string `json:"lastName"`
+	LastName NullableString `json:"lastName,omitempty"`
 	// The date of birth of the verified individual
-	DateOfBirth string `json:"dateOfBirth"`
+	DateOfBirth NullableString `json:"dateOfBirth,omitempty"`
 	// The OpenID 2.0 Identifier (\"openid2_id\") of the verified individual's MojeID account.              This is an HTTPS URL which uniquely identifies the individual within the MojeID system.
-	OpenId2Identifier string `json:"openId2Identifier"`
+	OpenId2Identifier NullableString `json:"openId2Identifier,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -37,12 +36,8 @@ type _CzechiaMojeIdProviderOutput CzechiaMojeIdProviderOutput
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCzechiaMojeIdProviderOutput(firstName string, lastName string, dateOfBirth string, openId2Identifier string) *CzechiaMojeIdProviderOutput {
+func NewCzechiaMojeIdProviderOutput() *CzechiaMojeIdProviderOutput {
 	this := CzechiaMojeIdProviderOutput{}
-	this.FirstName = firstName
-	this.LastName = lastName
-	this.DateOfBirth = dateOfBirth
-	this.OpenId2Identifier = openId2Identifier
 	return &this
 }
 
@@ -54,100 +49,172 @@ func NewCzechiaMojeIdProviderOutputWithDefaults() *CzechiaMojeIdProviderOutput {
 	return &this
 }
 
-// GetFirstName returns the FirstName field value
+// GetFirstName returns the FirstName field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CzechiaMojeIdProviderOutput) GetFirstName() string {
-	if o == nil {
+	if o == nil || IsNil(o.FirstName.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.FirstName
+	return *o.FirstName.Get()
 }
 
-// GetFirstNameOk returns a tuple with the FirstName field value
+// GetFirstNameOk returns a tuple with the FirstName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CzechiaMojeIdProviderOutput) GetFirstNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.FirstName, true
+	return o.FirstName.Get(), o.FirstName.IsSet()
 }
 
-// SetFirstName sets field value
+// HasFirstName returns a boolean if a field has been set.
+func (o *CzechiaMojeIdProviderOutput) HasFirstName() bool {
+	if o != nil && o.FirstName.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetFirstName gets a reference to the given NullableString and assigns it to the FirstName field.
 func (o *CzechiaMojeIdProviderOutput) SetFirstName(v string) {
-	o.FirstName = v
+	o.FirstName.Set(&v)
+}
+// SetFirstNameNil sets the value for FirstName to be an explicit nil
+func (o *CzechiaMojeIdProviderOutput) SetFirstNameNil() {
+	o.FirstName.Set(nil)
 }
 
-// GetLastName returns the LastName field value
+// UnsetFirstName ensures that no value is present for FirstName, not even an explicit nil
+func (o *CzechiaMojeIdProviderOutput) UnsetFirstName() {
+	o.FirstName.Unset()
+}
+
+// GetLastName returns the LastName field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CzechiaMojeIdProviderOutput) GetLastName() string {
-	if o == nil {
+	if o == nil || IsNil(o.LastName.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.LastName
+	return *o.LastName.Get()
 }
 
-// GetLastNameOk returns a tuple with the LastName field value
+// GetLastNameOk returns a tuple with the LastName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CzechiaMojeIdProviderOutput) GetLastNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.LastName, true
+	return o.LastName.Get(), o.LastName.IsSet()
 }
 
-// SetLastName sets field value
+// HasLastName returns a boolean if a field has been set.
+func (o *CzechiaMojeIdProviderOutput) HasLastName() bool {
+	if o != nil && o.LastName.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetLastName gets a reference to the given NullableString and assigns it to the LastName field.
 func (o *CzechiaMojeIdProviderOutput) SetLastName(v string) {
-	o.LastName = v
+	o.LastName.Set(&v)
+}
+// SetLastNameNil sets the value for LastName to be an explicit nil
+func (o *CzechiaMojeIdProviderOutput) SetLastNameNil() {
+	o.LastName.Set(nil)
 }
 
-// GetDateOfBirth returns the DateOfBirth field value
+// UnsetLastName ensures that no value is present for LastName, not even an explicit nil
+func (o *CzechiaMojeIdProviderOutput) UnsetLastName() {
+	o.LastName.Unset()
+}
+
+// GetDateOfBirth returns the DateOfBirth field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CzechiaMojeIdProviderOutput) GetDateOfBirth() string {
-	if o == nil {
+	if o == nil || IsNil(o.DateOfBirth.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.DateOfBirth
+	return *o.DateOfBirth.Get()
 }
 
-// GetDateOfBirthOk returns a tuple with the DateOfBirth field value
+// GetDateOfBirthOk returns a tuple with the DateOfBirth field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CzechiaMojeIdProviderOutput) GetDateOfBirthOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.DateOfBirth, true
+	return o.DateOfBirth.Get(), o.DateOfBirth.IsSet()
 }
 
-// SetDateOfBirth sets field value
+// HasDateOfBirth returns a boolean if a field has been set.
+func (o *CzechiaMojeIdProviderOutput) HasDateOfBirth() bool {
+	if o != nil && o.DateOfBirth.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDateOfBirth gets a reference to the given NullableString and assigns it to the DateOfBirth field.
 func (o *CzechiaMojeIdProviderOutput) SetDateOfBirth(v string) {
-	o.DateOfBirth = v
+	o.DateOfBirth.Set(&v)
+}
+// SetDateOfBirthNil sets the value for DateOfBirth to be an explicit nil
+func (o *CzechiaMojeIdProviderOutput) SetDateOfBirthNil() {
+	o.DateOfBirth.Set(nil)
 }
 
-// GetOpenId2Identifier returns the OpenId2Identifier field value
+// UnsetDateOfBirth ensures that no value is present for DateOfBirth, not even an explicit nil
+func (o *CzechiaMojeIdProviderOutput) UnsetDateOfBirth() {
+	o.DateOfBirth.Unset()
+}
+
+// GetOpenId2Identifier returns the OpenId2Identifier field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CzechiaMojeIdProviderOutput) GetOpenId2Identifier() string {
-	if o == nil {
+	if o == nil || IsNil(o.OpenId2Identifier.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.OpenId2Identifier
+	return *o.OpenId2Identifier.Get()
 }
 
-// GetOpenId2IdentifierOk returns a tuple with the OpenId2Identifier field value
+// GetOpenId2IdentifierOk returns a tuple with the OpenId2Identifier field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CzechiaMojeIdProviderOutput) GetOpenId2IdentifierOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.OpenId2Identifier, true
+	return o.OpenId2Identifier.Get(), o.OpenId2Identifier.IsSet()
 }
 
-// SetOpenId2Identifier sets field value
+// HasOpenId2Identifier returns a boolean if a field has been set.
+func (o *CzechiaMojeIdProviderOutput) HasOpenId2Identifier() bool {
+	if o != nil && o.OpenId2Identifier.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetOpenId2Identifier gets a reference to the given NullableString and assigns it to the OpenId2Identifier field.
 func (o *CzechiaMojeIdProviderOutput) SetOpenId2Identifier(v string) {
-	o.OpenId2Identifier = v
+	o.OpenId2Identifier.Set(&v)
+}
+// SetOpenId2IdentifierNil sets the value for OpenId2Identifier to be an explicit nil
+func (o *CzechiaMojeIdProviderOutput) SetOpenId2IdentifierNil() {
+	o.OpenId2Identifier.Set(nil)
+}
+
+// UnsetOpenId2Identifier ensures that no value is present for OpenId2Identifier, not even an explicit nil
+func (o *CzechiaMojeIdProviderOutput) UnsetOpenId2Identifier() {
+	o.OpenId2Identifier.Unset()
 }
 
 func (o CzechiaMojeIdProviderOutput) MarshalJSON() ([]byte, error) {
@@ -160,10 +227,18 @@ func (o CzechiaMojeIdProviderOutput) MarshalJSON() ([]byte, error) {
 
 func (o CzechiaMojeIdProviderOutput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["firstName"] = o.FirstName
-	toSerialize["lastName"] = o.LastName
-	toSerialize["dateOfBirth"] = o.DateOfBirth
-	toSerialize["openId2Identifier"] = o.OpenId2Identifier
+	if o.FirstName.IsSet() {
+		toSerialize["firstName"] = o.FirstName.Get()
+	}
+	if o.LastName.IsSet() {
+		toSerialize["lastName"] = o.LastName.Get()
+	}
+	if o.DateOfBirth.IsSet() {
+		toSerialize["dateOfBirth"] = o.DateOfBirth.Get()
+	}
+	if o.OpenId2Identifier.IsSet() {
+		toSerialize["openId2Identifier"] = o.OpenId2Identifier.Get()
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -173,30 +248,6 @@ func (o CzechiaMojeIdProviderOutput) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *CzechiaMojeIdProviderOutput) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"firstName",
-		"lastName",
-		"dateOfBirth",
-		"openId2Identifier",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varCzechiaMojeIdProviderOutput := _CzechiaMojeIdProviderOutput{}
 
 	err = json.Unmarshal(data, &varCzechiaMojeIdProviderOutput)

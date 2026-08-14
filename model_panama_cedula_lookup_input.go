@@ -21,8 +21,6 @@ var _ MappedNullable = &PanamaCedulaLookupInput{}
 type PanamaCedulaLookupInput struct {
 	// The number from the holder's cédula (Cédula de Identidad Personal).              Send the full number as {firstSegment}-{libro}-{tomo} (libro 1–4 digits, tomo 1–6), using only ASCII letters, digits, and hyphens. Hyphens are not inserted for you between segments. Trinsic uppercases letters, collapses repeated hyphens, trims leading and trailing hyphens, and merges a redundant hyphen between province and AV or PI (for example 10-AV-1234-12345 becomes 10AV-1234-12345).              Citizen category and format: - Born in Panama format: {province}-{libro}-{tomo} ({province} is official code 1 through 13). Examples   8-1234-12345, 4-56-789, 12-12-12345. - Panamanian born abroad format: PE-{libro}-{tomo}. Example PE-1234-12345. - Foreign national with cédula format: E-{libro}-{tomo}. Examples E-1234-12345, E-8-102017. - Naturalized citizen format: N-{libro}-{tomo}. Example N-1234-12345. - Pre-2006 civil registry (AV) format: {province}AV-{libro}-{tomo}. Example 10AV-1234-12345. - Indigenous (PI) format: {province}PI-{libro}-{tomo}. Example 1PI-1234-12345.
 	DocumentNumber NullableString `json:"documentNumber,omitempty"`
-	// The user's date of birth, in `YYYY-MM-DD` format.
-	DateOfBirth NullableString `json:"dateOfBirth,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -87,48 +85,6 @@ func (o *PanamaCedulaLookupInput) UnsetDocumentNumber() {
 	o.DocumentNumber.Unset()
 }
 
-// GetDateOfBirth returns the DateOfBirth field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PanamaCedulaLookupInput) GetDateOfBirth() string {
-	if o == nil || IsNil(o.DateOfBirth.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.DateOfBirth.Get()
-}
-
-// GetDateOfBirthOk returns a tuple with the DateOfBirth field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PanamaCedulaLookupInput) GetDateOfBirthOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.DateOfBirth.Get(), o.DateOfBirth.IsSet()
-}
-
-// HasDateOfBirth returns a boolean if a field has been set.
-func (o *PanamaCedulaLookupInput) HasDateOfBirth() bool {
-	if o != nil && o.DateOfBirth.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetDateOfBirth gets a reference to the given NullableString and assigns it to the DateOfBirth field.
-func (o *PanamaCedulaLookupInput) SetDateOfBirth(v string) {
-	o.DateOfBirth.Set(&v)
-}
-// SetDateOfBirthNil sets the value for DateOfBirth to be an explicit nil
-func (o *PanamaCedulaLookupInput) SetDateOfBirthNil() {
-	o.DateOfBirth.Set(nil)
-}
-
-// UnsetDateOfBirth ensures that no value is present for DateOfBirth, not even an explicit nil
-func (o *PanamaCedulaLookupInput) UnsetDateOfBirth() {
-	o.DateOfBirth.Unset()
-}
-
 func (o PanamaCedulaLookupInput) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -141,9 +97,6 @@ func (o PanamaCedulaLookupInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if o.DocumentNumber.IsSet() {
 		toSerialize["documentNumber"] = o.DocumentNumber.Get()
-	}
-	if o.DateOfBirth.IsSet() {
-		toSerialize["dateOfBirth"] = o.DateOfBirth.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -168,7 +121,6 @@ func (o *PanamaCedulaLookupInput) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "documentNumber")
-		delete(additionalProperties, "dateOfBirth")
 		o.AdditionalProperties = additionalProperties
 	}
 

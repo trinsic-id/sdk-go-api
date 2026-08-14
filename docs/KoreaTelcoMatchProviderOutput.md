@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**PhoneNumber** | **string** | The verified phone number as submitted by the relying party. | 
-**TeleType** | **string** | The mobile carrier used for verification. Possible values: &lt;list type&#x3D;\&quot;bullet\&quot;&gt;&lt;item&gt;&lt;description&gt;Lgu&lt;/description&gt;&lt;/item&gt;&lt;item&gt;&lt;description&gt;Skt&lt;/description&gt;&lt;/item&gt;&lt;item&gt;&lt;description&gt;Kt&lt;/description&gt;&lt;/item&gt;&lt;/list&gt; | 
-**ResultCode** | **string** | The RaonSecure result code returned by the carrier verification system. \&quot;0000\&quot; indicates a successful match.              Common error codes: - \&quot;0000\&quot;: Successful match - \&quot;0001\&quot;: Identity Verification Failed - Verification Information Mismatch (General) - \&quot;0002\&quot;: Identity Verification Failed - Unable to Verify Phone Number - \&quot;0004\&quot;: Identity Verification Failed - Date of Birth Verification Error - \&quot;0005\&quot;: Identity Verification Failed - Gender Verification Error - \&quot;0006\&quot;: Identity Verification Failed - Name Verification Error - \&quot;0009\&quot;: Identity Verification Failed - Device OS Mismatch | 
+**PhoneNumber** | Pointer to **NullableString** | The phone number submitted for the carrier match. | [optional] 
+**TeleType** | Pointer to **NullableString** | The mobile carrier used for the match.              Supported values: Lgu, Skt, Kt. | [optional] 
+**ResultCode** | Pointer to **NullableString** | The carrier match result code.              Common result codes: - \&quot;0000\&quot;: Successful match - \&quot;0001\&quot;: Failed - Verification Information Mismatch (General) - \&quot;0002\&quot;: Failed - Unable to Verify Phone Number - \&quot;0004\&quot;: Failed - Date of Birth Verification Error - \&quot;0005\&quot;: Failed - Gender Verification Error - \&quot;0006\&quot;: Failed - Name Verification Error - \&quot;0009\&quot;: Failed - Device OS Mismatch | [optional] 
 
 ## Methods
 
 ### NewKoreaTelcoMatchProviderOutput
 
-`func NewKoreaTelcoMatchProviderOutput(phoneNumber string, teleType string, resultCode string, ) *KoreaTelcoMatchProviderOutput`
+`func NewKoreaTelcoMatchProviderOutput() *KoreaTelcoMatchProviderOutput`
 
 NewKoreaTelcoMatchProviderOutput instantiates a new KoreaTelcoMatchProviderOutput object
 This constructor will assign default values to properties that have it defined,
@@ -46,7 +46,22 @@ and a boolean to check if the value has been set.
 
 SetPhoneNumber sets PhoneNumber field to given value.
 
+### HasPhoneNumber
 
+`func (o *KoreaTelcoMatchProviderOutput) HasPhoneNumber() bool`
+
+HasPhoneNumber returns a boolean if a field has been set.
+
+### SetPhoneNumberNil
+
+`func (o *KoreaTelcoMatchProviderOutput) SetPhoneNumberNil(b bool)`
+
+ SetPhoneNumberNil sets the value for PhoneNumber to be an explicit nil
+
+### UnsetPhoneNumber
+`func (o *KoreaTelcoMatchProviderOutput) UnsetPhoneNumber()`
+
+UnsetPhoneNumber ensures that no value is present for PhoneNumber, not even an explicit nil
 ### GetTeleType
 
 `func (o *KoreaTelcoMatchProviderOutput) GetTeleType() string`
@@ -66,7 +81,22 @@ and a boolean to check if the value has been set.
 
 SetTeleType sets TeleType field to given value.
 
+### HasTeleType
 
+`func (o *KoreaTelcoMatchProviderOutput) HasTeleType() bool`
+
+HasTeleType returns a boolean if a field has been set.
+
+### SetTeleTypeNil
+
+`func (o *KoreaTelcoMatchProviderOutput) SetTeleTypeNil(b bool)`
+
+ SetTeleTypeNil sets the value for TeleType to be an explicit nil
+
+### UnsetTeleType
+`func (o *KoreaTelcoMatchProviderOutput) UnsetTeleType()`
+
+UnsetTeleType ensures that no value is present for TeleType, not even an explicit nil
 ### GetResultCode
 
 `func (o *KoreaTelcoMatchProviderOutput) GetResultCode() string`
@@ -86,7 +116,22 @@ and a boolean to check if the value has been set.
 
 SetResultCode sets ResultCode field to given value.
 
+### HasResultCode
 
+`func (o *KoreaTelcoMatchProviderOutput) HasResultCode() bool`
+
+HasResultCode returns a boolean if a field has been set.
+
+### SetResultCodeNil
+
+`func (o *KoreaTelcoMatchProviderOutput) SetResultCodeNil(b bool)`
+
+ SetResultCodeNil sets the value for ResultCode to be an explicit nil
+
+### UnsetResultCode
+`func (o *KoreaTelcoMatchProviderOutput) UnsetResultCode()`
+
+UnsetResultCode ensures that no value is present for ResultCode, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

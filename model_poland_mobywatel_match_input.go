@@ -25,15 +25,15 @@ type PolandMobywatelMatchInput struct {
 	FamilyName NullableString `json:"familyName,omitempty"`
 	// Date of birth as it appears on mobile ID (mDowód).
 	DateOfBirth NullableString `json:"dateOfBirth,omitempty"`
-	// Nationality as it appears on mobile ID (mDowód).
+	// Nationality as it appears on mobile ID (mDowód).              Format: - Must be a valid ISO 3166-1 alpha-2 or alpha-3 country code. - Matching against mObywatel is an exact string comparison on the alpha-3 code.   Alpha-2 values are accepted and normalized to alpha-3 before matching.
 	Nationality NullableString `json:"nationality,omitempty"`
 	// Polish national identification number (PESEL) as it appears on mobile ID (mDowód).              NOTE: The provided example value is a randomly generated, but valid PESEL number that does not correspond to a real person.
 	PersonalNumber NullableString `json:"personalNumber,omitempty"`
 	// Document expiration date as it appears on mobile ID (mDowód).
 	ExpirationDate NullableString `json:"expirationDate,omitempty"`
-	// The raw bytes of the selfie image collected from the user.
+	// The raw bytes of an optional selfie image collected from the individual.              Requirements from the provider: - JPEG or PNG - At least 720 pixels wide (1080 pixels recommended) - Not exceeding 10 MB - Clear, front-facing photo with good lighting and no sunglasses or face coverings.
 	SelfieBytes NullableString `json:"selfieBytes,omitempty"`
-	// The MIME Type of the file contained in SelfieBytes.              Only JPEG or PNG formats are supported.
+	// The MIME type of the file contained in SelfieBytes.              Must be one of `image/jpeg` or `image/png`.
 	SelfieImageMimeType NullableString `json:"selfieImageMimeType,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

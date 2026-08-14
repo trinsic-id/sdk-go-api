@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the CzechBankIdCard type satisfies the MappedNullable interface at compile time
@@ -21,15 +20,15 @@ var _ MappedNullable = &CzechBankIdCard{}
 // CzechBankIdCard struct for CzechBankIdCard
 type CzechBankIdCard struct {
 	// The identity document type code.              Possible values are:              - ID - Identity card - P - Passport - DL - Driving license - IR - Residence permit - VS - Visa permit label - PS - Residential label - IX - Book with residence permit - IE - Form with temporary residence - OP - Identity card – without machine readable zone - CA - Passport of the Czech Republic resident – without machine readable zone - UNKNOWN - Unknown id card type
-	Type string `json:"type"`
+	Type NullableString `json:"type,omitempty"`
 	// The localized identity document type description.
 	Description NullableString `json:"description,omitempty"`
 	// The country for which the identity document is valid.
-	Country string `json:"country"`
+	Country NullableString `json:"country,omitempty"`
 	// The identity document number.
-	Number string `json:"number"`
+	Number NullableString `json:"number,omitempty"`
 	// The identity document expiration date.
-	ValidTo string `json:"validTo"`
+	ValidTo NullableString `json:"validTo,omitempty"`
 	// The office that issued the identity document.
 	Issuer NullableString `json:"issuer,omitempty"`
 	// The identity document issue date.
@@ -43,12 +42,8 @@ type _CzechBankIdCard CzechBankIdCard
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCzechBankIdCard(type_ string, country string, number string, validTo string) *CzechBankIdCard {
+func NewCzechBankIdCard() *CzechBankIdCard {
 	this := CzechBankIdCard{}
-	this.Type = type_
-	this.Country = country
-	this.Number = number
-	this.ValidTo = validTo
 	return &this
 }
 
@@ -60,28 +55,46 @@ func NewCzechBankIdCardWithDefaults() *CzechBankIdCard {
 	return &this
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CzechBankIdCard) GetType() string {
-	if o == nil {
+	if o == nil || IsNil(o.Type.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.Type
+	return *o.Type.Get()
 }
 
-// GetTypeOk returns a tuple with the Type field value
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CzechBankIdCard) GetTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Type, true
+	return o.Type.Get(), o.Type.IsSet()
 }
 
-// SetType sets field value
+// HasType returns a boolean if a field has been set.
+func (o *CzechBankIdCard) HasType() bool {
+	if o != nil && o.Type.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given NullableString and assigns it to the Type field.
 func (o *CzechBankIdCard) SetType(v string) {
-	o.Type = v
+	o.Type.Set(&v)
+}
+// SetTypeNil sets the value for Type to be an explicit nil
+func (o *CzechBankIdCard) SetTypeNil() {
+	o.Type.Set(nil)
+}
+
+// UnsetType ensures that no value is present for Type, not even an explicit nil
+func (o *CzechBankIdCard) UnsetType() {
+	o.Type.Unset()
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -126,76 +139,130 @@ func (o *CzechBankIdCard) UnsetDescription() {
 	o.Description.Unset()
 }
 
-// GetCountry returns the Country field value
+// GetCountry returns the Country field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CzechBankIdCard) GetCountry() string {
-	if o == nil {
+	if o == nil || IsNil(o.Country.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.Country
+	return *o.Country.Get()
 }
 
-// GetCountryOk returns a tuple with the Country field value
+// GetCountryOk returns a tuple with the Country field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CzechBankIdCard) GetCountryOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Country, true
+	return o.Country.Get(), o.Country.IsSet()
 }
 
-// SetCountry sets field value
+// HasCountry returns a boolean if a field has been set.
+func (o *CzechBankIdCard) HasCountry() bool {
+	if o != nil && o.Country.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCountry gets a reference to the given NullableString and assigns it to the Country field.
 func (o *CzechBankIdCard) SetCountry(v string) {
-	o.Country = v
+	o.Country.Set(&v)
+}
+// SetCountryNil sets the value for Country to be an explicit nil
+func (o *CzechBankIdCard) SetCountryNil() {
+	o.Country.Set(nil)
 }
 
-// GetNumber returns the Number field value
+// UnsetCountry ensures that no value is present for Country, not even an explicit nil
+func (o *CzechBankIdCard) UnsetCountry() {
+	o.Country.Unset()
+}
+
+// GetNumber returns the Number field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CzechBankIdCard) GetNumber() string {
-	if o == nil {
+	if o == nil || IsNil(o.Number.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.Number
+	return *o.Number.Get()
 }
 
-// GetNumberOk returns a tuple with the Number field value
+// GetNumberOk returns a tuple with the Number field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CzechBankIdCard) GetNumberOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Number, true
+	return o.Number.Get(), o.Number.IsSet()
 }
 
-// SetNumber sets field value
+// HasNumber returns a boolean if a field has been set.
+func (o *CzechBankIdCard) HasNumber() bool {
+	if o != nil && o.Number.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetNumber gets a reference to the given NullableString and assigns it to the Number field.
 func (o *CzechBankIdCard) SetNumber(v string) {
-	o.Number = v
+	o.Number.Set(&v)
+}
+// SetNumberNil sets the value for Number to be an explicit nil
+func (o *CzechBankIdCard) SetNumberNil() {
+	o.Number.Set(nil)
 }
 
-// GetValidTo returns the ValidTo field value
+// UnsetNumber ensures that no value is present for Number, not even an explicit nil
+func (o *CzechBankIdCard) UnsetNumber() {
+	o.Number.Unset()
+}
+
+// GetValidTo returns the ValidTo field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CzechBankIdCard) GetValidTo() string {
-	if o == nil {
+	if o == nil || IsNil(o.ValidTo.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.ValidTo
+	return *o.ValidTo.Get()
 }
 
-// GetValidToOk returns a tuple with the ValidTo field value
+// GetValidToOk returns a tuple with the ValidTo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CzechBankIdCard) GetValidToOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.ValidTo, true
+	return o.ValidTo.Get(), o.ValidTo.IsSet()
 }
 
-// SetValidTo sets field value
+// HasValidTo returns a boolean if a field has been set.
+func (o *CzechBankIdCard) HasValidTo() bool {
+	if o != nil && o.ValidTo.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetValidTo gets a reference to the given NullableString and assigns it to the ValidTo field.
 func (o *CzechBankIdCard) SetValidTo(v string) {
-	o.ValidTo = v
+	o.ValidTo.Set(&v)
+}
+// SetValidToNil sets the value for ValidTo to be an explicit nil
+func (o *CzechBankIdCard) SetValidToNil() {
+	o.ValidTo.Set(nil)
+}
+
+// UnsetValidTo ensures that no value is present for ValidTo, not even an explicit nil
+func (o *CzechBankIdCard) UnsetValidTo() {
+	o.ValidTo.Unset()
 }
 
 // GetIssuer returns the Issuer field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -292,13 +359,21 @@ func (o CzechBankIdCard) MarshalJSON() ([]byte, error) {
 
 func (o CzechBankIdCard) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["type"] = o.Type
+	if o.Type.IsSet() {
+		toSerialize["type"] = o.Type.Get()
+	}
 	if o.Description.IsSet() {
 		toSerialize["description"] = o.Description.Get()
 	}
-	toSerialize["country"] = o.Country
-	toSerialize["number"] = o.Number
-	toSerialize["validTo"] = o.ValidTo
+	if o.Country.IsSet() {
+		toSerialize["country"] = o.Country.Get()
+	}
+	if o.Number.IsSet() {
+		toSerialize["number"] = o.Number.Get()
+	}
+	if o.ValidTo.IsSet() {
+		toSerialize["validTo"] = o.ValidTo.Get()
+	}
 	if o.Issuer.IsSet() {
 		toSerialize["issuer"] = o.Issuer.Get()
 	}
@@ -314,30 +389,6 @@ func (o CzechBankIdCard) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *CzechBankIdCard) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"type",
-		"country",
-		"number",
-		"validTo",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varCzechBankIdCard := _CzechBankIdCard{}
 
 	err = json.Unmarshal(data, &varCzechBankIdCard)

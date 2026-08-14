@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the GoogleWalletProviderOutput type satisfies the MappedNullable interface at compile time
@@ -25,7 +24,7 @@ type GoogleWalletProviderOutput struct {
 	// A Google Wallet ID Pass credential (`com.google.wallet.idcard.1`), retrieved from the individual's wallet.
 	IdPass NullableGoogleWalletIdPassCredential `json:"idPass,omitempty"`
 	// The raw output of the mDL exchange performed through Google Wallet.
-	RawMdlOutput MdlOutput `json:"rawMdlOutput"`
+	RawMdlOutput NullableMdlOutput `json:"rawMdlOutput,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -35,9 +34,8 @@ type _GoogleWalletProviderOutput GoogleWalletProviderOutput
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGoogleWalletProviderOutput(rawMdlOutput MdlOutput) *GoogleWalletProviderOutput {
+func NewGoogleWalletProviderOutput() *GoogleWalletProviderOutput {
 	this := GoogleWalletProviderOutput{}
-	this.RawMdlOutput = rawMdlOutput
 	return &this
 }
 
@@ -133,28 +131,46 @@ func (o *GoogleWalletProviderOutput) UnsetIdPass() {
 	o.IdPass.Unset()
 }
 
-// GetRawMdlOutput returns the RawMdlOutput field value
+// GetRawMdlOutput returns the RawMdlOutput field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GoogleWalletProviderOutput) GetRawMdlOutput() MdlOutput {
-	if o == nil {
+	if o == nil || IsNil(o.RawMdlOutput.Get()) {
 		var ret MdlOutput
 		return ret
 	}
-
-	return o.RawMdlOutput
+	return *o.RawMdlOutput.Get()
 }
 
-// GetRawMdlOutputOk returns a tuple with the RawMdlOutput field value
+// GetRawMdlOutputOk returns a tuple with the RawMdlOutput field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *GoogleWalletProviderOutput) GetRawMdlOutputOk() (*MdlOutput, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.RawMdlOutput, true
+	return o.RawMdlOutput.Get(), o.RawMdlOutput.IsSet()
 }
 
-// SetRawMdlOutput sets field value
+// HasRawMdlOutput returns a boolean if a field has been set.
+func (o *GoogleWalletProviderOutput) HasRawMdlOutput() bool {
+	if o != nil && o.RawMdlOutput.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRawMdlOutput gets a reference to the given NullableMdlOutput and assigns it to the RawMdlOutput field.
 func (o *GoogleWalletProviderOutput) SetRawMdlOutput(v MdlOutput) {
-	o.RawMdlOutput = v
+	o.RawMdlOutput.Set(&v)
+}
+// SetRawMdlOutputNil sets the value for RawMdlOutput to be an explicit nil
+func (o *GoogleWalletProviderOutput) SetRawMdlOutputNil() {
+	o.RawMdlOutput.Set(nil)
+}
+
+// UnsetRawMdlOutput ensures that no value is present for RawMdlOutput, not even an explicit nil
+func (o *GoogleWalletProviderOutput) UnsetRawMdlOutput() {
+	o.RawMdlOutput.Unset()
 }
 
 func (o GoogleWalletProviderOutput) MarshalJSON() ([]byte, error) {
@@ -173,7 +189,9 @@ func (o GoogleWalletProviderOutput) ToMap() (map[string]interface{}, error) {
 	if o.IdPass.IsSet() {
 		toSerialize["idPass"] = o.IdPass.Get()
 	}
-	toSerialize["rawMdlOutput"] = o.RawMdlOutput
+	if o.RawMdlOutput.IsSet() {
+		toSerialize["rawMdlOutput"] = o.RawMdlOutput.Get()
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -183,27 +201,6 @@ func (o GoogleWalletProviderOutput) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *GoogleWalletProviderOutput) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"rawMdlOutput",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varGoogleWalletProviderOutput := _GoogleWalletProviderOutput{}
 
 	err = json.Unmarshal(data, &varGoogleWalletProviderOutput)

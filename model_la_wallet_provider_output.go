@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the LaWalletProviderOutput type satisfies the MappedNullable interface at compile time
@@ -21,41 +20,41 @@ var _ MappedNullable = &LaWalletProviderOutput{}
 // LaWalletProviderOutput Exposed properties for the `usa-louisiana-wallet` Provider which do not directly map to the normalized IdentityData model.
 type LaWalletProviderOutput struct {
 	// The number of the driver's license used to create the LA Wallet credential
-	DriversLicenseNumber string `json:"driversLicenseNumber"`
+	DriversLicenseNumber NullableString `json:"driversLicenseNumber,omitempty"`
 	// The issue date of the driver's license used to create the LA Wallet credential
-	IssueDate string `json:"issueDate"`
+	IssueDate NullableString `json:"issueDate,omitempty"`
 	// The expiration date of the driver's license used to create the LA Wallet credential
-	ExpirationDate string `json:"expirationDate"`
+	ExpirationDate NullableString `json:"expirationDate,omitempty"`
 	// The 4-digit audit number of the driver's license used to create the LA Wallet credential
-	AuditNumber string `json:"auditNumber"`
+	AuditNumber NullableString `json:"auditNumber,omitempty"`
 	// The license status from the LA Wallet credential
-	LicenseStatus string `json:"licenseStatus"`
+	LicenseStatus NullableString `json:"licenseStatus,omitempty"`
 	// The license class from the LA Wallet credential              Possible values: - \"A\": Commercial Driver's License, Combination Vehicles - \"B\": Commercial Driver's License, Heavy Straight Vehicle - \"C\": Commercial Driver's License, Light Straight Vehicle - \"D\": Chauffeur's Driver's License - \"E\": Driver's License for Personal Vehicle
-	LicenseClass string `json:"licenseClass"`
+	LicenseClass NullableString `json:"licenseClass,omitempty"`
 	// The first name from the LA Wallet credential
-	FirstName string `json:"firstName"`
+	FirstName NullableString `json:"firstName,omitempty"`
 	// The middle name from the LA Wallet credential
-	MiddleName string `json:"middleName"`
+	MiddleName NullableString `json:"middleName,omitempty"`
 	// The last name from the LA Wallet credential
-	LastName string `json:"lastName"`
+	LastName NullableString `json:"lastName,omitempty"`
 	// The date of birth from the LA Wallet credential
-	DateOfBirth string `json:"dateOfBirth"`
+	DateOfBirth NullableString `json:"dateOfBirth,omitempty"`
 	// The sex from the LA Wallet credential
-	Sex string `json:"sex"`
+	Sex NullableString `json:"sex,omitempty"`
 	// The address' line 1 from the LA Wallet credential
-	AddressLine1 string `json:"addressLine1"`
+	AddressLine1 NullableString `json:"addressLine1,omitempty"`
 	// The address' line 2 from the LA Wallet credential
 	AddressLine2 NullableString `json:"addressLine2,omitempty"`
 	// The address' city from the LA Wallet credential
-	AddressCity string `json:"addressCity"`
+	AddressCity NullableString `json:"addressCity,omitempty"`
 	// The address' state from the LA Wallet credential
-	AddressState string `json:"addressState"`
+	AddressState NullableString `json:"addressState,omitempty"`
 	// The address' ZIP from the LA Wallet credential
-	AddressZip string `json:"addressZip"`
+	AddressZip NullableString `json:"addressZip,omitempty"`
 	// The county (\"parish\") code from the LA Wallet credential.              This is a number from 1 to 64, representing one of Louisiana's 64 parishes.
-	County string `json:"county"`
+	County NullableString `json:"county,omitempty"`
 	// The coarse age returned by LA Wallet for this credential              Possible values: - \"Under 18\" - \"Under 21\" - \"Over 21\"
-	CoarseAge string `json:"coarseAge"`
+	CoarseAge NullableString `json:"coarseAge,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -65,25 +64,8 @@ type _LaWalletProviderOutput LaWalletProviderOutput
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewLaWalletProviderOutput(driversLicenseNumber string, issueDate string, expirationDate string, auditNumber string, licenseStatus string, licenseClass string, firstName string, middleName string, lastName string, dateOfBirth string, sex string, addressLine1 string, addressCity string, addressState string, addressZip string, county string, coarseAge string) *LaWalletProviderOutput {
+func NewLaWalletProviderOutput() *LaWalletProviderOutput {
 	this := LaWalletProviderOutput{}
-	this.DriversLicenseNumber = driversLicenseNumber
-	this.IssueDate = issueDate
-	this.ExpirationDate = expirationDate
-	this.AuditNumber = auditNumber
-	this.LicenseStatus = licenseStatus
-	this.LicenseClass = licenseClass
-	this.FirstName = firstName
-	this.MiddleName = middleName
-	this.LastName = lastName
-	this.DateOfBirth = dateOfBirth
-	this.Sex = sex
-	this.AddressLine1 = addressLine1
-	this.AddressCity = addressCity
-	this.AddressState = addressState
-	this.AddressZip = addressZip
-	this.County = county
-	this.CoarseAge = coarseAge
 	return &this
 }
 
@@ -95,292 +77,508 @@ func NewLaWalletProviderOutputWithDefaults() *LaWalletProviderOutput {
 	return &this
 }
 
-// GetDriversLicenseNumber returns the DriversLicenseNumber field value
+// GetDriversLicenseNumber returns the DriversLicenseNumber field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *LaWalletProviderOutput) GetDriversLicenseNumber() string {
-	if o == nil {
+	if o == nil || IsNil(o.DriversLicenseNumber.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.DriversLicenseNumber
+	return *o.DriversLicenseNumber.Get()
 }
 
-// GetDriversLicenseNumberOk returns a tuple with the DriversLicenseNumber field value
+// GetDriversLicenseNumberOk returns a tuple with the DriversLicenseNumber field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *LaWalletProviderOutput) GetDriversLicenseNumberOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.DriversLicenseNumber, true
+	return o.DriversLicenseNumber.Get(), o.DriversLicenseNumber.IsSet()
 }
 
-// SetDriversLicenseNumber sets field value
+// HasDriversLicenseNumber returns a boolean if a field has been set.
+func (o *LaWalletProviderOutput) HasDriversLicenseNumber() bool {
+	if o != nil && o.DriversLicenseNumber.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDriversLicenseNumber gets a reference to the given NullableString and assigns it to the DriversLicenseNumber field.
 func (o *LaWalletProviderOutput) SetDriversLicenseNumber(v string) {
-	o.DriversLicenseNumber = v
+	o.DriversLicenseNumber.Set(&v)
+}
+// SetDriversLicenseNumberNil sets the value for DriversLicenseNumber to be an explicit nil
+func (o *LaWalletProviderOutput) SetDriversLicenseNumberNil() {
+	o.DriversLicenseNumber.Set(nil)
 }
 
-// GetIssueDate returns the IssueDate field value
+// UnsetDriversLicenseNumber ensures that no value is present for DriversLicenseNumber, not even an explicit nil
+func (o *LaWalletProviderOutput) UnsetDriversLicenseNumber() {
+	o.DriversLicenseNumber.Unset()
+}
+
+// GetIssueDate returns the IssueDate field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *LaWalletProviderOutput) GetIssueDate() string {
-	if o == nil {
+	if o == nil || IsNil(o.IssueDate.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.IssueDate
+	return *o.IssueDate.Get()
 }
 
-// GetIssueDateOk returns a tuple with the IssueDate field value
+// GetIssueDateOk returns a tuple with the IssueDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *LaWalletProviderOutput) GetIssueDateOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.IssueDate, true
+	return o.IssueDate.Get(), o.IssueDate.IsSet()
 }
 
-// SetIssueDate sets field value
+// HasIssueDate returns a boolean if a field has been set.
+func (o *LaWalletProviderOutput) HasIssueDate() bool {
+	if o != nil && o.IssueDate.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetIssueDate gets a reference to the given NullableString and assigns it to the IssueDate field.
 func (o *LaWalletProviderOutput) SetIssueDate(v string) {
-	o.IssueDate = v
+	o.IssueDate.Set(&v)
+}
+// SetIssueDateNil sets the value for IssueDate to be an explicit nil
+func (o *LaWalletProviderOutput) SetIssueDateNil() {
+	o.IssueDate.Set(nil)
 }
 
-// GetExpirationDate returns the ExpirationDate field value
+// UnsetIssueDate ensures that no value is present for IssueDate, not even an explicit nil
+func (o *LaWalletProviderOutput) UnsetIssueDate() {
+	o.IssueDate.Unset()
+}
+
+// GetExpirationDate returns the ExpirationDate field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *LaWalletProviderOutput) GetExpirationDate() string {
-	if o == nil {
+	if o == nil || IsNil(o.ExpirationDate.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.ExpirationDate
+	return *o.ExpirationDate.Get()
 }
 
-// GetExpirationDateOk returns a tuple with the ExpirationDate field value
+// GetExpirationDateOk returns a tuple with the ExpirationDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *LaWalletProviderOutput) GetExpirationDateOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.ExpirationDate, true
+	return o.ExpirationDate.Get(), o.ExpirationDate.IsSet()
 }
 
-// SetExpirationDate sets field value
+// HasExpirationDate returns a boolean if a field has been set.
+func (o *LaWalletProviderOutput) HasExpirationDate() bool {
+	if o != nil && o.ExpirationDate.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetExpirationDate gets a reference to the given NullableString and assigns it to the ExpirationDate field.
 func (o *LaWalletProviderOutput) SetExpirationDate(v string) {
-	o.ExpirationDate = v
+	o.ExpirationDate.Set(&v)
+}
+// SetExpirationDateNil sets the value for ExpirationDate to be an explicit nil
+func (o *LaWalletProviderOutput) SetExpirationDateNil() {
+	o.ExpirationDate.Set(nil)
 }
 
-// GetAuditNumber returns the AuditNumber field value
+// UnsetExpirationDate ensures that no value is present for ExpirationDate, not even an explicit nil
+func (o *LaWalletProviderOutput) UnsetExpirationDate() {
+	o.ExpirationDate.Unset()
+}
+
+// GetAuditNumber returns the AuditNumber field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *LaWalletProviderOutput) GetAuditNumber() string {
-	if o == nil {
+	if o == nil || IsNil(o.AuditNumber.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.AuditNumber
+	return *o.AuditNumber.Get()
 }
 
-// GetAuditNumberOk returns a tuple with the AuditNumber field value
+// GetAuditNumberOk returns a tuple with the AuditNumber field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *LaWalletProviderOutput) GetAuditNumberOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.AuditNumber, true
+	return o.AuditNumber.Get(), o.AuditNumber.IsSet()
 }
 
-// SetAuditNumber sets field value
+// HasAuditNumber returns a boolean if a field has been set.
+func (o *LaWalletProviderOutput) HasAuditNumber() bool {
+	if o != nil && o.AuditNumber.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAuditNumber gets a reference to the given NullableString and assigns it to the AuditNumber field.
 func (o *LaWalletProviderOutput) SetAuditNumber(v string) {
-	o.AuditNumber = v
+	o.AuditNumber.Set(&v)
+}
+// SetAuditNumberNil sets the value for AuditNumber to be an explicit nil
+func (o *LaWalletProviderOutput) SetAuditNumberNil() {
+	o.AuditNumber.Set(nil)
 }
 
-// GetLicenseStatus returns the LicenseStatus field value
+// UnsetAuditNumber ensures that no value is present for AuditNumber, not even an explicit nil
+func (o *LaWalletProviderOutput) UnsetAuditNumber() {
+	o.AuditNumber.Unset()
+}
+
+// GetLicenseStatus returns the LicenseStatus field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *LaWalletProviderOutput) GetLicenseStatus() string {
-	if o == nil {
+	if o == nil || IsNil(o.LicenseStatus.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.LicenseStatus
+	return *o.LicenseStatus.Get()
 }
 
-// GetLicenseStatusOk returns a tuple with the LicenseStatus field value
+// GetLicenseStatusOk returns a tuple with the LicenseStatus field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *LaWalletProviderOutput) GetLicenseStatusOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.LicenseStatus, true
+	return o.LicenseStatus.Get(), o.LicenseStatus.IsSet()
 }
 
-// SetLicenseStatus sets field value
+// HasLicenseStatus returns a boolean if a field has been set.
+func (o *LaWalletProviderOutput) HasLicenseStatus() bool {
+	if o != nil && o.LicenseStatus.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetLicenseStatus gets a reference to the given NullableString and assigns it to the LicenseStatus field.
 func (o *LaWalletProviderOutput) SetLicenseStatus(v string) {
-	o.LicenseStatus = v
+	o.LicenseStatus.Set(&v)
+}
+// SetLicenseStatusNil sets the value for LicenseStatus to be an explicit nil
+func (o *LaWalletProviderOutput) SetLicenseStatusNil() {
+	o.LicenseStatus.Set(nil)
 }
 
-// GetLicenseClass returns the LicenseClass field value
+// UnsetLicenseStatus ensures that no value is present for LicenseStatus, not even an explicit nil
+func (o *LaWalletProviderOutput) UnsetLicenseStatus() {
+	o.LicenseStatus.Unset()
+}
+
+// GetLicenseClass returns the LicenseClass field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *LaWalletProviderOutput) GetLicenseClass() string {
-	if o == nil {
+	if o == nil || IsNil(o.LicenseClass.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.LicenseClass
+	return *o.LicenseClass.Get()
 }
 
-// GetLicenseClassOk returns a tuple with the LicenseClass field value
+// GetLicenseClassOk returns a tuple with the LicenseClass field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *LaWalletProviderOutput) GetLicenseClassOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.LicenseClass, true
+	return o.LicenseClass.Get(), o.LicenseClass.IsSet()
 }
 
-// SetLicenseClass sets field value
+// HasLicenseClass returns a boolean if a field has been set.
+func (o *LaWalletProviderOutput) HasLicenseClass() bool {
+	if o != nil && o.LicenseClass.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetLicenseClass gets a reference to the given NullableString and assigns it to the LicenseClass field.
 func (o *LaWalletProviderOutput) SetLicenseClass(v string) {
-	o.LicenseClass = v
+	o.LicenseClass.Set(&v)
+}
+// SetLicenseClassNil sets the value for LicenseClass to be an explicit nil
+func (o *LaWalletProviderOutput) SetLicenseClassNil() {
+	o.LicenseClass.Set(nil)
 }
 
-// GetFirstName returns the FirstName field value
+// UnsetLicenseClass ensures that no value is present for LicenseClass, not even an explicit nil
+func (o *LaWalletProviderOutput) UnsetLicenseClass() {
+	o.LicenseClass.Unset()
+}
+
+// GetFirstName returns the FirstName field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *LaWalletProviderOutput) GetFirstName() string {
-	if o == nil {
+	if o == nil || IsNil(o.FirstName.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.FirstName
+	return *o.FirstName.Get()
 }
 
-// GetFirstNameOk returns a tuple with the FirstName field value
+// GetFirstNameOk returns a tuple with the FirstName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *LaWalletProviderOutput) GetFirstNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.FirstName, true
+	return o.FirstName.Get(), o.FirstName.IsSet()
 }
 
-// SetFirstName sets field value
+// HasFirstName returns a boolean if a field has been set.
+func (o *LaWalletProviderOutput) HasFirstName() bool {
+	if o != nil && o.FirstName.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetFirstName gets a reference to the given NullableString and assigns it to the FirstName field.
 func (o *LaWalletProviderOutput) SetFirstName(v string) {
-	o.FirstName = v
+	o.FirstName.Set(&v)
+}
+// SetFirstNameNil sets the value for FirstName to be an explicit nil
+func (o *LaWalletProviderOutput) SetFirstNameNil() {
+	o.FirstName.Set(nil)
 }
 
-// GetMiddleName returns the MiddleName field value
+// UnsetFirstName ensures that no value is present for FirstName, not even an explicit nil
+func (o *LaWalletProviderOutput) UnsetFirstName() {
+	o.FirstName.Unset()
+}
+
+// GetMiddleName returns the MiddleName field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *LaWalletProviderOutput) GetMiddleName() string {
-	if o == nil {
+	if o == nil || IsNil(o.MiddleName.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.MiddleName
+	return *o.MiddleName.Get()
 }
 
-// GetMiddleNameOk returns a tuple with the MiddleName field value
+// GetMiddleNameOk returns a tuple with the MiddleName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *LaWalletProviderOutput) GetMiddleNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.MiddleName, true
+	return o.MiddleName.Get(), o.MiddleName.IsSet()
 }
 
-// SetMiddleName sets field value
+// HasMiddleName returns a boolean if a field has been set.
+func (o *LaWalletProviderOutput) HasMiddleName() bool {
+	if o != nil && o.MiddleName.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetMiddleName gets a reference to the given NullableString and assigns it to the MiddleName field.
 func (o *LaWalletProviderOutput) SetMiddleName(v string) {
-	o.MiddleName = v
+	o.MiddleName.Set(&v)
+}
+// SetMiddleNameNil sets the value for MiddleName to be an explicit nil
+func (o *LaWalletProviderOutput) SetMiddleNameNil() {
+	o.MiddleName.Set(nil)
 }
 
-// GetLastName returns the LastName field value
+// UnsetMiddleName ensures that no value is present for MiddleName, not even an explicit nil
+func (o *LaWalletProviderOutput) UnsetMiddleName() {
+	o.MiddleName.Unset()
+}
+
+// GetLastName returns the LastName field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *LaWalletProviderOutput) GetLastName() string {
-	if o == nil {
+	if o == nil || IsNil(o.LastName.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.LastName
+	return *o.LastName.Get()
 }
 
-// GetLastNameOk returns a tuple with the LastName field value
+// GetLastNameOk returns a tuple with the LastName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *LaWalletProviderOutput) GetLastNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.LastName, true
+	return o.LastName.Get(), o.LastName.IsSet()
 }
 
-// SetLastName sets field value
+// HasLastName returns a boolean if a field has been set.
+func (o *LaWalletProviderOutput) HasLastName() bool {
+	if o != nil && o.LastName.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetLastName gets a reference to the given NullableString and assigns it to the LastName field.
 func (o *LaWalletProviderOutput) SetLastName(v string) {
-	o.LastName = v
+	o.LastName.Set(&v)
+}
+// SetLastNameNil sets the value for LastName to be an explicit nil
+func (o *LaWalletProviderOutput) SetLastNameNil() {
+	o.LastName.Set(nil)
 }
 
-// GetDateOfBirth returns the DateOfBirth field value
+// UnsetLastName ensures that no value is present for LastName, not even an explicit nil
+func (o *LaWalletProviderOutput) UnsetLastName() {
+	o.LastName.Unset()
+}
+
+// GetDateOfBirth returns the DateOfBirth field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *LaWalletProviderOutput) GetDateOfBirth() string {
-	if o == nil {
+	if o == nil || IsNil(o.DateOfBirth.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.DateOfBirth
+	return *o.DateOfBirth.Get()
 }
 
-// GetDateOfBirthOk returns a tuple with the DateOfBirth field value
+// GetDateOfBirthOk returns a tuple with the DateOfBirth field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *LaWalletProviderOutput) GetDateOfBirthOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.DateOfBirth, true
+	return o.DateOfBirth.Get(), o.DateOfBirth.IsSet()
 }
 
-// SetDateOfBirth sets field value
+// HasDateOfBirth returns a boolean if a field has been set.
+func (o *LaWalletProviderOutput) HasDateOfBirth() bool {
+	if o != nil && o.DateOfBirth.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDateOfBirth gets a reference to the given NullableString and assigns it to the DateOfBirth field.
 func (o *LaWalletProviderOutput) SetDateOfBirth(v string) {
-	o.DateOfBirth = v
+	o.DateOfBirth.Set(&v)
+}
+// SetDateOfBirthNil sets the value for DateOfBirth to be an explicit nil
+func (o *LaWalletProviderOutput) SetDateOfBirthNil() {
+	o.DateOfBirth.Set(nil)
 }
 
-// GetSex returns the Sex field value
+// UnsetDateOfBirth ensures that no value is present for DateOfBirth, not even an explicit nil
+func (o *LaWalletProviderOutput) UnsetDateOfBirth() {
+	o.DateOfBirth.Unset()
+}
+
+// GetSex returns the Sex field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *LaWalletProviderOutput) GetSex() string {
-	if o == nil {
+	if o == nil || IsNil(o.Sex.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.Sex
+	return *o.Sex.Get()
 }
 
-// GetSexOk returns a tuple with the Sex field value
+// GetSexOk returns a tuple with the Sex field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *LaWalletProviderOutput) GetSexOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Sex, true
+	return o.Sex.Get(), o.Sex.IsSet()
 }
 
-// SetSex sets field value
+// HasSex returns a boolean if a field has been set.
+func (o *LaWalletProviderOutput) HasSex() bool {
+	if o != nil && o.Sex.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSex gets a reference to the given NullableString and assigns it to the Sex field.
 func (o *LaWalletProviderOutput) SetSex(v string) {
-	o.Sex = v
+	o.Sex.Set(&v)
+}
+// SetSexNil sets the value for Sex to be an explicit nil
+func (o *LaWalletProviderOutput) SetSexNil() {
+	o.Sex.Set(nil)
 }
 
-// GetAddressLine1 returns the AddressLine1 field value
+// UnsetSex ensures that no value is present for Sex, not even an explicit nil
+func (o *LaWalletProviderOutput) UnsetSex() {
+	o.Sex.Unset()
+}
+
+// GetAddressLine1 returns the AddressLine1 field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *LaWalletProviderOutput) GetAddressLine1() string {
-	if o == nil {
+	if o == nil || IsNil(o.AddressLine1.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.AddressLine1
+	return *o.AddressLine1.Get()
 }
 
-// GetAddressLine1Ok returns a tuple with the AddressLine1 field value
+// GetAddressLine1Ok returns a tuple with the AddressLine1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *LaWalletProviderOutput) GetAddressLine1Ok() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.AddressLine1, true
+	return o.AddressLine1.Get(), o.AddressLine1.IsSet()
 }
 
-// SetAddressLine1 sets field value
+// HasAddressLine1 returns a boolean if a field has been set.
+func (o *LaWalletProviderOutput) HasAddressLine1() bool {
+	if o != nil && o.AddressLine1.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAddressLine1 gets a reference to the given NullableString and assigns it to the AddressLine1 field.
 func (o *LaWalletProviderOutput) SetAddressLine1(v string) {
-	o.AddressLine1 = v
+	o.AddressLine1.Set(&v)
+}
+// SetAddressLine1Nil sets the value for AddressLine1 to be an explicit nil
+func (o *LaWalletProviderOutput) SetAddressLine1Nil() {
+	o.AddressLine1.Set(nil)
+}
+
+// UnsetAddressLine1 ensures that no value is present for AddressLine1, not even an explicit nil
+func (o *LaWalletProviderOutput) UnsetAddressLine1() {
+	o.AddressLine1.Unset()
 }
 
 // GetAddressLine2 returns the AddressLine2 field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -425,124 +623,214 @@ func (o *LaWalletProviderOutput) UnsetAddressLine2() {
 	o.AddressLine2.Unset()
 }
 
-// GetAddressCity returns the AddressCity field value
+// GetAddressCity returns the AddressCity field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *LaWalletProviderOutput) GetAddressCity() string {
-	if o == nil {
+	if o == nil || IsNil(o.AddressCity.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.AddressCity
+	return *o.AddressCity.Get()
 }
 
-// GetAddressCityOk returns a tuple with the AddressCity field value
+// GetAddressCityOk returns a tuple with the AddressCity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *LaWalletProviderOutput) GetAddressCityOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.AddressCity, true
+	return o.AddressCity.Get(), o.AddressCity.IsSet()
 }
 
-// SetAddressCity sets field value
+// HasAddressCity returns a boolean if a field has been set.
+func (o *LaWalletProviderOutput) HasAddressCity() bool {
+	if o != nil && o.AddressCity.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAddressCity gets a reference to the given NullableString and assigns it to the AddressCity field.
 func (o *LaWalletProviderOutput) SetAddressCity(v string) {
-	o.AddressCity = v
+	o.AddressCity.Set(&v)
+}
+// SetAddressCityNil sets the value for AddressCity to be an explicit nil
+func (o *LaWalletProviderOutput) SetAddressCityNil() {
+	o.AddressCity.Set(nil)
 }
 
-// GetAddressState returns the AddressState field value
+// UnsetAddressCity ensures that no value is present for AddressCity, not even an explicit nil
+func (o *LaWalletProviderOutput) UnsetAddressCity() {
+	o.AddressCity.Unset()
+}
+
+// GetAddressState returns the AddressState field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *LaWalletProviderOutput) GetAddressState() string {
-	if o == nil {
+	if o == nil || IsNil(o.AddressState.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.AddressState
+	return *o.AddressState.Get()
 }
 
-// GetAddressStateOk returns a tuple with the AddressState field value
+// GetAddressStateOk returns a tuple with the AddressState field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *LaWalletProviderOutput) GetAddressStateOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.AddressState, true
+	return o.AddressState.Get(), o.AddressState.IsSet()
 }
 
-// SetAddressState sets field value
+// HasAddressState returns a boolean if a field has been set.
+func (o *LaWalletProviderOutput) HasAddressState() bool {
+	if o != nil && o.AddressState.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAddressState gets a reference to the given NullableString and assigns it to the AddressState field.
 func (o *LaWalletProviderOutput) SetAddressState(v string) {
-	o.AddressState = v
+	o.AddressState.Set(&v)
+}
+// SetAddressStateNil sets the value for AddressState to be an explicit nil
+func (o *LaWalletProviderOutput) SetAddressStateNil() {
+	o.AddressState.Set(nil)
 }
 
-// GetAddressZip returns the AddressZip field value
+// UnsetAddressState ensures that no value is present for AddressState, not even an explicit nil
+func (o *LaWalletProviderOutput) UnsetAddressState() {
+	o.AddressState.Unset()
+}
+
+// GetAddressZip returns the AddressZip field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *LaWalletProviderOutput) GetAddressZip() string {
-	if o == nil {
+	if o == nil || IsNil(o.AddressZip.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.AddressZip
+	return *o.AddressZip.Get()
 }
 
-// GetAddressZipOk returns a tuple with the AddressZip field value
+// GetAddressZipOk returns a tuple with the AddressZip field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *LaWalletProviderOutput) GetAddressZipOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.AddressZip, true
+	return o.AddressZip.Get(), o.AddressZip.IsSet()
 }
 
-// SetAddressZip sets field value
+// HasAddressZip returns a boolean if a field has been set.
+func (o *LaWalletProviderOutput) HasAddressZip() bool {
+	if o != nil && o.AddressZip.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAddressZip gets a reference to the given NullableString and assigns it to the AddressZip field.
 func (o *LaWalletProviderOutput) SetAddressZip(v string) {
-	o.AddressZip = v
+	o.AddressZip.Set(&v)
+}
+// SetAddressZipNil sets the value for AddressZip to be an explicit nil
+func (o *LaWalletProviderOutput) SetAddressZipNil() {
+	o.AddressZip.Set(nil)
 }
 
-// GetCounty returns the County field value
+// UnsetAddressZip ensures that no value is present for AddressZip, not even an explicit nil
+func (o *LaWalletProviderOutput) UnsetAddressZip() {
+	o.AddressZip.Unset()
+}
+
+// GetCounty returns the County field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *LaWalletProviderOutput) GetCounty() string {
-	if o == nil {
+	if o == nil || IsNil(o.County.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.County
+	return *o.County.Get()
 }
 
-// GetCountyOk returns a tuple with the County field value
+// GetCountyOk returns a tuple with the County field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *LaWalletProviderOutput) GetCountyOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.County, true
+	return o.County.Get(), o.County.IsSet()
 }
 
-// SetCounty sets field value
+// HasCounty returns a boolean if a field has been set.
+func (o *LaWalletProviderOutput) HasCounty() bool {
+	if o != nil && o.County.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCounty gets a reference to the given NullableString and assigns it to the County field.
 func (o *LaWalletProviderOutput) SetCounty(v string) {
-	o.County = v
+	o.County.Set(&v)
+}
+// SetCountyNil sets the value for County to be an explicit nil
+func (o *LaWalletProviderOutput) SetCountyNil() {
+	o.County.Set(nil)
 }
 
-// GetCoarseAge returns the CoarseAge field value
+// UnsetCounty ensures that no value is present for County, not even an explicit nil
+func (o *LaWalletProviderOutput) UnsetCounty() {
+	o.County.Unset()
+}
+
+// GetCoarseAge returns the CoarseAge field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *LaWalletProviderOutput) GetCoarseAge() string {
-	if o == nil {
+	if o == nil || IsNil(o.CoarseAge.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.CoarseAge
+	return *o.CoarseAge.Get()
 }
 
-// GetCoarseAgeOk returns a tuple with the CoarseAge field value
+// GetCoarseAgeOk returns a tuple with the CoarseAge field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *LaWalletProviderOutput) GetCoarseAgeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.CoarseAge, true
+	return o.CoarseAge.Get(), o.CoarseAge.IsSet()
 }
 
-// SetCoarseAge sets field value
+// HasCoarseAge returns a boolean if a field has been set.
+func (o *LaWalletProviderOutput) HasCoarseAge() bool {
+	if o != nil && o.CoarseAge.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCoarseAge gets a reference to the given NullableString and assigns it to the CoarseAge field.
 func (o *LaWalletProviderOutput) SetCoarseAge(v string) {
-	o.CoarseAge = v
+	o.CoarseAge.Set(&v)
+}
+// SetCoarseAgeNil sets the value for CoarseAge to be an explicit nil
+func (o *LaWalletProviderOutput) SetCoarseAgeNil() {
+	o.CoarseAge.Set(nil)
+}
+
+// UnsetCoarseAge ensures that no value is present for CoarseAge, not even an explicit nil
+func (o *LaWalletProviderOutput) UnsetCoarseAge() {
+	o.CoarseAge.Unset()
 }
 
 func (o LaWalletProviderOutput) MarshalJSON() ([]byte, error) {
@@ -555,26 +843,60 @@ func (o LaWalletProviderOutput) MarshalJSON() ([]byte, error) {
 
 func (o LaWalletProviderOutput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["driversLicenseNumber"] = o.DriversLicenseNumber
-	toSerialize["issueDate"] = o.IssueDate
-	toSerialize["expirationDate"] = o.ExpirationDate
-	toSerialize["auditNumber"] = o.AuditNumber
-	toSerialize["licenseStatus"] = o.LicenseStatus
-	toSerialize["licenseClass"] = o.LicenseClass
-	toSerialize["firstName"] = o.FirstName
-	toSerialize["middleName"] = o.MiddleName
-	toSerialize["lastName"] = o.LastName
-	toSerialize["dateOfBirth"] = o.DateOfBirth
-	toSerialize["sex"] = o.Sex
-	toSerialize["addressLine1"] = o.AddressLine1
+	if o.DriversLicenseNumber.IsSet() {
+		toSerialize["driversLicenseNumber"] = o.DriversLicenseNumber.Get()
+	}
+	if o.IssueDate.IsSet() {
+		toSerialize["issueDate"] = o.IssueDate.Get()
+	}
+	if o.ExpirationDate.IsSet() {
+		toSerialize["expirationDate"] = o.ExpirationDate.Get()
+	}
+	if o.AuditNumber.IsSet() {
+		toSerialize["auditNumber"] = o.AuditNumber.Get()
+	}
+	if o.LicenseStatus.IsSet() {
+		toSerialize["licenseStatus"] = o.LicenseStatus.Get()
+	}
+	if o.LicenseClass.IsSet() {
+		toSerialize["licenseClass"] = o.LicenseClass.Get()
+	}
+	if o.FirstName.IsSet() {
+		toSerialize["firstName"] = o.FirstName.Get()
+	}
+	if o.MiddleName.IsSet() {
+		toSerialize["middleName"] = o.MiddleName.Get()
+	}
+	if o.LastName.IsSet() {
+		toSerialize["lastName"] = o.LastName.Get()
+	}
+	if o.DateOfBirth.IsSet() {
+		toSerialize["dateOfBirth"] = o.DateOfBirth.Get()
+	}
+	if o.Sex.IsSet() {
+		toSerialize["sex"] = o.Sex.Get()
+	}
+	if o.AddressLine1.IsSet() {
+		toSerialize["addressLine1"] = o.AddressLine1.Get()
+	}
 	if o.AddressLine2.IsSet() {
 		toSerialize["addressLine2"] = o.AddressLine2.Get()
 	}
-	toSerialize["addressCity"] = o.AddressCity
-	toSerialize["addressState"] = o.AddressState
-	toSerialize["addressZip"] = o.AddressZip
-	toSerialize["county"] = o.County
-	toSerialize["coarseAge"] = o.CoarseAge
+	if o.AddressCity.IsSet() {
+		toSerialize["addressCity"] = o.AddressCity.Get()
+	}
+	if o.AddressState.IsSet() {
+		toSerialize["addressState"] = o.AddressState.Get()
+	}
+	if o.AddressZip.IsSet() {
+		toSerialize["addressZip"] = o.AddressZip.Get()
+	}
+	if o.County.IsSet() {
+		toSerialize["county"] = o.County.Get()
+	}
+	if o.CoarseAge.IsSet() {
+		toSerialize["coarseAge"] = o.CoarseAge.Get()
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -584,43 +906,6 @@ func (o LaWalletProviderOutput) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *LaWalletProviderOutput) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"driversLicenseNumber",
-		"issueDate",
-		"expirationDate",
-		"auditNumber",
-		"licenseStatus",
-		"licenseClass",
-		"firstName",
-		"middleName",
-		"lastName",
-		"dateOfBirth",
-		"sex",
-		"addressLine1",
-		"addressCity",
-		"addressState",
-		"addressZip",
-		"county",
-		"coarseAge",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varLaWalletProviderOutput := _LaWalletProviderOutput{}
 
 	err = json.Unmarshal(data, &varLaWalletProviderOutput)

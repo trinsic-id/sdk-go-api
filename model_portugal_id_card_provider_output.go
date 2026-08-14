@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the PortugalIdCardProviderOutput type satisfies the MappedNullable interface at compile time
@@ -21,13 +20,13 @@ var _ MappedNullable = &PortugalIdCardProviderOutput{}
 // PortugalIdCardProviderOutput Exposed properties for the `a-pt-id-login` Provider which do not directly map to the normalized IdentityData model.
 type PortugalIdCardProviderOutput struct {
 	// The first name of the verified individual
-	FirstName string `json:"firstName"`
+	FirstName NullableString `json:"firstName,omitempty"`
 	// The last name of the verified individual
-	LastName string `json:"lastName"`
+	LastName NullableString `json:"lastName,omitempty"`
 	// The date of birth of the verified individual
-	DateOfBirth string `json:"dateOfBirth"`
+	DateOfBirth NullableString `json:"dateOfBirth,omitempty"`
 	// The 8-digit Portuguese Civil Identification Number (número de identificação civil) of the verified individual.
-	CivilIdentificationNumber string `json:"civilIdentificationNumber"`
+	CivilIdentificationNumber NullableString `json:"civilIdentificationNumber,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -37,12 +36,8 @@ type _PortugalIdCardProviderOutput PortugalIdCardProviderOutput
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPortugalIdCardProviderOutput(firstName string, lastName string, dateOfBirth string, civilIdentificationNumber string) *PortugalIdCardProviderOutput {
+func NewPortugalIdCardProviderOutput() *PortugalIdCardProviderOutput {
 	this := PortugalIdCardProviderOutput{}
-	this.FirstName = firstName
-	this.LastName = lastName
-	this.DateOfBirth = dateOfBirth
-	this.CivilIdentificationNumber = civilIdentificationNumber
 	return &this
 }
 
@@ -54,100 +49,172 @@ func NewPortugalIdCardProviderOutputWithDefaults() *PortugalIdCardProviderOutput
 	return &this
 }
 
-// GetFirstName returns the FirstName field value
+// GetFirstName returns the FirstName field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *PortugalIdCardProviderOutput) GetFirstName() string {
-	if o == nil {
+	if o == nil || IsNil(o.FirstName.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.FirstName
+	return *o.FirstName.Get()
 }
 
-// GetFirstNameOk returns a tuple with the FirstName field value
+// GetFirstNameOk returns a tuple with the FirstName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *PortugalIdCardProviderOutput) GetFirstNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.FirstName, true
+	return o.FirstName.Get(), o.FirstName.IsSet()
 }
 
-// SetFirstName sets field value
+// HasFirstName returns a boolean if a field has been set.
+func (o *PortugalIdCardProviderOutput) HasFirstName() bool {
+	if o != nil && o.FirstName.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetFirstName gets a reference to the given NullableString and assigns it to the FirstName field.
 func (o *PortugalIdCardProviderOutput) SetFirstName(v string) {
-	o.FirstName = v
+	o.FirstName.Set(&v)
+}
+// SetFirstNameNil sets the value for FirstName to be an explicit nil
+func (o *PortugalIdCardProviderOutput) SetFirstNameNil() {
+	o.FirstName.Set(nil)
 }
 
-// GetLastName returns the LastName field value
+// UnsetFirstName ensures that no value is present for FirstName, not even an explicit nil
+func (o *PortugalIdCardProviderOutput) UnsetFirstName() {
+	o.FirstName.Unset()
+}
+
+// GetLastName returns the LastName field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *PortugalIdCardProviderOutput) GetLastName() string {
-	if o == nil {
+	if o == nil || IsNil(o.LastName.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.LastName
+	return *o.LastName.Get()
 }
 
-// GetLastNameOk returns a tuple with the LastName field value
+// GetLastNameOk returns a tuple with the LastName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *PortugalIdCardProviderOutput) GetLastNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.LastName, true
+	return o.LastName.Get(), o.LastName.IsSet()
 }
 
-// SetLastName sets field value
+// HasLastName returns a boolean if a field has been set.
+func (o *PortugalIdCardProviderOutput) HasLastName() bool {
+	if o != nil && o.LastName.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetLastName gets a reference to the given NullableString and assigns it to the LastName field.
 func (o *PortugalIdCardProviderOutput) SetLastName(v string) {
-	o.LastName = v
+	o.LastName.Set(&v)
+}
+// SetLastNameNil sets the value for LastName to be an explicit nil
+func (o *PortugalIdCardProviderOutput) SetLastNameNil() {
+	o.LastName.Set(nil)
 }
 
-// GetDateOfBirth returns the DateOfBirth field value
+// UnsetLastName ensures that no value is present for LastName, not even an explicit nil
+func (o *PortugalIdCardProviderOutput) UnsetLastName() {
+	o.LastName.Unset()
+}
+
+// GetDateOfBirth returns the DateOfBirth field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *PortugalIdCardProviderOutput) GetDateOfBirth() string {
-	if o == nil {
+	if o == nil || IsNil(o.DateOfBirth.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.DateOfBirth
+	return *o.DateOfBirth.Get()
 }
 
-// GetDateOfBirthOk returns a tuple with the DateOfBirth field value
+// GetDateOfBirthOk returns a tuple with the DateOfBirth field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *PortugalIdCardProviderOutput) GetDateOfBirthOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.DateOfBirth, true
+	return o.DateOfBirth.Get(), o.DateOfBirth.IsSet()
 }
 
-// SetDateOfBirth sets field value
+// HasDateOfBirth returns a boolean if a field has been set.
+func (o *PortugalIdCardProviderOutput) HasDateOfBirth() bool {
+	if o != nil && o.DateOfBirth.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDateOfBirth gets a reference to the given NullableString and assigns it to the DateOfBirth field.
 func (o *PortugalIdCardProviderOutput) SetDateOfBirth(v string) {
-	o.DateOfBirth = v
+	o.DateOfBirth.Set(&v)
+}
+// SetDateOfBirthNil sets the value for DateOfBirth to be an explicit nil
+func (o *PortugalIdCardProviderOutput) SetDateOfBirthNil() {
+	o.DateOfBirth.Set(nil)
 }
 
-// GetCivilIdentificationNumber returns the CivilIdentificationNumber field value
+// UnsetDateOfBirth ensures that no value is present for DateOfBirth, not even an explicit nil
+func (o *PortugalIdCardProviderOutput) UnsetDateOfBirth() {
+	o.DateOfBirth.Unset()
+}
+
+// GetCivilIdentificationNumber returns the CivilIdentificationNumber field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *PortugalIdCardProviderOutput) GetCivilIdentificationNumber() string {
-	if o == nil {
+	if o == nil || IsNil(o.CivilIdentificationNumber.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.CivilIdentificationNumber
+	return *o.CivilIdentificationNumber.Get()
 }
 
-// GetCivilIdentificationNumberOk returns a tuple with the CivilIdentificationNumber field value
+// GetCivilIdentificationNumberOk returns a tuple with the CivilIdentificationNumber field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *PortugalIdCardProviderOutput) GetCivilIdentificationNumberOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.CivilIdentificationNumber, true
+	return o.CivilIdentificationNumber.Get(), o.CivilIdentificationNumber.IsSet()
 }
 
-// SetCivilIdentificationNumber sets field value
+// HasCivilIdentificationNumber returns a boolean if a field has been set.
+func (o *PortugalIdCardProviderOutput) HasCivilIdentificationNumber() bool {
+	if o != nil && o.CivilIdentificationNumber.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCivilIdentificationNumber gets a reference to the given NullableString and assigns it to the CivilIdentificationNumber field.
 func (o *PortugalIdCardProviderOutput) SetCivilIdentificationNumber(v string) {
-	o.CivilIdentificationNumber = v
+	o.CivilIdentificationNumber.Set(&v)
+}
+// SetCivilIdentificationNumberNil sets the value for CivilIdentificationNumber to be an explicit nil
+func (o *PortugalIdCardProviderOutput) SetCivilIdentificationNumberNil() {
+	o.CivilIdentificationNumber.Set(nil)
+}
+
+// UnsetCivilIdentificationNumber ensures that no value is present for CivilIdentificationNumber, not even an explicit nil
+func (o *PortugalIdCardProviderOutput) UnsetCivilIdentificationNumber() {
+	o.CivilIdentificationNumber.Unset()
 }
 
 func (o PortugalIdCardProviderOutput) MarshalJSON() ([]byte, error) {
@@ -160,10 +227,18 @@ func (o PortugalIdCardProviderOutput) MarshalJSON() ([]byte, error) {
 
 func (o PortugalIdCardProviderOutput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["firstName"] = o.FirstName
-	toSerialize["lastName"] = o.LastName
-	toSerialize["dateOfBirth"] = o.DateOfBirth
-	toSerialize["civilIdentificationNumber"] = o.CivilIdentificationNumber
+	if o.FirstName.IsSet() {
+		toSerialize["firstName"] = o.FirstName.Get()
+	}
+	if o.LastName.IsSet() {
+		toSerialize["lastName"] = o.LastName.Get()
+	}
+	if o.DateOfBirth.IsSet() {
+		toSerialize["dateOfBirth"] = o.DateOfBirth.Get()
+	}
+	if o.CivilIdentificationNumber.IsSet() {
+		toSerialize["civilIdentificationNumber"] = o.CivilIdentificationNumber.Get()
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -173,30 +248,6 @@ func (o PortugalIdCardProviderOutput) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *PortugalIdCardProviderOutput) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"firstName",
-		"lastName",
-		"dateOfBirth",
-		"civilIdentificationNumber",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varPortugalIdCardProviderOutput := _PortugalIdCardProviderOutput{}
 
 	err = json.Unmarshal(data, &varPortugalIdCardProviderOutput)

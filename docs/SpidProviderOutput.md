@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **BillingInformation** | Pointer to [**NullableSpidBillingInformation**](SpidBillingInformation.md) | Information about the billable status of this SPID Verification.              Present only if your account has period-based billing enabled for SPID. Contact Trinsic to enable this. | [optional] 
-**IdentityProviderEntityId** | **string** | The SPID Entity ID of the Identity Provider which issued the SPID identity.              This is an HTTPS URI which uniquely identifies the IdP within the SPID federation.              A normalized / simplified representation of this value is present in the &#x60;originatingSubProviderId&#x60; field in Trinsic&#39;s normalized data model. | 
-**SpidCode** | **string** | The identifier of the SPID credential, uniquely identifying it within the SPID federation.              The format of this string is specific to each individual Identity Provider. | 
+**IdentityProviderEntityId** | Pointer to **NullableString** | The SPID Entity ID of the Identity Provider which issued the SPID identity.              This is an HTTPS URI which uniquely identifies the IdP within the SPID federation.              A normalized / simplified representation of this value is present in the &#x60;originatingSubProviderId&#x60; field in Trinsic&#39;s normalized data model. | [optional] 
+**SpidCode** | Pointer to **NullableString** | The identifier of the SPID credential, uniquely identifying it within the SPID federation.              The format of this string is specific to each individual Identity Provider. | [optional] 
 **SpidCredentialExpirationDate** | Pointer to **NullableString** | Expiration date of the SPID credential.              This is not the same as the expiration date of the underlying identity document (such as a passport) which was used to create the SPID identity. | [optional] 
 **RawIdCard** | Pointer to **NullableString** | The raw, space-separated string value for the \&quot;IdCard\&quot; field from the SPID credential.              Trinsic additionally parses this field and uses it to populate the &#x60;Document&#x60; object in the normalized data model. | [optional] 
 **GivenName** | Pointer to **NullableString** | The individual&#39;s first / given name(s) | [optional] 
@@ -33,7 +33,7 @@ Name | Type | Description | Notes
 
 ### NewSpidProviderOutput
 
-`func NewSpidProviderOutput(identityProviderEntityId string, spidCode string, ) *SpidProviderOutput`
+`func NewSpidProviderOutput() *SpidProviderOutput`
 
 NewSpidProviderOutput instantiates a new SpidProviderOutput object
 This constructor will assign default values to properties that have it defined,
@@ -102,7 +102,22 @@ and a boolean to check if the value has been set.
 
 SetIdentityProviderEntityId sets IdentityProviderEntityId field to given value.
 
+### HasIdentityProviderEntityId
 
+`func (o *SpidProviderOutput) HasIdentityProviderEntityId() bool`
+
+HasIdentityProviderEntityId returns a boolean if a field has been set.
+
+### SetIdentityProviderEntityIdNil
+
+`func (o *SpidProviderOutput) SetIdentityProviderEntityIdNil(b bool)`
+
+ SetIdentityProviderEntityIdNil sets the value for IdentityProviderEntityId to be an explicit nil
+
+### UnsetIdentityProviderEntityId
+`func (o *SpidProviderOutput) UnsetIdentityProviderEntityId()`
+
+UnsetIdentityProviderEntityId ensures that no value is present for IdentityProviderEntityId, not even an explicit nil
 ### GetSpidCode
 
 `func (o *SpidProviderOutput) GetSpidCode() string`
@@ -122,7 +137,22 @@ and a boolean to check if the value has been set.
 
 SetSpidCode sets SpidCode field to given value.
 
+### HasSpidCode
 
+`func (o *SpidProviderOutput) HasSpidCode() bool`
+
+HasSpidCode returns a boolean if a field has been set.
+
+### SetSpidCodeNil
+
+`func (o *SpidProviderOutput) SetSpidCodeNil(b bool)`
+
+ SetSpidCodeNil sets the value for SpidCode to be an explicit nil
+
+### UnsetSpidCode
+`func (o *SpidProviderOutput) UnsetSpidCode()`
+
+UnsetSpidCode ensures that no value is present for SpidCode, not even an explicit nil
 ### GetSpidCredentialExpirationDate
 
 `func (o *SpidProviderOutput) GetSpidCredentialExpirationDate() string`

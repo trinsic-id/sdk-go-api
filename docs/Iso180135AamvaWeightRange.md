@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**MinKilograms** | **int32** | Minimum weight in the range, in kilograms. | 
+**MinKilograms** | Pointer to **NullableInt32** | Minimum weight in the range, in kilograms. | [optional] 
 **MaxKilograms** | Pointer to **NullableInt32** | Maximum weight in the range, in kilograms.              If null, the maximum weight has no limit. | [optional] 
 
 ## Methods
 
 ### NewIso180135AamvaWeightRange
 
-`func NewIso180135AamvaWeightRange(minKilograms int32, ) *Iso180135AamvaWeightRange`
+`func NewIso180135AamvaWeightRange() *Iso180135AamvaWeightRange`
 
 NewIso180135AamvaWeightRange instantiates a new Iso180135AamvaWeightRange object
 This constructor will assign default values to properties that have it defined,
@@ -45,7 +45,22 @@ and a boolean to check if the value has been set.
 
 SetMinKilograms sets MinKilograms field to given value.
 
+### HasMinKilograms
 
+`func (o *Iso180135AamvaWeightRange) HasMinKilograms() bool`
+
+HasMinKilograms returns a boolean if a field has been set.
+
+### SetMinKilogramsNil
+
+`func (o *Iso180135AamvaWeightRange) SetMinKilogramsNil(b bool)`
+
+ SetMinKilogramsNil sets the value for MinKilograms to be an explicit nil
+
+### UnsetMinKilograms
+`func (o *Iso180135AamvaWeightRange) UnsetMinKilograms()`
+
+UnsetMinKilograms ensures that no value is present for MinKilograms, not even an explicit nil
 ### GetMaxKilograms
 
 `func (o *Iso180135AamvaWeightRange) GetMaxKilograms() int32`

@@ -7,7 +7,8 @@ Name | Type | Description | Notes
 **Id** | **string** | The ID of the sub-provider.              This cannot be used as a standalone Provider ID when creating a Session. It must be passed in via the Provider-specific input. | 
 **Name** | **string** | The name of the sub-provider | 
 **Subtext** | **string** | The Provider&#39;s subtext recommended to be shown next to the name.              This is flavor text, not a full, human-readable description of the provider. | 
-**LogoUrl** | **string** | A URL pointing to the logo on Trinsic&#39;s CDN.              May be a PNG, JPG, or SVG image. | 
+**LogoUrl** | **string** | A URL pointing to the logo on Trinsic&#39;s CDN.              It may be a PNG, JPG, or SVG image. | 
+**DarkModeLogoUrl** | Pointer to **NullableString** | An optional URL pointing to a dark mode logo on Trinsic&#39;s CDN.              It may be a PNG, JPG, or SVG image. If omitted, use LogoUrl in dark mode. | [optional] 
 
 ## Methods
 
@@ -108,6 +109,41 @@ and a boolean to check if the value has been set.
 SetLogoUrl sets LogoUrl field to given value.
 
 
+### GetDarkModeLogoUrl
+
+`func (o *SubProviderMetadata) GetDarkModeLogoUrl() string`
+
+GetDarkModeLogoUrl returns the DarkModeLogoUrl field if non-nil, zero value otherwise.
+
+### GetDarkModeLogoUrlOk
+
+`func (o *SubProviderMetadata) GetDarkModeLogoUrlOk() (*string, bool)`
+
+GetDarkModeLogoUrlOk returns a tuple with the DarkModeLogoUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDarkModeLogoUrl
+
+`func (o *SubProviderMetadata) SetDarkModeLogoUrl(v string)`
+
+SetDarkModeLogoUrl sets DarkModeLogoUrl field to given value.
+
+### HasDarkModeLogoUrl
+
+`func (o *SubProviderMetadata) HasDarkModeLogoUrl() bool`
+
+HasDarkModeLogoUrl returns a boolean if a field has been set.
+
+### SetDarkModeLogoUrlNil
+
+`func (o *SubProviderMetadata) SetDarkModeLogoUrlNil(b bool)`
+
+ SetDarkModeLogoUrlNil sets the value for DarkModeLogoUrl to be an explicit nil
+
+### UnsetDarkModeLogoUrl
+`func (o *SubProviderMetadata) UnsetDarkModeLogoUrl()`
+
+UnsetDarkModeLogoUrl ensures that no value is present for DarkModeLogoUrl, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

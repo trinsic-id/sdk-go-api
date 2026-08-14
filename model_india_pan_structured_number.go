@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the IndiaPanStructuredNumber type satisfies the MappedNullable interface at compile time
@@ -21,17 +20,17 @@ var _ MappedNullable = &IndiaPanStructuredNumber{}
 // IndiaPanStructuredNumber struct for IndiaPanStructuredNumber
 type IndiaPanStructuredNumber struct {
 	// Three-letter block issued by the Income Tax Department of India.              Ties the number to a specific Income Tax Office or jurisdiction using an internal labeling system.              Position: - Characters 1 through 3 of the PAN              Possible values: - Any three-letter block of uppercase Latin letters
-	SeriesCode string `json:"seriesCode"`
+	SeriesCode NullableString `json:"seriesCode,omitempty"`
 	// Code that represents the entity that is subject to income tax in India.              Position: - Character 4 of the PAN              Possible values: - \"A\" for Association of Persons (AOP) - \"B\" for Body of Individuals (BOI) - \"C\" for Company - \"F\" for Firm - \"G\" for Government - \"H\" for Hindu Undivided Family (HUF) - \"J\" for Artificial Juridical Person - \"L\" for Local Authority - \"P\" for Individual - \"T\" for Trust
-	AssesseeCategoryCode string `json:"assesseeCategoryCode"`
+	AssesseeCategoryCode NullableString `json:"assesseeCategoryCode,omitempty"`
 	// Human-readable label for the assessee category when it matches a known code.              Possible values: - Association of Persons (AOP) - Body of Individuals (BOI) - Company - Firm - Government - Hindu Undivided Family (HUF) - Artificial Juridical Person - Local Authority - Individual - Trust              Omitted when the letter is not a standard category code.
 	AssesseeCategoryName NullableString `json:"assesseeCategoryName,omitempty"`
 	// First letter of the name of the entity that is subject to income tax in India.              Position: - Character 5 of the PAN.              Format: - When AssesseeCategoryCode is P, this character is the first letter of the individual's   family name as recorded for the PAN. - When AssesseeCategoryCode is A, B, C, F, G, H, J, L, or T, this character is the first letter   of the name of the association, body, company, firm, government, HUF, local authority, or   trust.              Possible values: - Any uppercase Latin letter
-	NamePrefixLetter string `json:"namePrefixLetter"`
+	NamePrefixLetter NullableString `json:"namePrefixLetter,omitempty"`
 	// Sequential four-digit field assigned by the Income Tax Department of India.              Each PAN receives a unique serial within the given series code and assessee category.              Position: - Characters 6 through 9 of the PAN.              Possible values: - Four-digit strings 0001 through 9999 inclusive, using only digits 0 through 9
-	SerialNumber string `json:"serialNumber"`
+	SerialNumber NullableString `json:"serialNumber,omitempty"`
 	// Alphabetic check character for the first nine characters of the PAN.              The algorithm has not been made publicly available by the Income Tax Department of India.              Position: - Character 10 of the PAN.              Possible values: - One uppercase Latin letter A through Z
-	CheckLetter string `json:"checkLetter"`
+	CheckLetter NullableString `json:"checkLetter,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -41,13 +40,8 @@ type _IndiaPanStructuredNumber IndiaPanStructuredNumber
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewIndiaPanStructuredNumber(seriesCode string, assesseeCategoryCode string, namePrefixLetter string, serialNumber string, checkLetter string) *IndiaPanStructuredNumber {
+func NewIndiaPanStructuredNumber() *IndiaPanStructuredNumber {
 	this := IndiaPanStructuredNumber{}
-	this.SeriesCode = seriesCode
-	this.AssesseeCategoryCode = assesseeCategoryCode
-	this.NamePrefixLetter = namePrefixLetter
-	this.SerialNumber = serialNumber
-	this.CheckLetter = checkLetter
 	return &this
 }
 
@@ -59,52 +53,88 @@ func NewIndiaPanStructuredNumberWithDefaults() *IndiaPanStructuredNumber {
 	return &this
 }
 
-// GetSeriesCode returns the SeriesCode field value
+// GetSeriesCode returns the SeriesCode field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IndiaPanStructuredNumber) GetSeriesCode() string {
-	if o == nil {
+	if o == nil || IsNil(o.SeriesCode.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.SeriesCode
+	return *o.SeriesCode.Get()
 }
 
-// GetSeriesCodeOk returns a tuple with the SeriesCode field value
+// GetSeriesCodeOk returns a tuple with the SeriesCode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *IndiaPanStructuredNumber) GetSeriesCodeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.SeriesCode, true
+	return o.SeriesCode.Get(), o.SeriesCode.IsSet()
 }
 
-// SetSeriesCode sets field value
+// HasSeriesCode returns a boolean if a field has been set.
+func (o *IndiaPanStructuredNumber) HasSeriesCode() bool {
+	if o != nil && o.SeriesCode.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSeriesCode gets a reference to the given NullableString and assigns it to the SeriesCode field.
 func (o *IndiaPanStructuredNumber) SetSeriesCode(v string) {
-	o.SeriesCode = v
+	o.SeriesCode.Set(&v)
+}
+// SetSeriesCodeNil sets the value for SeriesCode to be an explicit nil
+func (o *IndiaPanStructuredNumber) SetSeriesCodeNil() {
+	o.SeriesCode.Set(nil)
 }
 
-// GetAssesseeCategoryCode returns the AssesseeCategoryCode field value
+// UnsetSeriesCode ensures that no value is present for SeriesCode, not even an explicit nil
+func (o *IndiaPanStructuredNumber) UnsetSeriesCode() {
+	o.SeriesCode.Unset()
+}
+
+// GetAssesseeCategoryCode returns the AssesseeCategoryCode field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IndiaPanStructuredNumber) GetAssesseeCategoryCode() string {
-	if o == nil {
+	if o == nil || IsNil(o.AssesseeCategoryCode.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.AssesseeCategoryCode
+	return *o.AssesseeCategoryCode.Get()
 }
 
-// GetAssesseeCategoryCodeOk returns a tuple with the AssesseeCategoryCode field value
+// GetAssesseeCategoryCodeOk returns a tuple with the AssesseeCategoryCode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *IndiaPanStructuredNumber) GetAssesseeCategoryCodeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.AssesseeCategoryCode, true
+	return o.AssesseeCategoryCode.Get(), o.AssesseeCategoryCode.IsSet()
 }
 
-// SetAssesseeCategoryCode sets field value
+// HasAssesseeCategoryCode returns a boolean if a field has been set.
+func (o *IndiaPanStructuredNumber) HasAssesseeCategoryCode() bool {
+	if o != nil && o.AssesseeCategoryCode.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAssesseeCategoryCode gets a reference to the given NullableString and assigns it to the AssesseeCategoryCode field.
 func (o *IndiaPanStructuredNumber) SetAssesseeCategoryCode(v string) {
-	o.AssesseeCategoryCode = v
+	o.AssesseeCategoryCode.Set(&v)
+}
+// SetAssesseeCategoryCodeNil sets the value for AssesseeCategoryCode to be an explicit nil
+func (o *IndiaPanStructuredNumber) SetAssesseeCategoryCodeNil() {
+	o.AssesseeCategoryCode.Set(nil)
+}
+
+// UnsetAssesseeCategoryCode ensures that no value is present for AssesseeCategoryCode, not even an explicit nil
+func (o *IndiaPanStructuredNumber) UnsetAssesseeCategoryCode() {
+	o.AssesseeCategoryCode.Unset()
 }
 
 // GetAssesseeCategoryName returns the AssesseeCategoryName field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -149,76 +179,130 @@ func (o *IndiaPanStructuredNumber) UnsetAssesseeCategoryName() {
 	o.AssesseeCategoryName.Unset()
 }
 
-// GetNamePrefixLetter returns the NamePrefixLetter field value
+// GetNamePrefixLetter returns the NamePrefixLetter field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IndiaPanStructuredNumber) GetNamePrefixLetter() string {
-	if o == nil {
+	if o == nil || IsNil(o.NamePrefixLetter.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.NamePrefixLetter
+	return *o.NamePrefixLetter.Get()
 }
 
-// GetNamePrefixLetterOk returns a tuple with the NamePrefixLetter field value
+// GetNamePrefixLetterOk returns a tuple with the NamePrefixLetter field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *IndiaPanStructuredNumber) GetNamePrefixLetterOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.NamePrefixLetter, true
+	return o.NamePrefixLetter.Get(), o.NamePrefixLetter.IsSet()
 }
 
-// SetNamePrefixLetter sets field value
+// HasNamePrefixLetter returns a boolean if a field has been set.
+func (o *IndiaPanStructuredNumber) HasNamePrefixLetter() bool {
+	if o != nil && o.NamePrefixLetter.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetNamePrefixLetter gets a reference to the given NullableString and assigns it to the NamePrefixLetter field.
 func (o *IndiaPanStructuredNumber) SetNamePrefixLetter(v string) {
-	o.NamePrefixLetter = v
+	o.NamePrefixLetter.Set(&v)
+}
+// SetNamePrefixLetterNil sets the value for NamePrefixLetter to be an explicit nil
+func (o *IndiaPanStructuredNumber) SetNamePrefixLetterNil() {
+	o.NamePrefixLetter.Set(nil)
 }
 
-// GetSerialNumber returns the SerialNumber field value
+// UnsetNamePrefixLetter ensures that no value is present for NamePrefixLetter, not even an explicit nil
+func (o *IndiaPanStructuredNumber) UnsetNamePrefixLetter() {
+	o.NamePrefixLetter.Unset()
+}
+
+// GetSerialNumber returns the SerialNumber field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IndiaPanStructuredNumber) GetSerialNumber() string {
-	if o == nil {
+	if o == nil || IsNil(o.SerialNumber.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.SerialNumber
+	return *o.SerialNumber.Get()
 }
 
-// GetSerialNumberOk returns a tuple with the SerialNumber field value
+// GetSerialNumberOk returns a tuple with the SerialNumber field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *IndiaPanStructuredNumber) GetSerialNumberOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.SerialNumber, true
+	return o.SerialNumber.Get(), o.SerialNumber.IsSet()
 }
 
-// SetSerialNumber sets field value
+// HasSerialNumber returns a boolean if a field has been set.
+func (o *IndiaPanStructuredNumber) HasSerialNumber() bool {
+	if o != nil && o.SerialNumber.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSerialNumber gets a reference to the given NullableString and assigns it to the SerialNumber field.
 func (o *IndiaPanStructuredNumber) SetSerialNumber(v string) {
-	o.SerialNumber = v
+	o.SerialNumber.Set(&v)
+}
+// SetSerialNumberNil sets the value for SerialNumber to be an explicit nil
+func (o *IndiaPanStructuredNumber) SetSerialNumberNil() {
+	o.SerialNumber.Set(nil)
 }
 
-// GetCheckLetter returns the CheckLetter field value
+// UnsetSerialNumber ensures that no value is present for SerialNumber, not even an explicit nil
+func (o *IndiaPanStructuredNumber) UnsetSerialNumber() {
+	o.SerialNumber.Unset()
+}
+
+// GetCheckLetter returns the CheckLetter field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IndiaPanStructuredNumber) GetCheckLetter() string {
-	if o == nil {
+	if o == nil || IsNil(o.CheckLetter.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.CheckLetter
+	return *o.CheckLetter.Get()
 }
 
-// GetCheckLetterOk returns a tuple with the CheckLetter field value
+// GetCheckLetterOk returns a tuple with the CheckLetter field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *IndiaPanStructuredNumber) GetCheckLetterOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.CheckLetter, true
+	return o.CheckLetter.Get(), o.CheckLetter.IsSet()
 }
 
-// SetCheckLetter sets field value
+// HasCheckLetter returns a boolean if a field has been set.
+func (o *IndiaPanStructuredNumber) HasCheckLetter() bool {
+	if o != nil && o.CheckLetter.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCheckLetter gets a reference to the given NullableString and assigns it to the CheckLetter field.
 func (o *IndiaPanStructuredNumber) SetCheckLetter(v string) {
-	o.CheckLetter = v
+	o.CheckLetter.Set(&v)
+}
+// SetCheckLetterNil sets the value for CheckLetter to be an explicit nil
+func (o *IndiaPanStructuredNumber) SetCheckLetterNil() {
+	o.CheckLetter.Set(nil)
+}
+
+// UnsetCheckLetter ensures that no value is present for CheckLetter, not even an explicit nil
+func (o *IndiaPanStructuredNumber) UnsetCheckLetter() {
+	o.CheckLetter.Unset()
 }
 
 func (o IndiaPanStructuredNumber) MarshalJSON() ([]byte, error) {
@@ -231,14 +315,24 @@ func (o IndiaPanStructuredNumber) MarshalJSON() ([]byte, error) {
 
 func (o IndiaPanStructuredNumber) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["seriesCode"] = o.SeriesCode
-	toSerialize["assesseeCategoryCode"] = o.AssesseeCategoryCode
+	if o.SeriesCode.IsSet() {
+		toSerialize["seriesCode"] = o.SeriesCode.Get()
+	}
+	if o.AssesseeCategoryCode.IsSet() {
+		toSerialize["assesseeCategoryCode"] = o.AssesseeCategoryCode.Get()
+	}
 	if o.AssesseeCategoryName.IsSet() {
 		toSerialize["assesseeCategoryName"] = o.AssesseeCategoryName.Get()
 	}
-	toSerialize["namePrefixLetter"] = o.NamePrefixLetter
-	toSerialize["serialNumber"] = o.SerialNumber
-	toSerialize["checkLetter"] = o.CheckLetter
+	if o.NamePrefixLetter.IsSet() {
+		toSerialize["namePrefixLetter"] = o.NamePrefixLetter.Get()
+	}
+	if o.SerialNumber.IsSet() {
+		toSerialize["serialNumber"] = o.SerialNumber.Get()
+	}
+	if o.CheckLetter.IsSet() {
+		toSerialize["checkLetter"] = o.CheckLetter.Get()
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -248,31 +342,6 @@ func (o IndiaPanStructuredNumber) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *IndiaPanStructuredNumber) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"seriesCode",
-		"assesseeCategoryCode",
-		"namePrefixLetter",
-		"serialNumber",
-		"checkLetter",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varIndiaPanStructuredNumber := _IndiaPanStructuredNumber{}
 
 	err = json.Unmarshal(data, &varIndiaPanStructuredNumber)

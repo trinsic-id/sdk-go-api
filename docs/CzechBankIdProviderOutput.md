@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**SubjectIdentifier** | **string** | The subject identifier for the verified individual. | 
+**SubjectIdentifier** | Pointer to **NullableString** | The subject identifier for the verified individual. | [optional] 
 **FullName** | Pointer to **NullableString** | The individual&#39;s full name. | [optional] 
 **GivenName** | Pointer to **NullableString** | The individual&#39;s given or first name. | [optional] 
 **FamilyName** | Pointer to **NullableString** | The individual&#39;s family or last name. | [optional] 
@@ -40,7 +40,7 @@ Name | Type | Description | Notes
 
 ### NewCzechBankIdProviderOutput
 
-`func NewCzechBankIdProviderOutput(subjectIdentifier string, ) *CzechBankIdProviderOutput`
+`func NewCzechBankIdProviderOutput() *CzechBankIdProviderOutput`
 
 NewCzechBankIdProviderOutput instantiates a new CzechBankIdProviderOutput object
 This constructor will assign default values to properties that have it defined,
@@ -74,7 +74,22 @@ and a boolean to check if the value has been set.
 
 SetSubjectIdentifier sets SubjectIdentifier field to given value.
 
+### HasSubjectIdentifier
 
+`func (o *CzechBankIdProviderOutput) HasSubjectIdentifier() bool`
+
+HasSubjectIdentifier returns a boolean if a field has been set.
+
+### SetSubjectIdentifierNil
+
+`func (o *CzechBankIdProviderOutput) SetSubjectIdentifierNil(b bool)`
+
+ SetSubjectIdentifierNil sets the value for SubjectIdentifier to be an explicit nil
+
+### UnsetSubjectIdentifier
+`func (o *CzechBankIdProviderOutput) UnsetSubjectIdentifier()`
+
+UnsetSubjectIdentifier ensures that no value is present for SubjectIdentifier, not even an explicit nil
 ### GetFullName
 
 `func (o *CzechBankIdProviderOutput) GetFullName() string`

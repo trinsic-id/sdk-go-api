@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Session** | [**Session**](Session.md) |  | 
-**IdentityData** | Pointer to [**NullableIdentityData**](IdentityData.md) |  | [optional] 
+**Session** | [**Session**](Session.md) | The Session in its current state. | 
+**IdentityData** | Pointer to [**NullableIdentityData**](IdentityData.md) | The IdentityData which resulted from the Session, if not HPKE-encrypted. | [optional] 
 
 ## Methods
 

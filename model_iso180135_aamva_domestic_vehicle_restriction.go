@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the Iso180135AamvaDomesticVehicleRestriction type satisfies the MappedNullable interface at compile time
@@ -23,7 +22,7 @@ type Iso180135AamvaDomesticVehicleRestriction struct {
 	// Restriction code, when present.
 	Code NullableString `json:"code,omitempty"`
 	// Human-readable description of the restriction.
-	Description string `json:"description"`
+	Description NullableString `json:"description,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -33,9 +32,8 @@ type _Iso180135AamvaDomesticVehicleRestriction Iso180135AamvaDomesticVehicleRest
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewIso180135AamvaDomesticVehicleRestriction(description string) *Iso180135AamvaDomesticVehicleRestriction {
+func NewIso180135AamvaDomesticVehicleRestriction() *Iso180135AamvaDomesticVehicleRestriction {
 	this := Iso180135AamvaDomesticVehicleRestriction{}
-	this.Description = description
 	return &this
 }
 
@@ -89,28 +87,46 @@ func (o *Iso180135AamvaDomesticVehicleRestriction) UnsetCode() {
 	o.Code.Unset()
 }
 
-// GetDescription returns the Description field value
+// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Iso180135AamvaDomesticVehicleRestriction) GetDescription() string {
-	if o == nil {
+	if o == nil || IsNil(o.Description.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.Description
+	return *o.Description.Get()
 }
 
-// GetDescriptionOk returns a tuple with the Description field value
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Iso180135AamvaDomesticVehicleRestriction) GetDescriptionOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Description, true
+	return o.Description.Get(), o.Description.IsSet()
 }
 
-// SetDescription sets field value
+// HasDescription returns a boolean if a field has been set.
+func (o *Iso180135AamvaDomesticVehicleRestriction) HasDescription() bool {
+	if o != nil && o.Description.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDescription gets a reference to the given NullableString and assigns it to the Description field.
 func (o *Iso180135AamvaDomesticVehicleRestriction) SetDescription(v string) {
-	o.Description = v
+	o.Description.Set(&v)
+}
+// SetDescriptionNil sets the value for Description to be an explicit nil
+func (o *Iso180135AamvaDomesticVehicleRestriction) SetDescriptionNil() {
+	o.Description.Set(nil)
+}
+
+// UnsetDescription ensures that no value is present for Description, not even an explicit nil
+func (o *Iso180135AamvaDomesticVehicleRestriction) UnsetDescription() {
+	o.Description.Unset()
 }
 
 func (o Iso180135AamvaDomesticVehicleRestriction) MarshalJSON() ([]byte, error) {
@@ -126,7 +142,9 @@ func (o Iso180135AamvaDomesticVehicleRestriction) ToMap() (map[string]interface{
 	if o.Code.IsSet() {
 		toSerialize["code"] = o.Code.Get()
 	}
-	toSerialize["description"] = o.Description
+	if o.Description.IsSet() {
+		toSerialize["description"] = o.Description.Get()
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -136,27 +154,6 @@ func (o Iso180135AamvaDomesticVehicleRestriction) ToMap() (map[string]interface{
 }
 
 func (o *Iso180135AamvaDomesticVehicleRestriction) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"description",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varIso180135AamvaDomesticVehicleRestriction := _Iso180135AamvaDomesticVehicleRestriction{}
 
 	err = json.Unmarshal(data, &varIso180135AamvaDomesticVehicleRestriction)

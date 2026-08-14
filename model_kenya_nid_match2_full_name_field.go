@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the KenyaNidMatch2FullNameField type satisfies the MappedNullable interface at compile time
@@ -21,9 +20,9 @@ var _ MappedNullable = &KenyaNidMatch2FullNameField{}
 // KenyaNidMatch2FullNameField struct for KenyaNidMatch2FullNameField
 type KenyaNidMatch2FullNameField struct {
 	// The full name string submitted for this check (as provided in the match input).
-	InputValue string `json:"inputValue"`
+	InputValue NullableString `json:"inputValue,omitempty"`
 	// The outcome of comparing the submitted full name against the Integrated Population Registration System (IPRS).              Possible values: - Exact Match - Partial Match - Transposed - No Match - Not Returned
-	Outcome string `json:"outcome"`
+	Outcome NullableString `json:"outcome,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -33,10 +32,8 @@ type _KenyaNidMatch2FullNameField KenyaNidMatch2FullNameField
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewKenyaNidMatch2FullNameField(inputValue string, outcome string) *KenyaNidMatch2FullNameField {
+func NewKenyaNidMatch2FullNameField() *KenyaNidMatch2FullNameField {
 	this := KenyaNidMatch2FullNameField{}
-	this.InputValue = inputValue
-	this.Outcome = outcome
 	return &this
 }
 
@@ -48,52 +45,88 @@ func NewKenyaNidMatch2FullNameFieldWithDefaults() *KenyaNidMatch2FullNameField {
 	return &this
 }
 
-// GetInputValue returns the InputValue field value
+// GetInputValue returns the InputValue field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *KenyaNidMatch2FullNameField) GetInputValue() string {
-	if o == nil {
+	if o == nil || IsNil(o.InputValue.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.InputValue
+	return *o.InputValue.Get()
 }
 
-// GetInputValueOk returns a tuple with the InputValue field value
+// GetInputValueOk returns a tuple with the InputValue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *KenyaNidMatch2FullNameField) GetInputValueOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.InputValue, true
+	return o.InputValue.Get(), o.InputValue.IsSet()
 }
 
-// SetInputValue sets field value
+// HasInputValue returns a boolean if a field has been set.
+func (o *KenyaNidMatch2FullNameField) HasInputValue() bool {
+	if o != nil && o.InputValue.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetInputValue gets a reference to the given NullableString and assigns it to the InputValue field.
 func (o *KenyaNidMatch2FullNameField) SetInputValue(v string) {
-	o.InputValue = v
+	o.InputValue.Set(&v)
+}
+// SetInputValueNil sets the value for InputValue to be an explicit nil
+func (o *KenyaNidMatch2FullNameField) SetInputValueNil() {
+	o.InputValue.Set(nil)
 }
 
-// GetOutcome returns the Outcome field value
+// UnsetInputValue ensures that no value is present for InputValue, not even an explicit nil
+func (o *KenyaNidMatch2FullNameField) UnsetInputValue() {
+	o.InputValue.Unset()
+}
+
+// GetOutcome returns the Outcome field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *KenyaNidMatch2FullNameField) GetOutcome() string {
-	if o == nil {
+	if o == nil || IsNil(o.Outcome.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.Outcome
+	return *o.Outcome.Get()
 }
 
-// GetOutcomeOk returns a tuple with the Outcome field value
+// GetOutcomeOk returns a tuple with the Outcome field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *KenyaNidMatch2FullNameField) GetOutcomeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Outcome, true
+	return o.Outcome.Get(), o.Outcome.IsSet()
 }
 
-// SetOutcome sets field value
+// HasOutcome returns a boolean if a field has been set.
+func (o *KenyaNidMatch2FullNameField) HasOutcome() bool {
+	if o != nil && o.Outcome.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetOutcome gets a reference to the given NullableString and assigns it to the Outcome field.
 func (o *KenyaNidMatch2FullNameField) SetOutcome(v string) {
-	o.Outcome = v
+	o.Outcome.Set(&v)
+}
+// SetOutcomeNil sets the value for Outcome to be an explicit nil
+func (o *KenyaNidMatch2FullNameField) SetOutcomeNil() {
+	o.Outcome.Set(nil)
+}
+
+// UnsetOutcome ensures that no value is present for Outcome, not even an explicit nil
+func (o *KenyaNidMatch2FullNameField) UnsetOutcome() {
+	o.Outcome.Unset()
 }
 
 func (o KenyaNidMatch2FullNameField) MarshalJSON() ([]byte, error) {
@@ -106,8 +139,12 @@ func (o KenyaNidMatch2FullNameField) MarshalJSON() ([]byte, error) {
 
 func (o KenyaNidMatch2FullNameField) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["inputValue"] = o.InputValue
-	toSerialize["outcome"] = o.Outcome
+	if o.InputValue.IsSet() {
+		toSerialize["inputValue"] = o.InputValue.Get()
+	}
+	if o.Outcome.IsSet() {
+		toSerialize["outcome"] = o.Outcome.Get()
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -117,28 +154,6 @@ func (o KenyaNidMatch2FullNameField) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *KenyaNidMatch2FullNameField) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"inputValue",
-		"outcome",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varKenyaNidMatch2FullNameField := _KenyaNidMatch2FullNameField{}
 
 	err = json.Unmarshal(data, &varKenyaNidMatch2FullNameField)

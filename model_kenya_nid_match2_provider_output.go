@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the KenyaNidMatch2ProviderOutput type satisfies the MappedNullable interface at compile time
@@ -21,9 +20,9 @@ var _ MappedNullable = &KenyaNidMatch2ProviderOutput{}
 // KenyaNidMatch2ProviderOutput Exposed properties for the `kenya-nid-match-2` Provider which do not directly map to the normalized IdentityData model.
 type KenyaNidMatch2ProviderOutput struct {
 	// Outcome of the verification of the national ID number.
-	NationalIdNumber KenyaNidMatch2NationalIdNumberField `json:"nationalIdNumber"`
+	NationalIdNumber NullableKenyaNidMatch2NationalIdNumberField `json:"nationalIdNumber,omitempty"`
 	// Outcome of the verification of the full name.
-	FullName KenyaNidMatch2FullNameField `json:"fullName"`
+	FullName NullableKenyaNidMatch2FullNameField `json:"fullName,omitempty"`
 	// Outcome of the verification of the date of birth.
 	DateOfBirth NullableKenyaNidMatch2DateOfBirthField `json:"dateOfBirth,omitempty"`
 	// Outcome of the verification of the sex.
@@ -37,10 +36,8 @@ type _KenyaNidMatch2ProviderOutput KenyaNidMatch2ProviderOutput
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewKenyaNidMatch2ProviderOutput(nationalIdNumber KenyaNidMatch2NationalIdNumberField, fullName KenyaNidMatch2FullNameField) *KenyaNidMatch2ProviderOutput {
+func NewKenyaNidMatch2ProviderOutput() *KenyaNidMatch2ProviderOutput {
 	this := KenyaNidMatch2ProviderOutput{}
-	this.NationalIdNumber = nationalIdNumber
-	this.FullName = fullName
 	return &this
 }
 
@@ -52,52 +49,88 @@ func NewKenyaNidMatch2ProviderOutputWithDefaults() *KenyaNidMatch2ProviderOutput
 	return &this
 }
 
-// GetNationalIdNumber returns the NationalIdNumber field value
+// GetNationalIdNumber returns the NationalIdNumber field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *KenyaNidMatch2ProviderOutput) GetNationalIdNumber() KenyaNidMatch2NationalIdNumberField {
-	if o == nil {
+	if o == nil || IsNil(o.NationalIdNumber.Get()) {
 		var ret KenyaNidMatch2NationalIdNumberField
 		return ret
 	}
-
-	return o.NationalIdNumber
+	return *o.NationalIdNumber.Get()
 }
 
-// GetNationalIdNumberOk returns a tuple with the NationalIdNumber field value
+// GetNationalIdNumberOk returns a tuple with the NationalIdNumber field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *KenyaNidMatch2ProviderOutput) GetNationalIdNumberOk() (*KenyaNidMatch2NationalIdNumberField, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.NationalIdNumber, true
+	return o.NationalIdNumber.Get(), o.NationalIdNumber.IsSet()
 }
 
-// SetNationalIdNumber sets field value
+// HasNationalIdNumber returns a boolean if a field has been set.
+func (o *KenyaNidMatch2ProviderOutput) HasNationalIdNumber() bool {
+	if o != nil && o.NationalIdNumber.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetNationalIdNumber gets a reference to the given NullableKenyaNidMatch2NationalIdNumberField and assigns it to the NationalIdNumber field.
 func (o *KenyaNidMatch2ProviderOutput) SetNationalIdNumber(v KenyaNidMatch2NationalIdNumberField) {
-	o.NationalIdNumber = v
+	o.NationalIdNumber.Set(&v)
+}
+// SetNationalIdNumberNil sets the value for NationalIdNumber to be an explicit nil
+func (o *KenyaNidMatch2ProviderOutput) SetNationalIdNumberNil() {
+	o.NationalIdNumber.Set(nil)
 }
 
-// GetFullName returns the FullName field value
+// UnsetNationalIdNumber ensures that no value is present for NationalIdNumber, not even an explicit nil
+func (o *KenyaNidMatch2ProviderOutput) UnsetNationalIdNumber() {
+	o.NationalIdNumber.Unset()
+}
+
+// GetFullName returns the FullName field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *KenyaNidMatch2ProviderOutput) GetFullName() KenyaNidMatch2FullNameField {
-	if o == nil {
+	if o == nil || IsNil(o.FullName.Get()) {
 		var ret KenyaNidMatch2FullNameField
 		return ret
 	}
-
-	return o.FullName
+	return *o.FullName.Get()
 }
 
-// GetFullNameOk returns a tuple with the FullName field value
+// GetFullNameOk returns a tuple with the FullName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *KenyaNidMatch2ProviderOutput) GetFullNameOk() (*KenyaNidMatch2FullNameField, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.FullName, true
+	return o.FullName.Get(), o.FullName.IsSet()
 }
 
-// SetFullName sets field value
+// HasFullName returns a boolean if a field has been set.
+func (o *KenyaNidMatch2ProviderOutput) HasFullName() bool {
+	if o != nil && o.FullName.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetFullName gets a reference to the given NullableKenyaNidMatch2FullNameField and assigns it to the FullName field.
 func (o *KenyaNidMatch2ProviderOutput) SetFullName(v KenyaNidMatch2FullNameField) {
-	o.FullName = v
+	o.FullName.Set(&v)
+}
+// SetFullNameNil sets the value for FullName to be an explicit nil
+func (o *KenyaNidMatch2ProviderOutput) SetFullNameNil() {
+	o.FullName.Set(nil)
+}
+
+// UnsetFullName ensures that no value is present for FullName, not even an explicit nil
+func (o *KenyaNidMatch2ProviderOutput) UnsetFullName() {
+	o.FullName.Unset()
 }
 
 // GetDateOfBirth returns the DateOfBirth field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -194,8 +227,12 @@ func (o KenyaNidMatch2ProviderOutput) MarshalJSON() ([]byte, error) {
 
 func (o KenyaNidMatch2ProviderOutput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["nationalIdNumber"] = o.NationalIdNumber
-	toSerialize["fullName"] = o.FullName
+	if o.NationalIdNumber.IsSet() {
+		toSerialize["nationalIdNumber"] = o.NationalIdNumber.Get()
+	}
+	if o.FullName.IsSet() {
+		toSerialize["fullName"] = o.FullName.Get()
+	}
 	if o.DateOfBirth.IsSet() {
 		toSerialize["dateOfBirth"] = o.DateOfBirth.Get()
 	}
@@ -211,28 +248,6 @@ func (o KenyaNidMatch2ProviderOutput) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *KenyaNidMatch2ProviderOutput) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"nationalIdNumber",
-		"fullName",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varKenyaNidMatch2ProviderOutput := _KenyaNidMatch2ProviderOutput{}
 
 	err = json.Unmarshal(data, &varKenyaNidMatch2ProviderOutput)

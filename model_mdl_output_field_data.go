@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the MdlOutputFieldData type satisfies the MappedNullable interface at compile time
@@ -21,9 +20,9 @@ var _ MappedNullable = &MdlOutputFieldData{}
 // MdlOutputFieldData struct for MdlOutputFieldData
 type MdlOutputFieldData struct {
 	// The type of data contained in `value`.
-	Type MdlOutputFieldDataType `json:"type"`
+	Type NullableMdlOutputFieldDataType `json:"type,omitempty"`
 	// The string-encoded value of the field.
-	Value string `json:"value"`
+	Value NullableString `json:"value,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -33,10 +32,8 @@ type _MdlOutputFieldData MdlOutputFieldData
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMdlOutputFieldData(type_ MdlOutputFieldDataType, value string) *MdlOutputFieldData {
+func NewMdlOutputFieldData() *MdlOutputFieldData {
 	this := MdlOutputFieldData{}
-	this.Type = type_
-	this.Value = value
 	return &this
 }
 
@@ -48,52 +45,88 @@ func NewMdlOutputFieldDataWithDefaults() *MdlOutputFieldData {
 	return &this
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MdlOutputFieldData) GetType() MdlOutputFieldDataType {
-	if o == nil {
+	if o == nil || IsNil(o.Type.Get()) {
 		var ret MdlOutputFieldDataType
 		return ret
 	}
-
-	return o.Type
+	return *o.Type.Get()
 }
 
-// GetTypeOk returns a tuple with the Type field value
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *MdlOutputFieldData) GetTypeOk() (*MdlOutputFieldDataType, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Type, true
+	return o.Type.Get(), o.Type.IsSet()
 }
 
-// SetType sets field value
+// HasType returns a boolean if a field has been set.
+func (o *MdlOutputFieldData) HasType() bool {
+	if o != nil && o.Type.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given NullableMdlOutputFieldDataType and assigns it to the Type field.
 func (o *MdlOutputFieldData) SetType(v MdlOutputFieldDataType) {
-	o.Type = v
+	o.Type.Set(&v)
+}
+// SetTypeNil sets the value for Type to be an explicit nil
+func (o *MdlOutputFieldData) SetTypeNil() {
+	o.Type.Set(nil)
 }
 
-// GetValue returns the Value field value
+// UnsetType ensures that no value is present for Type, not even an explicit nil
+func (o *MdlOutputFieldData) UnsetType() {
+	o.Type.Unset()
+}
+
+// GetValue returns the Value field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MdlOutputFieldData) GetValue() string {
-	if o == nil {
+	if o == nil || IsNil(o.Value.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.Value
+	return *o.Value.Get()
 }
 
-// GetValueOk returns a tuple with the Value field value
+// GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *MdlOutputFieldData) GetValueOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Value, true
+	return o.Value.Get(), o.Value.IsSet()
 }
 
-// SetValue sets field value
+// HasValue returns a boolean if a field has been set.
+func (o *MdlOutputFieldData) HasValue() bool {
+	if o != nil && o.Value.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetValue gets a reference to the given NullableString and assigns it to the Value field.
 func (o *MdlOutputFieldData) SetValue(v string) {
-	o.Value = v
+	o.Value.Set(&v)
+}
+// SetValueNil sets the value for Value to be an explicit nil
+func (o *MdlOutputFieldData) SetValueNil() {
+	o.Value.Set(nil)
+}
+
+// UnsetValue ensures that no value is present for Value, not even an explicit nil
+func (o *MdlOutputFieldData) UnsetValue() {
+	o.Value.Unset()
 }
 
 func (o MdlOutputFieldData) MarshalJSON() ([]byte, error) {
@@ -106,8 +139,12 @@ func (o MdlOutputFieldData) MarshalJSON() ([]byte, error) {
 
 func (o MdlOutputFieldData) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["type"] = o.Type
-	toSerialize["value"] = o.Value
+	if o.Type.IsSet() {
+		toSerialize["type"] = o.Type.Get()
+	}
+	if o.Value.IsSet() {
+		toSerialize["value"] = o.Value.Get()
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -117,28 +154,6 @@ func (o MdlOutputFieldData) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *MdlOutputFieldData) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"type",
-		"value",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varMdlOutputFieldData := _MdlOutputFieldData{}
 
 	err = json.Unmarshal(data, &varMdlOutputFieldData)

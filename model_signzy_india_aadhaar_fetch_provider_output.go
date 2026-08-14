@@ -13,7 +13,6 @@ package trinsic_api
 import (
 	"encoding/json"
 	"time"
-	"fmt"
 )
 
 // checks if the SignzyIndiaAadhaarFetchProviderOutput type satisfies the MappedNullable interface at compile time
@@ -34,7 +33,7 @@ type SignzyIndiaAadhaarFetchProviderOutput struct {
 	// The localized claims extracted from the Aadhaar document.
 	LocalizedClaims NullableAadhaarLocalizedClaims `json:"localizedClaims,omitempty"`
 	// Whether our own validation of the Aadhaar document signature and certificate chain succeeded.              When the signed document (e.g. Digilocker XML) is available, we validate it using the standard CCA/SafeScrypt chain. When the document is not returned, the signature cannot be validated and this is false. Some providers (e.g. Signzy) also supply a separate DSC validation indicator in the webhook payload; that is independent of this flag, which reflects only our validation.
-	DocumentSignatureValidated bool `json:"documentSignatureValidated"`
+	DocumentSignatureValidated NullableBool `json:"documentSignatureValidated,omitempty"`
 	// DigiLocker's 36-character stable account identifier.              This identifier is deemed safe to use to reference the individual. *Note, the format is not guaranteed to be a UUID.
 	DigilockerId NullableString `json:"digilockerId,omitempty"`
 	// The identifier for the issuer of the DigiLocker document.
@@ -44,7 +43,7 @@ type SignzyIndiaAadhaarFetchProviderOutput struct {
 	// The individual's mobile phone number from DigiLocker's account details.
 	MobilePhone NullableString `json:"mobilePhone,omitempty"`
 	// DigiLocker consent scopes that the individual actually consented to for this session. Included in provider output so customers can verify what was granted: the customer does not control these—the individual chooses scopes in the DigiLocker consent UI, and there is no way to pre-select or enforce them. This is a common source of error (e.g. the individual skips a scope), so surfacing the granted scopes lets customers confirm the session had the expected consent.
-	Scope []string `json:"scope"`
+	Scope []string `json:"scope,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -54,10 +53,8 @@ type _SignzyIndiaAadhaarFetchProviderOutput SignzyIndiaAadhaarFetchProviderOutpu
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSignzyIndiaAadhaarFetchProviderOutput(documentSignatureValidated bool, scope []string) *SignzyIndiaAadhaarFetchProviderOutput {
+func NewSignzyIndiaAadhaarFetchProviderOutput() *SignzyIndiaAadhaarFetchProviderOutput {
 	this := SignzyIndiaAadhaarFetchProviderOutput{}
-	this.DocumentSignatureValidated = documentSignatureValidated
-	this.Scope = scope
 	return &this
 }
 
@@ -321,28 +318,46 @@ func (o *SignzyIndiaAadhaarFetchProviderOutput) UnsetLocalizedClaims() {
 	o.LocalizedClaims.Unset()
 }
 
-// GetDocumentSignatureValidated returns the DocumentSignatureValidated field value
+// GetDocumentSignatureValidated returns the DocumentSignatureValidated field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SignzyIndiaAadhaarFetchProviderOutput) GetDocumentSignatureValidated() bool {
-	if o == nil {
+	if o == nil || IsNil(o.DocumentSignatureValidated.Get()) {
 		var ret bool
 		return ret
 	}
-
-	return o.DocumentSignatureValidated
+	return *o.DocumentSignatureValidated.Get()
 }
 
-// GetDocumentSignatureValidatedOk returns a tuple with the DocumentSignatureValidated field value
+// GetDocumentSignatureValidatedOk returns a tuple with the DocumentSignatureValidated field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SignzyIndiaAadhaarFetchProviderOutput) GetDocumentSignatureValidatedOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.DocumentSignatureValidated, true
+	return o.DocumentSignatureValidated.Get(), o.DocumentSignatureValidated.IsSet()
 }
 
-// SetDocumentSignatureValidated sets field value
+// HasDocumentSignatureValidated returns a boolean if a field has been set.
+func (o *SignzyIndiaAadhaarFetchProviderOutput) HasDocumentSignatureValidated() bool {
+	if o != nil && o.DocumentSignatureValidated.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDocumentSignatureValidated gets a reference to the given NullableBool and assigns it to the DocumentSignatureValidated field.
 func (o *SignzyIndiaAadhaarFetchProviderOutput) SetDocumentSignatureValidated(v bool) {
-	o.DocumentSignatureValidated = v
+	o.DocumentSignatureValidated.Set(&v)
+}
+// SetDocumentSignatureValidatedNil sets the value for DocumentSignatureValidated to be an explicit nil
+func (o *SignzyIndiaAadhaarFetchProviderOutput) SetDocumentSignatureValidatedNil() {
+	o.DocumentSignatureValidated.Set(nil)
+}
+
+// UnsetDocumentSignatureValidated ensures that no value is present for DocumentSignatureValidated, not even an explicit nil
+func (o *SignzyIndiaAadhaarFetchProviderOutput) UnsetDocumentSignatureValidated() {
+	o.DocumentSignatureValidated.Unset()
 }
 
 // GetDigilockerId returns the DigilockerId field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -513,26 +528,35 @@ func (o *SignzyIndiaAadhaarFetchProviderOutput) UnsetMobilePhone() {
 	o.MobilePhone.Unset()
 }
 
-// GetScope returns the Scope field value
+// GetScope returns the Scope field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SignzyIndiaAadhaarFetchProviderOutput) GetScope() []string {
 	if o == nil {
 		var ret []string
 		return ret
 	}
-
 	return o.Scope
 }
 
-// GetScopeOk returns a tuple with the Scope field value
+// GetScopeOk returns a tuple with the Scope field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SignzyIndiaAadhaarFetchProviderOutput) GetScopeOk() ([]string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Scope) {
 		return nil, false
 	}
 	return o.Scope, true
 }
 
-// SetScope sets field value
+// HasScope returns a boolean if a field has been set.
+func (o *SignzyIndiaAadhaarFetchProviderOutput) HasScope() bool {
+	if o != nil && !IsNil(o.Scope) {
+		return true
+	}
+
+	return false
+}
+
+// SetScope gets a reference to the given []string and assigns it to the Scope field.
 func (o *SignzyIndiaAadhaarFetchProviderOutput) SetScope(v []string) {
 	o.Scope = v
 }
@@ -565,7 +589,9 @@ func (o SignzyIndiaAadhaarFetchProviderOutput) ToMap() (map[string]interface{}, 
 	if o.LocalizedClaims.IsSet() {
 		toSerialize["localizedClaims"] = o.LocalizedClaims.Get()
 	}
-	toSerialize["documentSignatureValidated"] = o.DocumentSignatureValidated
+	if o.DocumentSignatureValidated.IsSet() {
+		toSerialize["documentSignatureValidated"] = o.DocumentSignatureValidated.Get()
+	}
 	if o.DigilockerId.IsSet() {
 		toSerialize["digilockerId"] = o.DigilockerId.Get()
 	}
@@ -578,7 +604,9 @@ func (o SignzyIndiaAadhaarFetchProviderOutput) ToMap() (map[string]interface{}, 
 	if o.MobilePhone.IsSet() {
 		toSerialize["mobilePhone"] = o.MobilePhone.Get()
 	}
-	toSerialize["scope"] = o.Scope
+	if o.Scope != nil {
+		toSerialize["scope"] = o.Scope
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -588,28 +616,6 @@ func (o SignzyIndiaAadhaarFetchProviderOutput) ToMap() (map[string]interface{}, 
 }
 
 func (o *SignzyIndiaAadhaarFetchProviderOutput) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"documentSignatureValidated",
-		"scope",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varSignzyIndiaAadhaarFetchProviderOutput := _SignzyIndiaAadhaarFetchProviderOutput{}
 
 	err = json.Unmarshal(data, &varSignzyIndiaAadhaarFetchProviderOutput)

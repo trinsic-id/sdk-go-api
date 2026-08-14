@@ -19,7 +19,7 @@ var _ MappedNullable = &SamsungWalletInput{}
 
 // SamsungWalletInput struct for SamsungWalletInput
 type SamsungWalletInput struct {
-	// **Preview feature: not suitable for production use cases**              The raw 18013-7 exchange request to use for this verification.              If set, this overrides any default configuration on your Verification Profile.
+	// The raw 18013-7 exchange request to use for this verification.              If set, this overrides any default configuration on your Verification Profile.
 	PreviewRaw18013Request NullableRaw18013RequestInput `json:"preview_raw18013Request,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

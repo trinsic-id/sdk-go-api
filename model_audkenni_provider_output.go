@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the AudkenniProviderOutput type satisfies the MappedNullable interface at compile time
@@ -21,11 +20,11 @@ var _ MappedNullable = &AudkenniProviderOutput{}
 // AudkenniProviderOutput Exposed properties for the `audkenni` Provider which do not directly map to the normalized IdentityData model.
 type AudkenniProviderOutput struct {
 	// National Register ID number (kennitala) of the individual.              Often written with a hyphen following the 6th digit (123456-1234). ID numbers are composed of ten digits. The first six of these are the individual’s date of birth in the format DDMMYY. The seventh and eighth digits are randomly chosen when the ID number is allocated, the ninth digit used to be a check digit (modulus (11) but this has been removed. The tenth indicates the century of the individual’s birth: ‘9’ for 1900–1999, ‘0’ for 2000 and beyond.
-	NationalRegisterId string `json:"nationalRegisterId"`
+	NationalRegisterId NullableString `json:"nationalRegisterId,omitempty"`
 	// Unique identifier for the individual across Audkenni.              It is recommended to use this identifier instead of using the national register ID directly.
-	SubjectId string `json:"subjectId"`
+	SubjectId NullableString `json:"subjectId,omitempty"`
 	// The full name of the individual.
-	Name string `json:"name"`
+	Name NullableString `json:"name,omitempty"`
 	// The date of birth of the individual as parsed from the National Register ID number. Is null if the date of birth could not be parsed, but should always be present
 	DateOfBirth NullableString `json:"dateOfBirth,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -37,11 +36,8 @@ type _AudkenniProviderOutput AudkenniProviderOutput
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAudkenniProviderOutput(nationalRegisterId string, subjectId string, name string) *AudkenniProviderOutput {
+func NewAudkenniProviderOutput() *AudkenniProviderOutput {
 	this := AudkenniProviderOutput{}
-	this.NationalRegisterId = nationalRegisterId
-	this.SubjectId = subjectId
-	this.Name = name
 	return &this
 }
 
@@ -53,76 +49,130 @@ func NewAudkenniProviderOutputWithDefaults() *AudkenniProviderOutput {
 	return &this
 }
 
-// GetNationalRegisterId returns the NationalRegisterId field value
+// GetNationalRegisterId returns the NationalRegisterId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AudkenniProviderOutput) GetNationalRegisterId() string {
-	if o == nil {
+	if o == nil || IsNil(o.NationalRegisterId.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.NationalRegisterId
+	return *o.NationalRegisterId.Get()
 }
 
-// GetNationalRegisterIdOk returns a tuple with the NationalRegisterId field value
+// GetNationalRegisterIdOk returns a tuple with the NationalRegisterId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AudkenniProviderOutput) GetNationalRegisterIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.NationalRegisterId, true
+	return o.NationalRegisterId.Get(), o.NationalRegisterId.IsSet()
 }
 
-// SetNationalRegisterId sets field value
+// HasNationalRegisterId returns a boolean if a field has been set.
+func (o *AudkenniProviderOutput) HasNationalRegisterId() bool {
+	if o != nil && o.NationalRegisterId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetNationalRegisterId gets a reference to the given NullableString and assigns it to the NationalRegisterId field.
 func (o *AudkenniProviderOutput) SetNationalRegisterId(v string) {
-	o.NationalRegisterId = v
+	o.NationalRegisterId.Set(&v)
+}
+// SetNationalRegisterIdNil sets the value for NationalRegisterId to be an explicit nil
+func (o *AudkenniProviderOutput) SetNationalRegisterIdNil() {
+	o.NationalRegisterId.Set(nil)
 }
 
-// GetSubjectId returns the SubjectId field value
+// UnsetNationalRegisterId ensures that no value is present for NationalRegisterId, not even an explicit nil
+func (o *AudkenniProviderOutput) UnsetNationalRegisterId() {
+	o.NationalRegisterId.Unset()
+}
+
+// GetSubjectId returns the SubjectId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AudkenniProviderOutput) GetSubjectId() string {
-	if o == nil {
+	if o == nil || IsNil(o.SubjectId.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.SubjectId
+	return *o.SubjectId.Get()
 }
 
-// GetSubjectIdOk returns a tuple with the SubjectId field value
+// GetSubjectIdOk returns a tuple with the SubjectId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AudkenniProviderOutput) GetSubjectIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.SubjectId, true
+	return o.SubjectId.Get(), o.SubjectId.IsSet()
 }
 
-// SetSubjectId sets field value
+// HasSubjectId returns a boolean if a field has been set.
+func (o *AudkenniProviderOutput) HasSubjectId() bool {
+	if o != nil && o.SubjectId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSubjectId gets a reference to the given NullableString and assigns it to the SubjectId field.
 func (o *AudkenniProviderOutput) SetSubjectId(v string) {
-	o.SubjectId = v
+	o.SubjectId.Set(&v)
+}
+// SetSubjectIdNil sets the value for SubjectId to be an explicit nil
+func (o *AudkenniProviderOutput) SetSubjectIdNil() {
+	o.SubjectId.Set(nil)
 }
 
-// GetName returns the Name field value
+// UnsetSubjectId ensures that no value is present for SubjectId, not even an explicit nil
+func (o *AudkenniProviderOutput) UnsetSubjectId() {
+	o.SubjectId.Unset()
+}
+
+// GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AudkenniProviderOutput) GetName() string {
-	if o == nil {
+	if o == nil || IsNil(o.Name.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.Name
+	return *o.Name.Get()
 }
 
-// GetNameOk returns a tuple with the Name field value
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AudkenniProviderOutput) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Name, true
+	return o.Name.Get(), o.Name.IsSet()
 }
 
-// SetName sets field value
+// HasName returns a boolean if a field has been set.
+func (o *AudkenniProviderOutput) HasName() bool {
+	if o != nil && o.Name.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given NullableString and assigns it to the Name field.
 func (o *AudkenniProviderOutput) SetName(v string) {
-	o.Name = v
+	o.Name.Set(&v)
+}
+// SetNameNil sets the value for Name to be an explicit nil
+func (o *AudkenniProviderOutput) SetNameNil() {
+	o.Name.Set(nil)
+}
+
+// UnsetName ensures that no value is present for Name, not even an explicit nil
+func (o *AudkenniProviderOutput) UnsetName() {
+	o.Name.Unset()
 }
 
 // GetDateOfBirth returns the DateOfBirth field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -177,9 +227,15 @@ func (o AudkenniProviderOutput) MarshalJSON() ([]byte, error) {
 
 func (o AudkenniProviderOutput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["nationalRegisterId"] = o.NationalRegisterId
-	toSerialize["subjectId"] = o.SubjectId
-	toSerialize["name"] = o.Name
+	if o.NationalRegisterId.IsSet() {
+		toSerialize["nationalRegisterId"] = o.NationalRegisterId.Get()
+	}
+	if o.SubjectId.IsSet() {
+		toSerialize["subjectId"] = o.SubjectId.Get()
+	}
+	if o.Name.IsSet() {
+		toSerialize["name"] = o.Name.Get()
+	}
 	if o.DateOfBirth.IsSet() {
 		toSerialize["dateOfBirth"] = o.DateOfBirth.Get()
 	}
@@ -192,29 +248,6 @@ func (o AudkenniProviderOutput) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *AudkenniProviderOutput) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"nationalRegisterId",
-		"subjectId",
-		"name",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varAudkenniProviderOutput := _AudkenniProviderOutput{}
 
 	err = json.Unmarshal(data, &varAudkenniProviderOutput)

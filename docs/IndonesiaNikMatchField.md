@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Content** | **string** | Raw value used for this match field. | 
-**MatchValue** | **bool** | Whether the value matched. | 
+**Content** | Pointer to **NullableString** | Raw value used for this match field. | [optional] 
+**MatchValue** | Pointer to **NullableBool** | Whether the value matched. | [optional] 
 
 ## Methods
 
 ### NewIndonesiaNikMatchField
 
-`func NewIndonesiaNikMatchField(content string, matchValue bool, ) *IndonesiaNikMatchField`
+`func NewIndonesiaNikMatchField() *IndonesiaNikMatchField`
 
 NewIndonesiaNikMatchField instantiates a new IndonesiaNikMatchField object
 This constructor will assign default values to properties that have it defined,
@@ -45,7 +45,22 @@ and a boolean to check if the value has been set.
 
 SetContent sets Content field to given value.
 
+### HasContent
 
+`func (o *IndonesiaNikMatchField) HasContent() bool`
+
+HasContent returns a boolean if a field has been set.
+
+### SetContentNil
+
+`func (o *IndonesiaNikMatchField) SetContentNil(b bool)`
+
+ SetContentNil sets the value for Content to be an explicit nil
+
+### UnsetContent
+`func (o *IndonesiaNikMatchField) UnsetContent()`
+
+UnsetContent ensures that no value is present for Content, not even an explicit nil
 ### GetMatchValue
 
 `func (o *IndonesiaNikMatchField) GetMatchValue() bool`
@@ -65,7 +80,22 @@ and a boolean to check if the value has been set.
 
 SetMatchValue sets MatchValue field to given value.
 
+### HasMatchValue
 
+`func (o *IndonesiaNikMatchField) HasMatchValue() bool`
+
+HasMatchValue returns a boolean if a field has been set.
+
+### SetMatchValueNil
+
+`func (o *IndonesiaNikMatchField) SetMatchValueNil(b bool)`
+
+ SetMatchValueNil sets the value for MatchValue to be an explicit nil
+
+### UnsetMatchValue
+`func (o *IndonesiaNikMatchField) UnsetMatchValue()`
+
+UnsetMatchValue ensures that no value is present for MatchValue, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

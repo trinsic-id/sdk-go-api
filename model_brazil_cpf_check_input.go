@@ -22,6 +22,8 @@ var _ MappedNullable = &BrazilCpfCheckInput{}
 type BrazilCpfCheckInput struct {
 	// The user's 11-digit, numeric CPF Number
 	CpfNumber string `json:"cpfNumber" validate:"regexp=^\\\\d*$"`
+	// The user's date of birth. Optional, but date of birth will become required for lookups starting September 1, 2026.
+	DateOfBirth NullableString `json:"dateOfBirth,omitempty"`
 	// The raw bytes of the selfie image collected from the user.
 	SelfieImage NullableString `json:"selfieImage,omitempty"`
 	// The MIME Type of the file contained in `SelfieImage`.              Must be one of `image/jpeg` or `image/png`.
@@ -71,6 +73,48 @@ func (o *BrazilCpfCheckInput) GetCpfNumberOk() (*string, bool) {
 // SetCpfNumber sets field value
 func (o *BrazilCpfCheckInput) SetCpfNumber(v string) {
 	o.CpfNumber = v
+}
+
+// GetDateOfBirth returns the DateOfBirth field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *BrazilCpfCheckInput) GetDateOfBirth() string {
+	if o == nil || IsNil(o.DateOfBirth.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.DateOfBirth.Get()
+}
+
+// GetDateOfBirthOk returns a tuple with the DateOfBirth field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *BrazilCpfCheckInput) GetDateOfBirthOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.DateOfBirth.Get(), o.DateOfBirth.IsSet()
+}
+
+// HasDateOfBirth returns a boolean if a field has been set.
+func (o *BrazilCpfCheckInput) HasDateOfBirth() bool {
+	if o != nil && o.DateOfBirth.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDateOfBirth gets a reference to the given NullableString and assigns it to the DateOfBirth field.
+func (o *BrazilCpfCheckInput) SetDateOfBirth(v string) {
+	o.DateOfBirth.Set(&v)
+}
+// SetDateOfBirthNil sets the value for DateOfBirth to be an explicit nil
+func (o *BrazilCpfCheckInput) SetDateOfBirthNil() {
+	o.DateOfBirth.Set(nil)
+}
+
+// UnsetDateOfBirth ensures that no value is present for DateOfBirth, not even an explicit nil
+func (o *BrazilCpfCheckInput) UnsetDateOfBirth() {
+	o.DateOfBirth.Unset()
 }
 
 // GetSelfieImage returns the SelfieImage field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -168,6 +212,9 @@ func (o BrazilCpfCheckInput) MarshalJSON() ([]byte, error) {
 func (o BrazilCpfCheckInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["cpfNumber"] = o.CpfNumber
+	if o.DateOfBirth.IsSet() {
+		toSerialize["dateOfBirth"] = o.DateOfBirth.Get()
+	}
 	if o.SelfieImage.IsSet() {
 		toSerialize["selfieImage"] = o.SelfieImage.Get()
 	}
@@ -218,6 +265,7 @@ func (o *BrazilCpfCheckInput) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "cpfNumber")
+		delete(additionalProperties, "dateOfBirth")
 		delete(additionalProperties, "selfieImage")
 		delete(additionalProperties, "selfieImageContentType")
 		o.AdditionalProperties = additionalProperties

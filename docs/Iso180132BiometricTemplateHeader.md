@@ -4,22 +4,22 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**PatronHeaderVersion** | **int32** | Patron header version (defaults to 0x0101). | 
+**PatronHeaderVersion** | Pointer to **NullableInt32** | Patron header version (defaults to 0x0101). | [optional] 
 **BiometricType** | Pointer to **NullableInt32** | Biometric type code per ISO 18013-2. | [optional] 
 **BiometricSubType** | Pointer to **NullableInt32** | Biometric sub-type code per ISO 18013-2. | [optional] 
 **CreationDate** | Pointer to **NullableTime** | Date and time the biometric template was created. | [optional] 
 **BiometricInformationRecordCreator** | Pointer to **NullableString** | Name of the Biometric Information Record (BIR) creator. | [optional] 
 **ValidityPeriod** | Pointer to [**NullableIso180132BiometricValidityPeriod**](Iso180132BiometricValidityPeriod.md) | Validity period of the biometric data block. | [optional] 
 **BiometricDataBlockProduct** | Pointer to [**NullableIso180132BiometricDataBlockProduct**](Iso180132BiometricDataBlockProduct.md) | Owner and type identifying the product that produced the biometric data block. | [optional] 
-**BiometricDataBlockFormatOwner** | **int32** | Format owner of the biometric data block. | 
-**BiometricDataBlockFormatType** | **int32** | Format type of the biometric data block. | 
+**BiometricDataBlockFormatOwner** | Pointer to **NullableInt32** | Format owner of the biometric data block. | [optional] 
+**BiometricDataBlockFormatType** | Pointer to **NullableInt32** | Format type of the biometric data block. | [optional] 
 **BiometricInformationRecordIndex** | Pointer to **NullableString** | Index identifier of the Biometric Information Record, when present. | [optional] 
 
 ## Methods
 
 ### NewIso180132BiometricTemplateHeader
 
-`func NewIso180132BiometricTemplateHeader(patronHeaderVersion int32, biometricDataBlockFormatOwner int32, biometricDataBlockFormatType int32, ) *Iso180132BiometricTemplateHeader`
+`func NewIso180132BiometricTemplateHeader() *Iso180132BiometricTemplateHeader`
 
 NewIso180132BiometricTemplateHeader instantiates a new Iso180132BiometricTemplateHeader object
 This constructor will assign default values to properties that have it defined,
@@ -53,7 +53,22 @@ and a boolean to check if the value has been set.
 
 SetPatronHeaderVersion sets PatronHeaderVersion field to given value.
 
+### HasPatronHeaderVersion
 
+`func (o *Iso180132BiometricTemplateHeader) HasPatronHeaderVersion() bool`
+
+HasPatronHeaderVersion returns a boolean if a field has been set.
+
+### SetPatronHeaderVersionNil
+
+`func (o *Iso180132BiometricTemplateHeader) SetPatronHeaderVersionNil(b bool)`
+
+ SetPatronHeaderVersionNil sets the value for PatronHeaderVersion to be an explicit nil
+
+### UnsetPatronHeaderVersion
+`func (o *Iso180132BiometricTemplateHeader) UnsetPatronHeaderVersion()`
+
+UnsetPatronHeaderVersion ensures that no value is present for PatronHeaderVersion, not even an explicit nil
 ### GetBiometricType
 
 `func (o *Iso180132BiometricTemplateHeader) GetBiometricType() int32`
@@ -283,7 +298,22 @@ and a boolean to check if the value has been set.
 
 SetBiometricDataBlockFormatOwner sets BiometricDataBlockFormatOwner field to given value.
 
+### HasBiometricDataBlockFormatOwner
 
+`func (o *Iso180132BiometricTemplateHeader) HasBiometricDataBlockFormatOwner() bool`
+
+HasBiometricDataBlockFormatOwner returns a boolean if a field has been set.
+
+### SetBiometricDataBlockFormatOwnerNil
+
+`func (o *Iso180132BiometricTemplateHeader) SetBiometricDataBlockFormatOwnerNil(b bool)`
+
+ SetBiometricDataBlockFormatOwnerNil sets the value for BiometricDataBlockFormatOwner to be an explicit nil
+
+### UnsetBiometricDataBlockFormatOwner
+`func (o *Iso180132BiometricTemplateHeader) UnsetBiometricDataBlockFormatOwner()`
+
+UnsetBiometricDataBlockFormatOwner ensures that no value is present for BiometricDataBlockFormatOwner, not even an explicit nil
 ### GetBiometricDataBlockFormatType
 
 `func (o *Iso180132BiometricTemplateHeader) GetBiometricDataBlockFormatType() int32`
@@ -303,7 +333,22 @@ and a boolean to check if the value has been set.
 
 SetBiometricDataBlockFormatType sets BiometricDataBlockFormatType field to given value.
 
+### HasBiometricDataBlockFormatType
 
+`func (o *Iso180132BiometricTemplateHeader) HasBiometricDataBlockFormatType() bool`
+
+HasBiometricDataBlockFormatType returns a boolean if a field has been set.
+
+### SetBiometricDataBlockFormatTypeNil
+
+`func (o *Iso180132BiometricTemplateHeader) SetBiometricDataBlockFormatTypeNil(b bool)`
+
+ SetBiometricDataBlockFormatTypeNil sets the value for BiometricDataBlockFormatType to be an explicit nil
+
+### UnsetBiometricDataBlockFormatType
+`func (o *Iso180132BiometricTemplateHeader) UnsetBiometricDataBlockFormatType()`
+
+UnsetBiometricDataBlockFormatType ensures that no value is present for BiometricDataBlockFormatType, not even an explicit nil
 ### GetBiometricInformationRecordIndex
 
 `func (o *Iso180132BiometricTemplateHeader) GetBiometricInformationRecordIndex() string`

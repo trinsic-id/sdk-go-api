@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Code** | **string** | Vehicle class code. | 
-**Description** | **string** | Human-readable description of the vehicle class. | 
+**Code** | Pointer to **NullableString** | Vehicle class code. | [optional] 
+**Description** | Pointer to **NullableString** | Human-readable description of the vehicle class. | [optional] 
 **IssueDate** | Pointer to **NullableString** | Date when this vehicle class privilege was issued. | [optional] 
 **ExpiryDate** | Pointer to **NullableString** | Date when this vehicle class privilege expires. | [optional] 
 
@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 
 ### NewIso180135AamvaDomesticVehicleClass
 
-`func NewIso180135AamvaDomesticVehicleClass(code string, description string, ) *Iso180135AamvaDomesticVehicleClass`
+`func NewIso180135AamvaDomesticVehicleClass() *Iso180135AamvaDomesticVehicleClass`
 
 NewIso180135AamvaDomesticVehicleClass instantiates a new Iso180135AamvaDomesticVehicleClass object
 This constructor will assign default values to properties that have it defined,
@@ -47,7 +47,22 @@ and a boolean to check if the value has been set.
 
 SetCode sets Code field to given value.
 
+### HasCode
 
+`func (o *Iso180135AamvaDomesticVehicleClass) HasCode() bool`
+
+HasCode returns a boolean if a field has been set.
+
+### SetCodeNil
+
+`func (o *Iso180135AamvaDomesticVehicleClass) SetCodeNil(b bool)`
+
+ SetCodeNil sets the value for Code to be an explicit nil
+
+### UnsetCode
+`func (o *Iso180135AamvaDomesticVehicleClass) UnsetCode()`
+
+UnsetCode ensures that no value is present for Code, not even an explicit nil
 ### GetDescription
 
 `func (o *Iso180135AamvaDomesticVehicleClass) GetDescription() string`
@@ -67,7 +82,22 @@ and a boolean to check if the value has been set.
 
 SetDescription sets Description field to given value.
 
+### HasDescription
 
+`func (o *Iso180135AamvaDomesticVehicleClass) HasDescription() bool`
+
+HasDescription returns a boolean if a field has been set.
+
+### SetDescriptionNil
+
+`func (o *Iso180135AamvaDomesticVehicleClass) SetDescriptionNil(b bool)`
+
+ SetDescriptionNil sets the value for Description to be an explicit nil
+
+### UnsetDescription
+`func (o *Iso180135AamvaDomesticVehicleClass) UnsetDescription()`
+
+UnsetDescription ensures that no value is present for Description, not even an explicit nil
 ### GetIssueDate
 
 `func (o *Iso180135AamvaDomesticVehicleClass) GetIssueDate() string`

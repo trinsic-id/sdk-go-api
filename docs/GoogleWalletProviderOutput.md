@@ -6,13 +6,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **MobileDriversLicense** | Pointer to [**NullableIso180135MobileDriversLicenseCredential**](Iso180135MobileDriversLicenseCredential.md) | A standard 18013-5 Mobile Driver&#39;s License credential, retrieved from the individual&#39;s wallet. | [optional] 
 **IdPass** | Pointer to [**NullableGoogleWalletIdPassCredential**](GoogleWalletIdPassCredential.md) | A Google Wallet ID Pass credential (&#x60;com.google.wallet.idcard.1&#x60;), retrieved from the individual&#39;s wallet. | [optional] 
-**RawMdlOutput** | [**MdlOutput**](MdlOutput.md) | The raw output of the mDL exchange performed through Google Wallet. | 
+**RawMdlOutput** | Pointer to [**NullableMdlOutput**](MdlOutput.md) | The raw output of the mDL exchange performed through Google Wallet. | [optional] 
 
 ## Methods
 
 ### NewGoogleWalletProviderOutput
 
-`func NewGoogleWalletProviderOutput(rawMdlOutput MdlOutput, ) *GoogleWalletProviderOutput`
+`func NewGoogleWalletProviderOutput() *GoogleWalletProviderOutput`
 
 NewGoogleWalletProviderOutput instantiates a new GoogleWalletProviderOutput object
 This constructor will assign default values to properties that have it defined,
@@ -116,7 +116,22 @@ and a boolean to check if the value has been set.
 
 SetRawMdlOutput sets RawMdlOutput field to given value.
 
+### HasRawMdlOutput
 
+`func (o *GoogleWalletProviderOutput) HasRawMdlOutput() bool`
+
+HasRawMdlOutput returns a boolean if a field has been set.
+
+### SetRawMdlOutputNil
+
+`func (o *GoogleWalletProviderOutput) SetRawMdlOutputNil(b bool)`
+
+ SetRawMdlOutputNil sets the value for RawMdlOutput to be an explicit nil
+
+### UnsetRawMdlOutput
+`func (o *GoogleWalletProviderOutput) UnsetRawMdlOutput()`
+
+UnsetRawMdlOutput ensures that no value is present for RawMdlOutput, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

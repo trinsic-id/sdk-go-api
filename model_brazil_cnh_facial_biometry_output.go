@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the BrazilCnhFacialBiometryOutput type satisfies the MappedNullable interface at compile time
@@ -21,7 +20,7 @@ var _ MappedNullable = &BrazilCnhFacialBiometryOutput{}
 // BrazilCnhFacialBiometryOutput struct for BrazilCnhFacialBiometryOutput
 type BrazilCnhFacialBiometryOutput struct {
 	// Whether the government database had facial biometrics available for comparison.
-	DatabaseFaceAvailable bool `json:"databaseFaceAvailable"`
+	DatabaseFaceAvailable NullableBool `json:"databaseFaceAvailable,omitempty"`
 	// Probability bucket returned by Serpro for the facial biometric comparison.              Known values: - VeryLow - Low - High - VeryHigh
 	Probability NullableString `json:"probability,omitempty"`
 	// Similarity score returned by Serpro for the facial biometric comparison.              Ranges from 0.0 to 1.0, where 1.0 is a perfect match.
@@ -37,9 +36,8 @@ type _BrazilCnhFacialBiometryOutput BrazilCnhFacialBiometryOutput
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBrazilCnhFacialBiometryOutput(databaseFaceAvailable bool) *BrazilCnhFacialBiometryOutput {
+func NewBrazilCnhFacialBiometryOutput() *BrazilCnhFacialBiometryOutput {
 	this := BrazilCnhFacialBiometryOutput{}
-	this.DatabaseFaceAvailable = databaseFaceAvailable
 	return &this
 }
 
@@ -51,28 +49,46 @@ func NewBrazilCnhFacialBiometryOutputWithDefaults() *BrazilCnhFacialBiometryOutp
 	return &this
 }
 
-// GetDatabaseFaceAvailable returns the DatabaseFaceAvailable field value
+// GetDatabaseFaceAvailable returns the DatabaseFaceAvailable field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *BrazilCnhFacialBiometryOutput) GetDatabaseFaceAvailable() bool {
-	if o == nil {
+	if o == nil || IsNil(o.DatabaseFaceAvailable.Get()) {
 		var ret bool
 		return ret
 	}
-
-	return o.DatabaseFaceAvailable
+	return *o.DatabaseFaceAvailable.Get()
 }
 
-// GetDatabaseFaceAvailableOk returns a tuple with the DatabaseFaceAvailable field value
+// GetDatabaseFaceAvailableOk returns a tuple with the DatabaseFaceAvailable field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *BrazilCnhFacialBiometryOutput) GetDatabaseFaceAvailableOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.DatabaseFaceAvailable, true
+	return o.DatabaseFaceAvailable.Get(), o.DatabaseFaceAvailable.IsSet()
 }
 
-// SetDatabaseFaceAvailable sets field value
+// HasDatabaseFaceAvailable returns a boolean if a field has been set.
+func (o *BrazilCnhFacialBiometryOutput) HasDatabaseFaceAvailable() bool {
+	if o != nil && o.DatabaseFaceAvailable.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDatabaseFaceAvailable gets a reference to the given NullableBool and assigns it to the DatabaseFaceAvailable field.
 func (o *BrazilCnhFacialBiometryOutput) SetDatabaseFaceAvailable(v bool) {
-	o.DatabaseFaceAvailable = v
+	o.DatabaseFaceAvailable.Set(&v)
+}
+// SetDatabaseFaceAvailableNil sets the value for DatabaseFaceAvailable to be an explicit nil
+func (o *BrazilCnhFacialBiometryOutput) SetDatabaseFaceAvailableNil() {
+	o.DatabaseFaceAvailable.Set(nil)
+}
+
+// UnsetDatabaseFaceAvailable ensures that no value is present for DatabaseFaceAvailable, not even an explicit nil
+func (o *BrazilCnhFacialBiometryOutput) UnsetDatabaseFaceAvailable() {
+	o.DatabaseFaceAvailable.Unset()
 }
 
 // GetProbability returns the Probability field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -211,7 +227,9 @@ func (o BrazilCnhFacialBiometryOutput) MarshalJSON() ([]byte, error) {
 
 func (o BrazilCnhFacialBiometryOutput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["databaseFaceAvailable"] = o.DatabaseFaceAvailable
+	if o.DatabaseFaceAvailable.IsSet() {
+		toSerialize["databaseFaceAvailable"] = o.DatabaseFaceAvailable.Get()
+	}
 	if o.Probability.IsSet() {
 		toSerialize["probability"] = o.Probability.Get()
 	}
@@ -230,27 +248,6 @@ func (o BrazilCnhFacialBiometryOutput) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *BrazilCnhFacialBiometryOutput) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"databaseFaceAvailable",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varBrazilCnhFacialBiometryOutput := _BrazilCnhFacialBiometryOutput{}
 
 	err = json.Unmarshal(data, &varBrazilCnhFacialBiometryOutput)

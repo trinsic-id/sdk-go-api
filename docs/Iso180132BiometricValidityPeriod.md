@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**NotBefore** | **string** | Date the biometric data block becomes valid. | 
-**NotAfter** | **string** | Date the biometric data block expires. | 
+**NotBefore** | Pointer to **NullableString** | Date the biometric data block becomes valid. | [optional] 
+**NotAfter** | Pointer to **NullableString** | Date the biometric data block expires. | [optional] 
 
 ## Methods
 
 ### NewIso180132BiometricValidityPeriod
 
-`func NewIso180132BiometricValidityPeriod(notBefore string, notAfter string, ) *Iso180132BiometricValidityPeriod`
+`func NewIso180132BiometricValidityPeriod() *Iso180132BiometricValidityPeriod`
 
 NewIso180132BiometricValidityPeriod instantiates a new Iso180132BiometricValidityPeriod object
 This constructor will assign default values to properties that have it defined,
@@ -45,7 +45,22 @@ and a boolean to check if the value has been set.
 
 SetNotBefore sets NotBefore field to given value.
 
+### HasNotBefore
 
+`func (o *Iso180132BiometricValidityPeriod) HasNotBefore() bool`
+
+HasNotBefore returns a boolean if a field has been set.
+
+### SetNotBeforeNil
+
+`func (o *Iso180132BiometricValidityPeriod) SetNotBeforeNil(b bool)`
+
+ SetNotBeforeNil sets the value for NotBefore to be an explicit nil
+
+### UnsetNotBefore
+`func (o *Iso180132BiometricValidityPeriod) UnsetNotBefore()`
+
+UnsetNotBefore ensures that no value is present for NotBefore, not even an explicit nil
 ### GetNotAfter
 
 `func (o *Iso180132BiometricValidityPeriod) GetNotAfter() string`
@@ -65,7 +80,22 @@ and a boolean to check if the value has been set.
 
 SetNotAfter sets NotAfter field to given value.
 
+### HasNotAfter
 
+`func (o *Iso180132BiometricValidityPeriod) HasNotAfter() bool`
+
+HasNotAfter returns a boolean if a field has been set.
+
+### SetNotAfterNil
+
+`func (o *Iso180132BiometricValidityPeriod) SetNotAfterNil(b bool)`
+
+ SetNotAfterNil sets the value for NotAfter to be an explicit nil
+
+### UnsetNotAfter
+`func (o *Iso180132BiometricValidityPeriod) UnsetNotAfter()`
+
+UnsetNotAfter ensures that no value is present for NotAfter, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -4,14 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**GivenName** | Pointer to [**NullableFrenchNumeriqueGivenName**](FrenchNumeriqueGivenName.md) | Given name information including the full given name and its structured components (first name and middle name(s)). | [optional] 
+**Sub** | Pointer to **NullableString** | OpenID Connect subject identifier (sub) for the verified individual. | [optional] 
+**GivenName** | Pointer to **NullableString** | Full given name(s) as recorded on the individual&#39;s French identity document.              If the individual has multiple given names, they are separated by a single space. | [optional] 
+**SplittedGivenName** | Pointer to [**NullableFrenchNumeriqueSplittedGivenName**](FrenchNumeriqueSplittedGivenName.md) | Given name split into first name and middle name(s). | [optional] 
 **FamilyName** | Pointer to **NullableString** | Birth name (nom de naissance) as recorded on the individual&#39;s French identity document. In France, this is the family name given at birth and may differ from the usage name. | [optional] 
 **PreferredSurname** | Pointer to **NullableString** | Usage surname (\&quot;nom d&#39;usage\&quot;) - according to French law, this is the surname used in daily life. This is typically a married name or other preferred surname, as opposed to FamilyName which is the birth surname (\&quot;nom de naissance\&quot;). | [optional] 
 **Birthdate** | Pointer to **NullableString** | Date of birth in YYYY-MM-DD format, as recorded on the individual&#39;s French identity document. | [optional] 
 **Nationality** | Pointer to [**NullableFrenchNumeriqueNationality**](FrenchNumeriqueNationality.md) | Nationality information with ISO 3166 alpha-3 code and French label. The label is provided in French (e.g., \&quot;Française\&quot; for French nationality). | [optional] 
 **Sex** | Pointer to **NullableString** | Sex - \&quot;Male\&quot; or \&quot;Female\&quot;. | [optional] 
 **Majority** | Pointer to **NullableBool** | Majority status (majorité) indicating whether the individual has reached the French age of legal majority (18 years old). This value is computed by the provider from the individual&#39;s birthdate. | [optional] 
-**PhoneNumber** | Pointer to [**NullableFrenchNumeriquePhone**](FrenchNumeriquePhone.md) | Phone number information including the full phone number and its structured components (country prefix and national number). | [optional] 
+**PhoneNumber** | Pointer to **NullableString** | Full phone number including country prefix. | [optional] 
+**SplittedPhone** | Pointer to [**NullableFrenchNumeriqueSplittedPhone**](FrenchNumeriqueSplittedPhone.md) | Phone number split into country prefix and national number. | [optional] 
 **PhoneNumberVerified** | Pointer to **NullableBool** | Whether the phone number has been verified by the provider. | [optional] 
 **Email** | Pointer to **NullableString** | Email address registered in the individual&#39;s digital identity account. | [optional] 
 **EmailVerified** | Pointer to **NullableBool** | Whether the email address has been verified by the provider. | [optional] 
@@ -49,22 +52,57 @@ NewFrenchNumeriqueProviderOutputWithDefaults instantiates a new FrenchNumeriqueP
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
+### GetSub
+
+`func (o *FrenchNumeriqueProviderOutput) GetSub() string`
+
+GetSub returns the Sub field if non-nil, zero value otherwise.
+
+### GetSubOk
+
+`func (o *FrenchNumeriqueProviderOutput) GetSubOk() (*string, bool)`
+
+GetSubOk returns a tuple with the Sub field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSub
+
+`func (o *FrenchNumeriqueProviderOutput) SetSub(v string)`
+
+SetSub sets Sub field to given value.
+
+### HasSub
+
+`func (o *FrenchNumeriqueProviderOutput) HasSub() bool`
+
+HasSub returns a boolean if a field has been set.
+
+### SetSubNil
+
+`func (o *FrenchNumeriqueProviderOutput) SetSubNil(b bool)`
+
+ SetSubNil sets the value for Sub to be an explicit nil
+
+### UnsetSub
+`func (o *FrenchNumeriqueProviderOutput) UnsetSub()`
+
+UnsetSub ensures that no value is present for Sub, not even an explicit nil
 ### GetGivenName
 
-`func (o *FrenchNumeriqueProviderOutput) GetGivenName() FrenchNumeriqueGivenName`
+`func (o *FrenchNumeriqueProviderOutput) GetGivenName() string`
 
 GetGivenName returns the GivenName field if non-nil, zero value otherwise.
 
 ### GetGivenNameOk
 
-`func (o *FrenchNumeriqueProviderOutput) GetGivenNameOk() (*FrenchNumeriqueGivenName, bool)`
+`func (o *FrenchNumeriqueProviderOutput) GetGivenNameOk() (*string, bool)`
 
 GetGivenNameOk returns a tuple with the GivenName field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetGivenName
 
-`func (o *FrenchNumeriqueProviderOutput) SetGivenName(v FrenchNumeriqueGivenName)`
+`func (o *FrenchNumeriqueProviderOutput) SetGivenName(v string)`
 
 SetGivenName sets GivenName field to given value.
 
@@ -84,6 +122,41 @@ HasGivenName returns a boolean if a field has been set.
 `func (o *FrenchNumeriqueProviderOutput) UnsetGivenName()`
 
 UnsetGivenName ensures that no value is present for GivenName, not even an explicit nil
+### GetSplittedGivenName
+
+`func (o *FrenchNumeriqueProviderOutput) GetSplittedGivenName() FrenchNumeriqueSplittedGivenName`
+
+GetSplittedGivenName returns the SplittedGivenName field if non-nil, zero value otherwise.
+
+### GetSplittedGivenNameOk
+
+`func (o *FrenchNumeriqueProviderOutput) GetSplittedGivenNameOk() (*FrenchNumeriqueSplittedGivenName, bool)`
+
+GetSplittedGivenNameOk returns a tuple with the SplittedGivenName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSplittedGivenName
+
+`func (o *FrenchNumeriqueProviderOutput) SetSplittedGivenName(v FrenchNumeriqueSplittedGivenName)`
+
+SetSplittedGivenName sets SplittedGivenName field to given value.
+
+### HasSplittedGivenName
+
+`func (o *FrenchNumeriqueProviderOutput) HasSplittedGivenName() bool`
+
+HasSplittedGivenName returns a boolean if a field has been set.
+
+### SetSplittedGivenNameNil
+
+`func (o *FrenchNumeriqueProviderOutput) SetSplittedGivenNameNil(b bool)`
+
+ SetSplittedGivenNameNil sets the value for SplittedGivenName to be an explicit nil
+
+### UnsetSplittedGivenName
+`func (o *FrenchNumeriqueProviderOutput) UnsetSplittedGivenName()`
+
+UnsetSplittedGivenName ensures that no value is present for SplittedGivenName, not even an explicit nil
 ### GetFamilyName
 
 `func (o *FrenchNumeriqueProviderOutput) GetFamilyName() string`
@@ -296,20 +369,20 @@ HasMajority returns a boolean if a field has been set.
 UnsetMajority ensures that no value is present for Majority, not even an explicit nil
 ### GetPhoneNumber
 
-`func (o *FrenchNumeriqueProviderOutput) GetPhoneNumber() FrenchNumeriquePhone`
+`func (o *FrenchNumeriqueProviderOutput) GetPhoneNumber() string`
 
 GetPhoneNumber returns the PhoneNumber field if non-nil, zero value otherwise.
 
 ### GetPhoneNumberOk
 
-`func (o *FrenchNumeriqueProviderOutput) GetPhoneNumberOk() (*FrenchNumeriquePhone, bool)`
+`func (o *FrenchNumeriqueProviderOutput) GetPhoneNumberOk() (*string, bool)`
 
 GetPhoneNumberOk returns a tuple with the PhoneNumber field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPhoneNumber
 
-`func (o *FrenchNumeriqueProviderOutput) SetPhoneNumber(v FrenchNumeriquePhone)`
+`func (o *FrenchNumeriqueProviderOutput) SetPhoneNumber(v string)`
 
 SetPhoneNumber sets PhoneNumber field to given value.
 
@@ -329,6 +402,41 @@ HasPhoneNumber returns a boolean if a field has been set.
 `func (o *FrenchNumeriqueProviderOutput) UnsetPhoneNumber()`
 
 UnsetPhoneNumber ensures that no value is present for PhoneNumber, not even an explicit nil
+### GetSplittedPhone
+
+`func (o *FrenchNumeriqueProviderOutput) GetSplittedPhone() FrenchNumeriqueSplittedPhone`
+
+GetSplittedPhone returns the SplittedPhone field if non-nil, zero value otherwise.
+
+### GetSplittedPhoneOk
+
+`func (o *FrenchNumeriqueProviderOutput) GetSplittedPhoneOk() (*FrenchNumeriqueSplittedPhone, bool)`
+
+GetSplittedPhoneOk returns a tuple with the SplittedPhone field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSplittedPhone
+
+`func (o *FrenchNumeriqueProviderOutput) SetSplittedPhone(v FrenchNumeriqueSplittedPhone)`
+
+SetSplittedPhone sets SplittedPhone field to given value.
+
+### HasSplittedPhone
+
+`func (o *FrenchNumeriqueProviderOutput) HasSplittedPhone() bool`
+
+HasSplittedPhone returns a boolean if a field has been set.
+
+### SetSplittedPhoneNil
+
+`func (o *FrenchNumeriqueProviderOutput) SetSplittedPhoneNil(b bool)`
+
+ SetSplittedPhoneNil sets the value for SplittedPhone to be an explicit nil
+
+### UnsetSplittedPhone
+`func (o *FrenchNumeriqueProviderOutput) UnsetSplittedPhone()`
+
+UnsetSplittedPhone ensures that no value is present for SplittedPhone, not even an explicit nil
 ### GetPhoneNumberVerified
 
 `func (o *FrenchNumeriqueProviderOutput) GetPhoneNumberVerified() bool`

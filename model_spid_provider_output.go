@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the SpidProviderOutput type satisfies the MappedNullable interface at compile time
@@ -23,9 +22,9 @@ type SpidProviderOutput struct {
 	// Information about the billable status of this SPID Verification.              Present only if your account has period-based billing enabled for SPID. Contact Trinsic to enable this.
 	BillingInformation NullableSpidBillingInformation `json:"billingInformation,omitempty"`
 	// The SPID Entity ID of the Identity Provider which issued the SPID identity.              This is an HTTPS URI which uniquely identifies the IdP within the SPID federation.              A normalized / simplified representation of this value is present in the `originatingSubProviderId` field in Trinsic's normalized data model.
-	IdentityProviderEntityId string `json:"identityProviderEntityId"`
+	IdentityProviderEntityId NullableString `json:"identityProviderEntityId,omitempty"`
 	// The identifier of the SPID credential, uniquely identifying it within the SPID federation.              The format of this string is specific to each individual Identity Provider.
-	SpidCode string `json:"spidCode"`
+	SpidCode NullableString `json:"spidCode,omitempty"`
 	// Expiration date of the SPID credential.              This is not the same as the expiration date of the underlying identity document (such as a passport) which was used to create the SPID identity.
 	SpidCredentialExpirationDate NullableString `json:"spidCredentialExpirationDate,omitempty"`
 	// The raw, space-separated string value for the \"IdCard\" field from the SPID credential.              Trinsic additionally parses this field and uses it to populate the `Document` object in the normalized data model.
@@ -77,10 +76,8 @@ type _SpidProviderOutput SpidProviderOutput
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSpidProviderOutput(identityProviderEntityId string, spidCode string) *SpidProviderOutput {
+func NewSpidProviderOutput() *SpidProviderOutput {
 	this := SpidProviderOutput{}
-	this.IdentityProviderEntityId = identityProviderEntityId
-	this.SpidCode = spidCode
 	return &this
 }
 
@@ -134,52 +131,88 @@ func (o *SpidProviderOutput) UnsetBillingInformation() {
 	o.BillingInformation.Unset()
 }
 
-// GetIdentityProviderEntityId returns the IdentityProviderEntityId field value
+// GetIdentityProviderEntityId returns the IdentityProviderEntityId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SpidProviderOutput) GetIdentityProviderEntityId() string {
-	if o == nil {
+	if o == nil || IsNil(o.IdentityProviderEntityId.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.IdentityProviderEntityId
+	return *o.IdentityProviderEntityId.Get()
 }
 
-// GetIdentityProviderEntityIdOk returns a tuple with the IdentityProviderEntityId field value
+// GetIdentityProviderEntityIdOk returns a tuple with the IdentityProviderEntityId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SpidProviderOutput) GetIdentityProviderEntityIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.IdentityProviderEntityId, true
+	return o.IdentityProviderEntityId.Get(), o.IdentityProviderEntityId.IsSet()
 }
 
-// SetIdentityProviderEntityId sets field value
+// HasIdentityProviderEntityId returns a boolean if a field has been set.
+func (o *SpidProviderOutput) HasIdentityProviderEntityId() bool {
+	if o != nil && o.IdentityProviderEntityId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetIdentityProviderEntityId gets a reference to the given NullableString and assigns it to the IdentityProviderEntityId field.
 func (o *SpidProviderOutput) SetIdentityProviderEntityId(v string) {
-	o.IdentityProviderEntityId = v
+	o.IdentityProviderEntityId.Set(&v)
+}
+// SetIdentityProviderEntityIdNil sets the value for IdentityProviderEntityId to be an explicit nil
+func (o *SpidProviderOutput) SetIdentityProviderEntityIdNil() {
+	o.IdentityProviderEntityId.Set(nil)
 }
 
-// GetSpidCode returns the SpidCode field value
+// UnsetIdentityProviderEntityId ensures that no value is present for IdentityProviderEntityId, not even an explicit nil
+func (o *SpidProviderOutput) UnsetIdentityProviderEntityId() {
+	o.IdentityProviderEntityId.Unset()
+}
+
+// GetSpidCode returns the SpidCode field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SpidProviderOutput) GetSpidCode() string {
-	if o == nil {
+	if o == nil || IsNil(o.SpidCode.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.SpidCode
+	return *o.SpidCode.Get()
 }
 
-// GetSpidCodeOk returns a tuple with the SpidCode field value
+// GetSpidCodeOk returns a tuple with the SpidCode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SpidProviderOutput) GetSpidCodeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.SpidCode, true
+	return o.SpidCode.Get(), o.SpidCode.IsSet()
 }
 
-// SetSpidCode sets field value
+// HasSpidCode returns a boolean if a field has been set.
+func (o *SpidProviderOutput) HasSpidCode() bool {
+	if o != nil && o.SpidCode.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSpidCode gets a reference to the given NullableString and assigns it to the SpidCode field.
 func (o *SpidProviderOutput) SetSpidCode(v string) {
-	o.SpidCode = v
+	o.SpidCode.Set(&v)
+}
+// SetSpidCodeNil sets the value for SpidCode to be an explicit nil
+func (o *SpidProviderOutput) SetSpidCodeNil() {
+	o.SpidCode.Set(nil)
+}
+
+// UnsetSpidCode ensures that no value is present for SpidCode, not even an explicit nil
+func (o *SpidProviderOutput) UnsetSpidCode() {
+	o.SpidCode.Unset()
 }
 
 // GetSpidCredentialExpirationDate returns the SpidCredentialExpirationDate field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -1077,8 +1110,12 @@ func (o SpidProviderOutput) ToMap() (map[string]interface{}, error) {
 	if o.BillingInformation.IsSet() {
 		toSerialize["billingInformation"] = o.BillingInformation.Get()
 	}
-	toSerialize["identityProviderEntityId"] = o.IdentityProviderEntityId
-	toSerialize["spidCode"] = o.SpidCode
+	if o.IdentityProviderEntityId.IsSet() {
+		toSerialize["identityProviderEntityId"] = o.IdentityProviderEntityId.Get()
+	}
+	if o.SpidCode.IsSet() {
+		toSerialize["spidCode"] = o.SpidCode.Get()
+	}
 	if o.SpidCredentialExpirationDate.IsSet() {
 		toSerialize["spidCredentialExpirationDate"] = o.SpidCredentialExpirationDate.Get()
 	}
@@ -1151,28 +1188,6 @@ func (o SpidProviderOutput) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *SpidProviderOutput) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"identityProviderEntityId",
-		"spidCode",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varSpidProviderOutput := _SpidProviderOutput{}
 
 	err = json.Unmarshal(data, &varSpidProviderOutput)

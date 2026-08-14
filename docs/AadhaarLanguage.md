@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **LanguageCode** | Pointer to **NullableString** | The language code for the localized claims. | [optional] 
-**LanguageName** | **string** | The language name for the localized claims.              This is Trinsic mapping the language from the code. The mapping comes from the spec, however, the code may not always reflect with the actual language used in the localized claims. Use this as a reference. Possible values: - Assamese (01) - Bengali (02) - Gujarati (05) - Hindi (06) - Kannada (07) - Malayalam (11) - Manipuri (12) - Marathi (13) - Oriya (15) - Punjabi (16) - Tamil (20) - Telugu (21) - Urdu (22) | [readonly] 
+**LanguageName** | Pointer to **NullableString** | The language name for the localized claims.              This is Trinsic mapping the language from the code. The mapping comes from the spec, however, the code may not always reflect with the actual language used in the localized claims. Use this as a reference. Possible values: - Assamese (01) - Bengali (02) - Gujarati (05) - Hindi (06) - Kannada (07) - Malayalam (11) - Manipuri (12) - Marathi (13) - Oriya (15) - Punjabi (16) - Tamil (20) - Telugu (21) - Urdu (22) | [optional] [readonly] 
 
 ## Methods
 
 ### NewAadhaarLanguage
 
-`func NewAadhaarLanguage(languageName string, ) *AadhaarLanguage`
+`func NewAadhaarLanguage() *AadhaarLanguage`
 
 NewAadhaarLanguage instantiates a new AadhaarLanguage object
 This constructor will assign default values to properties that have it defined,
@@ -80,7 +80,22 @@ and a boolean to check if the value has been set.
 
 SetLanguageName sets LanguageName field to given value.
 
+### HasLanguageName
 
+`func (o *AadhaarLanguage) HasLanguageName() bool`
+
+HasLanguageName returns a boolean if a field has been set.
+
+### SetLanguageNameNil
+
+`func (o *AadhaarLanguage) SetLanguageNameNil(b bool)`
+
+ SetLanguageNameNil sets the value for LanguageName to be an explicit nil
+
+### UnsetLanguageName
+`func (o *AadhaarLanguage) UnsetLanguageName()`
+
+UnsetLanguageName ensures that no value is present for LanguageName, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

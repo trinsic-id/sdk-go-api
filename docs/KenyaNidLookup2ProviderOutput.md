@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**FirstName** | **string** | The first name (given name) of the ID holder as recorded in IPRS. | 
-**Surname** | **string** | The surname (family name) of the ID holder as recorded in IPRS. | 
+**FirstName** | Pointer to **NullableString** | The first name (given name) of the ID holder as recorded in IPRS. | [optional] 
+**Surname** | Pointer to **NullableString** | The surname (family name) of the ID holder as recorded in IPRS. | [optional] 
 **OtherName** | Pointer to **NullableString** | The other name (middle name) of the ID holder as recorded in IPRS. | [optional] 
-**Sex** | **string** | The sex of the ID holder as recorded on the National ID.              Possible values: - Male - Female | 
+**Sex** | Pointer to **NullableString** | The sex of the ID holder as recorded on the National ID.              Possible values: - Male - Female | [optional] 
 **DateOfBirth** | Pointer to **NullableString** | The date of birth of the ID holder as recorded in IPRS. | [optional] 
-**Citizenship** | **string** | Citizenship status as recorded in the IPRS civil registry database.              For the Kenya National ID lookup, this value will always be \&quot;Kenyan\&quot; as the National ID is only issued to Kenyan citizens. Non-citizens residing in Kenya are issued different identification documents (Alien ID cards, refugee documentation, etc.) which are not supported by this provider. | 
-**IdNumber** | **string** | The Kenya National ID Number (Nambari ya Kitambulisho) or Unique Personal Identifier (Maisha Namba).              This is the primary unique identifier for Kenyan citizens in all government systems, issued by the National Registration Bureau (NRB). The format is either 8 digits for National ID or 9 digits for Maisha Namba UPI (the new format since 2023). | 
-**SerialNumber** | **string** | The physical card serial number printed on the Kenya National ID card.              This is distinct from the ID Number and serves as a card issuance tracking identifier maintained by IPRS. This value changes each time a new physical card is issued (loss, damage, renewal). | 
+**Citizenship** | Pointer to **NullableString** | Citizenship status as recorded in the IPRS civil registry database.              For the Kenya National ID lookup, this value will always be \&quot;Kenyan\&quot; as the National ID is only issued to Kenyan citizens. Non-citizens residing in Kenya are issued different identification documents (Alien ID cards, refugee documentation, etc.) which are not supported by this provider. | [optional] 
+**IdNumber** | Pointer to **NullableString** | The Kenya National ID Number (Nambari ya Kitambulisho) or Unique Personal Identifier (Maisha Namba).              This is the primary unique identifier for Kenyan citizens in all government systems, issued by the National Registration Bureau (NRB). The format is either 8 digits for National ID or 9 digits for Maisha Namba UPI (the new format since 2023). | [optional] 
+**SerialNumber** | Pointer to **NullableString** | The physical card serial number printed on the Kenya National ID card.              This is distinct from the ID Number and serves as a card issuance tracking identifier maintained by IPRS. This value changes each time a new physical card is issued (loss, damage, renewal). | [optional] 
 **DateOfIssue** | Pointer to **NullableString** | The date the National ID was issued by the National Registration Bureau (NRB). | [optional] 
 **PlaceOfBirth** | Pointer to [**NullableKenyaNidLookup2Address**](KenyaNidLookup2Address.md) | Place of birth as recorded in Kenya&#39;s civil registry (IPRS).              This is structured according to Kenya&#39;s pre-2010 administrative hierarchy (District &gt; Division &gt; Location). | [optional] 
 **PlaceOfResidence** | Pointer to [**NullableKenyaNidLookup2Address**](KenyaNidLookup2Address.md) | Current residence address as registered in IPRS.              This represents the address on file at the time of ID registration or last update, structured according to Kenya&#39;s pre-2010 administrative hierarchy (District &gt; Division &gt; Location). | [optional] 
@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 
 ### NewKenyaNidLookup2ProviderOutput
 
-`func NewKenyaNidLookup2ProviderOutput(firstName string, surname string, sex string, citizenship string, idNumber string, serialNumber string, ) *KenyaNidLookup2ProviderOutput`
+`func NewKenyaNidLookup2ProviderOutput() *KenyaNidLookup2ProviderOutput`
 
 NewKenyaNidLookup2ProviderOutput instantiates a new KenyaNidLookup2ProviderOutput object
 This constructor will assign default values to properties that have it defined,
@@ -54,7 +54,22 @@ and a boolean to check if the value has been set.
 
 SetFirstName sets FirstName field to given value.
 
+### HasFirstName
 
+`func (o *KenyaNidLookup2ProviderOutput) HasFirstName() bool`
+
+HasFirstName returns a boolean if a field has been set.
+
+### SetFirstNameNil
+
+`func (o *KenyaNidLookup2ProviderOutput) SetFirstNameNil(b bool)`
+
+ SetFirstNameNil sets the value for FirstName to be an explicit nil
+
+### UnsetFirstName
+`func (o *KenyaNidLookup2ProviderOutput) UnsetFirstName()`
+
+UnsetFirstName ensures that no value is present for FirstName, not even an explicit nil
 ### GetSurname
 
 `func (o *KenyaNidLookup2ProviderOutput) GetSurname() string`
@@ -74,7 +89,22 @@ and a boolean to check if the value has been set.
 
 SetSurname sets Surname field to given value.
 
+### HasSurname
 
+`func (o *KenyaNidLookup2ProviderOutput) HasSurname() bool`
+
+HasSurname returns a boolean if a field has been set.
+
+### SetSurnameNil
+
+`func (o *KenyaNidLookup2ProviderOutput) SetSurnameNil(b bool)`
+
+ SetSurnameNil sets the value for Surname to be an explicit nil
+
+### UnsetSurname
+`func (o *KenyaNidLookup2ProviderOutput) UnsetSurname()`
+
+UnsetSurname ensures that no value is present for Surname, not even an explicit nil
 ### GetOtherName
 
 `func (o *KenyaNidLookup2ProviderOutput) GetOtherName() string`
@@ -129,7 +159,22 @@ and a boolean to check if the value has been set.
 
 SetSex sets Sex field to given value.
 
+### HasSex
 
+`func (o *KenyaNidLookup2ProviderOutput) HasSex() bool`
+
+HasSex returns a boolean if a field has been set.
+
+### SetSexNil
+
+`func (o *KenyaNidLookup2ProviderOutput) SetSexNil(b bool)`
+
+ SetSexNil sets the value for Sex to be an explicit nil
+
+### UnsetSex
+`func (o *KenyaNidLookup2ProviderOutput) UnsetSex()`
+
+UnsetSex ensures that no value is present for Sex, not even an explicit nil
 ### GetDateOfBirth
 
 `func (o *KenyaNidLookup2ProviderOutput) GetDateOfBirth() string`
@@ -184,7 +229,22 @@ and a boolean to check if the value has been set.
 
 SetCitizenship sets Citizenship field to given value.
 
+### HasCitizenship
 
+`func (o *KenyaNidLookup2ProviderOutput) HasCitizenship() bool`
+
+HasCitizenship returns a boolean if a field has been set.
+
+### SetCitizenshipNil
+
+`func (o *KenyaNidLookup2ProviderOutput) SetCitizenshipNil(b bool)`
+
+ SetCitizenshipNil sets the value for Citizenship to be an explicit nil
+
+### UnsetCitizenship
+`func (o *KenyaNidLookup2ProviderOutput) UnsetCitizenship()`
+
+UnsetCitizenship ensures that no value is present for Citizenship, not even an explicit nil
 ### GetIdNumber
 
 `func (o *KenyaNidLookup2ProviderOutput) GetIdNumber() string`
@@ -204,7 +264,22 @@ and a boolean to check if the value has been set.
 
 SetIdNumber sets IdNumber field to given value.
 
+### HasIdNumber
 
+`func (o *KenyaNidLookup2ProviderOutput) HasIdNumber() bool`
+
+HasIdNumber returns a boolean if a field has been set.
+
+### SetIdNumberNil
+
+`func (o *KenyaNidLookup2ProviderOutput) SetIdNumberNil(b bool)`
+
+ SetIdNumberNil sets the value for IdNumber to be an explicit nil
+
+### UnsetIdNumber
+`func (o *KenyaNidLookup2ProviderOutput) UnsetIdNumber()`
+
+UnsetIdNumber ensures that no value is present for IdNumber, not even an explicit nil
 ### GetSerialNumber
 
 `func (o *KenyaNidLookup2ProviderOutput) GetSerialNumber() string`
@@ -224,7 +299,22 @@ and a boolean to check if the value has been set.
 
 SetSerialNumber sets SerialNumber field to given value.
 
+### HasSerialNumber
 
+`func (o *KenyaNidLookup2ProviderOutput) HasSerialNumber() bool`
+
+HasSerialNumber returns a boolean if a field has been set.
+
+### SetSerialNumberNil
+
+`func (o *KenyaNidLookup2ProviderOutput) SetSerialNumberNil(b bool)`
+
+ SetSerialNumberNil sets the value for SerialNumber to be an explicit nil
+
+### UnsetSerialNumber
+`func (o *KenyaNidLookup2ProviderOutput) UnsetSerialNumber()`
+
+UnsetSerialNumber ensures that no value is present for SerialNumber, not even an explicit nil
 ### GetDateOfIssue
 
 `func (o *KenyaNidLookup2ProviderOutput) GetDateOfIssue() string`

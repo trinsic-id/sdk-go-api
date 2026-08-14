@@ -20,7 +20,9 @@ var _ MappedNullable = &GetSessionResultResponse{}
 
 // GetSessionResultResponse struct for GetSessionResultResponse
 type GetSessionResultResponse struct {
+	// The Session in its current state.
 	Session Session `json:"session"`
+	// The IdentityData which resulted from the Session, if not HPKE-encrypted.
 	IdentityData NullableIdentityData `json:"identityData,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

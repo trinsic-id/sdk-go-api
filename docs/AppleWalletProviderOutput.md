@@ -6,13 +6,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **MobileDriversLicense** | Pointer to [**NullableIso180135MobileDriversLicenseCredential**](Iso180135MobileDriversLicenseCredential.md) | A standard 18013-5 Mobile Driver&#39;s License credential, retrieved from the individual&#39;s wallet. | [optional] 
 **DigitalId** | Pointer to [**NullableAppleWalletDigitalIdCredential**](AppleWalletDigitalIdCredential.md) | An Apple Wallet Digital ID credential (&#x60;org.iso.23220.photoid.1&#x60;), retrieved from the individual&#39;s wallet. | [optional] 
-**RawMdlOutput** | [**MdlOutput**](MdlOutput.md) | The raw output of the mDL exchange performed through Apple Wallet. | 
+**RawMdlOutput** | Pointer to [**NullableMdlOutput**](MdlOutput.md) | The raw output of the mDL exchange performed through Apple Wallet. | [optional] 
 
 ## Methods
 
 ### NewAppleWalletProviderOutput
 
-`func NewAppleWalletProviderOutput(rawMdlOutput MdlOutput, ) *AppleWalletProviderOutput`
+`func NewAppleWalletProviderOutput() *AppleWalletProviderOutput`
 
 NewAppleWalletProviderOutput instantiates a new AppleWalletProviderOutput object
 This constructor will assign default values to properties that have it defined,
@@ -116,7 +116,22 @@ and a boolean to check if the value has been set.
 
 SetRawMdlOutput sets RawMdlOutput field to given value.
 
+### HasRawMdlOutput
 
+`func (o *AppleWalletProviderOutput) HasRawMdlOutput() bool`
+
+HasRawMdlOutput returns a boolean if a field has been set.
+
+### SetRawMdlOutputNil
+
+`func (o *AppleWalletProviderOutput) SetRawMdlOutputNil(b bool)`
+
+ SetRawMdlOutputNil sets the value for RawMdlOutput to be an explicit nil
+
+### UnsetRawMdlOutput
+`func (o *AppleWalletProviderOutput) UnsetRawMdlOutput()`
+
+UnsetRawMdlOutput ensures that no value is present for RawMdlOutput, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

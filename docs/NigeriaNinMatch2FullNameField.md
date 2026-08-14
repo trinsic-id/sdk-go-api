@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**InputValue** | **string** | The full name string submitted for this check (as provided in the match input). | 
-**Outcome** | **string** | The outcome of comparing the submitted full name to the issuer record.              Possible values: - Exact Match - Partial Match - Transposed - No Match - Not Returned | 
+**InputValue** | Pointer to **NullableString** | The full name string submitted for this check (as provided in the match input). | [optional] 
+**Outcome** | Pointer to **NullableString** | The outcome of comparing the submitted full name to the issuer record.              Possible values: - Exact Match - Partial Match - Transposed - No Match - Not Returned | [optional] 
 
 ## Methods
 
 ### NewNigeriaNinMatch2FullNameField
 
-`func NewNigeriaNinMatch2FullNameField(inputValue string, outcome string, ) *NigeriaNinMatch2FullNameField`
+`func NewNigeriaNinMatch2FullNameField() *NigeriaNinMatch2FullNameField`
 
 NewNigeriaNinMatch2FullNameField instantiates a new NigeriaNinMatch2FullNameField object
 This constructor will assign default values to properties that have it defined,
@@ -45,7 +45,22 @@ and a boolean to check if the value has been set.
 
 SetInputValue sets InputValue field to given value.
 
+### HasInputValue
 
+`func (o *NigeriaNinMatch2FullNameField) HasInputValue() bool`
+
+HasInputValue returns a boolean if a field has been set.
+
+### SetInputValueNil
+
+`func (o *NigeriaNinMatch2FullNameField) SetInputValueNil(b bool)`
+
+ SetInputValueNil sets the value for InputValue to be an explicit nil
+
+### UnsetInputValue
+`func (o *NigeriaNinMatch2FullNameField) UnsetInputValue()`
+
+UnsetInputValue ensures that no value is present for InputValue, not even an explicit nil
 ### GetOutcome
 
 `func (o *NigeriaNinMatch2FullNameField) GetOutcome() string`
@@ -65,7 +80,22 @@ and a boolean to check if the value has been set.
 
 SetOutcome sets Outcome field to given value.
 
+### HasOutcome
 
+`func (o *NigeriaNinMatch2FullNameField) HasOutcome() bool`
+
+HasOutcome returns a boolean if a field has been set.
+
+### SetOutcomeNil
+
+`func (o *NigeriaNinMatch2FullNameField) SetOutcomeNil(b bool)`
+
+ SetOutcomeNil sets the value for Outcome to be an explicit nil
+
+### UnsetOutcome
+`func (o *NigeriaNinMatch2FullNameField) UnsetOutcome()`
+
+UnsetOutcome ensures that no value is present for Outcome, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

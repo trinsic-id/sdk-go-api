@@ -6,13 +6,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Pid** | Pointer to [**NullableEudiPidCredential**](EudiPidCredential.md) | An EUDI Person Identification Data (PID) credential, retrieved from the individual&#39;s wallet. | [optional] 
 **AgeVerification** | Pointer to [**NullableEudiAgeVerificationCredential**](EudiAgeVerificationCredential.md) | An EUDI Age Verification credential, retrieved from the individual&#39;s wallet. | [optional] 
-**Raw18013Output** | [**MdlOutput**](MdlOutput.md) | The raw output of the 18013-7 exchange performed through France Identité. | 
+**Raw18013Output** | Pointer to [**NullableMdlOutput**](MdlOutput.md) | The raw output of the 18013-7 exchange performed through France Identité. | [optional] 
 
 ## Methods
 
 ### NewFranceIdentiteProviderOutput
 
-`func NewFranceIdentiteProviderOutput(raw18013Output MdlOutput, ) *FranceIdentiteProviderOutput`
+`func NewFranceIdentiteProviderOutput() *FranceIdentiteProviderOutput`
 
 NewFranceIdentiteProviderOutput instantiates a new FranceIdentiteProviderOutput object
 This constructor will assign default values to properties that have it defined,
@@ -116,7 +116,22 @@ and a boolean to check if the value has been set.
 
 SetRaw18013Output sets Raw18013Output field to given value.
 
+### HasRaw18013Output
 
+`func (o *FranceIdentiteProviderOutput) HasRaw18013Output() bool`
+
+HasRaw18013Output returns a boolean if a field has been set.
+
+### SetRaw18013OutputNil
+
+`func (o *FranceIdentiteProviderOutput) SetRaw18013OutputNil(b bool)`
+
+ SetRaw18013OutputNil sets the value for Raw18013Output to be an explicit nil
+
+### UnsetRaw18013Output
+`func (o *FranceIdentiteProviderOutput) UnsetRaw18013Output()`
+
+UnsetRaw18013Output ensures that no value is present for Raw18013Output, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

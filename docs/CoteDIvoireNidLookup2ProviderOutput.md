@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**FullName** | **string** | Full name as returned by ONECI (National Civil Registry and Identification Office). | 
-**GivenName** | **string** | Given name of the ID holder as returned by ONECI (National Civil Registry and Identification Office). | 
-**FamilyName** | **string** | Family name of the ID holder as returned by ONECI (National Civil Registry and Identification Office). | 
-**DateOfBirth** | **string** | Date of birth as returned by ONECI (National Civil Registry and Identification Office). | 
-**Sex** | **string** | Sex of the ID holder as returned by ONECI (National Civil Registry and Identification Office). Possible values: - Male - Female | 
-**Nationality** | **string** | Nationality as ISO 3166-1 alpha-2 country code (e.g. \&quot;CI\&quot; for Côte d&#39;Ivoire). | 
+**FullName** | Pointer to **NullableString** | Full name as returned by ONECI (National Civil Registry and Identification Office). | [optional] 
+**GivenName** | Pointer to **NullableString** | Given name of the ID holder as returned by ONECI (National Civil Registry and Identification Office). | [optional] 
+**FamilyName** | Pointer to **NullableString** | Family name of the ID holder as returned by ONECI (National Civil Registry and Identification Office). | [optional] 
+**DateOfBirth** | Pointer to **NullableString** | Date of birth as returned by ONECI (National Civil Registry and Identification Office). | [optional] 
+**Sex** | Pointer to **NullableString** | Sex of the ID holder as returned by ONECI (National Civil Registry and Identification Office). Possible values: - Male - Female | [optional] 
+**Nationality** | Pointer to **NullableString** | Nationality as ISO 3166-1 alpha-2 country code (e.g. \&quot;CI\&quot; for Côte d&#39;Ivoire). | [optional] 
 **Address** | Pointer to **NullableString** | Address as returned from ONECI (National Civil Registry and Identification Office). Format is LOCALITY,COMMUNE: the locality (village, neighborhood, or sous-quartier) followed by the commune. Not a full street address. | [optional] 
 **DocumentNumber** | Pointer to **NullableString** | The document&#39;s own identifier (printed on the card; often labeled \&quot;Immatriculation\&quot; on older cards or \&quot;Numéro CNI\&quot; in post-2020 cards). On older cards this is usually one letter followed by 10 digits. On new cards it appears as 1 or 2 leading letters plus 9 digits. | [optional] 
 **NationalIdNumber** | Pointer to **NullableString** | The NNI (Numéro National d&#39;Identification): the person&#39;s 11-digit national ID, printed on the back of the new national id card and assigned by ONECI. It is always exactly 11 digits with no letters, and is semi-random, non-repetitive, and does not encode any extra data, such as date of birth, gender, or other readable attributes. | [optional] 
@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 
 ### NewCoteDIvoireNidLookup2ProviderOutput
 
-`func NewCoteDIvoireNidLookup2ProviderOutput(fullName string, givenName string, familyName string, dateOfBirth string, sex string, nationality string, ) *CoteDIvoireNidLookup2ProviderOutput`
+`func NewCoteDIvoireNidLookup2ProviderOutput() *CoteDIvoireNidLookup2ProviderOutput`
 
 NewCoteDIvoireNidLookup2ProviderOutput instantiates a new CoteDIvoireNidLookup2ProviderOutput object
 This constructor will assign default values to properties that have it defined,
@@ -52,7 +52,22 @@ and a boolean to check if the value has been set.
 
 SetFullName sets FullName field to given value.
 
+### HasFullName
 
+`func (o *CoteDIvoireNidLookup2ProviderOutput) HasFullName() bool`
+
+HasFullName returns a boolean if a field has been set.
+
+### SetFullNameNil
+
+`func (o *CoteDIvoireNidLookup2ProviderOutput) SetFullNameNil(b bool)`
+
+ SetFullNameNil sets the value for FullName to be an explicit nil
+
+### UnsetFullName
+`func (o *CoteDIvoireNidLookup2ProviderOutput) UnsetFullName()`
+
+UnsetFullName ensures that no value is present for FullName, not even an explicit nil
 ### GetGivenName
 
 `func (o *CoteDIvoireNidLookup2ProviderOutput) GetGivenName() string`
@@ -72,7 +87,22 @@ and a boolean to check if the value has been set.
 
 SetGivenName sets GivenName field to given value.
 
+### HasGivenName
 
+`func (o *CoteDIvoireNidLookup2ProviderOutput) HasGivenName() bool`
+
+HasGivenName returns a boolean if a field has been set.
+
+### SetGivenNameNil
+
+`func (o *CoteDIvoireNidLookup2ProviderOutput) SetGivenNameNil(b bool)`
+
+ SetGivenNameNil sets the value for GivenName to be an explicit nil
+
+### UnsetGivenName
+`func (o *CoteDIvoireNidLookup2ProviderOutput) UnsetGivenName()`
+
+UnsetGivenName ensures that no value is present for GivenName, not even an explicit nil
 ### GetFamilyName
 
 `func (o *CoteDIvoireNidLookup2ProviderOutput) GetFamilyName() string`
@@ -92,7 +122,22 @@ and a boolean to check if the value has been set.
 
 SetFamilyName sets FamilyName field to given value.
 
+### HasFamilyName
 
+`func (o *CoteDIvoireNidLookup2ProviderOutput) HasFamilyName() bool`
+
+HasFamilyName returns a boolean if a field has been set.
+
+### SetFamilyNameNil
+
+`func (o *CoteDIvoireNidLookup2ProviderOutput) SetFamilyNameNil(b bool)`
+
+ SetFamilyNameNil sets the value for FamilyName to be an explicit nil
+
+### UnsetFamilyName
+`func (o *CoteDIvoireNidLookup2ProviderOutput) UnsetFamilyName()`
+
+UnsetFamilyName ensures that no value is present for FamilyName, not even an explicit nil
 ### GetDateOfBirth
 
 `func (o *CoteDIvoireNidLookup2ProviderOutput) GetDateOfBirth() string`
@@ -112,7 +157,22 @@ and a boolean to check if the value has been set.
 
 SetDateOfBirth sets DateOfBirth field to given value.
 
+### HasDateOfBirth
 
+`func (o *CoteDIvoireNidLookup2ProviderOutput) HasDateOfBirth() bool`
+
+HasDateOfBirth returns a boolean if a field has been set.
+
+### SetDateOfBirthNil
+
+`func (o *CoteDIvoireNidLookup2ProviderOutput) SetDateOfBirthNil(b bool)`
+
+ SetDateOfBirthNil sets the value for DateOfBirth to be an explicit nil
+
+### UnsetDateOfBirth
+`func (o *CoteDIvoireNidLookup2ProviderOutput) UnsetDateOfBirth()`
+
+UnsetDateOfBirth ensures that no value is present for DateOfBirth, not even an explicit nil
 ### GetSex
 
 `func (o *CoteDIvoireNidLookup2ProviderOutput) GetSex() string`
@@ -132,7 +192,22 @@ and a boolean to check if the value has been set.
 
 SetSex sets Sex field to given value.
 
+### HasSex
 
+`func (o *CoteDIvoireNidLookup2ProviderOutput) HasSex() bool`
+
+HasSex returns a boolean if a field has been set.
+
+### SetSexNil
+
+`func (o *CoteDIvoireNidLookup2ProviderOutput) SetSexNil(b bool)`
+
+ SetSexNil sets the value for Sex to be an explicit nil
+
+### UnsetSex
+`func (o *CoteDIvoireNidLookup2ProviderOutput) UnsetSex()`
+
+UnsetSex ensures that no value is present for Sex, not even an explicit nil
 ### GetNationality
 
 `func (o *CoteDIvoireNidLookup2ProviderOutput) GetNationality() string`
@@ -152,7 +227,22 @@ and a boolean to check if the value has been set.
 
 SetNationality sets Nationality field to given value.
 
+### HasNationality
 
+`func (o *CoteDIvoireNidLookup2ProviderOutput) HasNationality() bool`
+
+HasNationality returns a boolean if a field has been set.
+
+### SetNationalityNil
+
+`func (o *CoteDIvoireNidLookup2ProviderOutput) SetNationalityNil(b bool)`
+
+ SetNationalityNil sets the value for Nationality to be an explicit nil
+
+### UnsetNationality
+`func (o *CoteDIvoireNidLookup2ProviderOutput) UnsetNationality()`
+
+UnsetNationality ensures that no value is present for Nationality, not even an explicit nil
 ### GetAddress
 
 `func (o *CoteDIvoireNidLookup2ProviderOutput) GetAddress() string`

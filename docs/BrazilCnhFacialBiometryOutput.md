@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**DatabaseFaceAvailable** | **bool** | Whether the government database had facial biometrics available for comparison. | 
+**DatabaseFaceAvailable** | Pointer to **NullableBool** | Whether the government database had facial biometrics available for comparison. | [optional] 
 **Probability** | Pointer to **NullableString** | Probability bucket returned by Serpro for the facial biometric comparison.              Known values: - VeryLow - Low - High - VeryHigh | [optional] 
 **SimilarityScore** | Pointer to **NullableFloat64** | Similarity score returned by Serpro for the facial biometric comparison.              Ranges from 0.0 to 1.0, where 1.0 is a perfect match. | [optional] 
 **Liveness** | Pointer to **NullableString** | Liveness result returned by Serpro when liveness is part of the validation response.              Known values: - BAD_QUALITY: The image quality was too low for liveness validation. - FAKE: Liveness validation detected a presentation attack or non-live face. - REAL: Liveness validation detected a live face. | [optional] 
@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 
 ### NewBrazilCnhFacialBiometryOutput
 
-`func NewBrazilCnhFacialBiometryOutput(databaseFaceAvailable bool, ) *BrazilCnhFacialBiometryOutput`
+`func NewBrazilCnhFacialBiometryOutput() *BrazilCnhFacialBiometryOutput`
 
 NewBrazilCnhFacialBiometryOutput instantiates a new BrazilCnhFacialBiometryOutput object
 This constructor will assign default values to properties that have it defined,
@@ -47,7 +47,22 @@ and a boolean to check if the value has been set.
 
 SetDatabaseFaceAvailable sets DatabaseFaceAvailable field to given value.
 
+### HasDatabaseFaceAvailable
 
+`func (o *BrazilCnhFacialBiometryOutput) HasDatabaseFaceAvailable() bool`
+
+HasDatabaseFaceAvailable returns a boolean if a field has been set.
+
+### SetDatabaseFaceAvailableNil
+
+`func (o *BrazilCnhFacialBiometryOutput) SetDatabaseFaceAvailableNil(b bool)`
+
+ SetDatabaseFaceAvailableNil sets the value for DatabaseFaceAvailable to be an explicit nil
+
+### UnsetDatabaseFaceAvailable
+`func (o *BrazilCnhFacialBiometryOutput) UnsetDatabaseFaceAvailable()`
+
+UnsetDatabaseFaceAvailable ensures that no value is present for DatabaseFaceAvailable, not even an explicit nil
 ### GetProbability
 
 `func (o *BrazilCnhFacialBiometryOutput) GetProbability() string`

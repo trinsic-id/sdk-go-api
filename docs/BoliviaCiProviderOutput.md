@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**FullName** | **string** | Full name as it appears on the CI (Cédula de Identidad). | 
-**GivenName** | **string** | Given name(s) of the holder as they appear on the CI (Cédula de Identidad). | 
-**FamilyName** | **string** | Family name(s) of the holder (paternal and maternal) as they appear on the CI (Cédula de Identidad). | 
+**FullName** | Pointer to **NullableString** | Full name as it appears on the CI (Cédula de Identidad). | [optional] 
+**GivenName** | Pointer to **NullableString** | Given name(s) of the holder as they appear on the CI (Cédula de Identidad). | [optional] 
+**FamilyName** | Pointer to **NullableString** | Family name(s) of the holder (paternal and maternal) as they appear on the CI (Cédula de Identidad). | [optional] 
 **DateOfBirth** | Pointer to **NullableString** | Date of birth as recorded in official Bolivian identity records (RUI — Registro Único de Identificación). | [optional] 
-**DocumentNumber** | **string** | The CI (Cédula de Identidad) document number for the matched record.              The document is officially called the Cédula de Identidad and is commonly called carnet or carnet de identidad in Bolivia. This is the identifier assigned by the Servicio General de Identificación Personal (SEGIP) in the Registro Único de Identificación (RUI). The value is entirely numeric. There is no verification digit or other data encoded in the number.              Published regulations do not define a fixed length; digit count may vary. | 
+**DocumentNumber** | Pointer to **NullableString** | The CI (Cédula de Identidad) document number for the matched record.              The document is officially called the Cédula de Identidad and is commonly called carnet or carnet de identidad in Bolivia. This is the identifier assigned by the Servicio General de Identificación Personal (SEGIP) in the Registro Único de Identificación (RUI). The value is entirely numeric. There is no verification digit or other data encoded in the number.              Published regulations do not define a fixed length; digit count may vary. | [optional] 
 
 ## Methods
 
 ### NewBoliviaCiProviderOutput
 
-`func NewBoliviaCiProviderOutput(fullName string, givenName string, familyName string, documentNumber string, ) *BoliviaCiProviderOutput`
+`func NewBoliviaCiProviderOutput() *BoliviaCiProviderOutput`
 
 NewBoliviaCiProviderOutput instantiates a new BoliviaCiProviderOutput object
 This constructor will assign default values to properties that have it defined,
@@ -48,7 +48,22 @@ and a boolean to check if the value has been set.
 
 SetFullName sets FullName field to given value.
 
+### HasFullName
 
+`func (o *BoliviaCiProviderOutput) HasFullName() bool`
+
+HasFullName returns a boolean if a field has been set.
+
+### SetFullNameNil
+
+`func (o *BoliviaCiProviderOutput) SetFullNameNil(b bool)`
+
+ SetFullNameNil sets the value for FullName to be an explicit nil
+
+### UnsetFullName
+`func (o *BoliviaCiProviderOutput) UnsetFullName()`
+
+UnsetFullName ensures that no value is present for FullName, not even an explicit nil
 ### GetGivenName
 
 `func (o *BoliviaCiProviderOutput) GetGivenName() string`
@@ -68,7 +83,22 @@ and a boolean to check if the value has been set.
 
 SetGivenName sets GivenName field to given value.
 
+### HasGivenName
 
+`func (o *BoliviaCiProviderOutput) HasGivenName() bool`
+
+HasGivenName returns a boolean if a field has been set.
+
+### SetGivenNameNil
+
+`func (o *BoliviaCiProviderOutput) SetGivenNameNil(b bool)`
+
+ SetGivenNameNil sets the value for GivenName to be an explicit nil
+
+### UnsetGivenName
+`func (o *BoliviaCiProviderOutput) UnsetGivenName()`
+
+UnsetGivenName ensures that no value is present for GivenName, not even an explicit nil
 ### GetFamilyName
 
 `func (o *BoliviaCiProviderOutput) GetFamilyName() string`
@@ -88,7 +118,22 @@ and a boolean to check if the value has been set.
 
 SetFamilyName sets FamilyName field to given value.
 
+### HasFamilyName
 
+`func (o *BoliviaCiProviderOutput) HasFamilyName() bool`
+
+HasFamilyName returns a boolean if a field has been set.
+
+### SetFamilyNameNil
+
+`func (o *BoliviaCiProviderOutput) SetFamilyNameNil(b bool)`
+
+ SetFamilyNameNil sets the value for FamilyName to be an explicit nil
+
+### UnsetFamilyName
+`func (o *BoliviaCiProviderOutput) UnsetFamilyName()`
+
+UnsetFamilyName ensures that no value is present for FamilyName, not even an explicit nil
 ### GetDateOfBirth
 
 `func (o *BoliviaCiProviderOutput) GetDateOfBirth() string`
@@ -143,7 +188,22 @@ and a boolean to check if the value has been set.
 
 SetDocumentNumber sets DocumentNumber field to given value.
 
+### HasDocumentNumber
 
+`func (o *BoliviaCiProviderOutput) HasDocumentNumber() bool`
+
+HasDocumentNumber returns a boolean if a field has been set.
+
+### SetDocumentNumberNil
+
+`func (o *BoliviaCiProviderOutput) SetDocumentNumberNil(b bool)`
+
+ SetDocumentNumberNil sets the value for DocumentNumber to be an explicit nil
+
+### UnsetDocumentNumber
+`func (o *BoliviaCiProviderOutput) UnsetDocumentNumber()`
+
+UnsetDocumentNumber ensures that no value is present for DocumentNumber, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

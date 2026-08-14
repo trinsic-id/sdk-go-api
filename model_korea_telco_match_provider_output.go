@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the KoreaTelcoMatchProviderOutput type satisfies the MappedNullable interface at compile time
@@ -20,12 +19,12 @@ var _ MappedNullable = &KoreaTelcoMatchProviderOutput{}
 
 // KoreaTelcoMatchProviderOutput Exposed properties for the `korea-telco-match` Provider which do not directly map to the normalized IdentityData model.
 type KoreaTelcoMatchProviderOutput struct {
-	// The verified phone number as submitted by the relying party.
-	PhoneNumber string `json:"phoneNumber"`
-	// The mobile carrier used for verification. Possible values: <list type=\"bullet\"><item><description>Lgu</description></item><item><description>Skt</description></item><item><description>Kt</description></item></list>
-	TeleType string `json:"teleType"`
-	// The RaonSecure result code returned by the carrier verification system. \"0000\" indicates a successful match.              Common error codes: - \"0000\": Successful match - \"0001\": Identity Verification Failed - Verification Information Mismatch (General) - \"0002\": Identity Verification Failed - Unable to Verify Phone Number - \"0004\": Identity Verification Failed - Date of Birth Verification Error - \"0005\": Identity Verification Failed - Gender Verification Error - \"0006\": Identity Verification Failed - Name Verification Error - \"0009\": Identity Verification Failed - Device OS Mismatch
-	ResultCode string `json:"resultCode"`
+	// The phone number submitted for the carrier match.
+	PhoneNumber NullableString `json:"phoneNumber,omitempty"`
+	// The mobile carrier used for the match.              Supported values: Lgu, Skt, Kt.
+	TeleType NullableString `json:"teleType,omitempty"`
+	// The carrier match result code.              Common result codes: - \"0000\": Successful match - \"0001\": Failed - Verification Information Mismatch (General) - \"0002\": Failed - Unable to Verify Phone Number - \"0004\": Failed - Date of Birth Verification Error - \"0005\": Failed - Gender Verification Error - \"0006\": Failed - Name Verification Error - \"0009\": Failed - Device OS Mismatch
+	ResultCode NullableString `json:"resultCode,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -35,11 +34,8 @@ type _KoreaTelcoMatchProviderOutput KoreaTelcoMatchProviderOutput
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewKoreaTelcoMatchProviderOutput(phoneNumber string, teleType string, resultCode string) *KoreaTelcoMatchProviderOutput {
+func NewKoreaTelcoMatchProviderOutput() *KoreaTelcoMatchProviderOutput {
 	this := KoreaTelcoMatchProviderOutput{}
-	this.PhoneNumber = phoneNumber
-	this.TeleType = teleType
-	this.ResultCode = resultCode
 	return &this
 }
 
@@ -51,76 +47,130 @@ func NewKoreaTelcoMatchProviderOutputWithDefaults() *KoreaTelcoMatchProviderOutp
 	return &this
 }
 
-// GetPhoneNumber returns the PhoneNumber field value
+// GetPhoneNumber returns the PhoneNumber field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *KoreaTelcoMatchProviderOutput) GetPhoneNumber() string {
-	if o == nil {
+	if o == nil || IsNil(o.PhoneNumber.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.PhoneNumber
+	return *o.PhoneNumber.Get()
 }
 
-// GetPhoneNumberOk returns a tuple with the PhoneNumber field value
+// GetPhoneNumberOk returns a tuple with the PhoneNumber field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *KoreaTelcoMatchProviderOutput) GetPhoneNumberOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.PhoneNumber, true
+	return o.PhoneNumber.Get(), o.PhoneNumber.IsSet()
 }
 
-// SetPhoneNumber sets field value
+// HasPhoneNumber returns a boolean if a field has been set.
+func (o *KoreaTelcoMatchProviderOutput) HasPhoneNumber() bool {
+	if o != nil && o.PhoneNumber.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPhoneNumber gets a reference to the given NullableString and assigns it to the PhoneNumber field.
 func (o *KoreaTelcoMatchProviderOutput) SetPhoneNumber(v string) {
-	o.PhoneNumber = v
+	o.PhoneNumber.Set(&v)
+}
+// SetPhoneNumberNil sets the value for PhoneNumber to be an explicit nil
+func (o *KoreaTelcoMatchProviderOutput) SetPhoneNumberNil() {
+	o.PhoneNumber.Set(nil)
 }
 
-// GetTeleType returns the TeleType field value
+// UnsetPhoneNumber ensures that no value is present for PhoneNumber, not even an explicit nil
+func (o *KoreaTelcoMatchProviderOutput) UnsetPhoneNumber() {
+	o.PhoneNumber.Unset()
+}
+
+// GetTeleType returns the TeleType field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *KoreaTelcoMatchProviderOutput) GetTeleType() string {
-	if o == nil {
+	if o == nil || IsNil(o.TeleType.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.TeleType
+	return *o.TeleType.Get()
 }
 
-// GetTeleTypeOk returns a tuple with the TeleType field value
+// GetTeleTypeOk returns a tuple with the TeleType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *KoreaTelcoMatchProviderOutput) GetTeleTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.TeleType, true
+	return o.TeleType.Get(), o.TeleType.IsSet()
 }
 
-// SetTeleType sets field value
+// HasTeleType returns a boolean if a field has been set.
+func (o *KoreaTelcoMatchProviderOutput) HasTeleType() bool {
+	if o != nil && o.TeleType.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTeleType gets a reference to the given NullableString and assigns it to the TeleType field.
 func (o *KoreaTelcoMatchProviderOutput) SetTeleType(v string) {
-	o.TeleType = v
+	o.TeleType.Set(&v)
+}
+// SetTeleTypeNil sets the value for TeleType to be an explicit nil
+func (o *KoreaTelcoMatchProviderOutput) SetTeleTypeNil() {
+	o.TeleType.Set(nil)
 }
 
-// GetResultCode returns the ResultCode field value
+// UnsetTeleType ensures that no value is present for TeleType, not even an explicit nil
+func (o *KoreaTelcoMatchProviderOutput) UnsetTeleType() {
+	o.TeleType.Unset()
+}
+
+// GetResultCode returns the ResultCode field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *KoreaTelcoMatchProviderOutput) GetResultCode() string {
-	if o == nil {
+	if o == nil || IsNil(o.ResultCode.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.ResultCode
+	return *o.ResultCode.Get()
 }
 
-// GetResultCodeOk returns a tuple with the ResultCode field value
+// GetResultCodeOk returns a tuple with the ResultCode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *KoreaTelcoMatchProviderOutput) GetResultCodeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.ResultCode, true
+	return o.ResultCode.Get(), o.ResultCode.IsSet()
 }
 
-// SetResultCode sets field value
+// HasResultCode returns a boolean if a field has been set.
+func (o *KoreaTelcoMatchProviderOutput) HasResultCode() bool {
+	if o != nil && o.ResultCode.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetResultCode gets a reference to the given NullableString and assigns it to the ResultCode field.
 func (o *KoreaTelcoMatchProviderOutput) SetResultCode(v string) {
-	o.ResultCode = v
+	o.ResultCode.Set(&v)
+}
+// SetResultCodeNil sets the value for ResultCode to be an explicit nil
+func (o *KoreaTelcoMatchProviderOutput) SetResultCodeNil() {
+	o.ResultCode.Set(nil)
+}
+
+// UnsetResultCode ensures that no value is present for ResultCode, not even an explicit nil
+func (o *KoreaTelcoMatchProviderOutput) UnsetResultCode() {
+	o.ResultCode.Unset()
 }
 
 func (o KoreaTelcoMatchProviderOutput) MarshalJSON() ([]byte, error) {
@@ -133,9 +183,15 @@ func (o KoreaTelcoMatchProviderOutput) MarshalJSON() ([]byte, error) {
 
 func (o KoreaTelcoMatchProviderOutput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["phoneNumber"] = o.PhoneNumber
-	toSerialize["teleType"] = o.TeleType
-	toSerialize["resultCode"] = o.ResultCode
+	if o.PhoneNumber.IsSet() {
+		toSerialize["phoneNumber"] = o.PhoneNumber.Get()
+	}
+	if o.TeleType.IsSet() {
+		toSerialize["teleType"] = o.TeleType.Get()
+	}
+	if o.ResultCode.IsSet() {
+		toSerialize["resultCode"] = o.ResultCode.Get()
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -145,29 +201,6 @@ func (o KoreaTelcoMatchProviderOutput) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *KoreaTelcoMatchProviderOutput) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"phoneNumber",
-		"teleType",
-		"resultCode",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varKoreaTelcoMatchProviderOutput := _KoreaTelcoMatchProviderOutput{}
 
 	err = json.Unmarshal(data, &varKoreaTelcoMatchProviderOutput)

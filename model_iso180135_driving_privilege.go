@@ -12,16 +12,15 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the Iso180135DrivingPrivilege type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Iso180135DrivingPrivilege{}
 
-// Iso180135DrivingPrivilege A single driving privilege entry from the mDL `driving_privileges` field, per ISO 18013-5.
+// Iso180135DrivingPrivilege A single driving privilege entry, per ISO 18013-5.
 type Iso180135DrivingPrivilege struct {
 	// Vehicle category code that the holder is authorized to operate.
-	VehicleCategoryCode string `json:"vehicleCategoryCode"`
+	VehicleCategoryCode NullableString `json:"vehicleCategoryCode,omitempty"`
 	// Date when this driving privilege was issued.
 	IssueDate NullableString `json:"issueDate,omitempty"`
 	// Date when this driving privilege expires.
@@ -37,9 +36,8 @@ type _Iso180135DrivingPrivilege Iso180135DrivingPrivilege
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewIso180135DrivingPrivilege(vehicleCategoryCode string) *Iso180135DrivingPrivilege {
+func NewIso180135DrivingPrivilege() *Iso180135DrivingPrivilege {
 	this := Iso180135DrivingPrivilege{}
-	this.VehicleCategoryCode = vehicleCategoryCode
 	return &this
 }
 
@@ -51,28 +49,46 @@ func NewIso180135DrivingPrivilegeWithDefaults() *Iso180135DrivingPrivilege {
 	return &this
 }
 
-// GetVehicleCategoryCode returns the VehicleCategoryCode field value
+// GetVehicleCategoryCode returns the VehicleCategoryCode field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Iso180135DrivingPrivilege) GetVehicleCategoryCode() string {
-	if o == nil {
+	if o == nil || IsNil(o.VehicleCategoryCode.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.VehicleCategoryCode
+	return *o.VehicleCategoryCode.Get()
 }
 
-// GetVehicleCategoryCodeOk returns a tuple with the VehicleCategoryCode field value
+// GetVehicleCategoryCodeOk returns a tuple with the VehicleCategoryCode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Iso180135DrivingPrivilege) GetVehicleCategoryCodeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.VehicleCategoryCode, true
+	return o.VehicleCategoryCode.Get(), o.VehicleCategoryCode.IsSet()
 }
 
-// SetVehicleCategoryCode sets field value
+// HasVehicleCategoryCode returns a boolean if a field has been set.
+func (o *Iso180135DrivingPrivilege) HasVehicleCategoryCode() bool {
+	if o != nil && o.VehicleCategoryCode.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetVehicleCategoryCode gets a reference to the given NullableString and assigns it to the VehicleCategoryCode field.
 func (o *Iso180135DrivingPrivilege) SetVehicleCategoryCode(v string) {
-	o.VehicleCategoryCode = v
+	o.VehicleCategoryCode.Set(&v)
+}
+// SetVehicleCategoryCodeNil sets the value for VehicleCategoryCode to be an explicit nil
+func (o *Iso180135DrivingPrivilege) SetVehicleCategoryCodeNil() {
+	o.VehicleCategoryCode.Set(nil)
+}
+
+// UnsetVehicleCategoryCode ensures that no value is present for VehicleCategoryCode, not even an explicit nil
+func (o *Iso180135DrivingPrivilege) UnsetVehicleCategoryCode() {
+	o.VehicleCategoryCode.Unset()
 }
 
 // GetIssueDate returns the IssueDate field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -202,7 +218,9 @@ func (o Iso180135DrivingPrivilege) MarshalJSON() ([]byte, error) {
 
 func (o Iso180135DrivingPrivilege) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["vehicleCategoryCode"] = o.VehicleCategoryCode
+	if o.VehicleCategoryCode.IsSet() {
+		toSerialize["vehicleCategoryCode"] = o.VehicleCategoryCode.Get()
+	}
 	if o.IssueDate.IsSet() {
 		toSerialize["issueDate"] = o.IssueDate.Get()
 	}
@@ -221,27 +239,6 @@ func (o Iso180135DrivingPrivilege) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *Iso180135DrivingPrivilege) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"vehicleCategoryCode",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varIso180135DrivingPrivilege := _Iso180135DrivingPrivilege{}
 
 	err = json.Unmarshal(data, &varIso180135DrivingPrivilege)
