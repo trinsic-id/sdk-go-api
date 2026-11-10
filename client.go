@@ -479,7 +479,7 @@ func (c *APIClient) prepareRequest(
 	for header, value := range c.cfg.DefaultHeader {
 		localVarRequest.Header.Add(header, value)
 	}
-	localVarRequest.Header.Set("X-Trinsic-SDK", "go/3.3.0-alpha3")
+	localVarRequest.Header.Set("X-Trinsic-SDK", "go/3.3.0-alpha4")
 	return localVarRequest, nil
 }
 
