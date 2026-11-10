@@ -11,14 +11,11 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewSouthAfricaNidInput
+### Named construction
 
-`func NewSouthAfricaNidInput(fullName string, dateOfBirth string, gender string, nationalIdNumber string, ) *SouthAfricaNidInput`
-
-NewSouthAfricaNidInput instantiates a new SouthAfricaNidInput object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+Use a keyed struct literal (`SouthAfricaNidInput{FieldName: value}`), or call
+`NewSouthAfricaNidInputWithDefaults()` and set fields by name. Positional field
+factories and unkeyed struct literals are not supported.
 
 ### NewSouthAfricaNidInputWithDefaults
 

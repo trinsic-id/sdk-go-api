@@ -17,14 +17,11 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewSouthAfricaNidLookup2ProviderOutput
+### Named construction
 
-`func NewSouthAfricaNidLookup2ProviderOutput() *SouthAfricaNidLookup2ProviderOutput`
-
-NewSouthAfricaNidLookup2ProviderOutput instantiates a new SouthAfricaNidLookup2ProviderOutput object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+Use a keyed struct literal (`SouthAfricaNidLookup2ProviderOutput{FieldName: value}`), or call
+`NewSouthAfricaNidLookup2ProviderOutputWithDefaults()` and set fields by name. Positional field
+factories and unkeyed struct literals are not supported.
 
 ### NewSouthAfricaNidLookup2ProviderOutputWithDefaults
 

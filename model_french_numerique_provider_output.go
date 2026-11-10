@@ -19,6 +19,8 @@ var _ MappedNullable = &FrenchNumeriqueProviderOutput{}
 
 // FrenchNumeriqueProviderOutput Exposed properties for the `france-identite-numerique` Provider which do not directly map to the normalized IdentityData model.
 type FrenchNumeriqueProviderOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// OpenID Connect subject identifier (sub) for the verified individual.
 	Sub NullableString `json:"sub,omitempty"`
 	// Full given name(s) as recorded on the individual's French identity document.              If the individual has multiple given names, they are separated by a single space.
@@ -79,15 +81,6 @@ type FrenchNumeriqueProviderOutput struct {
 }
 
 type _FrenchNumeriqueProviderOutput FrenchNumeriqueProviderOutput
-
-// NewFrenchNumeriqueProviderOutput instantiates a new FrenchNumeriqueProviderOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewFrenchNumeriqueProviderOutput() *FrenchNumeriqueProviderOutput {
-	this := FrenchNumeriqueProviderOutput{}
-	return &this
-}
 
 // NewFrenchNumeriqueProviderOutputWithDefaults instantiates a new FrenchNumeriqueProviderOutput object
 // This constructor will only assign default values to properties that have it defined,

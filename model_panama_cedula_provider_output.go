@@ -19,6 +19,8 @@ var _ MappedNullable = &PanamaCedulaProviderOutput{}
 
 // PanamaCedulaProviderOutput Exposed properties for the `panama-cedula-lookup` Provider which do not directly map to the normalized IdentityData model.
 type PanamaCedulaProviderOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// Full name from Tribunal Electoral records.
 	FullName NullableString `json:"fullName,omitempty"`
 	// Given name(s) from Tribunal Electoral records.
@@ -37,15 +39,6 @@ type PanamaCedulaProviderOutput struct {
 }
 
 type _PanamaCedulaProviderOutput PanamaCedulaProviderOutput
-
-// NewPanamaCedulaProviderOutput instantiates a new PanamaCedulaProviderOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewPanamaCedulaProviderOutput() *PanamaCedulaProviderOutput {
-	this := PanamaCedulaProviderOutput{}
-	return &this
-}
 
 // NewPanamaCedulaProviderOutputWithDefaults instantiates a new PanamaCedulaProviderOutput object
 // This constructor will only assign default values to properties that have it defined,

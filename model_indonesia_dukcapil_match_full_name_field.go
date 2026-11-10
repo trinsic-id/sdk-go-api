@@ -19,6 +19,8 @@ var _ MappedNullable = &IndonesiaDukcapilMatchFullNameField{}
 
 // IndonesiaDukcapilMatchFullNameField struct for IndonesiaDukcapilMatchFullNameField
 type IndonesiaDukcapilMatchFullNameField struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The full name submitted for this check.
 	InputValue NullableString `json:"inputValue,omitempty"`
 	// The provider assessment result for the submitted full name.              Format: numeric score from 0.0 to 1.0, where higher values indicate closer agreement with the Dukcapil record.
@@ -27,15 +29,6 @@ type IndonesiaDukcapilMatchFullNameField struct {
 }
 
 type _IndonesiaDukcapilMatchFullNameField IndonesiaDukcapilMatchFullNameField
-
-// NewIndonesiaDukcapilMatchFullNameField instantiates a new IndonesiaDukcapilMatchFullNameField object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewIndonesiaDukcapilMatchFullNameField() *IndonesiaDukcapilMatchFullNameField {
-	this := IndonesiaDukcapilMatchFullNameField{}
-	return &this
-}
 
 // NewIndonesiaDukcapilMatchFullNameFieldWithDefaults instantiates a new IndonesiaDukcapilMatchFullNameField object
 // This constructor will only assign default values to properties that have it defined,

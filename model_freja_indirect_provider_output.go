@@ -19,6 +19,8 @@ var _ MappedNullable = &FrejaIndirectProviderOutput{}
 
 // FrejaIndirectProviderOutput Exposed properties for the `a-freja-eid-login` Provider which do not directly map to the normalized IdentityData model.
 type FrejaIndirectProviderOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The first name of the verified individual
 	FirstName NullableString `json:"firstName,omitempty"`
 	// The last name of the verified individual
@@ -31,15 +33,6 @@ type FrejaIndirectProviderOutput struct {
 }
 
 type _FrejaIndirectProviderOutput FrejaIndirectProviderOutput
-
-// NewFrejaIndirectProviderOutput instantiates a new FrejaIndirectProviderOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewFrejaIndirectProviderOutput() *FrejaIndirectProviderOutput {
-	this := FrejaIndirectProviderOutput{}
-	return &this
-}
 
 // NewFrejaIndirectProviderOutputWithDefaults instantiates a new FrejaIndirectProviderOutput object
 // This constructor will only assign default values to properties that have it defined,

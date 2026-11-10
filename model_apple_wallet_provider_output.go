@@ -19,6 +19,8 @@ var _ MappedNullable = &AppleWalletProviderOutput{}
 
 // AppleWalletProviderOutput Exposed properties for the `apple-wallet` Provider which do not directly map to the normalized IdentityData model.
 type AppleWalletProviderOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// A standard 18013-5 Mobile Driver's License credential, retrieved from the individual's wallet.
 	MobileDriversLicense NullableIso180135MobileDriversLicenseCredential `json:"mobileDriversLicense,omitempty"`
 	// An Apple Wallet Digital ID credential (`org.iso.23220.photoid.1`), retrieved from the individual's wallet.
@@ -29,15 +31,6 @@ type AppleWalletProviderOutput struct {
 }
 
 type _AppleWalletProviderOutput AppleWalletProviderOutput
-
-// NewAppleWalletProviderOutput instantiates a new AppleWalletProviderOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewAppleWalletProviderOutput() *AppleWalletProviderOutput {
-	this := AppleWalletProviderOutput{}
-	return &this
-}
 
 // NewAppleWalletProviderOutputWithDefaults instantiates a new AppleWalletProviderOutput object
 // This constructor will only assign default values to properties that have it defined,

@@ -9,14 +9,11 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewResultCollection
+### Named construction
 
-`func NewResultCollection(method ResultCollectionMethod, resultsAccessKey string, ) *ResultCollection`
-
-NewResultCollection instantiates a new ResultCollection object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+Use a keyed struct literal (`ResultCollection{FieldName: value}`), or call
+`NewResultCollectionWithDefaults()` and set fields by name. Positional field
+factories and unkeyed struct literals are not supported.
 
 ### NewResultCollectionWithDefaults
 

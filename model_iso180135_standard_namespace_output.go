@@ -20,6 +20,8 @@ var _ MappedNullable = &Iso180135StandardNamespaceOutput{}
 
 // Iso180135StandardNamespaceOutput Fields from the ISO 18013-5 standard mDL namespace.
 type Iso180135StandardNamespaceOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// First name(s), other name(s), or secondary identifier of the individual.
 	GivenName NullableString `json:"givenName,omitempty"`
 	// The given name of the individual using the full UTF-8 character set.
@@ -94,15 +96,6 @@ type Iso180135StandardNamespaceOutput struct {
 }
 
 type _Iso180135StandardNamespaceOutput Iso180135StandardNamespaceOutput
-
-// NewIso180135StandardNamespaceOutput instantiates a new Iso180135StandardNamespaceOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewIso180135StandardNamespaceOutput() *Iso180135StandardNamespaceOutput {
-	this := Iso180135StandardNamespaceOutput{}
-	return &this
-}
 
 // NewIso180135StandardNamespaceOutputWithDefaults instantiates a new Iso180135StandardNamespaceOutput object
 // This constructor will only assign default values to properties that have it defined,

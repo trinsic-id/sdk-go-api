@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**CpfNumber** | Pointer to **NullableString** | The individual&#39;s CPF number.              A CPF (Cadastro de Pessoas Físicas) is the Brazilian individual taxpayer identification number for residents and foreigners. It is an 11-digit number managed by the Federal Revenue Service, the last 2 digits are check digits, calculated based on the first 9 digits. The 9th digit indicates the fiscal region responsible for the registration, | [optional] 
 **FullName** | Pointer to [**NullableBrazilCnhMatchFieldString**](BrazilCnhMatchFieldString.md) | Full name decoded from the CNH QR Code and whether it matched the government database. | [optional] 
 **FullNameSimilarity** | Pointer to **NullableFloat64** | Similarity score for the decoded full name from the CNH QR Code.              Ranges from 0.0 to 1.0, where 1.0 is an exact match. | [optional] 
 **OriginDocument** | Pointer to **NullableString** | Source identity document number/reference for the CNH record, decoded from the CNH QR Code. | [optional] 
@@ -23,14 +24,11 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewBrazilCnhProviderOutput
+### Named construction
 
-`func NewBrazilCnhProviderOutput() *BrazilCnhProviderOutput`
-
-NewBrazilCnhProviderOutput instantiates a new BrazilCnhProviderOutput object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+Use a keyed struct literal (`BrazilCnhProviderOutput{FieldName: value}`), or call
+`NewBrazilCnhProviderOutputWithDefaults()` and set fields by name. Positional field
+factories and unkeyed struct literals are not supported.
 
 ### NewBrazilCnhProviderOutputWithDefaults
 
@@ -40,6 +38,41 @@ NewBrazilCnhProviderOutputWithDefaults instantiates a new BrazilCnhProviderOutpu
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
+### GetCpfNumber
+
+`func (o *BrazilCnhProviderOutput) GetCpfNumber() string`
+
+GetCpfNumber returns the CpfNumber field if non-nil, zero value otherwise.
+
+### GetCpfNumberOk
+
+`func (o *BrazilCnhProviderOutput) GetCpfNumberOk() (*string, bool)`
+
+GetCpfNumberOk returns a tuple with the CpfNumber field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCpfNumber
+
+`func (o *BrazilCnhProviderOutput) SetCpfNumber(v string)`
+
+SetCpfNumber sets CpfNumber field to given value.
+
+### HasCpfNumber
+
+`func (o *BrazilCnhProviderOutput) HasCpfNumber() bool`
+
+HasCpfNumber returns a boolean if a field has been set.
+
+### SetCpfNumberNil
+
+`func (o *BrazilCnhProviderOutput) SetCpfNumberNil(b bool)`
+
+ SetCpfNumberNil sets the value for CpfNumber to be an explicit nil
+
+### UnsetCpfNumber
+`func (o *BrazilCnhProviderOutput) UnsetCpfNumber()`
+
+UnsetCpfNumber ensures that no value is present for CpfNumber, not even an explicit nil
 ### GetFullName
 
 `func (o *BrazilCnhProviderOutput) GetFullName() BrazilCnhMatchFieldString`

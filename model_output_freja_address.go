@@ -19,6 +19,8 @@ var _ MappedNullable = &OutputFrejaAddress{}
 
 // OutputFrejaAddress struct for OutputFrejaAddress
 type OutputFrejaAddress struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The line1 portion of the address. Incorporates all address details that are not included by city, postal code, and country.
 	Line1 NullableString `json:"line1,omitempty"`
 	// The name of the city associated with the address.
@@ -31,15 +33,6 @@ type OutputFrejaAddress struct {
 }
 
 type _OutputFrejaAddress OutputFrejaAddress
-
-// NewOutputFrejaAddress instantiates a new OutputFrejaAddress object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewOutputFrejaAddress() *OutputFrejaAddress {
-	this := OutputFrejaAddress{}
-	return &this
-}
 
 // NewOutputFrejaAddressWithDefaults instantiates a new OutputFrejaAddress object
 // This constructor will only assign default values to properties that have it defined,

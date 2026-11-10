@@ -19,6 +19,8 @@ var _ MappedNullable = &MitIdProviderOutput{}
 
 // MitIdProviderOutput Exposed properties for the `denmark-mitid` Provider which do not directly map to the normalized IdentityData model.
 type MitIdProviderOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The full name of the individual.
 	FullName NullableString `json:"fullName,omitempty"`
 	// The date of birth of the individual.
@@ -41,19 +43,12 @@ type MitIdProviderOutput struct {
 	OrganizationNumber NullableString `json:"organizationNumber,omitempty"`
 	// The organization number (CVR number) of the organization the individual is authorized to represent. This is only returned if the requested scope is for an organization verification and the individual provides a private source on behalf of a company.
 	AuthorizedRepresentativeNumber NullableString `json:"authorizedRepresentativeNumber,omitempty"`
+	// The individual's address.
+	Address NullableMitIdAddressOutput `json:"address,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
 type _MitIdProviderOutput MitIdProviderOutput
-
-// NewMitIdProviderOutput instantiates a new MitIdProviderOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewMitIdProviderOutput() *MitIdProviderOutput {
-	this := MitIdProviderOutput{}
-	return &this
-}
 
 // NewMitIdProviderOutputWithDefaults instantiates a new MitIdProviderOutput object
 // This constructor will only assign default values to properties that have it defined,
@@ -525,6 +520,48 @@ func (o *MitIdProviderOutput) UnsetAuthorizedRepresentativeNumber() {
 	o.AuthorizedRepresentativeNumber.Unset()
 }
 
+// GetAddress returns the Address field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MitIdProviderOutput) GetAddress() MitIdAddressOutput {
+	if o == nil || IsNil(o.Address.Get()) {
+		var ret MitIdAddressOutput
+		return ret
+	}
+	return *o.Address.Get()
+}
+
+// GetAddressOk returns a tuple with the Address field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MitIdProviderOutput) GetAddressOk() (*MitIdAddressOutput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Address.Get(), o.Address.IsSet()
+}
+
+// HasAddress returns a boolean if a field has been set.
+func (o *MitIdProviderOutput) HasAddress() bool {
+	if o != nil && o.Address.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAddress gets a reference to the given NullableMitIdAddressOutput and assigns it to the Address field.
+func (o *MitIdProviderOutput) SetAddress(v MitIdAddressOutput) {
+	o.Address.Set(&v)
+}
+// SetAddressNil sets the value for Address to be an explicit nil
+func (o *MitIdProviderOutput) SetAddressNil() {
+	o.Address.Set(nil)
+}
+
+// UnsetAddress ensures that no value is present for Address, not even an explicit nil
+func (o *MitIdProviderOutput) UnsetAddress() {
+	o.Address.Unset()
+}
+
 func (o MitIdProviderOutput) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -568,6 +605,9 @@ func (o MitIdProviderOutput) ToMap() (map[string]interface{}, error) {
 	if o.AuthorizedRepresentativeNumber.IsSet() {
 		toSerialize["authorizedRepresentativeNumber"] = o.AuthorizedRepresentativeNumber.Get()
 	}
+	if o.Address.IsSet() {
+		toSerialize["address"] = o.Address.Get()
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -601,6 +641,7 @@ func (o *MitIdProviderOutput) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "organizationName")
 		delete(additionalProperties, "organizationNumber")
 		delete(additionalProperties, "authorizedRepresentativeNumber")
+		delete(additionalProperties, "address")
 		o.AdditionalProperties = additionalProperties
 	}
 

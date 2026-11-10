@@ -20,6 +20,8 @@ var _ MappedNullable = &DigilockerAadhaarProviderOutput{}
 
 // DigilockerAadhaarProviderOutput Exposed properties for the `india-digilocker-aadhaar` Provider which do not directly map to the normalized IdentityData model.
 type DigilockerAadhaarProviderOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The document type from which the identity data was retrieved.
 	DocumentType NullableString `json:"documentType,omitempty"`
 	// The timestamp when the signed document was generated and verified.
@@ -32,21 +34,12 @@ type DigilockerAadhaarProviderOutput struct {
 	Claims NullableAadhaarClaims `json:"claims,omitempty"`
 	// The localized claims extracted from the Aadhaar document.
 	LocalizedClaims NullableAadhaarLocalizedClaims `json:"localizedClaims,omitempty"`
-	// Whether our own validation of the Aadhaar document signature and certificate chain succeeded.              When the signed document (e.g. Digilocker XML) is available, we validate it using the standard CCA/SafeScrypt chain. When the document is not returned, the signature cannot be validated and this is false. Some providers (e.g. Signzy) also supply a separate DSC validation indicator in the webhook payload; that is independent of this flag, which reflects only our validation.
+	// Whether our own validation of the Aadhaar document signature and certificate chain succeeded.              When the signed document (e.g. Digilocker XML) is available, we validate it using the standard CCA/SafeScrypt chain. When the document is not returned, the signature cannot be validated and this is false. Some providers also supply a separate DSC validation indicator in the webhook payload; that is independent of this flag, which reflects only our validation.
 	DocumentSignatureValidated NullableBool `json:"documentSignatureValidated,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
 type _DigilockerAadhaarProviderOutput DigilockerAadhaarProviderOutput
-
-// NewDigilockerAadhaarProviderOutput instantiates a new DigilockerAadhaarProviderOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewDigilockerAadhaarProviderOutput() *DigilockerAadhaarProviderOutput {
-	this := DigilockerAadhaarProviderOutput{}
-	return &this
-}
 
 // NewDigilockerAadhaarProviderOutputWithDefaults instantiates a new DigilockerAadhaarProviderOutput object
 // This constructor will only assign default values to properties that have it defined,

@@ -19,6 +19,8 @@ var _ MappedNullable = &Iso180135AamvaDomesticVehicleRestriction{}
 
 // Iso180135AamvaDomesticVehicleRestriction Vehicle restriction attached to a domestic driving privilege.
 type Iso180135AamvaDomesticVehicleRestriction struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// Restriction code, when present.
 	Code NullableString `json:"code,omitempty"`
 	// Human-readable description of the restriction.
@@ -27,15 +29,6 @@ type Iso180135AamvaDomesticVehicleRestriction struct {
 }
 
 type _Iso180135AamvaDomesticVehicleRestriction Iso180135AamvaDomesticVehicleRestriction
-
-// NewIso180135AamvaDomesticVehicleRestriction instantiates a new Iso180135AamvaDomesticVehicleRestriction object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewIso180135AamvaDomesticVehicleRestriction() *Iso180135AamvaDomesticVehicleRestriction {
-	this := Iso180135AamvaDomesticVehicleRestriction{}
-	return &this
-}
 
 // NewIso180135AamvaDomesticVehicleRestrictionWithDefaults instantiates a new Iso180135AamvaDomesticVehicleRestriction object
 // This constructor will only assign default values to properties that have it defined,

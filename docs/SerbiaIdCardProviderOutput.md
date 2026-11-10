@@ -11,14 +11,11 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewSerbiaIdCardProviderOutput
+### Named construction
 
-`func NewSerbiaIdCardProviderOutput() *SerbiaIdCardProviderOutput`
-
-NewSerbiaIdCardProviderOutput instantiates a new SerbiaIdCardProviderOutput object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+Use a keyed struct literal (`SerbiaIdCardProviderOutput{FieldName: value}`), or call
+`NewSerbiaIdCardProviderOutputWithDefaults()` and set fields by name. Positional field
+factories and unkeyed struct literals are not supported.
 
 ### NewSerbiaIdCardProviderOutputWithDefaults
 

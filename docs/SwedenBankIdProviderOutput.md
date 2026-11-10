@@ -5,7 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **FullName** | Pointer to **NullableString** | The full name of the individual. | [optional] 
-**DateOfBirth** | Pointer to **NullableString** | The date of birth of the individual. | [optional] 
+**DateOfBirth** | Pointer to **NullableString** | The individual&#39;s date of birth in YYYY-MM-DD format. | [optional] 
+**Sex** | Pointer to **NullableString** | The individual&#39;s sex, derived from the personal identity number. Values are Male or Female. | [optional] 
+**Sub** | Pointer to **NullableString** | The OpenID Connect sub claim, when returned in the provider response.              The value starts with the se_bankid: prefix followed by the subject identifier. | [optional] 
 **PersonalIdentityNumber** | Pointer to **NullableString** | The Swedish personal number (personnummer) associated with the verified individual. The value is typically a 12-digit number. This is in the format YYYYMMDDXXXX, where: - YYYYMMDD is the date of birth. - XXXX is an individual number, indicating gender.              If XXXX is even, the individual is female. If XXXX is odd, the individual is male. | [optional] 
 **GivenName** | Pointer to **NullableString** | The given name of the individual | [optional] 
 **FamilyName** | Pointer to **NullableString** | The family name of the individual | [optional] 
@@ -20,14 +22,11 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewSwedenBankIdProviderOutput
+### Named construction
 
-`func NewSwedenBankIdProviderOutput() *SwedenBankIdProviderOutput`
-
-NewSwedenBankIdProviderOutput instantiates a new SwedenBankIdProviderOutput object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+Use a keyed struct literal (`SwedenBankIdProviderOutput{FieldName: value}`), or call
+`NewSwedenBankIdProviderOutputWithDefaults()` and set fields by name. Positional field
+factories and unkeyed struct literals are not supported.
 
 ### NewSwedenBankIdProviderOutputWithDefaults
 
@@ -107,6 +106,76 @@ HasDateOfBirth returns a boolean if a field has been set.
 `func (o *SwedenBankIdProviderOutput) UnsetDateOfBirth()`
 
 UnsetDateOfBirth ensures that no value is present for DateOfBirth, not even an explicit nil
+### GetSex
+
+`func (o *SwedenBankIdProviderOutput) GetSex() string`
+
+GetSex returns the Sex field if non-nil, zero value otherwise.
+
+### GetSexOk
+
+`func (o *SwedenBankIdProviderOutput) GetSexOk() (*string, bool)`
+
+GetSexOk returns a tuple with the Sex field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSex
+
+`func (o *SwedenBankIdProviderOutput) SetSex(v string)`
+
+SetSex sets Sex field to given value.
+
+### HasSex
+
+`func (o *SwedenBankIdProviderOutput) HasSex() bool`
+
+HasSex returns a boolean if a field has been set.
+
+### SetSexNil
+
+`func (o *SwedenBankIdProviderOutput) SetSexNil(b bool)`
+
+ SetSexNil sets the value for Sex to be an explicit nil
+
+### UnsetSex
+`func (o *SwedenBankIdProviderOutput) UnsetSex()`
+
+UnsetSex ensures that no value is present for Sex, not even an explicit nil
+### GetSub
+
+`func (o *SwedenBankIdProviderOutput) GetSub() string`
+
+GetSub returns the Sub field if non-nil, zero value otherwise.
+
+### GetSubOk
+
+`func (o *SwedenBankIdProviderOutput) GetSubOk() (*string, bool)`
+
+GetSubOk returns a tuple with the Sub field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSub
+
+`func (o *SwedenBankIdProviderOutput) SetSub(v string)`
+
+SetSub sets Sub field to given value.
+
+### HasSub
+
+`func (o *SwedenBankIdProviderOutput) HasSub() bool`
+
+HasSub returns a boolean if a field has been set.
+
+### SetSubNil
+
+`func (o *SwedenBankIdProviderOutput) SetSubNil(b bool)`
+
+ SetSubNil sets the value for Sub to be an explicit nil
+
+### UnsetSub
+`func (o *SwedenBankIdProviderOutput) UnsetSub()`
+
+UnsetSub ensures that no value is present for Sub, not even an explicit nil
 ### GetPersonalIdentityNumber
 
 `func (o *SwedenBankIdProviderOutput) GetPersonalIdentityNumber() string`

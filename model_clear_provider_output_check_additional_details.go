@@ -19,21 +19,14 @@ var _ MappedNullable = &ClearProviderOutputCheckAdditionalDetails{}
 
 // ClearProviderOutputCheckAdditionalDetails struct for ClearProviderOutputCheckAdditionalDetails
 type ClearProviderOutputCheckAdditionalDetails struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// Watchlist hit information.
 	WatchlistHits NullableClearProviderOutputWatchlistHits `json:"watchlistHits,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
 type _ClearProviderOutputCheckAdditionalDetails ClearProviderOutputCheckAdditionalDetails
-
-// NewClearProviderOutputCheckAdditionalDetails instantiates a new ClearProviderOutputCheckAdditionalDetails object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewClearProviderOutputCheckAdditionalDetails() *ClearProviderOutputCheckAdditionalDetails {
-	this := ClearProviderOutputCheckAdditionalDetails{}
-	return &this
-}
 
 // NewClearProviderOutputCheckAdditionalDetailsWithDefaults instantiates a new ClearProviderOutputCheckAdditionalDetails object
 // This constructor will only assign default values to properties that have it defined,

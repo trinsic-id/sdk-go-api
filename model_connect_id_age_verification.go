@@ -19,8 +19,18 @@ var _ MappedNullable = &ConnectIdAgeVerification{}
 
 // ConnectIdAgeVerification struct for ConnectIdAgeVerification
 type ConnectIdAgeVerification struct {
-	// If the individual is over 18 years old.
+	// Require field names in literals created outside this package.
+	_ struct{}
+	// Whether the individual is at least 16 years old.
+	Over16 NullableBool `json:"over16,omitempty"`
+	// Whether the individual is at least 18 years old.
 	Over18 NullableBool `json:"over18,omitempty"`
+	// Whether the individual is at least 21 years old.
+	Over21 NullableBool `json:"over21,omitempty"`
+	// Whether the individual is at least 25 years old.
+	Over25 NullableBool `json:"over25,omitempty"`
+	// Whether the individual is at least 65 years old.
+	Over65 NullableBool `json:"over65,omitempty"`
 	// The authority that verified the claim.
 	TrustFramework NullableString `json:"trustFramework,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -28,21 +38,54 @@ type ConnectIdAgeVerification struct {
 
 type _ConnectIdAgeVerification ConnectIdAgeVerification
 
-// NewConnectIdAgeVerification instantiates a new ConnectIdAgeVerification object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewConnectIdAgeVerification() *ConnectIdAgeVerification {
-	this := ConnectIdAgeVerification{}
-	return &this
-}
-
 // NewConnectIdAgeVerificationWithDefaults instantiates a new ConnectIdAgeVerification object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
 func NewConnectIdAgeVerificationWithDefaults() *ConnectIdAgeVerification {
 	this := ConnectIdAgeVerification{}
 	return &this
+}
+
+// GetOver16 returns the Over16 field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ConnectIdAgeVerification) GetOver16() bool {
+	if o == nil || IsNil(o.Over16.Get()) {
+		var ret bool
+		return ret
+	}
+	return *o.Over16.Get()
+}
+
+// GetOver16Ok returns a tuple with the Over16 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ConnectIdAgeVerification) GetOver16Ok() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Over16.Get(), o.Over16.IsSet()
+}
+
+// HasOver16 returns a boolean if a field has been set.
+func (o *ConnectIdAgeVerification) HasOver16() bool {
+	if o != nil && o.Over16.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetOver16 gets a reference to the given NullableBool and assigns it to the Over16 field.
+func (o *ConnectIdAgeVerification) SetOver16(v bool) {
+	o.Over16.Set(&v)
+}
+// SetOver16Nil sets the value for Over16 to be an explicit nil
+func (o *ConnectIdAgeVerification) SetOver16Nil() {
+	o.Over16.Set(nil)
+}
+
+// UnsetOver16 ensures that no value is present for Over16, not even an explicit nil
+func (o *ConnectIdAgeVerification) UnsetOver16() {
+	o.Over16.Unset()
 }
 
 // GetOver18 returns the Over18 field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -85,6 +128,132 @@ func (o *ConnectIdAgeVerification) SetOver18Nil() {
 // UnsetOver18 ensures that no value is present for Over18, not even an explicit nil
 func (o *ConnectIdAgeVerification) UnsetOver18() {
 	o.Over18.Unset()
+}
+
+// GetOver21 returns the Over21 field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ConnectIdAgeVerification) GetOver21() bool {
+	if o == nil || IsNil(o.Over21.Get()) {
+		var ret bool
+		return ret
+	}
+	return *o.Over21.Get()
+}
+
+// GetOver21Ok returns a tuple with the Over21 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ConnectIdAgeVerification) GetOver21Ok() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Over21.Get(), o.Over21.IsSet()
+}
+
+// HasOver21 returns a boolean if a field has been set.
+func (o *ConnectIdAgeVerification) HasOver21() bool {
+	if o != nil && o.Over21.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetOver21 gets a reference to the given NullableBool and assigns it to the Over21 field.
+func (o *ConnectIdAgeVerification) SetOver21(v bool) {
+	o.Over21.Set(&v)
+}
+// SetOver21Nil sets the value for Over21 to be an explicit nil
+func (o *ConnectIdAgeVerification) SetOver21Nil() {
+	o.Over21.Set(nil)
+}
+
+// UnsetOver21 ensures that no value is present for Over21, not even an explicit nil
+func (o *ConnectIdAgeVerification) UnsetOver21() {
+	o.Over21.Unset()
+}
+
+// GetOver25 returns the Over25 field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ConnectIdAgeVerification) GetOver25() bool {
+	if o == nil || IsNil(o.Over25.Get()) {
+		var ret bool
+		return ret
+	}
+	return *o.Over25.Get()
+}
+
+// GetOver25Ok returns a tuple with the Over25 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ConnectIdAgeVerification) GetOver25Ok() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Over25.Get(), o.Over25.IsSet()
+}
+
+// HasOver25 returns a boolean if a field has been set.
+func (o *ConnectIdAgeVerification) HasOver25() bool {
+	if o != nil && o.Over25.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetOver25 gets a reference to the given NullableBool and assigns it to the Over25 field.
+func (o *ConnectIdAgeVerification) SetOver25(v bool) {
+	o.Over25.Set(&v)
+}
+// SetOver25Nil sets the value for Over25 to be an explicit nil
+func (o *ConnectIdAgeVerification) SetOver25Nil() {
+	o.Over25.Set(nil)
+}
+
+// UnsetOver25 ensures that no value is present for Over25, not even an explicit nil
+func (o *ConnectIdAgeVerification) UnsetOver25() {
+	o.Over25.Unset()
+}
+
+// GetOver65 returns the Over65 field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ConnectIdAgeVerification) GetOver65() bool {
+	if o == nil || IsNil(o.Over65.Get()) {
+		var ret bool
+		return ret
+	}
+	return *o.Over65.Get()
+}
+
+// GetOver65Ok returns a tuple with the Over65 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ConnectIdAgeVerification) GetOver65Ok() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Over65.Get(), o.Over65.IsSet()
+}
+
+// HasOver65 returns a boolean if a field has been set.
+func (o *ConnectIdAgeVerification) HasOver65() bool {
+	if o != nil && o.Over65.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetOver65 gets a reference to the given NullableBool and assigns it to the Over65 field.
+func (o *ConnectIdAgeVerification) SetOver65(v bool) {
+	o.Over65.Set(&v)
+}
+// SetOver65Nil sets the value for Over65 to be an explicit nil
+func (o *ConnectIdAgeVerification) SetOver65Nil() {
+	o.Over65.Set(nil)
+}
+
+// UnsetOver65 ensures that no value is present for Over65, not even an explicit nil
+func (o *ConnectIdAgeVerification) UnsetOver65() {
+	o.Over65.Unset()
 }
 
 // GetTrustFramework returns the TrustFramework field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -139,8 +308,20 @@ func (o ConnectIdAgeVerification) MarshalJSON() ([]byte, error) {
 
 func (o ConnectIdAgeVerification) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if o.Over16.IsSet() {
+		toSerialize["over16"] = o.Over16.Get()
+	}
 	if o.Over18.IsSet() {
 		toSerialize["over18"] = o.Over18.Get()
+	}
+	if o.Over21.IsSet() {
+		toSerialize["over21"] = o.Over21.Get()
+	}
+	if o.Over25.IsSet() {
+		toSerialize["over25"] = o.Over25.Get()
+	}
+	if o.Over65.IsSet() {
+		toSerialize["over65"] = o.Over65.Get()
 	}
 	if o.TrustFramework.IsSet() {
 		toSerialize["trustFramework"] = o.TrustFramework.Get()
@@ -167,7 +348,11 @@ func (o *ConnectIdAgeVerification) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "over16")
 		delete(additionalProperties, "over18")
+		delete(additionalProperties, "over21")
+		delete(additionalProperties, "over25")
+		delete(additionalProperties, "over65")
 		delete(additionalProperties, "trustFramework")
 		o.AdditionalProperties = additionalProperties
 	}

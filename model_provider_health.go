@@ -22,12 +22,14 @@ type ProviderHealth string
 const (
 	PROVIDERHEALTH_ONLINE ProviderHealth = "Online"
 	PROVIDERHEALTH_OFFLINE ProviderHealth = "Offline"
+	PROVIDERHEALTH_UNKNOWN_DEFAULT_OPEN_API ProviderHealth = "unknown_default_open_api"
 )
 
 // All allowed values of ProviderHealth enum
 var AllowedProviderHealthEnumValues = []ProviderHealth{
 	"Online",
 	"Offline",
+	"unknown_default_open_api",
 }
 
 func (v *ProviderHealth) UnmarshalJSON(src []byte) error {
@@ -44,7 +46,8 @@ func (v *ProviderHealth) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid ProviderHealth", value)
+	*v = PROVIDERHEALTH_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewProviderHealthFromValue returns a pointer to a valid ProviderHealth

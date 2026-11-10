@@ -19,6 +19,8 @@ var _ MappedNullable = &ZimbabweNidLookup2ProviderOutput{}
 
 // ZimbabweNidLookup2ProviderOutput Exposed properties for the `zimbabwe-nid-lookup-2` Provider which do not directly map to the normalized IdentityData model.
 type ZimbabweNidLookup2ProviderOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// Zimbabwe National ID number (NID) issued by the Zimbabwean government.              Format: - 8-9 digits followed by 1 letter and 2 digits - Regex: /^[0-9]{8,9}[A-Za-z]\\d{2}$/ - There is no publicly documented encoding scheme for encoding personal information in the NID - No check digit or algorithm has been publicly documented by the Zimbabwean government
 	NationalIdNumber NullableString `json:"nationalIdNumber,omitempty"`
 	// Given name(s) of the individual.
@@ -41,15 +43,6 @@ type ZimbabweNidLookup2ProviderOutput struct {
 }
 
 type _ZimbabweNidLookup2ProviderOutput ZimbabweNidLookup2ProviderOutput
-
-// NewZimbabweNidLookup2ProviderOutput instantiates a new ZimbabweNidLookup2ProviderOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewZimbabweNidLookup2ProviderOutput() *ZimbabweNidLookup2ProviderOutput {
-	this := ZimbabweNidLookup2ProviderOutput{}
-	return &this
-}
 
 // NewZimbabweNidLookup2ProviderOutputWithDefaults instantiates a new ZimbabweNidLookup2ProviderOutput object
 // This constructor will only assign default values to properties that have it defined,

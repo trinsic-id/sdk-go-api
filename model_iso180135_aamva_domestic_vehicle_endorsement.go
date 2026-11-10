@@ -19,6 +19,8 @@ var _ MappedNullable = &Iso180135AamvaDomesticVehicleEndorsement{}
 
 // Iso180135AamvaDomesticVehicleEndorsement Vehicle endorsement attached to a domestic driving privilege.
 type Iso180135AamvaDomesticVehicleEndorsement struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// Endorsement code, when present.
 	Code NullableString `json:"code,omitempty"`
 	// Human-readable description of the endorsement.
@@ -27,15 +29,6 @@ type Iso180135AamvaDomesticVehicleEndorsement struct {
 }
 
 type _Iso180135AamvaDomesticVehicleEndorsement Iso180135AamvaDomesticVehicleEndorsement
-
-// NewIso180135AamvaDomesticVehicleEndorsement instantiates a new Iso180135AamvaDomesticVehicleEndorsement object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewIso180135AamvaDomesticVehicleEndorsement() *Iso180135AamvaDomesticVehicleEndorsement {
-	this := Iso180135AamvaDomesticVehicleEndorsement{}
-	return &this
-}
 
 // NewIso180135AamvaDomesticVehicleEndorsementWithDefaults instantiates a new Iso180135AamvaDomesticVehicleEndorsement object
 // This constructor will only assign default values to properties that have it defined,

@@ -19,6 +19,8 @@ var _ MappedNullable = &PortugalIdCardProviderOutput{}
 
 // PortugalIdCardProviderOutput Exposed properties for the `a-pt-id-login` Provider which do not directly map to the normalized IdentityData model.
 type PortugalIdCardProviderOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The first name of the verified individual
 	FirstName NullableString `json:"firstName,omitempty"`
 	// The last name of the verified individual
@@ -31,15 +33,6 @@ type PortugalIdCardProviderOutput struct {
 }
 
 type _PortugalIdCardProviderOutput PortugalIdCardProviderOutput
-
-// NewPortugalIdCardProviderOutput instantiates a new PortugalIdCardProviderOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewPortugalIdCardProviderOutput() *PortugalIdCardProviderOutput {
-	this := PortugalIdCardProviderOutput{}
-	return &this
-}
 
 // NewPortugalIdCardProviderOutputWithDefaults instantiates a new PortugalIdCardProviderOutput object
 // This constructor will only assign default values to properties that have it defined,

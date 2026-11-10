@@ -19,6 +19,8 @@ var _ MappedNullable = &YotiStructuredPostalAddress{}
 
 // YotiStructuredPostalAddress struct for YotiStructuredPostalAddress
 type YotiStructuredPostalAddress struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The address's country. This field does not have a specified format, but is recommended to use for the country field.
 	Country NullableString `json:"country,omitempty"`
 	// The address's ISO alpha-3 country code
@@ -63,15 +65,6 @@ type YotiStructuredPostalAddress struct {
 }
 
 type _YotiStructuredPostalAddress YotiStructuredPostalAddress
-
-// NewYotiStructuredPostalAddress instantiates a new YotiStructuredPostalAddress object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewYotiStructuredPostalAddress() *YotiStructuredPostalAddress {
-	this := YotiStructuredPostalAddress{}
-	return &this
-}
 
 // NewYotiStructuredPostalAddressWithDefaults instantiates a new YotiStructuredPostalAddress object
 // This constructor will only assign default values to properties that have it defined,

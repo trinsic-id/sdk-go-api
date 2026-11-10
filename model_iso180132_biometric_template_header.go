@@ -20,6 +20,8 @@ var _ MappedNullable = &Iso180132BiometricTemplateHeader{}
 
 // Iso180132BiometricTemplateHeader Header fields of a biometric template per ISO 18013-2 Table C.12.
 type Iso180132BiometricTemplateHeader struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// Patron header version (defaults to 0x0101).
 	PatronHeaderVersion NullableInt32 `json:"patronHeaderVersion,omitempty"`
 	// Biometric type code per ISO 18013-2.
@@ -44,15 +46,6 @@ type Iso180132BiometricTemplateHeader struct {
 }
 
 type _Iso180132BiometricTemplateHeader Iso180132BiometricTemplateHeader
-
-// NewIso180132BiometricTemplateHeader instantiates a new Iso180132BiometricTemplateHeader object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewIso180132BiometricTemplateHeader() *Iso180132BiometricTemplateHeader {
-	this := Iso180132BiometricTemplateHeader{}
-	return &this
-}
 
 // NewIso180132BiometricTemplateHeaderWithDefaults instantiates a new Iso180132BiometricTemplateHeader object
 // This constructor will only assign default values to properties that have it defined,

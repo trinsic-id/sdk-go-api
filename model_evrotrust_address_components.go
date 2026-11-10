@@ -19,6 +19,8 @@ var _ MappedNullable = &EvrotrustAddressComponents{}
 
 // EvrotrustAddressComponents struct for EvrotrustAddressComponents
 type EvrotrustAddressComponents struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The district fragment of the address.
 	District NullableString `json:"district,omitempty"`
 	// The local-language district fragment of the address.
@@ -55,15 +57,6 @@ type EvrotrustAddressComponents struct {
 }
 
 type _EvrotrustAddressComponents EvrotrustAddressComponents
-
-// NewEvrotrustAddressComponents instantiates a new EvrotrustAddressComponents object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewEvrotrustAddressComponents() *EvrotrustAddressComponents {
-	this := EvrotrustAddressComponents{}
-	return &this
-}
 
 // NewEvrotrustAddressComponentsWithDefaults instantiates a new EvrotrustAddressComponents object
 // This constructor will only assign default values to properties that have it defined,

@@ -20,6 +20,8 @@ var _ MappedNullable = &ResultCollection{}
 
 // ResultCollection struct for ResultCollection
 type ResultCollection struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The method by which the results of the Acceptance Session should be collected.
 	Method ResultCollectionMethod `json:"method"`
 	// The `resultsAccessKey` for the Acceptance Session.              This is an encrypted payload which contains the decryption key necessary to access the Session's Data Vault.              Save this securely in your systems; it must be passed back with any API call which requires access to the Session's Data Vault.              Trinsic cannot access a Session's Data Vault without this key.
@@ -28,17 +30,6 @@ type ResultCollection struct {
 }
 
 type _ResultCollection ResultCollection
-
-// NewResultCollection instantiates a new ResultCollection object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewResultCollection(method ResultCollectionMethod, resultsAccessKey string) *ResultCollection {
-	this := ResultCollection{}
-	this.Method = method
-	this.ResultsAccessKey = resultsAccessKey
-	return &this
-}
 
 // NewResultCollectionWithDefaults instantiates a new ResultCollection object
 // This constructor will only assign default values to properties that have it defined,

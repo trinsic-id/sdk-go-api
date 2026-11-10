@@ -20,6 +20,8 @@ var _ MappedNullable = &IndonesiaDukcapilMatchInput{}
 
 // IndonesiaDukcapilMatchInput struct for IndonesiaDukcapilMatchInput
 type IndonesiaDukcapilMatchInput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The user's full name
 	FullName NullableString `json:"fullName,omitempty"`
 	// The user's date of birth, in `YYYY-MM-DD` format
@@ -30,7 +32,7 @@ type IndonesiaDukcapilMatchInput struct {
 	Email NullableString `json:"email,omitempty"`
 	// The phone number of the individual.              Either email or phone number must be provided.
 	PhoneNumber NullableString `json:"phoneNumber,omitempty"`
-	// The raw bytes of the selfie image of the individual.              Must be JPEG or PNG format; 10MB maximum.
+	// The raw bytes of the selfie image of the individual.              Must be JPEG or PNG format; 10MB maximum. When using an SDK, this can be a raw byte array. In raw JSON form this is Base64.
 	SelfieImage NullableString `json:"selfieImage,omitempty"`
 	// The raw bytes of the image of the individual's KTP government ID.              Must be JPEG format; 1MB maximum.              Optional.
 	DocumentImage NullableString `json:"documentImage,omitempty"`
@@ -40,15 +42,6 @@ type IndonesiaDukcapilMatchInput struct {
 }
 
 type _IndonesiaDukcapilMatchInput IndonesiaDukcapilMatchInput
-
-// NewIndonesiaDukcapilMatchInput instantiates a new IndonesiaDukcapilMatchInput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewIndonesiaDukcapilMatchInput() *IndonesiaDukcapilMatchInput {
-	this := IndonesiaDukcapilMatchInput{}
-	return &this
-}
 
 // NewIndonesiaDukcapilMatchInputWithDefaults instantiates a new IndonesiaDukcapilMatchInput object
 // This constructor will only assign default values to properties that have it defined,

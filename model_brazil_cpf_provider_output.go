@@ -19,6 +19,8 @@ var _ MappedNullable = &BrazilCpfProviderOutput{}
 
 // BrazilCpfProviderOutput Exposed properties for the `brazil-cpf-lookup` Provider which do not directly map to the normalized IdentityData model.
 type BrazilCpfProviderOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The raw error code for the verification, returned by Serpro.              This is a temporary preview to support detailed error handling. When building against this please let the Trinsic team know. Preview features can be turned off without an obsoletion notice.
 	PreviewRawErrorCode NullableString `json:"preview_raw_error_code,omitempty"`
 	// The individual's CPF number.              A CPF (Cadastro de Pessoas Físicas) is the Brazilian individual taxpayer identification number for residents and foreigners. It is an 11-digit number managed by the Federal Revenue Service, the last 2 digits are check digits, calculated based on the first 9 digits. The 9th digit indicates the fiscal region responsible for the registration,
@@ -35,7 +37,7 @@ type BrazilCpfProviderOutput struct {
 	SocialName NullableString `json:"socialName,omitempty"`
 	// The date of birth of the individual.
 	DateOfBirth NullableString `json:"dateOfBirth,omitempty"`
-	// Deprecated as of September 1, 2026.              The year of death of the individual, if applicable.
+	// Deprecated as of September 19, 2026.              The year of death of the individual, if applicable.
 	// Deprecated
 	YearOfDeath NullableString `json:"yearOfDeath,omitempty"`
 	// The date of registration of the individual with the Federal Revenue Service.
@@ -46,15 +48,6 @@ type BrazilCpfProviderOutput struct {
 }
 
 type _BrazilCpfProviderOutput BrazilCpfProviderOutput
-
-// NewBrazilCpfProviderOutput instantiates a new BrazilCpfProviderOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewBrazilCpfProviderOutput() *BrazilCpfProviderOutput {
-	this := BrazilCpfProviderOutput{}
-	return &this
-}
 
 // NewBrazilCpfProviderOutputWithDefaults instantiates a new BrazilCpfProviderOutput object
 // This constructor will only assign default values to properties that have it defined,

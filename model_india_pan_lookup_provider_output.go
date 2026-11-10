@@ -19,6 +19,8 @@ var _ MappedNullable = &IndiaPanLookupProviderOutput{}
 
 // IndiaPanLookupProviderOutput Exposed properties for the `india-pan-lookup` Provider which do not directly map to the normalized IdentityData model.
 type IndiaPanLookupProviderOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// Permanent Account Number (PAN) that was looked up.              PAN is a ten-character identifier issued by the Income Tax Department of India.
 	PermanentAccountNumber NullableString `json:"permanentAccountNumber,omitempty"`
 	// PAN split into structural parts for the canonical ten-character format.              Covers alphabetic series, assessee category, name prefix letter, serial number, and check letter.
@@ -33,21 +35,12 @@ type IndiaPanLookupProviderOutput struct {
 	FamilyName NullableString `json:"familyName,omitempty"`
 	// Date of birth of the individual.              NOTE: Only available when PAN status is VALID and the verification is for an individual person.
 	DateOfBirth NullableString `json:"dateOfBirth,omitempty"`
-	// PAN card status from Signzy for the lookup.              Possible values: - VALID - FAKE - DEACTIVATED - DELETED - INVALID - AMALGAMATION - ACQUISITION - DEATH - DISSOLUTION - LIQUIDATED - MERGER - PARTITION - SPLIT - UNDER LIQUIDATION - INOPERATIVE
+	// PAN card status returned by the lookup provider.              Possible values: - VALID - FAKE - DEACTIVATED - DELETED - INVALID - AMALGAMATION - ACQUISITION - DEATH - DISSOLUTION - LIQUIDATED - MERGER - PARTITION - SPLIT - UNDER LIQUIDATION - INOPERATIVE
 	PanStatus NullableString `json:"panStatus,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
 type _IndiaPanLookupProviderOutput IndiaPanLookupProviderOutput
-
-// NewIndiaPanLookupProviderOutput instantiates a new IndiaPanLookupProviderOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewIndiaPanLookupProviderOutput() *IndiaPanLookupProviderOutput {
-	this := IndiaPanLookupProviderOutput{}
-	return &this
-}
 
 // NewIndiaPanLookupProviderOutputWithDefaults instantiates a new IndiaPanLookupProviderOutput object
 // This constructor will only assign default values to properties that have it defined,

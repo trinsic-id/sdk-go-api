@@ -19,6 +19,8 @@ var _ MappedNullable = &ConnectIdProviderOutput{}
 
 // ConnectIdProviderOutput Exposed properties for the `australia-connect-id` Provider which do not directly map to the normalized IdentityData model.
 type ConnectIdProviderOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The date of birth of an individual in YYYY-MM-DD format.
 	Birthdate NullableString `json:"birthdate,omitempty"`
 	// The given name of an individual.
@@ -43,15 +45,6 @@ type ConnectIdProviderOutput struct {
 }
 
 type _ConnectIdProviderOutput ConnectIdProviderOutput
-
-// NewConnectIdProviderOutput instantiates a new ConnectIdProviderOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewConnectIdProviderOutput() *ConnectIdProviderOutput {
-	this := ConnectIdProviderOutput{}
-	return &this
-}
 
 // NewConnectIdProviderOutputWithDefaults instantiates a new ConnectIdProviderOutput object
 // This constructor will only assign default values to properties that have it defined,

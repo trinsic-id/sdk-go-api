@@ -20,10 +20,14 @@ var _ MappedNullable = &RecommendProviderInformation{}
 
 // RecommendProviderInformation struct for RecommendProviderInformation
 type RecommendProviderInformation struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The ID of the provider
 	Id string `json:"id"`
 	// The friendly, human-readable name of the provider
 	Name string `json:"name"`
+	// Localized display names for the Provider, if any, keyed by lowercase BCP 47 language codes (eg \"fr\").              If a particular language code is not present, fall back to `name`.              This should not be confused for the list of languages the Provider officially supports.
+	LocalizedDisplayNames map[string]string `json:"localizedDisplayNames,omitempty"`
 	// A URL pointing to the provider's logo
 	LogoUrl string `json:"logoUrl"`
 	// The Provider's subtext recommended to be shown next to the name.              This is flavor text, not a full, human-readable description of the provider.
@@ -42,23 +46,6 @@ type RecommendProviderInformation struct {
 }
 
 type _RecommendProviderInformation RecommendProviderInformation
-
-// NewRecommendProviderInformation instantiates a new RecommendProviderInformation object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewRecommendProviderInformation(id string, name string, logoUrl string, subtext string, health string, regions []string, countries []string, subdivisions []string) *RecommendProviderInformation {
-	this := RecommendProviderInformation{}
-	this.Id = id
-	this.Name = name
-	this.LogoUrl = logoUrl
-	this.Subtext = subtext
-	this.Health = health
-	this.Regions = regions
-	this.Countries = countries
-	this.Subdivisions = subdivisions
-	return &this
-}
 
 // NewRecommendProviderInformationWithDefaults instantiates a new RecommendProviderInformation object
 // This constructor will only assign default values to properties that have it defined,
@@ -114,6 +101,39 @@ func (o *RecommendProviderInformation) GetNameOk() (*string, bool) {
 // SetName sets field value
 func (o *RecommendProviderInformation) SetName(v string) {
 	o.Name = v
+}
+
+// GetLocalizedDisplayNames returns the LocalizedDisplayNames field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *RecommendProviderInformation) GetLocalizedDisplayNames() map[string]string {
+	if o == nil {
+		var ret map[string]string
+		return ret
+	}
+	return o.LocalizedDisplayNames
+}
+
+// GetLocalizedDisplayNamesOk returns a tuple with the LocalizedDisplayNames field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *RecommendProviderInformation) GetLocalizedDisplayNamesOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.LocalizedDisplayNames) {
+		return nil, false
+	}
+	return &o.LocalizedDisplayNames, true
+}
+
+// HasLocalizedDisplayNames returns a boolean if a field has been set.
+func (o *RecommendProviderInformation) HasLocalizedDisplayNames() bool {
+	if o != nil && !IsNil(o.LocalizedDisplayNames) {
+		return true
+	}
+
+	return false
+}
+
+// SetLocalizedDisplayNames gets a reference to the given map[string]string and assigns it to the LocalizedDisplayNames field.
+func (o *RecommendProviderInformation) SetLocalizedDisplayNames(v map[string]string) {
+	o.LocalizedDisplayNames = v
 }
 
 // GetLogoUrl returns the LogoUrl field value
@@ -305,6 +325,9 @@ func (o RecommendProviderInformation) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["id"] = o.Id
 	toSerialize["name"] = o.Name
+	if o.LocalizedDisplayNames != nil {
+		toSerialize["localizedDisplayNames"] = o.LocalizedDisplayNames
+	}
 	toSerialize["logoUrl"] = o.LogoUrl
 	toSerialize["subtext"] = o.Subtext
 	toSerialize["health"] = o.Health
@@ -366,6 +389,7 @@ func (o *RecommendProviderInformation) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "name")
+		delete(additionalProperties, "localizedDisplayNames")
 		delete(additionalProperties, "logoUrl")
 		delete(additionalProperties, "subtext")
 		delete(additionalProperties, "health")

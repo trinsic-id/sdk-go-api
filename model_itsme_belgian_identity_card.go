@@ -20,6 +20,8 @@ var _ MappedNullable = &ItsmeBelgianIdentityCard{}
 
 // ItsmeBelgianIdentityCard struct for ItsmeBelgianIdentityCard
 type ItsmeBelgianIdentityCard struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The Belgian eID card number. This identifies the card document, not the person's Belgian National Register Number.              Availability by ID document issuing country: returned only for Belgian-issued ID documents.              Belgian citizen examples are 12 digits in the form `xxx-xxxxxxx-yy`; EU, EEA, and Swiss resident card examples can start with a letter followed by digits.
 	Number NullableString `json:"number,omitempty"`
 	// The issuing country as an ISO 3166-1 alpha-2 country code.              Availability by ID document issuing country: always returned for all supported issuing countries.
@@ -34,15 +36,6 @@ type ItsmeBelgianIdentityCard struct {
 }
 
 type _ItsmeBelgianIdentityCard ItsmeBelgianIdentityCard
-
-// NewItsmeBelgianIdentityCard instantiates a new ItsmeBelgianIdentityCard object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewItsmeBelgianIdentityCard() *ItsmeBelgianIdentityCard {
-	this := ItsmeBelgianIdentityCard{}
-	return &this
-}
 
 // NewItsmeBelgianIdentityCardWithDefaults instantiates a new ItsmeBelgianIdentityCard object
 // This constructor will only assign default values to properties that have it defined,

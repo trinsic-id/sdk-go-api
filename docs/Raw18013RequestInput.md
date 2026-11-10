@@ -8,14 +8,11 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewRaw18013RequestInput
+### Named construction
 
-`func NewRaw18013RequestInput(documentRequests []Raw18013DocumentRequest, ) *Raw18013RequestInput`
-
-NewRaw18013RequestInput instantiates a new Raw18013RequestInput object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+Use a keyed struct literal (`Raw18013RequestInput{FieldName: value}`), or call
+`NewRaw18013RequestInputWithDefaults()` and set fields by name. Positional field
+factories and unkeyed struct literals are not supported.
 
 ### NewRaw18013RequestInputWithDefaults
 

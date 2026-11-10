@@ -19,6 +19,8 @@ var _ MappedNullable = &FrenchNumeriqueSplittedPhone{}
 
 // FrenchNumeriqueSplittedPhone Phone number split into country prefix and national number.
 type FrenchNumeriqueSplittedPhone struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// International country calling code including the plus sign.
 	CountryPrefix NullableString `json:"countryPrefix,omitempty"`
 	// National phone number without the country prefix.
@@ -27,15 +29,6 @@ type FrenchNumeriqueSplittedPhone struct {
 }
 
 type _FrenchNumeriqueSplittedPhone FrenchNumeriqueSplittedPhone
-
-// NewFrenchNumeriqueSplittedPhone instantiates a new FrenchNumeriqueSplittedPhone object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewFrenchNumeriqueSplittedPhone() *FrenchNumeriqueSplittedPhone {
-	this := FrenchNumeriqueSplittedPhone{}
-	return &this
-}
 
 // NewFrenchNumeriqueSplittedPhoneWithDefaults instantiates a new FrenchNumeriqueSplittedPhone object
 // This constructor will only assign default values to properties that have it defined,

@@ -19,6 +19,8 @@ var _ MappedNullable = &InteracProviderOutput{}
 
 // InteracProviderOutput struct for InteracProviderOutput
 type InteracProviderOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The OpenID Connect subject identifier for the verified individual.
 	Sub NullableString `json:"sub,omitempty"`
 	// The given name of the verified individual.
@@ -41,15 +43,6 @@ type InteracProviderOutput struct {
 }
 
 type _InteracProviderOutput InteracProviderOutput
-
-// NewInteracProviderOutput instantiates a new InteracProviderOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewInteracProviderOutput() *InteracProviderOutput {
-	this := InteracProviderOutput{}
-	return &this
-}
 
 // NewInteracProviderOutputWithDefaults instantiates a new InteracProviderOutput object
 // This constructor will only assign default values to properties that have it defined,

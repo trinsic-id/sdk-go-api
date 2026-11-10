@@ -19,6 +19,8 @@ var _ MappedNullable = &SingpassPersonalCatalog{}
 
 // SingpassPersonalCatalog MyInfo Personal catalog.
 type SingpassPersonalCatalog struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The Unique Identifier Number (UINFIN) for the user.              The number can be either a National Registration Identity Card or a Foreign Identification Number (NRIC/FIN). Follows the format @xxxxxxx#: - @ is the status of the holder.     - Singapore citizens and permanent residents born before 1 January 2000 are assigned the letter \"S\".     - Singapore citizens and permanent residents born on or after 1 January 2000 are assigned the letter \"T\".     - Foreigners issued with long-term passes before 1 January 2000 are assigned the letter \"F\".     - Foreigners issued with long-term passes from 1 January 2000 to 31 December 2021 are assigned the letter \"G\".     - Foreigners issued with long-term passes on or after 1 January 2022 are assigned the letter \"M\". - xxxxxxx is seven digit serial number. - # is the checksum letter.
 	IdentityNumber NullableString `json:"identityNumber,omitempty"`
 	// The partial National Registration Identity Card or Foreign Identification Number (NRIC/FIN) shown by Singpass.              The value hides all but the last three digits and checksum.
@@ -61,8 +63,8 @@ type SingpassPersonalCatalog struct {
 	EmploymentSector NullableString `json:"employmentSector,omitempty"`
 	// The user's registered address.
 	RegisteredAddress NullableSingpassMyInfoRegisteredAddressOutput `json:"registeredAddress,omitempty"`
-	// Housing and Development Board (HBD) flat type code and description.              This value will be null if not HBD Possible values (code description): - 111 1-ROOM FLAT (HDB) - 112 2-ROOM FLAT (HDB) - 113 3-ROOM FLAT (HDB) - 114 4-ROOM FLAT (HDB) - 115 5-ROOM FLAT (HDB) - 116 EXECUTIVE FLAT (HDB) - 118 STUDIO APARTMENT (HDB)
-	HouseDevelopmenetBoardType NullableSingpassMyInfoDescription `json:"houseDevelopmenetBoardType,omitempty"`
+	// Housing and Development Board (HDB) flat type code and description.              This value will be null if not HDB. Possible values (code description): - 111 1-ROOM FLAT (HDB) - 112 2-ROOM FLAT (HDB) - 113 3-ROOM FLAT (HDB) - 114 4-ROOM FLAT (HDB) - 115 5-ROOM FLAT (HDB) - 116 EXECUTIVE FLAT (HDB) - 118 STUDIO APARTMENT (HDB)
+	HouseDevelopmentBoardType NullableSingpassMyInfoDescription `json:"houseDevelopmentBoardType,omitempty"`
 	// The user's housing type.              Possible values (code description): - 121 DETACHED HOUSE - 122 SEMI-DETACHED HOUSE - 123 TERRACE HOUSE - 131 CONDOMINIUM - 132 EXECUTIVE CONDOMINIUM - 139 APARTMENT
 	HousingType NullableSingpassMyInfoDescription `json:"housingType,omitempty"`
 	// Sex of the individual.              Possible values: - Female - Male - Unknown
@@ -71,15 +73,6 @@ type SingpassPersonalCatalog struct {
 }
 
 type _SingpassPersonalCatalog SingpassPersonalCatalog
-
-// NewSingpassPersonalCatalog instantiates a new SingpassPersonalCatalog object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewSingpassPersonalCatalog() *SingpassPersonalCatalog {
-	this := SingpassPersonalCatalog{}
-	return &this
-}
 
 // NewSingpassPersonalCatalogWithDefaults instantiates a new SingpassPersonalCatalog object
 // This constructor will only assign default values to properties that have it defined,
@@ -971,46 +964,46 @@ func (o *SingpassPersonalCatalog) UnsetRegisteredAddress() {
 	o.RegisteredAddress.Unset()
 }
 
-// GetHouseDevelopmenetBoardType returns the HouseDevelopmenetBoardType field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *SingpassPersonalCatalog) GetHouseDevelopmenetBoardType() SingpassMyInfoDescription {
-	if o == nil || IsNil(o.HouseDevelopmenetBoardType.Get()) {
+// GetHouseDevelopmentBoardType returns the HouseDevelopmentBoardType field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *SingpassPersonalCatalog) GetHouseDevelopmentBoardType() SingpassMyInfoDescription {
+	if o == nil || IsNil(o.HouseDevelopmentBoardType.Get()) {
 		var ret SingpassMyInfoDescription
 		return ret
 	}
-	return *o.HouseDevelopmenetBoardType.Get()
+	return *o.HouseDevelopmentBoardType.Get()
 }
 
-// GetHouseDevelopmenetBoardTypeOk returns a tuple with the HouseDevelopmenetBoardType field value if set, nil otherwise
+// GetHouseDevelopmentBoardTypeOk returns a tuple with the HouseDevelopmentBoardType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SingpassPersonalCatalog) GetHouseDevelopmenetBoardTypeOk() (*SingpassMyInfoDescription, bool) {
+func (o *SingpassPersonalCatalog) GetHouseDevelopmentBoardTypeOk() (*SingpassMyInfoDescription, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.HouseDevelopmenetBoardType.Get(), o.HouseDevelopmenetBoardType.IsSet()
+	return o.HouseDevelopmentBoardType.Get(), o.HouseDevelopmentBoardType.IsSet()
 }
 
-// HasHouseDevelopmenetBoardType returns a boolean if a field has been set.
-func (o *SingpassPersonalCatalog) HasHouseDevelopmenetBoardType() bool {
-	if o != nil && o.HouseDevelopmenetBoardType.IsSet() {
+// HasHouseDevelopmentBoardType returns a boolean if a field has been set.
+func (o *SingpassPersonalCatalog) HasHouseDevelopmentBoardType() bool {
+	if o != nil && o.HouseDevelopmentBoardType.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetHouseDevelopmenetBoardType gets a reference to the given NullableSingpassMyInfoDescription and assigns it to the HouseDevelopmenetBoardType field.
-func (o *SingpassPersonalCatalog) SetHouseDevelopmenetBoardType(v SingpassMyInfoDescription) {
-	o.HouseDevelopmenetBoardType.Set(&v)
+// SetHouseDevelopmentBoardType gets a reference to the given NullableSingpassMyInfoDescription and assigns it to the HouseDevelopmentBoardType field.
+func (o *SingpassPersonalCatalog) SetHouseDevelopmentBoardType(v SingpassMyInfoDescription) {
+	o.HouseDevelopmentBoardType.Set(&v)
 }
-// SetHouseDevelopmenetBoardTypeNil sets the value for HouseDevelopmenetBoardType to be an explicit nil
-func (o *SingpassPersonalCatalog) SetHouseDevelopmenetBoardTypeNil() {
-	o.HouseDevelopmenetBoardType.Set(nil)
+// SetHouseDevelopmentBoardTypeNil sets the value for HouseDevelopmentBoardType to be an explicit nil
+func (o *SingpassPersonalCatalog) SetHouseDevelopmentBoardTypeNil() {
+	o.HouseDevelopmentBoardType.Set(nil)
 }
 
-// UnsetHouseDevelopmenetBoardType ensures that no value is present for HouseDevelopmenetBoardType, not even an explicit nil
-func (o *SingpassPersonalCatalog) UnsetHouseDevelopmenetBoardType() {
-	o.HouseDevelopmenetBoardType.Unset()
+// UnsetHouseDevelopmentBoardType ensures that no value is present for HouseDevelopmentBoardType, not even an explicit nil
+func (o *SingpassPersonalCatalog) UnsetHouseDevelopmentBoardType() {
+	o.HouseDevelopmentBoardType.Unset()
 }
 
 // GetHousingType returns the HousingType field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -1170,8 +1163,8 @@ func (o SingpassPersonalCatalog) ToMap() (map[string]interface{}, error) {
 	if o.RegisteredAddress.IsSet() {
 		toSerialize["registeredAddress"] = o.RegisteredAddress.Get()
 	}
-	if o.HouseDevelopmenetBoardType.IsSet() {
-		toSerialize["houseDevelopmenetBoardType"] = o.HouseDevelopmenetBoardType.Get()
+	if o.HouseDevelopmentBoardType.IsSet() {
+		toSerialize["houseDevelopmentBoardType"] = o.HouseDevelopmentBoardType.Get()
 	}
 	if o.HousingType.IsSet() {
 		toSerialize["housingType"] = o.HousingType.Get()
@@ -1222,7 +1215,7 @@ func (o *SingpassPersonalCatalog) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "passExpiryDate")
 		delete(additionalProperties, "employmentSector")
 		delete(additionalProperties, "registeredAddress")
-		delete(additionalProperties, "houseDevelopmenetBoardType")
+		delete(additionalProperties, "houseDevelopmentBoardType")
 		delete(additionalProperties, "housingType")
 		delete(additionalProperties, "sex")
 		o.AdditionalProperties = additionalProperties

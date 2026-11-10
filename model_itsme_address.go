@@ -19,6 +19,8 @@ var _ MappedNullable = &ItsmeAddress{}
 
 // ItsmeAddress struct for ItsmeAddress
 type ItsmeAddress struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The full street address on a single line.
 	StreetAddress NullableString `json:"streetAddress,omitempty"`
 	// The street name component of the address.
@@ -35,15 +37,6 @@ type ItsmeAddress struct {
 }
 
 type _ItsmeAddress ItsmeAddress
-
-// NewItsmeAddress instantiates a new ItsmeAddress object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewItsmeAddress() *ItsmeAddress {
-	this := ItsmeAddress{}
-	return &this
-}
 
 // NewItsmeAddressWithDefaults instantiates a new ItsmeAddress object
 // This constructor will only assign default values to properties that have it defined,

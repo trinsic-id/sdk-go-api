@@ -19,6 +19,8 @@ var _ MappedNullable = &AadhaarLocalizedClaims{}
 
 // AadhaarLocalizedClaims struct for AadhaarLocalizedClaims
 type AadhaarLocalizedClaims struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The language code for the localized claims.
 	Language NullableAadhaarLanguage `json:"language,omitempty"`
 	// The full name.
@@ -29,15 +31,6 @@ type AadhaarLocalizedClaims struct {
 }
 
 type _AadhaarLocalizedClaims AadhaarLocalizedClaims
-
-// NewAadhaarLocalizedClaims instantiates a new AadhaarLocalizedClaims object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewAadhaarLocalizedClaims() *AadhaarLocalizedClaims {
-	this := AadhaarLocalizedClaims{}
-	return &this
-}
 
 // NewAadhaarLocalizedClaimsWithDefaults instantiates a new AadhaarLocalizedClaims object
 // This constructor will only assign default values to properties that have it defined,

@@ -19,21 +19,14 @@ var _ MappedNullable = &ZimbabweNidLookup2Input{}
 
 // ZimbabweNidLookup2Input struct for ZimbabweNidLookup2Input
 type ZimbabweNidLookup2Input struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// Zimbabwe National ID number (NID) issued by the Zimbabwean government.              Format: - 8-9 digits followed by 1 letter and 2 digits - Regex: /^[0-9]{8,9}[A-Za-z]\\d{2}$/ - There is no publicly documented encoding scheme for encoding personal information in the NID - No check digit or algorithm has been publicly documented by the Zimbabwean government
 	IdNumber NullableString `json:"idNumber,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
 type _ZimbabweNidLookup2Input ZimbabweNidLookup2Input
-
-// NewZimbabweNidLookup2Input instantiates a new ZimbabweNidLookup2Input object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewZimbabweNidLookup2Input() *ZimbabweNidLookup2Input {
-	this := ZimbabweNidLookup2Input{}
-	return &this
-}
 
 // NewZimbabweNidLookup2InputWithDefaults instantiates a new ZimbabweNidLookup2Input object
 // This constructor will only assign default values to properties that have it defined,

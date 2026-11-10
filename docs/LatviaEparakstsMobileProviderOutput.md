@@ -10,14 +10,11 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewLatviaEparakstsMobileProviderOutput
+### Named construction
 
-`func NewLatviaEparakstsMobileProviderOutput() *LatviaEparakstsMobileProviderOutput`
-
-NewLatviaEparakstsMobileProviderOutput instantiates a new LatviaEparakstsMobileProviderOutput object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+Use a keyed struct literal (`LatviaEparakstsMobileProviderOutput{FieldName: value}`), or call
+`NewLatviaEparakstsMobileProviderOutputWithDefaults()` and set fields by name. Positional field
+factories and unkeyed struct literals are not supported.
 
 ### NewLatviaEparakstsMobileProviderOutputWithDefaults
 

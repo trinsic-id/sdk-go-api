@@ -19,6 +19,8 @@ var _ MappedNullable = &NorwegianBankIdProviderOutput{}
 
 // NorwegianBankIdProviderOutput Exposed properties for the `norway-bankid` Provider which do not directly map to the normalized IdentityData model.
 type NorwegianBankIdProviderOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The full name of the individual.
 	FullName NullableString `json:"fullName,omitempty"`
 	// The date of birth of the individual.
@@ -39,15 +41,6 @@ type NorwegianBankIdProviderOutput struct {
 }
 
 type _NorwegianBankIdProviderOutput NorwegianBankIdProviderOutput
-
-// NewNorwegianBankIdProviderOutput instantiates a new NorwegianBankIdProviderOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewNorwegianBankIdProviderOutput() *NorwegianBankIdProviderOutput {
-	this := NorwegianBankIdProviderOutput{}
-	return &this
-}
 
 // NewNorwegianBankIdProviderOutputWithDefaults instantiates a new NorwegianBankIdProviderOutput object
 // This constructor will only assign default values to properties that have it defined,

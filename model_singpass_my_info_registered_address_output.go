@@ -19,6 +19,8 @@ var _ MappedNullable = &SingpassMyInfoRegisteredAddressOutput{}
 
 // SingpassMyInfoRegisteredAddressOutput The structured MyInfo registered address payload.
 type SingpassMyInfoRegisteredAddressOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The address type.              Possible values: - SG (Structured Address) - UNFORMATTED              Structured addresses most likely will be a Singapore address. Unformatted are typically a non-Singapore address, however it might still be an unformatted Singapore address.
 	Type NullableString `json:"type,omitempty"`
 	// The block number.              This will only be present if the type is \"SG\"
@@ -43,15 +45,6 @@ type SingpassMyInfoRegisteredAddressOutput struct {
 }
 
 type _SingpassMyInfoRegisteredAddressOutput SingpassMyInfoRegisteredAddressOutput
-
-// NewSingpassMyInfoRegisteredAddressOutput instantiates a new SingpassMyInfoRegisteredAddressOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewSingpassMyInfoRegisteredAddressOutput() *SingpassMyInfoRegisteredAddressOutput {
-	this := SingpassMyInfoRegisteredAddressOutput{}
-	return &this
-}
 
 // NewSingpassMyInfoRegisteredAddressOutputWithDefaults instantiates a new SingpassMyInfoRegisteredAddressOutput object
 // This constructor will only assign default values to properties that have it defined,

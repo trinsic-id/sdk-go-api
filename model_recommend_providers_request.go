@@ -20,9 +20,11 @@ var _ MappedNullable = &RecommendProvidersRequest{}
 
 // RecommendProvidersRequest struct for RecommendProvidersRequest
 type RecommendProvidersRequest struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The ID of the VerificationProfile to use for this recommendation.
 	VerificationProfileId string `json:"verificationProfileId"`
-	// Information about the user you wish to generate a recommendation for.
+	// Information about the user you wish to generate a recommendation for. When no location can be determined from this information, all eligible providers are returned in the remainder.
 	RecommendationInfo NullableRecommendationInfo `json:"recommendationInfo,omitempty"`
 	// Filter providers by health status.
 	Health NullableRecommendProviderHealthOption `json:"health,omitempty"`
@@ -30,16 +32,6 @@ type RecommendProvidersRequest struct {
 }
 
 type _RecommendProvidersRequest RecommendProvidersRequest
-
-// NewRecommendProvidersRequest instantiates a new RecommendProvidersRequest object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewRecommendProvidersRequest(verificationProfileId string) *RecommendProvidersRequest {
-	this := RecommendProvidersRequest{}
-	this.VerificationProfileId = verificationProfileId
-	return &this
-}
 
 // NewRecommendProvidersRequestWithDefaults instantiates a new RecommendProvidersRequest object
 // This constructor will only assign default values to properties that have it defined,

@@ -19,6 +19,8 @@ var _ MappedNullable = &CzechMojeIdAddressOutput{}
 
 // CzechMojeIdAddressOutput struct for CzechMojeIdAddressOutput
 type CzechMojeIdAddressOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The street address line, including house number.
 	StreetAddress NullableString `json:"streetAddress,omitempty"`
 	// The city or locality.
@@ -35,15 +37,6 @@ type CzechMojeIdAddressOutput struct {
 }
 
 type _CzechMojeIdAddressOutput CzechMojeIdAddressOutput
-
-// NewCzechMojeIdAddressOutput instantiates a new CzechMojeIdAddressOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewCzechMojeIdAddressOutput() *CzechMojeIdAddressOutput {
-	this := CzechMojeIdAddressOutput{}
-	return &this
-}
 
 // NewCzechMojeIdAddressOutputWithDefaults instantiates a new CzechMojeIdAddressOutput object
 // This constructor will only assign default values to properties that have it defined,

@@ -7,18 +7,15 @@ Name | Type | Description | Notes
 **CpfNumber** | **string** | The user&#39;s 11-digit, numeric CPF Number | 
 **DigitalCnhFile** | Pointer to **NullableString** | The raw bytes of the digital CNH file collected from the user. | [optional] 
 **DigitalCnhFileContentType** | Pointer to **NullableString** | The MIME Type of the file contained in &#x60;DigitalCnhFile&#x60;.              Must be one of &#x60;application/pdf&#x60;, &#x60;image/jpeg&#x60;, or &#x60;image/png&#x60;. | [optional] 
-**FacialBiometryPhoto** | Pointer to **NullableString** | The raw bytes of the image of the user&#39;s face, collected for biometric comparison. | [optional] 
+**FacialBiometryPhoto** | Pointer to **NullableString** | The raw bytes of the image of the user&#39;s face, collected for biometric comparison. When using an SDK, this can be a raw byte array. In raw JSON form this is Base64. | [optional] 
 
 ## Methods
 
-### NewBrazilDigitalCnhInput
+### Named construction
 
-`func NewBrazilDigitalCnhInput(cpfNumber string, ) *BrazilDigitalCnhInput`
-
-NewBrazilDigitalCnhInput instantiates a new BrazilDigitalCnhInput object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+Use a keyed struct literal (`BrazilDigitalCnhInput{FieldName: value}`), or call
+`NewBrazilDigitalCnhInputWithDefaults()` and set fields by name. Positional field
+factories and unkeyed struct literals are not supported.
 
 ### NewBrazilDigitalCnhInputWithDefaults
 

@@ -9,14 +9,11 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewAlaskaMobileIdProviderOutput
+### Named construction
 
-`func NewAlaskaMobileIdProviderOutput() *AlaskaMobileIdProviderOutput`
-
-NewAlaskaMobileIdProviderOutput instantiates a new AlaskaMobileIdProviderOutput object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+Use a keyed struct literal (`AlaskaMobileIdProviderOutput{FieldName: value}`), or call
+`NewAlaskaMobileIdProviderOutputWithDefaults()` and set fields by name. Positional field
+factories and unkeyed struct literals are not supported.
 
 ### NewAlaskaMobileIdProviderOutputWithDefaults
 

@@ -19,21 +19,14 @@ var _ MappedNullable = &AustriaValeraEudiSandboxInput{}
 
 // AustriaValeraEudiSandboxInput struct for AustriaValeraEudiSandboxInput
 type AustriaValeraEudiSandboxInput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The raw 18013-7 exchange request to use for this verification.              If set, this overrides any default configuration on your Verification Profile.
 	PreviewRaw18013Request NullableRaw18013RequestInput `json:"preview_raw18013Request,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
 type _AustriaValeraEudiSandboxInput AustriaValeraEudiSandboxInput
-
-// NewAustriaValeraEudiSandboxInput instantiates a new AustriaValeraEudiSandboxInput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewAustriaValeraEudiSandboxInput() *AustriaValeraEudiSandboxInput {
-	this := AustriaValeraEudiSandboxInput{}
-	return &this
-}
 
 // NewAustriaValeraEudiSandboxInputWithDefaults instantiates a new AustriaValeraEudiSandboxInput object
 // This constructor will only assign default values to properties that have it defined,

@@ -20,6 +20,8 @@ var _ MappedNullable = &ProviderSupportedLanguage{}
 
 // ProviderSupportedLanguage struct for ProviderSupportedLanguage
 type ProviderSupportedLanguage struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// BCP 47 language code.
 	Code string `json:"code"`
 	// Human-readable display label for the language.
@@ -28,16 +30,6 @@ type ProviderSupportedLanguage struct {
 }
 
 type _ProviderSupportedLanguage ProviderSupportedLanguage
-
-// NewProviderSupportedLanguage instantiates a new ProviderSupportedLanguage object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewProviderSupportedLanguage(code string) *ProviderSupportedLanguage {
-	this := ProviderSupportedLanguage{}
-	this.Code = code
-	return &this
-}
 
 // NewProviderSupportedLanguageWithDefaults instantiates a new ProviderSupportedLanguage object
 // This constructor will only assign default values to properties that have it defined,

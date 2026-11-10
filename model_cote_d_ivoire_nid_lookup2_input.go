@@ -19,21 +19,14 @@ var _ MappedNullable = &CoteDIvoireNidLookup2Input{}
 
 // CoteDIvoireNidLookup2Input struct for CoteDIvoireNidLookup2Input
 type CoteDIvoireNidLookup2Input struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The user's National ID number (NNI) or document number
 	IdNumber NullableString `json:"idNumber,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
 type _CoteDIvoireNidLookup2Input CoteDIvoireNidLookup2Input
-
-// NewCoteDIvoireNidLookup2Input instantiates a new CoteDIvoireNidLookup2Input object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewCoteDIvoireNidLookup2Input() *CoteDIvoireNidLookup2Input {
-	this := CoteDIvoireNidLookup2Input{}
-	return &this
-}
 
 // NewCoteDIvoireNidLookup2InputWithDefaults instantiates a new CoteDIvoireNidLookup2Input object
 // This constructor will only assign default values to properties that have it defined,

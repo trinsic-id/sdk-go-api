@@ -23,6 +23,7 @@ const (
 	SESSIONORDERING_CREATED SessionOrdering = "Created"
 	SESSIONORDERING_UPDATED SessionOrdering = "Updated"
 	SESSIONORDERING_STATE SessionOrdering = "State"
+	SESSIONORDERING_UNKNOWN_DEFAULT_OPEN_API SessionOrdering = "unknown_default_open_api"
 )
 
 // All allowed values of SessionOrdering enum
@@ -30,6 +31,7 @@ var AllowedSessionOrderingEnumValues = []SessionOrdering{
 	"Created",
 	"Updated",
 	"State",
+	"unknown_default_open_api",
 }
 
 func (v *SessionOrdering) UnmarshalJSON(src []byte) error {
@@ -46,7 +48,8 @@ func (v *SessionOrdering) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid SessionOrdering", value)
+	*v = SESSIONORDERING_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewSessionOrderingFromValue returns a pointer to a valid SessionOrdering

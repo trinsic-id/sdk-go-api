@@ -9,20 +9,17 @@ Name | Type | Description | Notes
 **NikIdNumber** | Pointer to **NullableString** | The user&#39;s Indonesia NIK ID number | [optional] 
 **Email** | Pointer to **NullableString** | The email address of the individual.              Either email or phone number must be provided. | [optional] 
 **PhoneNumber** | Pointer to **NullableString** | The phone number of the individual.              Either email or phone number must be provided. | [optional] 
-**SelfieImage** | Pointer to **NullableString** | The raw bytes of the selfie image of the individual.              Must be JPEG or PNG format; 10MB maximum. | [optional] 
+**SelfieImage** | Pointer to **NullableString** | The raw bytes of the selfie image of the individual.              Must be JPEG or PNG format; 10MB maximum. When using an SDK, this can be a raw byte array. In raw JSON form this is Base64. | [optional] 
 **DocumentImage** | Pointer to **NullableString** | The raw bytes of the image of the individual&#39;s KTP government ID.              Must be JPEG format; 1MB maximum.              Optional. | [optional] 
 **ConsentGivenAt** | Pointer to **NullableTime** | The timestamp when consent was given by the user for the verification. | [optional] 
 
 ## Methods
 
-### NewIndonesiaDukcapilMatchInput
+### Named construction
 
-`func NewIndonesiaDukcapilMatchInput() *IndonesiaDukcapilMatchInput`
-
-NewIndonesiaDukcapilMatchInput instantiates a new IndonesiaDukcapilMatchInput object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+Use a keyed struct literal (`IndonesiaDukcapilMatchInput{FieldName: value}`), or call
+`NewIndonesiaDukcapilMatchInputWithDefaults()` and set fields by name. Positional field
+factories and unkeyed struct literals are not supported.
 
 ### NewIndonesiaDukcapilMatchInputWithDefaults
 

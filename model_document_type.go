@@ -25,6 +25,7 @@ const (
 	DOCUMENTTYPE_NATIONAL_ID DocumentType = "NationalId"
 	DOCUMENTTYPE_ID_CARD DocumentType = "IdCard"
 	DOCUMENTTYPE_OTHER DocumentType = "Other"
+	DOCUMENTTYPE_UNKNOWN_DEFAULT_OPEN_API DocumentType = "unknown_default_open_api"
 )
 
 // All allowed values of DocumentType enum
@@ -34,6 +35,7 @@ var AllowedDocumentTypeEnumValues = []DocumentType{
 	"NationalId",
 	"IdCard",
 	"Other",
+	"unknown_default_open_api",
 }
 
 func (v *DocumentType) UnmarshalJSON(src []byte) error {
@@ -50,7 +52,8 @@ func (v *DocumentType) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid DocumentType", value)
+	*v = DOCUMENTTYPE_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewDocumentTypeFromValue returns a pointer to a valid DocumentType

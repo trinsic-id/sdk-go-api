@@ -19,6 +19,8 @@ var _ MappedNullable = &EvrotrustInput{}
 
 // EvrotrustInput struct for EvrotrustInput
 type EvrotrustInput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The user's email address.              Either an email address or phone number must be provided to identify the user.
 	EmailAddress NullableString `json:"emailAddress,omitempty"`
 	// The user's phone number.              Either an email address or phone number must be provided to identify the user.
@@ -27,15 +29,6 @@ type EvrotrustInput struct {
 }
 
 type _EvrotrustInput EvrotrustInput
-
-// NewEvrotrustInput instantiates a new EvrotrustInput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewEvrotrustInput() *EvrotrustInput {
-	this := EvrotrustInput{}
-	return &this
-}
 
 // NewEvrotrustInputWithDefaults instantiates a new EvrotrustInput object
 // This constructor will only assign default values to properties that have it defined,

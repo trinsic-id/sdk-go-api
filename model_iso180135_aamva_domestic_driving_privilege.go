@@ -19,6 +19,8 @@ var _ MappedNullable = &Iso180135AamvaDomesticDrivingPrivilege{}
 
 // Iso180135AamvaDomesticDrivingPrivilege A single domestic driving privilege from the AAMVA `domestic_driving_privileges` field, per AAMVA Section 7.2.4.
 type Iso180135AamvaDomesticDrivingPrivilege struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// Vehicle class describing the category of vehicle the holder is authorized to operate.
 	VehicleClass NullableIso180135AamvaDomesticVehicleClass `json:"vehicleClass,omitempty"`
 	// Restrictions attached to this domestic driving privilege.
@@ -29,15 +31,6 @@ type Iso180135AamvaDomesticDrivingPrivilege struct {
 }
 
 type _Iso180135AamvaDomesticDrivingPrivilege Iso180135AamvaDomesticDrivingPrivilege
-
-// NewIso180135AamvaDomesticDrivingPrivilege instantiates a new Iso180135AamvaDomesticDrivingPrivilege object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewIso180135AamvaDomesticDrivingPrivilege() *Iso180135AamvaDomesticDrivingPrivilege {
-	this := Iso180135AamvaDomesticDrivingPrivilege{}
-	return &this
-}
 
 // NewIso180135AamvaDomesticDrivingPrivilegeWithDefaults instantiates a new Iso180135AamvaDomesticDrivingPrivilege object
 // This constructor will only assign default values to properties that have it defined,

@@ -19,6 +19,8 @@ var _ MappedNullable = &Match{}
 
 // Match struct for Match
 type Match struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The probability value of the match.              This is a value between 0 and 1, where 1 indicates a perfect match and 0 indicates no match.              This field is non-null when the underlying Provider's match output is in the form of a probability score.
 	ProbabilityValue NullableFloat64 `json:"probabilityValue,omitempty"`
 	// The boolean value of the match.              This is a value of true or false, where true indicates a match and false indicates no match.              This field is non-null when the underlying Provider's match output is in the form of a boolean value.
@@ -27,15 +29,6 @@ type Match struct {
 }
 
 type _Match Match
-
-// NewMatch instantiates a new Match object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewMatch() *Match {
-	this := Match{}
-	return &this
-}
 
 // NewMatchWithDefaults instantiates a new Match object
 // This constructor will only assign default values to properties that have it defined,

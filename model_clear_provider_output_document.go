@@ -19,6 +19,8 @@ var _ MappedNullable = &ClearProviderOutputDocument{}
 
 // ClearProviderOutputDocument struct for ClearProviderOutputDocument
 type ClearProviderOutputDocument struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The nationality scanned from the document, normalized to an ISO 3166-1 alpha-2 country code.
 	Nationality NullableString `json:"nationality,omitempty"`
 	// The document type scanned by CLEAR.              Known values: - drivers_license - paper_passport - passport_card - id_card - visa - health_care_card - other
@@ -49,15 +51,6 @@ type ClearProviderOutputDocument struct {
 }
 
 type _ClearProviderOutputDocument ClearProviderOutputDocument
-
-// NewClearProviderOutputDocument instantiates a new ClearProviderOutputDocument object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewClearProviderOutputDocument() *ClearProviderOutputDocument {
-	this := ClearProviderOutputDocument{}
-	return &this
-}
 
 // NewClearProviderOutputDocumentWithDefaults instantiates a new ClearProviderOutputDocument object
 // This constructor will only assign default values to properties that have it defined,

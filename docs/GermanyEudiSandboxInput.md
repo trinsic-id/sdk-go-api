@@ -8,14 +8,11 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewGermanyEudiSandboxInput
+### Named construction
 
-`func NewGermanyEudiSandboxInput() *GermanyEudiSandboxInput`
-
-NewGermanyEudiSandboxInput instantiates a new GermanyEudiSandboxInput object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+Use a keyed struct literal (`GermanyEudiSandboxInput{FieldName: value}`), or call
+`NewGermanyEudiSandboxInputWithDefaults()` and set fields by name. Positional field
+factories and unkeyed struct literals are not supported.
 
 ### NewGermanyEudiSandboxInputWithDefaults
 

@@ -38,14 +38,11 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewEvrotrustProviderOutput
+### Named construction
 
-`func NewEvrotrustProviderOutput() *EvrotrustProviderOutput`
-
-NewEvrotrustProviderOutput instantiates a new EvrotrustProviderOutput object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+Use a keyed struct literal (`EvrotrustProviderOutput{FieldName: value}`), or call
+`NewEvrotrustProviderOutputWithDefaults()` and set fields by name. Positional field
+factories and unkeyed struct literals are not supported.
 
 ### NewEvrotrustProviderOutputWithDefaults
 

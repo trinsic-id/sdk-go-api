@@ -19,21 +19,14 @@ var _ MappedNullable = &FranceIdentiteInput{}
 
 // FranceIdentiteInput struct for FranceIdentiteInput
 type FranceIdentiteInput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The raw 18013-7 exchange request to use for this verification.              If set, this overrides any default configuration on your Verification Profile.
 	PreviewRaw18013Request NullableRaw18013RequestInput `json:"preview_raw18013Request,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
 type _FranceIdentiteInput FranceIdentiteInput
-
-// NewFranceIdentiteInput instantiates a new FranceIdentiteInput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewFranceIdentiteInput() *FranceIdentiteInput {
-	this := FranceIdentiteInput{}
-	return &this
-}
 
 // NewFranceIdentiteInputWithDefaults instantiates a new FranceIdentiteInput object
 // This constructor will only assign default values to properties that have it defined,

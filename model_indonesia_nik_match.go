@@ -19,6 +19,8 @@ var _ MappedNullable = &IndonesiaNikMatch{}
 
 // IndonesiaNikMatch Exposed properties for the `indonesia-nik-lookup` Provider which do not directly map to the normalized IdentityData model.
 type IndonesiaNikMatch struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// Full name match result from Indonesia NIK verification.
 	FullName NullableIndonesiaNikMatchField `json:"fullName,omitempty"`
 	// Date of birth match result from Indonesia NIK verification.
@@ -41,15 +43,6 @@ type IndonesiaNikMatch struct {
 }
 
 type _IndonesiaNikMatch IndonesiaNikMatch
-
-// NewIndonesiaNikMatch instantiates a new IndonesiaNikMatch object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewIndonesiaNikMatch() *IndonesiaNikMatch {
-	this := IndonesiaNikMatch{}
-	return &this
-}
 
 // NewIndonesiaNikMatchWithDefaults instantiates a new IndonesiaNikMatch object
 // This constructor will only assign default values to properties that have it defined,

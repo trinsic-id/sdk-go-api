@@ -20,6 +20,8 @@ var _ MappedNullable = &ListVerificationProfilesResponse{}
 
 // ListVerificationProfilesResponse struct for ListVerificationProfilesResponse
 type ListVerificationProfilesResponse struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	VerificationProfiles []VerificationProfileResponse `json:"verificationProfiles"`
 	// Whether there are additional pages of verification profiles to retrieve
 	More bool `json:"more"`
@@ -27,17 +29,6 @@ type ListVerificationProfilesResponse struct {
 }
 
 type _ListVerificationProfilesResponse ListVerificationProfilesResponse
-
-// NewListVerificationProfilesResponse instantiates a new ListVerificationProfilesResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewListVerificationProfilesResponse(verificationProfiles []VerificationProfileResponse, more bool) *ListVerificationProfilesResponse {
-	this := ListVerificationProfilesResponse{}
-	this.VerificationProfiles = verificationProfiles
-	this.More = more
-	return &this
-}
 
 // NewListVerificationProfilesResponseWithDefaults instantiates a new ListVerificationProfilesResponse object
 // This constructor will only assign default values to properties that have it defined,

@@ -19,6 +19,8 @@ var _ MappedNullable = &OneIdProviderOutput{}
 
 // OneIdProviderOutput Exposed properties for the `oneid` Provider which do not directly map to the normalized IdentityData model.
 type OneIdProviderOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The OpenID Connect (OIDC) subject identifier (sub).
 	Sub NullableString `json:"sub,omitempty"`
 	// The individual's full name.
@@ -35,15 +37,6 @@ type OneIdProviderOutput struct {
 }
 
 type _OneIdProviderOutput OneIdProviderOutput
-
-// NewOneIdProviderOutput instantiates a new OneIdProviderOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewOneIdProviderOutput() *OneIdProviderOutput {
-	this := OneIdProviderOutput{}
-	return &this
-}
 
 // NewOneIdProviderOutputWithDefaults instantiates a new OneIdProviderOutput object
 // This constructor will only assign default values to properties that have it defined,

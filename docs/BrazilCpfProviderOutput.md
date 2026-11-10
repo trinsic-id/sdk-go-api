@@ -12,20 +12,17 @@ Name | Type | Description | Notes
 **Name** | Pointer to **NullableString** | The full legal name of the individual. | [optional] 
 **SocialName** | Pointer to **NullableString** | The social name of the individual in case the individual would like to use a different name than their full legal name. | [optional] 
 **DateOfBirth** | Pointer to **NullableString** | The date of birth of the individual. | [optional] 
-**YearOfDeath** | Pointer to **NullableString** | Deprecated as of September 1, 2026.              The year of death of the individual, if applicable. | [optional] 
+**YearOfDeath** | Pointer to **NullableString** | Deprecated as of September 19, 2026.              The year of death of the individual, if applicable. | [optional] 
 **DateOfRegistration** | Pointer to **NullableString** | The date of registration of the individual with the Federal Revenue Service. | [optional] 
 **BiometricVerification** | Pointer to [**NullableBrazilBiometricVerificationOutput**](BrazilBiometricVerificationOutput.md) | The biometric verification results.              This is an optional configurable check. | [optional] 
 
 ## Methods
 
-### NewBrazilCpfProviderOutput
+### Named construction
 
-`func NewBrazilCpfProviderOutput() *BrazilCpfProviderOutput`
-
-NewBrazilCpfProviderOutput instantiates a new BrazilCpfProviderOutput object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+Use a keyed struct literal (`BrazilCpfProviderOutput{FieldName: value}`), or call
+`NewBrazilCpfProviderOutputWithDefaults()` and set fields by name. Positional field
+factories and unkeyed struct literals are not supported.
 
 ### NewBrazilCpfProviderOutputWithDefaults
 

@@ -19,6 +19,8 @@ var _ MappedNullable = &UAEPassProviderOutput{}
 
 // UAEPassProviderOutput Exposed properties for the `uae-pass` Provider which do not directly map to the normalized IdentityData model.
 type UAEPassProviderOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// OIDC subject (`sub`) returned by UAE Pass.              This is an opaque identifier for the authenticated user in the UAE Pass OIDC transaction. It can be prefixed or unprefixed; do not parse this value or assume it matches the Emirates ID number, UAE Pass UUID, or UAE unified ID.
 	Sub NullableString `json:"sub,omitempty"`
 	// Full name in Arabic.
@@ -69,15 +71,6 @@ type UAEPassProviderOutput struct {
 }
 
 type _UAEPassProviderOutput UAEPassProviderOutput
-
-// NewUAEPassProviderOutput instantiates a new UAEPassProviderOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewUAEPassProviderOutput() *UAEPassProviderOutput {
-	this := UAEPassProviderOutput{}
-	return &this
-}
 
 // NewUAEPassProviderOutputWithDefaults instantiates a new UAEPassProviderOutput object
 // This constructor will only assign default values to properties that have it defined,

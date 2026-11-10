@@ -19,6 +19,8 @@ var _ MappedNullable = &EudiPidCredential{}
 
 // EudiPidCredential An EUDI Person Identification Data (PID) credential, with document type `eu.europa.ec.eudi.pid.1`.              This is the primary identity credential type defined in the EUDI Wallet framework.
 type EudiPidCredential struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// Current first name(s), including middle name(s) where applicable, of the individual to whom the PID relates.
 	GivenName NullableString `json:"givenName,omitempty"`
 	// First name(s), including middle name(s), of the individual at the time of birth.
@@ -77,15 +79,6 @@ type EudiPidCredential struct {
 }
 
 type _EudiPidCredential EudiPidCredential
-
-// NewEudiPidCredential instantiates a new EudiPidCredential object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewEudiPidCredential() *EudiPidCredential {
-	this := EudiPidCredential{}
-	return &this
-}
 
 // NewEudiPidCredentialWithDefaults instantiates a new EudiPidCredential object
 // This constructor will only assign default values to properties that have it defined,

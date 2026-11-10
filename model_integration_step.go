@@ -20,6 +20,8 @@ var _ MappedNullable = &IntegrationStep{}
 
 // IntegrationStep A step to perform in the process of executing a Direct Provider Session
 type IntegrationStep struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The launch method to perform
 	Method IntegrationLaunchMethod `json:"method"`
 	// Step type-specific content related to the step: a URL for `LaunchBrowser`, a deeplink for `DeeplinkToMobile` or a string to show to the user for `ShowContent`.
@@ -30,17 +32,6 @@ type IntegrationStep struct {
 }
 
 type _IntegrationStep IntegrationStep
-
-// NewIntegrationStep instantiates a new IntegrationStep object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewIntegrationStep(method IntegrationLaunchMethod, content string) *IntegrationStep {
-	this := IntegrationStep{}
-	this.Method = method
-	this.Content = content
-	return &this
-}
 
 // NewIntegrationStepWithDefaults instantiates a new IntegrationStep object
 // This constructor will only assign default values to properties that have it defined,

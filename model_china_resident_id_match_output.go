@@ -19,6 +19,8 @@ var _ MappedNullable = &ChinaResidentIdMatchOutput{}
 
 // ChinaResidentIdMatchOutput Exposed properties for the `china-resident-id-match` Provider which do not directly map to the normalized IdentityData model.
 type ChinaResidentIdMatchOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The fullname of the individual in Chinese.
 	FullName NullableString `json:"fullName,omitempty"`
 	// The birthdate of the individual.
@@ -29,15 +31,6 @@ type ChinaResidentIdMatchOutput struct {
 }
 
 type _ChinaResidentIdMatchOutput ChinaResidentIdMatchOutput
-
-// NewChinaResidentIdMatchOutput instantiates a new ChinaResidentIdMatchOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewChinaResidentIdMatchOutput() *ChinaResidentIdMatchOutput {
-	this := ChinaResidentIdMatchOutput{}
-	return &this
-}
 
 // NewChinaResidentIdMatchOutputWithDefaults instantiates a new ChinaResidentIdMatchOutput object
 // This constructor will only assign default values to properties that have it defined,

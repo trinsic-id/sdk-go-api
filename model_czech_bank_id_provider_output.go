@@ -20,6 +20,8 @@ var _ MappedNullable = &CzechBankIdProviderOutput{}
 
 // CzechBankIdProviderOutput Exposed properties for the `czech-bank-id` Provider which do not directly map to the normalized IdentityData model.
 type CzechBankIdProviderOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The subject identifier for the verified individual.
 	SubjectIdentifier NullableString `json:"subjectIdentifier,omitempty"`
 	// The individual's full name.
@@ -86,15 +88,6 @@ type CzechBankIdProviderOutput struct {
 }
 
 type _CzechBankIdProviderOutput CzechBankIdProviderOutput
-
-// NewCzechBankIdProviderOutput instantiates a new CzechBankIdProviderOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewCzechBankIdProviderOutput() *CzechBankIdProviderOutput {
-	this := CzechBankIdProviderOutput{}
-	return &this
-}
 
 // NewCzechBankIdProviderOutputWithDefaults instantiates a new CzechBankIdProviderOutput object
 // This constructor will only assign default values to properties that have it defined,

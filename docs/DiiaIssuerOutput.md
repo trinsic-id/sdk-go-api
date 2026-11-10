@@ -13,14 +13,11 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewDiiaIssuerOutput
+### Named construction
 
-`func NewDiiaIssuerOutput() *DiiaIssuerOutput`
-
-NewDiiaIssuerOutput instantiates a new DiiaIssuerOutput object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+Use a keyed struct literal (`DiiaIssuerOutput{FieldName: value}`), or call
+`NewDiiaIssuerOutputWithDefaults()` and set fields by name. Positional field
+factories and unkeyed struct literals are not supported.
 
 ### NewDiiaIssuerOutputWithDefaults
 

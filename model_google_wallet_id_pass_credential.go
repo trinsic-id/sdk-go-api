@@ -19,6 +19,8 @@ var _ MappedNullable = &GoogleWalletIdPassCredential{}
 
 // GoogleWalletIdPassCredential A Google Wallet ID Pass credential, retrieved from Google Wallet.              This is a passport-derived digital credential issued by Google.
 type GoogleWalletIdPassCredential struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// First name(s), other name(s), or secondary identifier of the individual.
 	GivenName NullableString `json:"givenName,omitempty"`
 	// Last name, surname, or primary identifier of the individual.
@@ -47,15 +49,6 @@ type GoogleWalletIdPassCredential struct {
 }
 
 type _GoogleWalletIdPassCredential GoogleWalletIdPassCredential
-
-// NewGoogleWalletIdPassCredential instantiates a new GoogleWalletIdPassCredential object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewGoogleWalletIdPassCredential() *GoogleWalletIdPassCredential {
-	this := GoogleWalletIdPassCredential{}
-	return &this
-}
 
 // NewGoogleWalletIdPassCredentialWithDefaults instantiates a new GoogleWalletIdPassCredential object
 // This constructor will only assign default values to properties that have it defined,

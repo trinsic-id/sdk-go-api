@@ -19,6 +19,8 @@ var _ MappedNullable = &ColombiaCcLookupInput{}
 
 // ColombiaCcLookupInput struct for ColombiaCcLookupInput
 type ColombiaCcLookupInput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The CC (Cédula de Ciudadanía, Citizenship Document) document number.              Format: - Cédulas after 2004 use the NUIP (Número Único de Identificación Personal), which is 10 digits.   Older documents may have fewer than 10 digits and are still valid. - In Colombia the number is often written with dots as thousands separators (e.g. 1.234.567.890). If dots,   hyphens, spaces, or other non-alphanumeric characters are included, they will be sanitized before lookup.
 	DocumentNumber NullableString `json:"documentNumber,omitempty"`
 	// Document issue date, in `YYYY-MM-DD` format
@@ -27,15 +29,6 @@ type ColombiaCcLookupInput struct {
 }
 
 type _ColombiaCcLookupInput ColombiaCcLookupInput
-
-// NewColombiaCcLookupInput instantiates a new ColombiaCcLookupInput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewColombiaCcLookupInput() *ColombiaCcLookupInput {
-	this := ColombiaCcLookupInput{}
-	return &this
-}
 
 // NewColombiaCcLookupInputWithDefaults instantiates a new ColombiaCcLookupInput object
 // This constructor will only assign default values to properties that have it defined,

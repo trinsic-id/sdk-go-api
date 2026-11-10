@@ -19,21 +19,14 @@ var _ MappedNullable = &MoldovaEvoWalletInput{}
 
 // MoldovaEvoWalletInput struct for MoldovaEvoWalletInput
 type MoldovaEvoWalletInput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The raw 18013-7 exchange request to use for this verification.              If set, this overrides any default configuration on your Verification Profile.
 	PreviewRaw18013Request NullableRaw18013RequestInput `json:"preview_raw18013Request,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
 type _MoldovaEvoWalletInput MoldovaEvoWalletInput
-
-// NewMoldovaEvoWalletInput instantiates a new MoldovaEvoWalletInput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewMoldovaEvoWalletInput() *MoldovaEvoWalletInput {
-	this := MoldovaEvoWalletInput{}
-	return &this
-}
 
 // NewMoldovaEvoWalletInputWithDefaults instantiates a new MoldovaEvoWalletInput object
 // This constructor will only assign default values to properties that have it defined,

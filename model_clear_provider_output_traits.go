@@ -19,6 +19,8 @@ var _ MappedNullable = &ClearProviderOutputTraits{}
 
 // ClearProviderOutputTraits struct for ClearProviderOutputTraits
 type ClearProviderOutputTraits struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The individual's address.
 	Address NullableClearProviderOutputAddress `json:"address,omitempty"`
 	// The individual's date of birth.
@@ -57,15 +59,6 @@ type ClearProviderOutputTraits struct {
 }
 
 type _ClearProviderOutputTraits ClearProviderOutputTraits
-
-// NewClearProviderOutputTraits instantiates a new ClearProviderOutputTraits object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewClearProviderOutputTraits() *ClearProviderOutputTraits {
-	this := ClearProviderOutputTraits{}
-	return &this
-}
 
 // NewClearProviderOutputTraitsWithDefaults instantiates a new ClearProviderOutputTraits object
 // This constructor will only assign default values to properties that have it defined,

@@ -19,6 +19,8 @@ var _ MappedNullable = &KenyaNidMatch2FullNameField{}
 
 // KenyaNidMatch2FullNameField struct for KenyaNidMatch2FullNameField
 type KenyaNidMatch2FullNameField struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The full name string submitted for this check (as provided in the match input).
 	InputValue NullableString `json:"inputValue,omitempty"`
 	// The outcome of comparing the submitted full name against the Integrated Population Registration System (IPRS).              Possible values: - Exact Match - Partial Match - Transposed - No Match - Not Returned
@@ -27,15 +29,6 @@ type KenyaNidMatch2FullNameField struct {
 }
 
 type _KenyaNidMatch2FullNameField KenyaNidMatch2FullNameField
-
-// NewKenyaNidMatch2FullNameField instantiates a new KenyaNidMatch2FullNameField object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewKenyaNidMatch2FullNameField() *KenyaNidMatch2FullNameField {
-	this := KenyaNidMatch2FullNameField{}
-	return &this
-}
 
 // NewKenyaNidMatch2FullNameFieldWithDefaults instantiates a new KenyaNidMatch2FullNameField object
 // This constructor will only assign default values to properties that have it defined,

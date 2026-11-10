@@ -19,6 +19,8 @@ var _ MappedNullable = &AlaskaMobileIdProviderOutput{}
 
 // AlaskaMobileIdProviderOutput Exposed properties for the `usa-alaska-mobile-id` Provider which do not directly map to the normalized IdentityData model.
 type AlaskaMobileIdProviderOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// A standard 18013-5 Mobile Driver's License credential, retrieved from the individual's wallet.
 	MobileDriversLicense NullableIso180135MobileDriversLicenseCredential `json:"mobileDriversLicense,omitempty"`
 	// The raw output of the 18013-7 mDL exchange performed through Alaska Mobile ID.
@@ -27,15 +29,6 @@ type AlaskaMobileIdProviderOutput struct {
 }
 
 type _AlaskaMobileIdProviderOutput AlaskaMobileIdProviderOutput
-
-// NewAlaskaMobileIdProviderOutput instantiates a new AlaskaMobileIdProviderOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewAlaskaMobileIdProviderOutput() *AlaskaMobileIdProviderOutput {
-	this := AlaskaMobileIdProviderOutput{}
-	return &this
-}
 
 // NewAlaskaMobileIdProviderOutputWithDefaults instantiates a new AlaskaMobileIdProviderOutput object
 // This constructor will only assign default values to properties that have it defined,

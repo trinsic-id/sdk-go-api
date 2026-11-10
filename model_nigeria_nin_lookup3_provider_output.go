@@ -19,6 +19,8 @@ var _ MappedNullable = &NigeriaNinLookup3ProviderOutput{}
 
 // NigeriaNinLookup3ProviderOutput Exposed properties for the `nigeria-nin-lookup-3` Provider which do not directly map to the normalized IdentityData model.
 type NigeriaNinLookup3ProviderOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// National Identification Number (NIN).              This is a unique, permanent identifier assigned by the National Identity Management Commission (NIMC) upon enrollment.              Format: - 11 numeric digits - No publicly known encoding scheme is used to encode personal information in the NIN - Last digit is a checksum using the Verhoeff algorithm
 	NationalIdentityNumber NullableString `json:"nationalIdentityNumber,omitempty"`
 	// The given name of the individual.
@@ -57,15 +59,6 @@ type NigeriaNinLookup3ProviderOutput struct {
 }
 
 type _NigeriaNinLookup3ProviderOutput NigeriaNinLookup3ProviderOutput
-
-// NewNigeriaNinLookup3ProviderOutput instantiates a new NigeriaNinLookup3ProviderOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewNigeriaNinLookup3ProviderOutput() *NigeriaNinLookup3ProviderOutput {
-	this := NigeriaNinLookup3ProviderOutput{}
-	return &this
-}
 
 // NewNigeriaNinLookup3ProviderOutputWithDefaults instantiates a new NigeriaNinLookup3ProviderOutput object
 // This constructor will only assign default values to properties that have it defined,

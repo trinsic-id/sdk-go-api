@@ -19,6 +19,8 @@ var _ MappedNullable = &IndonesiaNikMatchField{}
 
 // IndonesiaNikMatchField struct for IndonesiaNikMatchField
 type IndonesiaNikMatchField struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// Raw value used for this match field.
 	Content NullableString `json:"content,omitempty"`
 	// Whether the value matched.
@@ -27,15 +29,6 @@ type IndonesiaNikMatchField struct {
 }
 
 type _IndonesiaNikMatchField IndonesiaNikMatchField
-
-// NewIndonesiaNikMatchField instantiates a new IndonesiaNikMatchField object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewIndonesiaNikMatchField() *IndonesiaNikMatchField {
-	this := IndonesiaNikMatchField{}
-	return &this
-}
 
 // NewIndonesiaNikMatchFieldWithDefaults instantiates a new IndonesiaNikMatchField object
 // This constructor will only assign default values to properties that have it defined,

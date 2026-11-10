@@ -19,6 +19,8 @@ var _ MappedNullable = &MoldovaEvoWalletProviderOutput{}
 
 // MoldovaEvoWalletProviderOutput Exposed properties for the `moldova-evo-wallet` Provider which do not directly map to the normalized IdentityData model.
 type MoldovaEvoWalletProviderOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// A Moldovan Identity Card credential, retrieved from the individual's wallet.
 	IdentityCard NullableMoldovaIdentityCardCredential `json:"identityCard,omitempty"`
 	// A Moldovan Driver License credential, retrieved from the individual's wallet.
@@ -33,15 +35,6 @@ type MoldovaEvoWalletProviderOutput struct {
 }
 
 type _MoldovaEvoWalletProviderOutput MoldovaEvoWalletProviderOutput
-
-// NewMoldovaEvoWalletProviderOutput instantiates a new MoldovaEvoWalletProviderOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewMoldovaEvoWalletProviderOutput() *MoldovaEvoWalletProviderOutput {
-	this := MoldovaEvoWalletProviderOutput{}
-	return &this
-}
 
 // NewMoldovaEvoWalletProviderOutputWithDefaults instantiates a new MoldovaEvoWalletProviderOutput object
 // This constructor will only assign default values to properties that have it defined,

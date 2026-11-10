@@ -19,6 +19,8 @@ var _ MappedNullable = &SmartIdProviderOutput{}
 
 // SmartIdProviderOutput Exposed properties for the `smart-id` Provider which do not directly map to the normalized IdentityData model.
 type SmartIdProviderOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The given name (first name) of the individual, extracted from the Smart ID authentication certificate's Subject Distinguished Name \"G\" (givenName) attribute.
 	GivenName NullableString `json:"givenName,omitempty"`
 	// The family name (surname) of the individual, extracted from the Smart ID authentication certificate's Subject Distinguished Name \"SN\" (surname) attribute.
@@ -49,15 +51,6 @@ type SmartIdProviderOutput struct {
 }
 
 type _SmartIdProviderOutput SmartIdProviderOutput
-
-// NewSmartIdProviderOutput instantiates a new SmartIdProviderOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewSmartIdProviderOutput() *SmartIdProviderOutput {
-	this := SmartIdProviderOutput{}
-	return &this
-}
 
 // NewSmartIdProviderOutputWithDefaults instantiates a new SmartIdProviderOutput object
 // This constructor will only assign default values to properties that have it defined,

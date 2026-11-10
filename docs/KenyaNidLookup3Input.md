@@ -8,14 +8,11 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewKenyaNidLookup3Input
+### Named construction
 
-`func NewKenyaNidLookup3Input(idNumber string, ) *KenyaNidLookup3Input`
-
-NewKenyaNidLookup3Input instantiates a new KenyaNidLookup3Input object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+Use a keyed struct literal (`KenyaNidLookup3Input{FieldName: value}`), or call
+`NewKenyaNidLookup3InputWithDefaults()` and set fields by name. Positional field
+factories and unkeyed struct literals are not supported.
 
 ### NewKenyaNidLookup3InputWithDefaults
 

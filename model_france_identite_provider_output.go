@@ -19,6 +19,8 @@ var _ MappedNullable = &FranceIdentiteProviderOutput{}
 
 // FranceIdentiteProviderOutput Exposed properties for the `france-identite` Provider which do not directly map to the normalized IdentityData model.
 type FranceIdentiteProviderOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// An EUDI Person Identification Data (PID) credential, retrieved from the individual's wallet.
 	Pid NullableEudiPidCredential `json:"pid,omitempty"`
 	// An EUDI Age Verification credential, retrieved from the individual's wallet.
@@ -29,15 +31,6 @@ type FranceIdentiteProviderOutput struct {
 }
 
 type _FranceIdentiteProviderOutput FranceIdentiteProviderOutput
-
-// NewFranceIdentiteProviderOutput instantiates a new FranceIdentiteProviderOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewFranceIdentiteProviderOutput() *FranceIdentiteProviderOutput {
-	this := FranceIdentiteProviderOutput{}
-	return &this
-}
 
 // NewFranceIdentiteProviderOutputWithDefaults instantiates a new FranceIdentiteProviderOutput object
 // This constructor will only assign default values to properties that have it defined,

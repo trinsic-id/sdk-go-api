@@ -19,6 +19,8 @@ var _ MappedNullable = &Iso180135DrivingPrivilege{}
 
 // Iso180135DrivingPrivilege A single driving privilege entry, per ISO 18013-5.
 type Iso180135DrivingPrivilege struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// Vehicle category code that the holder is authorized to operate.
 	VehicleCategoryCode NullableString `json:"vehicleCategoryCode,omitempty"`
 	// Date when this driving privilege was issued.
@@ -31,15 +33,6 @@ type Iso180135DrivingPrivilege struct {
 }
 
 type _Iso180135DrivingPrivilege Iso180135DrivingPrivilege
-
-// NewIso180135DrivingPrivilege instantiates a new Iso180135DrivingPrivilege object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewIso180135DrivingPrivilege() *Iso180135DrivingPrivilege {
-	this := Iso180135DrivingPrivilege{}
-	return &this
-}
 
 // NewIso180135DrivingPrivilegeWithDefaults instantiates a new Iso180135DrivingPrivilege object
 // This constructor will only assign default values to properties that have it defined,

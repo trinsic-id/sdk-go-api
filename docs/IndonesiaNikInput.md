@@ -10,14 +10,11 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewIndonesiaNikInput
+### Named construction
 
-`func NewIndonesiaNikInput(fullName string, dateOfBirth string, nikIdNumber string, ) *IndonesiaNikInput`
-
-NewIndonesiaNikInput instantiates a new IndonesiaNikInput object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+Use a keyed struct literal (`IndonesiaNikInput{FieldName: value}`), or call
+`NewIndonesiaNikInputWithDefaults()` and set fields by name. Positional field
+factories and unkeyed struct literals are not supported.
 
 ### NewIndonesiaNikInputWithDefaults
 

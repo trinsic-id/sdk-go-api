@@ -19,6 +19,8 @@ var _ MappedNullable = &GuatemalaCuiProviderOutput{}
 
 // GuatemalaCuiProviderOutput Exposed properties for the `guatemala-cui-lookup` Provider which do not directly map to the normalized IdentityData model.
 type GuatemalaCuiProviderOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// Full name, including given and family names of the CUI holder.
 	FullName NullableString `json:"fullName,omitempty"`
 	// Given name(s) of the CUI holder.
@@ -43,15 +45,6 @@ type GuatemalaCuiProviderOutput struct {
 }
 
 type _GuatemalaCuiProviderOutput GuatemalaCuiProviderOutput
-
-// NewGuatemalaCuiProviderOutput instantiates a new GuatemalaCuiProviderOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewGuatemalaCuiProviderOutput() *GuatemalaCuiProviderOutput {
-	this := GuatemalaCuiProviderOutput{}
-	return &this
-}
 
 // NewGuatemalaCuiProviderOutputWithDefaults instantiates a new GuatemalaCuiProviderOutput object
 // This constructor will only assign default values to properties that have it defined,

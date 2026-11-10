@@ -19,6 +19,8 @@ var _ MappedNullable = &ClearProviderOutputAddress{}
 
 // ClearProviderOutputAddress struct for ClearProviderOutputAddress
 type ClearProviderOutputAddress struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The first line of the address.
 	Line1 NullableString `json:"line1,omitempty"`
 	// The second line of the address, such as an apartment or suite.
@@ -35,15 +37,6 @@ type ClearProviderOutputAddress struct {
 }
 
 type _ClearProviderOutputAddress ClearProviderOutputAddress
-
-// NewClearProviderOutputAddress instantiates a new ClearProviderOutputAddress object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewClearProviderOutputAddress() *ClearProviderOutputAddress {
-	this := ClearProviderOutputAddress{}
-	return &this
-}
 
 // NewClearProviderOutputAddressWithDefaults instantiates a new ClearProviderOutputAddress object
 // This constructor will only assign default values to properties that have it defined,

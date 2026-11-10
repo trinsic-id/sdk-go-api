@@ -19,6 +19,8 @@ var _ MappedNullable = &SingpassMyInfoDescription{}
 
 // SingpassMyInfoDescription struct for SingpassMyInfoDescription
 type SingpassMyInfoDescription struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The code for the following description.
 	Code NullableString `json:"code,omitempty"`
 	// The full description of the field.
@@ -27,15 +29,6 @@ type SingpassMyInfoDescription struct {
 }
 
 type _SingpassMyInfoDescription SingpassMyInfoDescription
-
-// NewSingpassMyInfoDescription instantiates a new SingpassMyInfoDescription object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewSingpassMyInfoDescription() *SingpassMyInfoDescription {
-	this := SingpassMyInfoDescription{}
-	return &this
-}
 
 // NewSingpassMyInfoDescriptionWithDefaults instantiates a new SingpassMyInfoDescription object
 // This constructor will only assign default values to properties that have it defined,

@@ -19,6 +19,8 @@ var _ MappedNullable = &UgandaNidMatch2DateOfBirthField{}
 
 // UgandaNidMatch2DateOfBirthField struct for UgandaNidMatch2DateOfBirthField
 type UgandaNidMatch2DateOfBirthField struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The date of birth submitted for this check.
 	InputValue NullableString `json:"inputValue,omitempty"`
 	// The outcome of comparing the submitted date of birth with NIRA database.              For Uganda match, partial or transposed outcomes are not used; matching is exact or no match.              Possible values: - Exact Match - No Match - Not Returned
@@ -27,15 +29,6 @@ type UgandaNidMatch2DateOfBirthField struct {
 }
 
 type _UgandaNidMatch2DateOfBirthField UgandaNidMatch2DateOfBirthField
-
-// NewUgandaNidMatch2DateOfBirthField instantiates a new UgandaNidMatch2DateOfBirthField object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewUgandaNidMatch2DateOfBirthField() *UgandaNidMatch2DateOfBirthField {
-	this := UgandaNidMatch2DateOfBirthField{}
-	return &this
-}
 
 // NewUgandaNidMatch2DateOfBirthFieldWithDefaults instantiates a new UgandaNidMatch2DateOfBirthField object
 // This constructor will only assign default values to properties that have it defined,

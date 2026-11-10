@@ -20,31 +20,20 @@ var _ MappedNullable = &ChinaResidentIdMatchInput{}
 
 // ChinaResidentIdMatchInput struct for ChinaResidentIdMatchInput
 type ChinaResidentIdMatchInput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The person's full name in Chinese characters.
 	FullName string `json:"fullName"`
 	// The person's date of birth, in `YYYY-MM-DD` format.
 	DateOfBirth string `json:"dateOfBirth"`
 	// The person's 18-character PRC resident identity card number.
-	NationalIdNumber string `json:"nationalIdNumber" validate:"regexp=^\\\\d{17}[\\\\dXx]$"`
+	NationalIdNumber string `json:"nationalIdNumber" validate:"regexp=^\\d{17}[\\dXx]$"`
 	// Consent from the end user for verification of their data.
 	Consent bool `json:"consent"`
 	AdditionalProperties map[string]interface{}
 }
 
 type _ChinaResidentIdMatchInput ChinaResidentIdMatchInput
-
-// NewChinaResidentIdMatchInput instantiates a new ChinaResidentIdMatchInput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewChinaResidentIdMatchInput(fullName string, dateOfBirth string, nationalIdNumber string, consent bool) *ChinaResidentIdMatchInput {
-	this := ChinaResidentIdMatchInput{}
-	this.FullName = fullName
-	this.DateOfBirth = dateOfBirth
-	this.NationalIdNumber = nationalIdNumber
-	this.Consent = consent
-	return &this
-}
 
 // NewChinaResidentIdMatchInputWithDefaults instantiates a new ChinaResidentIdMatchInput object
 // This constructor will only assign default values to properties that have it defined,

@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | The ID of the provider | [readonly] 
 **Name** | **string** | The friendly, human-readable name of the provider | [readonly] 
+**LocalizedDisplayNames** | Pointer to **map[string]string** | Localized display names for the Provider, if any, keyed by lowercase BCP 47 language codes (eg \&quot;fr\&quot;).              If a particular language code is not present, fall back to &#x60;name&#x60;.              This should not be confused for the list of languages the Provider officially supports. | [optional] [readonly] 
 **LogoUrl** | **string** | A URL pointing to the provider&#39;s logo | [readonly] 
 **Subtext** | **string** | The Provider&#39;s subtext recommended to be shown next to the name.              This is flavor text, not a full, human-readable description of the provider. | [readonly] 
 **Health** | **string** | The current health status of the provider | [readonly] 
@@ -16,14 +17,11 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewRecommendProviderInformation
+### Named construction
 
-`func NewRecommendProviderInformation(id string, name string, logoUrl string, subtext string, health string, regions []string, countries []string, subdivisions []string, ) *RecommendProviderInformation`
-
-NewRecommendProviderInformation instantiates a new RecommendProviderInformation object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+Use a keyed struct literal (`RecommendProviderInformation{FieldName: value}`), or call
+`NewRecommendProviderInformationWithDefaults()` and set fields by name. Positional field
+factories and unkeyed struct literals are not supported.
 
 ### NewRecommendProviderInformationWithDefaults
 
@@ -73,6 +71,41 @@ and a boolean to check if the value has been set.
 SetName sets Name field to given value.
 
 
+### GetLocalizedDisplayNames
+
+`func (o *RecommendProviderInformation) GetLocalizedDisplayNames() map[string]string`
+
+GetLocalizedDisplayNames returns the LocalizedDisplayNames field if non-nil, zero value otherwise.
+
+### GetLocalizedDisplayNamesOk
+
+`func (o *RecommendProviderInformation) GetLocalizedDisplayNamesOk() (*map[string]string, bool)`
+
+GetLocalizedDisplayNamesOk returns a tuple with the LocalizedDisplayNames field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLocalizedDisplayNames
+
+`func (o *RecommendProviderInformation) SetLocalizedDisplayNames(v map[string]string)`
+
+SetLocalizedDisplayNames sets LocalizedDisplayNames field to given value.
+
+### HasLocalizedDisplayNames
+
+`func (o *RecommendProviderInformation) HasLocalizedDisplayNames() bool`
+
+HasLocalizedDisplayNames returns a boolean if a field has been set.
+
+### SetLocalizedDisplayNamesNil
+
+`func (o *RecommendProviderInformation) SetLocalizedDisplayNamesNil(b bool)`
+
+ SetLocalizedDisplayNamesNil sets the value for LocalizedDisplayNames to be an explicit nil
+
+### UnsetLocalizedDisplayNames
+`func (o *RecommendProviderInformation) UnsetLocalizedDisplayNames()`
+
+UnsetLocalizedDisplayNames ensures that no value is present for LocalizedDisplayNames, not even an explicit nil
 ### GetLogoUrl
 
 `func (o *RecommendProviderInformation) GetLogoUrl() string`

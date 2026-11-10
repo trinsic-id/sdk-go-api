@@ -19,6 +19,8 @@ var _ MappedNullable = &AppleWalletDigitalIdBirthDate{}
 
 // AppleWalletDigitalIdBirthDate A date of birth field as encoded in an Apple Wallet Digital ID credential, possibly with an \"approximate mask\" indicating uncertain digits.
 type AppleWalletDigitalIdBirthDate struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The encoded date of birth.
 	DateOfBirth NullableString `json:"dateOfBirth,omitempty"`
 	// An 8-character mask of `1`s and `0`s, where a `1` indicates that the corresponding digit in the birth date (formatted as YYYYMMDD) is uncertain or unknown.              For example, a mask of \"00000011\" indicates that the day-of-month on which the individual was born is not certain.
@@ -27,15 +29,6 @@ type AppleWalletDigitalIdBirthDate struct {
 }
 
 type _AppleWalletDigitalIdBirthDate AppleWalletDigitalIdBirthDate
-
-// NewAppleWalletDigitalIdBirthDate instantiates a new AppleWalletDigitalIdBirthDate object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewAppleWalletDigitalIdBirthDate() *AppleWalletDigitalIdBirthDate {
-	this := AppleWalletDigitalIdBirthDate{}
-	return &this
-}
 
 // NewAppleWalletDigitalIdBirthDateWithDefaults instantiates a new AppleWalletDigitalIdBirthDate object
 // This constructor will only assign default values to properties that have it defined,

@@ -25,20 +25,17 @@ Name | Type | Description | Notes
 **PassExpiryDate** | Pointer to **NullableString** | Pass expiration date.              Note that this only applies to a FIN holder. | [optional] 
 **EmploymentSector** | Pointer to **NullableString** | The user&#39;s employment sector. | [optional] 
 **RegisteredAddress** | Pointer to [**NullableSingpassMyInfoRegisteredAddressOutput**](SingpassMyInfoRegisteredAddressOutput.md) | The user&#39;s registered address. | [optional] 
-**HouseDevelopmenetBoardType** | Pointer to [**NullableSingpassMyInfoDescription**](SingpassMyInfoDescription.md) | Housing and Development Board (HBD) flat type code and description.              This value will be null if not HBD Possible values (code description): - 111 1-ROOM FLAT (HDB) - 112 2-ROOM FLAT (HDB) - 113 3-ROOM FLAT (HDB) - 114 4-ROOM FLAT (HDB) - 115 5-ROOM FLAT (HDB) - 116 EXECUTIVE FLAT (HDB) - 118 STUDIO APARTMENT (HDB) | [optional] 
+**HouseDevelopmentBoardType** | Pointer to [**NullableSingpassMyInfoDescription**](SingpassMyInfoDescription.md) | Housing and Development Board (HDB) flat type code and description.              This value will be null if not HDB. Possible values (code description): - 111 1-ROOM FLAT (HDB) - 112 2-ROOM FLAT (HDB) - 113 3-ROOM FLAT (HDB) - 114 4-ROOM FLAT (HDB) - 115 5-ROOM FLAT (HDB) - 116 EXECUTIVE FLAT (HDB) - 118 STUDIO APARTMENT (HDB) | [optional] 
 **HousingType** | Pointer to [**NullableSingpassMyInfoDescription**](SingpassMyInfoDescription.md) | The user&#39;s housing type.              Possible values (code description): - 121 DETACHED HOUSE - 122 SEMI-DETACHED HOUSE - 123 TERRACE HOUSE - 131 CONDOMINIUM - 132 EXECUTIVE CONDOMINIUM - 139 APARTMENT | [optional] 
 **Sex** | Pointer to **NullableString** | Sex of the individual.              Possible values: - Female - Male - Unknown | [optional] 
 
 ## Methods
 
-### NewSingpassPersonalCatalog
+### Named construction
 
-`func NewSingpassPersonalCatalog() *SingpassPersonalCatalog`
-
-NewSingpassPersonalCatalog instantiates a new SingpassPersonalCatalog object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+Use a keyed struct literal (`SingpassPersonalCatalog{FieldName: value}`), or call
+`NewSingpassPersonalCatalogWithDefaults()` and set fields by name. Positional field
+factories and unkeyed struct literals are not supported.
 
 ### NewSingpassPersonalCatalogWithDefaults
 
@@ -783,41 +780,41 @@ HasRegisteredAddress returns a boolean if a field has been set.
 `func (o *SingpassPersonalCatalog) UnsetRegisteredAddress()`
 
 UnsetRegisteredAddress ensures that no value is present for RegisteredAddress, not even an explicit nil
-### GetHouseDevelopmenetBoardType
+### GetHouseDevelopmentBoardType
 
-`func (o *SingpassPersonalCatalog) GetHouseDevelopmenetBoardType() SingpassMyInfoDescription`
+`func (o *SingpassPersonalCatalog) GetHouseDevelopmentBoardType() SingpassMyInfoDescription`
 
-GetHouseDevelopmenetBoardType returns the HouseDevelopmenetBoardType field if non-nil, zero value otherwise.
+GetHouseDevelopmentBoardType returns the HouseDevelopmentBoardType field if non-nil, zero value otherwise.
 
-### GetHouseDevelopmenetBoardTypeOk
+### GetHouseDevelopmentBoardTypeOk
 
-`func (o *SingpassPersonalCatalog) GetHouseDevelopmenetBoardTypeOk() (*SingpassMyInfoDescription, bool)`
+`func (o *SingpassPersonalCatalog) GetHouseDevelopmentBoardTypeOk() (*SingpassMyInfoDescription, bool)`
 
-GetHouseDevelopmenetBoardTypeOk returns a tuple with the HouseDevelopmenetBoardType field if it's non-nil, zero value otherwise
+GetHouseDevelopmentBoardTypeOk returns a tuple with the HouseDevelopmentBoardType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetHouseDevelopmenetBoardType
+### SetHouseDevelopmentBoardType
 
-`func (o *SingpassPersonalCatalog) SetHouseDevelopmenetBoardType(v SingpassMyInfoDescription)`
+`func (o *SingpassPersonalCatalog) SetHouseDevelopmentBoardType(v SingpassMyInfoDescription)`
 
-SetHouseDevelopmenetBoardType sets HouseDevelopmenetBoardType field to given value.
+SetHouseDevelopmentBoardType sets HouseDevelopmentBoardType field to given value.
 
-### HasHouseDevelopmenetBoardType
+### HasHouseDevelopmentBoardType
 
-`func (o *SingpassPersonalCatalog) HasHouseDevelopmenetBoardType() bool`
+`func (o *SingpassPersonalCatalog) HasHouseDevelopmentBoardType() bool`
 
-HasHouseDevelopmenetBoardType returns a boolean if a field has been set.
+HasHouseDevelopmentBoardType returns a boolean if a field has been set.
 
-### SetHouseDevelopmenetBoardTypeNil
+### SetHouseDevelopmentBoardTypeNil
 
-`func (o *SingpassPersonalCatalog) SetHouseDevelopmenetBoardTypeNil(b bool)`
+`func (o *SingpassPersonalCatalog) SetHouseDevelopmentBoardTypeNil(b bool)`
 
- SetHouseDevelopmenetBoardTypeNil sets the value for HouseDevelopmenetBoardType to be an explicit nil
+ SetHouseDevelopmentBoardTypeNil sets the value for HouseDevelopmentBoardType to be an explicit nil
 
-### UnsetHouseDevelopmenetBoardType
-`func (o *SingpassPersonalCatalog) UnsetHouseDevelopmenetBoardType()`
+### UnsetHouseDevelopmentBoardType
+`func (o *SingpassPersonalCatalog) UnsetHouseDevelopmentBoardType()`
 
-UnsetHouseDevelopmenetBoardType ensures that no value is present for HouseDevelopmenetBoardType, not even an explicit nil
+UnsetHouseDevelopmentBoardType ensures that no value is present for HouseDevelopmentBoardType, not even an explicit nil
 ### GetHousingType
 
 `func (o *SingpassPersonalCatalog) GetHousingType() SingpassMyInfoDescription`

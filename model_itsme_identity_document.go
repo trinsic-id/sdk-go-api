@@ -20,6 +20,8 @@ var _ MappedNullable = &ItsmeIdentityDocument{}
 
 // ItsmeIdentityDocument struct for ItsmeIdentityDocument
 type ItsmeIdentityDocument struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The identity document serial number.              Availability by ID document issuing country: always returned for all supported issuing countries.
 	SerialNumber NullableString `json:"serialNumber,omitempty"`
 	// The identity document type code.              Availability by ID document issuing country: always returned for all supported issuing countries.              itsme documents this as a 1 or 2 character ICAO code. - Identity cards start with `I` - passports start with `P`
@@ -34,15 +36,6 @@ type ItsmeIdentityDocument struct {
 }
 
 type _ItsmeIdentityDocument ItsmeIdentityDocument
-
-// NewItsmeIdentityDocument instantiates a new ItsmeIdentityDocument object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewItsmeIdentityDocument() *ItsmeIdentityDocument {
-	this := ItsmeIdentityDocument{}
-	return &this
-}
 
 // NewItsmeIdentityDocumentWithDefaults instantiates a new ItsmeIdentityDocument object
 // This constructor will only assign default values to properties that have it defined,

@@ -20,6 +20,8 @@ var _ MappedNullable = &SouthAfricaNidInput{}
 
 // SouthAfricaNidInput struct for SouthAfricaNidInput
 type SouthAfricaNidInput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The user's full name as it appears in their National ID
 	FullName string `json:"fullName"`
 	// The user's date of birth, in `YYYY-MM-DD` format
@@ -27,24 +29,11 @@ type SouthAfricaNidInput struct {
 	// The user's gender as it appears in their National ID (e.g., male, female)
 	Gender string `json:"gender"`
 	// The user's National ID number
-	NationalIdNumber string `json:"nationalIdNumber" validate:"regexp=^\\\\d*$"`
+	NationalIdNumber string `json:"nationalIdNumber" validate:"regexp=^\\d*$"`
 	AdditionalProperties map[string]interface{}
 }
 
 type _SouthAfricaNidInput SouthAfricaNidInput
-
-// NewSouthAfricaNidInput instantiates a new SouthAfricaNidInput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewSouthAfricaNidInput(fullName string, dateOfBirth string, gender string, nationalIdNumber string) *SouthAfricaNidInput {
-	this := SouthAfricaNidInput{}
-	this.FullName = fullName
-	this.DateOfBirth = dateOfBirth
-	this.Gender = gender
-	this.NationalIdNumber = nationalIdNumber
-	return &this
-}
 
 // NewSouthAfricaNidInputWithDefaults instantiates a new SouthAfricaNidInput object
 // This constructor will only assign default values to properties that have it defined,

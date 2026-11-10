@@ -19,6 +19,8 @@ var _ MappedNullable = &CzechBankIdTitle{}
 
 // CzechBankIdTitle struct for CzechBankIdTitle
 type CzechBankIdTitle struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The title prefix before the individual's name.
 	TitlePrefix NullableString `json:"titlePrefix,omitempty"`
 	// The title suffix after the individual's name.
@@ -27,15 +29,6 @@ type CzechBankIdTitle struct {
 }
 
 type _CzechBankIdTitle CzechBankIdTitle
-
-// NewCzechBankIdTitle instantiates a new CzechBankIdTitle object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewCzechBankIdTitle() *CzechBankIdTitle {
-	this := CzechBankIdTitle{}
-	return &this
-}
 
 // NewCzechBankIdTitleWithDefaults instantiates a new CzechBankIdTitle object
 // This constructor will only assign default values to properties that have it defined,

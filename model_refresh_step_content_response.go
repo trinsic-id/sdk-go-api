@@ -20,22 +20,14 @@ var _ MappedNullable = &RefreshStepContentResponse{}
 
 // RefreshStepContentResponse struct for RefreshStepContentResponse
 type RefreshStepContentResponse struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The integration's next step with refreshed content
 	NextStep IntegrationStep `json:"nextStep"`
 	AdditionalProperties map[string]interface{}
 }
 
 type _RefreshStepContentResponse RefreshStepContentResponse
-
-// NewRefreshStepContentResponse instantiates a new RefreshStepContentResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewRefreshStepContentResponse(nextStep IntegrationStep) *RefreshStepContentResponse {
-	this := RefreshStepContentResponse{}
-	this.NextStep = nextStep
-	return &this
-}
 
 // NewRefreshStepContentResponseWithDefaults instantiates a new RefreshStepContentResponse object
 // This constructor will only assign default values to properties that have it defined,

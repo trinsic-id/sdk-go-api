@@ -19,6 +19,8 @@ var _ MappedNullable = &NetherlandsIdinProviderOutput{}
 
 // NetherlandsIdinProviderOutput Exposed properties for the `netherlands-idin` Provider which do not directly map to the normalized IdentityData model.
 type NetherlandsIdinProviderOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// Unique identifier of the authority that was used to verify the individual.              For banks this follows the SWIFT/BIC (Bank Identification Code) format.
 	AuthorityId NullableString `json:"authorityId,omitempty"`
 	// Name of the authority that was used to verify the individual.
@@ -43,15 +45,6 @@ type NetherlandsIdinProviderOutput struct {
 }
 
 type _NetherlandsIdinProviderOutput NetherlandsIdinProviderOutput
-
-// NewNetherlandsIdinProviderOutput instantiates a new NetherlandsIdinProviderOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewNetherlandsIdinProviderOutput() *NetherlandsIdinProviderOutput {
-	this := NetherlandsIdinProviderOutput{}
-	return &this
-}
 
 // NewNetherlandsIdinProviderOutputWithDefaults instantiates a new NetherlandsIdinProviderOutput object
 // This constructor will only assign default values to properties that have it defined,

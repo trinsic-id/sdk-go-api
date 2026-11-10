@@ -24,6 +24,7 @@ const (
 	SEX_NOT_APPLICABLE Sex = "NotApplicable"
 	SEX_MALE Sex = "Male"
 	SEX_FEMALE Sex = "Female"
+	SEX_UNKNOWN_DEFAULT_OPEN_API Sex = "unknown_default_open_api"
 )
 
 // All allowed values of Sex enum
@@ -32,6 +33,7 @@ var AllowedSexEnumValues = []Sex{
 	"NotApplicable",
 	"Male",
 	"Female",
+	"unknown_default_open_api",
 }
 
 func (v *Sex) UnmarshalJSON(src []byte) error {
@@ -48,7 +50,8 @@ func (v *Sex) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid Sex", value)
+	*v = SEX_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewSexFromValue returns a pointer to a valid Sex

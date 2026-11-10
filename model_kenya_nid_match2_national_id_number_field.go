@@ -19,6 +19,8 @@ var _ MappedNullable = &KenyaNidMatch2NationalIdNumberField{}
 
 // KenyaNidMatch2NationalIdNumberField struct for KenyaNidMatch2NationalIdNumberField
 type KenyaNidMatch2NationalIdNumberField struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The Kenya National ID Number (Nambari ya Kitambulisho) or Unique Personal Identifier (Maisha Namba).              This is the primary unique identifier for Kenyan citizens in all government systems, issued by the National Registration Bureau (NRB). The format is up to 8 digits for National ID or 9 digits for Maisha Namba UPI (the new format since 2023).              Format: - Up to 8 digits for National ID, unique and sequentially generated - 9 digits for Maisha Namba UPI, unique and randomly generated - Neither number encodes any information about the individual
 	InputValue NullableString `json:"inputValue,omitempty"`
 	// The outcome of verifying the national ID number against the Integrated Population Registration System (IPRS).              Possible values: - Verified - Not Verified - Not Done - Issuer Unavailable - Not Returned
@@ -27,15 +29,6 @@ type KenyaNidMatch2NationalIdNumberField struct {
 }
 
 type _KenyaNidMatch2NationalIdNumberField KenyaNidMatch2NationalIdNumberField
-
-// NewKenyaNidMatch2NationalIdNumberField instantiates a new KenyaNidMatch2NationalIdNumberField object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewKenyaNidMatch2NationalIdNumberField() *KenyaNidMatch2NationalIdNumberField {
-	this := KenyaNidMatch2NationalIdNumberField{}
-	return &this
-}
 
 // NewKenyaNidMatch2NationalIdNumberFieldWithDefaults instantiates a new KenyaNidMatch2NationalIdNumberField object
 // This constructor will only assign default values to properties that have it defined,

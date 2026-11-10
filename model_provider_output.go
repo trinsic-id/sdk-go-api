@@ -19,6 +19,8 @@ var _ MappedNullable = &ProviderOutput{}
 
 // ProviderOutput struct for ProviderOutput
 type ProviderOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// Exposed properties for the `a-at-handy-signatur-login` Provider which do not directly map to the normalized IdentityData model.
 	AAtHandySignaturLogin NullableAustriaHandySignaturProviderOutput `json:"a-at-handy-signatur-login,omitempty"`
 	// Exposed properties for the `a-be-id-login` Provider which do not directly map to the normalized IdentityData model.
@@ -119,6 +121,10 @@ type ProviderOutput struct {
 	ItalySpid NullableSpidProviderOutput `json:"italy-spid,omitempty"`
 	// Exposed properties for the `itsme` Provider which do not directly map to the normalized IdentityData model.
 	Itsme NullableItsmeProviderOutput `json:"itsme,omitempty"`
+	// Verified attributes for the `japan-mynumber` provider, including the original sex code.
+	JapanMynumber NullableJapanMyNumberProviderOutput `json:"japan-mynumber,omitempty"`
+	// Exposed properties for the `jordan-sanad` Provider which do not directly map to the normalized IdentityData model.
+	JordanSanad NullableSanadProviderOutput `json:"jordan-sanad,omitempty"`
 	// Exposed properties for the `kenya-nid-lookup-2` Provider which do not directly map to the normalized IdentityData model.
 	KenyaNidLookup2 NullableKenyaNidLookup2ProviderOutput `json:"kenya-nid-lookup-2,omitempty"`
 	// Exposed properties for the `kenya-nid-lookup-3` Provider which do not directly map to the normalized IdentityData model.
@@ -145,6 +151,8 @@ type ProviderOutput struct {
 	NigeriaNinMatch2 NullableNigeriaNinMatch2ProviderOutput `json:"nigeria-nin-match-2,omitempty"`
 	// Exposed properties for the `oneid` Provider which do not directly map to the normalized IdentityData model.
 	Oneid NullableOneIdProviderOutput `json:"oneid,omitempty"`
+	// Identity claims returned by Revolut.
+	Revolut NullableRevolutProviderOutput `json:"revolut,omitempty"`
 	// Exposed properties for the `peru-dni-lookup` Provider which do not directly map to the normalized IdentityData model.
 	PeruDniLookup NullablePeruDniProviderOutput `json:"peru-dni-lookup,omitempty"`
 	// Exposed properties for the `norway-bankid` Provider which do not directly map to the normalized IdentityData model.
@@ -161,6 +169,8 @@ type ProviderOutput struct {
 	PostOfficeEasyid NullablePostOfficeEasyIdProviderOutput `json:"post-office-easyid,omitempty"`
 	// Exposed properties for the `samsung-wallet` Provider which do not directly map to the normalized IdentityData model.
 	SamsungWallet NullableSamsungWalletProviderOutput `json:"samsung-wallet,omitempty"`
+	// Exposed properties for the `saudi-arabia-nafath` Provider which do not directly map to the normalized IdentityData model.
+	SaudiArabiaNafath NullableSaudiArabiaNafathProviderOutput `json:"saudi-arabia-nafath,omitempty"`
 	// Exposed properties for the `singpass-login` Provider which do not directly map to the normalized IdentityData model.
 	SingpassLogin NullableSingpassLoginProviderOutput `json:"singpass-login,omitempty"`
 	// Exposed properties for the `singpass-myinfo` Provider which do not directly map to the normalized IdentityData model.
@@ -199,15 +209,6 @@ type ProviderOutput struct {
 }
 
 type _ProviderOutput ProviderOutput
-
-// NewProviderOutput instantiates a new ProviderOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewProviderOutput() *ProviderOutput {
-	this := ProviderOutput{}
-	return &this
-}
 
 // NewProviderOutputWithDefaults instantiates a new ProviderOutput object
 // This constructor will only assign default values to properties that have it defined,
@@ -2317,6 +2318,90 @@ func (o *ProviderOutput) UnsetItsme() {
 	o.Itsme.Unset()
 }
 
+// GetJapanMynumber returns the JapanMynumber field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderOutput) GetJapanMynumber() JapanMyNumberProviderOutput {
+	if o == nil || IsNil(o.JapanMynumber.Get()) {
+		var ret JapanMyNumberProviderOutput
+		return ret
+	}
+	return *o.JapanMynumber.Get()
+}
+
+// GetJapanMynumberOk returns a tuple with the JapanMynumber field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderOutput) GetJapanMynumberOk() (*JapanMyNumberProviderOutput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.JapanMynumber.Get(), o.JapanMynumber.IsSet()
+}
+
+// HasJapanMynumber returns a boolean if a field has been set.
+func (o *ProviderOutput) HasJapanMynumber() bool {
+	if o != nil && o.JapanMynumber.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetJapanMynumber gets a reference to the given NullableJapanMyNumberProviderOutput and assigns it to the JapanMynumber field.
+func (o *ProviderOutput) SetJapanMynumber(v JapanMyNumberProviderOutput) {
+	o.JapanMynumber.Set(&v)
+}
+// SetJapanMynumberNil sets the value for JapanMynumber to be an explicit nil
+func (o *ProviderOutput) SetJapanMynumberNil() {
+	o.JapanMynumber.Set(nil)
+}
+
+// UnsetJapanMynumber ensures that no value is present for JapanMynumber, not even an explicit nil
+func (o *ProviderOutput) UnsetJapanMynumber() {
+	o.JapanMynumber.Unset()
+}
+
+// GetJordanSanad returns the JordanSanad field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderOutput) GetJordanSanad() SanadProviderOutput {
+	if o == nil || IsNil(o.JordanSanad.Get()) {
+		var ret SanadProviderOutput
+		return ret
+	}
+	return *o.JordanSanad.Get()
+}
+
+// GetJordanSanadOk returns a tuple with the JordanSanad field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderOutput) GetJordanSanadOk() (*SanadProviderOutput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.JordanSanad.Get(), o.JordanSanad.IsSet()
+}
+
+// HasJordanSanad returns a boolean if a field has been set.
+func (o *ProviderOutput) HasJordanSanad() bool {
+	if o != nil && o.JordanSanad.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetJordanSanad gets a reference to the given NullableSanadProviderOutput and assigns it to the JordanSanad field.
+func (o *ProviderOutput) SetJordanSanad(v SanadProviderOutput) {
+	o.JordanSanad.Set(&v)
+}
+// SetJordanSanadNil sets the value for JordanSanad to be an explicit nil
+func (o *ProviderOutput) SetJordanSanadNil() {
+	o.JordanSanad.Set(nil)
+}
+
+// UnsetJordanSanad ensures that no value is present for JordanSanad, not even an explicit nil
+func (o *ProviderOutput) UnsetJordanSanad() {
+	o.JordanSanad.Unset()
+}
+
 // GetKenyaNidLookup2 returns the KenyaNidLookup2 field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ProviderOutput) GetKenyaNidLookup2() KenyaNidLookup2ProviderOutput {
 	if o == nil || IsNil(o.KenyaNidLookup2.Get()) {
@@ -2863,6 +2948,48 @@ func (o *ProviderOutput) UnsetOneid() {
 	o.Oneid.Unset()
 }
 
+// GetRevolut returns the Revolut field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderOutput) GetRevolut() RevolutProviderOutput {
+	if o == nil || IsNil(o.Revolut.Get()) {
+		var ret RevolutProviderOutput
+		return ret
+	}
+	return *o.Revolut.Get()
+}
+
+// GetRevolutOk returns a tuple with the Revolut field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderOutput) GetRevolutOk() (*RevolutProviderOutput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Revolut.Get(), o.Revolut.IsSet()
+}
+
+// HasRevolut returns a boolean if a field has been set.
+func (o *ProviderOutput) HasRevolut() bool {
+	if o != nil && o.Revolut.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRevolut gets a reference to the given NullableRevolutProviderOutput and assigns it to the Revolut field.
+func (o *ProviderOutput) SetRevolut(v RevolutProviderOutput) {
+	o.Revolut.Set(&v)
+}
+// SetRevolutNil sets the value for Revolut to be an explicit nil
+func (o *ProviderOutput) SetRevolutNil() {
+	o.Revolut.Set(nil)
+}
+
+// UnsetRevolut ensures that no value is present for Revolut, not even an explicit nil
+func (o *ProviderOutput) UnsetRevolut() {
+	o.Revolut.Unset()
+}
+
 // GetPeruDniLookup returns the PeruDniLookup field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ProviderOutput) GetPeruDniLookup() PeruDniProviderOutput {
 	if o == nil || IsNil(o.PeruDniLookup.Get()) {
@@ -3197,6 +3324,48 @@ func (o *ProviderOutput) SetSamsungWalletNil() {
 // UnsetSamsungWallet ensures that no value is present for SamsungWallet, not even an explicit nil
 func (o *ProviderOutput) UnsetSamsungWallet() {
 	o.SamsungWallet.Unset()
+}
+
+// GetSaudiArabiaNafath returns the SaudiArabiaNafath field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderOutput) GetSaudiArabiaNafath() SaudiArabiaNafathProviderOutput {
+	if o == nil || IsNil(o.SaudiArabiaNafath.Get()) {
+		var ret SaudiArabiaNafathProviderOutput
+		return ret
+	}
+	return *o.SaudiArabiaNafath.Get()
+}
+
+// GetSaudiArabiaNafathOk returns a tuple with the SaudiArabiaNafath field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderOutput) GetSaudiArabiaNafathOk() (*SaudiArabiaNafathProviderOutput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.SaudiArabiaNafath.Get(), o.SaudiArabiaNafath.IsSet()
+}
+
+// HasSaudiArabiaNafath returns a boolean if a field has been set.
+func (o *ProviderOutput) HasSaudiArabiaNafath() bool {
+	if o != nil && o.SaudiArabiaNafath.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSaudiArabiaNafath gets a reference to the given NullableSaudiArabiaNafathProviderOutput and assigns it to the SaudiArabiaNafath field.
+func (o *ProviderOutput) SetSaudiArabiaNafath(v SaudiArabiaNafathProviderOutput) {
+	o.SaudiArabiaNafath.Set(&v)
+}
+// SetSaudiArabiaNafathNil sets the value for SaudiArabiaNafath to be an explicit nil
+func (o *ProviderOutput) SetSaudiArabiaNafathNil() {
+	o.SaudiArabiaNafath.Set(nil)
+}
+
+// UnsetSaudiArabiaNafath ensures that no value is present for SaudiArabiaNafath, not even an explicit nil
+func (o *ProviderOutput) UnsetSaudiArabiaNafath() {
+	o.SaudiArabiaNafath.Unset()
 }
 
 // GetSingpassLogin returns the SingpassLogin field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -4073,6 +4242,12 @@ func (o ProviderOutput) ToMap() (map[string]interface{}, error) {
 	if o.Itsme.IsSet() {
 		toSerialize["itsme"] = o.Itsme.Get()
 	}
+	if o.JapanMynumber.IsSet() {
+		toSerialize["japan-mynumber"] = o.JapanMynumber.Get()
+	}
+	if o.JordanSanad.IsSet() {
+		toSerialize["jordan-sanad"] = o.JordanSanad.Get()
+	}
 	if o.KenyaNidLookup2.IsSet() {
 		toSerialize["kenya-nid-lookup-2"] = o.KenyaNidLookup2.Get()
 	}
@@ -4112,6 +4287,9 @@ func (o ProviderOutput) ToMap() (map[string]interface{}, error) {
 	if o.Oneid.IsSet() {
 		toSerialize["oneid"] = o.Oneid.Get()
 	}
+	if o.Revolut.IsSet() {
+		toSerialize["revolut"] = o.Revolut.Get()
+	}
 	if o.PeruDniLookup.IsSet() {
 		toSerialize["peru-dni-lookup"] = o.PeruDniLookup.Get()
 	}
@@ -4135,6 +4313,9 @@ func (o ProviderOutput) ToMap() (map[string]interface{}, error) {
 	}
 	if o.SamsungWallet.IsSet() {
 		toSerialize["samsung-wallet"] = o.SamsungWallet.Get()
+	}
+	if o.SaudiArabiaNafath.IsSet() {
+		toSerialize["saudi-arabia-nafath"] = o.SaudiArabiaNafath.Get()
 	}
 	if o.SingpassLogin.IsSet() {
 		toSerialize["singpass-login"] = o.SingpassLogin.Get()
@@ -4259,6 +4440,8 @@ func (o *ProviderOutput) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "china-resident-id-match")
 		delete(additionalProperties, "italy-spid")
 		delete(additionalProperties, "itsme")
+		delete(additionalProperties, "japan-mynumber")
+		delete(additionalProperties, "jordan-sanad")
 		delete(additionalProperties, "kenya-nid-lookup-2")
 		delete(additionalProperties, "kenya-nid-lookup-3")
 		delete(additionalProperties, "kenya-nid-match-2")
@@ -4272,6 +4455,7 @@ func (o *ProviderOutput) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "nigeria-nin-lookup-3")
 		delete(additionalProperties, "nigeria-nin-match-2")
 		delete(additionalProperties, "oneid")
+		delete(additionalProperties, "revolut")
 		delete(additionalProperties, "peru-dni-lookup")
 		delete(additionalProperties, "norway-bankid")
 		delete(additionalProperties, "philippines-digital-national-id-qr")
@@ -4280,6 +4464,7 @@ func (o *ProviderOutput) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "poland-mobywatel-match")
 		delete(additionalProperties, "post-office-easyid")
 		delete(additionalProperties, "samsung-wallet")
+		delete(additionalProperties, "saudi-arabia-nafath")
 		delete(additionalProperties, "singpass-login")
 		delete(additionalProperties, "singpass-myinfo")
 		delete(additionalProperties, "smart-id")

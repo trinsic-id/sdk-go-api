@@ -19,6 +19,8 @@ var _ MappedNullable = &CzechMojeIdProviderOutput{}
 
 // CzechMojeIdProviderOutput Exposed properties for the `czech-moje-id` Provider which do not directly map to the normalized IdentityData model.
 type CzechMojeIdProviderOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The subject identifier (sub) of the verified individual's MojeID account.              This is a unique identifier that represents the individual within the MojeID system.
 	SubjectIdentifier NullableString `json:"subjectIdentifier,omitempty"`
 	// The individual's full name.
@@ -73,15 +75,6 @@ type CzechMojeIdProviderOutput struct {
 }
 
 type _CzechMojeIdProviderOutput CzechMojeIdProviderOutput
-
-// NewCzechMojeIdProviderOutput instantiates a new CzechMojeIdProviderOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewCzechMojeIdProviderOutput() *CzechMojeIdProviderOutput {
-	this := CzechMojeIdProviderOutput{}
-	return &this
-}
 
 // NewCzechMojeIdProviderOutputWithDefaults instantiates a new CzechMojeIdProviderOutput object
 // This constructor will only assign default values to properties that have it defined,

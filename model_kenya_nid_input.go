@@ -20,6 +20,8 @@ var _ MappedNullable = &KenyaNidInput{}
 
 // KenyaNidInput struct for KenyaNidInput
 type KenyaNidInput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The user's first name as it appears in their National ID
 	FirstName string `json:"firstName"`
 	// The user's middle name as it appears in their National ID (optional)
@@ -31,25 +33,11 @@ type KenyaNidInput struct {
 	// The user's gender as it appears in their National ID (e.g., male, female)
 	Gender string `json:"gender"`
 	// The user's Kenya National ID number
-	NationalIdNumber string `json:"nationalIdNumber" validate:"regexp=^\\\\d*$"`
+	NationalIdNumber string `json:"nationalIdNumber" validate:"regexp=^\\d*$"`
 	AdditionalProperties map[string]interface{}
 }
 
 type _KenyaNidInput KenyaNidInput
-
-// NewKenyaNidInput instantiates a new KenyaNidInput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewKenyaNidInput(firstName string, lastName string, dateOfBirth string, gender string, nationalIdNumber string) *KenyaNidInput {
-	this := KenyaNidInput{}
-	this.FirstName = firstName
-	this.LastName = lastName
-	this.DateOfBirth = dateOfBirth
-	this.Gender = gender
-	this.NationalIdNumber = nationalIdNumber
-	return &this
-}
 
 // NewKenyaNidInputWithDefaults instantiates a new KenyaNidInput object
 // This constructor will only assign default values to properties that have it defined,

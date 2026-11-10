@@ -28,6 +28,7 @@ const (
 	INTEGRATIONCAPABILITY_POLL_RESULT IntegrationCapability = "PollResult"
 	INTEGRATIONCAPABILITY_POLL_AFTER_REDIRECT IntegrationCapability = "PollAfterRedirect"
 	INTEGRATIONCAPABILITY_NATIVE_CHALLENGE IntegrationCapability = "NativeChallenge"
+	INTEGRATIONCAPABILITY_UNKNOWN_DEFAULT_OPEN_API IntegrationCapability = "unknown_default_open_api"
 )
 
 // All allowed values of IntegrationCapability enum
@@ -40,6 +41,7 @@ var AllowedIntegrationCapabilityEnumValues = []IntegrationCapability{
 	"PollResult",
 	"PollAfterRedirect",
 	"NativeChallenge",
+	"unknown_default_open_api",
 }
 
 func (v *IntegrationCapability) UnmarshalJSON(src []byte) error {
@@ -56,7 +58,8 @@ func (v *IntegrationCapability) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid IntegrationCapability", value)
+	*v = INTEGRATIONCAPABILITY_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewIntegrationCapabilityFromValue returns a pointer to a valid IntegrationCapability

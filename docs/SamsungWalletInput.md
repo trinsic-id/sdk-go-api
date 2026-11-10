@@ -8,14 +8,11 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewSamsungWalletInput
+### Named construction
 
-`func NewSamsungWalletInput() *SamsungWalletInput`
-
-NewSamsungWalletInput instantiates a new SamsungWalletInput object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+Use a keyed struct literal (`SamsungWalletInput{FieldName: value}`), or call
+`NewSamsungWalletInputWithDefaults()` and set fields by name. Positional field
+factories and unkeyed struct literals are not supported.
 
 ### NewSamsungWalletInputWithDefaults
 

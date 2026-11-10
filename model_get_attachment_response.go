@@ -20,25 +20,18 @@ var _ MappedNullable = &GetAttachmentResponse{}
 
 // GetAttachmentResponse struct for GetAttachmentResponse
 type GetAttachmentResponse struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The file contents of the Attachment. When using an SDK, this can be a raw byte array. In raw JSON form this is Base64. Combine this with the Content type to reconstruct the file.              This is empty when `encryptedContent` is present.
 	Content string `json:"content"`
+	// The HPKE Bundle containing the encrypted contents of the Attachment, if secured via HPKE.              Decrypt it using the HPKE info string `trinsic-hpke:1:attachment-contents:{sessionId}:{attachmentId}`.
+	EncryptedContent NullableTrinsicHPKEBundle `json:"encryptedContent,omitempty"`
 	// The MIME type of the Attachment data
 	ContentType string `json:"contentType"`
 	AdditionalProperties map[string]interface{}
 }
 
 type _GetAttachmentResponse GetAttachmentResponse
-
-// NewGetAttachmentResponse instantiates a new GetAttachmentResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewGetAttachmentResponse(content string, contentType string) *GetAttachmentResponse {
-	this := GetAttachmentResponse{}
-	this.Content = content
-	this.ContentType = contentType
-	return &this
-}
 
 // NewGetAttachmentResponseWithDefaults instantiates a new GetAttachmentResponse object
 // This constructor will only assign default values to properties that have it defined,
@@ -70,6 +63,48 @@ func (o *GetAttachmentResponse) GetContentOk() (*string, bool) {
 // SetContent sets field value
 func (o *GetAttachmentResponse) SetContent(v string) {
 	o.Content = v
+}
+
+// GetEncryptedContent returns the EncryptedContent field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetAttachmentResponse) GetEncryptedContent() TrinsicHPKEBundle {
+	if o == nil || IsNil(o.EncryptedContent.Get()) {
+		var ret TrinsicHPKEBundle
+		return ret
+	}
+	return *o.EncryptedContent.Get()
+}
+
+// GetEncryptedContentOk returns a tuple with the EncryptedContent field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetAttachmentResponse) GetEncryptedContentOk() (*TrinsicHPKEBundle, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.EncryptedContent.Get(), o.EncryptedContent.IsSet()
+}
+
+// HasEncryptedContent returns a boolean if a field has been set.
+func (o *GetAttachmentResponse) HasEncryptedContent() bool {
+	if o != nil && o.EncryptedContent.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetEncryptedContent gets a reference to the given NullableTrinsicHPKEBundle and assigns it to the EncryptedContent field.
+func (o *GetAttachmentResponse) SetEncryptedContent(v TrinsicHPKEBundle) {
+	o.EncryptedContent.Set(&v)
+}
+// SetEncryptedContentNil sets the value for EncryptedContent to be an explicit nil
+func (o *GetAttachmentResponse) SetEncryptedContentNil() {
+	o.EncryptedContent.Set(nil)
+}
+
+// UnsetEncryptedContent ensures that no value is present for EncryptedContent, not even an explicit nil
+func (o *GetAttachmentResponse) UnsetEncryptedContent() {
+	o.EncryptedContent.Unset()
 }
 
 // GetContentType returns the ContentType field value
@@ -107,6 +142,9 @@ func (o GetAttachmentResponse) MarshalJSON() ([]byte, error) {
 func (o GetAttachmentResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["content"] = o.Content
+	if o.EncryptedContent.IsSet() {
+		toSerialize["encryptedContent"] = o.EncryptedContent.Get()
+	}
 	toSerialize["contentType"] = o.ContentType
 
 	for key, value := range o.AdditionalProperties {
@@ -153,6 +191,7 @@ func (o *GetAttachmentResponse) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "content")
+		delete(additionalProperties, "encryptedContent")
 		delete(additionalProperties, "contentType")
 		o.AdditionalProperties = additionalProperties
 	}

@@ -19,6 +19,8 @@ var _ MappedNullable = &KenyaNidLookup2ProviderOutput{}
 
 // KenyaNidLookup2ProviderOutput Exposed properties for the `kenya-nid-lookup-2` Provider which do not directly map to the normalized IdentityData model.
 type KenyaNidLookup2ProviderOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The first name (given name) of the ID holder as recorded in IPRS.
 	FirstName NullableString `json:"firstName,omitempty"`
 	// The surname (family name) of the ID holder as recorded in IPRS.
@@ -45,15 +47,6 @@ type KenyaNidLookup2ProviderOutput struct {
 }
 
 type _KenyaNidLookup2ProviderOutput KenyaNidLookup2ProviderOutput
-
-// NewKenyaNidLookup2ProviderOutput instantiates a new KenyaNidLookup2ProviderOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewKenyaNidLookup2ProviderOutput() *KenyaNidLookup2ProviderOutput {
-	this := KenyaNidLookup2ProviderOutput{}
-	return &this
-}
 
 // NewKenyaNidLookup2ProviderOutputWithDefaults instantiates a new KenyaNidLookup2ProviderOutput object
 // This constructor will only assign default values to properties that have it defined,

@@ -20,7 +20,9 @@ var _ MappedNullable = &UkEvisaLookupInput{}
 
 // UkEvisaLookupInput struct for UkEvisaLookupInput
 type UkEvisaLookupInput struct {
-	// The 9-character share code.
+	// Require field names in literals created outside this package.
+	_ struct{}
+	// The 9-character alphanumeric UK Visas and Immigration (UKVI) share code. Must start with W for right to work, R for right to rent, or S for immigration status, matching the configured lookup type. Whitespace is removed and lowercase ASCII letters are converted to uppercase.
 	ShareCode string `json:"shareCode"`
 	// The user's date of birth, in `YYYY-MM-DD` format.
 	DateOfBirth string `json:"dateOfBirth"`
@@ -28,17 +30,6 @@ type UkEvisaLookupInput struct {
 }
 
 type _UkEvisaLookupInput UkEvisaLookupInput
-
-// NewUkEvisaLookupInput instantiates a new UkEvisaLookupInput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewUkEvisaLookupInput(shareCode string, dateOfBirth string) *UkEvisaLookupInput {
-	this := UkEvisaLookupInput{}
-	this.ShareCode = shareCode
-	this.DateOfBirth = dateOfBirth
-	return &this
-}
 
 // NewUkEvisaLookupInputWithDefaults instantiates a new UkEvisaLookupInput object
 // This constructor will only assign default values to properties that have it defined,

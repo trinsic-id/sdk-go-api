@@ -19,6 +19,10 @@ var _ MappedNullable = &BrazilCnhProviderOutput{}
 
 // BrazilCnhProviderOutput Exposed properties for the `brazil-digital-cnh` Provider which do not directly map to the normalized IdentityData model.
 type BrazilCnhProviderOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
+	// The individual's CPF number.              A CPF (Cadastro de Pessoas Físicas) is the Brazilian individual taxpayer identification number for residents and foreigners. It is an 11-digit number managed by the Federal Revenue Service, the last 2 digits are check digits, calculated based on the first 9 digits. The 9th digit indicates the fiscal region responsible for the registration,
+	CpfNumber NullableString `json:"cpfNumber,omitempty"`
 	// Full name decoded from the CNH QR Code and whether it matched the government database.
 	FullName NullableBrazilCnhMatchFieldString `json:"fullName,omitempty"`
 	// Similarity score for the decoded full name from the CNH QR Code.              Ranges from 0.0 to 1.0, where 1.0 is an exact match.
@@ -56,21 +60,54 @@ type BrazilCnhProviderOutput struct {
 
 type _BrazilCnhProviderOutput BrazilCnhProviderOutput
 
-// NewBrazilCnhProviderOutput instantiates a new BrazilCnhProviderOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewBrazilCnhProviderOutput() *BrazilCnhProviderOutput {
-	this := BrazilCnhProviderOutput{}
-	return &this
-}
-
 // NewBrazilCnhProviderOutputWithDefaults instantiates a new BrazilCnhProviderOutput object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
 func NewBrazilCnhProviderOutputWithDefaults() *BrazilCnhProviderOutput {
 	this := BrazilCnhProviderOutput{}
 	return &this
+}
+
+// GetCpfNumber returns the CpfNumber field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *BrazilCnhProviderOutput) GetCpfNumber() string {
+	if o == nil || IsNil(o.CpfNumber.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.CpfNumber.Get()
+}
+
+// GetCpfNumberOk returns a tuple with the CpfNumber field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *BrazilCnhProviderOutput) GetCpfNumberOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CpfNumber.Get(), o.CpfNumber.IsSet()
+}
+
+// HasCpfNumber returns a boolean if a field has been set.
+func (o *BrazilCnhProviderOutput) HasCpfNumber() bool {
+	if o != nil && o.CpfNumber.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCpfNumber gets a reference to the given NullableString and assigns it to the CpfNumber field.
+func (o *BrazilCnhProviderOutput) SetCpfNumber(v string) {
+	o.CpfNumber.Set(&v)
+}
+// SetCpfNumberNil sets the value for CpfNumber to be an explicit nil
+func (o *BrazilCnhProviderOutput) SetCpfNumberNil() {
+	o.CpfNumber.Set(nil)
+}
+
+// UnsetCpfNumber ensures that no value is present for CpfNumber, not even an explicit nil
+func (o *BrazilCnhProviderOutput) UnsetCpfNumber() {
+	o.CpfNumber.Unset()
 }
 
 // GetFullName returns the FullName field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -755,6 +792,9 @@ func (o BrazilCnhProviderOutput) MarshalJSON() ([]byte, error) {
 
 func (o BrazilCnhProviderOutput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if o.CpfNumber.IsSet() {
+		toSerialize["cpfNumber"] = o.CpfNumber.Get()
+	}
 	if o.FullName.IsSet() {
 		toSerialize["fullName"] = o.FullName.Get()
 	}
@@ -825,6 +865,7 @@ func (o *BrazilCnhProviderOutput) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "cpfNumber")
 		delete(additionalProperties, "fullName")
 		delete(additionalProperties, "fullNameSimilarity")
 		delete(additionalProperties, "originDocument")

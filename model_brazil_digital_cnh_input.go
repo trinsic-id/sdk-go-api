@@ -20,28 +20,20 @@ var _ MappedNullable = &BrazilDigitalCnhInput{}
 
 // BrazilDigitalCnhInput struct for BrazilDigitalCnhInput
 type BrazilDigitalCnhInput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The user's 11-digit, numeric CPF Number
-	CpfNumber string `json:"cpfNumber" validate:"regexp=^\\\\d*$"`
+	CpfNumber string `json:"cpfNumber" validate:"regexp=^\\d*$"`
 	// The raw bytes of the digital CNH file collected from the user.
 	DigitalCnhFile NullableString `json:"digitalCnhFile,omitempty"`
 	// The MIME Type of the file contained in `DigitalCnhFile`.              Must be one of `application/pdf`, `image/jpeg`, or `image/png`.
 	DigitalCnhFileContentType NullableString `json:"digitalCnhFileContentType,omitempty"`
-	// The raw bytes of the image of the user's face, collected for biometric comparison.
+	// The raw bytes of the image of the user's face, collected for biometric comparison. When using an SDK, this can be a raw byte array. In raw JSON form this is Base64.
 	FacialBiometryPhoto NullableString `json:"facialBiometryPhoto,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
 type _BrazilDigitalCnhInput BrazilDigitalCnhInput
-
-// NewBrazilDigitalCnhInput instantiates a new BrazilDigitalCnhInput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewBrazilDigitalCnhInput(cpfNumber string) *BrazilDigitalCnhInput {
-	this := BrazilDigitalCnhInput{}
-	this.CpfNumber = cpfNumber
-	return &this
-}
 
 // NewBrazilDigitalCnhInputWithDefaults instantiates a new BrazilDigitalCnhInput object
 // This constructor will only assign default values to properties that have it defined,

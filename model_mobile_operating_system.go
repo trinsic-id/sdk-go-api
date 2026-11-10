@@ -23,6 +23,7 @@ const (
 	MOBILEOPERATINGSYSTEM_ANDROID MobileOperatingSystem = "Android"
 	MOBILEOPERATINGSYSTEM_IOS MobileOperatingSystem = "Ios"
 	MOBILEOPERATINGSYSTEM_FEATURE MobileOperatingSystem = "Feature"
+	MOBILEOPERATINGSYSTEM_UNKNOWN_DEFAULT_OPEN_API MobileOperatingSystem = "unknown_default_open_api"
 )
 
 // All allowed values of MobileOperatingSystem enum
@@ -30,6 +31,7 @@ var AllowedMobileOperatingSystemEnumValues = []MobileOperatingSystem{
 	"Android",
 	"Ios",
 	"Feature",
+	"unknown_default_open_api",
 }
 
 func (v *MobileOperatingSystem) UnmarshalJSON(src []byte) error {
@@ -46,7 +48,8 @@ func (v *MobileOperatingSystem) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid MobileOperatingSystem", value)
+	*v = MOBILEOPERATINGSYSTEM_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewMobileOperatingSystemFromValue returns a pointer to a valid MobileOperatingSystem

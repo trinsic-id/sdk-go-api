@@ -19,6 +19,8 @@ var _ MappedNullable = &EvrotrustProviderOutput{}
 
 // EvrotrustProviderOutput Exposed properties for the `evrotrust` Provider which do not directly map to the normalized IdentityData model.
 type EvrotrustProviderOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The full name of the individual.
 	Names NullableString `json:"names,omitempty"`
 	// The full Latin-script name of the individual.
@@ -85,15 +87,6 @@ type EvrotrustProviderOutput struct {
 }
 
 type _EvrotrustProviderOutput EvrotrustProviderOutput
-
-// NewEvrotrustProviderOutput instantiates a new EvrotrustProviderOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewEvrotrustProviderOutput() *EvrotrustProviderOutput {
-	this := EvrotrustProviderOutput{}
-	return &this
-}
 
 // NewEvrotrustProviderOutputWithDefaults instantiates a new EvrotrustProviderOutput object
 // This constructor will only assign default values to properties that have it defined,

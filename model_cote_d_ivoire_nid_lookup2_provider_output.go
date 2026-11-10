@@ -19,6 +19,8 @@ var _ MappedNullable = &CoteDIvoireNidLookup2ProviderOutput{}
 
 // CoteDIvoireNidLookup2ProviderOutput Exposed properties for the `cote-divoire-nid-lookup-2` Provider which do not directly map to the normalized IdentityData model.
 type CoteDIvoireNidLookup2ProviderOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// Full name as returned by ONECI (National Civil Registry and Identification Office).
 	FullName NullableString `json:"fullName,omitempty"`
 	// Given name of the ID holder as returned by ONECI (National Civil Registry and Identification Office).
@@ -41,15 +43,6 @@ type CoteDIvoireNidLookup2ProviderOutput struct {
 }
 
 type _CoteDIvoireNidLookup2ProviderOutput CoteDIvoireNidLookup2ProviderOutput
-
-// NewCoteDIvoireNidLookup2ProviderOutput instantiates a new CoteDIvoireNidLookup2ProviderOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewCoteDIvoireNidLookup2ProviderOutput() *CoteDIvoireNidLookup2ProviderOutput {
-	this := CoteDIvoireNidLookup2ProviderOutput{}
-	return &this
-}
 
 // NewCoteDIvoireNidLookup2ProviderOutputWithDefaults instantiates a new CoteDIvoireNidLookup2ProviderOutput object
 // This constructor will only assign default values to properties that have it defined,

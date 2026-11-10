@@ -19,6 +19,8 @@ var _ MappedNullable = &ItsmeDirectDevice{}
 
 // ItsmeDirectDevice struct for ItsmeDirectDevice
 type ItsmeDirectDevice struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The operating system reported for the itsme device.              Availability by ID document issuing country: best effort for all supported issuing countries.
 	OperatingSystem NullableString `json:"operatingSystem,omitempty"`
 	// The operating system release reported for the itsme device.              Availability by ID document issuing country: best effort for all supported issuing countries.
@@ -47,15 +49,6 @@ type ItsmeDirectDevice struct {
 }
 
 type _ItsmeDirectDevice ItsmeDirectDevice
-
-// NewItsmeDirectDevice instantiates a new ItsmeDirectDevice object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewItsmeDirectDevice() *ItsmeDirectDevice {
-	this := ItsmeDirectDevice{}
-	return &this
-}
 
 // NewItsmeDirectDeviceWithDefaults instantiates a new ItsmeDirectDevice object
 // This constructor will only assign default values to properties that have it defined,

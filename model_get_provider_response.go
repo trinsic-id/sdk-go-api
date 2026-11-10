@@ -20,22 +20,14 @@ var _ MappedNullable = &GetProviderResponse{}
 
 // GetProviderResponse struct for GetProviderResponse
 type GetProviderResponse struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The provider available to this organization
 	Provider Provider `json:"provider"`
 	AdditionalProperties map[string]interface{}
 }
 
 type _GetProviderResponse GetProviderResponse
-
-// NewGetProviderResponse instantiates a new GetProviderResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewGetProviderResponse(provider Provider) *GetProviderResponse {
-	this := GetProviderResponse{}
-	this.Provider = provider
-	return &this
-}
 
 // NewGetProviderResponseWithDefaults instantiates a new GetProviderResponse object
 // This constructor will only assign default values to properties that have it defined,

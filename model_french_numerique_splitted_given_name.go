@@ -19,6 +19,8 @@ var _ MappedNullable = &FrenchNumeriqueSplittedGivenName{}
 
 // FrenchNumeriqueSplittedGivenName Given name split into first name and middle name(s).
 type FrenchNumeriqueSplittedGivenName struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// First/primary given name (premier prénom).
 	FirstName NullableString `json:"firstName,omitempty"`
 	// Middle name(s) (prénoms secondaires), separated by spaces if multiple.
@@ -27,15 +29,6 @@ type FrenchNumeriqueSplittedGivenName struct {
 }
 
 type _FrenchNumeriqueSplittedGivenName FrenchNumeriqueSplittedGivenName
-
-// NewFrenchNumeriqueSplittedGivenName instantiates a new FrenchNumeriqueSplittedGivenName object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewFrenchNumeriqueSplittedGivenName() *FrenchNumeriqueSplittedGivenName {
-	this := FrenchNumeriqueSplittedGivenName{}
-	return &this
-}
 
 // NewFrenchNumeriqueSplittedGivenNameWithDefaults instantiates a new FrenchNumeriqueSplittedGivenName object
 // This constructor will only assign default values to properties that have it defined,

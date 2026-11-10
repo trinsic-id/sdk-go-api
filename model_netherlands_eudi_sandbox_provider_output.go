@@ -19,6 +19,8 @@ var _ MappedNullable = &NetherlandsEudiSandboxProviderOutput{}
 
 // NetherlandsEudiSandboxProviderOutput Exposed properties for the `netherlands-eudi-sandbox` Provider which do not directly map to the normalized IdentityData model.
 type NetherlandsEudiSandboxProviderOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// An EUDI Person Identification Data (PID) credential, retrieved from the individual's wallet.
 	Pid NullableEudiPidCredential `json:"pid,omitempty"`
 	// An EUDI Age Verification credential, retrieved from the individual's wallet.
@@ -27,15 +29,6 @@ type NetherlandsEudiSandboxProviderOutput struct {
 }
 
 type _NetherlandsEudiSandboxProviderOutput NetherlandsEudiSandboxProviderOutput
-
-// NewNetherlandsEudiSandboxProviderOutput instantiates a new NetherlandsEudiSandboxProviderOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewNetherlandsEudiSandboxProviderOutput() *NetherlandsEudiSandboxProviderOutput {
-	this := NetherlandsEudiSandboxProviderOutput{}
-	return &this
-}
 
 // NewNetherlandsEudiSandboxProviderOutputWithDefaults instantiates a new NetherlandsEudiSandboxProviderOutput object
 // This constructor will only assign default values to properties that have it defined,

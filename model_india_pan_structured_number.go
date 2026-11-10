@@ -19,6 +19,8 @@ var _ MappedNullable = &IndiaPanStructuredNumber{}
 
 // IndiaPanStructuredNumber struct for IndiaPanStructuredNumber
 type IndiaPanStructuredNumber struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// Three-letter block issued by the Income Tax Department of India.              Ties the number to a specific Income Tax Office or jurisdiction using an internal labeling system.              Position: - Characters 1 through 3 of the PAN              Possible values: - Any three-letter block of uppercase Latin letters
 	SeriesCode NullableString `json:"seriesCode,omitempty"`
 	// Code that represents the entity that is subject to income tax in India.              Position: - Character 4 of the PAN              Possible values: - \"A\" for Association of Persons (AOP) - \"B\" for Body of Individuals (BOI) - \"C\" for Company - \"F\" for Firm - \"G\" for Government - \"H\" for Hindu Undivided Family (HUF) - \"J\" for Artificial Juridical Person - \"L\" for Local Authority - \"P\" for Individual - \"T\" for Trust
@@ -35,15 +37,6 @@ type IndiaPanStructuredNumber struct {
 }
 
 type _IndiaPanStructuredNumber IndiaPanStructuredNumber
-
-// NewIndiaPanStructuredNumber instantiates a new IndiaPanStructuredNumber object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewIndiaPanStructuredNumber() *IndiaPanStructuredNumber {
-	this := IndiaPanStructuredNumber{}
-	return &this
-}
 
 // NewIndiaPanStructuredNumberWithDefaults instantiates a new IndiaPanStructuredNumber object
 // This constructor will only assign default values to properties that have it defined,

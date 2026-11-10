@@ -8,14 +8,11 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewKenyaNidLookup2Input
+### Named construction
 
-`func NewKenyaNidLookup2Input() *KenyaNidLookup2Input`
-
-NewKenyaNidLookup2Input instantiates a new KenyaNidLookup2Input object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+Use a keyed struct literal (`KenyaNidLookup2Input{FieldName: value}`), or call
+`NewKenyaNidLookup2InputWithDefaults()` and set fields by name. Positional field
+factories and unkeyed struct literals are not supported.
 
 ### NewKenyaNidLookup2InputWithDefaults
 

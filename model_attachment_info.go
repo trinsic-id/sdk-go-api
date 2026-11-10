@@ -20,6 +20,8 @@ var _ MappedNullable = &AttachmentInfo{}
 
 // AttachmentInfo struct for AttachmentInfo
 type AttachmentInfo struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The unique identifier of the Attachment.              Pass this to the `GetAttachment` endpoint, along with the Session ID and the `resultsAccessKey` for said Session.
 	Id string `json:"id"`
 	// The type of the Attachment.              Possible values: - \"selfie\" - \"document_front\" - \"document_back\" - \"document_portrait\" - \"document_signature\" - \"document_scan_report\"              Additional attachment types may be defined for specific Providers.
@@ -34,19 +36,6 @@ type AttachmentInfo struct {
 }
 
 type _AttachmentInfo AttachmentInfo
-
-// NewAttachmentInfo instantiates a new AttachmentInfo object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewAttachmentInfo(id string, type_ string, contentType string, sizeBytes int32) *AttachmentInfo {
-	this := AttachmentInfo{}
-	this.Id = id
-	this.Type = type_
-	this.ContentType = contentType
-	this.SizeBytes = sizeBytes
-	return &this
-}
 
 // NewAttachmentInfoWithDefaults instantiates a new AttachmentInfo object
 // This constructor will only assign default values to properties that have it defined,

@@ -19,6 +19,8 @@ var _ MappedNullable = &ItsmeLoginProviderOutput{}
 
 // ItsmeLoginProviderOutput Exposed properties for the `a-itsme-login` Provider which do not directly map to the normalized IdentityData model.
 type ItsmeLoginProviderOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The first name of the verified individual
 	FirstName NullableString `json:"firstName,omitempty"`
 	// The last name of the verified individual
@@ -51,15 +53,6 @@ type ItsmeLoginProviderOutput struct {
 }
 
 type _ItsmeLoginProviderOutput ItsmeLoginProviderOutput
-
-// NewItsmeLoginProviderOutput instantiates a new ItsmeLoginProviderOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewItsmeLoginProviderOutput() *ItsmeLoginProviderOutput {
-	this := ItsmeLoginProviderOutput{}
-	return &this
-}
 
 // NewItsmeLoginProviderOutputWithDefaults instantiates a new ItsmeLoginProviderOutput object
 // This constructor will only assign default values to properties that have it defined,

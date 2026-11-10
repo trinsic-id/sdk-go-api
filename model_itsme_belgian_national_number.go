@@ -20,6 +20,8 @@ var _ MappedNullable = &ItsmeBelgianNationalNumber{}
 
 // ItsmeBelgianNationalNumber struct for ItsmeBelgianNationalNumber
 type ItsmeBelgianNationalNumber struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The raw Belgian National Register Number of the verified individual.              Availability by ID document issuing country: returned only for Belgian-issued ID documents.              This is an 11-digit number in the format YYMMDDXXXCC: - YYMMDD is the date of birth. - XXX is a sequential birth number, odd for males and even for females. - CC is the checksum.
 	Number NullableString `json:"number,omitempty"`
 	// The issuing country as an ISO 3166-1 alpha-2 country code.              Availability by ID document issuing country: always returned for all supported issuing countries.
@@ -30,15 +32,6 @@ type ItsmeBelgianNationalNumber struct {
 }
 
 type _ItsmeBelgianNationalNumber ItsmeBelgianNationalNumber
-
-// NewItsmeBelgianNationalNumber instantiates a new ItsmeBelgianNationalNumber object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewItsmeBelgianNationalNumber() *ItsmeBelgianNationalNumber {
-	this := ItsmeBelgianNationalNumber{}
-	return &this
-}
 
 // NewItsmeBelgianNationalNumberWithDefaults instantiates a new ItsmeBelgianNationalNumber object
 // This constructor will only assign default values to properties that have it defined,

@@ -19,6 +19,8 @@ var _ MappedNullable = &UgandaNidMatch2ProviderOutput{}
 
 // UgandaNidMatch2ProviderOutput Exposed properties for the `uganda-nid-match-2` Provider which do not directly map to the normalized IdentityData model.
 type UgandaNidMatch2ProviderOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// Outcome of verifying the national identification number in the NIRA database.
 	NationalIdNumber NullableUgandaNidMatch2NationalIdNumberField `json:"nationalIdNumber,omitempty"`
 	// Outcome of comparing the submitted card number with the NIRA database.
@@ -29,15 +31,6 @@ type UgandaNidMatch2ProviderOutput struct {
 }
 
 type _UgandaNidMatch2ProviderOutput UgandaNidMatch2ProviderOutput
-
-// NewUgandaNidMatch2ProviderOutput instantiates a new UgandaNidMatch2ProviderOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewUgandaNidMatch2ProviderOutput() *UgandaNidMatch2ProviderOutput {
-	this := UgandaNidMatch2ProviderOutput{}
-	return &this
-}
 
 // NewUgandaNidMatch2ProviderOutputWithDefaults instantiates a new UgandaNidMatch2ProviderOutput object
 // This constructor will only assign default values to properties that have it defined,

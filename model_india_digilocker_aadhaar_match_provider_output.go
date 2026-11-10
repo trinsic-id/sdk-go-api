@@ -19,6 +19,8 @@ var _ MappedNullable = &IndiaDigilockerAadhaarMatchProviderOutput{}
 
 // IndiaDigilockerAadhaarMatchProviderOutput Exposed properties for the `india-digilocker-aadhaar-match` Provider which do not directly map to the normalized IdentityData model.
 type IndiaDigilockerAadhaarMatchProviderOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// Full name submitted for this DigiLocker Aadhaar match and the similarity score returned for that value.
 	FullName NullableIndiaDigilockerAadhaarMatchFullNameField `json:"fullName,omitempty"`
 	// Date of birth submitted for this DigiLocker Aadhaar match and whether it matched the issuer record for this session.
@@ -27,15 +29,6 @@ type IndiaDigilockerAadhaarMatchProviderOutput struct {
 }
 
 type _IndiaDigilockerAadhaarMatchProviderOutput IndiaDigilockerAadhaarMatchProviderOutput
-
-// NewIndiaDigilockerAadhaarMatchProviderOutput instantiates a new IndiaDigilockerAadhaarMatchProviderOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewIndiaDigilockerAadhaarMatchProviderOutput() *IndiaDigilockerAadhaarMatchProviderOutput {
-	this := IndiaDigilockerAadhaarMatchProviderOutput{}
-	return &this
-}
 
 // NewIndiaDigilockerAadhaarMatchProviderOutputWithDefaults instantiates a new IndiaDigilockerAadhaarMatchProviderOutput object
 // This constructor will only assign default values to properties that have it defined,

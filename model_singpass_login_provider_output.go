@@ -19,6 +19,8 @@ var _ MappedNullable = &SingpassLoginProviderOutput{}
 
 // SingpassLoginProviderOutput Exposed properties for the `singpass-login` Provider which do not directly map to the normalized IdentityData model.
 type SingpassLoginProviderOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The Singpass subject identifier.              This is a public identifier which is globally unique across the Singpass system.
 	Sub NullableString `json:"sub,omitempty"`
 	// The Singpass account type for this user.              Possible values: - foreign (Singpass Foreign Account (SFA) holders) - standard (Singapore Citizens, Permanent Residents, or FIN holders)
@@ -37,15 +39,6 @@ type SingpassLoginProviderOutput struct {
 }
 
 type _SingpassLoginProviderOutput SingpassLoginProviderOutput
-
-// NewSingpassLoginProviderOutput instantiates a new SingpassLoginProviderOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewSingpassLoginProviderOutput() *SingpassLoginProviderOutput {
-	this := SingpassLoginProviderOutput{}
-	return &this
-}
 
 // NewSingpassLoginProviderOutputWithDefaults instantiates a new SingpassLoginProviderOutput object
 // This constructor will only assign default values to properties that have it defined,

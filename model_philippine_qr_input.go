@@ -19,6 +19,8 @@ var _ MappedNullable = &PhilippineQRInput{}
 
 // PhilippineQRInput struct for PhilippineQRInput
 type PhilippineQRInput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The raw text of the user's QR code after decoding it.
 	QrCodeText NullableString `json:"qrCodeText,omitempty"`
 	// The raw bytes of the image containing the user's QR code.
@@ -27,15 +29,6 @@ type PhilippineQRInput struct {
 }
 
 type _PhilippineQRInput PhilippineQRInput
-
-// NewPhilippineQRInput instantiates a new PhilippineQRInput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewPhilippineQRInput() *PhilippineQRInput {
-	this := PhilippineQRInput{}
-	return &this
-}
 
 // NewPhilippineQRInputWithDefaults instantiates a new PhilippineQRInput object
 // This constructor will only assign default values to properties that have it defined,

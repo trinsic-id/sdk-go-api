@@ -19,6 +19,8 @@ var _ MappedNullable = &PolandMobywatelMatchInput{}
 
 // PolandMobywatelMatchInput struct for PolandMobywatelMatchInput
 type PolandMobywatelMatchInput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// Given name as it appears on mobile ID (mDowód).
 	GivenName NullableString `json:"givenName,omitempty"`
 	// Current legal family name (nazwisko) as it appears on mobile ID (mDowód).              In Poland the current legal family name (nazwisko) is a separate idea from your birth family name (nazwisko rodowe). They often match, but they can differ after marriage, adoption, or a court-ordered change.
@@ -31,7 +33,7 @@ type PolandMobywatelMatchInput struct {
 	PersonalNumber NullableString `json:"personalNumber,omitempty"`
 	// Document expiration date as it appears on mobile ID (mDowód).
 	ExpirationDate NullableString `json:"expirationDate,omitempty"`
-	// The raw bytes of an optional selfie image collected from the individual.              Requirements from the provider: - JPEG or PNG - At least 720 pixels wide (1080 pixels recommended) - Not exceeding 10 MB - Clear, front-facing photo with good lighting and no sunglasses or face coverings.
+	// The raw bytes of an optional selfie image collected from the individual.              When using an SDK, this can be a raw byte array. In raw JSON form this is Base64.              Requirements from the provider: - JPEG or PNG - At least 720 pixels wide (1080 pixels recommended) - Not exceeding 10 MB - Clear, front-facing photo with good lighting and no sunglasses or face coverings.
 	SelfieBytes NullableString `json:"selfieBytes,omitempty"`
 	// The MIME type of the file contained in SelfieBytes.              Must be one of `image/jpeg` or `image/png`.
 	SelfieImageMimeType NullableString `json:"selfieImageMimeType,omitempty"`
@@ -39,15 +41,6 @@ type PolandMobywatelMatchInput struct {
 }
 
 type _PolandMobywatelMatchInput PolandMobywatelMatchInput
-
-// NewPolandMobywatelMatchInput instantiates a new PolandMobywatelMatchInput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewPolandMobywatelMatchInput() *PolandMobywatelMatchInput {
-	this := PolandMobywatelMatchInput{}
-	return &this
-}
 
 // NewPolandMobywatelMatchInputWithDefaults instantiates a new PolandMobywatelMatchInput object
 // This constructor will only assign default values to properties that have it defined,

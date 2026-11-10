@@ -9,14 +9,11 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewIndiaDigilockerAadhaarMatchFullNameField
+### Named construction
 
-`func NewIndiaDigilockerAadhaarMatchFullNameField() *IndiaDigilockerAadhaarMatchFullNameField`
-
-NewIndiaDigilockerAadhaarMatchFullNameField instantiates a new IndiaDigilockerAadhaarMatchFullNameField object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+Use a keyed struct literal (`IndiaDigilockerAadhaarMatchFullNameField{FieldName: value}`), or call
+`NewIndiaDigilockerAadhaarMatchFullNameFieldWithDefaults()` and set fields by name. Positional field
+factories and unkeyed struct literals are not supported.
 
 ### NewIndiaDigilockerAadhaarMatchFullNameFieldWithDefaults
 

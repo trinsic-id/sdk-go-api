@@ -19,6 +19,8 @@ var _ MappedNullable = &AgeOverOutput{}
 
 // AgeOverOutput Processed result of an \"age over X\" claim present in a credential.
 type AgeOverOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The age threshold from the `age over X` claim.
 	Age NullableInt32 `json:"age,omitempty"`
 	// Whether the individual is at least the given age.
@@ -27,15 +29,6 @@ type AgeOverOutput struct {
 }
 
 type _AgeOverOutput AgeOverOutput
-
-// NewAgeOverOutput instantiates a new AgeOverOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewAgeOverOutput() *AgeOverOutput {
-	this := AgeOverOutput{}
-	return &this
-}
 
 // NewAgeOverOutputWithDefaults instantiates a new AgeOverOutput object
 // This constructor will only assign default values to properties that have it defined,

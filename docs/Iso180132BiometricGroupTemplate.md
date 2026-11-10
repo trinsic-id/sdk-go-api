@@ -8,14 +8,11 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewIso180132BiometricGroupTemplate
+### Named construction
 
-`func NewIso180132BiometricGroupTemplate() *Iso180132BiometricGroupTemplate`
-
-NewIso180132BiometricGroupTemplate instantiates a new Iso180132BiometricGroupTemplate object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+Use a keyed struct literal (`Iso180132BiometricGroupTemplate{FieldName: value}`), or call
+`NewIso180132BiometricGroupTemplateWithDefaults()` and set fields by name. Positional field
+factories and unkeyed struct literals are not supported.
 
 ### NewIso180132BiometricGroupTemplateWithDefaults
 

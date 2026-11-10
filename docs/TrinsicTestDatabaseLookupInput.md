@@ -7,18 +7,15 @@ Name | Type | Description | Notes
 **GivenName** | Pointer to **NullableString** | The given name to use for the output of the test Session.              This is required; if not provided, Trinsic&#39;s Fallback UI will be invoked to collect it from the user.              Can be any non-empty value. | [optional] 
 **FamilyName** | Pointer to **NullableString** | The family name to use for the output of the test Session.              This is required; if not provided, Trinsic&#39;s Fallback UI will be invoked to collect it from the user.              Can be any non-empty value. | [optional] 
 **IdentityCode** | Pointer to **NullableString** | A 6-digit code; must be \&quot;123456\&quot; for the Session to succeed.              This is required; if not provided, Trinsic&#39;s Fallback UI will be invoked to collect it from the user.              Any other value will cause the Session to fail. | [optional] 
-**SelfieBase64** | Pointer to **NullableString** | An optional selfie image, base64-encoded.              Will replace the existing test selfie attachment output if provided. | [optional] 
+**SelfieBase64** | Pointer to **NullableString** | An optional selfie image in a Base64 string.              Will replace the existing test selfie attachment output if provided. | [optional] 
 
 ## Methods
 
-### NewTrinsicTestDatabaseLookupInput
+### Named construction
 
-`func NewTrinsicTestDatabaseLookupInput() *TrinsicTestDatabaseLookupInput`
-
-NewTrinsicTestDatabaseLookupInput instantiates a new TrinsicTestDatabaseLookupInput object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+Use a keyed struct literal (`TrinsicTestDatabaseLookupInput{FieldName: value}`), or call
+`NewTrinsicTestDatabaseLookupInputWithDefaults()` and set fields by name. Positional field
+factories and unkeyed struct literals are not supported.
 
 ### NewTrinsicTestDatabaseLookupInputWithDefaults
 

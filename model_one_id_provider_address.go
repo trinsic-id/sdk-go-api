@@ -19,6 +19,8 @@ var _ MappedNullable = &OneIdProviderAddress{}
 
 // OneIdProviderAddress struct for OneIdProviderAddress
 type OneIdProviderAddress struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The line or street portion of the address.
 	StreetAddress NullableString `json:"streetAddress,omitempty"`
 	// The locality or city portion of the address.
@@ -33,15 +35,6 @@ type OneIdProviderAddress struct {
 }
 
 type _OneIdProviderAddress OneIdProviderAddress
-
-// NewOneIdProviderAddress instantiates a new OneIdProviderAddress object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewOneIdProviderAddress() *OneIdProviderAddress {
-	this := OneIdProviderAddress{}
-	return &this
-}
 
 // NewOneIdProviderAddressWithDefaults instantiates a new OneIdProviderAddress object
 // This constructor will only assign default values to properties that have it defined,

@@ -19,21 +19,14 @@ var _ MappedNullable = &SmartIdInput{}
 
 // SmartIdInput struct for SmartIdInput
 type SmartIdInput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The user's Smart ID ETSI number or document number.
 	SmartIdNumber NullableString `json:"smartIdNumber,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
 type _SmartIdInput SmartIdInput
-
-// NewSmartIdInput instantiates a new SmartIdInput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewSmartIdInput() *SmartIdInput {
-	this := SmartIdInput{}
-	return &this
-}
 
 // NewSmartIdInputWithDefaults instantiates a new SmartIdInput object
 // This constructor will only assign default values to properties that have it defined,

@@ -20,24 +20,18 @@ var _ MappedNullable = &GetSessionResultResponse{}
 
 // GetSessionResultResponse struct for GetSessionResultResponse
 type GetSessionResultResponse struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The Session in its current state.
 	Session Session `json:"session"`
 	// The IdentityData which resulted from the Session, if not HPKE-encrypted.
 	IdentityData NullableIdentityData `json:"identityData,omitempty"`
+	// The HPKE-encrypted IdentityData which resulted from the Session, if HPKE-encrypted.
+	EncryptedIdentityData NullableTrinsicHPKEBundle `json:"encryptedIdentityData,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
 type _GetSessionResultResponse GetSessionResultResponse
-
-// NewGetSessionResultResponse instantiates a new GetSessionResultResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewGetSessionResultResponse(session Session) *GetSessionResultResponse {
-	this := GetSessionResultResponse{}
-	this.Session = session
-	return &this
-}
 
 // NewGetSessionResultResponseWithDefaults instantiates a new GetSessionResultResponse object
 // This constructor will only assign default values to properties that have it defined,
@@ -113,6 +107,48 @@ func (o *GetSessionResultResponse) UnsetIdentityData() {
 	o.IdentityData.Unset()
 }
 
+// GetEncryptedIdentityData returns the EncryptedIdentityData field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetSessionResultResponse) GetEncryptedIdentityData() TrinsicHPKEBundle {
+	if o == nil || IsNil(o.EncryptedIdentityData.Get()) {
+		var ret TrinsicHPKEBundle
+		return ret
+	}
+	return *o.EncryptedIdentityData.Get()
+}
+
+// GetEncryptedIdentityDataOk returns a tuple with the EncryptedIdentityData field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetSessionResultResponse) GetEncryptedIdentityDataOk() (*TrinsicHPKEBundle, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.EncryptedIdentityData.Get(), o.EncryptedIdentityData.IsSet()
+}
+
+// HasEncryptedIdentityData returns a boolean if a field has been set.
+func (o *GetSessionResultResponse) HasEncryptedIdentityData() bool {
+	if o != nil && o.EncryptedIdentityData.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetEncryptedIdentityData gets a reference to the given NullableTrinsicHPKEBundle and assigns it to the EncryptedIdentityData field.
+func (o *GetSessionResultResponse) SetEncryptedIdentityData(v TrinsicHPKEBundle) {
+	o.EncryptedIdentityData.Set(&v)
+}
+// SetEncryptedIdentityDataNil sets the value for EncryptedIdentityData to be an explicit nil
+func (o *GetSessionResultResponse) SetEncryptedIdentityDataNil() {
+	o.EncryptedIdentityData.Set(nil)
+}
+
+// UnsetEncryptedIdentityData ensures that no value is present for EncryptedIdentityData, not even an explicit nil
+func (o *GetSessionResultResponse) UnsetEncryptedIdentityData() {
+	o.EncryptedIdentityData.Unset()
+}
+
 func (o GetSessionResultResponse) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -126,6 +162,9 @@ func (o GetSessionResultResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["session"] = o.Session
 	if o.IdentityData.IsSet() {
 		toSerialize["identityData"] = o.IdentityData.Get()
+	}
+	if o.EncryptedIdentityData.IsSet() {
+		toSerialize["encryptedIdentityData"] = o.EncryptedIdentityData.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -172,6 +211,7 @@ func (o *GetSessionResultResponse) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "session")
 		delete(additionalProperties, "identityData")
+		delete(additionalProperties, "encryptedIdentityData")
 		o.AdditionalProperties = additionalProperties
 	}
 

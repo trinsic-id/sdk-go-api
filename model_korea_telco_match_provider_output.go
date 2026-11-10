@@ -19,6 +19,8 @@ var _ MappedNullable = &KoreaTelcoMatchProviderOutput{}
 
 // KoreaTelcoMatchProviderOutput Exposed properties for the `korea-telco-match` Provider which do not directly map to the normalized IdentityData model.
 type KoreaTelcoMatchProviderOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The phone number submitted for the carrier match.
 	PhoneNumber NullableString `json:"phoneNumber,omitempty"`
 	// The mobile carrier used for the match.              Supported values: Lgu, Skt, Kt.
@@ -29,15 +31,6 @@ type KoreaTelcoMatchProviderOutput struct {
 }
 
 type _KoreaTelcoMatchProviderOutput KoreaTelcoMatchProviderOutput
-
-// NewKoreaTelcoMatchProviderOutput instantiates a new KoreaTelcoMatchProviderOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewKoreaTelcoMatchProviderOutput() *KoreaTelcoMatchProviderOutput {
-	this := KoreaTelcoMatchProviderOutput{}
-	return &this
-}
 
 // NewKoreaTelcoMatchProviderOutputWithDefaults instantiates a new KoreaTelcoMatchProviderOutput object
 // This constructor will only assign default values to properties that have it defined,

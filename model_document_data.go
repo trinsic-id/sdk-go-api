@@ -19,6 +19,8 @@ var _ MappedNullable = &DocumentData{}
 
 // DocumentData struct for DocumentData
 type DocumentData struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The type of the document.
 	Type NullableDocumentType `json:"type,omitempty"`
 	// The primary identifying number of the document.
@@ -37,15 +39,6 @@ type DocumentData struct {
 }
 
 type _DocumentData DocumentData
-
-// NewDocumentData instantiates a new DocumentData object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewDocumentData() *DocumentData {
-	this := DocumentData{}
-	return &this
-}
 
 // NewDocumentDataWithDefaults instantiates a new DocumentData object
 // This constructor will only assign default values to properties that have it defined,

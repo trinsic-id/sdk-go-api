@@ -19,6 +19,8 @@ var _ MappedNullable = &LaWalletProviderOutput{}
 
 // LaWalletProviderOutput Exposed properties for the `usa-louisiana-wallet` Provider which do not directly map to the normalized IdentityData model.
 type LaWalletProviderOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The number of the driver's license used to create the LA Wallet credential
 	DriversLicenseNumber NullableString `json:"driversLicenseNumber,omitempty"`
 	// The issue date of the driver's license used to create the LA Wallet credential
@@ -59,15 +61,6 @@ type LaWalletProviderOutput struct {
 }
 
 type _LaWalletProviderOutput LaWalletProviderOutput
-
-// NewLaWalletProviderOutput instantiates a new LaWalletProviderOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewLaWalletProviderOutput() *LaWalletProviderOutput {
-	this := LaWalletProviderOutput{}
-	return &this
-}
 
 // NewLaWalletProviderOutputWithDefaults instantiates a new LaWalletProviderOutput object
 // This constructor will only assign default values to properties that have it defined,

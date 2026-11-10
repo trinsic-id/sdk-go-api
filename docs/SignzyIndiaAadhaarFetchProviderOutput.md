@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **AadhaarNumberLastFour** | Pointer to **NullableString** | The Aadhaar number (UID) value for the individual.              This is only the last four digits of the Aadhaar number. | [optional] 
 **Claims** | Pointer to [**NullableAadhaarClaims**](AadhaarClaims.md) | The claims extracted from the Aadhaar document. | [optional] 
 **LocalizedClaims** | Pointer to [**NullableAadhaarLocalizedClaims**](AadhaarLocalizedClaims.md) | The localized claims extracted from the Aadhaar document. | [optional] 
-**DocumentSignatureValidated** | Pointer to **NullableBool** | Whether our own validation of the Aadhaar document signature and certificate chain succeeded.              When the signed document (e.g. Digilocker XML) is available, we validate it using the standard CCA/SafeScrypt chain. When the document is not returned, the signature cannot be validated and this is false. Some providers (e.g. Signzy) also supply a separate DSC validation indicator in the webhook payload; that is independent of this flag, which reflects only our validation. | [optional] 
+**DocumentSignatureValidated** | Pointer to **NullableBool** | Whether our own validation of the Aadhaar document signature and certificate chain succeeded.              When the signed document (e.g. Digilocker XML) is available, we validate it using the standard CCA/SafeScrypt chain. When the document is not returned, the signature cannot be validated and this is false. Some providers also supply a separate DSC validation indicator in the webhook payload; that is independent of this flag, which reflects only our validation. | [optional] 
 **DigilockerId** | Pointer to **NullableString** | DigiLocker&#39;s 36-character stable account identifier.              This identifier is deemed safe to use to reference the individual. *Note, the format is not guaranteed to be a UUID. | [optional] 
 **IssuerId** | Pointer to **NullableString** | The identifier for the issuer of the DigiLocker document. | [optional] 
 **Issuer** | Pointer to **NullableString** | Issuer name for the DigiLocker document. | [optional] 
@@ -19,14 +19,11 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewSignzyIndiaAadhaarFetchProviderOutput
+### Named construction
 
-`func NewSignzyIndiaAadhaarFetchProviderOutput() *SignzyIndiaAadhaarFetchProviderOutput`
-
-NewSignzyIndiaAadhaarFetchProviderOutput instantiates a new SignzyIndiaAadhaarFetchProviderOutput object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+Use a keyed struct literal (`SignzyIndiaAadhaarFetchProviderOutput{FieldName: value}`), or call
+`NewSignzyIndiaAadhaarFetchProviderOutputWithDefaults()` and set fields by name. Positional field
+factories and unkeyed struct literals are not supported.
 
 ### NewSignzyIndiaAadhaarFetchProviderOutputWithDefaults
 

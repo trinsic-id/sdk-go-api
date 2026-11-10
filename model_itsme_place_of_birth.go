@@ -19,6 +19,8 @@ var _ MappedNullable = &ItsmePlaceOfBirth{}
 
 // ItsmePlaceOfBirth struct for ItsmePlaceOfBirth
 type ItsmePlaceOfBirth struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The city component of the place of birth.              Availability by ID document issuing country: best effort for Belgian-issued ID documents; not returned for other supported issuing countries.
 	City NullableString `json:"city,omitempty"`
 	// The formatted place of birth.              Availability by ID document issuing country: best effort for Belgian-issued ID documents; not returned for other supported issuing countries.
@@ -27,15 +29,6 @@ type ItsmePlaceOfBirth struct {
 }
 
 type _ItsmePlaceOfBirth ItsmePlaceOfBirth
-
-// NewItsmePlaceOfBirth instantiates a new ItsmePlaceOfBirth object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewItsmePlaceOfBirth() *ItsmePlaceOfBirth {
-	this := ItsmePlaceOfBirth{}
-	return &this
-}
 
 // NewItsmePlaceOfBirthWithDefaults instantiates a new ItsmePlaceOfBirth object
 // This constructor will only assign default values to properties that have it defined,

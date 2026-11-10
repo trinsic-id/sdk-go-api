@@ -19,6 +19,8 @@ var _ MappedNullable = &MdlOutputFieldData{}
 
 // MdlOutputFieldData struct for MdlOutputFieldData
 type MdlOutputFieldData struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The type of data contained in `value`.
 	Type NullableMdlOutputFieldDataType `json:"type,omitempty"`
 	// The string-encoded value of the field.
@@ -27,15 +29,6 @@ type MdlOutputFieldData struct {
 }
 
 type _MdlOutputFieldData MdlOutputFieldData
-
-// NewMdlOutputFieldData instantiates a new MdlOutputFieldData object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewMdlOutputFieldData() *MdlOutputFieldData {
-	this := MdlOutputFieldData{}
-	return &this
-}
 
 // NewMdlOutputFieldDataWithDefaults instantiates a new MdlOutputFieldData object
 // This constructor will only assign default values to properties that have it defined,

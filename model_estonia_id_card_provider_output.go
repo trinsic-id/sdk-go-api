@@ -19,6 +19,8 @@ var _ MappedNullable = &EstoniaIdCardProviderOutput{}
 
 // EstoniaIdCardProviderOutput Exposed properties for the `a-ee-web-eid-login` Provider which do not directly map to the normalized IdentityData model.
 type EstoniaIdCardProviderOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The first name of the verified individual
 	FirstName NullableString `json:"firstName,omitempty"`
 	// The last name of the verified individual
@@ -31,15 +33,6 @@ type EstoniaIdCardProviderOutput struct {
 }
 
 type _EstoniaIdCardProviderOutput EstoniaIdCardProviderOutput
-
-// NewEstoniaIdCardProviderOutput instantiates a new EstoniaIdCardProviderOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewEstoniaIdCardProviderOutput() *EstoniaIdCardProviderOutput {
-	this := EstoniaIdCardProviderOutput{}
-	return &this
-}
 
 // NewEstoniaIdCardProviderOutputWithDefaults instantiates a new EstoniaIdCardProviderOutput object
 // This constructor will only assign default values to properties that have it defined,

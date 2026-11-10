@@ -20,6 +20,8 @@ var _ MappedNullable = &SubProviderMetadata{}
 
 // SubProviderMetadata Information about a sub-provider.
 type SubProviderMetadata struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The ID of the sub-provider.              This cannot be used as a standalone Provider ID when creating a Session. It must be passed in via the Provider-specific input.
 	Id string `json:"id"`
 	// The name of the sub-provider
@@ -34,19 +36,6 @@ type SubProviderMetadata struct {
 }
 
 type _SubProviderMetadata SubProviderMetadata
-
-// NewSubProviderMetadata instantiates a new SubProviderMetadata object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewSubProviderMetadata(id string, name string, subtext string, logoUrl string) *SubProviderMetadata {
-	this := SubProviderMetadata{}
-	this.Id = id
-	this.Name = name
-	this.Subtext = subtext
-	this.LogoUrl = logoUrl
-	return &this
-}
 
 // NewSubProviderMetadataWithDefaults instantiates a new SubProviderMetadata object
 // This constructor will only assign default values to properties that have it defined,

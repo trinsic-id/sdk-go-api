@@ -2,7 +2,6 @@ openapi: 3.0.4
 info:
   title: Trinsic API
   version: v1
-  x-swaggerexclude: External
 servers:
 - description: Production server
   url: https://api.trinsic.id
@@ -11,11 +10,191 @@ servers:
 security:
 - Bearer: []
 tags:
+- name: Developer
 - name: Providers
 - name: RedirectUris
 - name: Sessions
 - name: VerificationProfiles
 paths:
+  /api/v1/developer/hpke-test:
+    post:
+      description: |-
+        Encrypts the provided data against the given public key using HPKE, and returns the resulting bundle.
+        This is intended for integration testing and development purposes.
+      operationId: TestAgainstArbitraryKey
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: "#/components/schemas/HPKETestRequest"
+          text/json:
+            schema:
+              allOf:
+              - $ref: "#/components/schemas/HPKETestRequest"
+          application/*+json:
+            schema:
+              allOf:
+              - $ref: "#/components/schemas/HPKETestRequest"
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/TrinsicHPKEBundle"
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TrinsicHPKEBundle"
+            text/json:
+              schema:
+                $ref: "#/components/schemas/TrinsicHPKEBundle"
+          description: OK
+        "400":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.5.1
+                title: Bad Request
+                detail: This feature is not supported for your configuration
+                status: 400
+                traceId: 00-3fcbc632c5caaca825849d495c62d7b0-09a3500f89acbbcc-00
+                instance: /api/v1/sample-request-path
+                errors:
+                  PropertyName:
+                  - Specific error description for property
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+          description: Bad request
+        "401":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Unauthorized
+                status: 401
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+          description: Unauthorized
+        "403":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Forbidden
+                status: 403
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+          description: Forbidden
+        "500":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Internal Server Error
+                status: 500
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+          description: Internal server error
+      summary: Test HPKE Against Arbitrary Key
+      tags:
+      - Developer
+  /api/v1/developer/hpke-test/{verificationProfileId}:
+    post:
+      description: |-
+        Encrypts the provided data against the PII encryption key configured on the given verification profile.
+        This is intended for integration testing and development purposes.
+      operationId: TestAgainstVerificationProfile
+      parameters:
+      - explode: false
+        in: path
+        name: verificationProfileId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: "#/components/schemas/HPKETestVPRequest"
+          text/json:
+            schema:
+              allOf:
+              - $ref: "#/components/schemas/HPKETestVPRequest"
+          application/*+json:
+            schema:
+              allOf:
+              - $ref: "#/components/schemas/HPKETestVPRequest"
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/TrinsicHPKEBundle"
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TrinsicHPKEBundle"
+            text/json:
+              schema:
+                $ref: "#/components/schemas/TrinsicHPKEBundle"
+          description: OK
+        "400":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.5.1
+                title: Bad Request
+                detail: This feature is not supported for your configuration
+                status: 400
+                traceId: 00-3fcbc632c5caaca825849d495c62d7b0-09a3500f89acbbcc-00
+                instance: /api/v1/sample-request-path
+                errors:
+                  PropertyName:
+                  - Specific error description for property
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+          description: Bad request
+        "401":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Unauthorized
+                status: 401
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+          description: Unauthorized
+        "403":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Forbidden
+                status: 403
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+          description: Forbidden
+        "500":
+          content:
+            application/problem+json:
+              example:
+                type: https://tools.ietf.org/html/rfc7231#section-6.6.1
+                title: Internal Server Error
+                status: 500
+                traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+          description: Internal server error
+      summary: Test HPKE Against Verification Profile Key
+      tags:
+      - Developer
   /api/v1/providers:
     get:
       description: "List all identity providers available to your Organization, including\
@@ -988,18 +1167,21 @@ paths:
               allOf:
               - $ref: "#/components/schemas/CreateDirectProviderSessionRequest"
               required:
+              - enableRedirectBackwardsCompatibility
               - verificationProfileId
           text/json:
             schema:
               allOf:
               - $ref: "#/components/schemas/CreateDirectProviderSessionRequest"
               required:
+              - enableRedirectBackwardsCompatibility
               - verificationProfileId
           application/*+json:
             schema:
               allOf:
               - $ref: "#/components/schemas/CreateDirectProviderSessionRequest"
               required:
+              - enableRedirectBackwardsCompatibility
               - verificationProfileId
       responses:
         "200":
@@ -1263,18 +1445,21 @@ paths:
               allOf:
               - $ref: "#/components/schemas/CreateHostedProviderSessionRequest"
               required:
+              - enableRedirectBackwardsCompatibility
               - verificationProfileId
           text/json:
             schema:
               allOf:
               - $ref: "#/components/schemas/CreateHostedProviderSessionRequest"
               required:
+              - enableRedirectBackwardsCompatibility
               - verificationProfileId
           application/*+json:
             schema:
               allOf:
               - $ref: "#/components/schemas/CreateHostedProviderSessionRequest"
               required:
+              - enableRedirectBackwardsCompatibility
               - verificationProfileId
       responses:
         "200":
@@ -1456,6 +1641,15 @@ paths:
           maximum: 100
           minimum: 1
           type: integer
+        style: form
+      - description: "Filter by data-residency geography. Accepted values: \"US\"\
+          , \"EU\" (case-insensitive). Omit to include all geographies."
+        explode: true
+        in: query
+        name: geography
+        required: false
+        schema:
+          type: string
         style: form
       responses:
         "200":
@@ -2553,6 +2747,16 @@ components:
       description: Exposed properties for the `brazil-digital-cnh` Provider which
         do not directly map to the normalized IdentityData model.
       properties:
+        cpfNumber:
+          description: "The individual's CPF number.\n            \nA CPF (Cadastro\
+            \ de Pessoas Físicas) is the Brazilian individual taxpayer identification\
+            \ number for residents and foreigners.\nIt is an 11-digit number managed\
+            \ by the Federal Revenue Service, the last 2 digits are check digits,\
+            \ calculated based on the first 9 digits.\nThe 9th digit indicates the\
+            \ fiscal region responsible for the registration,"
+          example: "40442820135"
+          nullable: true
+          type: string
         fullName:
           allOf:
           - $ref: "#/components/schemas/BrazilCnhMatchField_String"
@@ -2703,16 +2907,18 @@ components:
           description: "The user's 11-digit, numeric CPF Number"
           maxLength: 11
           minLength: 11
+          nullable: true
           pattern: ^\d*$
           type: string
         dateOfBirth:
-          description: "The user's date of birth. Optional, but date of birth will\
-            \ become required for lookups starting September 1, 2026."
+          description: "The user's date of birth, in `YYYY-MM-DD` format. Optional\
+            \ in this request; required to complete CPF lookups."
           format: date
           nullable: true
           type: string
         selfieImage:
-          description: The raw bytes of the selfie image collected from the user.
+          description: "The selfie image collected from the user. When using an SDK,\
+            \ this can be a raw byte array. In raw JSON form this is Base64."
           format: byte
           nullable: true
           type: string
@@ -2721,8 +2927,6 @@ components:
             \          \nMust be one of `image/jpeg` or `image/png`."
           nullable: true
           type: string
-      required:
-      - cpfNumber
       type: object
     BrazilCpfProviderOutput:
       description: Exposed properties for the `brazil-cpf-lookup` Provider which do
@@ -2809,7 +3013,7 @@ components:
           type: string
         yearOfDeath:
           deprecated: true
-          description: "Deprecated as of September 1, 2026.\n            \nThe year\
+          description: "Deprecated as of September 19, 2026.\n            \nThe year\
             \ of death of the individual, if applicable."
           example: "2020"
           nullable: true
@@ -2848,7 +3052,8 @@ components:
           type: string
         facialBiometryPhoto:
           description: "The raw bytes of the image of the user's face, collected for\
-            \ biometric comparison."
+            \ biometric comparison. When using an SDK, this can be a raw byte array.\
+            \ In raw JSON form this is Base64."
           format: byte
           nullable: true
           type: string
@@ -4003,14 +4208,44 @@ components:
       type: object
     ConnectIdAgeVerification:
       properties:
+        over16:
+          description: Whether the individual is at least 16 years old.
+          example: true
+          nullable: true
+          type: boolean
         over18:
-          description: If the individual is over 18 years old.
+          description: Whether the individual is at least 18 years old.
+          example: true
+          nullable: true
+          type: boolean
+        over21:
+          description: Whether the individual is at least 21 years old.
+          example: true
+          nullable: true
+          type: boolean
+        over25:
+          description: Whether the individual is at least 25 years old.
+          example: true
+          nullable: true
+          type: boolean
+        over65:
+          description: Whether the individual is at least 65 years old.
           example: true
           nullable: true
           type: boolean
         trustFramework:
           description: The authority that verified the claim.
           example: au_connectid
+          nullable: true
+          type: string
+      type: object
+    ConnectIdInput:
+      properties:
+        subProviderId:
+          description: "The ID of the specific sub-provider to invoke with ConnectID.\n\
+            \            \nIf not specified, the user will be prompted to select the\
+            \ sub-provider when `fallbackToHostedUI` is enabled."
+          example: mock-bank-a
           nullable: true
           type: string
       type: object
@@ -4207,17 +4442,18 @@ components:
       type: object
     CreateDirectProviderSessionRequest:
       example:
-        fallbackToHostedUI: true
+        provider: provider
+        verificationProfileId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         redirectUrl: redirectUrl
+        enableRedirectBackwardsCompatibility: true
         capabilities:
         - LaunchBrowser
         - LaunchBrowser
-        provider: provider
-        providerInput: ""
-        verificationProfileId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        fallbackToHostedUI: true
         browserLanguages:
         - browserLanguages
         - browserLanguages
+        providerInput: ""
       properties:
         provider:
           description: The ID of the provider to launch
@@ -4233,6 +4469,20 @@ components:
             \ which employ a redirect-based flow."
           nullable: true
           type: string
+        enableRedirectBackwardsCompatibility:
+          description: "Defaults to `true` if not provided. Controls backwards compatibility\
+            \ behavior.\n            \nIf `true`, `redirectToken` validation is not\
+            \ required as part of the Session flow.\nIf `false`, `redirectToken` validation\
+            \ is required as a core part of the Session flow; results cannot be fetched\
+            \ without it. (This applies only to `CaptureRedirect` Sessions in Direct\
+            \ mode).\n            \nThis parameter exists to enable backwards compatibility\
+            \ with existing integrations. In the future, this parameter will be removed\
+            \ and `redirectToken` validation will always be required.\n          \
+            \  \nIf your integration supports `redirectToken`, you should explicitly\
+            \ set this parameter's value to `false`.\nOnly set this value to `true`\
+            \ if your integration does not support `redirectToken` and you are not\
+            \ yet able to add support."
+          type: boolean
         capabilities:
           description: "The list of capabilities your integration supports. Capabilities\
             \ are the core of Trinsic's whitelabel-with-optional-fallback offering.\n\
@@ -4286,14 +4536,15 @@ components:
           nullable: true
       required:
       - capabilities
+      - enableRedirectBackwardsCompatibility
       - provider
       - verificationProfileId
       type: object
     CreateDirectProviderSessionResponse:
       example:
+        sessionId: 00000000-0000-0000-0000-000000000000
         resultCollection: ""
         nextStep: ""
-        sessionId: 00000000-0000-0000-0000-000000000000
       properties:
         sessionId:
           description: The ID of the newly-created Acceptance Session
@@ -4316,13 +4567,14 @@ components:
       type: object
     CreateHostedProviderSessionRequest:
       example:
-        redirectUrl: redirectUrl
         provider: provider
-        providerInput: ""
         verificationProfileId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        redirectUrl: redirectUrl
+        enableRedirectBackwardsCompatibility: true
         browserLanguages:
         - browserLanguages
         - browserLanguages
+        providerInput: ""
       properties:
         provider:
           description: The ID of the provider to launch
@@ -4337,6 +4589,19 @@ components:
             session is complete.
           minLength: 1
           type: string
+        enableRedirectBackwardsCompatibility:
+          description: "Defaults to `true` if not provided. Controls backwards compatibility\
+            \ behavior.\n            \nIf `true`, `redirectToken` validation is not\
+            \ required as part of the Session flow.\nIf `false`, `redirectToken` validation\
+            \ is required as a core part of the Session flow; results cannot be fetched\
+            \ without it.\n            \nThis parameter exists to enable backwards\
+            \ compatibility with existing integrations. In the future, this parameter\
+            \ will be removed and `redirectToken` validation will always be required.\n\
+            \            \nIf your integration supports `redirectToken`, you should\
+            \ explicitly set this parameter's value to `false`.\nOnly set this value\
+            \ to `true` if your integration does not support `redirectToken` and you\
+            \ are not yet able to add support."
+          type: boolean
         browserLanguages:
           description: |-
             Preferences for languages to show first in the Hosted UI and supported provider launch
@@ -4359,6 +4624,7 @@ components:
             to collect input from the user yourself, please use the Create Direct Session endpoint instead.
           nullable: true
       required:
+      - enableRedirectBackwardsCompatibility
       - provider
       - redirectUrl
       - verificationProfileId
@@ -4512,6 +4778,15 @@ components:
           description: The identity document issue date.
           example: 2020-01-15
           format: date
+          nullable: true
+          type: string
+      type: object
+    CzechBankIdInput:
+      properties:
+        subProviderId:
+          description: "The ID of the Czech Bank to invoke. If omitted, the user selects\
+            \ a sub-provider."
+          example: air-bank
           nullable: true
           type: string
       type: object
@@ -5072,9 +5347,9 @@ components:
             \ and certificate chain succeeded.\n            \nWhen the signed document\
             \ (e.g. Digilocker XML) is available, we validate it using the standard\
             \ CCA/SafeScrypt chain.\nWhen the document is not returned, the signature\
-            \ cannot be validated and this is false. Some providers (e.g. Signzy)\
-            \ also\nsupply a separate DSC validation indicator in the webhook payload;\
-            \ that is independent of this flag, which reflects only our validation."
+            \ cannot be validated and this is false. Some providers also supply a\
+            \ separate\nDSC validation indicator in the webhook payload; that is independent\
+            \ of this flag, which reflects only our validation."
           example: true
           nullable: true
           type: boolean
@@ -5941,6 +6216,33 @@ components:
           nullable: true
           type: string
       type: object
+    FinnishTrustNetworkAddressOutput:
+      properties:
+        locality:
+          description: The locality of the address.
+          example: Helsinki
+          nullable: true
+          type: string
+        postalCode:
+          description: The postal code of the address.
+          example: "00100"
+          nullable: true
+          type: string
+        streetAddress:
+          description: The street address of the individual.
+          example: Mannerheimintie 30
+          nullable: true
+          type: string
+      type: object
+    FinnishTrustNetworkInput:
+      properties:
+        subProviderId:
+          description: "The ID of the FTN bank or mobile ID to invoke. If omitted,\
+            \ the user selects a sub-provider."
+          example: opbank
+          nullable: true
+          type: string
+      type: object
     FinnishTrustNetworkProviderOutput:
       description: Exposed properties for the `finnish-trust-network` Provider which
         do not directly map to the normalized IdentityData model.
@@ -6020,6 +6322,15 @@ components:
           example: "+358401234567"
           nullable: true
           type: string
+        address:
+          allOf:
+          - $ref: "#/components/schemas/FinnishTrustNetworkAddressOutput"
+          description: The address of the individual.
+          example:
+            locality: Helsinki
+            postalCode: "00100"
+            streetAddress: Mannerheimintie 30
+          nullable: true
         organizationName:
           description: "The organization name that the individual is associated with.\n\
             \            \nThis is returned for requests that contain the organization\
@@ -6505,8 +6816,9 @@ components:
       type: object
     GetAttachmentResponse:
       example:
-        contentType: contentType
         content: content
+        encryptedContent: ""
+        contentType: contentType
       properties:
         content:
           description: "The file contents of the Attachment. When using an SDK, this\
@@ -6515,6 +6827,13 @@ components:
             \ empty when `encryptedContent` is present."
           format: byte
           type: string
+        encryptedContent:
+          allOf:
+          - $ref: "#/components/schemas/TrinsicHPKEBundle"
+          description: "The HPKE Bundle containing the encrypted contents of the Attachment,\
+            \ if secured via HPKE.\n            \nDecrypt it using the HPKE info string\
+            \ `trinsic-hpke:1:attachment-contents:{sessionId}:{attachmentId}`."
+          nullable: true
         contentType:
           description: The MIME type of the Attachment data
           type: string
@@ -6546,9 +6865,19 @@ components:
     GetSessionResultRequest:
       example:
         resultsAccessKey: resultsAccessKey
+        redirectToken: redirectToken
       properties:
         resultsAccessKey:
           description: The Results Access Key to exchange
+          type: string
+        redirectToken:
+          description: "The `redirectToken` which Trinsic appended to your Redirect\
+            \ URL before sending the user back to your application.\n            \n\
+            This is only relevant for Sessions which involve a redirect flow.\n  \
+            \          \nIf a `redirectToken` is required for a Session, it is only\
+            \ required for the first call to `GetSessionResult`. Future calls do not\
+            \ require a `redirectToken`."
+          nullable: true
           type: string
       required:
       - resultsAccessKey
@@ -6557,6 +6886,7 @@ components:
       example:
         session: ""
         identityData: ""
+        encryptedIdentityData: ""
       properties:
         session:
           allOf:
@@ -6566,6 +6896,12 @@ components:
           allOf:
           - $ref: "#/components/schemas/IdentityData"
           description: "The IdentityData which resulted from the Session, if not HPKE-encrypted."
+          nullable: true
+        encryptedIdentityData:
+          allOf:
+          - $ref: "#/components/schemas/TrinsicHPKEBundle"
+          description: "The HPKE-encrypted IdentityData which resulted from the Session,\
+            \ if HPKE-encrypted."
           nullable: true
       required:
       - session
@@ -6820,6 +7156,46 @@ components:
           nullable: true
           type: array
       type: object
+    HPKETestRequest:
+      example:
+        data: data
+        infoSuffix: infoSuffix
+        publicKey: publicKey
+      properties:
+        data:
+          description: The data to encrypt. Must be between 0 and 1024 bytes.
+          format: byte
+          type: string
+        infoSuffix:
+          description: A 32-character suffix appended to the fixed info prefix to
+            form the HPKE info parameter.
+          type: string
+        publicKey:
+          description: "The recipient's public key, as a JWK or PEM string."
+          type: string
+      required:
+      - data
+      - infoSuffix
+      - publicKey
+      type: object
+    HPKETestVPRequest:
+      example:
+        data: data
+        infoSuffix: infoSuffix
+      properties:
+        data:
+          description: The data to encrypt. Must be between 0 and 1024 bytes.
+          format: byte
+          type: string
+        infoSuffix:
+          description: A 32-byte suffix appended to the fixed info prefix to form
+            the HPKE info parameter.
+          format: byte
+          type: string
+      required:
+      - data
+      - infoSuffix
+      type: object
     IdemiaMobileIdProviderOutput:
       description: Exposed properties for Idemia Mobile ID Providers which do not
         directly map to the normalized IdentityData model.
@@ -6894,16 +7270,6 @@ components:
           example: Albany
           nullable: true
           type: string
-        email:
-          description: The individual's email address.
-          example: jane.doe@example.com
-          nullable: true
-          type: string
-        emailVerified:
-          description: Whether the individual's email address has been verified.
-          example: true
-          nullable: true
-          type: boolean
         documentNumber:
           description: The individual's document number.
           example: D1234567
@@ -6936,7 +7302,7 @@ components:
           type: string
         documentType:
           description: The document type.
-          example: DRIVING_LICENSE
+          example: DL
           nullable: true
           type: string
         sex:
@@ -7126,9 +7492,9 @@ components:
           nullable: true
           type: string
         panStatus:
-          description: "PAN card status from Signzy for the lookup.\n            \n\
-            Possible values:\n- VALID\n- FAKE\n- DEACTIVATED\n- DELETED\n- INVALID\n\
-            - AMALGAMATION\n- ACQUISITION\n- DEATH\n- DISSOLUTION\n- LIQUIDATED\n\
+          description: "PAN card status returned by the lookup provider.\n       \
+            \     \nPossible values:\n- VALID\n- FAKE\n- DEACTIVATED\n- DELETED\n\
+            - INVALID\n- AMALGAMATION\n- ACQUISITION\n- DEATH\n- DISSOLUTION\n- LIQUIDATED\n\
             - MERGER\n- PARTITION\n- SPLIT\n- UNDER LIQUIDATION\n- INOPERATIVE"
           example: VALID
           nullable: true
@@ -7259,7 +7625,8 @@ components:
           type: string
         selfieImage:
           description: "The raw bytes of the selfie image of the individual.\n   \
-            \         \nMust be JPEG or PNG format; 10MB maximum."
+            \         \nMust be JPEG or PNG format; 10MB maximum. When using an SDK,\
+            \ this can be a raw byte array. In raw JSON form this is Base64."
           format: byte
           nullable: true
           type: string
@@ -8939,6 +9306,46 @@ components:
             \ issuing countries."
           nullable: true
       type: object
+    JapanMyNumberProviderOutput:
+      description: "Verified attributes for the `japan-mynumber` provider, including\
+        \ the original sex code."
+      properties:
+        name:
+          description: "The individual's full name as recorded on the card, preserving\
+            \ its original script and spacing."
+          example: 試験　花子
+          nullable: true
+          type: string
+        address:
+          description: "The individual's full address as recorded on the card, preserving\
+            \ its original script and spacing."
+          example: 東京都架空市試験町１ー２ー３　テスト棟４階
+          nullable: true
+          type: string
+        dateOfBirth:
+          description: The individual's Gregorian date of birth in YYYY-MM-DD format.
+          example: 2000-02-29
+          format: date
+          nullable: true
+          type: string
+        sex:
+          description: "The original sex code returned for the verified individual.\n\
+            \            \nKnown values:\n- 1: Male.\n- 2: Female.\n- 9: Other; omitted\
+            \ from normalized sex because it has no equivalent value.\nAn absent code\
+            \ means it was not supplied."
+          example: "2"
+          nullable: true
+          type: string
+      type: object
+    JordanSanadInput:
+      properties:
+        qrCodeText:
+          description: The decoded contents of the user's SANAD QR code.
+          example: synthetic-sanad-qr
+          maxLength: 16384
+          nullable: true
+          type: string
+      type: object
     KenyaNidInput:
       properties:
         firstName:
@@ -9631,102 +10038,108 @@ components:
     ListProvidersResponse:
       example:
         providers:
-        - collectionMethod: PollResult
+        - id: yoti
+          name: Yoti
+          localizedDisplayNames:
+            en: Brazil CPF
+            pt: Verificação CPF
+          logoUrl: https://cdn.trinsic.id/providers/yoti.png
           subtext: dmv.ca.gov
           regions:
           - Europe
-          licensed: true
-          hasTrinsicInterface: true
-          requiresInput: false
           countries:
           - US
           - CA
-          availableAttributes:
-          - scope: person.givenName
-            outputted: Always
-          - scope: person.givenName
-            outputted: Always
+          subdivisions:
+          - US-CA
+          - US-TX
+          licensed: true
           launchMethod: DeeplinkToMobile
-          logoUrl: https://cdn.trinsic.id/providers/yoti.png
-          liveHealth: Offline
+          collectionMethod: PollResult
+          resultsMayBeDelayedAfterRedirect: false
+          hasRefreshableContent: false
+          requiresInput: false
+          hasTrinsicInterface: true
+          supportsDirectProviderSessions: true
           supportedLanguages:
           - code: en
             label: English
           - code: en
             label: English
-          testHealth: Offline
-          name: Yoti
-          resultsMayBeDelayedAfterRedirect: false
-          supportsDirectProviderSessions: true
-          hasRefreshableContent: false
-          id: yoti
+          availableAttributes:
+          - scope: person.givenName
+            outputted: Always
+          - scope: person.givenName
+            outputted: Always
           availableAttachments:
           - type: document_portrait
             outputted: Always
           - type: document_portrait
             outputted: Always
           subProviders:
-          - subtext: dmv.ca.gov
-            darkModeLogoUrl: darkModeLogoUrl
+          - id: id
             name: name
-            id: id
+            subtext: dmv.ca.gov
             logoUrl: logoUrl
-          - subtext: dmv.ca.gov
             darkModeLogoUrl: darkModeLogoUrl
+          - id: id
             name: name
-            id: id
+            subtext: dmv.ca.gov
             logoUrl: logoUrl
-          subdivisions:
-          - US-CA
-          - US-TX
-        - collectionMethod: PollResult
+            darkModeLogoUrl: darkModeLogoUrl
+          liveHealth: Offline
+          testHealth: Offline
+        - id: yoti
+          name: Yoti
+          localizedDisplayNames:
+            en: Brazil CPF
+            pt: Verificação CPF
+          logoUrl: https://cdn.trinsic.id/providers/yoti.png
           subtext: dmv.ca.gov
           regions:
           - Europe
-          licensed: true
-          hasTrinsicInterface: true
-          requiresInput: false
           countries:
           - US
           - CA
-          availableAttributes:
-          - scope: person.givenName
-            outputted: Always
-          - scope: person.givenName
-            outputted: Always
+          subdivisions:
+          - US-CA
+          - US-TX
+          licensed: true
           launchMethod: DeeplinkToMobile
-          logoUrl: https://cdn.trinsic.id/providers/yoti.png
-          liveHealth: Offline
+          collectionMethod: PollResult
+          resultsMayBeDelayedAfterRedirect: false
+          hasRefreshableContent: false
+          requiresInput: false
+          hasTrinsicInterface: true
+          supportsDirectProviderSessions: true
           supportedLanguages:
           - code: en
             label: English
           - code: en
             label: English
-          testHealth: Offline
-          name: Yoti
-          resultsMayBeDelayedAfterRedirect: false
-          supportsDirectProviderSessions: true
-          hasRefreshableContent: false
-          id: yoti
+          availableAttributes:
+          - scope: person.givenName
+            outputted: Always
+          - scope: person.givenName
+            outputted: Always
           availableAttachments:
           - type: document_portrait
             outputted: Always
           - type: document_portrait
             outputted: Always
           subProviders:
-          - subtext: dmv.ca.gov
-            darkModeLogoUrl: darkModeLogoUrl
+          - id: id
             name: name
-            id: id
+            subtext: dmv.ca.gov
             logoUrl: logoUrl
-          - subtext: dmv.ca.gov
             darkModeLogoUrl: darkModeLogoUrl
+          - id: id
             name: name
-            id: id
+            subtext: dmv.ca.gov
             logoUrl: logoUrl
-          subdivisions:
-          - US-CA
-          - US-TX
+            darkModeLogoUrl: darkModeLogoUrl
+          liveHealth: Offline
+          testHealth: Offline
       properties:
         providers:
           description: The list of providers available to this organization
@@ -9762,17 +10175,17 @@ components:
     ListSessionsResponse:
       example:
         sessions:
-        - success: true
-          created: 1722526411
-          errorCode: ""
-          id: 678c1ff6-2178-49e7-81d2-548afb6f85ec
+        - id: 678c1ff6-2178-49e7-81d2-548afb6f85ec
           done: true
+          success: true
+          errorCode: ""
+          created: 1722526411
           updated: 1722526722
-        - success: true
-          created: 1722526411
-          errorCode: ""
-          id: 678c1ff6-2178-49e7-81d2-548afb6f85ec
+        - id: 678c1ff6-2178-49e7-81d2-548afb6f85ec
           done: true
+          success: true
+          errorCode: ""
+          created: 1722526411
           updated: 1722526722
         total: 101
         more: true
@@ -9798,28 +10211,30 @@ components:
     ListVerificationProfilesResponse:
       example:
         verificationProfiles:
-        - enabledProviders:
-          - enabledProviders
-          - enabledProviders
-          brandName: brandName
-          primaryColor: primaryColor
-          sessionExpiration: sessionExpiration
+        - id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           alias: alias
-          externalId: externalId
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          isProductionUsage: true
-          logoUrl: logoUrl
-        - enabledProviders:
-          - enabledProviders
-          - enabledProviders
           brandName: brandName
-          primaryColor: primaryColor
-          sessionExpiration: sessionExpiration
-          alias: alias
           externalId: externalId
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          isProductionUsage: true
+          geography: US
           logoUrl: logoUrl
+          primaryColor: primaryColor
+          enabledProviders:
+          - enabledProviders
+          - enabledProviders
+          sessionExpiration: sessionExpiration
+          isProductionUsage: true
+        - id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          alias: alias
+          brandName: brandName
+          externalId: externalId
+          geography: US
+          logoUrl: logoUrl
+          primaryColor: primaryColor
+          enabledProviders:
+          - enabledProviders
+          - enabledProviders
+          sessionExpiration: sessionExpiration
+          isProductionUsage: true
         more: true
       properties:
         verificationProfiles:
@@ -10325,6 +10740,39 @@ components:
           nullable: true
           type: string
       type: object
+    MitIdAddressOutput:
+      properties:
+        cityName:
+          description: The city name returned by MitID.
+          example: København
+          nullable: true
+          type: string
+        zipName:
+          description: The postal district name returned by MitID.
+          example: København K
+          nullable: true
+          type: string
+        streetNumber:
+          description: The street number.
+          example: 12A
+          nullable: true
+          type: string
+        streetName:
+          description: The street name.
+          example: Nørregade
+          nullable: true
+          type: string
+        zipCode:
+          description: The zip code.
+          example: "1165"
+          nullable: true
+          type: string
+        countryCode:
+          description: "The ISO 3166-1 alpha-2 country code, set to DK (Denmark)."
+          example: DK
+          nullable: true
+          type: string
+      type: object
     MitIdProviderOutput:
       description: Exposed properties for the `denmark-mitid` Provider which do not
         directly map to the normalized IdentityData model.
@@ -10442,6 +10890,11 @@ components:
           example: 8ba191ec-64b1-41c1-b622-4b8c14c34428
           nullable: true
           type: string
+        address:
+          allOf:
+          - $ref: "#/components/schemas/MitIdAddressOutput"
+          description: The individual's address.
+          nullable: true
       type: object
     MobileCarrier:
       enum:
@@ -12403,10 +12856,11 @@ components:
           type: string
         selfieBytes:
           description: "The raw bytes of an optional selfie image collected from the\
-            \ individual.\n            \nRequirements from the provider:\n- JPEG or\
-            \ PNG\n- At least 720 pixels wide (1080 pixels recommended)\n- Not exceeding\
-            \ 10 MB\n- Clear, front-facing photo with good lighting and no sunglasses\
-            \ or face coverings."
+            \ individual.\n            \nWhen using an SDK, this can be a raw byte\
+            \ array. In raw JSON form this is Base64.\n            \nRequirements\
+            \ from the provider:\n- JPEG or PNG\n- At least 720 pixels wide (1080\
+            \ pixels recommended)\n- Not exceeding 10 MB\n- Clear, front-facing photo\
+            \ with good lighting and no sunglasses or face coverings."
           format: byte
           nullable: true
           type: string
@@ -12719,54 +13173,57 @@ components:
       type: object
     Provider:
       example:
-        collectionMethod: PollResult
+        id: yoti
+        name: Yoti
+        localizedDisplayNames:
+          en: Brazil CPF
+          pt: Verificação CPF
+        logoUrl: https://cdn.trinsic.id/providers/yoti.png
         subtext: dmv.ca.gov
         regions:
         - Europe
-        licensed: true
-        hasTrinsicInterface: true
-        requiresInput: false
         countries:
         - US
         - CA
-        availableAttributes:
-        - scope: person.givenName
-          outputted: Always
-        - scope: person.givenName
-          outputted: Always
+        subdivisions:
+        - US-CA
+        - US-TX
+        licensed: true
         launchMethod: DeeplinkToMobile
-        logoUrl: https://cdn.trinsic.id/providers/yoti.png
-        liveHealth: Offline
+        collectionMethod: PollResult
+        resultsMayBeDelayedAfterRedirect: false
+        hasRefreshableContent: false
+        requiresInput: false
+        hasTrinsicInterface: true
+        supportsDirectProviderSessions: true
         supportedLanguages:
         - code: en
           label: English
         - code: en
           label: English
-        testHealth: Offline
-        name: Yoti
-        resultsMayBeDelayedAfterRedirect: false
-        supportsDirectProviderSessions: true
-        hasRefreshableContent: false
-        id: yoti
+        availableAttributes:
+        - scope: person.givenName
+          outputted: Always
+        - scope: person.givenName
+          outputted: Always
         availableAttachments:
         - type: document_portrait
           outputted: Always
         - type: document_portrait
           outputted: Always
         subProviders:
-        - subtext: dmv.ca.gov
-          darkModeLogoUrl: darkModeLogoUrl
+        - id: id
           name: name
-          id: id
+          subtext: dmv.ca.gov
           logoUrl: logoUrl
-        - subtext: dmv.ca.gov
           darkModeLogoUrl: darkModeLogoUrl
+        - id: id
           name: name
-          id: id
+          subtext: dmv.ca.gov
           logoUrl: logoUrl
-        subdivisions:
-        - US-CA
-        - US-TX
+          darkModeLogoUrl: darkModeLogoUrl
+        liveHealth: Offline
+        testHealth: Offline
       properties:
         id:
           description: The unique identifier of the provider
@@ -12776,6 +13233,19 @@ components:
           description: The display name of the provider
           example: Yoti
           type: string
+        localizedDisplayNames:
+          additionalProperties:
+            type: string
+          description: "Localized display names for the Provider, if any, keyed by\
+            \ lowercase BCP 47 language codes (eg \"fr\").\n            \nIf a particular\
+            \ language code is not present, fall back to `name`.\n            \nThis\
+            \ should not be confused for the list of languages the Provider officially\
+            \ supports."
+          example:
+            en: Brazil CPF
+            pt: Verificação CPF
+          nullable: true
+          type: object
         logoUrl:
           description: The URL of the provider's logo
           example: https://cdn.trinsic.id/providers/yoti.png
@@ -12848,10 +13318,10 @@ components:
             PollResult: "The results will be made available asynchronously, via a\
               \ polling mechanism.\n            \nUse the provided `ResultsAccessKey`\
               \ to poll for the results via the `GetResults` API."
-            CaptureRedirect: "The user will be sent back to your application with\
-              \ a `resultsAccessKey` in the query string.\n            \nUpon redirect,\
-              \ use the provided `ResultsAccessKey` to retrieve the results via the\
-              \ `GetResults` API."
+            CaptureRedirect: "The user will be sent back to your application via redirect\
+              \ with a `sessionId` in the query string.\n            \nUpon redirect,\
+              \ use the `resultsAccessKey` returned at session creation to retrieve\
+              \ the results via the `GetResults` API."
             SubmitNativeChallengeResponse: "Submit a response to a native challenge\
               \ performed on the user's device, such as a native mDL exchange\nvia\
               \ the Digital Credentials API on web, or the equivalent native APIs\
@@ -13098,6 +13568,11 @@ components:
           - $ref: "#/components/schemas/BrazilDigitalCnhInput"
           description: Input for the `brazil-digital-cnh` provider
           nullable: true
+        jordan-sanad:
+          allOf:
+          - $ref: "#/components/schemas/JordanSanadInput"
+          description: Input for the `jordan-sanad` provider.
+          nullable: true
         philippines-philsys-match:
           allOf:
           - $ref: "#/components/schemas/PhilippineMatchInput"
@@ -13127,6 +13602,21 @@ components:
           allOf:
           - $ref: "#/components/schemas/IdinInput"
           description: Input for the `netherlands-idin` provider
+          nullable: true
+        finnish-trust-network:
+          allOf:
+          - $ref: "#/components/schemas/FinnishTrustNetworkInput"
+          description: Input for the `finnish-trust-network` provider.
+          nullable: true
+        czech-bank-id:
+          allOf:
+          - $ref: "#/components/schemas/CzechBankIdInput"
+          description: Input for the `czech-bank-id` provider.
+          nullable: true
+        australia-connect-id:
+          allOf:
+          - $ref: "#/components/schemas/ConnectIdInput"
+          description: Input for the `australia-connect-id` provider.
           nullable: true
         italy-spid:
           allOf:
@@ -13214,6 +13704,11 @@ components:
           allOf:
           - $ref: "#/components/schemas/UkEvisaLookupInput"
           description: Input for the `uk-evisa-lookup` provider
+          nullable: true
+        usa-arizona-wallet:
+          allOf:
+          - $ref: "#/components/schemas/UsaArizonaWalletInput"
+          description: Input for the `usa-arizona-wallet` provider
           nullable: true
         usa-california-dmv:
           allOf:
@@ -13537,6 +14032,18 @@ components:
           description: Exposed properties for the `itsme` Provider which do not directly
             map to the normalized IdentityData model.
           nullable: true
+        japan-mynumber:
+          allOf:
+          - $ref: "#/components/schemas/JapanMyNumberProviderOutput"
+          description: "Verified attributes for the `japan-mynumber` provider, including\
+            \ the original sex code."
+          nullable: true
+        jordan-sanad:
+          allOf:
+          - $ref: "#/components/schemas/SanadProviderOutput"
+          description: Exposed properties for the `jordan-sanad` Provider which do
+            not directly map to the normalized IdentityData model.
+          nullable: true
         kenya-nid-lookup-2:
           allOf:
           - $ref: "#/components/schemas/KenyaNidLookup2ProviderOutput"
@@ -13615,6 +14122,11 @@ components:
           description: Exposed properties for the `oneid` Provider which do not directly
             map to the normalized IdentityData model.
           nullable: true
+        revolut:
+          allOf:
+          - $ref: "#/components/schemas/RevolutProviderOutput"
+          description: Identity claims returned by Revolut.
+          nullable: true
         peru-dni-lookup:
           allOf:
           - $ref: "#/components/schemas/PeruDniProviderOutput"
@@ -13661,6 +14173,12 @@ components:
           allOf:
           - $ref: "#/components/schemas/SamsungWalletProviderOutput"
           description: Exposed properties for the `samsung-wallet` Provider which
+            do not directly map to the normalized IdentityData model.
+          nullable: true
+        saudi-arabia-nafath:
+          allOf:
+          - $ref: "#/components/schemas/SaudiArabiaNafathProviderOutput"
+          description: Exposed properties for the `saudi-arabia-nafath` Provider which
             do not directly map to the normalized IdentityData model.
           nullable: true
         singpass-login:
@@ -13856,24 +14374,27 @@ components:
         All: ""
     RecommendProviderInformation:
       example:
-        subtext: dmv.ca.gov
-        regions: Europe
-        name: name
-        health: online | offline
         id: id
-        countries: US
-        subProviders:
-        - subtext: dmv.ca.gov
-          darkModeLogoUrl: darkModeLogoUrl
-          name: name
-          id: id
-          logoUrl: logoUrl
-        - subtext: dmv.ca.gov
-          darkModeLogoUrl: darkModeLogoUrl
-          name: name
-          id: id
-          logoUrl: logoUrl
+        name: name
+        localizedDisplayNames:
+          en: Brazil CPF
+          pt: Verificação CPF
         logoUrl: logoUrl
+        subtext: dmv.ca.gov
+        health: online | offline
+        subProviders:
+        - id: id
+          name: name
+          subtext: dmv.ca.gov
+          logoUrl: logoUrl
+          darkModeLogoUrl: darkModeLogoUrl
+        - id: id
+          name: name
+          subtext: dmv.ca.gov
+          logoUrl: logoUrl
+          darkModeLogoUrl: darkModeLogoUrl
+        regions: Europe
+        countries: US
         subdivisions: US-CA
       properties:
         id:
@@ -13884,6 +14405,20 @@ components:
           description: "The friendly, human-readable name of the provider"
           readOnly: true
           type: string
+        localizedDisplayNames:
+          additionalProperties:
+            type: string
+          description: "Localized display names for the Provider, if any, keyed by\
+            \ lowercase BCP 47 language codes (eg \"fr\").\n            \nIf a particular\
+            \ language code is not present, fall back to `name`.\n            \nThis\
+            \ should not be confused for the list of languages the Provider officially\
+            \ supports."
+          example:
+            en: Brazil CPF
+            pt: Verificação CPF
+          nullable: true
+          readOnly: true
+          type: object
         logoUrl:
           description: A URL pointing to the provider's logo
           readOnly: true
@@ -13944,8 +14479,8 @@ components:
     RecommendProvidersRequest:
       example:
         verificationProfileId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        health: ""
         recommendationInfo: ""
+        health: ""
       properties:
         verificationProfileId:
           description: The ID of the VerificationProfile to use for this recommendation.
@@ -13954,8 +14489,9 @@ components:
         recommendationInfo:
           allOf:
           - $ref: "#/components/schemas/RecommendationInfo"
-          description: Information about the user you wish to generate a recommendation
-            for.
+          description: |-
+            Information about the user you wish to generate a recommendation for.
+            When no location can be determined from this information, all eligible providers are returned in the remainder.
           nullable: true
         health:
           allOf:
@@ -13972,82 +14508,94 @@ components:
     RecommendProvidersResponse:
       example:
         recommendedProviders:
-        - subtext: dmv.ca.gov
-          regions: Europe
+        - id: id
           name: name
-          health: online | offline
-          id: id
-          countries: US
-          subProviders:
-          - subtext: dmv.ca.gov
-            darkModeLogoUrl: darkModeLogoUrl
-            name: name
-            id: id
-            logoUrl: logoUrl
-          - subtext: dmv.ca.gov
-            darkModeLogoUrl: darkModeLogoUrl
-            name: name
-            id: id
-            logoUrl: logoUrl
+          localizedDisplayNames:
+            en: Brazil CPF
+            pt: Verificação CPF
           logoUrl: logoUrl
+          subtext: dmv.ca.gov
+          health: online | offline
+          subProviders:
+          - id: id
+            name: name
+            subtext: dmv.ca.gov
+            logoUrl: logoUrl
+            darkModeLogoUrl: darkModeLogoUrl
+          - id: id
+            name: name
+            subtext: dmv.ca.gov
+            logoUrl: logoUrl
+            darkModeLogoUrl: darkModeLogoUrl
+          regions: Europe
+          countries: US
           subdivisions: US-CA
-        - subtext: dmv.ca.gov
-          regions: Europe
+        - id: id
           name: name
-          health: online | offline
-          id: id
-          countries: US
-          subProviders:
-          - subtext: dmv.ca.gov
-            darkModeLogoUrl: darkModeLogoUrl
-            name: name
-            id: id
-            logoUrl: logoUrl
-          - subtext: dmv.ca.gov
-            darkModeLogoUrl: darkModeLogoUrl
-            name: name
-            id: id
-            logoUrl: logoUrl
+          localizedDisplayNames:
+            en: Brazil CPF
+            pt: Verificação CPF
           logoUrl: logoUrl
+          subtext: dmv.ca.gov
+          health: online | offline
+          subProviders:
+          - id: id
+            name: name
+            subtext: dmv.ca.gov
+            logoUrl: logoUrl
+            darkModeLogoUrl: darkModeLogoUrl
+          - id: id
+            name: name
+            subtext: dmv.ca.gov
+            logoUrl: logoUrl
+            darkModeLogoUrl: darkModeLogoUrl
+          regions: Europe
+          countries: US
           subdivisions: US-CA
         remainder:
-        - subtext: dmv.ca.gov
-          regions: Europe
+        - id: id
           name: name
-          health: online | offline
-          id: id
-          countries: US
-          subProviders:
-          - subtext: dmv.ca.gov
-            darkModeLogoUrl: darkModeLogoUrl
-            name: name
-            id: id
-            logoUrl: logoUrl
-          - subtext: dmv.ca.gov
-            darkModeLogoUrl: darkModeLogoUrl
-            name: name
-            id: id
-            logoUrl: logoUrl
+          localizedDisplayNames:
+            en: Brazil CPF
+            pt: Verificação CPF
           logoUrl: logoUrl
+          subtext: dmv.ca.gov
+          health: online | offline
+          subProviders:
+          - id: id
+            name: name
+            subtext: dmv.ca.gov
+            logoUrl: logoUrl
+            darkModeLogoUrl: darkModeLogoUrl
+          - id: id
+            name: name
+            subtext: dmv.ca.gov
+            logoUrl: logoUrl
+            darkModeLogoUrl: darkModeLogoUrl
+          regions: Europe
+          countries: US
           subdivisions: US-CA
-        - subtext: dmv.ca.gov
-          regions: Europe
+        - id: id
           name: name
-          health: online | offline
-          id: id
-          countries: US
-          subProviders:
-          - subtext: dmv.ca.gov
-            darkModeLogoUrl: darkModeLogoUrl
-            name: name
-            id: id
-            logoUrl: logoUrl
-          - subtext: dmv.ca.gov
-            darkModeLogoUrl: darkModeLogoUrl
-            name: name
-            id: id
-            logoUrl: logoUrl
+          localizedDisplayNames:
+            en: Brazil CPF
+            pt: Verificação CPF
           logoUrl: logoUrl
+          subtext: dmv.ca.gov
+          health: online | offline
+          subProviders:
+          - id: id
+            name: name
+            subtext: dmv.ca.gov
+            logoUrl: logoUrl
+            darkModeLogoUrl: darkModeLogoUrl
+          - id: id
+            name: name
+            subtext: dmv.ca.gov
+            logoUrl: logoUrl
+            darkModeLogoUrl: darkModeLogoUrl
+          regions: Europe
+          countries: US
           subdivisions: US-CA
       properties:
         recommendedProviders:
@@ -14146,10 +14694,10 @@ components:
             PollResult: "The results will be made available asynchronously, via a\
               \ polling mechanism.\n            \nUse the provided `ResultsAccessKey`\
               \ to poll for the results via the `GetResults` API."
-            CaptureRedirect: "The user will be sent back to your application with\
-              \ a `resultsAccessKey` in the query string.\n            \nUpon redirect,\
-              \ use the provided `ResultsAccessKey` to retrieve the results via the\
-              \ `GetResults` API."
+            CaptureRedirect: "The user will be sent back to your application via redirect\
+              \ with a `sessionId` in the query string.\n            \nUpon redirect,\
+              \ use the `resultsAccessKey` returned at session creation to retrieve\
+              \ the results via the `GetResults` API."
             SubmitNativeChallengeResponse: "Submit a response to a native challenge\
               \ performed on the user's device, such as a native mDL exchange\nvia\
               \ the Digital Credentials API on web, or the equivalent native APIs\
@@ -14178,13 +14726,47 @@ components:
         PollResult: "The results will be made available asynchronously, via a polling\
           \ mechanism.\n            \nUse the provided `ResultsAccessKey` to poll\
           \ for the results via the `GetResults` API."
-        CaptureRedirect: "The user will be sent back to your application with a `resultsAccessKey`\
-          \ in the query string.\n            \nUpon redirect, use the provided `ResultsAccessKey`\
-          \ to retrieve the results via the `GetResults` API."
+        CaptureRedirect: "The user will be sent back to your application via redirect\
+          \ with a `sessionId` in the query string.\n            \nUpon redirect,\
+          \ use the `resultsAccessKey` returned at session creation to retrieve the\
+          \ results via the `GetResults` API."
         SubmitNativeChallengeResponse: "Submit a response to a native challenge performed\
           \ on the user's device, such as a native mDL exchange\nvia the Digital Credentials\
           \ API on web, or the equivalent native APIs on Android or iOS.\n       \
           \     \nSee the `PerformNativeChallenge` launch method for more details."
+    RevolutProviderOutput:
+      properties:
+        subject:
+          description: The Revolut subject identifier.
+          example: revolut-subject-123
+          nullable: true
+          type: string
+        name:
+          description: The individual's full name.
+          example: Jane Doe
+          nullable: true
+          type: string
+        email:
+          description: The email address returned by Revolut.
+          example: jane@example.com
+          nullable: true
+          type: string
+        emailVerified:
+          description: Whether Revolut verified the email address.
+          example: false
+          nullable: true
+          type: boolean
+        phone:
+          description: The phone number in E.164 format.
+          example: "+447700900123"
+          nullable: true
+          type: string
+        phoneVerified:
+          description: Whether Revolut verified the phone number.
+          example: true
+          nullable: true
+          type: boolean
+      type: object
     SamsungIdWithClearCredential:
       description: "A Samsung ID with CLEAR credential, retrieved from Samsung Wallet.\n\
         \            \nThis is a passport-derived digital credential issued by Samsung\
@@ -14318,6 +14900,836 @@ components:
             Wallet.
           nullable: true
       type: object
+    SanadProviderOutput:
+      description: Exposed properties for the `jordan-sanad` Provider which do not
+        directly map to the normalized IdentityData model.
+      properties:
+        nationalNumber:
+          description: "The national number (الرقم الوطني).\n            \nThis is\
+            \ a ten-digit number, with leading zeros preserved.\nThe number is different\
+            \ from the identity-card number."
+          example: "0012345678"
+          nullable: true
+          type: string
+        dateOfBirth:
+          description: The date of birth of the individual.
+          example: 2000-02-29
+          format: date
+          nullable: true
+          type: string
+        fullName:
+          description: The full name of the individual.
+          example: شخص تجريبي للاختبار
+          nullable: true
+          type: string
+        documentNumber:
+          description: "The identity-card number, separate from the national number.\n\
+            \            \nThe format is three letters and five digits."
+          example: TST00001
+          nullable: true
+          type: string
+        expirationDate:
+          description: The document expiration date.
+          example: 2030-01-31
+          format: date
+          nullable: true
+          type: string
+        qrCreatedDate:
+          description: "The QR creation date, not the document's issue date."
+          example: 2026-01-15
+          format: date
+          nullable: true
+          type: string
+      type: object
+    SaudiArabiaNafathAddress:
+      properties:
+        buildingNumber:
+          description: Building number.
+          example: "1234"
+          nullable: true
+          type: string
+        street:
+          description: "Street name in the session locale.\n            \nArabic when\
+            \ the session locale is ar, and English when it is en.\nstreetSecondary\
+            \ is the other language."
+          example: طريق الملك فهد
+          nullable: true
+          type: string
+        district:
+          description: "District or neighborhood in the session locale.\n        \
+            \    \nArabic when the session locale is ar, and English when it is en.\n\
+            districtSecondary is the other language."
+          example: العليا
+          nullable: true
+          type: string
+        city:
+          description: "City in the session locale.\n            \nArabic when the\
+            \ session locale is ar, and English when it is en.\ncitySecondary is the\
+            \ other language."
+          example: الرياض
+          nullable: true
+          type: string
+        postalCode:
+          description: Postal code.
+          example: "12345"
+          nullable: true
+          type: string
+        additionalNumber:
+          description: "Additional number, used alongside the district to locate buildings\
+            \ within the Saudi addressing system."
+          example: "6789"
+          nullable: true
+          type: string
+        unitNumber:
+          description: Apartment or unit number.
+          example: 12B
+          nullable: true
+          type: string
+        locationCoordinates:
+          description: "Geographic coordinates of the registered address.\n      \
+            \      \nFormat: Two space-separated decimal numbers, longitude then latitude."
+          example: 46.675296 24.713552
+          nullable: true
+          type: string
+        isPrimaryAddress:
+          description: Whether this address is the individual's primary registered
+            address.
+          example: true
+          nullable: true
+          type: boolean
+        regionName:
+          description: "Region name in the session locale.\n            \nArabic when\
+            \ the session locale is ar, and English when it is en.\nregionNameSecondary\
+            \ is the other language."
+          example: منطقة الرياض
+          nullable: true
+          type: string
+        regionNameSecondary:
+          description: "Region name in the other language from regionName.\n     \
+            \       \nEnglish when the session locale is ar, and Arabic when it is\
+            \ en."
+          example: Riyadh Region
+          nullable: true
+          type: string
+        citySecondary:
+          description: "City name in the other language from city.\n            \n\
+            English when the session locale is ar, and Arabic when it is en."
+          example: Riyadh
+          nullable: true
+          type: string
+        streetSecondary:
+          description: "Street name in the other language from street.\n         \
+            \   \nEnglish when the session locale is ar, and Arabic when it is en."
+          example: King Fahd Road
+          nullable: true
+          type: string
+        districtSecondary:
+          description: "District name in the other language from district.\n     \
+            \       \nEnglish when the session locale is ar, and Arabic when it is\
+            \ en."
+          example: Al Olaya
+          nullable: true
+          type: string
+        cityId:
+          description: City identifier.
+          example: "101"
+          nullable: true
+          type: string
+        regionId:
+          description: Region identifier.
+          example: "01"
+          nullable: true
+          type: string
+        districtId:
+          description: District identifier.
+          example: "402"
+          nullable: true
+          type: string
+      type: object
+    SaudiArabiaNafathCitizenAttributes:
+      properties:
+        arabicFirstName:
+          description: "Given name in Arabic.\n            \nNafath always returns\
+            \ this in Arabic. romanizedFirstName is the English form,\nand the session\
+            \ locale does not change either name."
+          example: محمد
+          nullable: true
+          type: string
+        arabicFatherName:
+          description: Father's given name in Arabic. Same script as arabicFirstName.
+          example: عبدالله
+          nullable: true
+          type: string
+        arabicGrandFatherName:
+          description: Grandfather's given name in Arabic. Same script as arabicFirstName.
+          example: سعود
+          nullable: true
+          type: string
+        arabicFamilyName:
+          description: Family name in Arabic. Same script as arabicFirstName.
+          example: العتيبي
+          nullable: true
+          type: string
+        romanizedFirstName:
+          description: "Given name in English.\n            \nNafath always returns\
+            \ this in English, including when the session locale is Arabic."
+          example: Mohammed
+          nullable: true
+          type: string
+        romanizedSecondName:
+          description: Father's given name in English. Same script as romanizedFirstName.
+          example: Abdullah
+          nullable: true
+          type: string
+        romanizedThirdName:
+          description: Grandfather's given name in English. Same script as romanizedFirstName.
+          example: Saud
+          nullable: true
+          type: string
+        romanizedLastName:
+          description: Family name in English. Same script as romanizedFirstName.
+          example: Alotaibi
+          nullable: true
+          type: string
+        dateOfBirthHijri:
+          description: "Date of birth in the Hijri (Umm al-Qura) calendar, in YYYY-MM-DD\
+            \ format."
+          example: 1407-06-12
+          nullable: true
+          type: string
+        idIssueDateGregorian:
+          description: Date the national ID card was issued in the Gregorian calendar.
+          example: 2021-12-29
+          format: date
+          nullable: true
+          type: string
+        idIssueDateHijri:
+          description: "Date the national ID card was issued in the Hijri calendar,\
+            \ in YYYY-MM-DD format."
+          example: 1443-05-25
+          nullable: true
+          type: string
+        idExpiryDateGregorian:
+          description: Date the national ID card expires in the Gregorian calendar.
+          example: 2031-12-29
+          format: date
+          nullable: true
+          type: string
+        idExpiryDateHijri:
+          description: "Date the national ID card expires in the Hijri calendar, in\
+            \ YYYY-MM-DD format."
+          example: 1453-05-25
+          nullable: true
+          type: string
+        idVersionNumber:
+          description: "Version number printed on the national ID card.\n        \
+            \    \nRepresents the generation of national ID card this document was\
+            \ issued in."
+          example: "4"
+          nullable: true
+          type: string
+        idIssuePlace:
+          description: "City or office where the national ID card was issued, in Arabic.\n\
+            \            \nThe session locale does not change it."
+          example: الرياض
+          nullable: true
+          type: string
+        socialStatusCode:
+          description: "Social-status (marital-status) code, from the Nafath socialStatusCode\
+            \ attribute. The\nnumeric code is not unique on its own. The same code\
+            \ maps to different states depending\non the value of the top-level sex\
+            \ field.\n            \nCode by sex:\n- 0, M: Single\n- 1, F: Single\n\
+            - 1, M: One wife\n- 2, F: Married\n- 2, M: Two wives\n- 3, F: Divorced\n\
+            - 3, M: Three wives\n- 4, F: Widow\n- 4, M: Four wives\n- 5, F: Pending\
+            \ divorced\n            \nCombinations not listed are not defined by Nafath."
+          example: "1"
+          nullable: true
+          type: string
+        socialStatus:
+          description: "Social status description in Arabic, from the Nafath socialStatusDesc\
+            \ attribute.\n            \nThe session locale does not change it. socialStatusCode\
+            \ is the separate numeric code."
+          example: متزوج
+          nullable: true
+          type: string
+        dependentCount:
+          description: Number of current dependents.
+          example: 2
+          format: int32
+          nullable: true
+          type: integer
+        placeOfBirth:
+          description: "Place of birth in Arabic.\n            \nThe session locale\
+            \ does not change it."
+          example: الرياض
+          nullable: true
+          type: string
+        lastTravelExitDateGregorian:
+          description: Most recent travel exit date in the Gregorian calendar.
+          example: 2025-07-15
+          format: date
+          nullable: true
+          type: string
+        lastTravelExitDateHijri:
+          description: "Most recent travel exit date in the Hijri calendar, in YYYY-MM-DD\
+            \ format."
+          example: 1447-01-20
+          nullable: true
+          type: string
+        lastTravelEntryDateGregorian:
+          description: Most recent travel entry date in the Gregorian calendar.
+          example: 2025-08-01
+          format: date
+          nullable: true
+          type: string
+        lastTravelEntryDateHijri:
+          description: "Most recent travel entry date in the Hijri calendar, in YYYY-MM-DD\
+            \ format."
+          example: 1447-02-07
+          nullable: true
+          type: string
+        isMinor:
+          description: True when the citizen is a minor.
+          example: false
+          nullable: true
+          type: boolean
+        headOfHousehold:
+          allOf:
+          - $ref: "#/components/schemas/SaudiArabiaNafathHeadOfHousehold"
+          description: "Head of household information, intended for minor citizen\
+            \ workflows such as guardian\nconsent for opening a bank account.\n  \
+            \          \nThe sandbox also returns it for adults, so it is included\
+            \ whenever present."
+          nullable: true
+        nationalAddresses:
+          description: "Registered Saudi national addresses, as structured fields.\n\
+            \            \nSaudi Post (SPL) documents how to enter a national address\
+            \ on checkout and international\nforms: Line 1 is building number, unit\
+            \ number, and street name. Line 2 is the additional\nnumber and district.\
+            \ Then city and postal code.\n            \nThe country is always Saudi\
+            \ Arabia because Nafath only ever returns Saudi national\naddresses.\n\
+            \            \nhttps://splonline.com.sa/en/door-step/"
+          example:
+          - buildingNumber: "1234"
+            street: طريق الملك فهد
+            district: العليا
+            city: الرياض
+            postalCode: "12345"
+            additionalNumber: "6789"
+            unitNumber: 12B
+            locationCoordinates: 46.675296 24.713552
+            isPrimaryAddress: true
+            regionName: منطقة الرياض
+            regionNameSecondary: Riyadh Region
+            citySecondary: Riyadh
+            streetSecondary: King Fahd Road
+            districtSecondary: Al Olaya
+            cityId: "101"
+            regionId: "01"
+            districtId: "402"
+          items:
+            $ref: "#/components/schemas/SaudiArabiaNafathAddress"
+          nullable: true
+          type: array
+      type: object
+    SaudiArabiaNafathHeadOfHousehold:
+      properties:
+        nationalIdentityNumber:
+          description: Head of household national identity number.
+          example: "1023456789"
+          nullable: true
+          type: string
+        arabicFirstName:
+          description: Head of household given name in Arabic.
+          example: عبدالرحمن
+          nullable: true
+          type: string
+        arabicFatherName:
+          description: Head of household father name in Arabic.
+          example: سعد
+          nullable: true
+          type: string
+        arabicGrandFatherName:
+          description: Head of household grandfather name in Arabic.
+          example: محمد
+          nullable: true
+          type: string
+        arabicFamilyName:
+          description: Head of household family name in Arabic.
+          example: القحطاني
+          nullable: true
+          type: string
+      type: object
+    SaudiArabiaNafathProviderOutput:
+      description: Exposed properties for the `saudi-arabia-nafath` Provider which
+        do not directly map to the normalized IdentityData model.
+      properties:
+        nationalIdentityNumber:
+          description: "Saudi Arabia national identity number used to authenticate\
+            \ the individual with Nafath.\n            \nNafath supports three user\
+            \ types and the leading digit of this number identifies which one\nsigned\
+            \ in:\n- 1: Saudi citizen national ID, issued by Civil Affairs (Al-Ahwal\
+            \ al-Madaniyya) under\n  the Ministry of Interior.\n- 2: Resident (Iqama\
+            \ or muqeem) number on the residence permit, issued by the General\n \
+            \ Directorate of Passports (Al-Jawazat) under the Ministry of Interior.\n\
+            - 3 through 6: Visitor identity number (Hawiyyat Za'ir) for foreign nationals\
+            \ admitted on\n  short-term visas, including tourist, business, family\
+            \ visit, and Umrah visas.\n            \nFormat:\n- Exactly ten decimal\
+            \ digits.\n- First digit is the user type as listed above.\n- Digits two\
+            \ through nine are assigned serially and have no semantic meaning.\n-\
+            \ For citizen and resident numbers, the tenth digit is a check digit derived\
+            \ from the\n  first nine digits with a modulus-ten style algorithm. No\
+            \ check digit is documented for\n  visitor numbers, and the Nafath sandbox's\
+            \ visitor numbers do not follow it.\n            \nNafath returns no identifier\
+            \ for visitors, so for them this is the number the user\nsubmitted."
+          example: "1035771078"
+          nullable: true
+          type: string
+        userType:
+          description: "Nafath user type derived from the leading digit of nationalIdentityNumber.\
+            \ The matching\nattributes object carries the fields Nafath defines only\
+            \ for that user type.\n            \nPossible values:\n- Citizen: Saudi\
+            \ citizen national ID (1-series). See citizenSpecificAttributes.\n- Resident:\
+            \ legally resident foreign national, Iqama (2-series). See\n  residentSpecificAttributes.\n\
+            - Visitor: visitor identity (3 through 6-series). See visitorSpecificAttributes."
+          example: Citizen
+          nullable: true
+          type: string
+        sex:
+          description: "Sex as returned by Nafath, normalized to the platform sex\
+            \ code.\n            \nPossible values:\n- Male\n- Female"
+          example: Male
+          nullable: true
+          type: string
+        nationality:
+          description: "Nationality as an ISO 3166-1 alpha-2 country code.\n     \
+            \       \nNot every nationality passed by back Nafath corresponds to an\
+            \ ISO 3166-1 alpha-2 code,\nfor example code 335 (Tribes Emigrated) or\
+            \ 336 (Turkestan). In these cases, this field\nis null. See nationalityCode\
+            \ for the raw nationality code."
+          example: SA
+          nullable: true
+          type: string
+        nationalityCode:
+          description: "Nationality code as returned by Nafath under nationalityCode.\n\
+            \            \nThis is the Saudi government's three-digit nationality\
+            \ code, grouped by region:\n- 1xx Arab states\n- 2xx North Africa\n- 3xx\
+            \ Asia, Middle East, and Oceania\n- 4xx Sub-Saharan Africa\n- 5xx Europe\n\
+            - 6xx Americas\n- 7xx Oceania\n            \nIt is not an ISO 3166 numeric\
+            \ code. For example, 504 is Ireland according to Nafath\nbut Morocco in\
+            \ ISO 3166.\n            \nSee https://docs.trinsic.id/docs/saudi-arabia-nafath\
+            \ for a full list."
+          example: "113"
+          nullable: true
+          type: string
+        dateOfBirthGregorian:
+          description: Date of birth in the Gregorian calendar.
+          example: 1987-02-10
+          format: date
+          nullable: true
+          type: string
+        occupationCode:
+          description: "Occupation code reported by Nafath.\n            \nKnown values:\n\
+            - O: Other\n- G: Government"
+          example: G
+          nullable: true
+          type: string
+        passportNumber:
+          description: Passport number reported by Nafath.
+          example: X55448
+          nullable: true
+          type: string
+        citizenSpecificAttributes:
+          allOf:
+          - $ref: "#/components/schemas/SaudiArabiaNafathCitizenAttributes"
+          description: "Attributes Nafath defines only for Saudi citizens.\n     \
+            \       \nPresent only when userType is Citizen."
+          nullable: true
+        residentSpecificAttributes:
+          allOf:
+          - $ref: "#/components/schemas/SaudiArabiaNafathResidentAttributes"
+          description: "Attributes Nafath defines only for residents holding an Iqama.\n\
+            \            \nPresent only when userType is Resident."
+          nullable: true
+        visitorSpecificAttributes:
+          allOf:
+          - $ref: "#/components/schemas/SaudiArabiaNafathVisitorAttributes"
+          description: "Attributes Nafath defines only for visitors on short-term\
+            \ visas.\n            \nPresent only when userType is Visitor."
+          nullable: true
+      type: object
+    SaudiArabiaNafathResidentAttributes:
+      properties:
+        arabicFirstName:
+          description: "Given name in Arabic.\n            \nNafath always returns\
+            \ this in Arabic. romanizedFirstName is the English form,\nand the session\
+            \ locale does not change either name."
+          example: أحمد
+          nullable: true
+          type: string
+        arabicSecondName:
+          description: Second name in Arabic. Same script as arabicFirstName.
+          example: خالد
+          nullable: true
+          type: string
+        arabicThirdName:
+          description: Third name in Arabic. Same script as arabicFirstName.
+          example: رحمن
+          nullable: true
+          type: string
+        arabicLastName:
+          description: Last name in Arabic. Same script as arabicFirstName.
+          example: الأنصاري
+          nullable: true
+          type: string
+        romanizedFirstName:
+          description: "Given name in English.\n            \nNafath always returns\
+            \ this in English, including when the session locale is Arabic."
+          example: Ahmed
+          nullable: true
+          type: string
+        romanizedSecondName:
+          description: Second name in English. Same script as romanizedFirstName.
+          example: Khalid
+          nullable: true
+          type: string
+        romanizedThirdName:
+          description: Third name in English. Same script as romanizedFirstName.
+          example: Rahman
+          nullable: true
+          type: string
+        romanizedLastName:
+          description: Last name in English. Same script as romanizedFirstName.
+          example: Ansari
+          nullable: true
+          type: string
+        nationalityDescription:
+          description: English nationality name.
+          example: India
+          nullable: true
+          type: string
+        dateOfBirthHijri:
+          description: "Date of birth in the Hijri (Umm al-Qura) calendar, in YYYY-MM-DD\
+            \ format."
+          example: 1408-12-15
+          nullable: true
+          type: string
+        iqamaIssueDateGregorian:
+          description: Date the Iqama was issued in the Gregorian calendar.
+          example: 2022-05-15
+          format: date
+          nullable: true
+          type: string
+        iqamaIssueDateHijri:
+          description: "Date the Iqama was issued in the Hijri calendar, in YYYY-MM-DD\
+            \ format."
+          example: 1443-10-14
+          nullable: true
+          type: string
+        iqamaExpiryDateGregorian:
+          description: Date the Iqama expires in the Gregorian calendar.
+          example: 2027-05-14
+          format: date
+          nullable: true
+          type: string
+        iqamaExpiryDateHijri:
+          description: "Date the Iqama expires in the Hijri calendar, in YYYY-MM-DD\
+            \ format."
+          example: 1448-11-08
+          nullable: true
+          type: string
+        iqamaVersionNumber:
+          description: "Version number printed on the Iqama.\n            \nRepresents\
+            \ the Iqama permit generation version."
+          example: "4"
+          nullable: true
+          type: string
+        iqamaIssuePlace:
+          description: "Name of the city or office that issued the Iqama, in Arabic.\n\
+            \            \nThe session locale does not change it."
+          example: الرياض
+          nullable: true
+          type: string
+        iqamaIssuePlaceCode:
+          description: Code for the office that issued the Iqama.
+          example: "1"
+          nullable: true
+          type: string
+        occupationDescription:
+          description: Free-text occupation description.
+          example: Software Engineer
+          nullable: true
+          type: string
+        socialStatusCode:
+          description: "Social-status (marital-status) code, from the Nafath socialStatusCode\
+            \ attribute. The\nnumeric code is not unique on its own. The same code\
+            \ maps to different states depending\non the value of the top-level sex\
+            \ field.\n            \nCode by sex:\n- 0, M: Single\n- 1, F: Single\n\
+            - 1, M: One wife\n- 2, F: Married\n- 2, M: Two wives\n- 3, F: Divorced\n\
+            - 3, M: Three wives\n- 4, F: Widow\n- 4, M: Four wives\n- 5, F: Pending\
+            \ divorced\n            \nCombinations not listed are not defined by Nafath."
+          example: "1"
+          nullable: true
+          type: string
+        socialStatus:
+          description: "Social status in uppercase English, for example MARRIED, from\
+            \ the Nafath socialStatus\nattribute.\n            \nPossible English\
+            \ values include: Single, Married, Divorced, Widow, Pending Divorced,\n\
+            One Wife, Two Wives, Three Wives, Four Wives."
+          example: MARRIED
+          nullable: true
+          type: string
+        placeOfBirth:
+          description: Place of birth name.
+          example: Mumbai
+          nullable: true
+          type: string
+        placeOfBirthCode:
+          description: Code for the place of birth.
+          example: MUM
+          nullable: true
+          type: string
+        sponsorName:
+          description: "Name of the entity sponsoring the Iqama, typically an employer."
+          example: Acme Trading LLC
+          nullable: true
+          type: string
+        legalStatus:
+          description: Legal status.
+          example: Resident
+          nullable: true
+          type: string
+        inOutIndicator:
+          description: "Whether the resident is currently inside or outside Saudi\
+            \ Arabia based on their last\nrecorded travel event.\n            \nPossible\
+            \ values include:\n- IN: most recent travel event was an entry into Saudi\
+            \ Arabia.\n- OUT: most recent travel event was an exit from Saudi Arabia."
+          example: IN
+          nullable: true
+          type: string
+        nationalAddresses:
+          description: "Registered Saudi national addresses.\n            \nSaudi\
+            \ Post (SPL) documents how to enter a national address on checkout and\
+            \ international\nforms: Line 1 is building number, unit number, and street\
+            \ name. Line 2 is the additional\nnumber and district. Then city and postal\
+            \ code. The country is always Saudi Arabia.\n            \nhttps://splonline.com.sa/en/door-step/"
+          example:
+          - buildingNumber: "55"
+            street: شارع التوبة
+            district: العليا
+            city: الرياض
+            postalCode: "12214"
+            additionalNumber: "3030"
+            unitNumber: 12A
+            locationCoordinates: 46.675296 24.713552
+            isPrimaryAddress: true
+            regionName: منطقة الرياض
+            regionNameSecondary: Riyadh Region
+            citySecondary: Riyadh
+            streetSecondary: At Tawbah
+            districtSecondary: Al Olaya
+            cityId: "101"
+            regionId: "01"
+            districtId: "402"
+          items:
+            $ref: "#/components/schemas/SaudiArabiaNafathAddress"
+          nullable: true
+          type: array
+      type: object
+    SaudiArabiaNafathVisitorAttributes:
+      properties:
+        loginType:
+          description: "Credential the visitor used to log in to Nafath.\n       \
+            \     \nPossible values:\n- VisaNumber: the visitor authenticated with\
+            \ the visa number printed on their visa\n  document.\n- BorderNumber:\
+            \ the visitor authenticated with their border number (raqam al-hudud),\
+            \ the\n  ten-digit identifier the General Directorate of Passports (Jawazat)\
+            \ assigns to a\n  foreign national on entry into Saudi Arabia, used as\
+            \ their entry-linked identifier\n  before any residency is issued."
+          example: VisaNumber
+          nullable: true
+          type: string
+        firstName:
+          description: "First name in English.\n            \nNafath describes firstName,\
+            \ secondName, thirdName, and lastName as English.\ntranslatedFirstName\
+            \ is the Arabic form. The session locale does not change\neither name."
+          example: Fatima
+          nullable: true
+          type: string
+        secondName:
+          description: Second name in English. Same script as firstName.
+          example: Ali
+          nullable: true
+          type: string
+        thirdName:
+          description: "Third name, from the Nafath thirdName attribute. See firstName\
+            \ for the script."
+          example: Hassan
+          nullable: true
+          type: string
+        lastName:
+          description: "Last name, from the Nafath lastName attribute. See firstName\
+            \ for the script."
+          example: Mohammed
+          nullable: true
+          type: string
+        translatedFirstName:
+          description: "First name in Arabic, from the Nafath translatedFirstName\
+            \ attribute.\n            \nNafath's descriptions of firstName, secondName,\
+            \ thirdName, and lastName call those\nfields English, so the translated\
+            \ names are treated as Arabic for both visa-number\nand border-number\
+            \ logins. The session locale does not change either script."
+          example: فاطمة
+          nullable: true
+          type: string
+        translatedSecondName:
+          description: Second name in Arabic. Same script as translatedFirstName.
+          example: علي
+          nullable: true
+          type: string
+        translatedThirdName:
+          description: Third name in Arabic. Same script as translatedFirstName.
+          example: حسن
+          nullable: true
+          type: string
+        translatedLastName:
+          description: Last name in Arabic. Same script as translatedFirstName.
+          example: محمد
+          nullable: true
+          type: string
+        nationalityDescription:
+          description: "English nationality name, from the Nafath nationalityDesc\
+            \ attribute."
+          example: Egypt
+          nullable: true
+          type: string
+        dateOfBirthHijri:
+          description: "Date of birth in the Hijri (Umm al-Qura) calendar, in YYYY-MM-DD\
+            \ format, from the Nafath\nbirthhDate attribute. Only returned for visa-number\
+            \ logins; the appendix defines no Hijri\ndate of birth for border-number\
+            \ logins.\n            \nNafath's examples also use DD-MM-YYYY and YYYY/MM/DD;\
+            \ Trinsic reorders those to\nYYYY-MM-DD and passes any other format through\
+            \ unchanged."
+          example: 1412-08-21
+          nullable: true
+          type: string
+        visaNumber:
+          description: "Visa number, from the Nafath visaNumber attribute. Can contain\
+            \ letters as well as digits."
+          example: V20251234567
+          nullable: true
+          type: string
+        visaDurationDays:
+          description: |-
+            Count of days from visa issue to visa expiry, parsed from the Nafath duration attribute.
+            Null when duration is absent or not a valid integer.
+          example: 90
+          format: int32
+          nullable: true
+          type: integer
+        visaIssueDate:
+          description: "Date the visa was issued, from the Nafath visaIssueDate attribute."
+          example: 2025-01-15
+          format: date
+          nullable: true
+          type: string
+        visaExpiryDate:
+          description: |-
+            Final date the visitor is permitted to enter Saudi Arabia, from the Nafath
+            visaExpiryDate attribute.
+          example: 2025-04-15
+          format: date
+          nullable: true
+          type: string
+        finalDepartureDate:
+          description: |-
+            Last day the visitor may legally remain in Saudi Arabia, from the Nafath
+            finalDepartureDate attribute.
+          example: 2025-05-01
+          format: date
+          nullable: true
+          type: string
+        numberOfEntriesCode:
+          description: "Number-of-entries code, from the Nafath numberOfEntriesCode\
+            \ attribute.\n            \nKnown values:\n- 1: Single entry\n- 9: Multiple\
+            \ entry"
+          example: "1"
+          nullable: true
+          type: string
+        numberOfEntriesDescriptionArabic:
+          description: |-
+            Arabic description of the entries the visa allows, from the Nafath numberOfEntriesDescAr
+            attribute.
+          example: دخول واحد
+          nullable: true
+          type: string
+        visaTypeCode:
+          description: |-
+            Visa type code, from the Nafath visaTypeCode attribute. The appendix publishes no lookup
+            table; the sandbox returns BUS for a business visit visa.
+          example: BUS
+          nullable: true
+          type: string
+        visaTypeDescriptionArabic:
+          description: "Arabic visa type description, from the Nafath visaTypeDescAr\
+            \ attribute."
+          example: تأشيرة زيارة أعمال
+          nullable: true
+          type: string
+        visaTypeDescriptionEnglish:
+          description: "English visa type description, from the Nafath visaTypeDescEn\
+            \ attribute."
+          example: Business Visit
+          nullable: true
+          type: string
+        passportIssueDate:
+          description: "Date the visitor's passport was issued, from the Nafath passportIssueDate\
+            \ attribute."
+          example: 2023-04-10
+          format: date
+          nullable: true
+          type: string
+        passportExpiryDate:
+          description: "Date the visitor's passport expires, from the Nafath passportExpiryDate\
+            \ attribute."
+          example: 2033-04-09
+          format: date
+          nullable: true
+          type: string
+        occupationDescriptionArabic:
+          description: "Arabic occupation description, from the Nafath occupationDescAr\
+            \ attribute."
+          example: مهندس
+          nullable: true
+          type: string
+        occupationDescriptionEnglish:
+          description: "English occupation description, from the Nafath occupationDescEn\
+            \ attribute."
+          example: Engineer
+          nullable: true
+          type: string
+        birthCountryArabic:
+          description: "Arabic name of the visitor's birth country, from the Nafath\
+            \ birthCountryDescAr attribute."
+          example: مصر
+          nullable: true
+          type: string
+        birthCountryEnglish:
+          description: |-
+            English name of the visitor's birth country, from the Nafath birthCountryDescEn
+            attribute.
+          example: Egypt
+          nullable: true
+          type: string
+        entryDate:
+          description: |-
+            Date the visitor entered Saudi Arabia, from the Nafath entryDate attribute. Only
+            returned for border-number logins.
+          example: 2025-02-01
+          format: date
+          nullable: true
+          type: string
+      type: object
     SerbiaIdCardProviderOutput:
       description: Exposed properties for the `a-rs-id-login` Provider which do not
         directly map to the normalized IdentityData model.
@@ -14359,11 +15771,11 @@ components:
       type: object
     Session:
       example:
-        success: true
-        created: 1722526411
-        errorCode: ""
         id: 678c1ff6-2178-49e7-81d2-548afb6f85ec
         done: true
+        success: true
+        errorCode: ""
+        created: 1722526411
         updated: 1722526722
       properties:
         id:
@@ -14524,9 +15936,9 @@ components:
             \ and certificate chain succeeded.\n            \nWhen the signed document\
             \ (e.g. Digilocker XML) is available, we validate it using the standard\
             \ CCA/SafeScrypt chain.\nWhen the document is not returned, the signature\
-            \ cannot be validated and this is false. Some providers (e.g. Signzy)\
-            \ also\nsupply a separate DSC validation indicator in the webhook payload;\
-            \ that is independent of this flag, which reflects only our validation."
+            \ cannot be validated and this is false. Some providers also supply a\
+            \ separate\nDSC validation indicator in the webhook payload; that is independent\
+            \ of this flag, which reflects only our validation."
           example: true
           nullable: true
           type: boolean
@@ -14877,17 +16289,17 @@ components:
           - $ref: "#/components/schemas/SingpassMyInfoRegisteredAddressOutput"
           description: The user's registered address.
           nullable: true
-        houseDevelopmenetBoardType:
+        houseDevelopmentBoardType:
           allOf:
           - $ref: "#/components/schemas/SingpassMyInfoDescription"
-          description: "Housing and Development Board (HBD) flat type code and description.\n\
-            \            \nThis value will be null if not HBD\nPossible values (code\
+          description: "Housing and Development Board (HDB) flat type code and description.\n\
+            \            \nThis value will be null if not HDB.\nPossible values (code\
             \ description):\n- 111 1-ROOM FLAT (HDB)\n- 112 2-ROOM FLAT (HDB)\n- 113\
             \ 3-ROOM FLAT (HDB)\n- 114 4-ROOM FLAT (HDB)\n- 115 5-ROOM FLAT (HDB)\n\
             - 116 EXECUTIVE FLAT (HDB)\n- 118 STUDIO APARTMENT (HDB)"
           example:
             code: "113"
-            description: 3-ROOM FLAT (HBD)
+            description: 3-ROOM FLAT (HDB)
           nullable: true
         housingType:
           allOf:
@@ -15551,11 +16963,11 @@ components:
     SubProviderMetadata:
       description: Information about a sub-provider.
       example:
-        subtext: dmv.ca.gov
-        darkModeLogoUrl: darkModeLogoUrl
-        name: name
         id: id
+        name: name
+        subtext: dmv.ca.gov
         logoUrl: logoUrl
+        darkModeLogoUrl: darkModeLogoUrl
       properties:
         id:
           description: "The ID of the sub-provider.\n            \nThis cannot be\
@@ -15589,8 +17001,8 @@ components:
       type: object
     SubmitNativeChallengeResponseRequest:
       example:
-        responseToken: responseToken
         resultsAccessKey: resultsAccessKey
+        responseToken: responseToken
       properties:
         resultsAccessKey:
           description: The Results Access Key for the Session in question
@@ -15626,9 +17038,22 @@ components:
           nullable: true
           type: string
         dateOfBirth:
-          description: The date of birth of the individual.
-          example: 1943-08-15
+          description: The individual's date of birth in YYYY-MM-DD format.
+          example: 1985-04-12
           format: date
+          nullable: true
+          type: string
+        sex:
+          description: "The individual's sex, derived from the personal identity number.\
+            \ Values are Male or Female."
+          example: Male
+          nullable: true
+          type: string
+        sub:
+          description: "The OpenID Connect sub claim, when returned in the provider\
+            \ response.\n            \nThe value starts with the se_bankid: prefix\
+            \ followed by the subject identifier."
+          example: se_bankid:8f27c1a6-5d93-4eb0-a762-3c9016d4b8ef
           nullable: true
           type: string
         personalIdentityNumber:
@@ -15638,7 +17063,7 @@ components:
             \ birth.\n- XXXX is an individual number, indicating gender.\n       \
             \     \nIf XXXX is even, the individual is female.\nIf XXXX is odd, the\
             \ individual is male."
-          example: 20200101-1231
+          example: "202001011234"
           nullable: true
           type: string
         givenName:
@@ -15699,6 +17124,115 @@ components:
           nullable: true
           type: string
       type: object
+    TrinsicHPKEBundle:
+      example:
+        trinsicHpkeVersion: 0
+        metadata: ""
+        ephemeralSenderPublicKey: ephemeralSenderPublicKey
+        ciphertext: ciphertext
+      properties:
+        trinsicHpkeVersion:
+          description: "The version of the Trinsic HPKE Exchange Protocol in use.\n\
+            \            \nAlways `1` at this time."
+          format: int32
+          type: integer
+        metadata:
+          allOf:
+          - $ref: "#/components/schemas/TrinsicHPKEMetadata"
+          description: "Information about the HPKE parameters in use.\n          \
+            \  \nTrinsic currently supports a fixed set of HPKE parameters:\n- Mode:\
+            \ Basic\n- KEM: DHKEM(P256, HKDF-SHA256)\n- KDF: HKDF-SHA256\n- AEAD:\
+            \ AES-128-GCM"
+        ephemeralSenderPublicKey:
+          description: "Corresponds to the `enc` parameter of HPKE.\n            \n\
+            The raw bytes, in a format unique to the chosen HPKE KEM, of the ephemeral\
+            \ sender public key for this single-shot HPKE exchange.\n            \n\
+            Because Trinsic only supports DHKEM(P256, HKDF-SHA256), this is always\
+            \ a 65-byte array with the following format:\n[0x04][XCoord][YCoord]\n\
+            \            \nWhere [0x04] is a single byte with value `4`, and [XCoord]\
+            \ / [YCoord] are each 32-byte X/Y coordinates of a P-256 public key."
+          format: byte
+          type: string
+        ciphertext:
+          description: "Corresponds to the `ct` parameter of HPKE.\n            \n\
+            The encrypted ciphertext for this HPKE single-shot message.\n        \
+            \    \nBecause Trinsic only supports AES-128-GCM, this byte array always\
+            \ has an exact format:\n[CipherText][Tag]\n            \nWhere [ciphertext]\
+            \ is a variable-length array of bytes, and [tag] is a 16-length byte array."
+          format: byte
+          type: string
+      required:
+      - ciphertext
+      - ephemeralSenderPublicKey
+      - metadata
+      - trinsicHpkeVersion
+      type: object
+    TrinsicHPKEMetadata:
+      properties:
+        mode:
+          description: "The HPKE mode in use. Trinsic only currently supports the\
+            \ Basic mode.\n            \nThere are four modes defined in the HPKE\
+            \ specification:\n            \n- Basic (0): Sender is not authenticated\n\
+            - PSK (1): Sender is authenticated by proving possession of a Pre-Shared\
+            \ Key (byte array) which the recipient also knows.\n- Auth (2): Sender\
+            \ is authenticated by proving possession of a Private Key, for which the\
+            \ recipient knows the corresponding Public Key.\n- AuthPSK (3): Sender\
+            \ is authenticated by proving possession of both a Pre-Shared Key and\
+            \ a Private Key."
+          format: int32
+          type: integer
+        kem:
+          description: "The Key Encapsulation Mechanism (KEM) used for the HPKE handshake.\n\
+            \            \nTrinsic currently only supports the DHKEM(P256, HKDF-SHA256)\
+            \ KEM, meaning that only P-256 keys are supported."
+          format: int32
+          type: integer
+        kdf:
+          description: "The Key Derivation Function (KDF) used for the HPKE handshake.\n\
+            \            \nTrinsic currently only supports HKDF-SHA256."
+          format: int32
+          type: integer
+        aead:
+          description: "The symmetric encryption cipher used for ciphertext encryption\
+            \ and decryption.\n            \nTrinsic currently only supports AES-128-GCM."
+          format: int32
+          type: integer
+        infoHash:
+          description: "SHA-256 hash of the `info` parameter used during HPKE encryption.\n\
+            \            \nThis is not used in HPKE directly.\n            \nThis\
+            \ is provided as a helper for debugging and development purposes, to verify\
+            \ that the same `info` hash is being used\nby both Trinsic and your integration."
+          format: byte
+          type: string
+        recipientPublicKeyHash:
+          description: "SHA-256 hash of the recipient's P-256 public key in raw uncompressed\
+            \ point encoding ([0x04][X][Y]).\n            \nThis is not used in HPKE\
+            \ directly.\n            \nUse this to verify that an HPKE message was\
+            \ encrypted against your public key, and/or to identify which of your\
+            \ keys\na message was encrypted against, before proceeding with decryption.\n\
+            \            \nThis and `recipientPublicKeyJwkThumbprint` are both effectively\
+            \ hashes of the recipient's (your) public key.\nEither is appropriate\
+            \ to use for the same purpose."
+          format: byte
+          type: string
+        recipientPublicKeyJwkThumbprint:
+          description: "JWK Thumbprint of the recipient's P-256 public key, in base64url\
+            \ encoding.\n            \nThis is not used in HPKE directly.\n      \
+            \      \nUse this to verify that an HPKE message was encrypted against\
+            \ your public key, and/or to identify which of your keys\na message was\
+            \ encrypted against, before proceeding with decryption.\n            \n\
+            This and `recipientPublicKeyHash` are both effectively hashes of the recipient's\
+            \ (your) public key.\nEither is appropriate to use for the same purpose."
+          type: string
+      required:
+      - aead
+      - infoHash
+      - kdf
+      - kem
+      - mode
+      - recipientPublicKeyHash
+      - recipientPublicKeyJwkThumbprint
+      type: object
     TrinsicTestDatabaseLookupInput:
       properties:
         givenName:
@@ -15723,8 +17257,8 @@ components:
           nullable: true
           type: string
         selfieBase64:
-          description: "An optional selfie image, base64-encoded.\n            \n\
-            Will replace the existing test selfie attachment output if provided."
+          description: "An optional selfie image in a Base64 string.\n           \
+            \ \nWill replace the existing test selfie attachment output if provided."
           nullable: true
           type: string
       type: object
@@ -16008,7 +17542,11 @@ components:
     UkEvisaLookupInput:
       properties:
         shareCode:
-          description: The 9-character share code.
+          description: |-
+            The 9-character alphanumeric UK Visas and Immigration (UKVI) share code.
+            Must start with W for right to work, R for right to rent, or S for immigration status,
+            matching the configured lookup type.
+            Whitespace is removed and lowercase ASCII letters are converted to uppercase.
           example: R9Z3X7K2P
           maxLength: 9
           minLength: 9
@@ -16108,6 +17646,16 @@ components:
           nullable: true
           type: string
       type: object
+    UsaArizonaWalletInput:
+      properties:
+        preview_raw18013Request:
+          allOf:
+          - $ref: "#/components/schemas/Raw18013RequestInput"
+          description: "The raw 18013-7 exchange request to use for this verification.\n\
+            \            \nIf set, this overrides any default configuration on your\
+            \ Verification Profile."
+          nullable: true
+      type: object
     UsaCaliforniaDmvInput:
       properties:
         preview_raw18013Request:
@@ -16120,17 +17668,18 @@ components:
       type: object
     VerificationProfileResponse:
       example:
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        alias: alias
+        brandName: brandName
+        externalId: externalId
+        geography: US
+        logoUrl: logoUrl
+        primaryColor: primaryColor
         enabledProviders:
         - enabledProviders
         - enabledProviders
-        brandName: brandName
-        primaryColor: primaryColor
         sessionExpiration: sessionExpiration
-        alias: alias
-        externalId: externalId
-        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         isProductionUsage: true
-        logoUrl: logoUrl
       properties:
         id:
           description: The ID of the verification profile
@@ -16147,6 +17696,11 @@ components:
           description: "A customer-defined external ID for this verification profile,\
             \ unique within your organization."
           nullable: true
+          type: string
+        geography:
+          description: "The data-residency geography of the verification profile,\
+            \ such as \"US\" or \"EU\"."
+          example: US
           type: string
         logoUrl:
           description: The URL of the verification profile's logo.
@@ -16173,6 +17727,7 @@ components:
       - alias
       - brandName
       - enabledProviders
+      - geography
       - id
       - isProductionUsage
       - logoUrl
@@ -16391,7 +17946,7 @@ components:
         country:
           description: "The address's country. This field does not have a specified\
             \ format, but is recommended to use for the country field."
-          example: UK
+          example: GB
           nullable: true
           type: string
         countryIso:

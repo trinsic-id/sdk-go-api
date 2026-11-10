@@ -19,6 +19,8 @@ var _ MappedNullable = &Iso180135MobileDriversLicenseCredential{}
 
 // Iso180135MobileDriversLicenseCredential An 18013-5 mDL (Mobile Driver's License) credential, with document type `org.iso.18013.5.1.mDL`.
 type Iso180135MobileDriversLicenseCredential struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// Fields from the standard `org.iso.18013.5.1` namespace within the Mobile Driver's License.              This namespace is the primary dataset defined for Mobile Driver's License credentials.
 	Standard NullableIso180135StandardNamespaceOutput `json:"standard,omitempty"`
 	// Fields from the `org.iso.18013.5.1.aamva` namespace.              This namespace is an additional dataset defined by AAMVA (American Association of Motor Vehicle Administrators).
@@ -27,15 +29,6 @@ type Iso180135MobileDriversLicenseCredential struct {
 }
 
 type _Iso180135MobileDriversLicenseCredential Iso180135MobileDriversLicenseCredential
-
-// NewIso180135MobileDriversLicenseCredential instantiates a new Iso180135MobileDriversLicenseCredential object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewIso180135MobileDriversLicenseCredential() *Iso180135MobileDriversLicenseCredential {
-	this := Iso180135MobileDriversLicenseCredential{}
-	return &this
-}
 
 // NewIso180135MobileDriversLicenseCredentialWithDefaults instantiates a new Iso180135MobileDriversLicenseCredential object
 // This constructor will only assign default values to properties that have it defined,

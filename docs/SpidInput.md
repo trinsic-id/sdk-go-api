@@ -9,14 +9,11 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewSpidInput
+### Named construction
 
-`func NewSpidInput() *SpidInput`
-
-NewSpidInput instantiates a new SpidInput object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+Use a keyed struct literal (`SpidInput{FieldName: value}`), or call
+`NewSpidInputWithDefaults()` and set fields by name. Positional field
+factories and unkeyed struct literals are not supported.
 
 ### NewSpidInputWithDefaults
 

@@ -19,6 +19,8 @@ var _ MappedNullable = &AadhaarAddress{}
 
 // AadhaarAddress The structured Indian address.
 type AadhaarAddress struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The address's care-of field. This indicates that mail should be delivered to an individual through another person or entity who is a known resident at the address.
 	CareOf NullableString `json:"careOf,omitempty"`
 	// The address's country.              This is usually formatted as an alpha-2 country code, but localized output may instead contain the country name as written on the document.
@@ -47,15 +49,6 @@ type AadhaarAddress struct {
 }
 
 type _AadhaarAddress AadhaarAddress
-
-// NewAadhaarAddress instantiates a new AadhaarAddress object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewAadhaarAddress() *AadhaarAddress {
-	this := AadhaarAddress{}
-	return &this
-}
 
 // NewAadhaarAddressWithDefaults instantiates a new AadhaarAddress object
 // This constructor will only assign default values to properties that have it defined,

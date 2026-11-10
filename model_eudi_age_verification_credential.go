@@ -19,21 +19,14 @@ var _ MappedNullable = &EudiAgeVerificationCredential{}
 
 // EudiAgeVerificationCredential An EUDI Age Verification credential, with document type `eu.europa.ec.av.1`.
 type EudiAgeVerificationCredential struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// Processed age-over claims returned by the credential.
 	AgeOver []AgeOverOutput `json:"ageOver,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
 type _EudiAgeVerificationCredential EudiAgeVerificationCredential
-
-// NewEudiAgeVerificationCredential instantiates a new EudiAgeVerificationCredential object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewEudiAgeVerificationCredential() *EudiAgeVerificationCredential {
-	this := EudiAgeVerificationCredential{}
-	return &this
-}
 
 // NewEudiAgeVerificationCredentialWithDefaults instantiates a new EudiAgeVerificationCredential object
 // This constructor will only assign default values to properties that have it defined,

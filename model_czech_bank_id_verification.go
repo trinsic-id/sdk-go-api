@@ -20,6 +20,8 @@ var _ MappedNullable = &CzechBankIdVerification{}
 
 // CzechBankIdVerification struct for CzechBankIdVerification
 type CzechBankIdVerification struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The trust framework used for the verification.              This identifies the anti-money-laundering framework used for identity verification.
 	TrustFramework NullableString `json:"trustFramework,omitempty"`
 	// The UTC date and time when the verification happened.              This value is normalized to UTC.
@@ -30,15 +32,6 @@ type CzechBankIdVerification struct {
 }
 
 type _CzechBankIdVerification CzechBankIdVerification
-
-// NewCzechBankIdVerification instantiates a new CzechBankIdVerification object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewCzechBankIdVerification() *CzechBankIdVerification {
-	this := CzechBankIdVerification{}
-	return &this
-}
 
 // NewCzechBankIdVerificationWithDefaults instantiates a new CzechBankIdVerification object
 // This constructor will only assign default values to properties that have it defined,

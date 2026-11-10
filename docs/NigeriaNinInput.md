@@ -14,14 +14,11 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewNigeriaNinInput
+### Named construction
 
-`func NewNigeriaNinInput(firstName string, lastName string, dateOfBirth string, nationalIdNumber string, ) *NigeriaNinInput`
-
-NewNigeriaNinInput instantiates a new NigeriaNinInput object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+Use a keyed struct literal (`NigeriaNinInput{FieldName: value}`), or call
+`NewNigeriaNinInputWithDefaults()` and set fields by name. Positional field
+factories and unkeyed struct literals are not supported.
 
 ### NewNigeriaNinInputWithDefaults
 

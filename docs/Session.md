@@ -13,14 +13,11 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewSession
+### Named construction
 
-`func NewSession(id string, done bool, success bool, created int64, updated int64, ) *Session`
-
-NewSession instantiates a new Session object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+Use a keyed struct literal (`Session{FieldName: value}`), or call
+`NewSessionWithDefaults()` and set fields by name. Positional field
+factories and unkeyed struct literals are not supported.
 
 ### NewSessionWithDefaults
 

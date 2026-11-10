@@ -19,6 +19,8 @@ var _ MappedNullable = &PeruDniAddress{}
 
 // PeruDniAddress Not a typical address. Does not include street or city. Instead, includes region, province and district.
 type PeruDniAddress struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// Region in Peru (also known as department). This is the first level subdivision in the country.              Format: - All uppercase.
 	Region NullableString `json:"region,omitempty"`
 	// Province within the region. This is the second level subdivision in the country.              Format: - All uppercase.
@@ -29,15 +31,6 @@ type PeruDniAddress struct {
 }
 
 type _PeruDniAddress PeruDniAddress
-
-// NewPeruDniAddress instantiates a new PeruDniAddress object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewPeruDniAddress() *PeruDniAddress {
-	this := PeruDniAddress{}
-	return &this
-}
 
 // NewPeruDniAddressWithDefaults instantiates a new PeruDniAddress object
 // This constructor will only assign default values to properties that have it defined,

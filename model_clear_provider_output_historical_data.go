@@ -19,6 +19,8 @@ var _ MappedNullable = &ClearProviderOutputHistoricalData{}
 
 // ClearProviderOutputHistoricalData struct for ClearProviderOutputHistoricalData
 type ClearProviderOutputHistoricalData struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// Prior names associated with the individual.
 	Names []ClearProviderOutputHistoricalName `json:"names,omitempty"`
 	// Prior addresses associated with the individual.
@@ -27,15 +29,6 @@ type ClearProviderOutputHistoricalData struct {
 }
 
 type _ClearProviderOutputHistoricalData ClearProviderOutputHistoricalData
-
-// NewClearProviderOutputHistoricalData instantiates a new ClearProviderOutputHistoricalData object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewClearProviderOutputHistoricalData() *ClearProviderOutputHistoricalData {
-	this := ClearProviderOutputHistoricalData{}
-	return &this
-}
 
 // NewClearProviderOutputHistoricalDataWithDefaults instantiates a new ClearProviderOutputHistoricalData object
 // This constructor will only assign default values to properties that have it defined,

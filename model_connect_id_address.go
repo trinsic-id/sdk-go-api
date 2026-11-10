@@ -19,6 +19,8 @@ var _ MappedNullable = &ConnectIdAddress{}
 
 // ConnectIdAddress struct for ConnectIdAddress
 type ConnectIdAddress struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The address' line or street.
 	StreetAddress NullableString `json:"streetAddress,omitempty"`
 	// The address' locality or city.
@@ -33,15 +35,6 @@ type ConnectIdAddress struct {
 }
 
 type _ConnectIdAddress ConnectIdAddress
-
-// NewConnectIdAddress instantiates a new ConnectIdAddress object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewConnectIdAddress() *ConnectIdAddress {
-	this := ConnectIdAddress{}
-	return &this
-}
 
 // NewConnectIdAddressWithDefaults instantiates a new ConnectIdAddress object
 // This constructor will only assign default values to properties that have it defined,

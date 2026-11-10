@@ -19,6 +19,8 @@ var _ MappedNullable = &SouthAfricaNidMatch2NationalIdNumberField{}
 
 // SouthAfricaNidMatch2NationalIdNumberField struct for SouthAfricaNidMatch2NationalIdNumberField
 type SouthAfricaNidMatch2NationalIdNumberField struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The South African National Identity Number (13 digits) is issued for life by the Department of Home Affairs (DHA) and stored in the Home Affairs National Identification System (HANIS) database. The same number is mandatory for banking, employment, taxation, and voting, and is printed on both the legacy green ID book and the Smart ID Card (rolled out from 2013 onward).              Format: - YYMMDD G(4) C A Z - YYMMDD is the date of birth - G(4) is the gender code (below 5000 female, 5000 or above male) - C is the citizenship indicator (0 citizen, 1 permanent resident) - A is reserved (it had a politically sensitive meaning in the past, but is currently   semantically meaningless) - Z is a Luhn check digit
 	InputValue NullableString `json:"inputValue,omitempty"`
 	// The outcome of verifying the national ID number.              Possible values: - Verified - Not Verified - Not Done - Issuer Unavailable - Not Returned
@@ -27,15 +29,6 @@ type SouthAfricaNidMatch2NationalIdNumberField struct {
 }
 
 type _SouthAfricaNidMatch2NationalIdNumberField SouthAfricaNidMatch2NationalIdNumberField
-
-// NewSouthAfricaNidMatch2NationalIdNumberField instantiates a new SouthAfricaNidMatch2NationalIdNumberField object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewSouthAfricaNidMatch2NationalIdNumberField() *SouthAfricaNidMatch2NationalIdNumberField {
-	this := SouthAfricaNidMatch2NationalIdNumberField{}
-	return &this
-}
 
 // NewSouthAfricaNidMatch2NationalIdNumberFieldWithDefaults instantiates a new SouthAfricaNidMatch2NationalIdNumberField object
 // This constructor will only assign default values to properties that have it defined,

@@ -8,14 +8,11 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewPeruDniLookupInput
+### Named construction
 
-`func NewPeruDniLookupInput() *PeruDniLookupInput`
-
-NewPeruDniLookupInput instantiates a new PeruDniLookupInput object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+Use a keyed struct literal (`PeruDniLookupInput{FieldName: value}`), or call
+`NewPeruDniLookupInputWithDefaults()` and set fields by name. Positional field
+factories and unkeyed struct literals are not supported.
 
 ### NewPeruDniLookupInputWithDefaults
 

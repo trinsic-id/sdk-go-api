@@ -19,6 +19,8 @@ var _ MappedNullable = &ClearProviderOutputWatchlistHit{}
 
 // ClearProviderOutputWatchlistHit struct for ClearProviderOutputWatchlistHit
 type ClearProviderOutputWatchlistHit struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The watchlist entity type.              Known values: - person
 	EntityType NullableString `json:"entityType,omitempty"`
 	// More details about the watchlist hit entity.
@@ -31,15 +33,6 @@ type ClearProviderOutputWatchlistHit struct {
 }
 
 type _ClearProviderOutputWatchlistHit ClearProviderOutputWatchlistHit
-
-// NewClearProviderOutputWatchlistHit instantiates a new ClearProviderOutputWatchlistHit object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewClearProviderOutputWatchlistHit() *ClearProviderOutputWatchlistHit {
-	this := ClearProviderOutputWatchlistHit{}
-	return &this
-}
 
 // NewClearProviderOutputWatchlistHitWithDefaults instantiates a new ClearProviderOutputWatchlistHit object
 // This constructor will only assign default values to properties that have it defined,

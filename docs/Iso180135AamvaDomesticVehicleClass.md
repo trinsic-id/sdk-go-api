@@ -11,14 +11,11 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewIso180135AamvaDomesticVehicleClass
+### Named construction
 
-`func NewIso180135AamvaDomesticVehicleClass() *Iso180135AamvaDomesticVehicleClass`
-
-NewIso180135AamvaDomesticVehicleClass instantiates a new Iso180135AamvaDomesticVehicleClass object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+Use a keyed struct literal (`Iso180135AamvaDomesticVehicleClass{FieldName: value}`), or call
+`NewIso180135AamvaDomesticVehicleClassWithDefaults()` and set fields by name. Positional field
+factories and unkeyed struct literals are not supported.
 
 ### NewIso180135AamvaDomesticVehicleClassWithDefaults
 

@@ -19,6 +19,8 @@ var _ MappedNullable = &MoldovaIdentityCardCredential{}
 
 // MoldovaIdentityCardCredential A Moldovan Identity Card credential, with document type `md.gov.wallet.pid.1`, retrieved from the Moldovan EVO wallet.              This credential is derived from the individual's Moldovan National Identity Card.
 type MoldovaIdentityCardCredential struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The individual's IDNP (Numărul de Identificare Personal), the Moldovan state personal identification number.              This is a 13-digit number which uniquely identifies all natural persons in the Republic of Moldova. It has the format `2YYYOOOSSSSSX`, where: - `2` is the literal number `2` to indicate that the identifier belongs to a natural person - `YYY` is the last 3 digits of the year in which the identifier was issued - `OOO` is the code of the registrar office which issued the identifier - `SSSSS` is the sequential birth number for that year - `X` is a check digit              Note that the year encoded in the identifier is not necessarily the same as the year of birth of the individual.
 	Idnp NullableString `json:"idnp,omitempty"`
 	// The individual's given name(s), as recorded on their Moldovan identity card.
@@ -67,15 +69,6 @@ type MoldovaIdentityCardCredential struct {
 }
 
 type _MoldovaIdentityCardCredential MoldovaIdentityCardCredential
-
-// NewMoldovaIdentityCardCredential instantiates a new MoldovaIdentityCardCredential object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewMoldovaIdentityCardCredential() *MoldovaIdentityCardCredential {
-	this := MoldovaIdentityCardCredential{}
-	return &this
-}
 
 // NewMoldovaIdentityCardCredentialWithDefaults instantiates a new MoldovaIdentityCardCredential object
 // This constructor will only assign default values to properties that have it defined,

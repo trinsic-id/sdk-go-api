@@ -19,6 +19,8 @@ var _ MappedNullable = &IndiaDigilockerAadhaarMatchDateOfBirthField{}
 
 // IndiaDigilockerAadhaarMatchDateOfBirthField struct for IndiaDigilockerAadhaarMatchDateOfBirthField
 type IndiaDigilockerAadhaarMatchDateOfBirthField struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The date of birth submitted for this check, as provided in the match input.
 	InputValue NullableString `json:"inputValue,omitempty"`
 	// Whether the submitted date of birth matched the issuer record for this session.
@@ -27,15 +29,6 @@ type IndiaDigilockerAadhaarMatchDateOfBirthField struct {
 }
 
 type _IndiaDigilockerAadhaarMatchDateOfBirthField IndiaDigilockerAadhaarMatchDateOfBirthField
-
-// NewIndiaDigilockerAadhaarMatchDateOfBirthField instantiates a new IndiaDigilockerAadhaarMatchDateOfBirthField object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewIndiaDigilockerAadhaarMatchDateOfBirthField() *IndiaDigilockerAadhaarMatchDateOfBirthField {
-	this := IndiaDigilockerAadhaarMatchDateOfBirthField{}
-	return &this
-}
 
 // NewIndiaDigilockerAadhaarMatchDateOfBirthFieldWithDefaults instantiates a new IndiaDigilockerAadhaarMatchDateOfBirthField object
 // This constructor will only assign default values to properties that have it defined,

@@ -19,6 +19,8 @@ var _ MappedNullable = &LloydsSmartIdProviderOutput{}
 
 // LloydsSmartIdProviderOutput Exposed properties for the `lloyds-smart-id` Provider which do not directly map to the normalized IdentityData model.
 type LloydsSmartIdProviderOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// A Yoti-generated unique ID for this individual, consistent across repeat shares and different for each Relying Party.
 	YotiRememberMeId NullableString `json:"yotiRememberMeId,omitempty"`
 	// The email address of the individual
@@ -47,15 +49,6 @@ type LloydsSmartIdProviderOutput struct {
 }
 
 type _LloydsSmartIdProviderOutput LloydsSmartIdProviderOutput
-
-// NewLloydsSmartIdProviderOutput instantiates a new LloydsSmartIdProviderOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewLloydsSmartIdProviderOutput() *LloydsSmartIdProviderOutput {
-	this := LloydsSmartIdProviderOutput{}
-	return &this
-}
 
 // NewLloydsSmartIdProviderOutputWithDefaults instantiates a new LloydsSmartIdProviderOutput object
 // This constructor will only assign default values to properties that have it defined,

@@ -19,6 +19,8 @@ var _ MappedNullable = &NigeriaNinMatch2FullNameField{}
 
 // NigeriaNinMatch2FullNameField struct for NigeriaNinMatch2FullNameField
 type NigeriaNinMatch2FullNameField struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The full name string submitted for this check (as provided in the match input).
 	InputValue NullableString `json:"inputValue,omitempty"`
 	// The outcome of comparing the submitted full name to the issuer record.              Possible values: - Exact Match - Partial Match - Transposed - No Match - Not Returned
@@ -27,15 +29,6 @@ type NigeriaNinMatch2FullNameField struct {
 }
 
 type _NigeriaNinMatch2FullNameField NigeriaNinMatch2FullNameField
-
-// NewNigeriaNinMatch2FullNameField instantiates a new NigeriaNinMatch2FullNameField object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewNigeriaNinMatch2FullNameField() *NigeriaNinMatch2FullNameField {
-	this := NigeriaNinMatch2FullNameField{}
-	return &this
-}
 
 // NewNigeriaNinMatch2FullNameFieldWithDefaults instantiates a new NigeriaNinMatch2FullNameField object
 // This constructor will only assign default values to properties that have it defined,

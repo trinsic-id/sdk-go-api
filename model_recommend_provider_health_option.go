@@ -23,6 +23,7 @@ const (
 	RECOMMENDPROVIDERHEALTHOPTION_ONLINE RecommendProviderHealthOption = "Online"
 	RECOMMENDPROVIDERHEALTHOPTION_OFFLINE RecommendProviderHealthOption = "Offline"
 	RECOMMENDPROVIDERHEALTHOPTION_ALL RecommendProviderHealthOption = "All"
+	RECOMMENDPROVIDERHEALTHOPTION_UNKNOWN_DEFAULT_OPEN_API RecommendProviderHealthOption = "unknown_default_open_api"
 )
 
 // All allowed values of RecommendProviderHealthOption enum
@@ -30,6 +31,7 @@ var AllowedRecommendProviderHealthOptionEnumValues = []RecommendProviderHealthOp
 	"Online",
 	"Offline",
 	"All",
+	"unknown_default_open_api",
 }
 
 func (v *RecommendProviderHealthOption) UnmarshalJSON(src []byte) error {
@@ -46,7 +48,8 @@ func (v *RecommendProviderHealthOption) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid RecommendProviderHealthOption", value)
+	*v = RECOMMENDPROVIDERHEALTHOPTION_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewRecommendProviderHealthOptionFromValue returns a pointer to a valid RecommendProviderHealthOption

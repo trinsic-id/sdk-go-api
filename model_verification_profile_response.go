@@ -20,6 +20,8 @@ var _ MappedNullable = &VerificationProfileResponse{}
 
 // VerificationProfileResponse struct for VerificationProfileResponse
 type VerificationProfileResponse struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The ID of the verification profile
 	Id string `json:"id"`
 	// An alias of the verification profile shown to developers and administrators.
@@ -28,6 +30,8 @@ type VerificationProfileResponse struct {
 	BrandName string `json:"brandName"`
 	// A customer-defined external ID for this verification profile, unique within your organization.
 	ExternalId NullableString `json:"externalId,omitempty"`
+	// The data-residency geography of the verification profile, such as \"US\" or \"EU\".
+	Geography string `json:"geography"`
 	// The URL of the verification profile's logo.
 	LogoUrl string `json:"logoUrl"`
 	// The primary color of the verification profile.
@@ -42,23 +46,6 @@ type VerificationProfileResponse struct {
 }
 
 type _VerificationProfileResponse VerificationProfileResponse
-
-// NewVerificationProfileResponse instantiates a new VerificationProfileResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewVerificationProfileResponse(id string, alias string, brandName string, logoUrl string, primaryColor string, enabledProviders []string, sessionExpiration string, isProductionUsage bool) *VerificationProfileResponse {
-	this := VerificationProfileResponse{}
-	this.Id = id
-	this.Alias = alias
-	this.BrandName = brandName
-	this.LogoUrl = logoUrl
-	this.PrimaryColor = primaryColor
-	this.EnabledProviders = enabledProviders
-	this.SessionExpiration = sessionExpiration
-	this.IsProductionUsage = isProductionUsage
-	return &this
-}
 
 // NewVerificationProfileResponseWithDefaults instantiates a new VerificationProfileResponse object
 // This constructor will only assign default values to properties that have it defined,
@@ -180,6 +167,30 @@ func (o *VerificationProfileResponse) SetExternalIdNil() {
 // UnsetExternalId ensures that no value is present for ExternalId, not even an explicit nil
 func (o *VerificationProfileResponse) UnsetExternalId() {
 	o.ExternalId.Unset()
+}
+
+// GetGeography returns the Geography field value
+func (o *VerificationProfileResponse) GetGeography() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Geography
+}
+
+// GetGeographyOk returns a tuple with the Geography field value
+// and a boolean to check if the value has been set.
+func (o *VerificationProfileResponse) GetGeographyOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Geography, true
+}
+
+// SetGeography sets field value
+func (o *VerificationProfileResponse) SetGeography(v string) {
+	o.Geography = v
 }
 
 // GetLogoUrl returns the LogoUrl field value
@@ -318,6 +329,7 @@ func (o VerificationProfileResponse) ToMap() (map[string]interface{}, error) {
 	if o.ExternalId.IsSet() {
 		toSerialize["externalId"] = o.ExternalId.Get()
 	}
+	toSerialize["geography"] = o.Geography
 	toSerialize["logoUrl"] = o.LogoUrl
 	toSerialize["primaryColor"] = o.PrimaryColor
 	toSerialize["enabledProviders"] = o.EnabledProviders
@@ -339,6 +351,7 @@ func (o *VerificationProfileResponse) UnmarshalJSON(data []byte) (err error) {
 		"id",
 		"alias",
 		"brandName",
+		"geography",
 		"logoUrl",
 		"primaryColor",
 		"enabledProviders",
@@ -377,6 +390,7 @@ func (o *VerificationProfileResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "alias")
 		delete(additionalProperties, "brandName")
 		delete(additionalProperties, "externalId")
+		delete(additionalProperties, "geography")
 		delete(additionalProperties, "logoUrl")
 		delete(additionalProperties, "primaryColor")
 		delete(additionalProperties, "enabledProviders")

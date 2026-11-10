@@ -22,12 +22,14 @@ type OrderDirection string
 const (
 	ORDERDIRECTION_ASCENDING OrderDirection = "Ascending"
 	ORDERDIRECTION_DESCENDING OrderDirection = "Descending"
+	ORDERDIRECTION_UNKNOWN_DEFAULT_OPEN_API OrderDirection = "unknown_default_open_api"
 )
 
 // All allowed values of OrderDirection enum
 var AllowedOrderDirectionEnumValues = []OrderDirection{
 	"Ascending",
 	"Descending",
+	"unknown_default_open_api",
 }
 
 func (v *OrderDirection) UnmarshalJSON(src []byte) error {
@@ -44,7 +46,8 @@ func (v *OrderDirection) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid OrderDirection", value)
+	*v = ORDERDIRECTION_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewOrderDirectionFromValue returns a pointer to a valid OrderDirection

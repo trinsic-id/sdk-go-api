@@ -8,14 +8,11 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewRefreshStepContentRequest
+### Named construction
 
-`func NewRefreshStepContentRequest(resultsAccessKey string, ) *RefreshStepContentRequest`
-
-NewRefreshStepContentRequest instantiates a new RefreshStepContentRequest object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+Use a keyed struct literal (`RefreshStepContentRequest{FieldName: value}`), or call
+`NewRefreshStepContentRequestWithDefaults()` and set fields by name. Positional field
+factories and unkeyed struct literals are not supported.
 
 ### NewRefreshStepContentRequestWithDefaults
 

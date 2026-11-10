@@ -19,21 +19,14 @@ var _ MappedNullable = &MockOutputProviderInput{}
 
 // MockOutputProviderInput *TEST MODE ONLY.*              Selects the provider whose fields are shown by `trinsic-mock-output`.
 type MockOutputProviderInput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The ID of a provider available in the Mock Output field selector.
 	ProviderId NullableString `json:"providerId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
 type _MockOutputProviderInput MockOutputProviderInput
-
-// NewMockOutputProviderInput instantiates a new MockOutputProviderInput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewMockOutputProviderInput() *MockOutputProviderInput {
-	this := MockOutputProviderInput{}
-	return &this
-}
 
 // NewMockOutputProviderInputWithDefaults instantiates a new MockOutputProviderInput object
 // This constructor will only assign default values to properties that have it defined,

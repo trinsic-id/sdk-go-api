@@ -26,6 +26,7 @@ const (
 	MDLOUTPUTFIELDDATATYPE_BASE64_URL MdlOutputFieldDataType = "Base64Url"
 	MDLOUTPUTFIELDDATATYPE_ENCODED_CBOR MdlOutputFieldDataType = "EncodedCbor"
 	MDLOUTPUTFIELDDATATYPE_INTENTIONALLY_OMITTED MdlOutputFieldDataType = "IntentionallyOmitted"
+	MDLOUTPUTFIELDDATATYPE_UNKNOWN_DEFAULT_OPEN_API MdlOutputFieldDataType = "unknown_default_open_api"
 )
 
 // All allowed values of MdlOutputFieldDataType enum
@@ -36,6 +37,7 @@ var AllowedMdlOutputFieldDataTypeEnumValues = []MdlOutputFieldDataType{
 	"Base64Url",
 	"EncodedCbor",
 	"IntentionallyOmitted",
+	"unknown_default_open_api",
 }
 
 func (v *MdlOutputFieldDataType) UnmarshalJSON(src []byte) error {
@@ -52,7 +54,8 @@ func (v *MdlOutputFieldDataType) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid MdlOutputFieldDataType", value)
+	*v = MDLOUTPUTFIELDDATATYPE_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewMdlOutputFieldDataTypeFromValue returns a pointer to a valid MdlOutputFieldDataType

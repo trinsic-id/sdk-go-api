@@ -20,22 +20,14 @@ var _ MappedNullable = &RefreshStepContentRequest{}
 
 // RefreshStepContentRequest struct for RefreshStepContentRequest
 type RefreshStepContentRequest struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The `ResultsAccessKey` returned when the Session was created
 	ResultsAccessKey string `json:"resultsAccessKey"`
 	AdditionalProperties map[string]interface{}
 }
 
 type _RefreshStepContentRequest RefreshStepContentRequest
-
-// NewRefreshStepContentRequest instantiates a new RefreshStepContentRequest object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewRefreshStepContentRequest(resultsAccessKey string) *RefreshStepContentRequest {
-	this := RefreshStepContentRequest{}
-	this.ResultsAccessKey = resultsAccessKey
-	return &this
-}
 
 // NewRefreshStepContentRequestWithDefaults instantiates a new RefreshStepContentRequest object
 // This constructor will only assign default values to properties that have it defined,

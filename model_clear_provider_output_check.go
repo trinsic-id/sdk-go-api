@@ -19,6 +19,8 @@ var _ MappedNullable = &ClearProviderOutputCheck{}
 
 // ClearProviderOutputCheck struct for ClearProviderOutputCheck
 type ClearProviderOutputCheck struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The verification check name as specified in the CLEAR verification configuration.
 	VerificationCheckName NullableString `json:"verificationCheckName,omitempty"`
 	// The boolean check value.              This can be null when a check is skipped or unable to evaluate to a deterministic result.
@@ -35,15 +37,6 @@ type ClearProviderOutputCheck struct {
 }
 
 type _ClearProviderOutputCheck ClearProviderOutputCheck
-
-// NewClearProviderOutputCheck instantiates a new ClearProviderOutputCheck object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewClearProviderOutputCheck() *ClearProviderOutputCheck {
-	this := ClearProviderOutputCheck{}
-	return &this
-}
 
 // NewClearProviderOutputCheckWithDefaults instantiates a new ClearProviderOutputCheck object
 // This constructor will only assign default values to properties that have it defined,

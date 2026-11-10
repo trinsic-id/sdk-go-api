@@ -19,6 +19,8 @@ var _ MappedNullable = &BrazilCnhFacialBiometryOutput{}
 
 // BrazilCnhFacialBiometryOutput struct for BrazilCnhFacialBiometryOutput
 type BrazilCnhFacialBiometryOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// Whether the government database had facial biometrics available for comparison.
 	DatabaseFaceAvailable NullableBool `json:"databaseFaceAvailable,omitempty"`
 	// Probability bucket returned by Serpro for the facial biometric comparison.              Known values: - VeryLow - Low - High - VeryHigh
@@ -31,15 +33,6 @@ type BrazilCnhFacialBiometryOutput struct {
 }
 
 type _BrazilCnhFacialBiometryOutput BrazilCnhFacialBiometryOutput
-
-// NewBrazilCnhFacialBiometryOutput instantiates a new BrazilCnhFacialBiometryOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewBrazilCnhFacialBiometryOutput() *BrazilCnhFacialBiometryOutput {
-	this := BrazilCnhFacialBiometryOutput{}
-	return &this
-}
 
 // NewBrazilCnhFacialBiometryOutputWithDefaults instantiates a new BrazilCnhFacialBiometryOutput object
 // This constructor will only assign default values to properties that have it defined,

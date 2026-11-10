@@ -19,21 +19,14 @@ var _ MappedNullable = &PanamaCedulaLookupInput{}
 
 // PanamaCedulaLookupInput struct for PanamaCedulaLookupInput
 type PanamaCedulaLookupInput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The number from the holder's cédula (Cédula de Identidad Personal).              Send the full number as {firstSegment}-{libro}-{tomo} (libro 1–4 digits, tomo 1–6), using only ASCII letters, digits, and hyphens. Hyphens are not inserted for you between segments. Trinsic uppercases letters, collapses repeated hyphens, trims leading and trailing hyphens, and merges a redundant hyphen between province and AV or PI (for example 10-AV-1234-12345 becomes 10AV-1234-12345).              Citizen category and format: - Born in Panama format: {province}-{libro}-{tomo} ({province} is official code 1 through 13). Examples   8-1234-12345, 4-56-789, 12-12-12345. - Panamanian born abroad format: PE-{libro}-{tomo}. Example PE-1234-12345. - Foreign national with cédula format: E-{libro}-{tomo}. Examples E-1234-12345, E-8-102017. - Naturalized citizen format: N-{libro}-{tomo}. Example N-1234-12345. - Pre-2006 civil registry (AV) format: {province}AV-{libro}-{tomo}. Example 10AV-1234-12345. - Indigenous (PI) format: {province}PI-{libro}-{tomo}. Example 1PI-1234-12345.
 	DocumentNumber NullableString `json:"documentNumber,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
 type _PanamaCedulaLookupInput PanamaCedulaLookupInput
-
-// NewPanamaCedulaLookupInput instantiates a new PanamaCedulaLookupInput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewPanamaCedulaLookupInput() *PanamaCedulaLookupInput {
-	this := PanamaCedulaLookupInput{}
-	return &this
-}
 
 // NewPanamaCedulaLookupInputWithDefaults instantiates a new PanamaCedulaLookupInput object
 // This constructor will only assign default values to properties that have it defined,

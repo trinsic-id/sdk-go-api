@@ -21,6 +21,8 @@ var _ MappedNullable = &StepRefreshInfo{}
 
 // StepRefreshInfo struct for StepRefreshInfo
 type StepRefreshInfo struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The UTC date/time at which the step `content` will expire and should no longer be used.              Use the `Refresh Step Content` API to obtain a new value for `content`.
 	ExpiresAt time.Time `json:"expiresAt"`
 	// The UTC date/time after which Trinsic recommends you refresh the step `content`.
@@ -31,18 +33,6 @@ type StepRefreshInfo struct {
 }
 
 type _StepRefreshInfo StepRefreshInfo
-
-// NewStepRefreshInfo instantiates a new StepRefreshInfo object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewStepRefreshInfo(expiresAt time.Time, refreshAfter time.Time, timeToLiveSeconds int32) *StepRefreshInfo {
-	this := StepRefreshInfo{}
-	this.ExpiresAt = expiresAt
-	this.RefreshAfter = refreshAfter
-	this.TimeToLiveSeconds = timeToLiveSeconds
-	return &this
-}
 
 // NewStepRefreshInfoWithDefaults instantiates a new StepRefreshInfo object
 // This constructor will only assign default values to properties that have it defined,

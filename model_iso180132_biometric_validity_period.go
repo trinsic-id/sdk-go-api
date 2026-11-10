@@ -19,6 +19,8 @@ var _ MappedNullable = &Iso180132BiometricValidityPeriod{}
 
 // Iso180132BiometricValidityPeriod Validity period of a biometric data block.
 type Iso180132BiometricValidityPeriod struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// Date the biometric data block becomes valid.
 	NotBefore NullableString `json:"notBefore,omitempty"`
 	// Date the biometric data block expires.
@@ -27,15 +29,6 @@ type Iso180132BiometricValidityPeriod struct {
 }
 
 type _Iso180132BiometricValidityPeriod Iso180132BiometricValidityPeriod
-
-// NewIso180132BiometricValidityPeriod instantiates a new Iso180132BiometricValidityPeriod object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewIso180132BiometricValidityPeriod() *Iso180132BiometricValidityPeriod {
-	this := Iso180132BiometricValidityPeriod{}
-	return &this
-}
 
 // NewIso180132BiometricValidityPeriodWithDefaults instantiates a new Iso180132BiometricValidityPeriod object
 // This constructor will only assign default values to properties that have it defined,

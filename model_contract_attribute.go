@@ -20,6 +20,8 @@ var _ MappedNullable = &ContractAttribute{}
 
 // ContractAttribute Information about an attribute that a Provider may return in verification results.
 type ContractAttribute struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The scope of the attribute as it appears in verification results.
 	Scope string `json:"scope"`
 	// Indicates when this attribute will be present in verification results.
@@ -28,17 +30,6 @@ type ContractAttribute struct {
 }
 
 type _ContractAttribute ContractAttribute
-
-// NewContractAttribute instantiates a new ContractAttribute object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewContractAttribute(scope string, outputted AttributeAvailability) *ContractAttribute {
-	this := ContractAttribute{}
-	this.Scope = scope
-	this.Outputted = outputted
-	return &this
-}
 
 // NewContractAttributeWithDefaults instantiates a new ContractAttribute object
 // This constructor will only assign default values to properties that have it defined,

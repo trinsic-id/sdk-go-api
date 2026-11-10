@@ -20,22 +20,16 @@ var _ MappedNullable = &GetSessionResultRequest{}
 
 // GetSessionResultRequest struct for GetSessionResultRequest
 type GetSessionResultRequest struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The Results Access Key to exchange
 	ResultsAccessKey string `json:"resultsAccessKey"`
+	// The `redirectToken` which Trinsic appended to your Redirect URL before sending the user back to your application.              This is only relevant for Sessions which involve a redirect flow.              If a `redirectToken` is required for a Session, it is only required for the first call to `GetSessionResult`. Future calls do not require a `redirectToken`.
+	RedirectToken NullableString `json:"redirectToken,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
 type _GetSessionResultRequest GetSessionResultRequest
-
-// NewGetSessionResultRequest instantiates a new GetSessionResultRequest object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewGetSessionResultRequest(resultsAccessKey string) *GetSessionResultRequest {
-	this := GetSessionResultRequest{}
-	this.ResultsAccessKey = resultsAccessKey
-	return &this
-}
 
 // NewGetSessionResultRequestWithDefaults instantiates a new GetSessionResultRequest object
 // This constructor will only assign default values to properties that have it defined,
@@ -69,6 +63,48 @@ func (o *GetSessionResultRequest) SetResultsAccessKey(v string) {
 	o.ResultsAccessKey = v
 }
 
+// GetRedirectToken returns the RedirectToken field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetSessionResultRequest) GetRedirectToken() string {
+	if o == nil || IsNil(o.RedirectToken.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.RedirectToken.Get()
+}
+
+// GetRedirectTokenOk returns a tuple with the RedirectToken field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetSessionResultRequest) GetRedirectTokenOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.RedirectToken.Get(), o.RedirectToken.IsSet()
+}
+
+// HasRedirectToken returns a boolean if a field has been set.
+func (o *GetSessionResultRequest) HasRedirectToken() bool {
+	if o != nil && o.RedirectToken.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRedirectToken gets a reference to the given NullableString and assigns it to the RedirectToken field.
+func (o *GetSessionResultRequest) SetRedirectToken(v string) {
+	o.RedirectToken.Set(&v)
+}
+// SetRedirectTokenNil sets the value for RedirectToken to be an explicit nil
+func (o *GetSessionResultRequest) SetRedirectTokenNil() {
+	o.RedirectToken.Set(nil)
+}
+
+// UnsetRedirectToken ensures that no value is present for RedirectToken, not even an explicit nil
+func (o *GetSessionResultRequest) UnsetRedirectToken() {
+	o.RedirectToken.Unset()
+}
+
 func (o GetSessionResultRequest) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -80,6 +116,9 @@ func (o GetSessionResultRequest) MarshalJSON() ([]byte, error) {
 func (o GetSessionResultRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["resultsAccessKey"] = o.ResultsAccessKey
+	if o.RedirectToken.IsSet() {
+		toSerialize["redirectToken"] = o.RedirectToken.Get()
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -124,6 +163,7 @@ func (o *GetSessionResultRequest) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "resultsAccessKey")
+		delete(additionalProperties, "redirectToken")
 		o.AdditionalProperties = additionalProperties
 	}
 

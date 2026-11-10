@@ -19,6 +19,8 @@ var _ MappedNullable = &IndonesiaDukcapilMatchDateOfBirthField{}
 
 // IndonesiaDukcapilMatchDateOfBirthField struct for IndonesiaDukcapilMatchDateOfBirthField
 type IndonesiaDukcapilMatchDateOfBirthField struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The date of birth submitted for this check.
 	InputValue NullableString `json:"inputValue,omitempty"`
 	// The provider assessment result for the submitted date of birth.              Local integration code expects the provider to return 0 or 1 for this assessment.
@@ -27,15 +29,6 @@ type IndonesiaDukcapilMatchDateOfBirthField struct {
 }
 
 type _IndonesiaDukcapilMatchDateOfBirthField IndonesiaDukcapilMatchDateOfBirthField
-
-// NewIndonesiaDukcapilMatchDateOfBirthField instantiates a new IndonesiaDukcapilMatchDateOfBirthField object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewIndonesiaDukcapilMatchDateOfBirthField() *IndonesiaDukcapilMatchDateOfBirthField {
-	this := IndonesiaDukcapilMatchDateOfBirthField{}
-	return &this
-}
 
 // NewIndonesiaDukcapilMatchDateOfBirthFieldWithDefaults instantiates a new IndonesiaDukcapilMatchDateOfBirthField object
 // This constructor will only assign default values to properties that have it defined,

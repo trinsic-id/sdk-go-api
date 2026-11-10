@@ -11,14 +11,11 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewIso180132BiometricTemplate
+### Named construction
 
-`func NewIso180132BiometricTemplate() *Iso180132BiometricTemplate`
-
-NewIso180132BiometricTemplate instantiates a new Iso180132BiometricTemplate object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+Use a keyed struct literal (`Iso180132BiometricTemplate{FieldName: value}`), or call
+`NewIso180132BiometricTemplateWithDefaults()` and set fields by name. Positional field
+factories and unkeyed struct literals are not supported.
 
 ### NewIso180132BiometricTemplateWithDefaults
 

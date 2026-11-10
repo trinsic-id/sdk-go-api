@@ -19,6 +19,8 @@ var _ MappedNullable = &ItsmeProviderOutput{}
 
 // ItsmeProviderOutput Exposed properties for the `itsme` Provider which do not directly map to the normalized IdentityData model.
 type ItsmeProviderOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The date of birth of the verified individual.              Availability by ID document issuing country: always returned for supported issuing countries except Belgium, where it is best effort.
 	DateOfBirth NullableString `json:"dateOfBirth,omitempty"`
 	// The email address of the verified individual.              Availability by ID document issuing country: best effort for all supported issuing countries.
@@ -63,15 +65,6 @@ type ItsmeProviderOutput struct {
 }
 
 type _ItsmeProviderOutput ItsmeProviderOutput
-
-// NewItsmeProviderOutput instantiates a new ItsmeProviderOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewItsmeProviderOutput() *ItsmeProviderOutput {
-	this := ItsmeProviderOutput{}
-	return &this
-}
 
 // NewItsmeProviderOutputWithDefaults instantiates a new ItsmeProviderOutput object
 // This constructor will only assign default values to properties that have it defined,

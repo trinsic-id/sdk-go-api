@@ -19,6 +19,8 @@ var _ MappedNullable = &Iso180132BiometricTemplate{}
 
 // Iso180132BiometricTemplate A single biometric template per ISO 18013-2 Table C.12.
 type Iso180132BiometricTemplate struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// Header describing the biometric template.
 	Header NullableIso180132BiometricTemplateHeader `json:"header,omitempty"`
 	// The raw data block, in a biometric type- and format-specific encoding.              For `face` and `signature_usual_mark`, this is a raw JPEG or JPEG2000 image.              See ISO 18013-2 and 18013-5.
@@ -31,15 +33,6 @@ type Iso180132BiometricTemplate struct {
 }
 
 type _Iso180132BiometricTemplate Iso180132BiometricTemplate
-
-// NewIso180132BiometricTemplate instantiates a new Iso180132BiometricTemplate object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewIso180132BiometricTemplate() *Iso180132BiometricTemplate {
-	this := Iso180132BiometricTemplate{}
-	return &this
-}
 
 // NewIso180132BiometricTemplateWithDefaults instantiates a new Iso180132BiometricTemplate object
 // This constructor will only assign default values to properties that have it defined,

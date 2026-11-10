@@ -19,6 +19,8 @@ var _ MappedNullable = &AustriaHandySignaturProviderOutput{}
 
 // AustriaHandySignaturProviderOutput Exposed properties for the `a-at-handy-signatur-login` Provider which do not directly map to the normalized IdentityData model.
 type AustriaHandySignaturProviderOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The first name of the verified individual
 	FirstName NullableString `json:"firstName,omitempty"`
 	// The last name of the verified individual
@@ -27,15 +29,6 @@ type AustriaHandySignaturProviderOutput struct {
 }
 
 type _AustriaHandySignaturProviderOutput AustriaHandySignaturProviderOutput
-
-// NewAustriaHandySignaturProviderOutput instantiates a new AustriaHandySignaturProviderOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewAustriaHandySignaturProviderOutput() *AustriaHandySignaturProviderOutput {
-	this := AustriaHandySignaturProviderOutput{}
-	return &this
-}
 
 // NewAustriaHandySignaturProviderOutputWithDefaults instantiates a new AustriaHandySignaturProviderOutput object
 // This constructor will only assign default values to properties that have it defined,

@@ -19,6 +19,8 @@ var _ MappedNullable = &AudkenniProviderOutput{}
 
 // AudkenniProviderOutput Exposed properties for the `audkenni` Provider which do not directly map to the normalized IdentityData model.
 type AudkenniProviderOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// National Register ID number (kennitala) of the individual.              Often written with a hyphen following the 6th digit (123456-1234). ID numbers are composed of ten digits. The first six of these are the individual’s date of birth in the format DDMMYY. The seventh and eighth digits are randomly chosen when the ID number is allocated, the ninth digit used to be a check digit (modulus (11) but this has been removed. The tenth indicates the century of the individual’s birth: ‘9’ for 1900–1999, ‘0’ for 2000 and beyond.
 	NationalRegisterId NullableString `json:"nationalRegisterId,omitempty"`
 	// Unique identifier for the individual across Audkenni.              It is recommended to use this identifier instead of using the national register ID directly.
@@ -31,15 +33,6 @@ type AudkenniProviderOutput struct {
 }
 
 type _AudkenniProviderOutput AudkenniProviderOutput
-
-// NewAudkenniProviderOutput instantiates a new AudkenniProviderOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewAudkenniProviderOutput() *AudkenniProviderOutput {
-	this := AudkenniProviderOutput{}
-	return &this
-}
 
 // NewAudkenniProviderOutputWithDefaults instantiates a new AudkenniProviderOutput object
 // This constructor will only assign default values to properties that have it defined,

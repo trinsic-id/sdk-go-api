@@ -20,28 +20,18 @@ var _ MappedNullable = &IndonesiaNikInput{}
 
 // IndonesiaNikInput struct for IndonesiaNikInput
 type IndonesiaNikInput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The user's full name
 	FullName string `json:"fullName"`
 	// The user's date of birth, in `YYYY-MM-DD` format
 	DateOfBirth string `json:"dateOfBirth"`
 	// The user's Indonesia NIK ID number
-	NikIdNumber string `json:"nikIdNumber" validate:"regexp=^\\\\d*$"`
+	NikIdNumber string `json:"nikIdNumber" validate:"regexp=^\\d*$"`
 	AdditionalProperties map[string]interface{}
 }
 
 type _IndonesiaNikInput IndonesiaNikInput
-
-// NewIndonesiaNikInput instantiates a new IndonesiaNikInput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewIndonesiaNikInput(fullName string, dateOfBirth string, nikIdNumber string) *IndonesiaNikInput {
-	this := IndonesiaNikInput{}
-	this.FullName = fullName
-	this.DateOfBirth = dateOfBirth
-	this.NikIdNumber = nikIdNumber
-	return &this
-}
 
 // NewIndonesiaNikInputWithDefaults instantiates a new IndonesiaNikInput object
 // This constructor will only assign default values to properties that have it defined,

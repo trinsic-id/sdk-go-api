@@ -20,6 +20,8 @@ var _ MappedNullable = &KoreaTelcoMatchInput{}
 
 // KoreaTelcoMatchInput struct for KoreaTelcoMatchInput
 type KoreaTelcoMatchInput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// Phone number without dashes, e.g. \"010XXXXXXXX\".
 	PhoneNumber string `json:"phoneNumber"`
 	// Full legal name (UTF-8), e.g. \"홍길동\" or \"Hong Gildong\".
@@ -36,21 +38,6 @@ type KoreaTelcoMatchInput struct {
 }
 
 type _KoreaTelcoMatchInput KoreaTelcoMatchInput
-
-// NewKoreaTelcoMatchInput instantiates a new KoreaTelcoMatchInput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewKoreaTelcoMatchInput(phoneNumber string, fullName string, dateOfBirth string, sex KoreaTelcoMatchSex, carrier MobileCarrier, operatingSystem MobileOperatingSystem) *KoreaTelcoMatchInput {
-	this := KoreaTelcoMatchInput{}
-	this.PhoneNumber = phoneNumber
-	this.FullName = fullName
-	this.DateOfBirth = dateOfBirth
-	this.Sex = sex
-	this.Carrier = carrier
-	this.OperatingSystem = operatingSystem
-	return &this
-}
 
 // NewKoreaTelcoMatchInputWithDefaults instantiates a new KoreaTelcoMatchInput object
 // This constructor will only assign default values to properties that have it defined,

@@ -9,14 +9,11 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewRaw18013DocumentRequest
+### Named construction
 
-`func NewRaw18013DocumentRequest(documentType string, nameSpaces map[string]map[string]bool, ) *Raw18013DocumentRequest`
-
-NewRaw18013DocumentRequest instantiates a new Raw18013DocumentRequest object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+Use a keyed struct literal (`Raw18013DocumentRequest{FieldName: value}`), or call
+`NewRaw18013DocumentRequestWithDefaults()` and set fields by name. Positional field
+factories and unkeyed struct literals are not supported.
 
 ### NewRaw18013DocumentRequestWithDefaults
 

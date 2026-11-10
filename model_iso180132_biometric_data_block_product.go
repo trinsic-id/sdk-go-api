@@ -19,6 +19,8 @@ var _ MappedNullable = &Iso180132BiometricDataBlockProduct{}
 
 // Iso180132BiometricDataBlockProduct Owner and type identifying the product that produced a biometric data block.
 type Iso180132BiometricDataBlockProduct struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// Identifier of the product owner.
 	ProductOwner NullableInt32 `json:"productOwner,omitempty"`
 	// Identifier of the product type.
@@ -27,15 +29,6 @@ type Iso180132BiometricDataBlockProduct struct {
 }
 
 type _Iso180132BiometricDataBlockProduct Iso180132BiometricDataBlockProduct
-
-// NewIso180132BiometricDataBlockProduct instantiates a new Iso180132BiometricDataBlockProduct object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewIso180132BiometricDataBlockProduct() *Iso180132BiometricDataBlockProduct {
-	this := Iso180132BiometricDataBlockProduct{}
-	return &this
-}
 
 // NewIso180132BiometricDataBlockProductWithDefaults instantiates a new Iso180132BiometricDataBlockProduct object
 // This constructor will only assign default values to properties that have it defined,

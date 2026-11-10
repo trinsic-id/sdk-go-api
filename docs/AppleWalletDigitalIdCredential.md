@@ -26,14 +26,11 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewAppleWalletDigitalIdCredential
+### Named construction
 
-`func NewAppleWalletDigitalIdCredential() *AppleWalletDigitalIdCredential`
-
-NewAppleWalletDigitalIdCredential instantiates a new AppleWalletDigitalIdCredential object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+Use a keyed struct literal (`AppleWalletDigitalIdCredential{FieldName: value}`), or call
+`NewAppleWalletDigitalIdCredentialWithDefaults()` and set fields by name. Positional field
+factories and unkeyed struct literals are not supported.
 
 ### NewAppleWalletDigitalIdCredentialWithDefaults
 

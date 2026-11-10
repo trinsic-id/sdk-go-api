@@ -19,6 +19,8 @@ var _ MappedNullable = &PhilippineMatchInput{}
 
 // PhilippineMatchInput struct for PhilippineMatchInput
 type PhilippineMatchInput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The user's given / first name
 	GivenName NullableString `json:"givenName,omitempty"`
 	// The user's middle name
@@ -33,15 +35,6 @@ type PhilippineMatchInput struct {
 }
 
 type _PhilippineMatchInput PhilippineMatchInput
-
-// NewPhilippineMatchInput instantiates a new PhilippineMatchInput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewPhilippineMatchInput() *PhilippineMatchInput {
-	this := PhilippineMatchInput{}
-	return &this
-}
 
 // NewPhilippineMatchInputWithDefaults instantiates a new PhilippineMatchInput object
 // This constructor will only assign default values to properties that have it defined,

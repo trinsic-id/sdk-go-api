@@ -8,14 +8,11 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewSmartIdInput
+### Named construction
 
-`func NewSmartIdInput() *SmartIdInput`
-
-NewSmartIdInput instantiates a new SmartIdInput object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+Use a keyed struct literal (`SmartIdInput{FieldName: value}`), or call
+`NewSmartIdInputWithDefaults()` and set fields by name. Positional field
+factories and unkeyed struct literals are not supported.
 
 ### NewSmartIdInputWithDefaults
 

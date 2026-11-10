@@ -22,12 +22,14 @@ type NigeriaNinMatch2InputSex string
 const (
 	NIGERIANINMATCH2INPUTSEX_MALE NigeriaNinMatch2InputSex = "Male"
 	NIGERIANINMATCH2INPUTSEX_FEMALE NigeriaNinMatch2InputSex = "Female"
+	NIGERIANINMATCH2INPUTSEX_UNKNOWN_DEFAULT_OPEN_API NigeriaNinMatch2InputSex = "unknown_default_open_api"
 )
 
 // All allowed values of NigeriaNinMatch2InputSex enum
 var AllowedNigeriaNinMatch2InputSexEnumValues = []NigeriaNinMatch2InputSex{
 	"Male",
 	"Female",
+	"unknown_default_open_api",
 }
 
 func (v *NigeriaNinMatch2InputSex) UnmarshalJSON(src []byte) error {
@@ -44,7 +46,8 @@ func (v *NigeriaNinMatch2InputSex) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid NigeriaNinMatch2InputSex", value)
+	*v = NIGERIANINMATCH2INPUTSEX_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewNigeriaNinMatch2InputSexFromValue returns a pointer to a valid NigeriaNinMatch2InputSex

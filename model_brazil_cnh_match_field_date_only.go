@@ -20,6 +20,8 @@ var _ MappedNullable = &BrazilCnhMatchFieldDateOnly{}
 
 // BrazilCnhMatchFieldDateOnly struct for BrazilCnhMatchFieldDateOnly
 type BrazilCnhMatchFieldDateOnly struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// Decoded CNH QR Code value used for this match field.
 	Content string `json:"content"`
 	// Whether the decoded CNH QR Code value matched the government database.
@@ -28,16 +30,6 @@ type BrazilCnhMatchFieldDateOnly struct {
 }
 
 type _BrazilCnhMatchFieldDateOnly BrazilCnhMatchFieldDateOnly
-
-// NewBrazilCnhMatchFieldDateOnly instantiates a new BrazilCnhMatchFieldDateOnly object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewBrazilCnhMatchFieldDateOnly(content string) *BrazilCnhMatchFieldDateOnly {
-	this := BrazilCnhMatchFieldDateOnly{}
-	this.Content = content
-	return &this
-}
 
 // NewBrazilCnhMatchFieldDateOnlyWithDefaults instantiates a new BrazilCnhMatchFieldDateOnly object
 // This constructor will only assign default values to properties that have it defined,

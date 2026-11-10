@@ -19,6 +19,8 @@ var _ MappedNullable = &ClearProviderOutputHistoricalAddress{}
 
 // ClearProviderOutputHistoricalAddress struct for ClearProviderOutputHistoricalAddress
 type ClearProviderOutputHistoricalAddress struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The first line of the address.
 	Line1 NullableString `json:"line1,omitempty"`
 	// The second line of the address, such as an apartment or suite.
@@ -43,15 +45,6 @@ type ClearProviderOutputHistoricalAddress struct {
 }
 
 type _ClearProviderOutputHistoricalAddress ClearProviderOutputHistoricalAddress
-
-// NewClearProviderOutputHistoricalAddress instantiates a new ClearProviderOutputHistoricalAddress object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewClearProviderOutputHistoricalAddress() *ClearProviderOutputHistoricalAddress {
-	this := ClearProviderOutputHistoricalAddress{}
-	return &this
-}
 
 // NewClearProviderOutputHistoricalAddressWithDefaults instantiates a new ClearProviderOutputHistoricalAddress object
 // This constructor will only assign default values to properties that have it defined,

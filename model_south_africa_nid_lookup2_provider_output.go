@@ -19,6 +19,8 @@ var _ MappedNullable = &SouthAfricaNidLookup2ProviderOutput{}
 
 // SouthAfricaNidLookup2ProviderOutput Exposed properties for the `south-africa-nid-lookup-2` Provider which do not directly map to the normalized IdentityData model.
 type SouthAfricaNidLookup2ProviderOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The South African National Identity Number (13 digits).              Issued for life by the Department of Home Affairs (DHA) and stored in the HANIS (Home Affairs National Identification System) database. The same number is mandatory for banking, employment, taxation, and voting, and is printed on both the legacy green ID book and the Smart ID Card (rolled out from 2013 onward).              Format: - YYMMDD G(4) C A Z - YYMMDD is the date of birth - G(4) is the gender code (below 5000 female, 5000 or above male) - C is the citizenship indicator (0 citizen, 1 permanent resident) - A is reserved (it had a politically sensitive meaning in the past, but is currently   semantically meaningless) - Z is a Luhn check digit
 	NationalIdNumber NullableString `json:"nationalIdNumber,omitempty"`
 	// Citizenship status of the individual.              Possible values: - Citizen - PermanentResident - Refugee
@@ -43,15 +45,6 @@ type SouthAfricaNidLookup2ProviderOutput struct {
 }
 
 type _SouthAfricaNidLookup2ProviderOutput SouthAfricaNidLookup2ProviderOutput
-
-// NewSouthAfricaNidLookup2ProviderOutput instantiates a new SouthAfricaNidLookup2ProviderOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewSouthAfricaNidLookup2ProviderOutput() *SouthAfricaNidLookup2ProviderOutput {
-	this := SouthAfricaNidLookup2ProviderOutput{}
-	return &this
-}
 
 // NewSouthAfricaNidLookup2ProviderOutputWithDefaults instantiates a new SouthAfricaNidLookup2ProviderOutput object
 // This constructor will only assign default values to properties that have it defined,

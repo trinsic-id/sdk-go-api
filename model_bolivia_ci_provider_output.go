@@ -19,6 +19,8 @@ var _ MappedNullable = &BoliviaCiProviderOutput{}
 
 // BoliviaCiProviderOutput Exposed properties for the `bolivia-ci-lookup` Provider which do not directly map to the normalized IdentityData model.
 type BoliviaCiProviderOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// Full name as it appears on the CI (Cédula de Identidad).
 	FullName NullableString `json:"fullName,omitempty"`
 	// Given name(s) of the holder as they appear on the CI (Cédula de Identidad).
@@ -33,15 +35,6 @@ type BoliviaCiProviderOutput struct {
 }
 
 type _BoliviaCiProviderOutput BoliviaCiProviderOutput
-
-// NewBoliviaCiProviderOutput instantiates a new BoliviaCiProviderOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewBoliviaCiProviderOutput() *BoliviaCiProviderOutput {
-	this := BoliviaCiProviderOutput{}
-	return &this
-}
 
 // NewBoliviaCiProviderOutputWithDefaults instantiates a new BoliviaCiProviderOutput object
 // This constructor will only assign default values to properties that have it defined,

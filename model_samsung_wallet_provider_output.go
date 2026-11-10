@@ -19,6 +19,8 @@ var _ MappedNullable = &SamsungWalletProviderOutput{}
 
 // SamsungWalletProviderOutput Exposed properties for the `samsung-wallet` Provider which do not directly map to the normalized IdentityData model.
 type SamsungWalletProviderOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// A standard 18013-5 Mobile Driver's License credential, retrieved from the individual's wallet.
 	MobileDriversLicense NullableIso180135MobileDriversLicenseCredential `json:"mobileDriversLicense,omitempty"`
 	// A Samsung ID with CLEAR credential, retrieved from the individual's Samsung Wallet.
@@ -29,15 +31,6 @@ type SamsungWalletProviderOutput struct {
 }
 
 type _SamsungWalletProviderOutput SamsungWalletProviderOutput
-
-// NewSamsungWalletProviderOutput instantiates a new SamsungWalletProviderOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewSamsungWalletProviderOutput() *SamsungWalletProviderOutput {
-	this := SamsungWalletProviderOutput{}
-	return &this
-}
 
 // NewSamsungWalletProviderOutputWithDefaults instantiates a new SamsungWalletProviderOutput object
 // This constructor will only assign default values to properties that have it defined,

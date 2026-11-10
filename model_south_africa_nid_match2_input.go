@@ -19,6 +19,8 @@ var _ MappedNullable = &SouthAfricaNidMatch2Input{}
 
 // SouthAfricaNidMatch2Input struct for SouthAfricaNidMatch2Input
 type SouthAfricaNidMatch2Input struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The South African National Identity Number (13 digits).              Issued for life by the Department of Home Affairs (DHA) and stored in the HANIS (Home Affairs National Identification System) database. The same number is mandatory for banking, employment, taxation, and voting, and is printed on both the legacy green ID book and the Smart ID Card (rolled out from 2013 onward).              Format: - YYMMDD G(4) C A Z - YYMMDD is the date of birth - G(4) is the gender code (below 5000 female, 5000 or above male) - C is the citizenship indicator (0 citizen, 1 permanent resident) - A is reserved (it had a politically sensitive meaning in the past, but is currently   semantically meaningless) - Z is a Luhn check digit
 	IdNumber NullableString `json:"idNumber,omitempty"`
 	// The user's first name as it appears in their National ID
@@ -35,15 +37,6 @@ type SouthAfricaNidMatch2Input struct {
 }
 
 type _SouthAfricaNidMatch2Input SouthAfricaNidMatch2Input
-
-// NewSouthAfricaNidMatch2Input instantiates a new SouthAfricaNidMatch2Input object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewSouthAfricaNidMatch2Input() *SouthAfricaNidMatch2Input {
-	this := SouthAfricaNidMatch2Input{}
-	return &this
-}
 
 // NewSouthAfricaNidMatch2InputWithDefaults instantiates a new SouthAfricaNidMatch2Input object
 // This constructor will only assign default values to properties that have it defined,

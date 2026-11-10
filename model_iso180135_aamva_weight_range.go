@@ -19,6 +19,8 @@ var _ MappedNullable = &Iso180135AamvaWeightRange{}
 
 // Iso180135AamvaWeightRange AAMVA approximate weight range, expressed in kilograms.
 type Iso180135AamvaWeightRange struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// Minimum weight in the range, in kilograms.
 	MinKilograms NullableInt32 `json:"minKilograms,omitempty"`
 	// Maximum weight in the range, in kilograms.              If null, the maximum weight has no limit.
@@ -27,15 +29,6 @@ type Iso180135AamvaWeightRange struct {
 }
 
 type _Iso180135AamvaWeightRange Iso180135AamvaWeightRange
-
-// NewIso180135AamvaWeightRange instantiates a new Iso180135AamvaWeightRange object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewIso180135AamvaWeightRange() *Iso180135AamvaWeightRange {
-	this := Iso180135AamvaWeightRange{}
-	return &this
-}
 
 // NewIso180135AamvaWeightRangeWithDefaults instantiates a new Iso180135AamvaWeightRange object
 // This constructor will only assign default values to properties that have it defined,

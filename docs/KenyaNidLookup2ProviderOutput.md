@@ -18,14 +18,11 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewKenyaNidLookup2ProviderOutput
+### Named construction
 
-`func NewKenyaNidLookup2ProviderOutput() *KenyaNidLookup2ProviderOutput`
-
-NewKenyaNidLookup2ProviderOutput instantiates a new KenyaNidLookup2ProviderOutput object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+Use a keyed struct literal (`KenyaNidLookup2ProviderOutput{FieldName: value}`), or call
+`NewKenyaNidLookup2ProviderOutputWithDefaults()` and set fields by name. Positional field
+factories and unkeyed struct literals are not supported.
 
 ### NewKenyaNidLookup2ProviderOutputWithDefaults
 

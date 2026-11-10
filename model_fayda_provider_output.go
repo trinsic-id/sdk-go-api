@@ -19,6 +19,8 @@ var _ MappedNullable = &FaydaProviderOutput{}
 
 // FaydaProviderOutput Exposed properties for the `ethiopia-fayda` Provider which do not directly map to the normalized IdentityData model.
 type FaydaProviderOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// A unique eKYC identifying token used to match the original eKYC token received from the provider when the individual was initially registered.              Since Fayda does not return identifying data, it is the responsibility of the relying party to keep the unique individual token received from Fayda when the individual was initially registered to do a comparison of the subs to verify that it is the same person.
 	Sub NullableString `json:"sub,omitempty"`
 	// The full name of the verified individual.              This may be an English or Arabic name if the individual only has it one language, otherwise this will be null and the other names will be populated.
@@ -43,15 +45,6 @@ type FaydaProviderOutput struct {
 }
 
 type _FaydaProviderOutput FaydaProviderOutput
-
-// NewFaydaProviderOutput instantiates a new FaydaProviderOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewFaydaProviderOutput() *FaydaProviderOutput {
-	this := FaydaProviderOutput{}
-	return &this
-}
 
 // NewFaydaProviderOutputWithDefaults instantiates a new FaydaProviderOutput object
 // This constructor will only assign default values to properties that have it defined,

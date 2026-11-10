@@ -19,6 +19,8 @@ var _ MappedNullable = &UgandaNidMatch2NationalIdNumberField{}
 
 // UgandaNidMatch2NationalIdNumberField struct for UgandaNidMatch2NationalIdNumberField
 type UgandaNidMatch2NationalIdNumberField struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// Uganda National ID number (NID) assigned by the National Identification and Registration Authority (NIRA).              Format: - 14 alphanumeric characters (A-Z, 0-9) - There is no publicly documented encoding scheme for encoding personal information in the NID - No check digit or algorithm has been publicly documented by NIRA
 	InputValue NullableString `json:"inputValue,omitempty"`
 	// The outcome of looking up the NID in NIRA database.              Possible values: - Verified - Not Verified - Not Done - Issuer Unavailable - Not Returned
@@ -27,15 +29,6 @@ type UgandaNidMatch2NationalIdNumberField struct {
 }
 
 type _UgandaNidMatch2NationalIdNumberField UgandaNidMatch2NationalIdNumberField
-
-// NewUgandaNidMatch2NationalIdNumberField instantiates a new UgandaNidMatch2NationalIdNumberField object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewUgandaNidMatch2NationalIdNumberField() *UgandaNidMatch2NationalIdNumberField {
-	this := UgandaNidMatch2NationalIdNumberField{}
-	return &this
-}
 
 // NewUgandaNidMatch2NationalIdNumberFieldWithDefaults instantiates a new UgandaNidMatch2NationalIdNumberField object
 // This constructor will only assign default values to properties that have it defined,

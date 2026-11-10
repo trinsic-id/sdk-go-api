@@ -109,7 +109,7 @@ import (
 )
 
 func main() {
-	createDirectProviderSessionRequest := *openapiclient.NewCreateDirectProviderSessionRequest("Provider_example", "VerificationProfileId_example", []openapiclient.IntegrationCapability{openapiclient.IntegrationCapability("LaunchBrowser")}) // CreateDirectProviderSessionRequest |  (optional)
+	createDirectProviderSessionRequest := *openapiclient.NewCreateDirectProviderSessionRequest("Provider_example", "VerificationProfileId_example", false, []openapiclient.IntegrationCapability{openapiclient.IntegrationCapability("LaunchBrowser")}) // CreateDirectProviderSessionRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -175,7 +175,7 @@ import (
 )
 
 func main() {
-	createHostedProviderSessionRequest := *openapiclient.NewCreateHostedProviderSessionRequest("Provider_example", "VerificationProfileId_example", "RedirectUrl_example") // CreateHostedProviderSessionRequest |  (optional)
+	createHostedProviderSessionRequest := *openapiclient.NewCreateHostedProviderSessionRequest("Provider_example", "VerificationProfileId_example", "RedirectUrl_example", false) // CreateHostedProviderSessionRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

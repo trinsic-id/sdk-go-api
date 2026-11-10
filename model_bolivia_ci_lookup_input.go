@@ -19,6 +19,8 @@ var _ MappedNullable = &BoliviaCiLookupInput{}
 
 // BoliviaCiLookupInput struct for BoliviaCiLookupInput
 type BoliviaCiLookupInput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The holder's CI (\"Cédula de Identidad\") number from the Bolivian identity card (\"carnet de identidad\"). This is the identifier assigned by the Servicio General de Identificación Personal (SEGIP) in the Registro Único de Identificación (RUI). Is entirely numeric values. Any non-alphanumeric characters (dots, hyphens, spaces, etc.) will be stripped before lookup.              Published regulations do not define a fixed length; digit count may vary.
 	DocumentNumber NullableString `json:"documentNumber,omitempty"`
 	// The holder's date of birth. Must match the CI record.
@@ -27,15 +29,6 @@ type BoliviaCiLookupInput struct {
 }
 
 type _BoliviaCiLookupInput BoliviaCiLookupInput
-
-// NewBoliviaCiLookupInput instantiates a new BoliviaCiLookupInput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewBoliviaCiLookupInput() *BoliviaCiLookupInput {
-	this := BoliviaCiLookupInput{}
-	return &this
-}
 
 // NewBoliviaCiLookupInputWithDefaults instantiates a new BoliviaCiLookupInput object
 // This constructor will only assign default values to properties that have it defined,

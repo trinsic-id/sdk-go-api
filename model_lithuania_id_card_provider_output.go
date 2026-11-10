@@ -19,6 +19,8 @@ var _ MappedNullable = &LithuaniaIdCardProviderOutput{}
 
 // LithuaniaIdCardProviderOutput Exposed properties for the `a-lt-id-login` Provider which do not directly map to the normalized IdentityData model.
 type LithuaniaIdCardProviderOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The first name of the verified individual
 	FirstName NullableString `json:"firstName,omitempty"`
 	// The last name of the verified individual
@@ -31,15 +33,6 @@ type LithuaniaIdCardProviderOutput struct {
 }
 
 type _LithuaniaIdCardProviderOutput LithuaniaIdCardProviderOutput
-
-// NewLithuaniaIdCardProviderOutput instantiates a new LithuaniaIdCardProviderOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewLithuaniaIdCardProviderOutput() *LithuaniaIdCardProviderOutput {
-	this := LithuaniaIdCardProviderOutput{}
-	return &this
-}
 
 // NewLithuaniaIdCardProviderOutputWithDefaults instantiates a new LithuaniaIdCardProviderOutput object
 // This constructor will only assign default values to properties that have it defined,

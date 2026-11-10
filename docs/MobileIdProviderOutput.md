@@ -16,14 +16,11 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewMobileIdProviderOutput
+### Named construction
 
-`func NewMobileIdProviderOutput() *MobileIdProviderOutput`
-
-NewMobileIdProviderOutput instantiates a new MobileIdProviderOutput object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+Use a keyed struct literal (`MobileIdProviderOutput{FieldName: value}`), or call
+`NewMobileIdProviderOutputWithDefaults()` and set fields by name. Positional field
+factories and unkeyed struct literals are not supported.
 
 ### NewMobileIdProviderOutputWithDefaults
 

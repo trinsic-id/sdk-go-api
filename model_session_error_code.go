@@ -32,6 +32,7 @@ const (
 	SESSIONERRORCODE_ASSURANCE_LEVEL_NOT_MET SessionErrorCode = "AssuranceLevelNotMet"
 	SESSIONERRORCODE_SECURITY_VALIDATION_FAILED SessionErrorCode = "SecurityValidationFailed"
 	SESSIONERRORCODE_INVALID_RESPONSE SessionErrorCode = "InvalidResponse"
+	SESSIONERRORCODE_UNKNOWN_DEFAULT_OPEN_API SessionErrorCode = "unknown_default_open_api"
 )
 
 // All allowed values of SessionErrorCode enum
@@ -48,6 +49,7 @@ var AllowedSessionErrorCodeEnumValues = []SessionErrorCode{
 	"AssuranceLevelNotMet",
 	"SecurityValidationFailed",
 	"InvalidResponse",
+	"unknown_default_open_api",
 }
 
 func (v *SessionErrorCode) UnmarshalJSON(src []byte) error {
@@ -64,7 +66,8 @@ func (v *SessionErrorCode) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid SessionErrorCode", value)
+	*v = SESSIONERRORCODE_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewSessionErrorCodeFromValue returns a pointer to a valid SessionErrorCode

@@ -19,6 +19,8 @@ var _ MappedNullable = &ColombiaCcProviderOutput{}
 
 // ColombiaCcProviderOutput Exposed properties for the `colombia-cc-lookup` Provider which do not directly map to the normalized IdentityData model.
 type ColombiaCcProviderOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// Full name as it appears on the CC.
 	FullName NullableString `json:"fullName,omitempty"`
 	// Given name(s) of the holder as they appear on the CC.
@@ -43,15 +45,6 @@ type ColombiaCcProviderOutput struct {
 }
 
 type _ColombiaCcProviderOutput ColombiaCcProviderOutput
-
-// NewColombiaCcProviderOutput instantiates a new ColombiaCcProviderOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewColombiaCcProviderOutput() *ColombiaCcProviderOutput {
-	this := ColombiaCcProviderOutput{}
-	return &this
-}
 
 // NewColombiaCcProviderOutputWithDefaults instantiates a new ColombiaCcProviderOutput object
 // This constructor will only assign default values to properties that have it defined,

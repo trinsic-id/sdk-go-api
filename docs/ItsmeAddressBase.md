@@ -10,14 +10,11 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewItsmeAddressBase
+### Named construction
 
-`func NewItsmeAddressBase() *ItsmeAddressBase`
-
-NewItsmeAddressBase instantiates a new ItsmeAddressBase object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+Use a keyed struct literal (`ItsmeAddressBase{FieldName: value}`), or call
+`NewItsmeAddressBaseWithDefaults()` and set fields by name. Positional field
+factories and unkeyed struct literals are not supported.
 
 ### NewItsmeAddressBaseWithDefaults
 

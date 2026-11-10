@@ -19,6 +19,8 @@ var _ MappedNullable = &ItsmeProviderAddress{}
 
 // ItsmeProviderAddress struct for ItsmeProviderAddress
 type ItsmeProviderAddress struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The street address.              itsme documents this as an address member when the address claim is returned.
 	StreetAddress NullableString `json:"streetAddress,omitempty"`
 	// The postal code of the address.              itsme documents this as an address member when the address claim is returned.
@@ -33,15 +35,6 @@ type ItsmeProviderAddress struct {
 }
 
 type _ItsmeProviderAddress ItsmeProviderAddress
-
-// NewItsmeProviderAddress instantiates a new ItsmeProviderAddress object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewItsmeProviderAddress() *ItsmeProviderAddress {
-	this := ItsmeProviderAddress{}
-	return &this
-}
 
 // NewItsmeProviderAddressWithDefaults instantiates a new ItsmeProviderAddress object
 // This constructor will only assign default values to properties that have it defined,

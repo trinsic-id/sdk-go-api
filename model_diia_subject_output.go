@@ -19,6 +19,8 @@ var _ MappedNullable = &DiiaSubjectOutput{}
 
 // DiiaSubjectOutput struct for DiiaSubjectOutput
 type DiiaSubjectOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// Full name.
 	CommonName NullableString `json:"commonName,omitempty"`
 	// Country code in ISO 3166-1 alpha-2 format.
@@ -33,15 +35,6 @@ type DiiaSubjectOutput struct {
 }
 
 type _DiiaSubjectOutput DiiaSubjectOutput
-
-// NewDiiaSubjectOutput instantiates a new DiiaSubjectOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewDiiaSubjectOutput() *DiiaSubjectOutput {
-	this := DiiaSubjectOutput{}
-	return &this
-}
 
 // NewDiiaSubjectOutputWithDefaults instantiates a new DiiaSubjectOutput object
 // This constructor will only assign default values to properties that have it defined,

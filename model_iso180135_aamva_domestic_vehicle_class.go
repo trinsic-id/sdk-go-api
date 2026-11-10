@@ -19,6 +19,8 @@ var _ MappedNullable = &Iso180135AamvaDomesticVehicleClass{}
 
 // Iso180135AamvaDomesticVehicleClass Vehicle class for a domestic driving privilege.
 type Iso180135AamvaDomesticVehicleClass struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// Vehicle class code.
 	Code NullableString `json:"code,omitempty"`
 	// Human-readable description of the vehicle class.
@@ -31,15 +33,6 @@ type Iso180135AamvaDomesticVehicleClass struct {
 }
 
 type _Iso180135AamvaDomesticVehicleClass Iso180135AamvaDomesticVehicleClass
-
-// NewIso180135AamvaDomesticVehicleClass instantiates a new Iso180135AamvaDomesticVehicleClass object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewIso180135AamvaDomesticVehicleClass() *Iso180135AamvaDomesticVehicleClass {
-	this := Iso180135AamvaDomesticVehicleClass{}
-	return &this
-}
 
 // NewIso180135AamvaDomesticVehicleClassWithDefaults instantiates a new Iso180135AamvaDomesticVehicleClass object
 // This constructor will only assign default values to properties that have it defined,

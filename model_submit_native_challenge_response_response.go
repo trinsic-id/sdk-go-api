@@ -20,22 +20,14 @@ var _ MappedNullable = &SubmitNativeChallengeResponseResponse{}
 
 // SubmitNativeChallengeResponseResponse struct for SubmitNativeChallengeResponseResponse
 type SubmitNativeChallengeResponseResponse struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The Session for which the challenge token was submitted
 	Session Session `json:"session"`
 	AdditionalProperties map[string]interface{}
 }
 
 type _SubmitNativeChallengeResponseResponse SubmitNativeChallengeResponseResponse
-
-// NewSubmitNativeChallengeResponseResponse instantiates a new SubmitNativeChallengeResponseResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewSubmitNativeChallengeResponseResponse(session Session) *SubmitNativeChallengeResponseResponse {
-	this := SubmitNativeChallengeResponseResponse{}
-	this.Session = session
-	return &this
-}
 
 // NewSubmitNativeChallengeResponseResponseWithDefaults instantiates a new SubmitNativeChallengeResponseResponse object
 // This constructor will only assign default values to properties that have it defined,

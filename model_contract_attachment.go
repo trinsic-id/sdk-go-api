@@ -20,6 +20,8 @@ var _ MappedNullable = &ContractAttachment{}
 
 // ContractAttachment Information about an attachment that a Provider may return in verification results.
 type ContractAttachment struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The type of the attachment as it appears in verification results.              Possible values: - \"selfie\" - \"document_front\" - \"document_back\" - \"document_portrait\" - \"document_signature\" - \"document_scan_report\"              Additional attachment types may be defined for specific Providers.
 	Type string `json:"type"`
 	// Indicates when this attachment will be present in verification results.
@@ -28,17 +30,6 @@ type ContractAttachment struct {
 }
 
 type _ContractAttachment ContractAttachment
-
-// NewContractAttachment instantiates a new ContractAttachment object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewContractAttachment(type_ string, outputted AttributeAvailability) *ContractAttachment {
-	this := ContractAttachment{}
-	this.Type = type_
-	this.Outputted = outputted
-	return &this
-}
 
 // NewContractAttachmentWithDefaults instantiates a new ContractAttachment object
 // This constructor will only assign default values to properties that have it defined,

@@ -20,6 +20,8 @@ var _ MappedNullable = &Raw18013DocumentRequest{}
 
 // Raw18013DocumentRequest struct for Raw18013DocumentRequest
 type Raw18013DocumentRequest struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The type of the document being requested, as defined by ISO specifications 18013-5, 18013-7, 23220-2, or a similar or related standard.              Common values: - \"org.iso.18013.5.1.mDL\" -- a Mobile Driver's License - \"eu.europa.ec.eudi.pid.1\" -- an EUDI Wallet PID - \"com.google.wallet.idcard.1\" -- a Google Wallet ID Pass - \"org.iso.23220.photoid.1\" -- a generic ISO 23220-2 compliant Photo ID (used by Apple Wallet's ID Pass)
 	DocumentType string `json:"documentType"`
 	// The namespaces and attributes (PII) to request from the document.              This is a map of (nameSpaceName -> (attributeName -> willRetain)), where:              - nameSpaceName is the name of a NameSpace within the document - attributeName is the name of a specific attribute within the NameSpace - willRetain indicates, to the Wallet, whether you as the Relying Party intend to retain the data for longer than the scope of the transaction              Common namespace values: - \"org.iso.18013.5.1\" -- the primary namespace of a Mobile Driver's License or a Google Wallet ID Pass - \"org.iso.18013.5.1.aamva\" -- the secondary, AAMVA-defined namespace of a Mobile Driver's License - \"eu.europa.ec.eudi.pid.1\" -- the primary namespace of an EUDI Wallet PID - \"org.iso.23220.1\" -- the primary namespace of an ISO 23220-2 credential or an Apple Wallet ID Pass
@@ -28,17 +30,6 @@ type Raw18013DocumentRequest struct {
 }
 
 type _Raw18013DocumentRequest Raw18013DocumentRequest
-
-// NewRaw18013DocumentRequest instantiates a new Raw18013DocumentRequest object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewRaw18013DocumentRequest(documentType string, nameSpaces map[string]map[string]bool) *Raw18013DocumentRequest {
-	this := Raw18013DocumentRequest{}
-	this.DocumentType = documentType
-	this.NameSpaces = nameSpaces
-	return &this
-}
 
 // NewRaw18013DocumentRequestWithDefaults instantiates a new Raw18013DocumentRequest object
 // This constructor will only assign default values to properties that have it defined,

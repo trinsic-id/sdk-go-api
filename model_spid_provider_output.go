@@ -19,6 +19,8 @@ var _ MappedNullable = &SpidProviderOutput{}
 
 // SpidProviderOutput Exposed properties for the `italy-spid` Provider which do not directly map to the normalized IdentityData model.
 type SpidProviderOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// Information about the billable status of this SPID Verification.              Present only if your account has period-based billing enabled for SPID. Contact Trinsic to enable this.
 	BillingInformation NullableSpidBillingInformation `json:"billingInformation,omitempty"`
 	// The SPID Entity ID of the Identity Provider which issued the SPID identity.              This is an HTTPS URI which uniquely identifies the IdP within the SPID federation.              A normalized / simplified representation of this value is present in the `originatingSubProviderId` field in Trinsic's normalized data model.
@@ -71,15 +73,6 @@ type SpidProviderOutput struct {
 }
 
 type _SpidProviderOutput SpidProviderOutput
-
-// NewSpidProviderOutput instantiates a new SpidProviderOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewSpidProviderOutput() *SpidProviderOutput {
-	this := SpidProviderOutput{}
-	return &this
-}
 
 // NewSpidProviderOutputWithDefaults instantiates a new SpidProviderOutput object
 // This constructor will only assign default values to properties that have it defined,

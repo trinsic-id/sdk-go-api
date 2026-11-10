@@ -19,6 +19,8 @@ var _ MappedNullable = &CzechBankIdCard{}
 
 // CzechBankIdCard struct for CzechBankIdCard
 type CzechBankIdCard struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The identity document type code.              Possible values are:              - ID - Identity card - P - Passport - DL - Driving license - IR - Residence permit - VS - Visa permit label - PS - Residential label - IX - Book with residence permit - IE - Form with temporary residence - OP - Identity card – without machine readable zone - CA - Passport of the Czech Republic resident – without machine readable zone - UNKNOWN - Unknown id card type
 	Type NullableString `json:"type,omitempty"`
 	// The localized identity document type description.
@@ -37,15 +39,6 @@ type CzechBankIdCard struct {
 }
 
 type _CzechBankIdCard CzechBankIdCard
-
-// NewCzechBankIdCard instantiates a new CzechBankIdCard object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewCzechBankIdCard() *CzechBankIdCard {
-	this := CzechBankIdCard{}
-	return &this
-}
 
 // NewCzechBankIdCardWithDefaults instantiates a new CzechBankIdCard object
 // This constructor will only assign default values to properties that have it defined,

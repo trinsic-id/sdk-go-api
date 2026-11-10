@@ -20,22 +20,14 @@ var _ MappedNullable = &IndiaPanLookupInput{}
 
 // IndiaPanLookupInput struct for IndiaPanLookupInput
 type IndiaPanLookupInput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// Permanent Account Number (PAN) to verify. PAN is a ten-character tax identifier issued by the Income Tax Department of India.
 	PermanentAccountNumber string `json:"permanentAccountNumber"`
 	AdditionalProperties map[string]interface{}
 }
 
 type _IndiaPanLookupInput IndiaPanLookupInput
-
-// NewIndiaPanLookupInput instantiates a new IndiaPanLookupInput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewIndiaPanLookupInput(permanentAccountNumber string) *IndiaPanLookupInput {
-	this := IndiaPanLookupInput{}
-	this.PermanentAccountNumber = permanentAccountNumber
-	return &this
-}
 
 // NewIndiaPanLookupInputWithDefaults instantiates a new IndiaPanLookupInput object
 // This constructor will only assign default values to properties that have it defined,

@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | The unique identifier of the provider | 
 **Name** | **string** | The display name of the provider | 
+**LocalizedDisplayNames** | Pointer to **map[string]string** | Localized display names for the Provider, if any, keyed by lowercase BCP 47 language codes (eg \&quot;fr\&quot;).              If a particular language code is not present, fall back to &#x60;name&#x60;.              This should not be confused for the list of languages the Provider officially supports. | [optional] 
 **LogoUrl** | **string** | The URL of the provider&#39;s logo | 
 **Subtext** | **string** | The Provider&#39;s subtext recommended to be shown next to the name.              This is flavor text, not a full, human-readable description of the provider. | 
 **Regions** | **[]string** | Specific regions supported by this provider | 
@@ -28,14 +29,11 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewProvider
+### Named construction
 
-`func NewProvider(id string, name string, logoUrl string, subtext string, regions []string, countries []string, subdivisions []string, licensed bool, launchMethod IntegrationLaunchMethod, collectionMethod ResultCollectionMethod, resultsMayBeDelayedAfterRedirect bool, hasRefreshableContent bool, requiresInput bool, hasTrinsicInterface bool, supportsDirectProviderSessions bool, liveHealth ProviderHealth, testHealth ProviderHealth, ) *Provider`
-
-NewProvider instantiates a new Provider object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+Use a keyed struct literal (`Provider{FieldName: value}`), or call
+`NewProviderWithDefaults()` and set fields by name. Positional field
+factories and unkeyed struct literals are not supported.
 
 ### NewProviderWithDefaults
 
@@ -85,6 +83,41 @@ and a boolean to check if the value has been set.
 SetName sets Name field to given value.
 
 
+### GetLocalizedDisplayNames
+
+`func (o *Provider) GetLocalizedDisplayNames() map[string]string`
+
+GetLocalizedDisplayNames returns the LocalizedDisplayNames field if non-nil, zero value otherwise.
+
+### GetLocalizedDisplayNamesOk
+
+`func (o *Provider) GetLocalizedDisplayNamesOk() (*map[string]string, bool)`
+
+GetLocalizedDisplayNamesOk returns a tuple with the LocalizedDisplayNames field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLocalizedDisplayNames
+
+`func (o *Provider) SetLocalizedDisplayNames(v map[string]string)`
+
+SetLocalizedDisplayNames sets LocalizedDisplayNames field to given value.
+
+### HasLocalizedDisplayNames
+
+`func (o *Provider) HasLocalizedDisplayNames() bool`
+
+HasLocalizedDisplayNames returns a boolean if a field has been set.
+
+### SetLocalizedDisplayNamesNil
+
+`func (o *Provider) SetLocalizedDisplayNamesNil(b bool)`
+
+ SetLocalizedDisplayNamesNil sets the value for LocalizedDisplayNames to be an explicit nil
+
+### UnsetLocalizedDisplayNames
+`func (o *Provider) UnsetLocalizedDisplayNames()`
+
+UnsetLocalizedDisplayNames ensures that no value is present for LocalizedDisplayNames, not even an explicit nil
 ### GetLogoUrl
 
 `func (o *Provider) GetLogoUrl() string`

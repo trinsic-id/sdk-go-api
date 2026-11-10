@@ -19,6 +19,8 @@ var _ MappedNullable = &NetherlandsIdinAddress{}
 
 // NetherlandsIdinAddress struct for NetherlandsIdinAddress
 type NetherlandsIdinAddress struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// Street name of the individual's domestic address.
 	Street NullableString `json:"street,omitempty"`
 	// House number of the individual's domestic address.
@@ -43,15 +45,6 @@ type NetherlandsIdinAddress struct {
 }
 
 type _NetherlandsIdinAddress NetherlandsIdinAddress
-
-// NewNetherlandsIdinAddress instantiates a new NetherlandsIdinAddress object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewNetherlandsIdinAddress() *NetherlandsIdinAddress {
-	this := NetherlandsIdinAddress{}
-	return &this
-}
 
 // NewNetherlandsIdinAddressWithDefaults instantiates a new NetherlandsIdinAddress object
 // This constructor will only assign default values to properties that have it defined,

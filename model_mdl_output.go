@@ -19,6 +19,8 @@ var _ MappedNullable = &MdlOutput{}
 
 // MdlOutput struct for MdlOutput
 type MdlOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// Information about the IACA Root Certificate which signed (directly or indirectly) the Document Signer Certificate for this mDoc.
 	IacaRootCertificate NullableMdlOutputCertificateData `json:"iacaRootCertificate,omitempty"`
 	// Information about the Document Signer Certificate which signed the mDoc presented by the individual.
@@ -31,15 +33,6 @@ type MdlOutput struct {
 }
 
 type _MdlOutput MdlOutput
-
-// NewMdlOutput instantiates a new MdlOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewMdlOutput() *MdlOutput {
-	this := MdlOutput{}
-	return &this
-}
 
 // NewMdlOutputWithDefaults instantiates a new MdlOutput object
 // This constructor will only assign default values to properties that have it defined,

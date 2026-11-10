@@ -19,6 +19,8 @@ var _ MappedNullable = &PolandMobywatelMatchProviderOutput{}
 
 // PolandMobywatelMatchProviderOutput Exposed properties for the `poland-mobywatel-match` Provider which do not directly map to the normalized IdentityData model.
 type PolandMobywatelMatchProviderOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// Given name as provided by the individual.
 	GivenName NullableString `json:"givenName,omitempty"`
 	// Current legal family name (nazwisko) as provided by the individual.              In Poland the current legal family name (nazwisko) is a separate concept from your birth family name (nazwisko rodowe). They often match, but they can differ after marriage, adoption, or a court-ordered change.
@@ -63,15 +65,6 @@ type PolandMobywatelMatchProviderOutput struct {
 }
 
 type _PolandMobywatelMatchProviderOutput PolandMobywatelMatchProviderOutput
-
-// NewPolandMobywatelMatchProviderOutput instantiates a new PolandMobywatelMatchProviderOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewPolandMobywatelMatchProviderOutput() *PolandMobywatelMatchProviderOutput {
-	this := PolandMobywatelMatchProviderOutput{}
-	return &this
-}
 
 // NewPolandMobywatelMatchProviderOutputWithDefaults instantiates a new PolandMobywatelMatchProviderOutput object
 // This constructor will only assign default values to properties that have it defined,

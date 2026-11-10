@@ -19,6 +19,8 @@ var _ MappedNullable = &ColombiaExpeditionPlace{}
 
 // ColombiaExpeditionPlace Place of expedition (issue) for the Colombia Cédula de Ciudadanía (CC) as recorded by the Registraduría Nacional del Estado Civil (National Civil Registry).              Colombia uses a two-level administrative hierarchy for place of issue: municipality (municipio) within department (departamento).
 type ColombiaExpeditionPlace struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// Municipality (municipio) where the CC was issued.              This is the second-level administrative division in Colombia.
 	Municipality NullableString `json:"municipality,omitempty"`
 	// Department (departamento) where the CC was issued.              This is the first-level administrative division in Colombia.
@@ -27,15 +29,6 @@ type ColombiaExpeditionPlace struct {
 }
 
 type _ColombiaExpeditionPlace ColombiaExpeditionPlace
-
-// NewColombiaExpeditionPlace instantiates a new ColombiaExpeditionPlace object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewColombiaExpeditionPlace() *ColombiaExpeditionPlace {
-	this := ColombiaExpeditionPlace{}
-	return &this
-}
 
 // NewColombiaExpeditionPlaceWithDefaults instantiates a new ColombiaExpeditionPlace object
 // This constructor will only assign default values to properties that have it defined,

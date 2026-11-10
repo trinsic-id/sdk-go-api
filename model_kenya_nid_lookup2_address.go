@@ -19,6 +19,8 @@ var _ MappedNullable = &KenyaNidLookup2Address{}
 
 // KenyaNidLookup2Address Represents a Kenya address as stored in the IPRS (Integrated Population Registration System) database.              The structure reflects the pre-2010 provincial administration system: District > Division > Location. Since the 2010 constitutional change to counties, these legacy administrative divisions are still maintained in IPRS records for historical continuity.              The raw address from IPRS is a newline-separated string with labeled administrative components. Example format:              ``` P O BOX 41842 NAIROBI PARLIAMENT BUILDINGS LOCATION - CITY SQUARE DIVISION - CENTRAL DISTRICT - NAIROBI ```              The first lines contain informal address details (village, P.O. Box) while the suffixed lines contain official administrative designations prefixed with labels like \"LOCATION -\", \"DIVISION -\", \"DISTRICT -\".
 type KenyaNidLookup2Address struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The district where the person resides.              This is the highest level of the pre-2010 administrative hierarchy stored in IPRS. Districts were the primary administrative units under Kenya's provincial system before the change to counties in 2010. Districts roughly correspond to sub-counties in the current administrative structure.
 	District NullableString `json:"district,omitempty"`
 	// The division within the district.              This is the second level of the pre-2010 administrative hierarchy. Divisions were administrative units between districts and locations.
@@ -33,15 +35,6 @@ type KenyaNidLookup2Address struct {
 }
 
 type _KenyaNidLookup2Address KenyaNidLookup2Address
-
-// NewKenyaNidLookup2Address instantiates a new KenyaNidLookup2Address object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewKenyaNidLookup2Address() *KenyaNidLookup2Address {
-	this := KenyaNidLookup2Address{}
-	return &this
-}
 
 // NewKenyaNidLookup2AddressWithDefaults instantiates a new KenyaNidLookup2Address object
 // This constructor will only assign default values to properties that have it defined,

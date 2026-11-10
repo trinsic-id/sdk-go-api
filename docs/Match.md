@@ -9,14 +9,11 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewMatch
+### Named construction
 
-`func NewMatch() *Match`
-
-NewMatch instantiates a new Match object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+Use a keyed struct literal (`Match{FieldName: value}`), or call
+`NewMatchWithDefaults()` and set fields by name. Positional field
+factories and unkeyed struct literals are not supported.
 
 ### NewMatchWithDefaults
 

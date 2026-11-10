@@ -19,6 +19,8 @@ var _ MappedNullable = &FinnishTrustNetworkProviderOutput{}
 
 // FinnishTrustNetworkProviderOutput Exposed properties for the `finnish-trust-network` Provider which do not directly map to the normalized IdentityData model.
 type FinnishTrustNetworkProviderOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The full name of the individual.
 	FullName NullableString `json:"fullName,omitempty"`
 	// The date of birth of the individual.
@@ -37,6 +39,8 @@ type FinnishTrustNetworkProviderOutput struct {
 	Bank NullableString `json:"bank,omitempty"`
 	// The phone number of the verified individual.              This is only returned if the individual authenticated with MobileID (Mobiilivarmenne).
 	PhoneNumber NullableString `json:"phoneNumber,omitempty"`
+	// The address of the individual.
+	Address NullableFinnishTrustNetworkAddressOutput `json:"address,omitempty"`
 	// The organization name that the individual is associated with.              This is returned for requests that contain the organization scope.
 	OrganizationName NullableString `json:"organizationName,omitempty"`
 	// The VAT number of the organization that the individual is associated with.              This is returned for requests that contain the organization scope.
@@ -45,15 +49,6 @@ type FinnishTrustNetworkProviderOutput struct {
 }
 
 type _FinnishTrustNetworkProviderOutput FinnishTrustNetworkProviderOutput
-
-// NewFinnishTrustNetworkProviderOutput instantiates a new FinnishTrustNetworkProviderOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewFinnishTrustNetworkProviderOutput() *FinnishTrustNetworkProviderOutput {
-	this := FinnishTrustNetworkProviderOutput{}
-	return &this
-}
 
 // NewFinnishTrustNetworkProviderOutputWithDefaults instantiates a new FinnishTrustNetworkProviderOutput object
 // This constructor will only assign default values to properties that have it defined,
@@ -441,6 +436,48 @@ func (o *FinnishTrustNetworkProviderOutput) UnsetPhoneNumber() {
 	o.PhoneNumber.Unset()
 }
 
+// GetAddress returns the Address field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *FinnishTrustNetworkProviderOutput) GetAddress() FinnishTrustNetworkAddressOutput {
+	if o == nil || IsNil(o.Address.Get()) {
+		var ret FinnishTrustNetworkAddressOutput
+		return ret
+	}
+	return *o.Address.Get()
+}
+
+// GetAddressOk returns a tuple with the Address field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *FinnishTrustNetworkProviderOutput) GetAddressOk() (*FinnishTrustNetworkAddressOutput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Address.Get(), o.Address.IsSet()
+}
+
+// HasAddress returns a boolean if a field has been set.
+func (o *FinnishTrustNetworkProviderOutput) HasAddress() bool {
+	if o != nil && o.Address.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAddress gets a reference to the given NullableFinnishTrustNetworkAddressOutput and assigns it to the Address field.
+func (o *FinnishTrustNetworkProviderOutput) SetAddress(v FinnishTrustNetworkAddressOutput) {
+	o.Address.Set(&v)
+}
+// SetAddressNil sets the value for Address to be an explicit nil
+func (o *FinnishTrustNetworkProviderOutput) SetAddressNil() {
+	o.Address.Set(nil)
+}
+
+// UnsetAddress ensures that no value is present for Address, not even an explicit nil
+func (o *FinnishTrustNetworkProviderOutput) UnsetAddress() {
+	o.Address.Unset()
+}
+
 // GetOrganizationName returns the OrganizationName field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *FinnishTrustNetworkProviderOutput) GetOrganizationName() string {
 	if o == nil || IsNil(o.OrganizationName.Get()) {
@@ -562,6 +599,9 @@ func (o FinnishTrustNetworkProviderOutput) ToMap() (map[string]interface{}, erro
 	if o.PhoneNumber.IsSet() {
 		toSerialize["phoneNumber"] = o.PhoneNumber.Get()
 	}
+	if o.Address.IsSet() {
+		toSerialize["address"] = o.Address.Get()
+	}
 	if o.OrganizationName.IsSet() {
 		toSerialize["organizationName"] = o.OrganizationName.Get()
 	}
@@ -599,6 +639,7 @@ func (o *FinnishTrustNetworkProviderOutput) UnmarshalJSON(data []byte) (err erro
 		delete(additionalProperties, "levelOfAssurance")
 		delete(additionalProperties, "bank")
 		delete(additionalProperties, "phoneNumber")
+		delete(additionalProperties, "address")
 		delete(additionalProperties, "organizationName")
 		delete(additionalProperties, "vatNumber")
 		o.AdditionalProperties = additionalProperties

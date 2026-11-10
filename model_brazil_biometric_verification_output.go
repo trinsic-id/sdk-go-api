@@ -19,6 +19,8 @@ var _ MappedNullable = &BrazilBiometricVerificationOutput{}
 
 // BrazilBiometricVerificationOutput struct for BrazilBiometricVerificationOutput
 type BrazilBiometricVerificationOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The probability of the selfie verification being successful.              Possible values: - VeryLow - Low - High - VeryHigh
 	SelfieVerificationProbability NullableString `json:"selfieVerificationProbability,omitempty"`
 	// The outcome of the selfie verification.              Possible values: - Real - Fake - BadQuality
@@ -31,15 +33,6 @@ type BrazilBiometricVerificationOutput struct {
 }
 
 type _BrazilBiometricVerificationOutput BrazilBiometricVerificationOutput
-
-// NewBrazilBiometricVerificationOutput instantiates a new BrazilBiometricVerificationOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewBrazilBiometricVerificationOutput() *BrazilBiometricVerificationOutput {
-	this := BrazilBiometricVerificationOutput{}
-	return &this
-}
 
 // NewBrazilBiometricVerificationOutputWithDefaults instantiates a new BrazilBiometricVerificationOutput object
 // This constructor will only assign default values to properties that have it defined,

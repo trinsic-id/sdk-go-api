@@ -19,6 +19,8 @@ var _ MappedNullable = &PhilippinesPhysicalNidProviderOutput{}
 
 // PhilippinesPhysicalNidProviderOutput Exposed properties for the `philippines-physical-national-id-qr` Provider which do not directly map to the normalized IdentityData model.
 type PhilippinesPhysicalNidProviderOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The PhilSys Card Number (PCN). Every citizen or resident alien registered in PhilSys has a PhilSys Number (PSN). This number is tokenized into a card number to protect the PSN. The PhilSys Card Number is 12 characters long, and often is written in octets with dashes in between.
 	PhilsysCardNumber NullableString `json:"philsysCardNumber,omitempty"`
 	// The given (first) name of the individual.
@@ -41,15 +43,6 @@ type PhilippinesPhysicalNidProviderOutput struct {
 }
 
 type _PhilippinesPhysicalNidProviderOutput PhilippinesPhysicalNidProviderOutput
-
-// NewPhilippinesPhysicalNidProviderOutput instantiates a new PhilippinesPhysicalNidProviderOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewPhilippinesPhysicalNidProviderOutput() *PhilippinesPhysicalNidProviderOutput {
-	this := PhilippinesPhysicalNidProviderOutput{}
-	return &this
-}
 
 // NewPhilippinesPhysicalNidProviderOutputWithDefaults instantiates a new PhilippinesPhysicalNidProviderOutput object
 // This constructor will only assign default values to properties that have it defined,

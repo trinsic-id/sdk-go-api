@@ -19,6 +19,8 @@ var _ MappedNullable = &ElSalvadorDuiLookupInput{}
 
 // ElSalvadorDuiLookupInput struct for ElSalvadorDuiLookupInput
 type ElSalvadorDuiLookupInput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The DUI (Documento Único de Identidad) number for the holder.              Nine numeric digits after sanitization. Commonly printed as ########-# (hyphen before the final digit). The input will automatically be sanitized of dots, hyphens, spaces, or other non-alphanumeric characters before lookup.              The ninth digit is a check digit. This is not publicly documented by the Salvadoran government, but the algorithm is available in the public domain for those who seek it.
 	DocumentNumber NullableString `json:"documentNumber,omitempty"`
 	// The DUI holder's date of birth. Required to match the correct person in official records.
@@ -27,15 +29,6 @@ type ElSalvadorDuiLookupInput struct {
 }
 
 type _ElSalvadorDuiLookupInput ElSalvadorDuiLookupInput
-
-// NewElSalvadorDuiLookupInput instantiates a new ElSalvadorDuiLookupInput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewElSalvadorDuiLookupInput() *ElSalvadorDuiLookupInput {
-	this := ElSalvadorDuiLookupInput{}
-	return &this
-}
 
 // NewElSalvadorDuiLookupInputWithDefaults instantiates a new ElSalvadorDuiLookupInput object
 // This constructor will only assign default values to properties that have it defined,

@@ -9,14 +9,11 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewIndiaDigilockerAadhaarMatchProviderOutput
+### Named construction
 
-`func NewIndiaDigilockerAadhaarMatchProviderOutput() *IndiaDigilockerAadhaarMatchProviderOutput`
-
-NewIndiaDigilockerAadhaarMatchProviderOutput instantiates a new IndiaDigilockerAadhaarMatchProviderOutput object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+Use a keyed struct literal (`IndiaDigilockerAadhaarMatchProviderOutput{FieldName: value}`), or call
+`NewIndiaDigilockerAadhaarMatchProviderOutputWithDefaults()` and set fields by name. Positional field
+factories and unkeyed struct literals are not supported.
 
 ### NewIndiaDigilockerAadhaarMatchProviderOutputWithDefaults
 

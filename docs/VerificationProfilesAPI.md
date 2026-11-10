@@ -235,7 +235,7 @@ Name | Type | Description  | Notes
 
 ## ListVerificationProfiles
 
-> ListVerificationProfilesResponse ListVerificationProfiles(ctx).Page(page).PageSize(pageSize).Execute()
+> ListVerificationProfilesResponse ListVerificationProfiles(ctx).Page(page).PageSize(pageSize).Geography(geography).Execute()
 
 List Verification Profiles
 
@@ -256,10 +256,11 @@ import (
 func main() {
 	page := int32(56) // int32 |  (optional) (default to 1)
 	pageSize := int32(56) // int32 | Size of the list to be returned. Accepted range from 1 to 100 (optional) (default to 20)
+	geography := "geography_example" // string | Filter by data-residency geography. Accepted values: \"US\", \"EU\" (case-insensitive). Omit to include all geographies. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.VerificationProfilesAPI.ListVerificationProfiles(context.Background()).Page(page).PageSize(pageSize).Execute()
+	resp, r, err := apiClient.VerificationProfilesAPI.ListVerificationProfiles(context.Background()).Page(page).PageSize(pageSize).Geography(geography).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `VerificationProfilesAPI.ListVerificationProfiles``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -282,6 +283,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **page** | **int32** |  | [default to 1]
  **pageSize** | **int32** | Size of the list to be returned. Accepted range from 1 to 100 | [default to 20]
+ **geography** | **string** | Filter by data-residency geography. Accepted values: \&quot;US\&quot;, \&quot;EU\&quot; (case-insensitive). Omit to include all geographies. | 
 
 ### Return type
 

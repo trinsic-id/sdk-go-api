@@ -19,6 +19,8 @@ var _ MappedNullable = &KenyaNidLookup3ProviderOutput{}
 
 // KenyaNidLookup3ProviderOutput Exposed properties for the `kenya-nid-lookup-3` Provider which do not directly map to the normalized IdentityData model.
 type KenyaNidLookup3ProviderOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The Kenya National ID Number (Nambari ya Kitambulisho) or Unique Personal Identifier (Maisha Namba).              This is the primary unique identifier for Kenyan citizens in all government systems, issued by the National Registration Bureau (NRB). The format is either 8 digits for National ID or 9 digits for Maisha Namba UPI (the new format since 2023).
 	IdNumber NullableString `json:"idNumber,omitempty"`
 	// The first name of the individual.
@@ -39,15 +41,6 @@ type KenyaNidLookup3ProviderOutput struct {
 }
 
 type _KenyaNidLookup3ProviderOutput KenyaNidLookup3ProviderOutput
-
-// NewKenyaNidLookup3ProviderOutput instantiates a new KenyaNidLookup3ProviderOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewKenyaNidLookup3ProviderOutput() *KenyaNidLookup3ProviderOutput {
-	this := KenyaNidLookup3ProviderOutput{}
-	return &this
-}
 
 // NewKenyaNidLookup3ProviderOutputWithDefaults instantiates a new KenyaNidLookup3ProviderOutput object
 // This constructor will only assign default values to properties that have it defined,

@@ -19,21 +19,14 @@ var _ MappedNullable = &SouthAfricaNidLookup2Input{}
 
 // SouthAfricaNidLookup2Input struct for SouthAfricaNidLookup2Input
 type SouthAfricaNidLookup2Input struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The South African National Identity Number (13 digits).              Issued for life by the Department of Home Affairs (DHA) and stored in the HANIS (Home Affairs National Identification System) database. The same number is mandatory for banking, employment, taxation, and voting, and is printed on both the legacy green ID book and the Smart ID Card (rolled out from 2013 onward).              Format: - YYMMDD G(4) C A Z - YYMMDD is the date of birth - G(4) is the gender code (below 5000 female, 5000 or above male) - C is the citizenship indicator (0 citizen, 1 permanent resident) - A is reserved (it had a politically sensitive meaning in the past, but is currently   semantically meaningless) - Z is a Luhn check digit
 	IdNumber NullableString `json:"idNumber,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
 type _SouthAfricaNidLookup2Input SouthAfricaNidLookup2Input
-
-// NewSouthAfricaNidLookup2Input instantiates a new SouthAfricaNidLookup2Input object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewSouthAfricaNidLookup2Input() *SouthAfricaNidLookup2Input {
-	this := SouthAfricaNidLookup2Input{}
-	return &this
-}
 
 // NewSouthAfricaNidLookup2InputWithDefaults instantiates a new SouthAfricaNidLookup2Input object
 // This constructor will only assign default values to properties that have it defined,

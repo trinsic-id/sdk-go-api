@@ -12,14 +12,11 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewProblemDetails
+### Named construction
 
-`func NewProblemDetails() *ProblemDetails`
-
-NewProblemDetails instantiates a new ProblemDetails object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+Use a keyed struct literal (`ProblemDetails{FieldName: value}`), or call
+`NewProblemDetailsWithDefaults()` and set fields by name. Positional field
+factories and unkeyed struct literals are not supported.
 
 ### NewProblemDetailsWithDefaults
 

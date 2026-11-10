@@ -19,6 +19,8 @@ var _ MappedNullable = &IdemiaMobileIdProviderOutput{}
 
 // IdemiaMobileIdProviderOutput Exposed properties for Idemia Mobile ID Providers which do not directly map to the normalized IdentityData model.
 type IdemiaMobileIdProviderOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The OpenID Connect subject identifier for the verified individual.
 	Sub NullableString `json:"sub,omitempty"`
 	// The individual's name suffix.
@@ -47,10 +49,6 @@ type IdemiaMobileIdProviderOutput struct {
 	ResidentPostalCode NullableString `json:"residentPostalCode,omitempty"`
 	// The individual's resident city.
 	ResidentCity NullableString `json:"residentCity,omitempty"`
-	// The individual's email address.
-	Email NullableString `json:"email,omitempty"`
-	// Whether the individual's email address has been verified.
-	EmailVerified NullableBool `json:"emailVerified,omitempty"`
 	// The individual's document number.
 	DocumentNumber NullableString `json:"documentNumber,omitempty"`
 	// The date the document was issued.
@@ -71,15 +69,6 @@ type IdemiaMobileIdProviderOutput struct {
 }
 
 type _IdemiaMobileIdProviderOutput IdemiaMobileIdProviderOutput
-
-// NewIdemiaMobileIdProviderOutput instantiates a new IdemiaMobileIdProviderOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewIdemiaMobileIdProviderOutput() *IdemiaMobileIdProviderOutput {
-	this := IdemiaMobileIdProviderOutput{}
-	return &this
-}
 
 // NewIdemiaMobileIdProviderOutputWithDefaults instantiates a new IdemiaMobileIdProviderOutput object
 // This constructor will only assign default values to properties that have it defined,
@@ -677,90 +666,6 @@ func (o *IdemiaMobileIdProviderOutput) UnsetResidentCity() {
 	o.ResidentCity.Unset()
 }
 
-// GetEmail returns the Email field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *IdemiaMobileIdProviderOutput) GetEmail() string {
-	if o == nil || IsNil(o.Email.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Email.Get()
-}
-
-// GetEmailOk returns a tuple with the Email field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *IdemiaMobileIdProviderOutput) GetEmailOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Email.Get(), o.Email.IsSet()
-}
-
-// HasEmail returns a boolean if a field has been set.
-func (o *IdemiaMobileIdProviderOutput) HasEmail() bool {
-	if o != nil && o.Email.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetEmail gets a reference to the given NullableString and assigns it to the Email field.
-func (o *IdemiaMobileIdProviderOutput) SetEmail(v string) {
-	o.Email.Set(&v)
-}
-// SetEmailNil sets the value for Email to be an explicit nil
-func (o *IdemiaMobileIdProviderOutput) SetEmailNil() {
-	o.Email.Set(nil)
-}
-
-// UnsetEmail ensures that no value is present for Email, not even an explicit nil
-func (o *IdemiaMobileIdProviderOutput) UnsetEmail() {
-	o.Email.Unset()
-}
-
-// GetEmailVerified returns the EmailVerified field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *IdemiaMobileIdProviderOutput) GetEmailVerified() bool {
-	if o == nil || IsNil(o.EmailVerified.Get()) {
-		var ret bool
-		return ret
-	}
-	return *o.EmailVerified.Get()
-}
-
-// GetEmailVerifiedOk returns a tuple with the EmailVerified field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *IdemiaMobileIdProviderOutput) GetEmailVerifiedOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.EmailVerified.Get(), o.EmailVerified.IsSet()
-}
-
-// HasEmailVerified returns a boolean if a field has been set.
-func (o *IdemiaMobileIdProviderOutput) HasEmailVerified() bool {
-	if o != nil && o.EmailVerified.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetEmailVerified gets a reference to the given NullableBool and assigns it to the EmailVerified field.
-func (o *IdemiaMobileIdProviderOutput) SetEmailVerified(v bool) {
-	o.EmailVerified.Set(&v)
-}
-// SetEmailVerifiedNil sets the value for EmailVerified to be an explicit nil
-func (o *IdemiaMobileIdProviderOutput) SetEmailVerifiedNil() {
-	o.EmailVerified.Set(nil)
-}
-
-// UnsetEmailVerified ensures that no value is present for EmailVerified, not even an explicit nil
-func (o *IdemiaMobileIdProviderOutput) UnsetEmailVerified() {
-	o.EmailVerified.Unset()
-}
-
 // GetDocumentNumber returns the DocumentNumber field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IdemiaMobileIdProviderOutput) GetDocumentNumber() string {
 	if o == nil || IsNil(o.DocumentNumber.Get()) {
@@ -1149,12 +1054,6 @@ func (o IdemiaMobileIdProviderOutput) ToMap() (map[string]interface{}, error) {
 	if o.ResidentCity.IsSet() {
 		toSerialize["residentCity"] = o.ResidentCity.Get()
 	}
-	if o.Email.IsSet() {
-		toSerialize["email"] = o.Email.Get()
-	}
-	if o.EmailVerified.IsSet() {
-		toSerialize["emailVerified"] = o.EmailVerified.Get()
-	}
 	if o.DocumentNumber.IsSet() {
 		toSerialize["documentNumber"] = o.DocumentNumber.Get()
 	}
@@ -1215,8 +1114,6 @@ func (o *IdemiaMobileIdProviderOutput) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "residentCountry")
 		delete(additionalProperties, "residentPostalCode")
 		delete(additionalProperties, "residentCity")
-		delete(additionalProperties, "email")
-		delete(additionalProperties, "emailVerified")
 		delete(additionalProperties, "documentNumber")
 		delete(additionalProperties, "issueDate")
 		delete(additionalProperties, "issuingCountry")

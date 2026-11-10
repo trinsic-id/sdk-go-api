@@ -19,6 +19,8 @@ var _ MappedNullable = &NigeriaNinMatch2PhoneNumberField{}
 
 // NigeriaNinMatch2PhoneNumberField struct for NigeriaNinMatch2PhoneNumberField
 type NigeriaNinMatch2PhoneNumberField struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The phone number as submitted for this check.              Format: - International E.164
 	InputValue NullableString `json:"inputValue,omitempty"`
 	// The outcome of comparing the submitted phone number to the issuer record.              Possible values: - Exact Match - No Match - Not Provided - Not Returned
@@ -27,15 +29,6 @@ type NigeriaNinMatch2PhoneNumberField struct {
 }
 
 type _NigeriaNinMatch2PhoneNumberField NigeriaNinMatch2PhoneNumberField
-
-// NewNigeriaNinMatch2PhoneNumberField instantiates a new NigeriaNinMatch2PhoneNumberField object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewNigeriaNinMatch2PhoneNumberField() *NigeriaNinMatch2PhoneNumberField {
-	this := NigeriaNinMatch2PhoneNumberField{}
-	return &this
-}
 
 // NewNigeriaNinMatch2PhoneNumberFieldWithDefaults instantiates a new NigeriaNinMatch2PhoneNumberField object
 // This constructor will only assign default values to properties that have it defined,

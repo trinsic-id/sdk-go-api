@@ -11,18 +11,15 @@ Name | Type | Description | Notes
 **MiddleName** | Pointer to **NullableString** | Middle name of the individual.              NOTE: Only available when PAN status is VALID and the verification is for an individual person. | [optional] 
 **FamilyName** | Pointer to **NullableString** | Family name of the individual.              NOTE: Only available when PAN status is VALID and the verification is for an individual person. | [optional] 
 **DateOfBirth** | Pointer to **NullableString** | Date of birth of the individual.              NOTE: Only available when PAN status is VALID and the verification is for an individual person. | [optional] 
-**PanStatus** | Pointer to **NullableString** | PAN card status from Signzy for the lookup.              Possible values: - VALID - FAKE - DEACTIVATED - DELETED - INVALID - AMALGAMATION - ACQUISITION - DEATH - DISSOLUTION - LIQUIDATED - MERGER - PARTITION - SPLIT - UNDER LIQUIDATION - INOPERATIVE | [optional] 
+**PanStatus** | Pointer to **NullableString** | PAN card status returned by the lookup provider.              Possible values: - VALID - FAKE - DEACTIVATED - DELETED - INVALID - AMALGAMATION - ACQUISITION - DEATH - DISSOLUTION - LIQUIDATED - MERGER - PARTITION - SPLIT - UNDER LIQUIDATION - INOPERATIVE | [optional] 
 
 ## Methods
 
-### NewIndiaPanLookupProviderOutput
+### Named construction
 
-`func NewIndiaPanLookupProviderOutput() *IndiaPanLookupProviderOutput`
-
-NewIndiaPanLookupProviderOutput instantiates a new IndiaPanLookupProviderOutput object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+Use a keyed struct literal (`IndiaPanLookupProviderOutput{FieldName: value}`), or call
+`NewIndiaPanLookupProviderOutputWithDefaults()` and set fields by name. Positional field
+factories and unkeyed struct literals are not supported.
 
 ### NewIndiaPanLookupProviderOutputWithDefaults
 

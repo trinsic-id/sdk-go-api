@@ -19,6 +19,8 @@ var _ MappedNullable = &FrenchNumeriqueNationality{}
 
 // FrenchNumeriqueNationality Nationality information with ISO 3166 alpha-3 code and French label.
 type FrenchNumeriqueNationality struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// ISO 3166 alpha-3 country code.
 	Code NullableString `json:"code,omitempty"`
 	// Nationality label in French.
@@ -27,15 +29,6 @@ type FrenchNumeriqueNationality struct {
 }
 
 type _FrenchNumeriqueNationality FrenchNumeriqueNationality
-
-// NewFrenchNumeriqueNationality instantiates a new FrenchNumeriqueNationality object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewFrenchNumeriqueNationality() *FrenchNumeriqueNationality {
-	this := FrenchNumeriqueNationality{}
-	return &this
-}
 
 // NewFrenchNumeriqueNationalityWithDefaults instantiates a new FrenchNumeriqueNationality object
 // This constructor will only assign default values to properties that have it defined,

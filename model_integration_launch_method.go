@@ -25,6 +25,7 @@ const (
 	INTEGRATIONLAUNCHMETHOD_DEEPLINK_TO_MOBILE IntegrationLaunchMethod = "DeeplinkToMobile"
 	INTEGRATIONLAUNCHMETHOD_SHOW_CONTENT IntegrationLaunchMethod = "ShowContent"
 	INTEGRATIONLAUNCHMETHOD_PERFORM_NATIVE_CHALLENGE IntegrationLaunchMethod = "PerformNativeChallenge"
+	INTEGRATIONLAUNCHMETHOD_UNKNOWN_DEFAULT_OPEN_API IntegrationLaunchMethod = "unknown_default_open_api"
 )
 
 // All allowed values of IntegrationLaunchMethod enum
@@ -34,6 +35,7 @@ var AllowedIntegrationLaunchMethodEnumValues = []IntegrationLaunchMethod{
 	"DeeplinkToMobile",
 	"ShowContent",
 	"PerformNativeChallenge",
+	"unknown_default_open_api",
 }
 
 func (v *IntegrationLaunchMethod) UnmarshalJSON(src []byte) error {
@@ -50,7 +52,8 @@ func (v *IntegrationLaunchMethod) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid IntegrationLaunchMethod", value)
+	*v = INTEGRATIONLAUNCHMETHOD_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewIntegrationLaunchMethodFromValue returns a pointer to a valid IntegrationLaunchMethod

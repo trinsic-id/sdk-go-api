@@ -22,12 +22,14 @@ type SouthAfricaNidMatch2InputSex string
 const (
 	SOUTHAFRICANIDMATCH2INPUTSEX_MALE SouthAfricaNidMatch2InputSex = "Male"
 	SOUTHAFRICANIDMATCH2INPUTSEX_FEMALE SouthAfricaNidMatch2InputSex = "Female"
+	SOUTHAFRICANIDMATCH2INPUTSEX_UNKNOWN_DEFAULT_OPEN_API SouthAfricaNidMatch2InputSex = "unknown_default_open_api"
 )
 
 // All allowed values of SouthAfricaNidMatch2InputSex enum
 var AllowedSouthAfricaNidMatch2InputSexEnumValues = []SouthAfricaNidMatch2InputSex{
 	"Male",
 	"Female",
+	"unknown_default_open_api",
 }
 
 func (v *SouthAfricaNidMatch2InputSex) UnmarshalJSON(src []byte) error {
@@ -44,7 +46,8 @@ func (v *SouthAfricaNidMatch2InputSex) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid SouthAfricaNidMatch2InputSex", value)
+	*v = SOUTHAFRICANIDMATCH2INPUTSEX_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewSouthAfricaNidMatch2InputSexFromValue returns a pointer to a valid SouthAfricaNidMatch2InputSex

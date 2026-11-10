@@ -19,6 +19,8 @@ var _ MappedNullable = &ProviderInput{}
 
 // ProviderInput struct for ProviderInput
 type ProviderInput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// *TEST MODE ONLY.*              Input for the `trinsic-mock-output` provider.
 	TrinsicMockOutput NullableMockOutputProviderInput `json:"trinsic-mock-output,omitempty"`
 	// Input for the `indonesia-nik-lookup` provider
@@ -69,6 +71,8 @@ type ProviderInput struct {
 	BrazilCpfLookup NullableBrazilCpfCheckInput `json:"brazil-cpf-lookup,omitempty"`
 	// Input for the `brazil-digital-cnh` provider
 	BrazilDigitalCnh NullableBrazilDigitalCnhInput `json:"brazil-digital-cnh,omitempty"`
+	// Input for the `jordan-sanad` provider.
+	JordanSanad NullableJordanSanadInput `json:"jordan-sanad,omitempty"`
 	// Input for the `philippines-philsys-match` provider
 	PhilippinesPhilsysMatch NullablePhilippineMatchInput `json:"philippines-philsys-match,omitempty"`
 	// Input for the `philippines-physical-national-id-qr` provider
@@ -81,6 +85,12 @@ type ProviderInput struct {
 	MobileId NullableMobileIdInput `json:"mobile-id,omitempty"`
 	// Input for the `netherlands-idin` provider
 	NetherlandsIdin NullableIdinInput `json:"netherlands-idin,omitempty"`
+	// Input for the `finnish-trust-network` provider.
+	FinnishTrustNetwork NullableFinnishTrustNetworkInput `json:"finnish-trust-network,omitempty"`
+	// Input for the `czech-bank-id` provider.
+	CzechBankId NullableCzechBankIdInput `json:"czech-bank-id,omitempty"`
+	// Input for the `australia-connect-id` provider.
+	AustraliaConnectId NullableConnectIdInput `json:"australia-connect-id,omitempty"`
 	// Input for the `italy-spid` provider
 	ItalySpid NullableSpidInput `json:"italy-spid,omitempty"`
 	// Input for the `google-wallet` provider
@@ -114,6 +124,8 @@ type ProviderInput struct {
 	PeruDniLookup NullablePeruDniLookupInput `json:"peru-dni-lookup,omitempty"`
 	// Input for the `uk-evisa-lookup` provider
 	UkEvisaLookup NullableUkEvisaLookupInput `json:"uk-evisa-lookup,omitempty"`
+	// Input for the `usa-arizona-wallet` provider
+	UsaArizonaWallet NullableUsaArizonaWalletInput `json:"usa-arizona-wallet,omitempty"`
 	// Input for the `usa-california-dmv` provider
 	UsaCaliforniaDmv NullableUsaCaliforniaDmvInput `json:"usa-california-dmv,omitempty"`
 	// *TEST MODE ONLY.*              Input for the `trinsic-test-database-lookup` provider
@@ -124,15 +136,6 @@ type ProviderInput struct {
 }
 
 type _ProviderInput ProviderInput
-
-// NewProviderInput instantiates a new ProviderInput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewProviderInput() *ProviderInput {
-	this := ProviderInput{}
-	return &this
-}
 
 // NewProviderInputWithDefaults instantiates a new ProviderInput object
 // This constructor will only assign default values to properties that have it defined,
@@ -1192,6 +1195,48 @@ func (o *ProviderInput) UnsetBrazilDigitalCnh() {
 	o.BrazilDigitalCnh.Unset()
 }
 
+// GetJordanSanad returns the JordanSanad field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderInput) GetJordanSanad() JordanSanadInput {
+	if o == nil || IsNil(o.JordanSanad.Get()) {
+		var ret JordanSanadInput
+		return ret
+	}
+	return *o.JordanSanad.Get()
+}
+
+// GetJordanSanadOk returns a tuple with the JordanSanad field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderInput) GetJordanSanadOk() (*JordanSanadInput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.JordanSanad.Get(), o.JordanSanad.IsSet()
+}
+
+// HasJordanSanad returns a boolean if a field has been set.
+func (o *ProviderInput) HasJordanSanad() bool {
+	if o != nil && o.JordanSanad.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetJordanSanad gets a reference to the given NullableJordanSanadInput and assigns it to the JordanSanad field.
+func (o *ProviderInput) SetJordanSanad(v JordanSanadInput) {
+	o.JordanSanad.Set(&v)
+}
+// SetJordanSanadNil sets the value for JordanSanad to be an explicit nil
+func (o *ProviderInput) SetJordanSanadNil() {
+	o.JordanSanad.Set(nil)
+}
+
+// UnsetJordanSanad ensures that no value is present for JordanSanad, not even an explicit nil
+func (o *ProviderInput) UnsetJordanSanad() {
+	o.JordanSanad.Unset()
+}
+
 // GetPhilippinesPhilsysMatch returns the PhilippinesPhilsysMatch field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ProviderInput) GetPhilippinesPhilsysMatch() PhilippineMatchInput {
 	if o == nil || IsNil(o.PhilippinesPhilsysMatch.Get()) {
@@ -1442,6 +1487,132 @@ func (o *ProviderInput) SetNetherlandsIdinNil() {
 // UnsetNetherlandsIdin ensures that no value is present for NetherlandsIdin, not even an explicit nil
 func (o *ProviderInput) UnsetNetherlandsIdin() {
 	o.NetherlandsIdin.Unset()
+}
+
+// GetFinnishTrustNetwork returns the FinnishTrustNetwork field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderInput) GetFinnishTrustNetwork() FinnishTrustNetworkInput {
+	if o == nil || IsNil(o.FinnishTrustNetwork.Get()) {
+		var ret FinnishTrustNetworkInput
+		return ret
+	}
+	return *o.FinnishTrustNetwork.Get()
+}
+
+// GetFinnishTrustNetworkOk returns a tuple with the FinnishTrustNetwork field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderInput) GetFinnishTrustNetworkOk() (*FinnishTrustNetworkInput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.FinnishTrustNetwork.Get(), o.FinnishTrustNetwork.IsSet()
+}
+
+// HasFinnishTrustNetwork returns a boolean if a field has been set.
+func (o *ProviderInput) HasFinnishTrustNetwork() bool {
+	if o != nil && o.FinnishTrustNetwork.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetFinnishTrustNetwork gets a reference to the given NullableFinnishTrustNetworkInput and assigns it to the FinnishTrustNetwork field.
+func (o *ProviderInput) SetFinnishTrustNetwork(v FinnishTrustNetworkInput) {
+	o.FinnishTrustNetwork.Set(&v)
+}
+// SetFinnishTrustNetworkNil sets the value for FinnishTrustNetwork to be an explicit nil
+func (o *ProviderInput) SetFinnishTrustNetworkNil() {
+	o.FinnishTrustNetwork.Set(nil)
+}
+
+// UnsetFinnishTrustNetwork ensures that no value is present for FinnishTrustNetwork, not even an explicit nil
+func (o *ProviderInput) UnsetFinnishTrustNetwork() {
+	o.FinnishTrustNetwork.Unset()
+}
+
+// GetCzechBankId returns the CzechBankId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderInput) GetCzechBankId() CzechBankIdInput {
+	if o == nil || IsNil(o.CzechBankId.Get()) {
+		var ret CzechBankIdInput
+		return ret
+	}
+	return *o.CzechBankId.Get()
+}
+
+// GetCzechBankIdOk returns a tuple with the CzechBankId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderInput) GetCzechBankIdOk() (*CzechBankIdInput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CzechBankId.Get(), o.CzechBankId.IsSet()
+}
+
+// HasCzechBankId returns a boolean if a field has been set.
+func (o *ProviderInput) HasCzechBankId() bool {
+	if o != nil && o.CzechBankId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCzechBankId gets a reference to the given NullableCzechBankIdInput and assigns it to the CzechBankId field.
+func (o *ProviderInput) SetCzechBankId(v CzechBankIdInput) {
+	o.CzechBankId.Set(&v)
+}
+// SetCzechBankIdNil sets the value for CzechBankId to be an explicit nil
+func (o *ProviderInput) SetCzechBankIdNil() {
+	o.CzechBankId.Set(nil)
+}
+
+// UnsetCzechBankId ensures that no value is present for CzechBankId, not even an explicit nil
+func (o *ProviderInput) UnsetCzechBankId() {
+	o.CzechBankId.Unset()
+}
+
+// GetAustraliaConnectId returns the AustraliaConnectId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderInput) GetAustraliaConnectId() ConnectIdInput {
+	if o == nil || IsNil(o.AustraliaConnectId.Get()) {
+		var ret ConnectIdInput
+		return ret
+	}
+	return *o.AustraliaConnectId.Get()
+}
+
+// GetAustraliaConnectIdOk returns a tuple with the AustraliaConnectId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderInput) GetAustraliaConnectIdOk() (*ConnectIdInput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.AustraliaConnectId.Get(), o.AustraliaConnectId.IsSet()
+}
+
+// HasAustraliaConnectId returns a boolean if a field has been set.
+func (o *ProviderInput) HasAustraliaConnectId() bool {
+	if o != nil && o.AustraliaConnectId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAustraliaConnectId gets a reference to the given NullableConnectIdInput and assigns it to the AustraliaConnectId field.
+func (o *ProviderInput) SetAustraliaConnectId(v ConnectIdInput) {
+	o.AustraliaConnectId.Set(&v)
+}
+// SetAustraliaConnectIdNil sets the value for AustraliaConnectId to be an explicit nil
+func (o *ProviderInput) SetAustraliaConnectIdNil() {
+	o.AustraliaConnectId.Set(nil)
+}
+
+// UnsetAustraliaConnectId ensures that no value is present for AustraliaConnectId, not even an explicit nil
+func (o *ProviderInput) UnsetAustraliaConnectId() {
+	o.AustraliaConnectId.Unset()
 }
 
 // GetItalySpid returns the ItalySpid field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -2200,6 +2371,48 @@ func (o *ProviderInput) UnsetUkEvisaLookup() {
 	o.UkEvisaLookup.Unset()
 }
 
+// GetUsaArizonaWallet returns the UsaArizonaWallet field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProviderInput) GetUsaArizonaWallet() UsaArizonaWalletInput {
+	if o == nil || IsNil(o.UsaArizonaWallet.Get()) {
+		var ret UsaArizonaWalletInput
+		return ret
+	}
+	return *o.UsaArizonaWallet.Get()
+}
+
+// GetUsaArizonaWalletOk returns a tuple with the UsaArizonaWallet field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProviderInput) GetUsaArizonaWalletOk() (*UsaArizonaWalletInput, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.UsaArizonaWallet.Get(), o.UsaArizonaWallet.IsSet()
+}
+
+// HasUsaArizonaWallet returns a boolean if a field has been set.
+func (o *ProviderInput) HasUsaArizonaWallet() bool {
+	if o != nil && o.UsaArizonaWallet.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetUsaArizonaWallet gets a reference to the given NullableUsaArizonaWalletInput and assigns it to the UsaArizonaWallet field.
+func (o *ProviderInput) SetUsaArizonaWallet(v UsaArizonaWalletInput) {
+	o.UsaArizonaWallet.Set(&v)
+}
+// SetUsaArizonaWalletNil sets the value for UsaArizonaWallet to be an explicit nil
+func (o *ProviderInput) SetUsaArizonaWalletNil() {
+	o.UsaArizonaWallet.Set(nil)
+}
+
+// UnsetUsaArizonaWallet ensures that no value is present for UsaArizonaWallet, not even an explicit nil
+func (o *ProviderInput) UnsetUsaArizonaWallet() {
+	o.UsaArizonaWallet.Unset()
+}
+
 // GetUsaCaliforniaDmv returns the UsaCaliforniaDmv field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ProviderInput) GetUsaCaliforniaDmv() UsaCaliforniaDmvInput {
 	if o == nil || IsNil(o.UsaCaliforniaDmv.Get()) {
@@ -2411,6 +2624,9 @@ func (o ProviderInput) ToMap() (map[string]interface{}, error) {
 	if o.BrazilDigitalCnh.IsSet() {
 		toSerialize["brazil-digital-cnh"] = o.BrazilDigitalCnh.Get()
 	}
+	if o.JordanSanad.IsSet() {
+		toSerialize["jordan-sanad"] = o.JordanSanad.Get()
+	}
 	if o.PhilippinesPhilsysMatch.IsSet() {
 		toSerialize["philippines-philsys-match"] = o.PhilippinesPhilsysMatch.Get()
 	}
@@ -2428,6 +2644,15 @@ func (o ProviderInput) ToMap() (map[string]interface{}, error) {
 	}
 	if o.NetherlandsIdin.IsSet() {
 		toSerialize["netherlands-idin"] = o.NetherlandsIdin.Get()
+	}
+	if o.FinnishTrustNetwork.IsSet() {
+		toSerialize["finnish-trust-network"] = o.FinnishTrustNetwork.Get()
+	}
+	if o.CzechBankId.IsSet() {
+		toSerialize["czech-bank-id"] = o.CzechBankId.Get()
+	}
+	if o.AustraliaConnectId.IsSet() {
+		toSerialize["australia-connect-id"] = o.AustraliaConnectId.Get()
 	}
 	if o.ItalySpid.IsSet() {
 		toSerialize["italy-spid"] = o.ItalySpid.Get()
@@ -2482,6 +2707,9 @@ func (o ProviderInput) ToMap() (map[string]interface{}, error) {
 	}
 	if o.UkEvisaLookup.IsSet() {
 		toSerialize["uk-evisa-lookup"] = o.UkEvisaLookup.Get()
+	}
+	if o.UsaArizonaWallet.IsSet() {
+		toSerialize["usa-arizona-wallet"] = o.UsaArizonaWallet.Get()
 	}
 	if o.UsaCaliforniaDmv.IsSet() {
 		toSerialize["usa-california-dmv"] = o.UsaCaliforniaDmv.Get()
@@ -2539,12 +2767,16 @@ func (o *ProviderInput) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "korea-telco-match")
 		delete(additionalProperties, "brazil-cpf-lookup")
 		delete(additionalProperties, "brazil-digital-cnh")
+		delete(additionalProperties, "jordan-sanad")
 		delete(additionalProperties, "philippines-philsys-match")
 		delete(additionalProperties, "philippines-physical-national-id-qr")
 		delete(additionalProperties, "philippines-digital-national-id-qr")
 		delete(additionalProperties, "smart-id")
 		delete(additionalProperties, "mobile-id")
 		delete(additionalProperties, "netherlands-idin")
+		delete(additionalProperties, "finnish-trust-network")
+		delete(additionalProperties, "czech-bank-id")
+		delete(additionalProperties, "australia-connect-id")
 		delete(additionalProperties, "italy-spid")
 		delete(additionalProperties, "google-wallet")
 		delete(additionalProperties, "apple-wallet")
@@ -2563,6 +2795,7 @@ func (o *ProviderInput) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "panama-cedula-lookup")
 		delete(additionalProperties, "peru-dni-lookup")
 		delete(additionalProperties, "uk-evisa-lookup")
+		delete(additionalProperties, "usa-arizona-wallet")
 		delete(additionalProperties, "usa-california-dmv")
 		delete(additionalProperties, "trinsic-test-database-lookup")
 		delete(additionalProperties, "trinsic-test-sub-providers")

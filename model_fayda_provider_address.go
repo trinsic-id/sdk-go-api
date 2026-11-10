@@ -19,6 +19,8 @@ var _ MappedNullable = &FaydaProviderAddress{}
 
 // FaydaProviderAddress struct for FaydaProviderAddress
 type FaydaProviderAddress struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The region, which is the primary administrative division of the address.              This attribute is only available if registered directly.
 	Region NullableString `json:"region,omitempty"`
 	// The zone, which is the administrative area within the region.              This attribute is only available if registered directly.
@@ -29,15 +31,6 @@ type FaydaProviderAddress struct {
 }
 
 type _FaydaProviderAddress FaydaProviderAddress
-
-// NewFaydaProviderAddress instantiates a new FaydaProviderAddress object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewFaydaProviderAddress() *FaydaProviderAddress {
-	this := FaydaProviderAddress{}
-	return &this
-}
 
 // NewFaydaProviderAddressWithDefaults instantiates a new FaydaProviderAddress object
 // This constructor will only assign default values to properties that have it defined,

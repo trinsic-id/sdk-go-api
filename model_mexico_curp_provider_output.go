@@ -19,6 +19,8 @@ var _ MappedNullable = &MexicoCurpProviderOutput{}
 
 // MexicoCurpProviderOutput Exposed properties for the `mexico-curp-lookup` Provider which do not directly map to the normalized IdentityData model.
 type MexicoCurpProviderOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// First name of the individual.
 	FirstName NullableString `json:"firstName,omitempty"`
 	// The last name of the father of the individual.
@@ -47,15 +49,6 @@ type MexicoCurpProviderOutput struct {
 }
 
 type _MexicoCurpProviderOutput MexicoCurpProviderOutput
-
-// NewMexicoCurpProviderOutput instantiates a new MexicoCurpProviderOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewMexicoCurpProviderOutput() *MexicoCurpProviderOutput {
-	this := MexicoCurpProviderOutput{}
-	return &this
-}
 
 // NewMexicoCurpProviderOutputWithDefaults instantiates a new MexicoCurpProviderOutput object
 // This constructor will only assign default values to properties that have it defined,

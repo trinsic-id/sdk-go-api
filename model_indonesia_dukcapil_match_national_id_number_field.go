@@ -19,6 +19,8 @@ var _ MappedNullable = &IndonesiaDukcapilMatchNationalIdNumberField{}
 
 // IndonesiaDukcapilMatchNationalIdNumberField struct for IndonesiaDukcapilMatchNationalIdNumberField
 type IndonesiaDukcapilMatchNationalIdNumberField struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The NIK (Nomor Induk Kependudukan) submitted for this check.              NIK is Indonesia's unique population identity number, issued by Indonesia's population administration and civil registration authority (Dukcapil) under the Ministry of Home Affairs.              Format: - 16 numeric digits. - Digits 1-2 are the province code. - Digits 3-4 are the regency or city code within that province. - Digits 5-6 are the district code within that regency or city. - Digits 7-12 encode date of birth as DDMMYY. For female NIK holders, the day is increased by 40. - Digits 13-16 are an issuance serial number.
 	InputValue NullableString `json:"inputValue,omitempty"`
 	// The provider assessment result for the submitted NIK.              Local integration code expects the provider to return 0 or 1 for this assessment.
@@ -27,15 +29,6 @@ type IndonesiaDukcapilMatchNationalIdNumberField struct {
 }
 
 type _IndonesiaDukcapilMatchNationalIdNumberField IndonesiaDukcapilMatchNationalIdNumberField
-
-// NewIndonesiaDukcapilMatchNationalIdNumberField instantiates a new IndonesiaDukcapilMatchNationalIdNumberField object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewIndonesiaDukcapilMatchNationalIdNumberField() *IndonesiaDukcapilMatchNationalIdNumberField {
-	this := IndonesiaDukcapilMatchNationalIdNumberField{}
-	return &this
-}
 
 // NewIndonesiaDukcapilMatchNationalIdNumberFieldWithDefaults instantiates a new IndonesiaDukcapilMatchNationalIdNumberField object
 // This constructor will only assign default values to properties that have it defined,

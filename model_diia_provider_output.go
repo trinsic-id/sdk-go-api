@@ -19,6 +19,8 @@ var _ MappedNullable = &DiiaProviderOutput{}
 
 // DiiaProviderOutput Exposed properties for the `ukraine-diia` Provider which do not directly map to the normalized IdentityData model.
 type DiiaProviderOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// Diia.Signature user data.
 	Subject NullableDiiaSubjectOutput `json:"subject,omitempty"`
 	// Diia.Signature issuer data.
@@ -27,15 +29,6 @@ type DiiaProviderOutput struct {
 }
 
 type _DiiaProviderOutput DiiaProviderOutput
-
-// NewDiiaProviderOutput instantiates a new DiiaProviderOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewDiiaProviderOutput() *DiiaProviderOutput {
-	this := DiiaProviderOutput{}
-	return &this
-}
 
 // NewDiiaProviderOutputWithDefaults instantiates a new DiiaProviderOutput object
 // This constructor will only assign default values to properties that have it defined,

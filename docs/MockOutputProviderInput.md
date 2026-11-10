@@ -8,14 +8,11 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewMockOutputProviderInput
+### Named construction
 
-`func NewMockOutputProviderInput() *MockOutputProviderInput`
-
-NewMockOutputProviderInput instantiates a new MockOutputProviderInput object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+Use a keyed struct literal (`MockOutputProviderInput{FieldName: value}`), or call
+`NewMockOutputProviderInputWithDefaults()` and set fields by name. Positional field
+factories and unkeyed struct literals are not supported.
 
 ### NewMockOutputProviderInputWithDefaults
 

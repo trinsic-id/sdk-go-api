@@ -19,6 +19,8 @@ var _ MappedNullable = &YotiDocumentDetails{}
 
 // YotiDocumentDetails struct for YotiDocumentDetails
 type YotiDocumentDetails struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The type of document used to create the Yoti credential.              Possible values: - PASSPORT: A government-issued identity document - DRIVING_LICENCE: A government-issued identity card - NATIONAL_ID: A government-issued identity card - PASS_CARD: A physical or digital identity card that is accredited by the UK's national Proof of Age Standards Scheme (PASS)
 	Type NullableString `json:"type,omitempty"`
 	// The issuing country's ISO alpha-3 code
@@ -33,15 +35,6 @@ type YotiDocumentDetails struct {
 }
 
 type _YotiDocumentDetails YotiDocumentDetails
-
-// NewYotiDocumentDetails instantiates a new YotiDocumentDetails object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewYotiDocumentDetails() *YotiDocumentDetails {
-	this := YotiDocumentDetails{}
-	return &this
-}
 
 // NewYotiDocumentDetailsWithDefaults instantiates a new YotiDocumentDetails object
 // This constructor will only assign default values to properties that have it defined,

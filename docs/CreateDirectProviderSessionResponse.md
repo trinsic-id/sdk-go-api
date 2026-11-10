@@ -10,14 +10,11 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewCreateDirectProviderSessionResponse
+### Named construction
 
-`func NewCreateDirectProviderSessionResponse(sessionId string, resultCollection ResultCollection, nextStep IntegrationStep, ) *CreateDirectProviderSessionResponse`
-
-NewCreateDirectProviderSessionResponse instantiates a new CreateDirectProviderSessionResponse object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+Use a keyed struct literal (`CreateDirectProviderSessionResponse{FieldName: value}`), or call
+`NewCreateDirectProviderSessionResponseWithDefaults()` and set fields by name. Positional field
+factories and unkeyed struct literals are not supported.
 
 ### NewCreateDirectProviderSessionResponseWithDefaults
 

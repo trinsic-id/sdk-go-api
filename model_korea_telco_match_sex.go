@@ -22,12 +22,14 @@ type KoreaTelcoMatchSex string
 const (
 	KOREATELCOMATCHSEX_MALE KoreaTelcoMatchSex = "Male"
 	KOREATELCOMATCHSEX_FEMALE KoreaTelcoMatchSex = "Female"
+	KOREATELCOMATCHSEX_UNKNOWN_DEFAULT_OPEN_API KoreaTelcoMatchSex = "unknown_default_open_api"
 )
 
 // All allowed values of KoreaTelcoMatchSex enum
 var AllowedKoreaTelcoMatchSexEnumValues = []KoreaTelcoMatchSex{
 	"Male",
 	"Female",
+	"unknown_default_open_api",
 }
 
 func (v *KoreaTelcoMatchSex) UnmarshalJSON(src []byte) error {
@@ -44,7 +46,8 @@ func (v *KoreaTelcoMatchSex) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid KoreaTelcoMatchSex", value)
+	*v = KOREATELCOMATCHSEX_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewKoreaTelcoMatchSexFromValue returns a pointer to a valid KoreaTelcoMatchSex

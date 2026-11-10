@@ -19,6 +19,8 @@ var _ MappedNullable = &GoogleWalletProviderOutput{}
 
 // GoogleWalletProviderOutput Exposed properties for the `google-wallet` Provider which do not directly map to the normalized IdentityData model.
 type GoogleWalletProviderOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// A standard 18013-5 Mobile Driver's License credential, retrieved from the individual's wallet.
 	MobileDriversLicense NullableIso180135MobileDriversLicenseCredential `json:"mobileDriversLicense,omitempty"`
 	// A Google Wallet ID Pass credential (`com.google.wallet.idcard.1`), retrieved from the individual's wallet.
@@ -29,15 +31,6 @@ type GoogleWalletProviderOutput struct {
 }
 
 type _GoogleWalletProviderOutput GoogleWalletProviderOutput
-
-// NewGoogleWalletProviderOutput instantiates a new GoogleWalletProviderOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewGoogleWalletProviderOutput() *GoogleWalletProviderOutput {
-	this := GoogleWalletProviderOutput{}
-	return &this
-}
 
 // NewGoogleWalletProviderOutputWithDefaults instantiates a new GoogleWalletProviderOutput object
 // This constructor will only assign default values to properties that have it defined,

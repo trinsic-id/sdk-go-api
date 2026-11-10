@@ -20,6 +20,8 @@ var _ MappedNullable = &IdentityData{}
 
 // IdentityData struct for IdentityData
 type IdentityData struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The ID of the provider from which this data originated (eg \"yoti\", \"clear\")
 	OriginatingProviderId string `json:"originatingProviderId"`
 	// The sub-provider ID of the provider from which this data originated (eg \"rabo\", \"poste-italiane\")              This is applicable only to federated Identity Providers such as SPID and IDIN.
@@ -38,17 +40,6 @@ type IdentityData struct {
 }
 
 type _IdentityData IdentityData
-
-// NewIdentityData instantiates a new IdentityData object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewIdentityData(originatingProviderId string, attachments []AttachmentInfo) *IdentityData {
-	this := IdentityData{}
-	this.OriginatingProviderId = originatingProviderId
-	this.Attachments = attachments
-	return &this
-}
 
 // NewIdentityDataWithDefaults instantiates a new IdentityData object
 // This constructor will only assign default values to properties that have it defined,

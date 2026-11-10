@@ -20,6 +20,8 @@ var _ MappedNullable = &IndonesiaDukcapilMatchProviderOutput{}
 
 // IndonesiaDukcapilMatchProviderOutput Exposed properties for the `indonesia-dukcapil-match` Provider which do not directly map to the normalized IdentityData model.
 type IndonesiaDukcapilMatchProviderOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// NIK submitted for this Dukcapil match and the assessment result returned for that value.
 	NationalIdNumber NullableIndonesiaDukcapilMatchNationalIdNumberField `json:"nationalIdNumber,omitempty"`
 	// Full name submitted for this Dukcapil match and the assessment result returned for that value.
@@ -46,15 +48,6 @@ type IndonesiaDukcapilMatchProviderOutput struct {
 }
 
 type _IndonesiaDukcapilMatchProviderOutput IndonesiaDukcapilMatchProviderOutput
-
-// NewIndonesiaDukcapilMatchProviderOutput instantiates a new IndonesiaDukcapilMatchProviderOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewIndonesiaDukcapilMatchProviderOutput() *IndonesiaDukcapilMatchProviderOutput {
-	this := IndonesiaDukcapilMatchProviderOutput{}
-	return &this
-}
 
 // NewIndonesiaDukcapilMatchProviderOutputWithDefaults instantiates a new IndonesiaDukcapilMatchProviderOutput object
 // This constructor will only assign default values to properties that have it defined,

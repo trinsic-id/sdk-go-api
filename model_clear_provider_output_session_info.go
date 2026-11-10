@@ -20,6 +20,8 @@ var _ MappedNullable = &ClearProviderOutputSessionInfo{}
 
 // ClearProviderOutputSessionInfo struct for ClearProviderOutputSessionInfo
 type ClearProviderOutputSessionInfo struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// Location information gathered from the individual's frontend session.
 	Location NullableClearProviderOutputLocationInfo `json:"location,omitempty"`
 	// The browser user agent for this frontend session.
@@ -36,15 +38,6 @@ type ClearProviderOutputSessionInfo struct {
 }
 
 type _ClearProviderOutputSessionInfo ClearProviderOutputSessionInfo
-
-// NewClearProviderOutputSessionInfo instantiates a new ClearProviderOutputSessionInfo object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewClearProviderOutputSessionInfo() *ClearProviderOutputSessionInfo {
-	this := ClearProviderOutputSessionInfo{}
-	return &this
-}
 
 // NewClearProviderOutputSessionInfoWithDefaults instantiates a new ClearProviderOutputSessionInfo object
 // This constructor will only assign default values to properties that have it defined,

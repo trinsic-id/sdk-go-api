@@ -19,6 +19,8 @@ var _ MappedNullable = &Iso180135DrivingPrivilegeCode{}
 
 // Iso180135DrivingPrivilegeCode A single restriction, condition, or special privilege code attached to a driving privilege.
 type Iso180135DrivingPrivilegeCode struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The code identifier.
 	Code NullableString `json:"code,omitempty"`
 	// Optional comparison sign applied to the code's value.
@@ -29,15 +31,6 @@ type Iso180135DrivingPrivilegeCode struct {
 }
 
 type _Iso180135DrivingPrivilegeCode Iso180135DrivingPrivilegeCode
-
-// NewIso180135DrivingPrivilegeCode instantiates a new Iso180135DrivingPrivilegeCode object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewIso180135DrivingPrivilegeCode() *Iso180135DrivingPrivilegeCode {
-	this := Iso180135DrivingPrivilegeCode{}
-	return &this
-}
 
 // NewIso180135DrivingPrivilegeCodeWithDefaults instantiates a new Iso180135DrivingPrivilegeCode object
 // This constructor will only assign default values to properties that have it defined,

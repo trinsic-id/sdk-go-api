@@ -24,6 +24,7 @@ const (
 	MOBILEIDLANGUAGE_EST MobileIdLanguage = "EST"
 	MOBILEIDLANGUAGE_ENG MobileIdLanguage = "ENG"
 	MOBILEIDLANGUAGE_RUS MobileIdLanguage = "RUS"
+	MOBILEIDLANGUAGE_UNKNOWN_DEFAULT_OPEN_API MobileIdLanguage = "unknown_default_open_api"
 )
 
 // All allowed values of MobileIdLanguage enum
@@ -32,6 +33,7 @@ var AllowedMobileIdLanguageEnumValues = []MobileIdLanguage{
 	"EST",
 	"ENG",
 	"RUS",
+	"unknown_default_open_api",
 }
 
 func (v *MobileIdLanguage) UnmarshalJSON(src []byte) error {
@@ -48,7 +50,8 @@ func (v *MobileIdLanguage) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid MobileIdLanguage", value)
+	*v = MOBILEIDLANGUAGE_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewMobileIdLanguageFromValue returns a pointer to a valid MobileIdLanguage

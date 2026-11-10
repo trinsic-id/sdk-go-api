@@ -20,21 +20,13 @@ var _ MappedNullable = &AddRedirectUriRequest{}
 
 // AddRedirectUriRequest struct for AddRedirectUriRequest
 type AddRedirectUriRequest struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	Uri string `json:"uri"`
 	AdditionalProperties map[string]interface{}
 }
 
 type _AddRedirectUriRequest AddRedirectUriRequest
-
-// NewAddRedirectUriRequest instantiates a new AddRedirectUriRequest object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewAddRedirectUriRequest(uri string) *AddRedirectUriRequest {
-	this := AddRedirectUriRequest{}
-	this.Uri = uri
-	return &this
-}
 
 // NewAddRedirectUriRequestWithDefaults instantiates a new AddRedirectUriRequest object
 // This constructor will only assign default values to properties that have it defined,

@@ -19,6 +19,8 @@ var _ MappedNullable = &ElSalvadorDuiProviderOutput{}
 
 // ElSalvadorDuiProviderOutput Exposed properties for the `el-salvador-dui-lookup` Provider which do not directly map to the normalized IdentityData model.
 type ElSalvadorDuiProviderOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// Full name as it appears on the DUI (Documento Único de Identidad), as returned by Verifik from official records administered by the Registro Nacional de las Personas Naturales (RNPN).
 	FullName NullableString `json:"fullName,omitempty"`
 	// The DUI (Documento Único de Identidad) document number as returned by Verifik for the matched record.              Nine numeric digits after sanitization. Commonly printed as ########-# (hyphen before the final digit). The output will be stripped of the hyphen and will preserve leading zeros.              The ninth digit is a check digit. This is not publicly documented by the Salvadoran government, but the algorithm is available in the public domain for those who seek it.
@@ -29,15 +31,6 @@ type ElSalvadorDuiProviderOutput struct {
 }
 
 type _ElSalvadorDuiProviderOutput ElSalvadorDuiProviderOutput
-
-// NewElSalvadorDuiProviderOutput instantiates a new ElSalvadorDuiProviderOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewElSalvadorDuiProviderOutput() *ElSalvadorDuiProviderOutput {
-	this := ElSalvadorDuiProviderOutput{}
-	return &this
-}
 
 // NewElSalvadorDuiProviderOutputWithDefaults instantiates a new ElSalvadorDuiProviderOutput object
 // This constructor will only assign default values to properties that have it defined,

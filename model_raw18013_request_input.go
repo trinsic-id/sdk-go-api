@@ -20,22 +20,14 @@ var _ MappedNullable = &Raw18013RequestInput{}
 
 // Raw18013RequestInput A raw 18013-7 exchange request.              Use this to specify a raw 18013-7 exchange against an arbitrary document type, namespace, and set of fields.
 type Raw18013RequestInput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// A collection of requests for specific document(s), any of which may be used to satisfy the verification.              At least one request must be provided. No more than 10 requests may be provided.
 	DocumentRequests []Raw18013DocumentRequest `json:"documentRequests"`
 	AdditionalProperties map[string]interface{}
 }
 
 type _Raw18013RequestInput Raw18013RequestInput
-
-// NewRaw18013RequestInput instantiates a new Raw18013RequestInput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewRaw18013RequestInput(documentRequests []Raw18013DocumentRequest) *Raw18013RequestInput {
-	this := Raw18013RequestInput{}
-	this.DocumentRequests = documentRequests
-	return &this
-}
 
 // NewRaw18013RequestInputWithDefaults instantiates a new Raw18013RequestInput object
 // This constructor will only assign default values to properties that have it defined,

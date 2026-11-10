@@ -19,6 +19,8 @@ var _ MappedNullable = &ClearProviderOutputHealthInsurance{}
 
 // ClearProviderOutputHealthInsurance struct for ClearProviderOutputHealthInsurance
 type ClearProviderOutputHealthInsurance struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The health insurance payer identifier.
 	PayerId NullableString `json:"payerId,omitempty"`
 	// The health insurance payer name.
@@ -39,15 +41,6 @@ type ClearProviderOutputHealthInsurance struct {
 }
 
 type _ClearProviderOutputHealthInsurance ClearProviderOutputHealthInsurance
-
-// NewClearProviderOutputHealthInsurance instantiates a new ClearProviderOutputHealthInsurance object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewClearProviderOutputHealthInsurance() *ClearProviderOutputHealthInsurance {
-	this := ClearProviderOutputHealthInsurance{}
-	return &this
-}
 
 // NewClearProviderOutputHealthInsuranceWithDefaults instantiates a new ClearProviderOutputHealthInsurance object
 // This constructor will only assign default values to properties that have it defined,

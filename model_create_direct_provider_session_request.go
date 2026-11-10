@@ -20,12 +20,16 @@ var _ MappedNullable = &CreateDirectProviderSessionRequest{}
 
 // CreateDirectProviderSessionRequest struct for CreateDirectProviderSessionRequest
 type CreateDirectProviderSessionRequest struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The ID of the provider to launch
 	Provider string `json:"provider"`
 	// The ID of the Verification Profile to use for this session.
 	VerificationProfileId string `json:"verificationProfileId"`
 	// The Redirect URL to which the user should be sent after the session is complete.              This field is required for providers which employ a redirect-based flow.
 	RedirectUrl NullableString `json:"redirectUrl,omitempty"`
+	// Defaults to `true` if not provided. Controls backwards compatibility behavior.              If `true`, `redirectToken` validation is not required as part of the Session flow. If `false`, `redirectToken` validation is required as a core part of the Session flow; results cannot be fetched without it. (This applies only to `CaptureRedirect` Sessions in Direct mode).              This parameter exists to enable backwards compatibility with existing integrations. In the future, this parameter will be removed and `redirectToken` validation will always be required.              If your integration supports `redirectToken`, you should explicitly set this parameter's value to `false`. Only set this value to `true` if your integration does not support `redirectToken` and you are not yet able to add support.
+	EnableRedirectBackwardsCompatibility bool `json:"enableRedirectBackwardsCompatibility"`
 	// The list of capabilities your integration supports. Capabilities are the core of Trinsic's whitelabel-with-optional-fallback offering.              Most capabilities align with either an `IntegrationLaunchMethod` or an `IntegrationCollectionMethod`. The exception being refresh content to support updating the content of the launch method.              For example, to support a basic redirect-based flow, you must include the `LaunchRedirect` and `CaptureRedirect` capabilities. To support a mobile deeplink / polling flow, you must include the `DeeplinkToMobile` and `PollForResults` capabilities.              If `FallbackToHostedUi` is `true`, Trinsic will automatically fall back to a Trinsic-hosted UI to cover any gaps in your integration's capabilities. If `FallbackToHostedUi` is `false`, gaps in your integration's capabilities will result in an error during Session creation.              Read more on how to integrate at <a href=\"https://docs.trinsic.id/docs/direct-provider-sessions\">the guide on Direct Provider Sessions</a>
 	Capabilities []IntegrationCapability `json:"capabilities"`
 	// Whether the session should fall back to a Trinsic-hosted UI in certain instances.              Specifically, fallback will occur if any of the following are true: - You attempted to launch a provider which requires a capability you did not express support for     - In this case, Trinsic's hosted UI will perform the necessary capability - You attempted to launch a provider which requires input, and the input was either not provided or incomplete     - In this case, Trinsic's hosted UI will collect the necessary input from the user              If fallback occurs, the session's NextStep will always be LaunchBrowser, and the CollectionMethod will always be CaptureRedirect.              If this field is set to `true`, you must also: 1. Set the `RedirectUrl` field to a non-empty value 2. Include the `LaunchBrowser` and `CaptureRedirect` capabilities in the `Capabilities` field
@@ -38,18 +42,6 @@ type CreateDirectProviderSessionRequest struct {
 }
 
 type _CreateDirectProviderSessionRequest CreateDirectProviderSessionRequest
-
-// NewCreateDirectProviderSessionRequest instantiates a new CreateDirectProviderSessionRequest object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewCreateDirectProviderSessionRequest(provider string, verificationProfileId string, capabilities []IntegrationCapability) *CreateDirectProviderSessionRequest {
-	this := CreateDirectProviderSessionRequest{}
-	this.Provider = provider
-	this.VerificationProfileId = verificationProfileId
-	this.Capabilities = capabilities
-	return &this
-}
 
 // NewCreateDirectProviderSessionRequestWithDefaults instantiates a new CreateDirectProviderSessionRequest object
 // This constructor will only assign default values to properties that have it defined,
@@ -147,6 +139,30 @@ func (o *CreateDirectProviderSessionRequest) SetRedirectUrlNil() {
 // UnsetRedirectUrl ensures that no value is present for RedirectUrl, not even an explicit nil
 func (o *CreateDirectProviderSessionRequest) UnsetRedirectUrl() {
 	o.RedirectUrl.Unset()
+}
+
+// GetEnableRedirectBackwardsCompatibility returns the EnableRedirectBackwardsCompatibility field value
+func (o *CreateDirectProviderSessionRequest) GetEnableRedirectBackwardsCompatibility() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.EnableRedirectBackwardsCompatibility
+}
+
+// GetEnableRedirectBackwardsCompatibilityOk returns a tuple with the EnableRedirectBackwardsCompatibility field value
+// and a boolean to check if the value has been set.
+func (o *CreateDirectProviderSessionRequest) GetEnableRedirectBackwardsCompatibilityOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.EnableRedirectBackwardsCompatibility, true
+}
+
+// SetEnableRedirectBackwardsCompatibility sets field value
+func (o *CreateDirectProviderSessionRequest) SetEnableRedirectBackwardsCompatibility(v bool) {
+	o.EnableRedirectBackwardsCompatibility = v
 }
 
 // GetCapabilities returns the Capabilities field value
@@ -305,6 +321,7 @@ func (o CreateDirectProviderSessionRequest) ToMap() (map[string]interface{}, err
 	if o.RedirectUrl.IsSet() {
 		toSerialize["redirectUrl"] = o.RedirectUrl.Get()
 	}
+	toSerialize["enableRedirectBackwardsCompatibility"] = o.EnableRedirectBackwardsCompatibility
 	toSerialize["capabilities"] = o.Capabilities
 	if o.FallbackToHostedUI.IsSet() {
 		toSerialize["fallbackToHostedUI"] = o.FallbackToHostedUI.Get()
@@ -330,6 +347,7 @@ func (o *CreateDirectProviderSessionRequest) UnmarshalJSON(data []byte) (err err
 	requiredProperties := []string{
 		"provider",
 		"verificationProfileId",
+		"enableRedirectBackwardsCompatibility",
 		"capabilities",
 	}
 
@@ -363,6 +381,7 @@ func (o *CreateDirectProviderSessionRequest) UnmarshalJSON(data []byte) (err err
 		delete(additionalProperties, "provider")
 		delete(additionalProperties, "verificationProfileId")
 		delete(additionalProperties, "redirectUrl")
+		delete(additionalProperties, "enableRedirectBackwardsCompatibility")
 		delete(additionalProperties, "capabilities")
 		delete(additionalProperties, "fallbackToHostedUI")
 		delete(additionalProperties, "browserLanguages")

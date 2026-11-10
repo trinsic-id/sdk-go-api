@@ -19,6 +19,8 @@ var _ MappedNullable = &OutputFrejaDocument{}
 
 // OutputFrejaDocument struct for OutputFrejaDocument
 type OutputFrejaDocument struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// Type of document. Possible values are: * \"PASS\": Passport * \"DRILIC\": Driver's License * \"NATID\": National ID * \"IDSIS\": SiS certified ID document * \"TAXID\": Tax Agency ID card * \"OTHERID\": Other IDs
 	Type NullableString `json:"type,omitempty"`
 	// The document serial number. The structure of this number depends on the type and nationality of the document.
@@ -31,15 +33,6 @@ type OutputFrejaDocument struct {
 }
 
 type _OutputFrejaDocument OutputFrejaDocument
-
-// NewOutputFrejaDocument instantiates a new OutputFrejaDocument object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewOutputFrejaDocument() *OutputFrejaDocument {
-	this := OutputFrejaDocument{}
-	return &this
-}
 
 // NewOutputFrejaDocumentWithDefaults instantiates a new OutputFrejaDocument object
 // This constructor will only assign default values to properties that have it defined,

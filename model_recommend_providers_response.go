@@ -20,6 +20,8 @@ var _ MappedNullable = &RecommendProvidersResponse{}
 
 // RecommendProvidersResponse struct for RecommendProvidersResponse
 type RecommendProvidersResponse struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	RecommendedProviders []RecommendProviderInformation `json:"recommendedProviders"`
 	// All Providers available to your Verification Profile which are not in `recommendedProviders`
 	Remainder []RecommendProviderInformation `json:"remainder"`
@@ -27,17 +29,6 @@ type RecommendProvidersResponse struct {
 }
 
 type _RecommendProvidersResponse RecommendProvidersResponse
-
-// NewRecommendProvidersResponse instantiates a new RecommendProvidersResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewRecommendProvidersResponse(recommendedProviders []RecommendProviderInformation, remainder []RecommendProviderInformation) *RecommendProvidersResponse {
-	this := RecommendProvidersResponse{}
-	this.RecommendedProviders = recommendedProviders
-	this.Remainder = remainder
-	return &this
-}
 
 // NewRecommendProvidersResponseWithDefaults instantiates a new RecommendProvidersResponse object
 // This constructor will only assign default values to properties that have it defined,

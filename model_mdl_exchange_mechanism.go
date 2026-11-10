@@ -22,12 +22,14 @@ type MdlExchangeMechanism string
 const (
 	MDLEXCHANGEMECHANISM_NATIVE_APP MdlExchangeMechanism = "NativeApp"
 	MDLEXCHANGEMECHANISM_DIGITAL_CREDENTIALS_API MdlExchangeMechanism = "DigitalCredentialsApi"
+	MDLEXCHANGEMECHANISM_UNKNOWN_DEFAULT_OPEN_API MdlExchangeMechanism = "unknown_default_open_api"
 )
 
 // All allowed values of MdlExchangeMechanism enum
 var AllowedMdlExchangeMechanismEnumValues = []MdlExchangeMechanism{
 	"NativeApp",
 	"DigitalCredentialsApi",
+	"unknown_default_open_api",
 }
 
 func (v *MdlExchangeMechanism) UnmarshalJSON(src []byte) error {
@@ -44,7 +46,8 @@ func (v *MdlExchangeMechanism) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid MdlExchangeMechanism", value)
+	*v = MDLEXCHANGEMECHANISM_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewMdlExchangeMechanismFromValue returns a pointer to a valid MdlExchangeMechanism

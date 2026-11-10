@@ -20,6 +20,8 @@ var _ MappedNullable = &CreateHostedProviderSessionResponse{}
 
 // CreateHostedProviderSessionResponse struct for CreateHostedProviderSessionResponse
 type CreateHostedProviderSessionResponse struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The ID of the newly-created Acceptance Session
 	SessionId string `json:"sessionId"`
 	// The URL that should be used to launch the Hosted Provider Session on your user's device.              Redirect the user's browser to the `LaunchUrl` as a top-level navigation              This URL is sensitive and as such can only be obtained once. If you need to obtain it again, you will need to create a new Acceptance Session.
@@ -30,18 +32,6 @@ type CreateHostedProviderSessionResponse struct {
 }
 
 type _CreateHostedProviderSessionResponse CreateHostedProviderSessionResponse
-
-// NewCreateHostedProviderSessionResponse instantiates a new CreateHostedProviderSessionResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewCreateHostedProviderSessionResponse(sessionId string, launchUrl string, resultsAccessKey string) *CreateHostedProviderSessionResponse {
-	this := CreateHostedProviderSessionResponse{}
-	this.SessionId = sessionId
-	this.LaunchUrl = launchUrl
-	this.ResultsAccessKey = resultsAccessKey
-	return &this
-}
 
 // NewCreateHostedProviderSessionResponseWithDefaults instantiates a new CreateHostedProviderSessionResponse object
 // This constructor will only assign default values to properties that have it defined,

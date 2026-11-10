@@ -19,21 +19,14 @@ var _ MappedNullable = &Iso180132BiometricGroupTemplate{}
 
 // Iso180132BiometricGroupTemplate A group of biometric templates returned for a single biometric category, per ISO 18013-2 Table C.11.
 type Iso180132BiometricGroupTemplate struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// Individual biometric templates contained in this group.
 	Templates []Iso180132BiometricTemplate `json:"templates,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
 type _Iso180132BiometricGroupTemplate Iso180132BiometricGroupTemplate
-
-// NewIso180132BiometricGroupTemplate instantiates a new Iso180132BiometricGroupTemplate object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewIso180132BiometricGroupTemplate() *Iso180132BiometricGroupTemplate {
-	this := Iso180132BiometricGroupTemplate{}
-	return &this
-}
 
 // NewIso180132BiometricGroupTemplateWithDefaults instantiates a new Iso180132BiometricGroupTemplate object
 // This constructor will only assign default values to properties that have it defined,

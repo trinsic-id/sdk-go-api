@@ -19,6 +19,8 @@ var _ MappedNullable = &ClearProviderOutputWatchlistSource{}
 
 // ClearProviderOutputWatchlistSource struct for ClearProviderOutputWatchlistSource
 type ClearProviderOutputWatchlistSource struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The name of the watchlist source.
 	Name NullableString `json:"name,omitempty"`
 	// The summary of the watchlist source.
@@ -29,15 +31,6 @@ type ClearProviderOutputWatchlistSource struct {
 }
 
 type _ClearProviderOutputWatchlistSource ClearProviderOutputWatchlistSource
-
-// NewClearProviderOutputWatchlistSource instantiates a new ClearProviderOutputWatchlistSource object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewClearProviderOutputWatchlistSource() *ClearProviderOutputWatchlistSource {
-	this := ClearProviderOutputWatchlistSource{}
-	return &this
-}
 
 // NewClearProviderOutputWatchlistSourceWithDefaults instantiates a new ClearProviderOutputWatchlistSource object
 // This constructor will only assign default values to properties that have it defined,

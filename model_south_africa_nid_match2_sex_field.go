@@ -19,6 +19,8 @@ var _ MappedNullable = &SouthAfricaNidMatch2SexField{}
 
 // SouthAfricaNidMatch2SexField struct for SouthAfricaNidMatch2SexField
 type SouthAfricaNidMatch2SexField struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The sex value submitted for this check.              Possible input values: - Male - Female
 	InputValue NullableString `json:"inputValue,omitempty"`
 	// The outcome of comparing the submitted sex to the issuer record.              Possible values: - Exact Match - No Match - Not Provided - Not Returned
@@ -27,15 +29,6 @@ type SouthAfricaNidMatch2SexField struct {
 }
 
 type _SouthAfricaNidMatch2SexField SouthAfricaNidMatch2SexField
-
-// NewSouthAfricaNidMatch2SexField instantiates a new SouthAfricaNidMatch2SexField object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewSouthAfricaNidMatch2SexField() *SouthAfricaNidMatch2SexField {
-	this := SouthAfricaNidMatch2SexField{}
-	return &this
-}
 
 // NewSouthAfricaNidMatch2SexFieldWithDefaults instantiates a new SouthAfricaNidMatch2SexField object
 // This constructor will only assign default values to properties that have it defined,

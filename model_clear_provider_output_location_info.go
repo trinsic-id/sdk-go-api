@@ -19,6 +19,8 @@ var _ MappedNullable = &ClearProviderOutputLocationInfo{}
 
 // ClearProviderOutputLocationInfo struct for ClearProviderOutputLocationInfo
 type ClearProviderOutputLocationInfo struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The country name.
 	Country NullableString `json:"country,omitempty"`
 	// The ISO 3166 alpha-2 country code.
@@ -37,15 +39,6 @@ type ClearProviderOutputLocationInfo struct {
 }
 
 type _ClearProviderOutputLocationInfo ClearProviderOutputLocationInfo
-
-// NewClearProviderOutputLocationInfo instantiates a new ClearProviderOutputLocationInfo object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewClearProviderOutputLocationInfo() *ClearProviderOutputLocationInfo {
-	this := ClearProviderOutputLocationInfo{}
-	return &this
-}
 
 // NewClearProviderOutputLocationInfoWithDefaults instantiates a new ClearProviderOutputLocationInfo object
 // This constructor will only assign default values to properties that have it defined,

@@ -16,14 +16,11 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewIndonesiaNikMatch
+### Named construction
 
-`func NewIndonesiaNikMatch() *IndonesiaNikMatch`
-
-NewIndonesiaNikMatch instantiates a new IndonesiaNikMatch object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+Use a keyed struct literal (`IndonesiaNikMatch{FieldName: value}`), or call
+`NewIndonesiaNikMatchWithDefaults()` and set fields by name. Positional field
+factories and unkeyed struct literals are not supported.
 
 ### NewIndonesiaNikMatchWithDefaults
 

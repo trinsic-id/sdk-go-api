@@ -19,6 +19,8 @@ var _ MappedNullable = &MobileIdInput{}
 
 // MobileIdInput struct for MobileIdInput
 type MobileIdInput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The user's phone number in E.164 format
 	MobileIdPhoneNumber NullableString `json:"mobileIdPhoneNumber,omitempty"`
 	// The user's National ID number
@@ -29,15 +31,6 @@ type MobileIdInput struct {
 }
 
 type _MobileIdInput MobileIdInput
-
-// NewMobileIdInput instantiates a new MobileIdInput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewMobileIdInput() *MobileIdInput {
-	this := MobileIdInput{}
-	return &this
-}
 
 // NewMobileIdInputWithDefaults instantiates a new MobileIdInput object
 // This constructor will only assign default values to properties that have it defined,

@@ -19,6 +19,8 @@ var _ MappedNullable = &ClearProviderOutputHistoricalName{}
 
 // ClearProviderOutputHistoricalName struct for ClearProviderOutputHistoricalName
 type ClearProviderOutputHistoricalName struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The historical first name.
 	FirstName NullableString `json:"firstName,omitempty"`
 	// The historical middle name.
@@ -35,15 +37,6 @@ type ClearProviderOutputHistoricalName struct {
 }
 
 type _ClearProviderOutputHistoricalName ClearProviderOutputHistoricalName
-
-// NewClearProviderOutputHistoricalName instantiates a new ClearProviderOutputHistoricalName object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewClearProviderOutputHistoricalName() *ClearProviderOutputHistoricalName {
-	this := ClearProviderOutputHistoricalName{}
-	return &this
-}
 
 // NewClearProviderOutputHistoricalNameWithDefaults instantiates a new ClearProviderOutputHistoricalName object
 // This constructor will only assign default values to properties that have it defined,

@@ -4,21 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CpfNumber** | **string** | The user&#39;s 11-digit, numeric CPF Number | 
-**DateOfBirth** | Pointer to **NullableString** | The user&#39;s date of birth. Optional, but date of birth will become required for lookups starting September 1, 2026. | [optional] 
-**SelfieImage** | Pointer to **NullableString** | The raw bytes of the selfie image collected from the user. | [optional] 
+**CpfNumber** | Pointer to **NullableString** | The user&#39;s 11-digit, numeric CPF Number | [optional] 
+**DateOfBirth** | Pointer to **NullableString** | The user&#39;s date of birth, in &#x60;YYYY-MM-DD&#x60; format. Optional in this request; required to complete CPF lookups. | [optional] 
+**SelfieImage** | Pointer to **NullableString** | The selfie image collected from the user. When using an SDK, this can be a raw byte array. In raw JSON form this is Base64. | [optional] 
 **SelfieImageContentType** | Pointer to **NullableString** | The MIME Type of the file contained in &#x60;SelfieImage&#x60;.              Must be one of &#x60;image/jpeg&#x60; or &#x60;image/png&#x60;. | [optional] 
 
 ## Methods
 
-### NewBrazilCpfCheckInput
+### Named construction
 
-`func NewBrazilCpfCheckInput(cpfNumber string, ) *BrazilCpfCheckInput`
-
-NewBrazilCpfCheckInput instantiates a new BrazilCpfCheckInput object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+Use a keyed struct literal (`BrazilCpfCheckInput{FieldName: value}`), or call
+`NewBrazilCpfCheckInputWithDefaults()` and set fields by name. Positional field
+factories and unkeyed struct literals are not supported.
 
 ### NewBrazilCpfCheckInputWithDefaults
 
@@ -47,7 +44,22 @@ and a boolean to check if the value has been set.
 
 SetCpfNumber sets CpfNumber field to given value.
 
+### HasCpfNumber
 
+`func (o *BrazilCpfCheckInput) HasCpfNumber() bool`
+
+HasCpfNumber returns a boolean if a field has been set.
+
+### SetCpfNumberNil
+
+`func (o *BrazilCpfCheckInput) SetCpfNumberNil(b bool)`
+
+ SetCpfNumberNil sets the value for CpfNumber to be an explicit nil
+
+### UnsetCpfNumber
+`func (o *BrazilCpfCheckInput) UnsetCpfNumber()`
+
+UnsetCpfNumber ensures that no value is present for CpfNumber, not even an explicit nil
 ### GetDateOfBirth
 
 `func (o *BrazilCpfCheckInput) GetDateOfBirth() string`

@@ -20,21 +20,13 @@ var _ MappedNullable = &GetSessionResponse{}
 
 // GetSessionResponse struct for GetSessionResponse
 type GetSessionResponse struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	Session Session `json:"session"`
 	AdditionalProperties map[string]interface{}
 }
 
 type _GetSessionResponse GetSessionResponse
-
-// NewGetSessionResponse instantiates a new GetSessionResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewGetSessionResponse(session Session) *GetSessionResponse {
-	this := GetSessionResponse{}
-	this.Session = session
-	return &this
-}
 
 // NewGetSessionResponseWithDefaults instantiates a new GetSessionResponse object
 // This constructor will only assign default values to properties that have it defined,

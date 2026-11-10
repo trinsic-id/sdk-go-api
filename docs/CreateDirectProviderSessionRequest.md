@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Provider** | **string** | The ID of the provider to launch | 
 **VerificationProfileId** | **string** | The ID of the Verification Profile to use for this session. | 
 **RedirectUrl** | Pointer to **NullableString** | The Redirect URL to which the user should be sent after the session is complete.              This field is required for providers which employ a redirect-based flow. | [optional] 
+**EnableRedirectBackwardsCompatibility** | **bool** | Defaults to &#x60;true&#x60; if not provided. Controls backwards compatibility behavior.              If &#x60;true&#x60;, &#x60;redirectToken&#x60; validation is not required as part of the Session flow. If &#x60;false&#x60;, &#x60;redirectToken&#x60; validation is required as a core part of the Session flow; results cannot be fetched without it. (This applies only to &#x60;CaptureRedirect&#x60; Sessions in Direct mode).              This parameter exists to enable backwards compatibility with existing integrations. In the future, this parameter will be removed and &#x60;redirectToken&#x60; validation will always be required.              If your integration supports &#x60;redirectToken&#x60;, you should explicitly set this parameter&#39;s value to &#x60;false&#x60;. Only set this value to &#x60;true&#x60; if your integration does not support &#x60;redirectToken&#x60; and you are not yet able to add support. | 
 **Capabilities** | [**[]IntegrationCapability**](IntegrationCapability.md) | The list of capabilities your integration supports. Capabilities are the core of Trinsic&#39;s whitelabel-with-optional-fallback offering.              Most capabilities align with either an &#x60;IntegrationLaunchMethod&#x60; or an &#x60;IntegrationCollectionMethod&#x60;. The exception being refresh content to support updating the content of the launch method.              For example, to support a basic redirect-based flow, you must include the &#x60;LaunchRedirect&#x60; and &#x60;CaptureRedirect&#x60; capabilities. To support a mobile deeplink / polling flow, you must include the &#x60;DeeplinkToMobile&#x60; and &#x60;PollForResults&#x60; capabilities.              If &#x60;FallbackToHostedUi&#x60; is &#x60;true&#x60;, Trinsic will automatically fall back to a Trinsic-hosted UI to cover any gaps in your integration&#39;s capabilities. If &#x60;FallbackToHostedUi&#x60; is &#x60;false&#x60;, gaps in your integration&#39;s capabilities will result in an error during Session creation.              Read more on how to integrate at &lt;a href&#x3D;\&quot;https://docs.trinsic.id/docs/direct-provider-sessions\&quot;&gt;the guide on Direct Provider Sessions&lt;/a&gt; | 
 **FallbackToHostedUI** | Pointer to **NullableBool** | Whether the session should fall back to a Trinsic-hosted UI in certain instances.              Specifically, fallback will occur if any of the following are true: - You attempted to launch a provider which requires a capability you did not express support for     - In this case, Trinsic&#39;s hosted UI will perform the necessary capability - You attempted to launch a provider which requires input, and the input was either not provided or incomplete     - In this case, Trinsic&#39;s hosted UI will collect the necessary input from the user              If fallback occurs, the session&#39;s NextStep will always be LaunchBrowser, and the CollectionMethod will always be CaptureRedirect.              If this field is set to &#x60;true&#x60;, you must also: 1. Set the &#x60;RedirectUrl&#x60; field to a non-empty value 2. Include the &#x60;LaunchBrowser&#x60; and &#x60;CaptureRedirect&#x60; capabilities in the &#x60;Capabilities&#x60; field | [optional] 
 **BrowserLanguages** | Pointer to **[]string** | Preferences for languages to show first in supported provider launch flows and, if the session falls back, in the Trinsic-hosted UI. If left empty, the Hosted UI defaults to the user&#39;s navigator languages. If no preferred language is available, the Hosted UI falls back to English. | [optional] 
@@ -14,14 +15,11 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewCreateDirectProviderSessionRequest
+### Named construction
 
-`func NewCreateDirectProviderSessionRequest(provider string, verificationProfileId string, capabilities []IntegrationCapability, ) *CreateDirectProviderSessionRequest`
-
-NewCreateDirectProviderSessionRequest instantiates a new CreateDirectProviderSessionRequest object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+Use a keyed struct literal (`CreateDirectProviderSessionRequest{FieldName: value}`), or call
+`NewCreateDirectProviderSessionRequestWithDefaults()` and set fields by name. Positional field
+factories and unkeyed struct literals are not supported.
 
 ### NewCreateDirectProviderSessionRequestWithDefaults
 
@@ -106,6 +104,26 @@ HasRedirectUrl returns a boolean if a field has been set.
 `func (o *CreateDirectProviderSessionRequest) UnsetRedirectUrl()`
 
 UnsetRedirectUrl ensures that no value is present for RedirectUrl, not even an explicit nil
+### GetEnableRedirectBackwardsCompatibility
+
+`func (o *CreateDirectProviderSessionRequest) GetEnableRedirectBackwardsCompatibility() bool`
+
+GetEnableRedirectBackwardsCompatibility returns the EnableRedirectBackwardsCompatibility field if non-nil, zero value otherwise.
+
+### GetEnableRedirectBackwardsCompatibilityOk
+
+`func (o *CreateDirectProviderSessionRequest) GetEnableRedirectBackwardsCompatibilityOk() (*bool, bool)`
+
+GetEnableRedirectBackwardsCompatibilityOk returns a tuple with the EnableRedirectBackwardsCompatibility field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEnableRedirectBackwardsCompatibility
+
+`func (o *CreateDirectProviderSessionRequest) SetEnableRedirectBackwardsCompatibility(v bool)`
+
+SetEnableRedirectBackwardsCompatibility sets EnableRedirectBackwardsCompatibility field to given value.
+
+
 ### GetCapabilities
 
 `func (o *CreateDirectProviderSessionRequest) GetCapabilities() []IntegrationCapability`

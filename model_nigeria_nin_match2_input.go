@@ -19,6 +19,8 @@ var _ MappedNullable = &NigeriaNinMatch2Input{}
 
 // NigeriaNinMatch2Input struct for NigeriaNinMatch2Input
 type NigeriaNinMatch2Input struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// National Identification Number (NIN).              This is a unique, permanent identifier assigned by the National Identity Management Commission (NIMC) upon enrollment.              Format: - 11 numeric digits - No publicly known encoding scheme is used to encode personal information in the NIN - Last digit is a checksum using the Verhoeff algorithm
 	IdNumber NullableString `json:"idNumber,omitempty"`
 	// The user's first name as it appears in their National ID
@@ -37,15 +39,6 @@ type NigeriaNinMatch2Input struct {
 }
 
 type _NigeriaNinMatch2Input NigeriaNinMatch2Input
-
-// NewNigeriaNinMatch2Input instantiates a new NigeriaNinMatch2Input object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewNigeriaNinMatch2Input() *NigeriaNinMatch2Input {
-	this := NigeriaNinMatch2Input{}
-	return &this
-}
 
 // NewNigeriaNinMatch2InputWithDefaults instantiates a new NigeriaNinMatch2Input object
 // This constructor will only assign default values to properties that have it defined,

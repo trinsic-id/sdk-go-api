@@ -19,6 +19,8 @@ var _ MappedNullable = &AppleWalletDigitalIdCredential{}
 
 // AppleWalletDigitalIdCredential An Apple Wallet Digital ID credential, with document type `org.iso.23220.photoid.1`.              This is a passport-derived digital credential issued by Apple.
 type AppleWalletDigitalIdCredential struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// First name(s), other name(s), or secondary identifier of the individual.              This field uses the full UTF-8 character set and can represent any name.
 	GivenNameUnicode NullableString `json:"givenNameUnicode,omitempty"`
 	// First name(s), other name(s), or secondary identifier of the individual.              This field uses the Latin-1 character set and is limited to names represented by the English alphabet. represented using the English alphabet.
@@ -61,15 +63,6 @@ type AppleWalletDigitalIdCredential struct {
 }
 
 type _AppleWalletDigitalIdCredential AppleWalletDigitalIdCredential
-
-// NewAppleWalletDigitalIdCredential instantiates a new AppleWalletDigitalIdCredential object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewAppleWalletDigitalIdCredential() *AppleWalletDigitalIdCredential {
-	this := AppleWalletDigitalIdCredential{}
-	return &this
-}
 
 // NewAppleWalletDigitalIdCredentialWithDefaults instantiates a new AppleWalletDigitalIdCredential object
 // This constructor will only assign default values to properties that have it defined,

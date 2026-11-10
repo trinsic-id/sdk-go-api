@@ -20,6 +20,8 @@ var _ MappedNullable = &SubmitNativeChallengeResponseRequest{}
 
 // SubmitNativeChallengeResponseRequest struct for SubmitNativeChallengeResponseRequest
 type SubmitNativeChallengeResponseRequest struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The Results Access Key for the Session in question
 	ResultsAccessKey string `json:"resultsAccessKey"`
 	// The response token retrieved from a Trinsic UI SDK's performMdlExchange() call.
@@ -28,17 +30,6 @@ type SubmitNativeChallengeResponseRequest struct {
 }
 
 type _SubmitNativeChallengeResponseRequest SubmitNativeChallengeResponseRequest
-
-// NewSubmitNativeChallengeResponseRequest instantiates a new SubmitNativeChallengeResponseRequest object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewSubmitNativeChallengeResponseRequest(resultsAccessKey string, responseToken string) *SubmitNativeChallengeResponseRequest {
-	this := SubmitNativeChallengeResponseRequest{}
-	this.ResultsAccessKey = resultsAccessKey
-	this.ResponseToken = responseToken
-	return &this
-}
 
 // NewSubmitNativeChallengeResponseRequestWithDefaults instantiates a new SubmitNativeChallengeResponseRequest object
 // This constructor will only assign default values to properties that have it defined,

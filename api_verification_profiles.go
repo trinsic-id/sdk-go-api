@@ -579,6 +579,7 @@ type ApiListVerificationProfilesRequest struct {
 	ApiService *VerificationProfilesAPIService
 	page *int32
 	pageSize *int32
+	geography *string
 }
 
 // 
@@ -590,6 +591,12 @@ func (r ApiListVerificationProfilesRequest) Page(page int32) ApiListVerification
 // Size of the list to be returned. Accepted range from 1 to 100
 func (r ApiListVerificationProfilesRequest) PageSize(pageSize int32) ApiListVerificationProfilesRequest {
 	r.pageSize = &pageSize
+	return r
+}
+
+// Filter by data-residency geography. Accepted values: \&quot;US\&quot;, \&quot;EU\&quot; (case-insensitive). Omit to include all geographies.
+func (r ApiListVerificationProfilesRequest) Geography(geography string) ApiListVerificationProfilesRequest {
+	r.geography = &geography
 	return r
 }
 
@@ -646,6 +653,9 @@ func (a *VerificationProfilesAPIService) ListVerificationProfilesExecute(r ApiLi
 		var defaultValue int32 = 20
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pageSize", defaultValue, "form", "")
 		r.pageSize = &defaultValue
+	}
+	if r.geography != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "geography", r.geography, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

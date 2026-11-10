@@ -19,6 +19,8 @@ var _ MappedNullable = &AadhaarInput{}
 
 // AadhaarInput struct for AadhaarInput
 type AadhaarInput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The user's full name
 	FullName NullableString `json:"fullName,omitempty"`
 	// The user's date of birth, in `YYYY-MM-DD` format
@@ -27,15 +29,6 @@ type AadhaarInput struct {
 }
 
 type _AadhaarInput AadhaarInput
-
-// NewAadhaarInput instantiates a new AadhaarInput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewAadhaarInput() *AadhaarInput {
-	this := AadhaarInput{}
-	return &this
-}
 
 // NewAadhaarInputWithDefaults instantiates a new AadhaarInput object
 // This constructor will only assign default values to properties that have it defined,

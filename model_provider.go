@@ -20,10 +20,14 @@ var _ MappedNullable = &Provider{}
 
 // Provider struct for Provider
 type Provider struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The unique identifier of the provider
 	Id string `json:"id"`
 	// The display name of the provider
 	Name string `json:"name"`
+	// Localized display names for the Provider, if any, keyed by lowercase BCP 47 language codes (eg \"fr\").              If a particular language code is not present, fall back to `name`.              This should not be confused for the list of languages the Provider officially supports.
+	LocalizedDisplayNames map[string]string `json:"localizedDisplayNames,omitempty"`
 	// The URL of the provider's logo
 	LogoUrl string `json:"logoUrl"`
 	// The Provider's subtext recommended to be shown next to the name.              This is flavor text, not a full, human-readable description of the provider.
@@ -66,32 +70,6 @@ type Provider struct {
 }
 
 type _Provider Provider
-
-// NewProvider instantiates a new Provider object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewProvider(id string, name string, logoUrl string, subtext string, regions []string, countries []string, subdivisions []string, licensed bool, launchMethod IntegrationLaunchMethod, collectionMethod ResultCollectionMethod, resultsMayBeDelayedAfterRedirect bool, hasRefreshableContent bool, requiresInput bool, hasTrinsicInterface bool, supportsDirectProviderSessions bool, liveHealth ProviderHealth, testHealth ProviderHealth) *Provider {
-	this := Provider{}
-	this.Id = id
-	this.Name = name
-	this.LogoUrl = logoUrl
-	this.Subtext = subtext
-	this.Regions = regions
-	this.Countries = countries
-	this.Subdivisions = subdivisions
-	this.Licensed = licensed
-	this.LaunchMethod = launchMethod
-	this.CollectionMethod = collectionMethod
-	this.ResultsMayBeDelayedAfterRedirect = resultsMayBeDelayedAfterRedirect
-	this.HasRefreshableContent = hasRefreshableContent
-	this.RequiresInput = requiresInput
-	this.HasTrinsicInterface = hasTrinsicInterface
-	this.SupportsDirectProviderSessions = supportsDirectProviderSessions
-	this.LiveHealth = liveHealth
-	this.TestHealth = testHealth
-	return &this
-}
 
 // NewProviderWithDefaults instantiates a new Provider object
 // This constructor will only assign default values to properties that have it defined,
@@ -147,6 +125,39 @@ func (o *Provider) GetNameOk() (*string, bool) {
 // SetName sets field value
 func (o *Provider) SetName(v string) {
 	o.Name = v
+}
+
+// GetLocalizedDisplayNames returns the LocalizedDisplayNames field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Provider) GetLocalizedDisplayNames() map[string]string {
+	if o == nil {
+		var ret map[string]string
+		return ret
+	}
+	return o.LocalizedDisplayNames
+}
+
+// GetLocalizedDisplayNamesOk returns a tuple with the LocalizedDisplayNames field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Provider) GetLocalizedDisplayNamesOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.LocalizedDisplayNames) {
+		return nil, false
+	}
+	return &o.LocalizedDisplayNames, true
+}
+
+// HasLocalizedDisplayNames returns a boolean if a field has been set.
+func (o *Provider) HasLocalizedDisplayNames() bool {
+	if o != nil && !IsNil(o.LocalizedDisplayNames) {
+		return true
+	}
+
+	return false
+}
+
+// SetLocalizedDisplayNames gets a reference to the given map[string]string and assigns it to the LocalizedDisplayNames field.
+func (o *Provider) SetLocalizedDisplayNames(v map[string]string) {
+	o.LocalizedDisplayNames = v
 }
 
 // GetLogoUrl returns the LogoUrl field value
@@ -653,6 +664,9 @@ func (o Provider) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["id"] = o.Id
 	toSerialize["name"] = o.Name
+	if o.LocalizedDisplayNames != nil {
+		toSerialize["localizedDisplayNames"] = o.LocalizedDisplayNames
+	}
 	toSerialize["logoUrl"] = o.LogoUrl
 	toSerialize["subtext"] = o.Subtext
 	toSerialize["regions"] = o.Regions
@@ -741,6 +755,7 @@ func (o *Provider) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "name")
+		delete(additionalProperties, "localizedDisplayNames")
 		delete(additionalProperties, "logoUrl")
 		delete(additionalProperties, "subtext")
 		delete(additionalProperties, "regions")

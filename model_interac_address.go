@@ -19,6 +19,8 @@ var _ MappedNullable = &InteracAddress{}
 
 // InteracAddress struct for InteracAddress
 type InteracAddress struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The address line or street address.
 	StreetAddress NullableString `json:"streetAddress,omitempty"`
 	// The city or locality.
@@ -33,15 +35,6 @@ type InteracAddress struct {
 }
 
 type _InteracAddress InteracAddress
-
-// NewInteracAddress instantiates a new InteracAddress object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewInteracAddress() *InteracAddress {
-	this := InteracAddress{}
-	return &this
-}
 
 // NewInteracAddressWithDefaults instantiates a new InteracAddress object
 // This constructor will only assign default values to properties that have it defined,

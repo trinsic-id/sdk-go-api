@@ -15,17 +15,15 @@ Name | Type | Description | Notes
 **OrganizationName** | Pointer to **NullableString** | The name of the organization for the verification | [optional] 
 **OrganizationNumber** | Pointer to **NullableString** | The organization number (CVR number). This is an 8-digit unique identifier for the organization. This will be prefixed with \&quot;DK\&quot; for VAT numbers. | [optional] 
 **AuthorizedRepresentativeNumber** | Pointer to **NullableString** | The organization number (CVR number) of the organization the individual is authorized to represent. This is only returned if the requested scope is for an organization verification and the individual provides a private source on behalf of a company. | [optional] 
+**Address** | Pointer to [**NullableMitIdAddressOutput**](MitIdAddressOutput.md) | The individual&#39;s address. | [optional] 
 
 ## Methods
 
-### NewMitIdProviderOutput
+### Named construction
 
-`func NewMitIdProviderOutput() *MitIdProviderOutput`
-
-NewMitIdProviderOutput instantiates a new MitIdProviderOutput object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+Use a keyed struct literal (`MitIdProviderOutput{FieldName: value}`), or call
+`NewMitIdProviderOutputWithDefaults()` and set fields by name. Positional field
+factories and unkeyed struct literals are not supported.
 
 ### NewMitIdProviderOutputWithDefaults
 
@@ -420,6 +418,41 @@ HasAuthorizedRepresentativeNumber returns a boolean if a field has been set.
 `func (o *MitIdProviderOutput) UnsetAuthorizedRepresentativeNumber()`
 
 UnsetAuthorizedRepresentativeNumber ensures that no value is present for AuthorizedRepresentativeNumber, not even an explicit nil
+### GetAddress
+
+`func (o *MitIdProviderOutput) GetAddress() MitIdAddressOutput`
+
+GetAddress returns the Address field if non-nil, zero value otherwise.
+
+### GetAddressOk
+
+`func (o *MitIdProviderOutput) GetAddressOk() (*MitIdAddressOutput, bool)`
+
+GetAddressOk returns a tuple with the Address field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAddress
+
+`func (o *MitIdProviderOutput) SetAddress(v MitIdAddressOutput)`
+
+SetAddress sets Address field to given value.
+
+### HasAddress
+
+`func (o *MitIdProviderOutput) HasAddress() bool`
+
+HasAddress returns a boolean if a field has been set.
+
+### SetAddressNil
+
+`func (o *MitIdProviderOutput) SetAddressNil(b bool)`
+
+ SetAddressNil sets the value for Address to be an explicit nil
+
+### UnsetAddress
+`func (o *MitIdProviderOutput) UnsetAddress()`
+
+UnsetAddress ensures that no value is present for Address, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -19,6 +19,8 @@ var _ MappedNullable = &UgandaNidMatch2SecondaryIdNumberField{}
 
 // UgandaNidMatch2SecondaryIdNumberField struct for UgandaNidMatch2SecondaryIdNumberField
 type UgandaNidMatch2SecondaryIdNumberField struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The card number on the national ID document, distinct from the National ID number.              Format: - 9 numeric digits - There is no publicly documented encoding scheme for encoding personal information in the card number - No check digit or algorithm has been publicly documented by NIRA
 	InputValue NullableString `json:"inputValue,omitempty"`
 	// The outcome of comparing the submitted card number with NIRA database.              Possible values: - Exact Match - No Match - Not Returned
@@ -27,15 +29,6 @@ type UgandaNidMatch2SecondaryIdNumberField struct {
 }
 
 type _UgandaNidMatch2SecondaryIdNumberField UgandaNidMatch2SecondaryIdNumberField
-
-// NewUgandaNidMatch2SecondaryIdNumberField instantiates a new UgandaNidMatch2SecondaryIdNumberField object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewUgandaNidMatch2SecondaryIdNumberField() *UgandaNidMatch2SecondaryIdNumberField {
-	this := UgandaNidMatch2SecondaryIdNumberField{}
-	return &this
-}
 
 // NewUgandaNidMatch2SecondaryIdNumberFieldWithDefaults instantiates a new UgandaNidMatch2SecondaryIdNumberField object
 // This constructor will only assign default values to properties that have it defined,

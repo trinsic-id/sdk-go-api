@@ -19,6 +19,8 @@ var _ MappedNullable = &LatviaEparakstsMobileProviderOutput{}
 
 // LatviaEparakstsMobileProviderOutput Exposed properties for the `a-lv-eparaksts-mobile-login` Provider which do not directly map to the normalized IdentityData model.
 type LatviaEparakstsMobileProviderOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The first name of the verified individual
 	FirstName NullableString `json:"firstName,omitempty"`
 	// The last name of the verified individual
@@ -29,15 +31,6 @@ type LatviaEparakstsMobileProviderOutput struct {
 }
 
 type _LatviaEparakstsMobileProviderOutput LatviaEparakstsMobileProviderOutput
-
-// NewLatviaEparakstsMobileProviderOutput instantiates a new LatviaEparakstsMobileProviderOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewLatviaEparakstsMobileProviderOutput() *LatviaEparakstsMobileProviderOutput {
-	this := LatviaEparakstsMobileProviderOutput{}
-	return &this
-}
 
 // NewLatviaEparakstsMobileProviderOutputWithDefaults instantiates a new LatviaEparakstsMobileProviderOutput object
 // This constructor will only assign default values to properties that have it defined,

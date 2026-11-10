@@ -5,19 +5,16 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **VerificationProfileId** | **string** | The ID of the VerificationProfile to use for this recommendation. | 
-**RecommendationInfo** | Pointer to [**NullableRecommendationInfo**](RecommendationInfo.md) | Information about the user you wish to generate a recommendation for. | [optional] 
+**RecommendationInfo** | Pointer to [**NullableRecommendationInfo**](RecommendationInfo.md) | Information about the user you wish to generate a recommendation for. When no location can be determined from this information, all eligible providers are returned in the remainder. | [optional] 
 **Health** | Pointer to [**NullableRecommendProviderHealthOption**](RecommendProviderHealthOption.md) | Filter providers by health status. | [optional] 
 
 ## Methods
 
-### NewRecommendProvidersRequest
+### Named construction
 
-`func NewRecommendProvidersRequest(verificationProfileId string, ) *RecommendProvidersRequest`
-
-NewRecommendProvidersRequest instantiates a new RecommendProvidersRequest object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+Use a keyed struct literal (`RecommendProvidersRequest{FieldName: value}`), or call
+`NewRecommendProvidersRequestWithDefaults()` and set fields by name. Positional field
+factories and unkeyed struct literals are not supported.
 
 ### NewRecommendProvidersRequestWithDefaults
 

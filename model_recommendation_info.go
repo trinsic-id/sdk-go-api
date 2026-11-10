@@ -19,6 +19,8 @@ var _ MappedNullable = &RecommendationInfo{}
 
 // RecommendationInfo Information relating to a user; used to generated Identity Provider recommendations.
 type RecommendationInfo struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The phone number of the user you wish to generate a recommendation for.              Will be used to look up the user's identity in the network, as well as to determine the user's geographic location.
 	PhoneNumber NullableString `json:"phoneNumber,omitempty"`
 	// A list of countries, in alpha-2 ISO 3166 format, which the user is related to.              This can include the user's country of residence, nationality, etc.
@@ -31,15 +33,6 @@ type RecommendationInfo struct {
 }
 
 type _RecommendationInfo RecommendationInfo
-
-// NewRecommendationInfo instantiates a new RecommendationInfo object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewRecommendationInfo() *RecommendationInfo {
-	this := RecommendationInfo{}
-	return &this
-}
 
 // NewRecommendationInfoWithDefaults instantiates a new RecommendationInfo object
 // This constructor will only assign default values to properties that have it defined,

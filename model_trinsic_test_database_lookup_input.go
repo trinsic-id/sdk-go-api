@@ -19,27 +19,20 @@ var _ MappedNullable = &TrinsicTestDatabaseLookupInput{}
 
 // TrinsicTestDatabaseLookupInput struct for TrinsicTestDatabaseLookupInput
 type TrinsicTestDatabaseLookupInput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The given name to use for the output of the test Session.              This is required; if not provided, Trinsic's Fallback UI will be invoked to collect it from the user.              Can be any non-empty value.
 	GivenName NullableString `json:"givenName,omitempty"`
 	// The family name to use for the output of the test Session.              This is required; if not provided, Trinsic's Fallback UI will be invoked to collect it from the user.              Can be any non-empty value.
 	FamilyName NullableString `json:"familyName,omitempty"`
 	// A 6-digit code; must be \"123456\" for the Session to succeed.              This is required; if not provided, Trinsic's Fallback UI will be invoked to collect it from the user.              Any other value will cause the Session to fail.
 	IdentityCode NullableString `json:"identityCode,omitempty"`
-	// An optional selfie image, base64-encoded.              Will replace the existing test selfie attachment output if provided.
+	// An optional selfie image in a Base64 string.              Will replace the existing test selfie attachment output if provided.
 	SelfieBase64 NullableString `json:"selfieBase64,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
 type _TrinsicTestDatabaseLookupInput TrinsicTestDatabaseLookupInput
-
-// NewTrinsicTestDatabaseLookupInput instantiates a new TrinsicTestDatabaseLookupInput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewTrinsicTestDatabaseLookupInput() *TrinsicTestDatabaseLookupInput {
-	this := TrinsicTestDatabaseLookupInput{}
-	return &this
-}
 
 // NewTrinsicTestDatabaseLookupInputWithDefaults instantiates a new TrinsicTestDatabaseLookupInput object
 // This constructor will only assign default values to properties that have it defined,

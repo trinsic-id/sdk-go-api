@@ -19,6 +19,8 @@ var _ MappedNullable = &PeruDniProviderOutput{}
 
 // PeruDniProviderOutput Exposed properties for the `peru-dni-lookup` Provider which do not directly map to the normalized IdentityData model.
 type PeruDniProviderOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// Information about the general area in which the DNI holder resides.              This field is not always available.
 	Address NullablePeruDniAddress `json:"address,omitempty"`
 	// All names that appear on DNI, as an array of strings.              Format: - All uppercase - Ordered by paternal family name, then maternal family name, then given names.
@@ -55,15 +57,6 @@ type PeruDniProviderOutput struct {
 }
 
 type _PeruDniProviderOutput PeruDniProviderOutput
-
-// NewPeruDniProviderOutput instantiates a new PeruDniProviderOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewPeruDniProviderOutput() *PeruDniProviderOutput {
-	this := PeruDniProviderOutput{}
-	return &this
-}
 
 // NewPeruDniProviderOutputWithDefaults instantiates a new PeruDniProviderOutput object
 // This constructor will only assign default values to properties that have it defined,

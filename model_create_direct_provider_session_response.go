@@ -20,6 +20,8 @@ var _ MappedNullable = &CreateDirectProviderSessionResponse{}
 
 // CreateDirectProviderSessionResponse struct for CreateDirectProviderSessionResponse
 type CreateDirectProviderSessionResponse struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The ID of the newly-created Acceptance Session
 	SessionId string `json:"sessionId"`
 	// The method by which you must collect the results of the Acceptance Session.
@@ -30,18 +32,6 @@ type CreateDirectProviderSessionResponse struct {
 }
 
 type _CreateDirectProviderSessionResponse CreateDirectProviderSessionResponse
-
-// NewCreateDirectProviderSessionResponse instantiates a new CreateDirectProviderSessionResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewCreateDirectProviderSessionResponse(sessionId string, resultCollection ResultCollection, nextStep IntegrationStep) *CreateDirectProviderSessionResponse {
-	this := CreateDirectProviderSessionResponse{}
-	this.SessionId = sessionId
-	this.ResultCollection = resultCollection
-	this.NextStep = nextStep
-	return &this
-}
 
 // NewCreateDirectProviderSessionResponseWithDefaults instantiates a new CreateDirectProviderSessionResponse object
 // This constructor will only assign default values to properties that have it defined,

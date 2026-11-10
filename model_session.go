@@ -20,6 +20,8 @@ var _ MappedNullable = &Session{}
 
 // Session struct for Session
 type Session struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	Id string `json:"id"`
 	// Whether the Session is in a terminal / final state.              If this is `true`, inspect the value of `Success` to determine whether the Session was successful.
 	Done bool `json:"done"`
@@ -35,20 +37,6 @@ type Session struct {
 }
 
 type _Session Session
-
-// NewSession instantiates a new Session object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewSession(id string, done bool, success bool, created int64, updated int64) *Session {
-	this := Session{}
-	this.Id = id
-	this.Done = done
-	this.Success = success
-	this.Created = created
-	this.Updated = updated
-	return &this
-}
 
 // NewSessionWithDefaults instantiates a new Session object
 // This constructor will only assign default values to properties that have it defined,

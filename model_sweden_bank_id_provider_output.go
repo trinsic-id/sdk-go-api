@@ -20,10 +20,16 @@ var _ MappedNullable = &SwedenBankIdProviderOutput{}
 
 // SwedenBankIdProviderOutput Exposed properties for the `sweden-bankid` Provider which do not directly map to the normalized IdentityData model.
 type SwedenBankIdProviderOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The full name of the individual.
 	FullName NullableString `json:"fullName,omitempty"`
-	// The date of birth of the individual.
+	// The individual's date of birth in YYYY-MM-DD format.
 	DateOfBirth NullableString `json:"dateOfBirth,omitempty"`
+	// The individual's sex, derived from the personal identity number. Values are Male or Female.
+	Sex NullableString `json:"sex,omitempty"`
+	// The OpenID Connect sub claim, when returned in the provider response.              The value starts with the se_bankid: prefix followed by the subject identifier.
+	Sub NullableString `json:"sub,omitempty"`
 	// The Swedish personal number (personnummer) associated with the verified individual. The value is typically a 12-digit number. This is in the format YYYYMMDDXXXX, where: - YYYYMMDD is the date of birth. - XXXX is an individual number, indicating gender.              If XXXX is even, the individual is female. If XXXX is odd, the individual is male.
 	PersonalIdentityNumber NullableString `json:"personalIdentityNumber,omitempty"`
 	// The given name of the individual
@@ -50,15 +56,6 @@ type SwedenBankIdProviderOutput struct {
 }
 
 type _SwedenBankIdProviderOutput SwedenBankIdProviderOutput
-
-// NewSwedenBankIdProviderOutput instantiates a new SwedenBankIdProviderOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewSwedenBankIdProviderOutput() *SwedenBankIdProviderOutput {
-	this := SwedenBankIdProviderOutput{}
-	return &this
-}
 
 // NewSwedenBankIdProviderOutputWithDefaults instantiates a new SwedenBankIdProviderOutput object
 // This constructor will only assign default values to properties that have it defined,
@@ -150,6 +147,90 @@ func (o *SwedenBankIdProviderOutput) SetDateOfBirthNil() {
 // UnsetDateOfBirth ensures that no value is present for DateOfBirth, not even an explicit nil
 func (o *SwedenBankIdProviderOutput) UnsetDateOfBirth() {
 	o.DateOfBirth.Unset()
+}
+
+// GetSex returns the Sex field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *SwedenBankIdProviderOutput) GetSex() string {
+	if o == nil || IsNil(o.Sex.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Sex.Get()
+}
+
+// GetSexOk returns a tuple with the Sex field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *SwedenBankIdProviderOutput) GetSexOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Sex.Get(), o.Sex.IsSet()
+}
+
+// HasSex returns a boolean if a field has been set.
+func (o *SwedenBankIdProviderOutput) HasSex() bool {
+	if o != nil && o.Sex.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSex gets a reference to the given NullableString and assigns it to the Sex field.
+func (o *SwedenBankIdProviderOutput) SetSex(v string) {
+	o.Sex.Set(&v)
+}
+// SetSexNil sets the value for Sex to be an explicit nil
+func (o *SwedenBankIdProviderOutput) SetSexNil() {
+	o.Sex.Set(nil)
+}
+
+// UnsetSex ensures that no value is present for Sex, not even an explicit nil
+func (o *SwedenBankIdProviderOutput) UnsetSex() {
+	o.Sex.Unset()
+}
+
+// GetSub returns the Sub field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *SwedenBankIdProviderOutput) GetSub() string {
+	if o == nil || IsNil(o.Sub.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Sub.Get()
+}
+
+// GetSubOk returns a tuple with the Sub field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *SwedenBankIdProviderOutput) GetSubOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Sub.Get(), o.Sub.IsSet()
+}
+
+// HasSub returns a boolean if a field has been set.
+func (o *SwedenBankIdProviderOutput) HasSub() bool {
+	if o != nil && o.Sub.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSub gets a reference to the given NullableString and assigns it to the Sub field.
+func (o *SwedenBankIdProviderOutput) SetSub(v string) {
+	o.Sub.Set(&v)
+}
+// SetSubNil sets the value for Sub to be an explicit nil
+func (o *SwedenBankIdProviderOutput) SetSubNil() {
+	o.Sub.Set(nil)
+}
+
+// UnsetSub ensures that no value is present for Sub, not even an explicit nil
+func (o *SwedenBankIdProviderOutput) UnsetSub() {
+	o.Sub.Unset()
 }
 
 // GetPersonalIdentityNumber returns the PersonalIdentityNumber field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -630,6 +711,12 @@ func (o SwedenBankIdProviderOutput) ToMap() (map[string]interface{}, error) {
 	if o.DateOfBirth.IsSet() {
 		toSerialize["dateOfBirth"] = o.DateOfBirth.Get()
 	}
+	if o.Sex.IsSet() {
+		toSerialize["sex"] = o.Sex.Get()
+	}
+	if o.Sub.IsSet() {
+		toSerialize["sub"] = o.Sub.Get()
+	}
 	if o.PersonalIdentityNumber.IsSet() {
 		toSerialize["personalIdentityNumber"] = o.PersonalIdentityNumber.Get()
 	}
@@ -687,6 +774,8 @@ func (o *SwedenBankIdProviderOutput) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "fullName")
 		delete(additionalProperties, "dateOfBirth")
+		delete(additionalProperties, "sex")
+		delete(additionalProperties, "sub")
 		delete(additionalProperties, "personalIdentityNumber")
 		delete(additionalProperties, "givenName")
 		delete(additionalProperties, "familyName")

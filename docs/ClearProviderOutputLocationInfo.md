@@ -14,14 +14,11 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewClearProviderOutputLocationInfo
+### Named construction
 
-`func NewClearProviderOutputLocationInfo() *ClearProviderOutputLocationInfo`
-
-NewClearProviderOutputLocationInfo instantiates a new ClearProviderOutputLocationInfo object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+Use a keyed struct literal (`ClearProviderOutputLocationInfo{FieldName: value}`), or call
+`NewClearProviderOutputLocationInfoWithDefaults()` and set fields by name. Positional field
+factories and unkeyed struct literals are not supported.
 
 ### NewClearProviderOutputLocationInfoWithDefaults
 

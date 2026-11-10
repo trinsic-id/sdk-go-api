@@ -13,19 +13,17 @@ Name | Type | Description | Notes
 **LevelOfAssurance** | Pointer to **NullableString** | The level of assurance (LOA) for the verification.              The LOA refers to the degree of confidence in the claimed identity of a person. The European Digital Identity Framework (EUDI) measures the confidence of the digital identity&#39;s verification and authentication strength by a set of requirements for different levels. To learn more, see: https://ec.europa.eu/digital-building-blocks/sites/spaces/DIGITAL/pages/467110081/eIDAS+Levels+of+Assurance              Possible values: - Low: The individual has self asserted their identity and multifactor authentication is not required. - Substantial: The individual has performed either a remote or in-person identity verification and multifactor authentication is required. - High: The individual has performed an in-person identity proofing with an authorized representative and has strong cryptographic authentication requirements such as using a smart card. | [optional] 
 **Bank** | Pointer to **NullableString** | The bank used to perform the identification for the verified individual. | [optional] 
 **PhoneNumber** | Pointer to **NullableString** | The phone number of the verified individual.              This is only returned if the individual authenticated with MobileID (Mobiilivarmenne). | [optional] 
+**Address** | Pointer to [**NullableFinnishTrustNetworkAddressOutput**](FinnishTrustNetworkAddressOutput.md) | The address of the individual. | [optional] 
 **OrganizationName** | Pointer to **NullableString** | The organization name that the individual is associated with.              This is returned for requests that contain the organization scope. | [optional] 
 **VatNumber** | Pointer to **NullableString** | The VAT number of the organization that the individual is associated with.              This is returned for requests that contain the organization scope. | [optional] 
 
 ## Methods
 
-### NewFinnishTrustNetworkProviderOutput
+### Named construction
 
-`func NewFinnishTrustNetworkProviderOutput() *FinnishTrustNetworkProviderOutput`
-
-NewFinnishTrustNetworkProviderOutput instantiates a new FinnishTrustNetworkProviderOutput object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+Use a keyed struct literal (`FinnishTrustNetworkProviderOutput{FieldName: value}`), or call
+`NewFinnishTrustNetworkProviderOutputWithDefaults()` and set fields by name. Positional field
+factories and unkeyed struct literals are not supported.
 
 ### NewFinnishTrustNetworkProviderOutputWithDefaults
 
@@ -350,6 +348,41 @@ HasPhoneNumber returns a boolean if a field has been set.
 `func (o *FinnishTrustNetworkProviderOutput) UnsetPhoneNumber()`
 
 UnsetPhoneNumber ensures that no value is present for PhoneNumber, not even an explicit nil
+### GetAddress
+
+`func (o *FinnishTrustNetworkProviderOutput) GetAddress() FinnishTrustNetworkAddressOutput`
+
+GetAddress returns the Address field if non-nil, zero value otherwise.
+
+### GetAddressOk
+
+`func (o *FinnishTrustNetworkProviderOutput) GetAddressOk() (*FinnishTrustNetworkAddressOutput, bool)`
+
+GetAddressOk returns a tuple with the Address field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAddress
+
+`func (o *FinnishTrustNetworkProviderOutput) SetAddress(v FinnishTrustNetworkAddressOutput)`
+
+SetAddress sets Address field to given value.
+
+### HasAddress
+
+`func (o *FinnishTrustNetworkProviderOutput) HasAddress() bool`
+
+HasAddress returns a boolean if a field has been set.
+
+### SetAddressNil
+
+`func (o *FinnishTrustNetworkProviderOutput) SetAddressNil(b bool)`
+
+ SetAddressNil sets the value for Address to be an explicit nil
+
+### UnsetAddress
+`func (o *FinnishTrustNetworkProviderOutput) UnsetAddress()`
+
+UnsetAddress ensures that no value is present for Address, not even an explicit nil
 ### GetOrganizationName
 
 `func (o *FinnishTrustNetworkProviderOutput) GetOrganizationName() string`

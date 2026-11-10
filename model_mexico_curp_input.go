@@ -20,22 +20,14 @@ var _ MappedNullable = &MexicoCurpInput{}
 
 // MexicoCurpInput struct for MexicoCurpInput
 type MexicoCurpInput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The user's CURP number
 	Curp string `json:"curp"`
 	AdditionalProperties map[string]interface{}
 }
 
 type _MexicoCurpInput MexicoCurpInput
-
-// NewMexicoCurpInput instantiates a new MexicoCurpInput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewMexicoCurpInput(curp string) *MexicoCurpInput {
-	this := MexicoCurpInput{}
-	this.Curp = curp
-	return &this
-}
 
 // NewMexicoCurpInputWithDefaults instantiates a new MexicoCurpInput object
 // This constructor will only assign default values to properties that have it defined,

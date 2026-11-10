@@ -19,6 +19,8 @@ var _ MappedNullable = &MoldovaVehicleRegistrationCertificateCredential{}
 
 // MoldovaVehicleRegistrationCertificateCredential A Moldovan Vehicle Registration Certificate credential, with document type `md.gov.wallet.vrc.1`, retrieved from the Moldovan EVO wallet.
 type MoldovaVehicleRegistrationCertificateCredential struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The registered vehicle's plate number.
 	PlateNumber NullableString `json:"plateNumber,omitempty"`
 	// The registered vehicle's IDNV (Numărul de Identificare a Vehiculului), the identifier assigned to the vehicle in the Moldovan State Register of Transport.              This is a Moldovan registry identifier and is distinct from the manufacturer's VIN.
@@ -77,15 +79,6 @@ type MoldovaVehicleRegistrationCertificateCredential struct {
 }
 
 type _MoldovaVehicleRegistrationCertificateCredential MoldovaVehicleRegistrationCertificateCredential
-
-// NewMoldovaVehicleRegistrationCertificateCredential instantiates a new MoldovaVehicleRegistrationCertificateCredential object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewMoldovaVehicleRegistrationCertificateCredential() *MoldovaVehicleRegistrationCertificateCredential {
-	this := MoldovaVehicleRegistrationCertificateCredential{}
-	return &this
-}
 
 // NewMoldovaVehicleRegistrationCertificateCredentialWithDefaults instantiates a new MoldovaVehicleRegistrationCertificateCredential object
 // This constructor will only assign default values to properties that have it defined,

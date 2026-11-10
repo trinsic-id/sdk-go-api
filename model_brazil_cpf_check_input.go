@@ -12,7 +12,6 @@ package trinsic_api
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the BrazilCpfCheckInput type satisfies the MappedNullable interface at compile time
@@ -20,11 +19,13 @@ var _ MappedNullable = &BrazilCpfCheckInput{}
 
 // BrazilCpfCheckInput struct for BrazilCpfCheckInput
 type BrazilCpfCheckInput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The user's 11-digit, numeric CPF Number
-	CpfNumber string `json:"cpfNumber" validate:"regexp=^\\\\d*$"`
-	// The user's date of birth. Optional, but date of birth will become required for lookups starting September 1, 2026.
+	CpfNumber NullableString `json:"cpfNumber,omitempty" validate:"regexp=^\\d*$"`
+	// The user's date of birth, in `YYYY-MM-DD` format. Optional in this request; required to complete CPF lookups.
 	DateOfBirth NullableString `json:"dateOfBirth,omitempty"`
-	// The raw bytes of the selfie image collected from the user.
+	// The selfie image collected from the user. When using an SDK, this can be a raw byte array. In raw JSON form this is Base64.
 	SelfieImage NullableString `json:"selfieImage,omitempty"`
 	// The MIME Type of the file contained in `SelfieImage`.              Must be one of `image/jpeg` or `image/png`.
 	SelfieImageContentType NullableString `json:"selfieImageContentType,omitempty"`
@@ -32,16 +33,6 @@ type BrazilCpfCheckInput struct {
 }
 
 type _BrazilCpfCheckInput BrazilCpfCheckInput
-
-// NewBrazilCpfCheckInput instantiates a new BrazilCpfCheckInput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewBrazilCpfCheckInput(cpfNumber string) *BrazilCpfCheckInput {
-	this := BrazilCpfCheckInput{}
-	this.CpfNumber = cpfNumber
-	return &this
-}
 
 // NewBrazilCpfCheckInputWithDefaults instantiates a new BrazilCpfCheckInput object
 // This constructor will only assign default values to properties that have it defined,
@@ -51,28 +42,46 @@ func NewBrazilCpfCheckInputWithDefaults() *BrazilCpfCheckInput {
 	return &this
 }
 
-// GetCpfNumber returns the CpfNumber field value
+// GetCpfNumber returns the CpfNumber field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *BrazilCpfCheckInput) GetCpfNumber() string {
-	if o == nil {
+	if o == nil || IsNil(o.CpfNumber.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.CpfNumber
+	return *o.CpfNumber.Get()
 }
 
-// GetCpfNumberOk returns a tuple with the CpfNumber field value
+// GetCpfNumberOk returns a tuple with the CpfNumber field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *BrazilCpfCheckInput) GetCpfNumberOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.CpfNumber, true
+	return o.CpfNumber.Get(), o.CpfNumber.IsSet()
 }
 
-// SetCpfNumber sets field value
+// HasCpfNumber returns a boolean if a field has been set.
+func (o *BrazilCpfCheckInput) HasCpfNumber() bool {
+	if o != nil && o.CpfNumber.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCpfNumber gets a reference to the given NullableString and assigns it to the CpfNumber field.
 func (o *BrazilCpfCheckInput) SetCpfNumber(v string) {
-	o.CpfNumber = v
+	o.CpfNumber.Set(&v)
+}
+// SetCpfNumberNil sets the value for CpfNumber to be an explicit nil
+func (o *BrazilCpfCheckInput) SetCpfNumberNil() {
+	o.CpfNumber.Set(nil)
+}
+
+// UnsetCpfNumber ensures that no value is present for CpfNumber, not even an explicit nil
+func (o *BrazilCpfCheckInput) UnsetCpfNumber() {
+	o.CpfNumber.Unset()
 }
 
 // GetDateOfBirth returns the DateOfBirth field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -211,7 +220,9 @@ func (o BrazilCpfCheckInput) MarshalJSON() ([]byte, error) {
 
 func (o BrazilCpfCheckInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["cpfNumber"] = o.CpfNumber
+	if o.CpfNumber.IsSet() {
+		toSerialize["cpfNumber"] = o.CpfNumber.Get()
+	}
 	if o.DateOfBirth.IsSet() {
 		toSerialize["dateOfBirth"] = o.DateOfBirth.Get()
 	}
@@ -230,27 +241,6 @@ func (o BrazilCpfCheckInput) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *BrazilCpfCheckInput) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"cpfNumber",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varBrazilCpfCheckInput := _BrazilCpfCheckInput{}
 
 	err = json.Unmarshal(data, &varBrazilCpfCheckInput)

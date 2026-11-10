@@ -19,6 +19,8 @@ var _ MappedNullable = &AustriaValeraEudiSandboxProviderOutput{}
 
 // AustriaValeraEudiSandboxProviderOutput Exposed properties for the `austria-valera-eudi-sandbox` Provider which do not directly map to the normalized IdentityData model.
 type AustriaValeraEudiSandboxProviderOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// An EUDI Person Identification Data (PID) credential, retrieved from the individual's wallet.
 	Pid NullableEudiPidCredential `json:"pid,omitempty"`
 	// An EUDI Age Verification credential, retrieved from the individual's wallet.
@@ -29,15 +31,6 @@ type AustriaValeraEudiSandboxProviderOutput struct {
 }
 
 type _AustriaValeraEudiSandboxProviderOutput AustriaValeraEudiSandboxProviderOutput
-
-// NewAustriaValeraEudiSandboxProviderOutput instantiates a new AustriaValeraEudiSandboxProviderOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewAustriaValeraEudiSandboxProviderOutput() *AustriaValeraEudiSandboxProviderOutput {
-	this := AustriaValeraEudiSandboxProviderOutput{}
-	return &this
-}
 
 // NewAustriaValeraEudiSandboxProviderOutputWithDefaults instantiates a new AustriaValeraEudiSandboxProviderOutput object
 // This constructor will only assign default values to properties that have it defined,

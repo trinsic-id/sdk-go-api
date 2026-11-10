@@ -29,12 +29,16 @@ Name | Type | Description | Notes
 **KoreaTelcoMatch** | Pointer to [**NullableKoreaTelcoMatchInput**](KoreaTelcoMatchInput.md) | Input for the &#x60;korea-telco-match&#x60; provider | [optional] 
 **BrazilCpfLookup** | Pointer to [**NullableBrazilCpfCheckInput**](BrazilCpfCheckInput.md) | Input for the &#x60;brazil-cpf-lookup&#x60; provider | [optional] 
 **BrazilDigitalCnh** | Pointer to [**NullableBrazilDigitalCnhInput**](BrazilDigitalCnhInput.md) | Input for the &#x60;brazil-digital-cnh&#x60; provider | [optional] 
+**JordanSanad** | Pointer to [**NullableJordanSanadInput**](JordanSanadInput.md) | Input for the &#x60;jordan-sanad&#x60; provider. | [optional] 
 **PhilippinesPhilsysMatch** | Pointer to [**NullablePhilippineMatchInput**](PhilippineMatchInput.md) | Input for the &#x60;philippines-philsys-match&#x60; provider | [optional] 
 **PhilippinesPhysicalNationalIdQr** | Pointer to [**NullablePhilippineQRInput**](PhilippineQRInput.md) | Input for the &#x60;philippines-physical-national-id-qr&#x60; provider | [optional] 
 **PhilippinesDigitalNationalIdQr** | Pointer to [**NullablePhilippineQRInput**](PhilippineQRInput.md) | Input for the &#x60;philippines-digital-national-id-qr&#x60; provider | [optional] 
 **SmartId** | Pointer to [**NullableSmartIdInput**](SmartIdInput.md) | Input for the &#x60;smart-id&#x60; provider | [optional] 
 **MobileId** | Pointer to [**NullableMobileIdInput**](MobileIdInput.md) | Input for the &#x60;mobile-id&#x60; provider | [optional] 
 **NetherlandsIdin** | Pointer to [**NullableIdinInput**](IdinInput.md) | Input for the &#x60;netherlands-idin&#x60; provider | [optional] 
+**FinnishTrustNetwork** | Pointer to [**NullableFinnishTrustNetworkInput**](FinnishTrustNetworkInput.md) | Input for the &#x60;finnish-trust-network&#x60; provider. | [optional] 
+**CzechBankId** | Pointer to [**NullableCzechBankIdInput**](CzechBankIdInput.md) | Input for the &#x60;czech-bank-id&#x60; provider. | [optional] 
+**AustraliaConnectId** | Pointer to [**NullableConnectIdInput**](ConnectIdInput.md) | Input for the &#x60;australia-connect-id&#x60; provider. | [optional] 
 **ItalySpid** | Pointer to [**NullableSpidInput**](SpidInput.md) | Input for the &#x60;italy-spid&#x60; provider | [optional] 
 **GoogleWallet** | Pointer to [**NullableGoogleWalletInput**](GoogleWalletInput.md) | Input for the &#x60;google-wallet&#x60; provider | [optional] 
 **AppleWallet** | Pointer to [**NullableAppleWalletInput**](AppleWalletInput.md) | Input for the &#x60;apple-wallet&#x60; provider | [optional] 
@@ -53,20 +57,18 @@ Name | Type | Description | Notes
 **PanamaCedulaLookup** | Pointer to [**NullablePanamaCedulaLookupInput**](PanamaCedulaLookupInput.md) | Input for the &#x60;panama-cedula-lookup&#x60; provider | [optional] 
 **PeruDniLookup** | Pointer to [**NullablePeruDniLookupInput**](PeruDniLookupInput.md) | Input for the &#x60;peru-dni-lookup&#x60; provider | [optional] 
 **UkEvisaLookup** | Pointer to [**NullableUkEvisaLookupInput**](UkEvisaLookupInput.md) | Input for the &#x60;uk-evisa-lookup&#x60; provider | [optional] 
+**UsaArizonaWallet** | Pointer to [**NullableUsaArizonaWalletInput**](UsaArizonaWalletInput.md) | Input for the &#x60;usa-arizona-wallet&#x60; provider | [optional] 
 **UsaCaliforniaDmv** | Pointer to [**NullableUsaCaliforniaDmvInput**](UsaCaliforniaDmvInput.md) | Input for the &#x60;usa-california-dmv&#x60; provider | [optional] 
 **TrinsicTestDatabaseLookup** | Pointer to [**NullableTrinsicTestDatabaseLookupInput**](TrinsicTestDatabaseLookupInput.md) | *TEST MODE ONLY.*              Input for the &#x60;trinsic-test-database-lookup&#x60; provider | [optional] 
 **TrinsicTestSubProviders** | Pointer to [**NullableTrinsicTestSubProvidersInput**](TrinsicTestSubProvidersInput.md) | *TEST MODE ONLY.*              Input for the &#x60;trinsic-test-sub-providers&#x60; provider | [optional] 
 
 ## Methods
 
-### NewProviderInput
+### Named construction
 
-`func NewProviderInput() *ProviderInput`
-
-NewProviderInput instantiates a new ProviderInput object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+Use a keyed struct literal (`ProviderInput{FieldName: value}`), or call
+`NewProviderInputWithDefaults()` and set fields by name. Positional field
+factories and unkeyed struct literals are not supported.
 
 ### NewProviderInputWithDefaults
 
@@ -951,6 +953,41 @@ HasBrazilDigitalCnh returns a boolean if a field has been set.
 `func (o *ProviderInput) UnsetBrazilDigitalCnh()`
 
 UnsetBrazilDigitalCnh ensures that no value is present for BrazilDigitalCnh, not even an explicit nil
+### GetJordanSanad
+
+`func (o *ProviderInput) GetJordanSanad() JordanSanadInput`
+
+GetJordanSanad returns the JordanSanad field if non-nil, zero value otherwise.
+
+### GetJordanSanadOk
+
+`func (o *ProviderInput) GetJordanSanadOk() (*JordanSanadInput, bool)`
+
+GetJordanSanadOk returns a tuple with the JordanSanad field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetJordanSanad
+
+`func (o *ProviderInput) SetJordanSanad(v JordanSanadInput)`
+
+SetJordanSanad sets JordanSanad field to given value.
+
+### HasJordanSanad
+
+`func (o *ProviderInput) HasJordanSanad() bool`
+
+HasJordanSanad returns a boolean if a field has been set.
+
+### SetJordanSanadNil
+
+`func (o *ProviderInput) SetJordanSanadNil(b bool)`
+
+ SetJordanSanadNil sets the value for JordanSanad to be an explicit nil
+
+### UnsetJordanSanad
+`func (o *ProviderInput) UnsetJordanSanad()`
+
+UnsetJordanSanad ensures that no value is present for JordanSanad, not even an explicit nil
 ### GetPhilippinesPhilsysMatch
 
 `func (o *ProviderInput) GetPhilippinesPhilsysMatch() PhilippineMatchInput`
@@ -1161,6 +1198,111 @@ HasNetherlandsIdin returns a boolean if a field has been set.
 `func (o *ProviderInput) UnsetNetherlandsIdin()`
 
 UnsetNetherlandsIdin ensures that no value is present for NetherlandsIdin, not even an explicit nil
+### GetFinnishTrustNetwork
+
+`func (o *ProviderInput) GetFinnishTrustNetwork() FinnishTrustNetworkInput`
+
+GetFinnishTrustNetwork returns the FinnishTrustNetwork field if non-nil, zero value otherwise.
+
+### GetFinnishTrustNetworkOk
+
+`func (o *ProviderInput) GetFinnishTrustNetworkOk() (*FinnishTrustNetworkInput, bool)`
+
+GetFinnishTrustNetworkOk returns a tuple with the FinnishTrustNetwork field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFinnishTrustNetwork
+
+`func (o *ProviderInput) SetFinnishTrustNetwork(v FinnishTrustNetworkInput)`
+
+SetFinnishTrustNetwork sets FinnishTrustNetwork field to given value.
+
+### HasFinnishTrustNetwork
+
+`func (o *ProviderInput) HasFinnishTrustNetwork() bool`
+
+HasFinnishTrustNetwork returns a boolean if a field has been set.
+
+### SetFinnishTrustNetworkNil
+
+`func (o *ProviderInput) SetFinnishTrustNetworkNil(b bool)`
+
+ SetFinnishTrustNetworkNil sets the value for FinnishTrustNetwork to be an explicit nil
+
+### UnsetFinnishTrustNetwork
+`func (o *ProviderInput) UnsetFinnishTrustNetwork()`
+
+UnsetFinnishTrustNetwork ensures that no value is present for FinnishTrustNetwork, not even an explicit nil
+### GetCzechBankId
+
+`func (o *ProviderInput) GetCzechBankId() CzechBankIdInput`
+
+GetCzechBankId returns the CzechBankId field if non-nil, zero value otherwise.
+
+### GetCzechBankIdOk
+
+`func (o *ProviderInput) GetCzechBankIdOk() (*CzechBankIdInput, bool)`
+
+GetCzechBankIdOk returns a tuple with the CzechBankId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCzechBankId
+
+`func (o *ProviderInput) SetCzechBankId(v CzechBankIdInput)`
+
+SetCzechBankId sets CzechBankId field to given value.
+
+### HasCzechBankId
+
+`func (o *ProviderInput) HasCzechBankId() bool`
+
+HasCzechBankId returns a boolean if a field has been set.
+
+### SetCzechBankIdNil
+
+`func (o *ProviderInput) SetCzechBankIdNil(b bool)`
+
+ SetCzechBankIdNil sets the value for CzechBankId to be an explicit nil
+
+### UnsetCzechBankId
+`func (o *ProviderInput) UnsetCzechBankId()`
+
+UnsetCzechBankId ensures that no value is present for CzechBankId, not even an explicit nil
+### GetAustraliaConnectId
+
+`func (o *ProviderInput) GetAustraliaConnectId() ConnectIdInput`
+
+GetAustraliaConnectId returns the AustraliaConnectId field if non-nil, zero value otherwise.
+
+### GetAustraliaConnectIdOk
+
+`func (o *ProviderInput) GetAustraliaConnectIdOk() (*ConnectIdInput, bool)`
+
+GetAustraliaConnectIdOk returns a tuple with the AustraliaConnectId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAustraliaConnectId
+
+`func (o *ProviderInput) SetAustraliaConnectId(v ConnectIdInput)`
+
+SetAustraliaConnectId sets AustraliaConnectId field to given value.
+
+### HasAustraliaConnectId
+
+`func (o *ProviderInput) HasAustraliaConnectId() bool`
+
+HasAustraliaConnectId returns a boolean if a field has been set.
+
+### SetAustraliaConnectIdNil
+
+`func (o *ProviderInput) SetAustraliaConnectIdNil(b bool)`
+
+ SetAustraliaConnectIdNil sets the value for AustraliaConnectId to be an explicit nil
+
+### UnsetAustraliaConnectId
+`func (o *ProviderInput) UnsetAustraliaConnectId()`
+
+UnsetAustraliaConnectId ensures that no value is present for AustraliaConnectId, not even an explicit nil
 ### GetItalySpid
 
 `func (o *ProviderInput) GetItalySpid() SpidInput`
@@ -1791,6 +1933,41 @@ HasUkEvisaLookup returns a boolean if a field has been set.
 `func (o *ProviderInput) UnsetUkEvisaLookup()`
 
 UnsetUkEvisaLookup ensures that no value is present for UkEvisaLookup, not even an explicit nil
+### GetUsaArizonaWallet
+
+`func (o *ProviderInput) GetUsaArizonaWallet() UsaArizonaWalletInput`
+
+GetUsaArizonaWallet returns the UsaArizonaWallet field if non-nil, zero value otherwise.
+
+### GetUsaArizonaWalletOk
+
+`func (o *ProviderInput) GetUsaArizonaWalletOk() (*UsaArizonaWalletInput, bool)`
+
+GetUsaArizonaWalletOk returns a tuple with the UsaArizonaWallet field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUsaArizonaWallet
+
+`func (o *ProviderInput) SetUsaArizonaWallet(v UsaArizonaWalletInput)`
+
+SetUsaArizonaWallet sets UsaArizonaWallet field to given value.
+
+### HasUsaArizonaWallet
+
+`func (o *ProviderInput) HasUsaArizonaWallet() bool`
+
+HasUsaArizonaWallet returns a boolean if a field has been set.
+
+### SetUsaArizonaWalletNil
+
+`func (o *ProviderInput) SetUsaArizonaWalletNil(b bool)`
+
+ SetUsaArizonaWalletNil sets the value for UsaArizonaWallet to be an explicit nil
+
+### UnsetUsaArizonaWallet
+`func (o *ProviderInput) UnsetUsaArizonaWallet()`
+
+UnsetUsaArizonaWallet ensures that no value is present for UsaArizonaWallet, not even an explicit nil
 ### GetUsaCaliforniaDmv
 
 `func (o *ProviderInput) GetUsaCaliforniaDmv() UsaCaliforniaDmvInput`

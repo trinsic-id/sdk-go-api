@@ -19,6 +19,8 @@ var _ MappedNullable = &CzechBankIdAddress{}
 
 // CzechBankIdAddress struct for CzechBankIdAddress
 type CzechBankIdAddress struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The address type.              Possible values are: - PERMANENT_RESIDENCE - SECONDARY_RESIDENCE - UNKNOWN
 	Type NullableString `json:"type,omitempty"`
 	// The street name.              This is usually present, but unused for small villages.
@@ -43,15 +45,6 @@ type CzechBankIdAddress struct {
 }
 
 type _CzechBankIdAddress CzechBankIdAddress
-
-// NewCzechBankIdAddress instantiates a new CzechBankIdAddress object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewCzechBankIdAddress() *CzechBankIdAddress {
-	this := CzechBankIdAddress{}
-	return &this
-}
 
 // NewCzechBankIdAddressWithDefaults instantiates a new CzechBankIdAddress object
 // This constructor will only assign default values to properties that have it defined,

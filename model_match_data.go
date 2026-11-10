@@ -19,6 +19,8 @@ var _ MappedNullable = &MatchData{}
 
 // MatchData Match results for the data being matched against.              This applies to Providers which operate based on matching data / biometrics against a government database, returning match scores or results as opposed to the data itself.
 type MatchData struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// Whether the provided National ID Number matched the information on file for the individual
 	NationalIdNumber NullableMatch `json:"nationalIdNumber,omitempty"`
 	// The match score for the full name of the individual.              Higher values indicate a closer match.
@@ -45,15 +47,6 @@ type MatchData struct {
 }
 
 type _MatchData MatchData
-
-// NewMatchData instantiates a new MatchData object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewMatchData() *MatchData {
-	this := MatchData{}
-	return &this
-}
 
 // NewMatchDataWithDefaults instantiates a new MatchData object
 // This constructor will only assign default values to properties that have it defined,

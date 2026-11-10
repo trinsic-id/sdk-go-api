@@ -19,21 +19,14 @@ var _ MappedNullable = &IdinInput{}
 
 // IdinInput struct for IdinInput
 type IdinInput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The ID of the specific bank to invoke with IDIN.              If not specified, the user will be prompted to select a bank.
 	SubProviderId NullableString `json:"subProviderId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
 type _IdinInput IdinInput
-
-// NewIdinInput instantiates a new IdinInput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewIdinInput() *IdinInput {
-	this := IdinInput{}
-	return &this
-}
 
 // NewIdinInputWithDefaults instantiates a new IdinInput object
 // This constructor will only assign default values to properties that have it defined,

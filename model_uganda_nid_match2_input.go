@@ -19,6 +19,8 @@ var _ MappedNullable = &UgandaNidMatch2Input{}
 
 // UgandaNidMatch2Input struct for UgandaNidMatch2Input
 type UgandaNidMatch2Input struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// Uganda National ID number (NID) assigned by the National Identification and Registration Authority (NIRA).              Format: - 14 alphanumeric characters (A-Z, 0-9) - There is no publicly documented encoding scheme for encoding personal information in the NID - No check digit or algorithm has been publicly documented by NIRA
 	IdNumber NullableString `json:"idNumber,omitempty"`
 	// The card number on the document (secondary ID number). Required for Uganda Basic KYC instead of first name and last name.
@@ -29,15 +31,6 @@ type UgandaNidMatch2Input struct {
 }
 
 type _UgandaNidMatch2Input UgandaNidMatch2Input
-
-// NewUgandaNidMatch2Input instantiates a new UgandaNidMatch2Input object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewUgandaNidMatch2Input() *UgandaNidMatch2Input {
-	this := UgandaNidMatch2Input{}
-	return &this
-}
 
 // NewUgandaNidMatch2InputWithDefaults instantiates a new UgandaNidMatch2Input object
 // This constructor will only assign default values to properties that have it defined,

@@ -19,6 +19,8 @@ var _ MappedNullable = &PersonData{}
 
 // PersonData Identity information for the individual being verified
 type PersonData struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// Given (first) name of the individual
 	GivenName NullableString `json:"givenName,omitempty"`
 	// Family (last) name of the individual
@@ -39,15 +41,6 @@ type PersonData struct {
 }
 
 type _PersonData PersonData
-
-// NewPersonData instantiates a new PersonData object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewPersonData() *PersonData {
-	this := PersonData{}
-	return &this
-}
 
 // NewPersonDataWithDefaults instantiates a new PersonData object
 // This constructor will only assign default values to properties that have it defined,

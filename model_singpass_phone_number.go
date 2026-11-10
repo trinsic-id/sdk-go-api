@@ -19,6 +19,8 @@ var _ MappedNullable = &SingpassPhoneNumber{}
 
 // SingpassPhoneNumber The structured MyInfo mobile number payload.
 type SingpassPhoneNumber struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The phone number prefix.
 	Prefix NullableString `json:"prefix,omitempty"`
 	// The phone number area code.
@@ -29,15 +31,6 @@ type SingpassPhoneNumber struct {
 }
 
 type _SingpassPhoneNumber SingpassPhoneNumber
-
-// NewSingpassPhoneNumber instantiates a new SingpassPhoneNumber object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewSingpassPhoneNumber() *SingpassPhoneNumber {
-	this := SingpassPhoneNumber{}
-	return &this
-}
 
 // NewSingpassPhoneNumberWithDefaults instantiates a new SingpassPhoneNumber object
 // This constructor will only assign default values to properties that have it defined,

@@ -19,21 +19,14 @@ var _ MappedNullable = &PeruDniLookupInput{}
 
 // PeruDniLookupInput struct for PeruDniLookupInput
 type PeruDniLookupInput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The user's DNI number (8 digits).              Format: - Must not include verification digit. On the DNI card, a ninth digit appears after the first eight, with value   0-9 or A-K. This is not included in the DNI number when verifying against Peru's database. - Peru DNI is sometimes represented with dots. Though uncommon, if dots are included, they will be sanitized.
 	DocumentNumber NullableString `json:"documentNumber,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
 type _PeruDniLookupInput PeruDniLookupInput
-
-// NewPeruDniLookupInput instantiates a new PeruDniLookupInput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewPeruDniLookupInput() *PeruDniLookupInput {
-	this := PeruDniLookupInput{}
-	return &this
-}
 
 // NewPeruDniLookupInputWithDefaults instantiates a new PeruDniLookupInput object
 // This constructor will only assign default values to properties that have it defined,

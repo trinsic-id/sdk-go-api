@@ -20,22 +20,14 @@ var _ MappedNullable = &GetAttachmentRequest{}
 
 // GetAttachmentRequest struct for GetAttachmentRequest
 type GetAttachmentRequest struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The Results Access Key for the Session associated with the Attachment being retrieved.              This is returned during Session creation.
 	ResultsAccessKey string `json:"resultsAccessKey"`
 	AdditionalProperties map[string]interface{}
 }
 
 type _GetAttachmentRequest GetAttachmentRequest
-
-// NewGetAttachmentRequest instantiates a new GetAttachmentRequest object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewGetAttachmentRequest(resultsAccessKey string) *GetAttachmentRequest {
-	this := GetAttachmentRequest{}
-	this.ResultsAccessKey = resultsAccessKey
-	return &this
-}
 
 // NewGetAttachmentRequestWithDefaults instantiates a new GetAttachmentRequest object
 // This constructor will only assign default values to properties that have it defined,

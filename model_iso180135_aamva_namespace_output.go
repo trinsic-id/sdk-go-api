@@ -19,6 +19,8 @@ var _ MappedNullable = &Iso180135AamvaNamespaceOutput{}
 
 // Iso180135AamvaNamespaceOutput Fields from the AAMVA mDL namespace.
 type Iso180135AamvaNamespaceOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// Domestic categories of vehicles, restrictions, and conditions, parsed per AAMVA Section 7.2.4.
 	DomesticDrivingPrivileges []Iso180135AamvaDomesticDrivingPrivilege `json:"domesticDrivingPrivileges,omitempty"`
 	// Name suffix of the individual that has been issued the credential.
@@ -77,15 +79,6 @@ type Iso180135AamvaNamespaceOutput struct {
 }
 
 type _Iso180135AamvaNamespaceOutput Iso180135AamvaNamespaceOutput
-
-// NewIso180135AamvaNamespaceOutput instantiates a new Iso180135AamvaNamespaceOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewIso180135AamvaNamespaceOutput() *Iso180135AamvaNamespaceOutput {
-	this := Iso180135AamvaNamespaceOutput{}
-	return &this
-}
 
 // NewIso180135AamvaNamespaceOutputWithDefaults instantiates a new Iso180135AamvaNamespaceOutput object
 // This constructor will only assign default values to properties that have it defined,

@@ -7,19 +7,17 @@ Name | Type | Description | Notes
 **Provider** | **string** | The ID of the provider to launch | 
 **VerificationProfileId** | **string** | The ID of the Verification Profile to use for this session. | 
 **RedirectUrl** | **string** | The Redirect URL to which the user should be sent after the session is complete. | 
+**EnableRedirectBackwardsCompatibility** | **bool** | Defaults to &#x60;true&#x60; if not provided. Controls backwards compatibility behavior.              If &#x60;true&#x60;, &#x60;redirectToken&#x60; validation is not required as part of the Session flow. If &#x60;false&#x60;, &#x60;redirectToken&#x60; validation is required as a core part of the Session flow; results cannot be fetched without it.              This parameter exists to enable backwards compatibility with existing integrations. In the future, this parameter will be removed and &#x60;redirectToken&#x60; validation will always be required.              If your integration supports &#x60;redirectToken&#x60;, you should explicitly set this parameter&#39;s value to &#x60;false&#x60;. Only set this value to &#x60;true&#x60; if your integration does not support &#x60;redirectToken&#x60; and you are not yet able to add support. | 
 **BrowserLanguages** | Pointer to **[]string** | Preferences for languages to show first in the Hosted UI and supported provider launch flows. If left empty, the Hosted UI defaults to the user&#39;s navigator languages. If no preferred language is available, the Hosted UI falls back to English. | [optional] 
 **ProviderInput** | Pointer to [**NullableProviderInput**](ProviderInput.md) | Provider-specific input for those providers which require it.   &lt;b&gt;Deprecated:&lt;/b&gt; In the future, Hosted Provider Sessions will not accept input on creation, and will instead always redirect the user to a hosted interface to collect input. If you need to collect input from the user yourself, please use the Create Direct Session endpoint instead. | [optional] 
 
 ## Methods
 
-### NewCreateHostedProviderSessionRequest
+### Named construction
 
-`func NewCreateHostedProviderSessionRequest(provider string, verificationProfileId string, redirectUrl string, ) *CreateHostedProviderSessionRequest`
-
-NewCreateHostedProviderSessionRequest instantiates a new CreateHostedProviderSessionRequest object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+Use a keyed struct literal (`CreateHostedProviderSessionRequest{FieldName: value}`), or call
+`NewCreateHostedProviderSessionRequestWithDefaults()` and set fields by name. Positional field
+factories and unkeyed struct literals are not supported.
 
 ### NewCreateHostedProviderSessionRequestWithDefaults
 
@@ -87,6 +85,26 @@ and a boolean to check if the value has been set.
 `func (o *CreateHostedProviderSessionRequest) SetRedirectUrl(v string)`
 
 SetRedirectUrl sets RedirectUrl field to given value.
+
+
+### GetEnableRedirectBackwardsCompatibility
+
+`func (o *CreateHostedProviderSessionRequest) GetEnableRedirectBackwardsCompatibility() bool`
+
+GetEnableRedirectBackwardsCompatibility returns the EnableRedirectBackwardsCompatibility field if non-nil, zero value otherwise.
+
+### GetEnableRedirectBackwardsCompatibilityOk
+
+`func (o *CreateHostedProviderSessionRequest) GetEnableRedirectBackwardsCompatibilityOk() (*bool, bool)`
+
+GetEnableRedirectBackwardsCompatibilityOk returns a tuple with the EnableRedirectBackwardsCompatibility field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEnableRedirectBackwardsCompatibility
+
+`func (o *CreateHostedProviderSessionRequest) SetEnableRedirectBackwardsCompatibility(v bool)`
+
+SetEnableRedirectBackwardsCompatibility sets EnableRedirectBackwardsCompatibility field to given value.
 
 
 ### GetBrowserLanguages

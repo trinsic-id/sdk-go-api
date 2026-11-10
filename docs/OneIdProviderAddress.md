@@ -12,14 +12,11 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewOneIdProviderAddress
+### Named construction
 
-`func NewOneIdProviderAddress() *OneIdProviderAddress`
-
-NewOneIdProviderAddress instantiates a new OneIdProviderAddress object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+Use a keyed struct literal (`OneIdProviderAddress{FieldName: value}`), or call
+`NewOneIdProviderAddressWithDefaults()` and set fields by name. Positional field
+factories and unkeyed struct literals are not supported.
 
 ### NewOneIdProviderAddressWithDefaults
 

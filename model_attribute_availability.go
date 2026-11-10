@@ -23,6 +23,7 @@ const (
 	ATTRIBUTEAVAILABILITY_NEVER AttributeAvailability = "Never"
 	ATTRIBUTEAVAILABILITY_SOMETIMES AttributeAvailability = "Sometimes"
 	ATTRIBUTEAVAILABILITY_ALWAYS AttributeAvailability = "Always"
+	ATTRIBUTEAVAILABILITY_UNKNOWN_DEFAULT_OPEN_API AttributeAvailability = "unknown_default_open_api"
 )
 
 // All allowed values of AttributeAvailability enum
@@ -30,6 +31,7 @@ var AllowedAttributeAvailabilityEnumValues = []AttributeAvailability{
 	"Never",
 	"Sometimes",
 	"Always",
+	"unknown_default_open_api",
 }
 
 func (v *AttributeAvailability) UnmarshalJSON(src []byte) error {
@@ -46,7 +48,8 @@ func (v *AttributeAvailability) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid AttributeAvailability", value)
+	*v = ATTRIBUTEAVAILABILITY_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewAttributeAvailabilityFromValue returns a pointer to a valid AttributeAvailability

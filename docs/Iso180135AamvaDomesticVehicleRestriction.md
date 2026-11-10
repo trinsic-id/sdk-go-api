@@ -9,14 +9,11 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewIso180135AamvaDomesticVehicleRestriction
+### Named construction
 
-`func NewIso180135AamvaDomesticVehicleRestriction() *Iso180135AamvaDomesticVehicleRestriction`
-
-NewIso180135AamvaDomesticVehicleRestriction instantiates a new Iso180135AamvaDomesticVehicleRestriction object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+Use a keyed struct literal (`Iso180135AamvaDomesticVehicleRestriction{FieldName: value}`), or call
+`NewIso180135AamvaDomesticVehicleRestrictionWithDefaults()` and set fields by name. Positional field
+factories and unkeyed struct literals are not supported.
 
 ### NewIso180135AamvaDomesticVehicleRestrictionWithDefaults
 

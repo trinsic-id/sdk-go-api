@@ -20,6 +20,8 @@ var _ MappedNullable = &ListRedirectUrisResponse{}
 
 // ListRedirectUrisResponse Response from listing redirect URIs within an environment.
 type ListRedirectUrisResponse struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// List of redirect uris within the environment.
 	Uris []RedirectUriResponse `json:"uris"`
 	// Whether there are additional pages of uris to retrieve
@@ -28,17 +30,6 @@ type ListRedirectUrisResponse struct {
 }
 
 type _ListRedirectUrisResponse ListRedirectUrisResponse
-
-// NewListRedirectUrisResponse instantiates a new ListRedirectUrisResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewListRedirectUrisResponse(uris []RedirectUriResponse, more bool) *ListRedirectUrisResponse {
-	this := ListRedirectUrisResponse{}
-	this.Uris = uris
-	this.More = more
-	return &this
-}
 
 // NewListRedirectUrisResponseWithDefaults instantiates a new ListRedirectUrisResponse object
 // This constructor will only assign default values to properties that have it defined,

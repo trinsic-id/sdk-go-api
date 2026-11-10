@@ -19,6 +19,8 @@ var _ MappedNullable = &SpidBillingInformation{}
 
 // SpidBillingInformation Billing information for a SPID Verification.
 type SpidBillingInformation struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// Whether this SPID verification has resulted in a billable event.
 	IsBillable NullableBool `json:"isBillable,omitempty"`
 	// The billable verification type for this SPID verification.              Possible values: \"Authentication\" | \"Registration\"
@@ -29,15 +31,6 @@ type SpidBillingInformation struct {
 }
 
 type _SpidBillingInformation SpidBillingInformation
-
-// NewSpidBillingInformation instantiates a new SpidBillingInformation object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewSpidBillingInformation() *SpidBillingInformation {
-	this := SpidBillingInformation{}
-	return &this
-}
 
 // NewSpidBillingInformationWithDefaults instantiates a new SpidBillingInformation object
 // This constructor will only assign default values to properties that have it defined,

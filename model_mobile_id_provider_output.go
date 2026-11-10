@@ -19,6 +19,8 @@ var _ MappedNullable = &MobileIdProviderOutput{}
 
 // MobileIdProviderOutput Exposed properties for the `mobile-id` Provider which do not directly map to the normalized IdentityData model.
 type MobileIdProviderOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The given name of the individual, extracted from the Mobile ID authentication certificate's Subject Distinguished Name \"G\" (givenName) attribute.
 	GivenName NullableString `json:"givenName,omitempty"`
 	// The family name (surname) of the individual, extracted from the Mobile ID authentication certificate's Subject Distinguished Name \"SN\" (surname) attribute.
@@ -41,15 +43,6 @@ type MobileIdProviderOutput struct {
 }
 
 type _MobileIdProviderOutput MobileIdProviderOutput
-
-// NewMobileIdProviderOutput instantiates a new MobileIdProviderOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewMobileIdProviderOutput() *MobileIdProviderOutput {
-	this := MobileIdProviderOutput{}
-	return &this
-}
 
 // NewMobileIdProviderOutputWithDefaults instantiates a new MobileIdProviderOutput object
 // This constructor will only assign default values to properties that have it defined,

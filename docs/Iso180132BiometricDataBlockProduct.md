@@ -9,14 +9,11 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewIso180132BiometricDataBlockProduct
+### Named construction
 
-`func NewIso180132BiometricDataBlockProduct() *Iso180132BiometricDataBlockProduct`
-
-NewIso180132BiometricDataBlockProduct instantiates a new Iso180132BiometricDataBlockProduct object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+Use a keyed struct literal (`Iso180132BiometricDataBlockProduct{FieldName: value}`), or call
+`NewIso180132BiometricDataBlockProductWithDefaults()` and set fields by name. Positional field
+factories and unkeyed struct literals are not supported.
 
 ### NewIso180132BiometricDataBlockProductWithDefaults
 

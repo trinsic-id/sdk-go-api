@@ -19,6 +19,8 @@ var _ MappedNullable = &DiiaIssuerOutput{}
 
 // DiiaIssuerOutput struct for DiiaIssuerOutput
 type DiiaIssuerOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// Certificate issuer common name.
 	CommonName NullableString `json:"commonName,omitempty"`
 	// Certificate issuer organization.
@@ -35,15 +37,6 @@ type DiiaIssuerOutput struct {
 }
 
 type _DiiaIssuerOutput DiiaIssuerOutput
-
-// NewDiiaIssuerOutput instantiates a new DiiaIssuerOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewDiiaIssuerOutput() *DiiaIssuerOutput {
-	this := DiiaIssuerOutput{}
-	return &this
-}
 
 // NewDiiaIssuerOutputWithDefaults instantiates a new DiiaIssuerOutput object
 // This constructor will only assign default values to properties that have it defined,

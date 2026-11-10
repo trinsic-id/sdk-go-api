@@ -23,6 +23,7 @@ const (
 	MOBILECARRIER_LGU MobileCarrier = "Lgu"
 	MOBILECARRIER_SKT MobileCarrier = "Skt"
 	MOBILECARRIER_KT MobileCarrier = "Kt"
+	MOBILECARRIER_UNKNOWN_DEFAULT_OPEN_API MobileCarrier = "unknown_default_open_api"
 )
 
 // All allowed values of MobileCarrier enum
@@ -30,6 +31,7 @@ var AllowedMobileCarrierEnumValues = []MobileCarrier{
 	"Lgu",
 	"Skt",
 	"Kt",
+	"unknown_default_open_api",
 }
 
 func (v *MobileCarrier) UnmarshalJSON(src []byte) error {
@@ -46,7 +48,8 @@ func (v *MobileCarrier) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid MobileCarrier", value)
+	*v = MOBILECARRIER_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewMobileCarrierFromValue returns a pointer to a valid MobileCarrier

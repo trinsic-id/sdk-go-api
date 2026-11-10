@@ -19,6 +19,8 @@ var _ MappedNullable = &PhilippinesPhilsysMatchProviderOutput{}
 
 // PhilippinesPhilsysMatchProviderOutput Exposed properties for the `philippines-philsys-match` Provider which do not directly map to the normalized IdentityData model.
 type PhilippinesPhilsysMatchProviderOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The individual's given name.
 	FirstName NullableString `json:"firstName,omitempty"`
 	// The individual's family name.
@@ -33,15 +35,6 @@ type PhilippinesPhilsysMatchProviderOutput struct {
 }
 
 type _PhilippinesPhilsysMatchProviderOutput PhilippinesPhilsysMatchProviderOutput
-
-// NewPhilippinesPhilsysMatchProviderOutput instantiates a new PhilippinesPhilsysMatchProviderOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewPhilippinesPhilsysMatchProviderOutput() *PhilippinesPhilsysMatchProviderOutput {
-	this := PhilippinesPhilsysMatchProviderOutput{}
-	return &this
-}
 
 // NewPhilippinesPhilsysMatchProviderOutputWithDefaults instantiates a new PhilippinesPhilsysMatchProviderOutput object
 // This constructor will only assign default values to properties that have it defined,

@@ -19,6 +19,8 @@ var _ MappedNullable = &SingpassMyInfoProviderOutput{}
 
 // SingpassMyInfoProviderOutput Exposed properties for the `singpass-myinfo` Provider which do not directly map to the normalized IdentityData model.
 type SingpassMyInfoProviderOutput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The Singpass subject identifier.
 	Sub NullableString `json:"sub,omitempty"`
 	// The MyInfo personal catalog.
@@ -27,15 +29,6 @@ type SingpassMyInfoProviderOutput struct {
 }
 
 type _SingpassMyInfoProviderOutput SingpassMyInfoProviderOutput
-
-// NewSingpassMyInfoProviderOutput instantiates a new SingpassMyInfoProviderOutput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewSingpassMyInfoProviderOutput() *SingpassMyInfoProviderOutput {
-	this := SingpassMyInfoProviderOutput{}
-	return &this
-}
 
 // NewSingpassMyInfoProviderOutputWithDefaults instantiates a new SingpassMyInfoProviderOutput object
 // This constructor will only assign default values to properties that have it defined,

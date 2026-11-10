@@ -9,14 +9,11 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewKenyaNidMatch2SexField
+### Named construction
 
-`func NewKenyaNidMatch2SexField() *KenyaNidMatch2SexField`
-
-NewKenyaNidMatch2SexField instantiates a new KenyaNidMatch2SexField object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+Use a keyed struct literal (`KenyaNidMatch2SexField{FieldName: value}`), or call
+`NewKenyaNidMatch2SexFieldWithDefaults()` and set fields by name. Positional field
+factories and unkeyed struct literals are not supported.
 
 ### NewKenyaNidMatch2SexFieldWithDefaults
 

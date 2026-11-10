@@ -10,19 +10,16 @@ Name | Type | Description | Notes
 **Nationality** | Pointer to **NullableString** | Nationality as it appears on mobile ID (mDowód).              Format: - Must be a valid ISO 3166-1 alpha-2 or alpha-3 country code. - Matching against mObywatel is an exact string comparison on the alpha-3 code.   Alpha-2 values are accepted and normalized to alpha-3 before matching. | [optional] 
 **PersonalNumber** | Pointer to **NullableString** | Polish national identification number (PESEL) as it appears on mobile ID (mDowód).              NOTE: The provided example value is a randomly generated, but valid PESEL number that does not correspond to a real person. | [optional] 
 **ExpirationDate** | Pointer to **NullableString** | Document expiration date as it appears on mobile ID (mDowód). | [optional] 
-**SelfieBytes** | Pointer to **NullableString** | The raw bytes of an optional selfie image collected from the individual.              Requirements from the provider: - JPEG or PNG - At least 720 pixels wide (1080 pixels recommended) - Not exceeding 10 MB - Clear, front-facing photo with good lighting and no sunglasses or face coverings. | [optional] 
+**SelfieBytes** | Pointer to **NullableString** | The raw bytes of an optional selfie image collected from the individual.              When using an SDK, this can be a raw byte array. In raw JSON form this is Base64.              Requirements from the provider: - JPEG or PNG - At least 720 pixels wide (1080 pixels recommended) - Not exceeding 10 MB - Clear, front-facing photo with good lighting and no sunglasses or face coverings. | [optional] 
 **SelfieImageMimeType** | Pointer to **NullableString** | The MIME type of the file contained in SelfieBytes.              Must be one of &#x60;image/jpeg&#x60; or &#x60;image/png&#x60;. | [optional] 
 
 ## Methods
 
-### NewPolandMobywatelMatchInput
+### Named construction
 
-`func NewPolandMobywatelMatchInput() *PolandMobywatelMatchInput`
-
-NewPolandMobywatelMatchInput instantiates a new PolandMobywatelMatchInput object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+Use a keyed struct literal (`PolandMobywatelMatchInput{FieldName: value}`), or call
+`NewPolandMobywatelMatchInputWithDefaults()` and set fields by name. Positional field
+factories and unkeyed struct literals are not supported.
 
 ### NewPolandMobywatelMatchInputWithDefaults
 

@@ -20,12 +20,16 @@ var _ MappedNullable = &CreateHostedProviderSessionRequest{}
 
 // CreateHostedProviderSessionRequest struct for CreateHostedProviderSessionRequest
 type CreateHostedProviderSessionRequest struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The ID of the provider to launch
 	Provider string `json:"provider"`
 	// The ID of the Verification Profile to use for this session.
 	VerificationProfileId string `json:"verificationProfileId"`
 	// The Redirect URL to which the user should be sent after the session is complete.
 	RedirectUrl string `json:"redirectUrl"`
+	// Defaults to `true` if not provided. Controls backwards compatibility behavior.              If `true`, `redirectToken` validation is not required as part of the Session flow. If `false`, `redirectToken` validation is required as a core part of the Session flow; results cannot be fetched without it.              This parameter exists to enable backwards compatibility with existing integrations. In the future, this parameter will be removed and `redirectToken` validation will always be required.              If your integration supports `redirectToken`, you should explicitly set this parameter's value to `false`. Only set this value to `true` if your integration does not support `redirectToken` and you are not yet able to add support.
+	EnableRedirectBackwardsCompatibility bool `json:"enableRedirectBackwardsCompatibility"`
 	// Preferences for languages to show first in the Hosted UI and supported provider launch flows. If left empty, the Hosted UI defaults to the user's navigator languages. If no preferred language is available, the Hosted UI falls back to English.
 	BrowserLanguages []string `json:"browserLanguages,omitempty"`
 	// Provider-specific input for those providers which require it.   <b>Deprecated:</b> In the future, Hosted Provider Sessions will not accept input on creation, and will instead always redirect the user to a hosted interface to collect input. If you need to collect input from the user yourself, please use the Create Direct Session endpoint instead.
@@ -35,18 +39,6 @@ type CreateHostedProviderSessionRequest struct {
 }
 
 type _CreateHostedProviderSessionRequest CreateHostedProviderSessionRequest
-
-// NewCreateHostedProviderSessionRequest instantiates a new CreateHostedProviderSessionRequest object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewCreateHostedProviderSessionRequest(provider string, verificationProfileId string, redirectUrl string) *CreateHostedProviderSessionRequest {
-	this := CreateHostedProviderSessionRequest{}
-	this.Provider = provider
-	this.VerificationProfileId = verificationProfileId
-	this.RedirectUrl = redirectUrl
-	return &this
-}
 
 // NewCreateHostedProviderSessionRequestWithDefaults instantiates a new CreateHostedProviderSessionRequest object
 // This constructor will only assign default values to properties that have it defined,
@@ -126,6 +118,30 @@ func (o *CreateHostedProviderSessionRequest) GetRedirectUrlOk() (*string, bool) 
 // SetRedirectUrl sets field value
 func (o *CreateHostedProviderSessionRequest) SetRedirectUrl(v string) {
 	o.RedirectUrl = v
+}
+
+// GetEnableRedirectBackwardsCompatibility returns the EnableRedirectBackwardsCompatibility field value
+func (o *CreateHostedProviderSessionRequest) GetEnableRedirectBackwardsCompatibility() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.EnableRedirectBackwardsCompatibility
+}
+
+// GetEnableRedirectBackwardsCompatibilityOk returns a tuple with the EnableRedirectBackwardsCompatibility field value
+// and a boolean to check if the value has been set.
+func (o *CreateHostedProviderSessionRequest) GetEnableRedirectBackwardsCompatibilityOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.EnableRedirectBackwardsCompatibility, true
+}
+
+// SetEnableRedirectBackwardsCompatibility sets field value
+func (o *CreateHostedProviderSessionRequest) SetEnableRedirectBackwardsCompatibility(v bool) {
+	o.EnableRedirectBackwardsCompatibility = v
 }
 
 // GetBrowserLanguages returns the BrowserLanguages field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -219,6 +235,7 @@ func (o CreateHostedProviderSessionRequest) ToMap() (map[string]interface{}, err
 	toSerialize["provider"] = o.Provider
 	toSerialize["verificationProfileId"] = o.VerificationProfileId
 	toSerialize["redirectUrl"] = o.RedirectUrl
+	toSerialize["enableRedirectBackwardsCompatibility"] = o.EnableRedirectBackwardsCompatibility
 	if o.BrowserLanguages != nil {
 		toSerialize["browserLanguages"] = o.BrowserLanguages
 	}
@@ -241,6 +258,7 @@ func (o *CreateHostedProviderSessionRequest) UnmarshalJSON(data []byte) (err err
 		"provider",
 		"verificationProfileId",
 		"redirectUrl",
+		"enableRedirectBackwardsCompatibility",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -273,6 +291,7 @@ func (o *CreateHostedProviderSessionRequest) UnmarshalJSON(data []byte) (err err
 		delete(additionalProperties, "provider")
 		delete(additionalProperties, "verificationProfileId")
 		delete(additionalProperties, "redirectUrl")
+		delete(additionalProperties, "enableRedirectBackwardsCompatibility")
 		delete(additionalProperties, "browserLanguages")
 		delete(additionalProperties, "providerInput")
 		o.AdditionalProperties = additionalProperties

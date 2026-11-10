@@ -19,21 +19,14 @@ var _ MappedNullable = &TrinsicTestSubProvidersInput{}
 
 // TrinsicTestSubProvidersInput struct for TrinsicTestSubProvidersInput
 type TrinsicTestSubProvidersInput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The ID of the specific IDP to invoke within the test federated provider.              Valid options are `sub-provider-a` and `sub-provider-b`.              If not specified, the user will be prompted to select one.
 	SubProviderId NullableString `json:"subProviderId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
 type _TrinsicTestSubProvidersInput TrinsicTestSubProvidersInput
-
-// NewTrinsicTestSubProvidersInput instantiates a new TrinsicTestSubProvidersInput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewTrinsicTestSubProvidersInput() *TrinsicTestSubProvidersInput {
-	this := TrinsicTestSubProvidersInput{}
-	return &this
-}
 
 // NewTrinsicTestSubProvidersInputWithDefaults instantiates a new TrinsicTestSubProvidersInput object
 // This constructor will only assign default values to properties that have it defined,

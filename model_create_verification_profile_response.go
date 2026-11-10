@@ -20,22 +20,14 @@ var _ MappedNullable = &CreateVerificationProfileResponse{}
 
 // CreateVerificationProfileResponse struct for CreateVerificationProfileResponse
 type CreateVerificationProfileResponse struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The ID of the verification profile
 	Id string `json:"id"`
 	AdditionalProperties map[string]interface{}
 }
 
 type _CreateVerificationProfileResponse CreateVerificationProfileResponse
-
-// NewCreateVerificationProfileResponse instantiates a new CreateVerificationProfileResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewCreateVerificationProfileResponse(id string) *CreateVerificationProfileResponse {
-	this := CreateVerificationProfileResponse{}
-	this.Id = id
-	return &this
-}
 
 // NewCreateVerificationProfileResponseWithDefaults instantiates a new CreateVerificationProfileResponse object
 // This constructor will only assign default values to properties that have it defined,

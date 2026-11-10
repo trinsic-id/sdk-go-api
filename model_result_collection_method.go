@@ -23,6 +23,7 @@ const (
 	RESULTCOLLECTIONMETHOD_POLL_RESULT ResultCollectionMethod = "PollResult"
 	RESULTCOLLECTIONMETHOD_CAPTURE_REDIRECT ResultCollectionMethod = "CaptureRedirect"
 	RESULTCOLLECTIONMETHOD_SUBMIT_NATIVE_CHALLENGE_RESPONSE ResultCollectionMethod = "SubmitNativeChallengeResponse"
+	RESULTCOLLECTIONMETHOD_UNKNOWN_DEFAULT_OPEN_API ResultCollectionMethod = "unknown_default_open_api"
 )
 
 // All allowed values of ResultCollectionMethod enum
@@ -30,6 +31,7 @@ var AllowedResultCollectionMethodEnumValues = []ResultCollectionMethod{
 	"PollResult",
 	"CaptureRedirect",
 	"SubmitNativeChallengeResponse",
+	"unknown_default_open_api",
 }
 
 func (v *ResultCollectionMethod) UnmarshalJSON(src []byte) error {
@@ -46,7 +48,8 @@ func (v *ResultCollectionMethod) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid ResultCollectionMethod", value)
+	*v = RESULTCOLLECTIONMETHOD_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewResultCollectionMethodFromValue returns a pointer to a valid ResultCollectionMethod

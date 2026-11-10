@@ -18,8 +18,6 @@ Name | Type | Description | Notes
 **ResidentCountry** | Pointer to **NullableString** | The individual&#39;s resident country. | [optional] 
 **ResidentPostalCode** | Pointer to **NullableString** | The individual&#39;s resident postal code. | [optional] 
 **ResidentCity** | Pointer to **NullableString** | The individual&#39;s resident city. | [optional] 
-**Email** | Pointer to **NullableString** | The individual&#39;s email address. | [optional] 
-**EmailVerified** | Pointer to **NullableBool** | Whether the individual&#39;s email address has been verified. | [optional] 
 **DocumentNumber** | Pointer to **NullableString** | The individual&#39;s document number. | [optional] 
 **IssueDate** | Pointer to **NullableString** | The date the document was issued. | [optional] 
 **IssuingCountry** | Pointer to **NullableString** | The country that issued the document. | [optional] 
@@ -31,14 +29,11 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewIdemiaMobileIdProviderOutput
+### Named construction
 
-`func NewIdemiaMobileIdProviderOutput() *IdemiaMobileIdProviderOutput`
-
-NewIdemiaMobileIdProviderOutput instantiates a new IdemiaMobileIdProviderOutput object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+Use a keyed struct literal (`IdemiaMobileIdProviderOutput{FieldName: value}`), or call
+`NewIdemiaMobileIdProviderOutputWithDefaults()` and set fields by name. Positional field
+factories and unkeyed struct literals are not supported.
 
 ### NewIdemiaMobileIdProviderOutputWithDefaults
 
@@ -538,76 +533,6 @@ HasResidentCity returns a boolean if a field has been set.
 `func (o *IdemiaMobileIdProviderOutput) UnsetResidentCity()`
 
 UnsetResidentCity ensures that no value is present for ResidentCity, not even an explicit nil
-### GetEmail
-
-`func (o *IdemiaMobileIdProviderOutput) GetEmail() string`
-
-GetEmail returns the Email field if non-nil, zero value otherwise.
-
-### GetEmailOk
-
-`func (o *IdemiaMobileIdProviderOutput) GetEmailOk() (*string, bool)`
-
-GetEmailOk returns a tuple with the Email field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEmail
-
-`func (o *IdemiaMobileIdProviderOutput) SetEmail(v string)`
-
-SetEmail sets Email field to given value.
-
-### HasEmail
-
-`func (o *IdemiaMobileIdProviderOutput) HasEmail() bool`
-
-HasEmail returns a boolean if a field has been set.
-
-### SetEmailNil
-
-`func (o *IdemiaMobileIdProviderOutput) SetEmailNil(b bool)`
-
- SetEmailNil sets the value for Email to be an explicit nil
-
-### UnsetEmail
-`func (o *IdemiaMobileIdProviderOutput) UnsetEmail()`
-
-UnsetEmail ensures that no value is present for Email, not even an explicit nil
-### GetEmailVerified
-
-`func (o *IdemiaMobileIdProviderOutput) GetEmailVerified() bool`
-
-GetEmailVerified returns the EmailVerified field if non-nil, zero value otherwise.
-
-### GetEmailVerifiedOk
-
-`func (o *IdemiaMobileIdProviderOutput) GetEmailVerifiedOk() (*bool, bool)`
-
-GetEmailVerifiedOk returns a tuple with the EmailVerified field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEmailVerified
-
-`func (o *IdemiaMobileIdProviderOutput) SetEmailVerified(v bool)`
-
-SetEmailVerified sets EmailVerified field to given value.
-
-### HasEmailVerified
-
-`func (o *IdemiaMobileIdProviderOutput) HasEmailVerified() bool`
-
-HasEmailVerified returns a boolean if a field has been set.
-
-### SetEmailVerifiedNil
-
-`func (o *IdemiaMobileIdProviderOutput) SetEmailVerifiedNil(b bool)`
-
- SetEmailVerifiedNil sets the value for EmailVerified to be an explicit nil
-
-### UnsetEmailVerified
-`func (o *IdemiaMobileIdProviderOutput) UnsetEmailVerified()`
-
-UnsetEmailVerified ensures that no value is present for EmailVerified, not even an explicit nil
 ### GetDocumentNumber
 
 `func (o *IdemiaMobileIdProviderOutput) GetDocumentNumber() string`

@@ -19,6 +19,8 @@ var _ MappedNullable = &IndiaDigilockerAadhaarMatchFullNameField{}
 
 // IndiaDigilockerAadhaarMatchFullNameField struct for IndiaDigilockerAadhaarMatchFullNameField
 type IndiaDigilockerAadhaarMatchFullNameField struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The full name string submitted for this check, as provided in the match input.
 	InputValue NullableString `json:"inputValue,omitempty"`
 	// Full-name similarity score from the DigiLocker match result for this session.              Format: - Between 0.0 to 1.0, where higher values indicate closer agreement with the Aadhaar record.
@@ -27,15 +29,6 @@ type IndiaDigilockerAadhaarMatchFullNameField struct {
 }
 
 type _IndiaDigilockerAadhaarMatchFullNameField IndiaDigilockerAadhaarMatchFullNameField
-
-// NewIndiaDigilockerAadhaarMatchFullNameField instantiates a new IndiaDigilockerAadhaarMatchFullNameField object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewIndiaDigilockerAadhaarMatchFullNameField() *IndiaDigilockerAadhaarMatchFullNameField {
-	this := IndiaDigilockerAadhaarMatchFullNameField{}
-	return &this
-}
 
 // NewIndiaDigilockerAadhaarMatchFullNameFieldWithDefaults instantiates a new IndiaDigilockerAadhaarMatchFullNameField object
 // This constructor will only assign default values to properties that have it defined,

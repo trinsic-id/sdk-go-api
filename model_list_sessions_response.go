@@ -20,6 +20,8 @@ var _ MappedNullable = &ListSessionsResponse{}
 
 // ListSessionsResponse struct for ListSessionsResponse
 type ListSessionsResponse struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	Sessions []Session `json:"sessions"`
 	// The total number of sessions tied to your account
 	Total int32 `json:"total"`
@@ -29,18 +31,6 @@ type ListSessionsResponse struct {
 }
 
 type _ListSessionsResponse ListSessionsResponse
-
-// NewListSessionsResponse instantiates a new ListSessionsResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewListSessionsResponse(sessions []Session, total int32, more bool) *ListSessionsResponse {
-	this := ListSessionsResponse{}
-	this.Sessions = sessions
-	this.Total = total
-	this.More = more
-	return &this
-}
 
 // NewListSessionsResponseWithDefaults instantiates a new ListSessionsResponse object
 // This constructor will only assign default values to properties that have it defined,

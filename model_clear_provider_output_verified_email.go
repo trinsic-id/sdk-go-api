@@ -20,6 +20,8 @@ var _ MappedNullable = &ClearProviderOutputVerifiedEmail{}
 
 // ClearProviderOutputVerifiedEmail struct for ClearProviderOutputVerifiedEmail
 type ClearProviderOutputVerifiedEmail struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The verified email address.
 	Email NullableString `json:"email,omitempty"`
 	// The time the email was verified, as a UTC timestamp.
@@ -30,15 +32,6 @@ type ClearProviderOutputVerifiedEmail struct {
 }
 
 type _ClearProviderOutputVerifiedEmail ClearProviderOutputVerifiedEmail
-
-// NewClearProviderOutputVerifiedEmail instantiates a new ClearProviderOutputVerifiedEmail object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewClearProviderOutputVerifiedEmail() *ClearProviderOutputVerifiedEmail {
-	this := ClearProviderOutputVerifiedEmail{}
-	return &this
-}
 
 // NewClearProviderOutputVerifiedEmailWithDefaults instantiates a new ClearProviderOutputVerifiedEmail object
 // This constructor will only assign default values to properties that have it defined,

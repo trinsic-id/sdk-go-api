@@ -19,6 +19,8 @@ var _ MappedNullable = &ClearProviderOutputPartialDate{}
 
 // ClearProviderOutputPartialDate struct for ClearProviderOutputPartialDate
 type ClearProviderOutputPartialDate struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The day of the month.
 	Day NullableInt32 `json:"day,omitempty"`
 	// The month number, where January is 1.
@@ -29,15 +31,6 @@ type ClearProviderOutputPartialDate struct {
 }
 
 type _ClearProviderOutputPartialDate ClearProviderOutputPartialDate
-
-// NewClearProviderOutputPartialDate instantiates a new ClearProviderOutputPartialDate object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewClearProviderOutputPartialDate() *ClearProviderOutputPartialDate {
-	this := ClearProviderOutputPartialDate{}
-	return &this
-}
 
 // NewClearProviderOutputPartialDateWithDefaults instantiates a new ClearProviderOutputPartialDate object
 // This constructor will only assign default values to properties that have it defined,

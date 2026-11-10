@@ -19,6 +19,8 @@ var _ MappedNullable = &AadhaarClaims{}
 
 // AadhaarClaims struct for AadhaarClaims
 type AadhaarClaims struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The full name.
 	Name NullableString `json:"name,omitempty"`
 	// The date of birth.              The format is YYYY-MM-DD.
@@ -31,15 +33,6 @@ type AadhaarClaims struct {
 }
 
 type _AadhaarClaims AadhaarClaims
-
-// NewAadhaarClaims instantiates a new AadhaarClaims object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewAadhaarClaims() *AadhaarClaims {
-	this := AadhaarClaims{}
-	return &this
-}
 
 // NewAadhaarClaimsWithDefaults instantiates a new AadhaarClaims object
 // This constructor will only assign default values to properties that have it defined,

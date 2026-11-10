@@ -4,19 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ShareCode** | **string** | The 9-character share code. | 
+**ShareCode** | **string** | The 9-character alphanumeric UK Visas and Immigration (UKVI) share code. Must start with W for right to work, R for right to rent, or S for immigration status, matching the configured lookup type. Whitespace is removed and lowercase ASCII letters are converted to uppercase. | 
 **DateOfBirth** | **string** | The user&#39;s date of birth, in &#x60;YYYY-MM-DD&#x60; format. | 
 
 ## Methods
 
-### NewUkEvisaLookupInput
+### Named construction
 
-`func NewUkEvisaLookupInput(shareCode string, dateOfBirth string, ) *UkEvisaLookupInput`
-
-NewUkEvisaLookupInput instantiates a new UkEvisaLookupInput object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+Use a keyed struct literal (`UkEvisaLookupInput{FieldName: value}`), or call
+`NewUkEvisaLookupInputWithDefaults()` and set fields by name. Positional field
+factories and unkeyed struct literals are not supported.
 
 ### NewUkEvisaLookupInputWithDefaults
 

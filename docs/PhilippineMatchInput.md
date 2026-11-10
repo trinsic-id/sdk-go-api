@@ -12,14 +12,11 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewPhilippineMatchInput
+### Named construction
 
-`func NewPhilippineMatchInput() *PhilippineMatchInput`
-
-NewPhilippineMatchInput instantiates a new PhilippineMatchInput object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+Use a keyed struct literal (`PhilippineMatchInput{FieldName: value}`), or call
+`NewPhilippineMatchInputWithDefaults()` and set fields by name. Positional field
+factories and unkeyed struct literals are not supported.
 
 ### NewPhilippineMatchInputWithDefaults
 

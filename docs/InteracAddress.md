@@ -12,14 +12,11 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewInteracAddress
+### Named construction
 
-`func NewInteracAddress() *InteracAddress`
-
-NewInteracAddress instantiates a new InteracAddress object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+Use a keyed struct literal (`InteracAddress{FieldName: value}`), or call
+`NewInteracAddressWithDefaults()` and set fields by name. Positional field
+factories and unkeyed struct literals are not supported.
 
 ### NewInteracAddressWithDefaults
 

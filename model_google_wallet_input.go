@@ -19,6 +19,8 @@ var _ MappedNullable = &GoogleWalletInput{}
 
 // GoogleWalletInput struct for GoogleWalletInput
 type GoogleWalletInput struct {
+	// Require field names in literals created outside this package.
+	_ struct{}
 	// The exchange mechanism to use for this Google Wallet verification.              Use `DigitalCredentialsApi` for Digital Credentials API on web, or `NativeApp` for a native Android app.
 	ExchangeMechanism NullableMdlExchangeMechanism `json:"exchangeMechanism,omitempty"`
 	// **Preview feature: not suitable for production use cases**              The raw 18013-7 exchange request to use for this verification.              If set, this overrides any default configuration on your Verification Profile.              NOTE: This parameter has no effect in live mode for Google Wallet verifications. Dynamic requests are currently only supported in test mode for Google Wallet.
@@ -27,15 +29,6 @@ type GoogleWalletInput struct {
 }
 
 type _GoogleWalletInput GoogleWalletInput
-
-// NewGoogleWalletInput instantiates a new GoogleWalletInput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewGoogleWalletInput() *GoogleWalletInput {
-	this := GoogleWalletInput{}
-	return &this
-}
 
 // NewGoogleWalletInputWithDefaults instantiates a new GoogleWalletInput object
 // This constructor will only assign default values to properties that have it defined,

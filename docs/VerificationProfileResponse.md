@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Alias** | **string** | An alias of the verification profile shown to developers and administrators. | 
 **BrandName** | **string** | The brand name of the verification profile shown to end-users. | 
 **ExternalId** | Pointer to **NullableString** | A customer-defined external ID for this verification profile, unique within your organization. | [optional] 
+**Geography** | **string** | The data-residency geography of the verification profile, such as \&quot;US\&quot; or \&quot;EU\&quot;. | 
 **LogoUrl** | **string** | The URL of the verification profile&#39;s logo. | 
 **PrimaryColor** | **string** | The primary color of the verification profile. | 
 **EnabledProviders** | **[]string** | The providers that are currently enabled for the verification profile. | 
@@ -16,14 +17,11 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewVerificationProfileResponse
+### Named construction
 
-`func NewVerificationProfileResponse(id string, alias string, brandName string, logoUrl string, primaryColor string, enabledProviders []string, sessionExpiration string, isProductionUsage bool, ) *VerificationProfileResponse`
-
-NewVerificationProfileResponse instantiates a new VerificationProfileResponse object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+Use a keyed struct literal (`VerificationProfileResponse{FieldName: value}`), or call
+`NewVerificationProfileResponseWithDefaults()` and set fields by name. Positional field
+factories and unkeyed struct literals are not supported.
 
 ### NewVerificationProfileResponseWithDefaults
 
@@ -128,6 +126,26 @@ HasExternalId returns a boolean if a field has been set.
 `func (o *VerificationProfileResponse) UnsetExternalId()`
 
 UnsetExternalId ensures that no value is present for ExternalId, not even an explicit nil
+### GetGeography
+
+`func (o *VerificationProfileResponse) GetGeography() string`
+
+GetGeography returns the Geography field if non-nil, zero value otherwise.
+
+### GetGeographyOk
+
+`func (o *VerificationProfileResponse) GetGeographyOk() (*string, bool)`
+
+GetGeographyOk returns a tuple with the Geography field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGeography
+
+`func (o *VerificationProfileResponse) SetGeography(v string)`
+
+SetGeography sets Geography field to given value.
+
+
 ### GetLogoUrl
 
 `func (o *VerificationProfileResponse) GetLogoUrl() string`
